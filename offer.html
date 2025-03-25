@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nodo Digital - Tu Web Que Genera Clientes en 7 Días</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
+        :root {
+            --color-primary: #0A2342;
+            --color-secondary: #3498db;
+            --color-accent: #2ecc71;
+            --color-background: #f4f6f7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background-color: var(--color-background);
+            color: var(--color-primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content::before {
+            content: '🚀';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 4rem;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: var(--color-accent);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--color-secondary);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            background: var(--color-accent);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
+
+        .cta-button::before {
+            content: '✨';
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: top 0.3s ease;
+        }
+
+        .cta-button:hover::before {
+            top: -20px;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-10px);
+        }
+
+        .testimonial-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid var(--color-secondary);
+        }
+
+        .garantia {
+            background: #f1f8ff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .garantia::before {
+            content: '🛡️';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+        }
+
+        .casos-exito {
+            background-color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .casos-exito h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--color-primary);
+        }
+
+        .caso-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .caso-imagen {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .web-screenshot {
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .caso-imagen:hover .web-screenshot {
+            transform: scale(1.05);
+        }
+
+        .metrics-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 1rem;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric .number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-accent);
+        }
+
+        .caso-descripcion {
+            text-align: left;
+            padding: 0 2rem;
+        }
+
+        .caso-descripcion h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .caso-detalles {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .caso-detalles li {
+            margin-bottom: 0.5rem;
+        }
+
+        .caso-link {
+            display: inline-block;
+            background: var(--color-secondary);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .caso-link:hover {
+            background: var(--color-accent);
+        }
+
+
+
+
+
+
+        /* Estilos específicos para móviles */
+        @media (max-width: 768px) {
+            .caso-grid {
+                grid-template-columns: 1fr;
+                /* Cambiar a una sola columna */
+                gap: 1rem;
+            }
+
+            .casos-exito h2 {
+                font-size: 1.8rem;
+                /* Reducir tamaño de título */
+            }
+
+            .caso-imagen,
+            .caso-descripcion {
+                width: 100%;
+                /* Ocupar ancho completo */
+            }
+
+            .metrics-overlay {
+                flex-direction: column;
+                /* Apilar métricas verticalmente */
+                padding: 0.5rem;
+            }
+
+            .metric {
+                margin-bottom: 0.5rem;
+            }
+
+            .caso-descripcion {
+                padding: 0;
+                text-align: center;
+            }
+
+            .caso-detalles {
+                padding: 0 1rem;
+                /* Añadir algo de padding */
+            }
+        }
+
+        /* Estilos para tablets */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .caso-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .casos-exito h2 {
+                font-size: 2rem;
+            }
+        }
+
+
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Tu Web Que Genera Clientes en 7 Días</h1>
+                <p class="hero-subtitle">Diseño profesional + Estrategia de conversión. Garantizamos visitas y clientes
+                    desde 45€</p>
+
+                <a href="#contacto" class="cta-button">¡Quiero Mi Web Ahora!</a>
+
+                <div class="testimonials">
+                    <div class="testimonial">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="María"
+                            class="testimonial-avatar">
+                        <p>"Duplicamos ventas en un mes"</p>
+                        <small>María, Peluquería Estilum</small>
+                    </div>
+                    <div class="testimonial">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos"
+                            class="testimonial-avatar">
+                        <p>"Diseño increíble y funcional"</p>
+                        <small>Carlos, Consultor IT</small>
+                    </div>
+                    <div class="testimonial">
+                        <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Elena"
+                            class="testimonial-avatar">
+                        <p>"Clientes nuevos cada semana"</p>
+                        <small>Elena, Nutricionista</small>
+                    </div>
+                </div>
+
+                <div class="casos-exito">
+                    <h2>Casos de Éxito Real 📈</h2>
+                    <div class="caso-grid">
+                        <div class="caso-imagen">
+                            <img src="./img/llarunica.webp" alt="Web Nutricionista Online" class="web-screenshot">
+                            <div class="metrics-overlay">
+                                <div class="metric">
+                                    <span class="number">+127</span>
+                                    <p>Nuevos Clientes</p>
+                                </div>
+                                <div class="metric">
+                                    <span class="number">€42.300</span>
+                                    <p>Facturación Extra</p>
+                                </div>
+                                <div class="metric">
+                                    <span class="number">+5.2K</span>
+                                    <p>Visitas Mensuales</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="caso-descripcion">
+                            <h3>Elena Martínez - Nutrición Online</h3>
+                            <p>Transformamos su consulta local en un negocio digital escalable. Estrategia de
+                                contenidos, diseño conversion-oriented y optimización SEO.</p>
+                            <ul class="caso-detalles">
+                                <li>✅ Web profesional en 7 días</li>
+                                <li>✅ Diseño 100% personalizado</li>
+                                <li>✅ Estrategia de captación incluida</li>
+                            </ul>
+                            <a href="#" class="caso-link">Ver Caso Completo →</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="garantia">
+                    <h3>Garantía Nodo</h3>
+                    <p>Si no generas clientes en 30 días, desarrollamos tu web GRATIS</p>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="./img/mockups/aa.png" alt="Mockup Web Nodo" style="max-width: 100%; border-radius: 15px;">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
