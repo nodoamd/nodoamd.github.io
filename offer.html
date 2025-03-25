@@ -9,7 +9,7 @@
 
         :root {
             --color-primary: #0A2342;
-            --color-secondary: #3498db;
+            --color-secondary: #512fae;
             --color-accent: #2ecc71;
             --color-background: #f4f6f7;
         }
@@ -21,7 +21,7 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             background-color: var(--color-background);
             color: var(--color-primary);
@@ -38,7 +38,8 @@
 
         .hero {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
+            /* Una columna por defecto */
             gap: 3rem;
             align-items: center;
         }
@@ -53,7 +54,7 @@
         }
 
         .hero-content::before {
-            content: url(img/nodedos.svg);
+            content: '🚀';
             position: absolute;
             top: -20px;
             right: -20px;
@@ -164,154 +165,132 @@
             font-size: 3rem;
         }
 
+        /* Casos de Éxito */
         .casos-exito {
             background-color: white;
             padding: 4rem 2rem;
-            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .caso-grid {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            background: #f9f9f9;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .caso-descripcion {
+            flex: 1;
+            padding: 3rem;
+            text-align: left;
         }
 
         .casos-exito h2 {
             font-size: 2.5rem;
+            color: #1a2b4f;
             margin-bottom: 2rem;
-            color: var(--color-primary);
-        }
-
-        .caso-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .caso-imagen {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        .web-screenshot {
-            width: 100%;
-            transition: transform 0.3s ease;
-        }
-
-        .caso-imagen:hover .web-screenshot {
-            transform: scale(1.05);
-        }
-
-        .metrics-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            display: flex;
-            justify-content: space-around;
-            padding: 1rem;
-        }
-
-        .metric {
             text-align: center;
         }
 
-        .metric .number {
-            display: block;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--color-accent);
-        }
-
-        .caso-descripcion {
-            text-align: left;
-            padding: 0 2rem;
+        .casos-exito h2 span {
+            color: #3498db;
         }
 
         .caso-descripcion h3 {
-            color: var(--color-primary);
+            font-size: 2rem;
+            color: #2c3e50;
             margin-bottom: 1rem;
+        }
+
+        .caso-descripcion p {
+            color: #34495e;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
 
         .caso-detalles {
             list-style: none;
-            margin: 1.5rem 0;
+            padding: 0;
+            margin-bottom: 1.5rem;
         }
 
         .caso-detalles li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            color: #2ecc71;
+            font-weight: 500;
+        }
+
+        .caso-detalles li::before {
+            content: '✓';
+            margin-right: 10px;
+            color: #2ecc71;
+        }
+
+        .metrics-container {
+            display: flex;
+            justify-content: space-between;
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .metric {
+            text-align: center;
+            flex: 1;
+        }
+
+        .metric .number {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #3498db;
             margin-bottom: 0.5rem;
+        }
+
+        .metric p {
+            color: #7f8c8d;
+            margin: 0;
+            font-size: 0.9rem;
         }
 
         .caso-link {
             display: inline-block;
-            background: var(--color-secondary);
+            background: #3498db;
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s ease;
+            border-radius: 50px;
+            transition: all 0.3s ease;
         }
 
         .caso-link:hover {
-            background: var(--color-accent);
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-
-
-
-
-
-        /* Estilos específicos para móviles */
-        @media (max-width: 768px) {
-            .caso-grid {
-                grid-template-columns: 1fr;
-                /* Cambiar a una sola columna */
-                gap: 1rem;
-            }
-
-            .casos-exito h2 {
-                font-size: 1.8rem;
-                /* Reducir tamaño de título */
-            }
-
-            .caso-imagen,
-            .caso-descripcion {
-                width: 100%;
-                /* Ocupar ancho completo */
-            }
-
-            .metrics-overlay {
-                flex-direction: column;
-                /* Apilar métricas verticalmente */
-                padding: 0.5rem;
-            }
-
-            .metric {
-                margin-bottom: 0.5rem;
-            }
-
-            .caso-descripcion {
-                padding: 0;
-                text-align: center;
-            }
-
-            .caso-detalles {
-                padding: 0 1rem;
-                /* Añadir algo de padding */
-            }
+        .caso-imagen {
+            flex: 1;
+            position: relative;
         }
 
-        /* Estilos para tablets */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .caso-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .casos-exito h2 {
-                font-size: 2rem;
-            }
+        .caso-imagen img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
 
-
+        .caso-imagen:hover img {
+            transform: scale(1.05);
+        }
 
         @media (max-width: 768px) {
             .hero {
@@ -320,6 +299,25 @@
 
             .testimonials {
                 grid-template-columns: 1fr;
+            }
+
+            .caso-grid {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .caso-descripcion,
+            .caso-imagen {
+                width: 100%;
+                padding: 1.5rem;
+            }
+
+            .metrics-container {
+                flex-direction: column;
+            }
+
+            .metric {
+                margin-bottom: 1rem;
             }
         }
     </style>
@@ -396,7 +394,8 @@
 
                 <div class="garantia">
                     <h3>Garantía Nodo</h3>
-                    <p>Si no generas clientes en 30 días, desarrollamos tu web GRATIS</p>
+                    <p style="font-weight: 500;">Cancela o Pausa en cualquier momento. Sin penalizaciones ni costos
+                        adicionales.</p>
                 </div>
             </div>
             <div class="hero-image">
