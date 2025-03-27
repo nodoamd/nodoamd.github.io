@@ -5,22 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nodo - Transformación Digital</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-
-
-        * {
-            font-family: 'Poppins', sans-serif;
-
-        }
-
 
         body {
             font-family: 'Inter', sans-serif;
+
         }
     </style>
 </head>
@@ -28,8 +19,11 @@
 <body class="bg-white text-gray-900">
     <!-- Navegación -->
     <nav class="container mx-auto px-4 py-6 flex justify-between items-center">
-        <div class="text-2xl font-bold text-blue-600">Nodo</div>
-        <a href="https://wa.me/TUNUMERO" target="_blank"
+        <div class="text-2xl font-bold text-[#6c72e5] flex items-center">
+            Nodo
+            <img src="./img/nodedos.svg" height="25px" width="25px" alt="Nodo Logo" class="ml-2">
+        </div>
+        <a href="https://wa.me/622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo" target=" _blank"
             class="bg-green-500 text-white px-4 py-2 rounded-full flex items-center hover:bg-green-600 transition">
             📱 Contáctanos
         </a>
@@ -40,7 +34,7 @@
         <div>
             <h1 class="text-5xl font-bold mb-6 leading-tight text-gray-900">
                 Transforma tu <br />
-                <span class="text-blue-600">Presencia Digital</span>
+                <span class="text-[#6c72e5]">Presencia Digital</span>
                 en 30 Días
             </h1>
             <p class="text-xl text-gray-700 mb-8">
@@ -65,10 +59,12 @@
             </div>
 
             <!-- Llamada a la Acción -->
-            <a href="#formulario-contacto"
-                class="bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition shadow-lg">
+            <a href="https://wa.me/622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo" target=" _blank"
+                class=" bg-[#4e53be] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#6c72e5]
+                transition shadow-lg">
                 Consulta Gratuita
             </a>
+
         </div>
 
         <!-- Formulario de Contacto -->
@@ -76,19 +72,22 @@
             <h2 class="text-3xl font-bold mb-6 text-center">
                 Agenda tu Consulta Gratuita
             </h2>
-            <form id="formulario-contacto" class="space-y-4">
-                <input type="text" placeholder="Tu Nombre" required
+            <form id="formulario-contacto" class="space-y-4" action="https://formspree.io/f/mkgjngab" method="POST"
+                target="_blank">
+                <input type="text" name="nombre" placeholder="Tu Nombre" required
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                <input type="email" placeholder="Tu Correo Electrónico" required
+                <input type="email" name="email" placeholder="Tu Correo Electrónico" required
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                <textarea placeholder="Cuéntanos sobre tu proyecto" rows="4"
+                <textarea name="mensaje" placeholder="Cuéntanos sobre tu proyecto" rows="4"
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
                 <button type="submit"
-                    class="w-full bg-blue-600 text-white py-4 rounded-full hover:bg-blue-700 transition font-semibold">
+                    class="w-full bg-[#4e53be] text-white py-4 rounded-full hover:bg-[#6c72e5] transition font-semibold">
                     Reservar Consulta Gratuita
                 </button>
             </form>
         </div>
+
+
     </main>
 
 
@@ -107,33 +106,35 @@
                         crecimiento
                         de tu negocio y llevarlo al siguiente nivel.
                     </p>
-                    <a href="#" class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition">
+                    <a href="https://nodoamd.github.io/"
+                        class="bg-[#4e53be] text-white px-6 py-3 rounded-full hover:bg-[#6c72e5]  transition">
                         Conoce Más
                     </a>
                 </div>
                 <!-- Mockups de Webs -->
                 <div class="grid grid-cols-2 gap-4">
                     <div class="bg-gray-100 p-4 rounded-lg shadow">
-                        <img src="https://via.placeholder.com/300x200" alt="Mockup de Landing Page"
-                            class="w-full rounded-lg mb-4">
-                        <p class="text-gray-600">Landing Page</p>
+                        <img src="./img/webbs.webp" alt="Mockup de Landing Page"
+                            class="w-full h-[200px] object-cover rounded-lg mb-4">
+                        <p class="text-gray-600">Páginas que Convierten en Clientes</p>
                     </div>
                     <div class="bg-gray-100 p-4 rounded-lg shadow">
-                        <img src="https://via.placeholder.com/300x200" alt="Mockup de Dashboard"
-                            class="w-full rounded-lg mb-4">
-                        <p class="text-gray-600">Dashboard</p>
+                        <img src="./img/dashboard.webp" alt="Mockup de Dashboard"
+                            class="w-full h-[200px] object-cover rounded-lg mb-4">
+                        <p class="text-gray-600">Planes Personalizados</p>
                     </div>
                     <div class="bg-gray-100 p-4 rounded-lg shadow">
-                        <img src="https://via.placeholder.com/300x200" alt="Mockup de App Móvil"
-                            class="w-full rounded-lg mb-4">
-                        <p class="text-gray-600">App Móvil</p>
+                        <img src="./img/camionnodo.webp" alt="Mockup de App Móvil"
+                            class="w-full h-[200px] object-cover rounded-lg mb-4">
+                        <p class="text-gray-600">Transformación Física</p>
                     </div>
                     <div class="bg-gray-100 p-4 rounded-lg shadow">
-                        <img src="https://via.placeholder.com/300x200" alt="Mockup de E-commerce"
-                            class="w-full rounded-lg mb-4">
-                        <p class="text-gray-600">E-commerce</p>
+                        <img src="./img/todos.webp" alt="Mockup de E-commerce"
+                            class="w-full h-[200px] object-cover rounded-lg mb-4">
+                        <p class="text-gray-600">Estrategia Integral</p>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -142,54 +143,59 @@
     <section class="bg-gray-100 py-16">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl font-bold mb-12">
-                Nuestros Clientes <span class="text-blue-600">Aman Nuestro Trabajo</span>
+                Nuestros Clientes <span class="text-[#4e53be]">Aman Nuestro Trabajo</span>
             </h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Tarjetas de Testimonios -->
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <p class="italic mb-4">
+                <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center">
+                    <img src="./img/luisimpresiones.png" alt="Sarah Johnson" class="w-20 h-20 rounded-full mb-4">
+                    <p class="italic mb-4 text-center">
                         "Nodo transformó completamente nuestra presencia online. ¡Vimos un aumento del 200% en leads en
                         solo 3 meses!"
                     </p>
                     <div class="font-semibold text-gray-700">
-                        - Sarah Johnson, CEO de TechStart
+                        - <span class="text-[#6c72e5]">Luis Lozano</span>, CEO de ImpresionesBarcelona
                     </div>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <p class="italic mb-4">
+                <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center">
+                    <img src="./img/doctorahitachi.webp" alt="Mike Rodriguez" class="w-20 h-20 rounded-full mb-4">
+                    <p class="italic mb-4 text-center">
                         "Su enfoque estratégico es incomparable. Nunca habíamos visto un marketing digital tan preciso y
                         efectivo."
                     </p>
                     <div class="font-semibold text-gray-700">
-                        - Mike Rodriguez, Fundador de GrowthWave
+                        - <span class="text-[#6c72e5]">Dra.Hitachi A</span>, Fundadora de Clinica Dental Hitachi
                     </div>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <p class="italic mb-4">
+                <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center">
+                    <img src="./img/lucas.webp" alt="Emily Chen" class="w-20 h-20 rounded-full mb-4">
+                    <p class="italic mb-4 text-center">
                         "Nodo entrega resultados, simple y claro. No son solo otra agencia, son verdaderos socios."
                     </p>
                     <div class="font-semibold text-gray-700">
-                        - Emily Chen, Directora de Marketing
+                        - <span class="text-[#6c72e5]">Llarunica</span>, Fundador de LlarUnica
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
 
 
+
     <!-- Pie de Página -->
-    <footer class="bg-blue-600 text-white py-12">
+    <footer class="bg-[#4e53be] text-white py-12">
         <div class="container mx-auto px-4 text-center">
             <p class="mb-4 text-xl">
                 ¿Listo para Elevar tu Estrategia Digital?
             </p>
-            <a href="https://wa.me/TUNUMERO" target="_blank"
+            <a href="https://wa.me/622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo" target=" _blank"
                 class="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition">
                 📱 Chatea por WhatsApp
             </a>
             <div class="mt-8 text-sm opacity-75">
-                © 2024 Nodo Agencia Digital. Todos los Derechos Reservados.
+                © 2025 Nodo Agencia Digital. Todos los Derechos Reservados.
             </div>
         </div>
     </footer>
