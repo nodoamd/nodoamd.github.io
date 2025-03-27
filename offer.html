@@ -2,453 +2,230 @@
 <html lang="es">
 
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nodo - Transformación Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Favicon -->
     <link rel="shortcut icon" href="./img/nodedos.svg">
     <link rel="apple-touch-icon" href="./img/nodedos.svg">
-    <meta charset="UTF-8">
-    <title>Nodo Digital - Tu Web Que Genera Clientes en 7 Días</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
-
-        :root {
-            --color-primary: #0A2342;
-            --color-secondary: #512fae;
-            --color-accent: #2ecc71;
-            --color-background: #f4f6f7;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
         body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            background-color: var(--color-background);
-            color: var(--color-primary);
-        }
+            font-family: 'Inter', sans-serif;
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            display: flex;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .hero-content {
-            background: white;
-            padding: 3rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content::before {
-            content: url(img/nodedos.svg);
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            font-size: 4rem;
-            opacity: 0.1;
-            z-index: 1;
-        }
-
-        .hero-title {
-            font-size: 2.5rem;
-            color: var(--color-primary);
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--color-accent);
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button:hover {
-            transform: scale(1.05);
-            background: var(--color-secondary);
-            box-shadow: 0 5px 15px rgba(46, 109, 204, 0.479);
-        }
-
-        .cta-button::before {
-            content: '✨';
-            position: absolute;
-            top: -100%;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: top 0.3s ease;
-        }
-
-        .cta-button:hover::before {
-            top: -20px;
-        }
-
-        .testimonials {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .testimonial {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .testimonial:hover {
-            transform: translateY(-10px);
-        }
-
-        .testimonial-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 1rem;
-            border: 3px solid var(--color-secondary);
-        }
-
-        .garantia {
-            background: #f1f8ff;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .garantia::before {
-            content: '🛡️';
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 3rem;
-        }
-
-        .casos-exito {
-            background-color: white;
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .caso-grid {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-            background: #f9f9f9;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .caso-descripcion {
-            flex: 1;
-            padding: 3rem;
-            text-align: left;
-        }
-
-        .casos-exito h2 {
-            font-size: 2.5rem;
-            color: #1a2b4f;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .casos-exito h2 span {
-            color: #3498db;
-        }
-
-        .caso-descripcion h3 {
-            font-size: 2rem;
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-
-        .caso-descripcion p {
-            color: #34495e;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .caso-detalles {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 1.5rem;
-        }
-
-        .caso-detalles li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.75rem;
-            color: #2ecc71;
-            font-weight: 500;
-        }
-
-        .caso-detalles li::before {
-            content: '✓';
-            margin-right: 10px;
-            color: #2ecc71;
-        }
-
-        .metrics-container {
-            display: flex;
-            justify-content: space-between;
-            background: #f1f5f9;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-top: 1.5rem;
-        }
-
-        .metric {
-            text-align: center;
-            flex: 1;
-        }
-
-        .metric .number {
-            display: block;
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #3498db;
-            margin-bottom: 0.5rem;
-        }
-
-        .metric p {
-            color: #7f8c8d;
-            margin: 0;
-            font-size: 0.9rem;
-        }
-
-        .caso-link {
-            display: inline-block;
-            background: #3498db;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-        }
-
-        .caso-link:hover {
-            background: #2980b9;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .caso-imagen {
-            flex: 1;
-            position: relative;
-        }
-
-        .caso-imagen img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .caso-imagen:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Media Queries */
-        @media (max-width: 768px) {
-            .container {
-                max-width: 100%;
-                padding: 1rem;
-            }
-
-            .hero {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .hero-content {
-                width: 100%;
-                padding: 2rem;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .hero-subtitle {
-                margin-bottom: 1rem;
-            }
-
-            .testimonials {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-
-            .testimonial {
-                width: 100%;
-                max-width: 350px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                padding: 1rem;
-                border-radius: 15px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
-
-            .testimonial-avatar {
-                width: 100px;
-                height: 100px;
-                border-radius: 50%;
-                margin-bottom: 0.5rem;
-            }
-
-            .caso-grid {
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            .caso-descripcion,
-            .caso-imagen {
-                width: 100%;
-                padding: 1.5rem;
-            }
-
-            .metrics-container {
-                flex-direction: column;
-            }
-
-            .metric {
-                margin-bottom: 1rem;
-            }
         }
     </style>
 </head>
 
-<body>
-    <div class="container">
-        <div class="hero">
-            <div class="hero-content">
-                <h1 class="hero-title">Tu negocio <span
-                        style="text-decoration: underline; text-decoration-color: var(--color-secondary); color: var(--color-secondary);">Generando
-                        Clientes</span> en <span
-                        style="text-decoration: underline; text-decoration-color: var(--color-secondary); color: var(--color-secondary);">7
-                        días</span>
-                </h1>
-                <p class="hero-subtitle"><br>Estrategia Profesional + Estrategia de conversión. <br> <br> Garantizamos
-                    visitas y
-                    clientes
-                    desde 45€</p>
+<body class="bg-white text-gray-900">
+    <!-- Navegación -->
+    <nav class="container mx-auto px-4 py-6 flex justify-between items-center">
+        <div class="text-2xl font-bold text-[#6c72e5] flex items-center"> <a href="https://nodoamd.github.io/">Nodo</a>
 
-                <a href="#contacto" class="cta-button">¡Quiero Mi Web Ahora!</a>
+            <img src="./img/nodedos.svg" height="25px" width="25px" alt="Nodo Logo" class="ml-2">
+        </div>
+        <a href="https://wa.me/622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo" target=" _blank"
+            class="bg-green-500 text-white px-4 py-2 rounded-full flex items-center hover:bg-green-600 transition">
+            📱 Contáctanos
+        </a>
+    </nav>
 
-                <div class="testimonials">
-                    <div class="testimonial">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="María"
-                            class="testimonial-avatar">
-                        <p>"Duplicamos ventas en un mes"</p>
-                        <small>María, Peluquería Estilum</small>
-                    </div>
-                    <div class="testimonial">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos"
-                            class="testimonial-avatar">
-                        <p>"Diseño increíble y funcional"</p>
-                        <small>Carlos, Consultor IT</small>
-                    </div>
-                    <div class="testimonial">
-                        <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Elena"
-                            class="testimonial-avatar">
-                        <p>"Clientes nuevos cada semana"</p>
-                        <small>Elena, Nutricionista</small>
-                    </div>
+    <!-- Sección Principal -->
+    <main class="container mx-auto px-4 py-16 grid md:grid-cols-2 gap-12 items-center">
+        <div>
+            <h1 class="text-5xl font-bold mb-6 leading-tight text-gray-900">
+                <span style="color: #4e53be;">¿</span>Tu Negocio <br />
+                <span class="text-[#6c72e5]">Atrae Clientes</span>
+                <span
+                    style="text-decoration: underline; text-decoration-color: #4e53be; font-weight: bold;">24/7</span><span
+                    style="color: #4e53be;">?</span>
+            </h1>
+            <p class="text-xl text-gray-700 mb-8">
+                Ofrecemos soluciones digitales de vanguardia que impulsan el crecimiento, aumentan la visibilidad y
+                potencian tu rendimiento online.
+            </p>
+
+            <!-- Beneficios Clave -->
+            <div class="space-y-4 mb-8">
+                <div class="flex items-center">
+                    <span class="text-blue-600 mr-3 text-2xl">✓</span>
+                    <span>Estrategias Personalizadas para tu Negocio</span>
                 </div>
-
-                <div class="casos-exito">
-                    <h2>Casos de Éxito Real 📈</h2>
-                    <div class="caso-grid">
-                        <div class="caso-imagen">
-                            <img src="./img/llarunica.webp" alt="Web Nutricionista Online" class="web-screenshot">
-                            <div class="metrics-overlay">
-                                <div class="metric">
-                                    <span class="number">+127</span>
-                                    <p>Nuevos Clientes</p>
-                                </div>
-                                <div class="metric">
-                                    <span class="number">€42.300</span>
-                                    <p>Facturación Extra</p>
-                                </div>
-                                <div class="metric">
-                                    <span class="number">+5.2K</span>
-                                    <p>Visitas Mensuales</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="caso-descripcion">
-                            <h3>Elena Martínez - Nutrición Online</h3>
-                            <p>Transformamos su consulta local en un negocio digital escalable. Estrategia de
-                                contenidos, diseño conversion-oriented y optimización SEO.</p>
-                            <ul class="caso-detalles">
-                                <li>✅ Web profesional en 7 días</li>
-                                <li>✅ Diseño 100% personalizado</li>
-                                <li>✅ Estrategia de captación incluida</li>
-                            </ul>
-                            <a href="#" class="caso-link">Ver Caso Completo →</a>
-                        </div>
-                    </div>
+                <div class="flex items-center">
+                    <span class="text-blue-600 mr-3 text-2xl">✓</span>
+                    <span>Resultados Basados en Datos Garantizados</span>
                 </div>
-
-
-
-                <div class="garantia">
-                    <h3>Garantía Nodo</h3>
-                    <p style="font-weight: 500;">Cancela o Pausa en cualquier momento. Sin penalizaciones ni costos
-                        adicionales.</p>
+                <div class="flex items-center">
+                    <span class="text-blue-600 mr-3 text-2xl">✓</span>
+                    <span>Equipo Experto con Comprobada Trayectoria</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="text-blue-600 mr-3 text-2xl">✓</span>
+                    <span>Branding <span style="font-weight: bold;">Completo ( Flyers, Carteles, etc.)</span>
                 </div>
             </div>
-            <div class="hero-image">
-                <img src="./img/mockups/aa.png" alt="Mockup Web Nodo" style="max-width: 100%; border-radius: 15px;">
+
+            <!-- Llamada a la Acción -->
+            <a href="https://wa.me/622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo" target=" _blank"
+                class=" bg-[#4e53be] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#6c72e5]
+                transition shadow-lg">
+                Consulta Gratuita
+            </a>
+
+        </div>
+
+        <!-- Formulario de Contacto -->
+        <div class="bg-gray-50 p-8 rounded-xl shadow-md">
+            <h2 class="text-3xl font-bold mb-6 text-center">
+                Agenda tu Consulta Gratuita
+            </h2>
+            <form id="formulario-contacto" class="space-y-4" action="https://formspree.io/f/mkgjngab" method="POST"
+                target="_blank">
+                <input type="text" name="nombre" placeholder="Tu Nombre" required
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <input type="email" name="email" placeholder="Tu Correo Electrónico" required
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <textarea name="mensaje" placeholder="Cuéntanos sobre tu proyecto" rows="4"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                <button type="submit"
+                    class="w-full bg-[#4e53be] text-white py-4 rounded-full hover:bg-[#6c72e5] transition font-semibold">
+                    Reservar Consulta Gratuita
+                </button>
+            </form>
+        </div>
+
+
+    </main>
+
+
+    <!-- Sección de Growth y Mockups -->
+    <section class="bg-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-12">
+                Growth y Mockups: <span class="text-blue-600">Transforma tu Negocio</span>
+            </h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Descripción de Growth -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4">Estrategias de Growth</h3>
+                    <p class="text-gray-700 mb-6">
+                        Descubre cómo nuestras técnicas de growth hacking y análisis de datos pueden impulsar el
+                        crecimiento
+                        de tu negocio y llevarlo al siguiente nivel.
+                    </p>
+                    <a href="https://nodoamd.github.io/"
+                        class="bg-[#4e53be] text-white px-6 py-3 rounded-full hover:bg-[#6c72e5] transition">
+                        Conoce Más
+                    </a>
+                </div>
+                <!-- Mockups de Webs -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-gray-100 p-4 rounded-lg shadow">
+                        <img src="./img/webbs.webp" alt="Mockup de Landing Page"
+                            class="w-full h-[200px] object-cover rounded-lg mb-4">
+                        <p class="text-gray-600">Páginas que Convierten en Clientes</p>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-lg shadow">
+                        <img src="./img/dashboard.webp" alt="Mockup de Dashboard"
+                            class="w-full h-[200px] object-cover rounded-lg mb-4">
+                        <p class="text-gray-600">Planes Personalizados</p>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-lg shadow">
+                        <img src="./img/camionnodo.webp" alt="Mockup de App Móvil"
+                            class="w-full h-[200px] object-cover rounded-lg mb-4">
+                        <p class="text-gray-600">Transformación Física</p>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-lg shadow">
+                        <img src="./img/todos.webp" alt="Mockup de E-commerce"
+                            class="w-full h-[200px] object-cover rounded-lg mb-4">
+                        <p class="text-gray-600">Estrategia Integral</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+
+    <!-- Sección de Testimonios -->
+    <section class="bg-gray-100 py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-12">
+                Nuestros Clientes <span class="text-[#4e53be]">Aman Nuestro Trabajo</span>
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Tarjetas de Testimonios -->
+                <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center">
+                    <img src="./img/luisimpresiones.png" alt="Sarah Johnson" class="w-20 h-20 rounded-full mb-4">
+                    <p class="italic mb-4 text-center">
+                        "Nodo transformó completamente nuestra presencia online. ¡Vimos un aumento del 200% en leads en
+                        solo 3 meses!"
+                    </p>
+                    <div class="font-semibold text-gray-700">
+                        - <span class="text-[#6c72e5]">Luis Lozano</span>, CEO de ImpresionesBarcelona
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center">
+                    <img src="./img/doctorahitachi.webp" alt="Mike Rodriguez" class="w-20 h-20 rounded-full mb-4">
+                    <p class="italic mb-4 text-center">
+                        "Su enfoque estratégico es incomparable. Nunca habíamos visto un marketing digital tan preciso y
+                        efectivo."
+                    </p>
+                    <div class="font-semibold text-gray-700">
+                        - <span class="text-[#6c72e5]">Dra.Hitachi A</span>, Fundadora de Clinica Dental Hitachi
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md flex flex-col items-center">
+                    <img src="./img/lucas.webp" alt="Emily Chen" class="w-20 h-20 rounded-full mb-4">
+                    <p class="italic mb-4 text-center">
+                        "Nodo entrega resultados, simple y claro. No son solo otra agencia, son verdaderos socios."
+                    </p>
+                    <div class="font-semibold text-gray-700">
+                        - <span class="text-[#6c72e5]">Llarunica</span>, Fundador de LlarUnica
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+    <!-- Pie de Página -->
+    <footer class="bg-[#4e53be] text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-4 text-xl">
+                ¿Listo para Elevar tu Estrategia Digital?
+            </p>
+            <a href="https://wa.me/622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo" target=" _blank"
+                class="bg-white text-blue-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition">
+                📱 Chatea por WhatsApp
+            </a>
+            <div class="mt-8 text-sm opacity-75">
+                © 2025 Nodo Agencia Digital. Todos los Derechos Reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Gestión del formulario de contacto
+        document.getElementById('formulario-contacto').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Obtener los valores del formulario
+            const nombre = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const mensaje = this.querySelector('textarea').value;
+
+            // Aquí puedes agregar la lógica de envío (por ejemplo, usando fetch)
+            alert(`¡Gracias ${nombre}! Pronto nos pondremos en contacto.`);
+
+            // Limpiar el formulario
+            this.reset();
+        });
+    </script>
 </body>
 
 </html>
