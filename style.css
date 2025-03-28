@@ -19,7 +19,9 @@
 }
 
 
-
+::selection {
+    background: #4e53be;
+}
 
 /* Efecto de magnetismo */
 .custom-cursor.cursor-hover {
