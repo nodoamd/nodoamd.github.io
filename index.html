@@ -65,6 +65,73 @@
         </div>
     </header>
 
+
+
+
+    <div class="scroll-menu">
+        <a href="#hero" class="scroll-link active">Inicio</a>
+        <a href="#nodo-services-section" class="scroll-link">Servicios</a>
+        <a href="#case-studies" class="scroll-link">Proyectos</a>
+        <a href="#pricing-container" class="scroll-link">Precios</a>
+        <a href="#nodo-faq-section" class="scroll-link">FAQ</a>
+        <a href="#nodo-contact-section" class="scroll-link">Contacto</a>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollMenu = document.querySelector('.scroll-menu');
+            let lastScrollY = window.scrollY;
+
+            // Mostrar/ocultar el menú según el scroll
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+
+                if (currentScrollY > lastScrollY) {
+                    // Usuario está haciendo scroll hacia abajo: Ocultar menú
+                    scrollMenu.classList.add('hidden');
+                } else {
+                    // Usuario está haciendo scroll hacia arriba: Mostrar menú
+                    scrollMenu.classList.remove('hidden');
+                }
+
+                lastScrollY = currentScrollY;
+            });
+
+            // Actualizar el enlace activo según la sección visible
+            const sections = document.querySelectorAll('section, .hero');
+            const menuLinks = document.querySelectorAll('.scroll-link');
+
+            const updateActiveLink = () => {
+                let currentSection = null;
+
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                        currentSection = section.id;
+                    }
+                });
+
+                menuLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href').substring(1) === currentSection);
+                });
+            };
+
+            window.addEventListener('scroll', updateActiveLink);
+            updateActiveLink(); // Ejecutar al cargar la página
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
     <main class="hero" id="hero">
 
         <div class="author parallax-element">
@@ -1299,7 +1366,7 @@
 
 
     <!-- Sección de Contacto para Nodo Agencia Digital -->
-    <section class="nodo-contact-section">
+    <section class="nodo-contact-section" id="nodo-contact-section">
         <div class="nodo-contact-header">
             <h2>Contacta con nosotros</h2>
             <p>¿Tienes un proyecto en mente? ¿Necesitas ayuda con tu presencia digital? En <span
