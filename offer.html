@@ -217,23 +217,7 @@
         </div>
     </footer>
 
-    <script>
-        // Gestión del formulario de contacto
-        document.getElementById('formulario-contacto').addEventListener('submit', function (e) {
-            e.preventDefault();
 
-            // Obtener los valores del formulario
-            const nombre = this.querySelector('input[type="text"]').value;
-            const email = this.querySelector('input[type="email"]').value;
-            const mensaje = this.querySelector('textarea').value;
-
-            // Aquí puedes agregar la lógica de envío (por ejemplo, usando fetch)
-            alert(`¡Gracias ${nombre}! Pronto nos pondremos en contacto.`);
-
-            // Limpiar el formulario
-            this.reset();
-        });
-    </script>
 </body>
 
 </html>
