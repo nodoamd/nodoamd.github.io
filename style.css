@@ -648,7 +648,7 @@ body {
     padding: 2rem;
     background: #fff;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
     position: relative;
     transition: transform 0.3s ease;
     text-align: center;
