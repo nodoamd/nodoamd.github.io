@@ -32,8 +32,8 @@
     <link rel="preload" href="./img/nodedos.svg" as="image">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="nodedos.svg">
-    <link rel="apple-touch-icon" href="nodedos.svg">
+    <link rel="icon" type="image/x-icon" href="nodedos.ico">
+    <link rel="apple-touch-icon" href="nodedos.png">
 
     <!-- Font Awesome con carga optimizada -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -1458,7 +1458,7 @@
                 </div>
 
                 <div class="nodo-social-links" style="align-items: center; margin: 0 auto; gap: 5rem;">
-                    <a href="https://www.instagram.com/nodo.conecta/" title="Instagram"><i
+                    <a href="https://www.instagram.com/nodo3digital/" title="Instagram"><i
                             class="fab fa-instagram"></i></a>
                     <a href="https://www.linkedin.com/company/105128705/" title="LinkedIn"><i
                             class="fab fa-linkedin-in"></i></a>
@@ -1505,7 +1505,7 @@
             <div class="footer-bottom">
                 <p>© 2025 Nodo. Todos los derechos reservados.</p>
                 <div class="footer-social">
-                    <a href="https://www.instagram.com/nodo.conecta/">Instagram</a>
+                    <a href="https://www.instagram.com/nodo3digital/">Instagram</a>
                     <a
                         href="https://www.linkedin.com/company/nodo-3d-agencia-marketing-digital/?viewAsMember=true">LinkedIn</a>
                 </div>
@@ -1725,58 +1725,6 @@
 
 
 
-
-
-    document.addEventListener('DOMContentLoaded', () => {
-        // Efecto hover suave para los enlaces
-        const links = document.querySelectorAll('.footer-links a, .footer-social a');
-
-        links.forEach(link => {
-            link.addEventListener('mouseenter', (e) => {
-                e.target.style.transform = 'translateY(-2px)';
-                e.target.style.transition = 'all 0.3s ease';
-            });
-
-            link.addEventListener('mouseleave', (e) => {
-                e.target.style.transform = 'translateY(0)';
-            });
-        });
-    });
-
-
-
-
-
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const track = document.querySelector('.testimonials-track');
-        const slides = document.querySelectorAll('.testimonial-slide');
-        const dotsContainer = document.querySelector('.slider-dots');
-        let currentSlide = 0;
-
-        // Crear dots
-        slides.forEach((_, index) => {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToSlide(index));
-            dotsContainer.appendChild(dot);
-        });
-
-        function goToSlide(index) {
-            track.style.transform = `translateX(-${index * 100}%)`;
-            document.querySelectorAll('.dot').forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-            currentSlide = index;
-        }
-
-        // Auto play (opcional)
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % slides.length;
-            goToSlide(currentSlide);
-        }, 4500);
-    });
 
 
     document.addEventListener('DOMContentLoaded', () => {
