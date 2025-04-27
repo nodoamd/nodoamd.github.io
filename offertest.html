@@ -307,11 +307,14 @@
                     class="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight text-gray-900">
                     Marketing digital <span class="animated-gradient-text">orientado a resultados</span>.
                 </h1>
-                <p class="text-xl text-gray-700 mb-8">
-                    En <span class="font-bold text-[#4e53be] text-2xl">Nodo</span>,
-                    <span class="text-[#6c72e5] font-bold">impulsamos tu crecimiento</span> y
-                    <span class="text-[#4e53be] font-bold">aumentamos tu visibilidad online</span>.
-                    <span class="font-bold text-[#6c72e5]">¡Transforma tu negocio con nosotros hoy!</span>
+                <p class="text-xl text-gray-700 mb-8 slide-up">
+                    <span class="font-bold text-[#4e53be] text-2xl">Nodo</span> impulsa tu negocio con <span
+                        id="palabra-cambia" class="animated-gradient-text font-bold">diseño</span>    <br>
+                    Todo lo <span
+                        class="font-bold text-[#4e53be] underline decoration-wavy decoration-2 underline-offset-4">digital</span>
+                    y <span
+                        class="font-bold text-[#6c72e5] underline decoration-dotted decoration-2 underline-offset-4">físico</span>
+                    para que consigas más clientes, sin complicaciones.
                 </p>
 
                 <!-- Beneficios Clave con animaciones -->
@@ -562,12 +565,16 @@
             <h2 class="text-4xl md:text-5xl font-extrabold leading-tight text-gray-900 animated-gradient-text slide-up">
                 ¿Quiénes está detrás de <span class="text-[#4e53be]">Nodo</span>?
             </h2>
-            <p class="text-xl text-gray-700 max-w-2xl mx-auto slide-up">
-                Somos un equipo multidisciplinar de <span class="font-bold text-[#4e53be]">expertos en marketing
-                    digital, diseño y tecnología</span> con más de 10 años de experiencia. <span
-                    class="text-[#6c72e5] font-bold">Nos apasiona impulsar negocios</span> como el tuyo, combinando
-                creatividad y datos para lograr resultados reales y sostenibles.
-            </p>
+            <div class="max-w-2xl mx-auto slide-up">
+                <p class="text-xl text-gray-700 mb-4">
+                    Somos un equipo multidisciplinar de <span class="font-bold text-[#4e53be]">expertos en marketing
+                        digital, diseño y tecnología</span> con más de 10 años de experiencia.
+                </p>
+                <p class="text-xl text-gray-700 mb-4">
+                    <span class="text-[#6c72e5] font-bold">Nos apasiona impulsar negocios</span> como el tuyo,
+                    combinando creatividad y datos para lograr resultados reales y sostenibles.
+                </p>
+            </div>
             <div class="flex flex-col sm:flex-row justify-center gap-6 mb-8">
                 <div class="flex items-center mx-auto sm:mx-0">
                     <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
@@ -623,12 +630,16 @@
             </h2>
             <div class="grid md:grid-cols-3 gap-10">
                 <div class="testimonial-card p-8 bg-white rounded-xl shadow-xl text-center fade-in">
+                    <img src="./img/luis.jpeg" alt="Ana G."
+                        class="mx-auto mb-4 w-16 h-16 rounded-full object-cover border-4 border-[#6c72e5]/20 shadow" />
                     <p class="text-xl text-gray-700 mb-4 italic">"Nodo nos ayudó a duplicar nuestras ventas en solo 3
                         meses. <span class='font-bold text-[#6c72e5]'>¡Recomendados!</span>"</p>
                     <div class="font-bold text-[#4e53be]">Ana G.</div>
                     <div class="text-xs text-gray-400">CEO, Empresa X</div>
                 </div>
                 <div class="testimonial-card p-8 bg-white rounded-xl shadow-xl text-center fade-in">
+                    <img src="./img/lucas.webp" alt="Carlos M."
+                        class="mx-auto mb-4 w-16 h-16 rounded-full object-cover border-4 border-[#6c72e5]/20 shadow" />
                     <p class="text-xl text-gray-700 mb-4 italic">"El equipo de Nodo es <span
                             class='font-bold text-[#6c72e5]'>profesional, creativo</span> y siempre está disponible."
                     </p>
@@ -636,6 +647,8 @@
                     <div class="text-xs text-gray-400">Director, Startup Y</div>
                 </div>
                 <div class="testimonial-card p-8 bg-white rounded-xl shadow-xl text-center fade-in">
+                    <img src="./img/doctorahitachi.webp" alt="Lucía P."
+                        class="mx-auto mb-4 w-16 h-16 rounded-full object-cover border-4 border-[#6c72e5]/20 shadow" />
                     <p class="text-xl text-gray-700 mb-4 italic">"Gracias a Nodo, nuestra marca tiene una <span
                             class='font-bold text-[#6c72e5]'>presencia digital impactante</span>."</p>
                     <div class="font-bold text-[#4e53be]">Lucía P.</div>
@@ -855,6 +868,37 @@
         });
 
 
+        document.addEventListener("DOMContentLoaded", function () {
+            const palabras = ["diseño", "marketing", "web", "impresiones", "branding"];
+            const el = document.getElementById("palabra-cambia");
+            let i = 0;
+            let timeout;
+            function animateWord(next) {
+                // Sale hacia arriba y se desvanece
+                el.style.transition = "transform 0.5s cubic-bezier(.77,0,.18,1), opacity 0.4s";
+                el.style.transform = "translateY(-40%) scale(0.8) rotateX(40deg)";
+                el.style.opacity = "0";
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    el.textContent = next;
+                    // Entra desde abajo con rebote
+                    el.style.transition = "none";
+                    el.style.transform = "translateY(40%) scale(1.2) rotateX(-40deg)";
+                    el.style.opacity = "0";
+                    setTimeout(() => {
+                        el.style.transition = "transform 0.6s cubic-bezier(.77,0,.18,1), opacity 0.5s";
+                        el.style.transform = "translateY(0) scale(1) rotateX(0deg)";
+                        el.style.opacity = "1";
+                    }, 20);
+                }, 400);
+            }
+            el.style.display = "inline-block";
+            el.style.willChange = "transform, opacity";
+            setInterval(() => {
+                i = (i + 1) % palabras.length;
+                animateWord(palabras[i]);
+            }, 2000);
+        });
     </script>
 
 </body>
