@@ -3,53 +3,67 @@
 
 <head>
     <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-   <title>Nodo | Agencia Digital</title>
-   
-   <!-- Favicons para todos los navegadores -->
-   <link rel="icon" type="image/svg+xml" href="img/nodedos.svg">
-   <link rel="icon" type="image/png" href="img/nodedos.png">
-   <link rel="shortcut icon" type="image/x-icon" href="img/nodedos.ico">
-   <link rel="apple-touch-icon" href="nodedos.png">
-   <link rel="mask-icon" href="img/nodedos.svg" color="#4e53be">
-   
-   <meta name="description"
-   content="Nodo - Agencia de Marketing Digital Especializada en Transformación digital y Posicionamiento Estrategico">
-   <!-- Open Graph / Social Media -->
-   <meta property="og:type" content="website">
-   <meta property="og:url" content="https://nodoamd.github.io/">
-   <meta property="og:title" content="Nodo | Tu Agencia Digital">
-   <meta property="og:description"
-   content="Nodo - Agencia de Marketing Digital Especializada en Transformación digital y Posicionamiento Estratégico">
-   <meta property="og:image" content="https://nodoamd.github.io/img/nodedos.svg">
-   <meta property="og:image:alt" content="Logo de Nodo Agencia Digital">
-   <meta property="og:site_name" content="Nodo">
-   <meta property="og:locale" content="es_ES">
-   <!-- Twitter Card (complementa Open Graph) -->
-   <meta name="twitter:card" content="summary_large_image">
-   <meta name="twitter:title" content="Nodo | Tu Agencia Digital">
-   <meta name="twitter:description"
-   content="Nodo - Agencia de Marketing Digital Especializada en Transformación digital y Posicionamiento Estratégico">
-   <meta name="twitter:image" content="https://nodoamd.github.io/img/nodedos.svg">
-   <!-- Precargar recursos críticos -->
-   <link rel="preload" href="style.css" as="style">
-   <link rel="preload" href="./img/nodedos.svg" as="image">
-   <!-- Font Awesome con carga optimizada -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-   media="print" onload="this.media='all'">
-   <!-- Google Fonts -->
-   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-   rel="stylesheet">
-   <meta name="theme-color" content="#4e53be">
-   <!-- Estilos -->
-   <link rel="stylesheet" href="style.css">
-   </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nodo | Agencia Digital</title>
+    <link rel="shortcut icon" type="image/x-icon" href="nodedos.svg">
+    <meta name="description"
+        content="Nodo - Agencia de Marketing Digital Especializada en Transformación digital y Posicionamiento Estrategico">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nodoamd.github.io/">
+    <meta property="og:title" content="Nodo | Tu Agencia Digital">
+    <meta property="og:description"
+        content="Nodo - Agencia de Marketing Digital Especializada en Transformación digital y Posicionamiento Estratégico">
+    <meta property="og:image" content="https://nodoamd.github.io/img/nodedos.svg">
+    <meta property="og:image:alt" content="Logo de Nodo Agencia Digital">
+    <meta property="og:site_name" content="Nodo">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter Card (complementa Open Graph) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nodo | Tu Agencia Digital">
+    <meta name="twitter:description"
+        content="Nodo - Agencia de Marketing Digital Especializada en Transformación digital y Posicionamiento Estratégico">
+    <meta name="twitter:image" content="https://nodoamd.github.io/img/nodedos.svg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Precargar recursos críticos -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="./img/nodedos.svg" as="image">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./img/nodedos.svg">
+    <link rel="apple-touch-icon" href="./img/nodedos.svg">
+
+    <!-- Font Awesome con carga optimizada -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        media="print" onload="this.media='all'">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <meta name="theme-color" content="#4e53be">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="style.css">
+</head>
 
 
 <body>
     <header class="header">
-        <a href="#hero" class="logo logodos">Nodo<img class="logologodos" src="./img/nodedos.svg" style="height: 20px;"
-                alt="Nodo Logo"></a>
+        <a href="https://nodoamd.github.io/" class="flex items-center group">
+            <span class="mr-2 relative">
+                <span class="text-xl font-extrabold tracking-tight text-[#4e53be]">Nodo</span>
+                <span
+                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#6c72e5] group-hover:w-full transition-all duration-300"></span>
+            </span>
+            <img src="./img/nodedos.svg" height="25" width="25" alt="Nodo Logo"
+                class="transform group-hover:rotate-12 transition-all duration-300">
+        </a>
         <nav class="nav-links">
             <a href="#nodo-services-section">Servicios</a>
             <a href="#case-studies">Proyectos</a>
