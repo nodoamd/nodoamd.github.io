@@ -246,11 +246,13 @@
 
     <section class="nodo-services-section" id="nodo-services-section">
         <div class="nodo-services-container">
-            <header class="nodo-services-header">
-                <span class="nodo-section-subtitle">Servicios Made In</span>
-                <img src="./img/node.svg" style="margin: -40px;" alt="Logo de Nodo">
-                <h2 class="nodo-section-title"
-                    style="margin-top: -60px; margin-bottom: 50px; text-decoration: underline #8855ff;">Nodo</h2>
+            <header class="nodo-services-header" style="text-align: center;">
+                <span class="nodo-section-subtitle" style="margin-bottom: 25px;">Servicios Made In</span>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                    <img src="./img/nodedos.svg" alt="Logo de Nodo" style="height: 120px; margin: 0 auto;">
+                    <h2 class="nodo-section-title"
+                        style="margin-top: 0; margin-bottom: 20px; text-decoration: underline #8855ff;">Nodo</h2>
+                </div>
                 <h2 class="nodo-section-title">Impulsamos tu negocio al siguiente nivel.</h2>
                 <p class="nodo-section-description">
                     Combinamos estrategia, tecnología y creatividad para transformar tu empresa.
@@ -329,8 +331,9 @@
             <div class="container">
                 <!-- Main Solutions Section -->
                 <div class="section-header">
-                    <h2 class="section-title">Soluciones Made in Nodo <img src="./img/nodedos.svg" height="55px"
-                            alt="Lodo de Nodo"></h2>
+                    <h2 class="section-title">Soluciones Made in Nodo <img src="./img/nodedos.svg" alt="Logo de Nodo"
+                            style="height: 120px; margin: 0 auto;">
+                    </h2>
                     <p class="section-description">Nodo ofrece la credibilidad que proporciona un diseño profesional,
                         con un trato personalizado, respuesta inmediata, garantía, creatividad
                         y la capacidad de atraer más clientes en el momento preciso.</p>
@@ -753,8 +756,9 @@
 
     <section class="case-studies" id="case-studies">
         <h2>Éxitos de nuestros clientes</h2>
-        <p><i style="font-weight: bold; font-size: larger" ;>Made in Nodo</i> <img src="./img/nodedos.svg" height="45px"
-                width="25px" alt="Nodo Logo"></p>
+        <p><i style="font-weight: bold; font-size: larger" ;>Made in Nodo</i> <img src="./img/nodedos.svg"
+                alt="Nodo Logo" style="height: 120px; margin: 8px auto 0 auto;">
+        </p>
 
         <div class="case-studies-grid">
             <!-- Caso de Estudio 1 -->
@@ -944,8 +948,10 @@
 
 
     <div class="pricing-container" id="pricing-container">
-        <div class="pricing-header">
-            <h1 class="pricing-title">Nodo Digital Agency <img src="./img/nodedos.svg" height="40rem" alt="Nodo Logo">
+        <div class="pricing-header" style="text-align: center;">
+            <h1 class="pricing-title" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+                Nodo Digital Agency
+                <img src="./img/nodedos.svg" alt="Nodo Logo" style="height: 120px; margin: 0 auto;">
             </h1>
             <p class="pricing-description">Soluciones flexibles para todas tus necesidades.</p>
         </div>
@@ -1485,39 +1491,65 @@
 
 
 
-    <!-- Footer Nodo Style -->
-    <footer class="nodo-footer">
-        <div class="footer-container">
-            <div class="footer-main">
-                <div class="footer-left">
-                    <div class="footer-logo">
-                        Nodo <a href="https://nodoamd.github.io/"><img src="./img/nodedos.svg" height="45px"
-                                alt="Logo Nodo Agencia Digital"></a>
-                        <br>
-                        <a href="https://impresionesbarcelona.com/"><img src="./img/impresiones.png" height="45px"
-                                alt="Logo Impresiones Barcelona"></a>
-                    </div>
-                    <p class="footer-tagline">Diseñamos tu éxito digital</p>
+    <footer class="nodo-footer"
+        style="background: #232347; color: #fff; padding: 40px 0 0 0; font-family: 'Poppins', sans-serif;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 24px;">
+                <!-- Logo y tagline -->
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                    <a href="https://nodoamd.github.io/" style="display: flex; align-items: center; gap: 10px;">
+                        <img src="./img/nodedos.svg" alt="Logo Nodo Agencia Digital" style="height: 38px; width: 38px;">
+                        <span style="font-size: 1.5rem; font-weight: 700; color: #fff;">Nodo</span>
+                    </a>
+                    <p style="font-size: 1rem; color: #bdbdfc; margin: 0;">Diseñamos tu éxito digital</p>
                 </div>
-                <div class="footer-right" style="margin: 0 auto;">
-                    <div class="footer-links">
-                        <a href="#nodo-services-section">Servicios</a>
-                        <a href="#case-studies">Proyectos</a>
-                        <a href="#pricing-container">Precios</a>
-                        <a href="#nodo-faq-section">FAQ</a>
-                        <a href="https://wa.me/34622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo"
-                            target="_blank" class="contact-link">Contacto</a>
-                        <a href="./consulta.html" class="cta-button">Cotizar Proyecto</a>
-                    </div>
+                <!-- Enlaces -->
+                <nav style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; margin: 16px 0;">
+                    <a href="#nodo-services-section"
+                        style="color: #bdbdfc; text-decoration: none; font-weight: 500; transition: color 0.2s;"
+                        onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">Servicios</a>
+                    <a href="#case-studies"
+                        style="color: #bdbdfc; text-decoration: none; font-weight: 500; transition: color 0.2s;"
+                        onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">Proyectos</a>
+                    <a href="#pricing-container"
+                        style="color: #bdbdfc; text-decoration: none; font-weight: 500; transition: color 0.2s;"
+                        onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">Precios</a>
+                    <a href="#nodo-faq-section"
+                        style="color: #bdbdfc; text-decoration: none; font-weight: 500; transition: color 0.2s;"
+                        onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">FAQ</a>
+                    <a href="https://wa.me/34622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo"
+                        target="_blank"
+                        style="color: #fff; background: #4e53be; border-radius: 20px; padding: 6px 18px; font-weight: 600; text-decoration: none; transition: background 0.2s;"
+                        onmouseover="this.style.background='#6c72e5'"
+                        onmouseout="this.style.background='#4e53be'">Contacto</a>
+                    <a href="./consulta.html"
+                        style="color: #fff; background: #6c72e5; border-radius: 20px; padding: 6px 18px; font-weight: 600; text-decoration: none; transition: background 0.2s;"
+                        onmouseover="this.style.background='#4e53be'"
+                        onmouseout="this.style.background='#6c72e5'">Cotizar Proyecto</a>
+                </nav>
+                <!-- Logos secundarios -->
+                <div style="display: flex; gap: 18px; align-items: center; margin-bottom: 8px;">
+                    <a href="https://impresionesbarcelona.com/" target="_blank">
+                        <img src="./img/impresiones.png" alt="Logo Impresiones Barcelona"
+                            style="height: 48px; width: auto; brightness(1.5); opacity: 0.8;">
+                    </a>
+                </div>
+                <!-- Social -->
+                <div style="display: flex; gap: 18px; margin-bottom: 12px;">
+                    <a href="https://www.instagram.com/nodo3digital/" target="_blank" title="Instagram"
+                        style="color: #bdbdfc; font-size: 1.3rem; transition: color 0.2s;"
+                        onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/nodo-3d-agencia-marketing-digital/?viewAsMember=true"
+                        target="_blank" title="LinkedIn"
+                        style="color: #bdbdfc; font-size: 1.3rem; transition: color 0.2s;"
+                        onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'"><i
+                            class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>© 2025 Nodo. Todos los derechos reservados.</p>
-                <div class="footer-social">
-                    <a href="https://www.instagram.com/nodo3digital/">Instagram</a>
-                    <a
-                        href="https://www.linkedin.com/company/nodo-3d-agencia-marketing-digital/?viewAsMember=true">LinkedIn</a>
-                </div>
+            <div
+                style="border-top: 1px solid #39396a; margin-top: 32px; padding: 18px 0 8px 0; text-align: center; color: #bdbdfc; font-size: 0.95rem;">
+                © 2025 Nodo. Todos los derechos reservados.
             </div>
         </div>
     </footer>
@@ -1529,11 +1561,11 @@
     <div class="custom-cursor"></div>
 
     <div class="cta">
-        <a href="https://wa.me/34622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo" target="_blank">
-            <img src="./img/nodedos.svg" alt="Logo del Teléfono" class="logo">
-            <button style="z-index: 900;"
-                src="https://wa.me/34622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo"
-                class="boton-llamada">Contactar</button></a>
+        <a href="https://wa.me/34622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo" target="_blank"
+            style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; border-radius: 30px; background: #4e53be; color: #fff; font-weight: 600; font-size: 1rem; box-shadow: 0 2px 8px rgba(78,83,190,0.08); transition: background 0.2s;">
+            <img src="./img/nodedos.svg" alt="Logo Nodo" style="height: 24px; width: 24px; margin-right: 6px;">
+            Contactar
+        </a>
     </div>
 
 </body>
