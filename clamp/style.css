@@ -133,7 +133,7 @@ img {
   min-height: 500px;
   opacity: 0.45;
   transition: transform 0.2s;
-  filter: blur(12px);
+  filter: blur(15px);
   display: block;
   margin: -50px auto;
   will-change: transform;
@@ -183,7 +183,8 @@ img {
 
 .lazo-decorativo {
   position: absolute;
-  top: -10px;
+  margin-top: -80px;
+  top: -100px;
   /* Ajusta según la altura de tu header */
   left: 0;
   width: 100%;
@@ -303,6 +304,12 @@ img {
   transition: box-shadow 0.3s;
 }
 
+.about-hero,
+.experiencia-hero {
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+}
+
 .about-hero:hover,
 .experiencia-hero:hover {
   box-shadow: 0 16px 48px 0 rgba(46, 83, 57, 0.16), 0 3px 12px 0 rgba(224, 171, 48, 0.12);
@@ -355,4 +362,10 @@ img {
 .en-espana.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+
+#mapa-animado {
+  transform-origin: center center;
+  will-change: transform;
 }
