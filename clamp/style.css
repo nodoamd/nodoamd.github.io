@@ -25,7 +25,7 @@
 }
 
 body {
-  background-color: #ede3c7;
+  background-color: #D4973C;
   background-image: url("data:image/svg+xml;utf8,<svg width='80' height='80' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='20' cy='20' r='1.5' fill='%23c2b280' opacity='0.18'/><circle cx='0' cy='40' r='1.5' fill='%23e6d3b3' opacity='0.13'/><circle cx='40' cy='0' r='1.5' fill='%23a68b5b' opacity='0.10'/></svg>");
   background-repeat: repeat;
 }
@@ -121,9 +121,14 @@ img {
 
 
 .lazo-decorativo img {
+  width: 120vw;
+  max-width: 1800px;
+  height: 80vh;
+  min-height: 500px;
+  opacity: 0.45;
   transition: transform 0.2s;
   display: block;
-  margin: 0 auto;
+  margin: -50px auto;
   will-change: transform;
   z-index: -9999;
 }
@@ -133,7 +138,7 @@ img {
 }
 
 .clamp {
-  font-size: 10rem;
+  font-size: 12rem;
   position: relative;
   z-index: -1;
 }
@@ -179,13 +184,6 @@ img {
   pointer-events: none;
   display: flex;
   justify-content: center;
-}
-
-.lazo-decorativo img {
-  width: 90vw;
-  max-width: 1200px;
-  height: auto;
-  opacity: 0.7;
 }
 
 .images {
@@ -287,7 +285,7 @@ img {
 .about-hero,
 .experiencia-hero {
   max-width: 540px;
-  margin: 4rem auto 3rem auto;
+  margin: 10rem auto 3rem auto;
   padding: 2.5rem 2rem 2rem 2rem;
   background: #fff;
   border-radius: 2.2rem;
@@ -334,37 +332,20 @@ img {
   box-shadow: 0 2px 8px 0 rgba(224, 171, 48, 0.07);
 }
 
-.enredadera-arrow {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto 1.5rem auto;
-  height: 60px;
-  width: 36px;
-  opacity: 0.7;
-  animation: enredadera-bounce 2.5s infinite;
+
+.en-espana {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(.77, 0, .18, 1), transform 0.7s cubic-bezier(.77, 0, .18, 1);
+  font-size: 8rem;
+  font-weight: 700;
+  color: var(--jungle-dark, #2e5339);
+  letter-spacing: 0.01em;
+  margin-top: 1.2rem;
+  text-align: center;
 }
 
-@keyframes enredadera-bounce {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(10px);
-  }
-}
-
-@media (max-width: 600px) {
-  .enredadera-arrow {
-    height: 40px;
-    width: 24px;
-  }
-
-  .enredadera-arrow svg {
-    height: 40px;
-    width: 24px;
-  }
+.en-espana.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
