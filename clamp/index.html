@@ -67,6 +67,8 @@
           </svg>
         </div>
 
+
+
       </section>
 
       <div class="about-hero" id="about-hero">
@@ -96,13 +98,9 @@
   <script src="./gsap/DrawSVGPlugin.min.js"></script>
   <script type="module" src="./script.js"></script>
   <script>
+    // Espera a que todo cargue
     window.addEventListener('DOMContentLoaded', function () {
-      if (
-        typeof window.gsap !== "undefined" &&
-        typeof window.ScrollTrigger !== "undefined" &&
-        document.querySelector("#mapa-animado") &&
-        document.querySelector("#heading-hero")
-      ) {
+      if (window.gsap && window.ScrollTrigger) {
         // Animación de escala del mapa
         gsap.to("#mapa-animado", {
           scrollTrigger: {
@@ -117,70 +115,61 @@
 
         // Animación de bajada del título
         gsap.to("#heading-hero", {
-          y: 180,
+          y: 180, // Ajusta este valor para bajar más o menos el título
           scrollTrigger: {
             trigger: ".hero",
             start: "top top",
-            end: "center top",
+            end: "center top", // Hasta la mitad de la sección
             scrub: 0
           }
         });
 
         // Pin del mapa (si quieres que quede fijo)
-        if (document.querySelector("#mapa-animado")) {
-          ScrollTrigger.create({
-            trigger: ".hero",
-            start: "center top",
-            end: "bottom top",
-            pin: "#mapa-animado",
-            pinSpacing: false
-          });
-        }
+        ScrollTrigger.create({
+          trigger: ".hero",
+          start: "center top",
+          end: "bottom top",
+          pin: "#mapa-animado",
+          pinSpacing: false
+        });
 
         // Mostrar "En España." cuando el pin está activo
-        const enEspana = document.getElementById('en-espana');
-        if (enEspana) {
-          ScrollTrigger.create({
-            trigger: ".hero",
-            start: "center top",
-            end: "bottom top",
-            onEnter: () => enEspana.classList.add('visible'),
-            onLeaveBack: () => enEspana.classList.remove('visible')
-          });
-        }
+        ScrollTrigger.create({
+          trigger: ".hero",
+          start: "center top",
+          end: "bottom top",
+          onEnter: () => document.getElementById('en-espana').classList.add('visible'),
+          onLeaveBack: () => document.getElementById('en-espana').classList.remove('visible')
+        });
 
         // Animación de la sección about-hero
-        if (document.querySelector(".about-hero")) {
-          gsap.to(".about-hero", {
-            scrollTrigger: {
-              trigger: ".about-hero",
-              start: "top 80%",
-              toggleActions: "play none none none"
-            },
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 1.1,
-            ease: "power3.out"
-          });
-        }
+        gsap.to(".about-hero", {
+          scrollTrigger: {
+            trigger: ".about-hero",
+            start: "top 80%",
+            toggleActions: "play none none none"
+          },
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.1,
+          ease: "power3.out"
+        });
 
         // Animación de la sección experiencia-hero
-        if (document.querySelector(".experiencia-hero")) {
-          gsap.to(".experiencia-hero", {
-            scrollTrigger: {
-              trigger: ".experiencia-hero",
-              start: "top 80%",
-              toggleActions: "play none none none"
-            },
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 1.1,
-            ease: "power3.out",
-            delay: 0.1
-          });
-        }
+        gsap.to(".experiencia-hero", {
+          scrollTrigger: {
+            trigger: ".experiencia-hero",
+            start: "top 80%",
+            toggleActions: "play none none none"
+          },
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.1,
+          ease: "power3.out",
+          delay: 0.1
+        });
       }
     });
   </script>
