@@ -79,7 +79,7 @@ h1 {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: stretch;
   justify-items: center;
-  margin-top: 2rem;
+  margin-top: 5rem;
 }
 
 img {
@@ -116,7 +116,8 @@ img {
 
 .clamp {
   position: relative;
-  z-index: -1
+  z-index: -1;
+  color: var(--jungle-light);
 }
 
 .yt {
@@ -134,6 +135,7 @@ img {
 
 .heading {
   position: relative;
+  margin-top: 150px;
   z-index: 2;
   mix-blend-mode: difference;
   perspective: 1000px;
