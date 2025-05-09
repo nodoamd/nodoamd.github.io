@@ -15,7 +15,7 @@
     <div id="smooth-content">
       <header>
         <div class="logo" style="width: 250px; height: 50px;">
-          <img src="logo.png" alt="">
+          <img src="./img/lachiquitanaLogo.png" alt="">
         </div>
         <nav>
           <ul role="list">
@@ -25,6 +25,10 @@
           </ul>
         </nav>
       </header>
+
+      <div class="lazo-decorativo">
+        <img id="mapa-animado" src="./img/acountry.svg" alt="Lazo decorativo" height="25px">
+      </div>
 
       <section class="hero pad-l">
         <div class="heading">
@@ -113,6 +117,23 @@
   <script src="./gsap/ScrollSmoother.min.js"></script>
   <script src="./gsap/DrawSVGPlugin.min.js"></script>
   <script type="module" src="./script.js"></script>
+  <script>
+    // Espera a que todo cargue
+    window.addEventListener('DOMContentLoaded', function () {
+      if (window.gsap && window.ScrollTrigger) {
+        gsap.to("#mapa-animado", {
+          scrollTrigger: {
+            trigger: ".hero", // Empieza la animación con la sección principal
+            start: "top top",
+            end: "bottom top",
+            scrub: 0 // Instantáneo, sin suavizado
+          },
+          scale: 1.5, // Cambia a 0.7 si quieres que se haga pequeño
+          transformOrigin: "center center"
+        });
+      }
+    });
+  </script>
 
 </body>
 

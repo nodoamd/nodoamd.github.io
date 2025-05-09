@@ -29,7 +29,7 @@ header {
   padding: 1.5rem;
   display: flex;
   border-bottom: 2px solid rgb(224, 171, 48);
-  background-color: var(--dark);
+
 }
 
 button {
@@ -114,18 +114,28 @@ img {
   height: 100vh
 }
 
+
+.lazo-decorativo img {
+  transition: transform 0.2s;
+  display: block;
+  margin: 0 auto;
+  will-change: transform;
+  z-index: -9999;
+}
+
 .pin {
   margin-top: 200px;
 }
 
 .clamp {
+  font-size: 10rem;
   position: relative;
   z-index: -1;
-  color: var(--jungle-light);
 }
 
 .yt {
-  z-index: 3
+  z-index: 3;
+  mix-blend-mode: lighten;
 }
 
 .clamp svg {
@@ -146,6 +156,31 @@ img {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
   transform: rotate(0.1deg);
+}
+
+
+
+
+
+
+
+.lazo-decorativo {
+  position: absolute;
+  top: calc(-120px + 2rem);
+  /* Ajusta según la altura de tu header */
+  left: 0;
+  width: 100%;
+  z-index: -2;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+}
+
+.lazo-decorativo img {
+  width: 90vw;
+  max-width: 1200px;
+  height: auto;
+  opacity: 0.7;
 }
 
 .images {
