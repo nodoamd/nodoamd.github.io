@@ -114,6 +114,10 @@ img {
   height: 100vh
 }
 
+.pin {
+  margin-top: 200px;
+}
+
 .clamp {
   position: relative;
   z-index: -1;
