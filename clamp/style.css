@@ -133,6 +133,7 @@ img {
   min-height: 500px;
   opacity: 0.45;
   transition: transform 0.2s;
+  filter: blur(12px);
   display: block;
   margin: -50px auto;
   will-change: transform;
