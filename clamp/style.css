@@ -57,7 +57,7 @@ button:hover {
   margin-top: 0;
   /* Elimina margen superior si lo hay */
   padding-top: 0.5rem;
-  /* Opcional: añade un pequeño padding si lo deseas */
+  margin-bottom: 400px;
 }
 
 
@@ -90,7 +90,6 @@ h1 {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: stretch;
   justify-items: center;
-  margin-top: 5rem;
 }
 
 img {
@@ -166,7 +165,7 @@ img {
 
 .heading {
   position: relative;
-  margin-top: 400px;
+  margin-top: 950px;
   z-index: 2;
   mix-blend-mode: color-dodge;
   perspective: 1000px;
