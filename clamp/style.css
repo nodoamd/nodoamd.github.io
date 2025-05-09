@@ -165,7 +165,7 @@ img {
 
 .heading {
   position: relative;
-  margin-top: 950px;
+  margin-top: 500px;
   z-index: 2;
   mix-blend-mode: color-dodge;
   perspective: 1000px;
@@ -212,37 +212,9 @@ img {
   pointer-events: none;
 }
 
-.scroll-down-indicator svg {
-  display: block;
-  width: 32px;
-  height: 32px;
-  stroke: #4e7c59;
-  filter: drop-shadow(0 2px 6px rgba(78, 124, 89, 0.15));
-  transition: stroke 0.3s, filter 0.3s;
-}
-
-/* Efecto glow al pasar el mouse (solo desktop) */
-@media (hover: hover) and (pointer: fine) {
 
 
-  .scroll-down-indicator:hover svg {
-    stroke: #7bb661;
-    filter: drop-shadow(0 4px 12px #7bb66188);
-  }
-}
 
-/* Rebote más suave */
-@keyframes bounceDown {
-
-  0%,
-  100% {
-    transform: translateX(-50%) translateY(0);
-  }
-
-  50% {
-    transform: translateX(-50%) translateY(18px) scale(1.08);
-  }
-}
 
 @media (max-width: 900px) {
   .images img {
@@ -367,4 +339,5 @@ img {
 #mapa-animado {
   transform-origin: center center;
   will-change: transform;
+
 }
