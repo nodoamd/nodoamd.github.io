@@ -31,7 +31,7 @@
       </div>
 
       <section class="hero pad-l">
-        <div class="heading">
+        <div class="heading" id="heading-hero">
           <div class="pin">
             <h1><span class="clamp">Vive
                 <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 842.14 500">
@@ -63,6 +63,14 @@
           </svg>
         </div>
 
+        <!-- Flecha enredadera minimalista -->
+        <div class="enredadera-arrow">
+          <svg width="36" height="60" viewBox="0 0 36 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 0 C18 20, 18 40, 18 60" stroke="#4e7c59" stroke-width="2.5" fill="none" />
+            <circle cx="18" cy="60" r="3" fill="#4e7c59" />
+          </svg>
+        </div>
+
         <style>
           .animated-arrow {
             animation: bounce 2s infinite;
@@ -91,15 +99,15 @@
 
       </section>
 
-      <div class="about-hero">
+      <div class="about-hero" id="about-hero">
         <h2 class="about-title">¿Qué es la Chiquitania?</h2>
         <p class="about-desc">
           Un paraíso natural y cultural en el corazón de Bolivia.<br>
-          Tierra de tradiciones, sabores únicos y paisajes que enamoran.
+          <span class="about-strong">Tierra de tradiciones, sabores únicos y paisajes que enamoran.</span>
         </p>
       </div>
 
-      <div class="experiencia-hero">
+      <div class="experiencia-hero" id="experiencia-hero">
         <h2 class="exp-title">Vívelo en primera persona</h2>
         <p class="exp-desc">
           Recorre sus senderos, prueba su gastronomía y déjate llevar por la calidez de su gente.<br>
@@ -121,15 +129,65 @@
     // Espera a que todo cargue
     window.addEventListener('DOMContentLoaded', function () {
       if (window.gsap && window.ScrollTrigger) {
+        // Animación de escala del mapa
         gsap.to("#mapa-animado", {
           scrollTrigger: {
-            trigger: ".hero", // Empieza la animación con la sección principal
+            trigger: ".hero",
             start: "top top",
             end: "bottom top",
-            scrub: 0 // Instantáneo, sin suavizado
+            scrub: 0
           },
-          scale: 1.5, // Cambia a 0.7 si quieres que se haga pequeño
+          scale: 1.5,
           transformOrigin: "center center"
+        });
+
+        // Animación de bajada del título
+        gsap.to("#heading-hero", {
+          y: 180, // Ajusta este valor para bajar más o menos el título
+          scrollTrigger: {
+            trigger: ".hero",
+            start: "top top",
+            end: "center top", // Hasta la mitad de la sección
+            scrub: 0
+          }
+        });
+
+        // Pin del mapa (si quieres que quede fijo)
+        ScrollTrigger.create({
+          trigger: ".hero",
+          start: "center top",
+          end: "bottom top",
+          pin: "#mapa-animado",
+          pinSpacing: false
+        });
+
+        // Animación de la sección about-hero
+        gsap.to(".about-hero", {
+          scrollTrigger: {
+            trigger: ".about-hero",
+            start: "top 80%",
+            toggleActions: "play none none none"
+          },
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.1,
+          ease: "power3.out"
+        });
+
+        // Animación de la sección experiencia-hero
+        gsap.to(".experiencia-hero", {
+          scrollTrigger: {
+            trigger: ".experiencia-hero",
+            start: "top 80%",
+            toggleActions: "play none none none"
+          },
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.1,
+          ease: "power3.out",
+          delay: 0.1
         });
       }
     });
