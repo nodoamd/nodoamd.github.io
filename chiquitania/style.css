@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700&display=swap');
+
+#smooth-wrapper {
+  font-family: 'Unbounded', sans-serif;
+}
+
+.pin-spacer {
+  pointer-events: none;
+}
+
+
+:root {
+  --earth-light: #e6d3b3;
+  --earth-medium: #c2b280;
+  --earth-dark: #a68b5b;
+  --jungle-dark: #2e5339;
+  --jungle: #4e7c59;
+  --jungle-light: #7bb661;
+
+  --dark: var(--earth-dark);
+  --purple: var(--jungle);
+  --f-5-min: 30;
+  --f-5-max: 120;
+  --step-5: calc(((var(--f-5-min) / 16) * 1rem) + (var(--f-5-max) - var(--f-5-min)) * var(--fluid-bp));
+}
+
+
+header {
+  padding: 1.5rem;
+  display: flex;
+  border-bottom: 2px solid rgb(224, 171, 48);
+  background-color: var(--dark);
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--purple);
+  background-image: none;
+}
+
+.hero {
+  min-height: 100vh;
+  margin-top: 0;
+  /* Elimina margen superior si lo hay */
+  padding-top: 0.5rem;
+  /* Opcional: añade un pequeño padding si lo deseas */
+}
+
+
+nav {
+  margin-left: auto;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+}
+
+li+li {
+  padding-left: 1rem;
+}
+
+a {
+  color: white;
+}
+
+h1 {
+  position: relative;
+  font-size: var(--step-5);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.images {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: stretch;
+  justify-items: center;
+  margin-top: 2rem;
+}
+
+img {
+  max-width: 100%;
+  height: 60vh;
+  object-fit: cover;
+}
+
+.images img {
+  max-width: 100%;
+  height: 60vh;
+  object-fit: cover;
+}
+
+/* Y para el logo, asegúrate de que tenga su propio tamaño */
+.logo {
+  width: 90px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.logo img {
+  width: 50%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.spacer {
+  height: 100vh
+}
+
+.clamp {
+  position: relative;
+  z-index: -1
+}
+
+.yt {
+  z-index: 3
+}
+
+.clamp svg {
+  position: absolute;
+  width: 112%;
+  top: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(2deg);
+  left: -6%;
+}
+
+.heading {
+  position: relative;
+  z-index: 2;
+  mix-blend-mode: difference;
+  perspective: 1000px;
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  transform: rotate(0.1deg);
+}
+
+.images {
+  z-index: -1
+}
+
+.logo svg {
+  opacity: 0
+}
+
+.scroll-down-indicator {
+  position: fixed;
+  margin-top: 50px;
+  left: 50%;
+  z-index: 9999;
+  animation: bounceDown 1.5s infinite;
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+}
+
+.scroll-down-indicator svg {
+  display: block;
+  width: 32px;
+  height: 32px;
+  stroke: #4e7c59;
+  filter: drop-shadow(0 2px 6px rgba(78, 124, 89, 0.15));
+  transition: stroke 0.3s, filter 0.3s;
+}
+
+/* Efecto glow al pasar el mouse (solo desktop) */
+@media (hover: hover) and (pointer: fine) {
+
+
+  .scroll-down-indicator:hover svg {
+    stroke: #7bb661;
+    filter: drop-shadow(0 4px 12px #7bb66188);
+  }
+}
+
+/* Rebote más suave */
+@keyframes bounceDown {
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(18px) scale(1.08);
+  }
+}
