@@ -139,9 +139,9 @@ img {
 
 .heading {
   position: relative;
-  margin-top: 150px;
+  margin-top: 400px;
   z-index: 2;
-  mix-blend-mode: difference;
+  mix-blend-mode: color-dodge;
   perspective: 1000px;
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
@@ -205,4 +205,18 @@ img {
     min-height: 60vh;
     object-fit: cover;
   }
+}
+
+
+@media (max-width: 900px) {
+  .images img {
+    height: 100vh;
+    min-height: 60vh;
+    object-fit: cover;
+  }
+
+  .heading {
+    margin-top: 500px;
+  }
+
 }
