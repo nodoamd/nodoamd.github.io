@@ -192,3 +192,11 @@ img {
     transform: translateX(-50%) translateY(18px) scale(1.08);
   }
 }
+
+@media (max-width: 900px) {
+  .images img {
+    height: 100vh;
+    min-height: 60vh;
+    object-fit: cover;
+  }
+}
