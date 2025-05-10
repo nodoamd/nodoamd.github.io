@@ -264,15 +264,29 @@ img {
 .about-hero,
 .experiencia-hero {
   max-width: 840px;
-  margin: 10rem auto 3rem auto;
-  padding: 2.5rem 2rem 2rem 2rem;
+  margin: 10rem auto;
+  padding: 2.5rem 2rem;
   background: #fff;
   border-radius: 2.2rem;
-  box-shadow: 0 8px 32px 0 rgba(46, 83, 57, 0.10), 0 1.5px 6px 0 rgba(224, 171, 48, 0.07);
+  box-shadow: 0 8px 32px 0 rgba(46, 83, 57, 0.10);
   text-align: center;
-  opacity: 0;
-  transform: translateY(60px) scale(0.97);
-  transition: box-shadow 0.3s;
+  position: relative;
+  z-index: 1;
+}
+
+.about-hero,
+.experiencia-hero {
+  will-change: transform, opacity;
+  transition: box-shadow 0.3s ease;
+}
+
+@media (min-width: 901px) {
+
+  .about-hero,
+  .experiencia-hero {
+    padding: 3rem 4rem;
+    margin: 15vh auto;
+  }
 }
 
 .about-hero,
@@ -339,5 +353,4 @@ img {
 #mapa-animado {
   transform-origin: center center;
   will-change: transform;
-
 }
