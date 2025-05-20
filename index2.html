@@ -249,21 +249,68 @@
             <div class="space-y-16">
                 <!-- Caso 1 -->
                 <div class="grid grid-cols-1 md:grid-cols-2 md:gap-8 items-center">
-                    <!-- Imágenes Antes/Después -->
-                    <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
-                        <div class="flex-1">
-                            <img src="./img/anteshitachi.svg" alt="Antes - Clínica Dental Dra. Hitachi"
-                                class="rounded-lg w-full shadow-lg">
-                            <p class="mt-2 text-center text-sm font-semibold text-gray-600">Antes (Sin presencia Online)
-                            </p>
+                    <!-- Reemplaza el div de "Imágenes Antes/Después" en el Caso 1 -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                        <!-- Columna 1: Antes -->
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden h-full">
+                            <div class="aspect-w-16 aspect-h-12 bg-gray-100">
+                                <img src="./img/anteshitachi.svg" alt="Antes - Clínica Dental Dra. Hitachi"
+                                    class="object-cover w-full h-58">
+                            </div>
+                            <div class="p-3 bg-gray-50 border-t">
+                                <p class="text-center text-sm font-semibold text-gray-700">Antes (Sin presencia online)
+                                </p>
+                            </div>
                         </div>
-                        <div class="flex-1">
-                            <img src="./img/metricashitachi.png" alt="Después - Clínica Dental Dra. Hitachi"
-                                class="rounded-lg w-full shadow-lg">
-                            <p class="mt-2 text-center text-sm font-semibold text-gray-600">Tráfico en los últimos 3
-                                meses</p>
+
+                        <!-- Columna 2: Web Nueva -->
+                        <div
+                            class="bg-white rounded-lg shadow-lg overflow-hidden transition transform hover:scale-105 duration-300">
+                            <div class="relative">
+                                <div class="aspect-w-16 aspect-h-12 bg-gray-100">
+                                    <img src="./img/landinghitachi.webp" alt="Nueva Web - Clínica Dental Dra. Hitachi"
+                                        class="object-cover w-full h-58">
+                                </div>
+                                <div class="absolute top-0 right-0 m-2">
+                                    <span
+                                        class="bg-indigo-600 text-white px-2 py-1 rounded-full text-xs font-semibold">Nueva
+                                        Web</span>
+                                </div>
+                            </div>
+                            <div class="p-3 bg-gray-50 border-t">
+                                <p class="text-center text-sm font-semibold text-gray-700">Web profesional optimizada
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Columna 3: Resultados -->
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden h-full">
+                            <div class="aspect-w-16 aspect-h-12 bg-gray-100">
+                                <img src="./img/metricashitachi.png" alt="Métricas - Clínica Dental Dra. Hitachi"
+                                    class="object-cover w-full h-58">
+                            </div>
+                            <div class="p-3 bg-indigo-50 border-t border-indigo-100">
+                                <p class="text-center text-sm font-semibold text-indigo-700">Tráfico en los últimos 3
+                                    meses</p>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Al final de la sección -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            // Añade efecto de hover a todas las imágenes
+                            const imageContainers = document.querySelectorAll('.grid > div');
+                            imageContainers.forEach(container => {
+                                container.addEventListener('mouseenter', () => {
+                                    container.classList.add('shadow-xl');
+                                });
+                                container.addEventListener('mouseleave', () => {
+                                    container.classList.remove('shadow-xl');
+                                });
+                            });
+                        });
+                    </script>
                     <!-- Descripción y resultado -->
                     <div class="mt-8 md:mt-0">
                         <h3 class="text-2xl font-semibold text-gray-800 mb-4">Clínica Dental Dra. Hitachi <i
