@@ -240,210 +240,207 @@
 
 
 
-    <!-- Sección: Historias de éxito de clientes -->
-    <section class="bg-gray-50 py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Título de la sección -->
-            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Historias de éxito</h2>
-
-            <div class="space-y-16">
-                <!-- Caso 1 -->
-                <div class="grid grid-cols-1 md:grid-cols-2 md:gap-8 items-center">
-                    <!-- Reemplaza el div de "Imágenes Antes/Después" en el Caso 1 -->
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                        <!-- Columna 1: Antes -->
-
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden h-full">
-                            <div class="p-3 bg-gray-50 border-t">
-                                <p class="text-center text-s font-semibold text-gray-700">Antes (Sin presencia online)
-                                </p>
-                            </div>
-                            <div class="aspect-w-16 aspect-h-12 bg-gray-100">
-                                <img src="./img/anteshitachi.svg" alt="Antes - Clínica Dental Dra. Hitachi"
-                                    class="object-cover w-full h-58">
-                            </div>
-
-                        </div>
-
-                        <!-- Columna 2: Web Nueva -->
-                        <div
-                            class="bg-white rounded-lg shadow-lg overflow-hidden transition transform hover:scale-105 duration-300">
-                            <div class="relative">
-                                <div class="aspect-w-16 aspect-h-12 bg-gray-100">
-                                    <img src="./img/landinghitachi.webp" alt="Nueva Web - Clínica Dental Dra. Hitachi"
-                                        class="object-cover w-full h-58">
-                                </div>
-                                <div class="absolute top-0 right-0 m-2">
-                                    <span
-                                        class="bg-indigo-600 text-white px-2 py-1 rounded-full text-xs font-semibold">Nueva
-                                        Web</span>
-                                </div>
-                            </div>
-                            <div class="p-3 bg-gray-50 border-t">
-                                <p class="text-center text-sm font-semibold text-gray-700">Web profesional optimizada
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Columna 3: Resultados -->
-                        <div class="bg-white rounded-lg shadow-lg overflow-hidden h-full">
-                            <div class="aspect-w-16 aspect-h-12 bg-gray-100">
-                                <img src="./img/metricashitachi.png" alt="Métricas - Clínica Dental Dra. Hitachi"
-                                    class="object-cover w-full h-58">
-                            </div>
-                            <div class="p-3 bg-indigo-50 border-t border-indigo-100">
-                                <p class="text-center text-sm font-semibold text-indigo-700">Tráfico en los últimos 3
-                                    meses</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Al final de la sección -->
-                    <script>
-                        document.addEventListener('DOMContentLoaded', () => {
-                            // Añade efecto de hover a todas las imágenes
-                            const imageContainers = document.querySelectorAll('.grid > div');
-                            imageContainers.forEach(container => {
-                                container.addEventListener('mouseenter', () => {
-                                    container.classList.add('shadow-xl');
-                                });
-                                container.addEventListener('mouseleave', () => {
-                                    container.classList.remove('shadow-xl');
-                                });
-                            });
-                        });
-                    </script>
-                    <!-- Descripción y resultado -->
-                    <div class="mt-8 md:mt-0">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Clínica Dental Dra. Hitachi <i
-                                class="fa-solid fa-globe" style="color:#6c72e5;"></i> <span
-                                style="font-size: 0.8rem; color:#6c72e5;">Ver Web</span></h3>
-                        <p class="text-gray-700 mb-4">
-                            La clínica dental contaba con un sitio web desactualizado y baja visibilidad online. Con
-                            NODO Pro rediseñamos su web, integrando un sistema de reservas en línea y optimizando su
-                            presencia digital para atraer nuevos pacientes.
-                        </p>
-                        <p class="text-gray-700 mb-6">
-                            En pocos meses, las solicitudes de cita aumentaron significativamente gracias a una mejor
-                            experiencia de usuario y campañas de marketing digital.
-                        </p>
-                        <!-- Métrica de resultado -->
-                        <div class="flex items-baseline space-x-2">
-                            <span class="text-4xl font-extrabold text-indigo-600">+60%</span>
-                            <span class="text-lg font-medium text-gray-800">consultas mensuales</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Caso 2 -->
-                <div class="grid grid-cols-1 md:grid-cols-2 md:gap-8 items-center">
-                    <!-- Colocar texto primero en escritorio, imágenes después -->
-                    <div class="order-2 md:order-1 mt-8 md:mt-0">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">LlarUnica - Inmobiliaria <i
-                                class="fa-solid fa-globe" style="color:#6c72e5;"></i> <span
-                                style="font-size: 0.8rem; color:#6c72e5;">Ver Web</span></h3>
-                        <p class="text-gray-700 mb-4">
-                            La agencia inmobiliaria LlarUnica necesitaba mejorar su presencia online y simplificar la
-                            búsqueda de propiedades. NODO Pro desarrolló una plataforma moderna con filtros avanzados y
-                            un catálogo interactivo de inmuebles.
-                        </p>
-                        <p class="text-gray-700 mb-6">
-                            El nuevo sitio facilitó la conexión con compradores potenciales y mejoró la generación de
-                            leads de manera notable.
-                        </p>
-                        <div class="flex items-baseline space-x-2">
-                            <span class="text-4xl font-extrabold text-indigo-600">+45%</span>
-                            <span class="text-lg font-medium text-gray-800">leads generados</span>
-                        </div>
-                    </div>
-                    <!-- Imágenes Antes/Después -->
-                    <div class="order-1 md:order-2 flex flex-col md:flex-row items-center md:items-start gap-4">
-                        <div class="flex-1">
-                            <img src="./img/3modificado.webp" alt="Antes - LlarUnica"
-                                class="rounded-lg w-full shadow-lg">
-                            <p class="mt-2 text-center text-sm font-semibold text-gray-600">Antes</p>
-                        </div>
-                        <div class="flex-1">
-                            <img src="./img/camionnodo.webp" alt="Después - LlarUnica"
-                                class="rounded-lg w-full shadow-lg">
-                            <p class="mt-2 text-center text-sm font-semibold text-gray-600">Después</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Caso 3 -->
-                <div class="grid grid-cols-1 md:grid-cols-2 md:gap-8 items-center">
-                    <!-- Imágenes Antes/Después -->
-                    <div class="flex flex-col md:flex-row items-center md:items-start gap-4">
-                        <div class="flex-1">
-                            <img src="https://via.placeholder.com/600x400?text=Antes"
-                                alt="Antes - Impresiones Barcelona" class="rounded-lg w-full shadow-lg">
-                            <p class="mt-2 text-center text-sm font-semibold text-gray-600">Antes</p>
-                        </div>
-                        <div class="flex-1">
-                            <img src="https://via.placeholder.com/600x400?text=Despues"
-                                alt="Después - Impresiones Barcelona" class="rounded-lg w-full shadow-lg">
-                            <p class="mt-2 text-center text-sm font-semibold text-gray-600">Después</p>
-                        </div>
-                    </div>
-                    <!-- Descripción y resultado -->
-                    <div class="mt-8 md:mt-0">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">ImpresionesBarcelona <i
-                                class="fa-solid fa-globe" style="color:#6c72e5;"></i> <span
-                                style="font-size: 0.8rem; color:#6c72e5;">Ver Web</span></h3>
-                        <p class="text-gray-700 mb-4">
-                            La imprenta necesitaba digitalizar sus servicios y permitir pedidos en línea. Con NODO Pro
-                            creamos una tienda virtual intuitiva y un sistema de impresión bajo demanda.
-                        </p>
-                        <p class="text-gray-700 mb-6">
-                            Esto permitió a ImpresionesBarcelona aumentar sus ventas y expandir su alcance al ofrecer
-                            productos personalizados directamente a clientes en línea.
-                        </p>
-                        <div class="flex items-baseline space-x-2">
-                            <span class="text-4xl font-extrabold text-indigo-600">+80%</span>
-                            <span class="text-lg font-medium text-gray-800">ventas online</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Caso 4 -->
-                <div class="grid grid-cols-1 md:grid-cols-2 md:gap-8 items-center">
-                    <!-- Colocar texto primero en escritorio, imágenes después -->
-                    <div class="order-2 md:order-1 mt-8 md:mt-0">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">QRCODE Solutions <i
-                                class="fa-solid fa-globe" style="color:#6c72e5;"></i> <span
-                                style="font-size: 0.8rem; color:#6c72e5;">Ver Web</span></h3>
-                        <p class="text-gray-700 mb-4">
-                            QRCODE quería modernizar su imagen de marca y atraer más clientes corporativos. Con NODO Pro
-                            diseñamos un nuevo sitio web interactivo y una estrategia de contenidos atractiva.
-                        </p>
-                        <p class="text-gray-700 mb-6">
-                            La actualización posicionó a QRCODE como líder innovador en su sector, incrementando su
-                            cartera de clientes y mejorando el reconocimiento de marca.
-                        </p>
-                        <div class="flex items-baseline space-x-2">
-                            <span class="text-4xl font-extrabold text-indigo-600">+120%</span>
-                            <span class="text-lg font-medium text-gray-800">nuevos clientes</span>
-                        </div>
-                    </div>
-                    <!-- Imágenes Antes/Después -->
-                    <div class="order-1 md:order-2 flex flex-col md:flex-row items-center md:items-start gap-4">
-                        <div class="flex-1">
-                            <img src="https://via.placeholder.com/600x400?text=Antes" alt="Antes - QRCODE Solutions"
-                                class="rounded-lg w-full shadow-lg">
-                            <p class="mt-2 text-center text-sm font-semibold text-gray-600">Antes</p>
-                        </div>
-                        <div class="flex-1">
-                            <img src="https://via.placeholder.com/600x400?text=Despues" alt="Después - QRCODE Solutions"
-                                class="rounded-lg w-full shadow-lg">
-                            <p class="mt-2 text-center text-sm font-semibold text-gray-600">Después</p>
-                        </div>
-                    </div>
-                </div>
-
+<!-- Sección: Historias de éxito de clientes -->
+<section class="bg-gray-50 py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Título de la sección -->
+    <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Historias de éxito</h2>
+    <div class="space-y-16">
+      <!-- Caso 1: Clínica Dental -->
+      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-8 items-center">
+        <!-- Imágenes Antes/Después -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <!-- Columna 1: Antes -->
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden h-full">
+            <div class="p-3 bg-indigo-50 border-b border-indigo-100">
+              <p class="text-center text-sm font-semibold text-indigo-700">Clínica Dental Dra. Hitachi - Antes</p>
             </div>
+            <div class="aspect-w-16 aspect-h-12 bg-gray-100">
+              <img src="./img/anteshitachi.svg" alt="Antes - Clínica Dental Dra. Hitachi" class="object-cover w-full h-58">
+            </div>
+          </div>
+          <!-- Columna 2: Web Nueva -->
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden transition transform hover:scale-105 duration-300">
+            <div class="p-3 bg-indigo-50 border-b border-indigo-100">
+              <p class="text-center text-sm font-semibold text-indigo-700">Nueva Web</p>
+            </div>
+            <div class="relative">
+              <div class="aspect-w-16 aspect-h-12 bg-gray-100">
+                <img src="./img/landinghitachi.webp" alt="Nueva Web - Clínica Dental Dra. Hitachi" class="object-cover w-full h-58">
+              </div>
+              <div class="absolute top-2 right-2">
+                <span class="bg-indigo-600 text-white px-2 py-1 rounded-full text-xs font-semibold">Web Profesional</span>
+              </div>
+            </div>
+          </div>
+          <!-- Columna 3: Resultados -->
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden h-full">
+            <div class="p-3 bg-indigo-50 border-b border-indigo-100">
+              <p class="text-center text-sm font-semibold text-indigo-700">Resultados</p>
+            </div>
+            <div class="aspect-w-16 aspect-h-12 bg-gray-100">
+              <img src="./img/metricashitachi.png" alt="Métricas - Clínica Dental Dra. Hitachi" class="object-cover w-full h-58">
+            </div>
+          </div>
         </div>
-    </section>
+        <!-- Descripción y resultado -->
+        <div class="mt-8 md:mt-0">
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+            Clínica Dental Dra. Hitachi 
+            <a href="#" class="inline-flex items-center ml-2 text-indigo-600 hover:text-indigo-700 transition">
+              <i class="fa-solid fa-globe text-sm mr-1"></i>
+              <span class="text-sm">Ver Web</span>
+            </a>
+          </h3>
+          <p class="text-gray-700 mb-4">
+            La clínica dental contaba con un sitio web desactualizado y baja visibilidad online. Con NODO Pro rediseñamos su web, integrando un sistema de reservas en línea y optimizando su presencia digital para atraer nuevos pacientes.
+          </p>
+          <p class="text-gray-700 mb-6">
+            En pocos meses, las solicitudes de cita aumentaron significativamente gracias a una mejor experiencia de usuario y campañas de marketing digital.
+          </p>
+          <!-- Métrica de resultado -->
+          <div class="flex items-center space-x-3 bg-indigo-50 p-4 rounded-lg">
+            <span class="text-4xl font-extrabold text-indigo-600">+60%</span>
+            <span class="text-lg font-medium text-gray-800">consultas mensuales</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caso 2: LlarUnica -->
+      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-8 items-center">
+        <!-- Colocar texto primero en escritorio, imágenes después -->
+        <div class="order-2 md:order-1 mt-8 md:mt-0">
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+            LlarUnica - Inmobiliaria
+            <a href="#" class="inline-flex items-center ml-2 text-indigo-600 hover:text-indigo-700 transition">
+              <i class="fa-solid fa-globe text-sm mr-1"></i>
+              <span class="text-sm">Ver Web</span>
+            </a>
+          </h3>
+          <p class="text-gray-700 mb-4">
+            La agencia inmobiliaria LlarUnica necesitaba mejorar su presencia online y simplificar la búsqueda de propiedades. NODO Pro desarrolló una plataforma moderna con filtros avanzados y un catálogo interactivo de inmuebles.
+          </p>
+          <p class="text-gray-700 mb-6">
+            El nuevo sitio facilitó la conexión con compradores potenciales y mejoró la generación de leads de manera notable.
+          </p>
+          <div class="flex items-center space-x-3 bg-indigo-50 p-4 rounded-lg">
+            <span class="text-4xl font-extrabold text-indigo-600">+45%</span>
+            <span class="text-lg font-medium text-gray-800">leads generados</span>
+          </div>
+        </div>
+        <!-- Imágenes Antes/Después -->
+        <div class="order-1 md:order-2 grid grid-cols-2 gap-4">
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="p-3 bg-indigo-50 border-b border-indigo-100">
+              <p class="text-center text-sm font-semibold text-indigo-700">LlarUnica - Antes</p>
+            </div>
+            <img src="./img/3modificado.webp" alt="Antes - LlarUnica" class="w-full object-cover h-56">
+          </div>
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="p-3 bg-indigo-50 border-b border-indigo-100">
+              <p class="text-center text-sm font-semibold text-indigo-700">LlarUnica - Después</p>
+            </div>
+            <img src="./img/camionnodo.webp" alt="Después - LlarUnica" class="w-full object-cover h-56">
+          </div>
+        </div>
+      </div>
+
+      <!-- Caso 3: ImpresionesBarcelona -->
+      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-8 items-center">
+        <!-- Imágenes Antes/Después -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="p-3 bg-indigo-50 border-b border-indigo-100">
+              <p class="text-center text-sm font-semibold text-indigo-700">ImpresionesBarcelona - Antes</p>
+            </div>
+            <img src="https://via.placeholder.com/600x400?text=Antes" alt="Antes - Impresiones Barcelona" class="w-full object-cover h-56">
+          </div>
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="p-3 bg-indigo-50 border-b border-indigo-100">
+              <p class="text-center text-sm font-semibold text-indigo-700">ImpresionesBarcelona - Después</p>
+            </div>
+            <img src="https://via.placeholder.com/600x400?text=Despues" alt="Después - Impresiones Barcelona" class="w-full object-cover h-56">
+          </div>
+        </div>
+        <!-- Descripción y resultado -->
+        <div class="mt-8 md:mt-0">
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+            ImpresionesBarcelona
+            <a href="#" class="inline-flex items-center ml-2 text-indigo-600 hover:text-indigo-700 transition">
+              <i class="fa-solid fa-globe text-sm mr-1"></i>
+              <span class="text-sm">Ver Web</span>
+            </a>
+          </h3>
+          <p class="text-gray-700 mb-4">
+            La imprenta necesitaba digitalizar sus servicios y permitir pedidos en línea. Con NODO Pro creamos una tienda virtual intuitiva y un sistema de impresión bajo demanda.
+          </p>
+          <p class="text-gray-700 mb-6">
+            Esto permitió a ImpresionesBarcelona aumentar sus ventas y expandir su alcance al ofrecer productos personalizados directamente a clientes en línea.
+          </p>
+          <div class="flex items-center space-x-3 bg-indigo-50 p-4 rounded-lg">
+            <span class="text-4xl font-extrabold text-indigo-600">+80%</span>
+            <span class="text-lg font-medium text-gray-800">ventas online</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caso 4: QRCODE Solutions -->
+      <div class="grid grid-cols-1 md:grid-cols-2 md:gap-8 items-center">
+        <!-- Colocar texto primero en escritorio, imágenes después -->
+        <div class="order-2 md:order-1 mt-8 md:mt-0">
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+            QRCODE Solutions
+            <a href="#" class="inline-flex items-center ml-2 text-indigo-600 hover:text-indigo-700 transition">
+              <i class="fa-solid fa-globe text-sm mr-1"></i>
+              <span class="text-sm">Ver Web</span>
+            </a>
+          </h3>
+          <p class="text-gray-700 mb-4">
+            QRCODE quería modernizar su imagen de marca y atraer más clientes corporativos. Con NODO Pro diseñamos un nuevo sitio web interactivo y una estrategia de contenidos atractiva.
+          </p>
+          <p class="text-gray-700 mb-6">
+            La actualización posicionó a QRCODE como líder innovador en su sector, incrementando su cartera de clientes y mejorando el reconocimiento de marca.
+          </p>
+          <div class="flex items-center space-x-3 bg-indigo-50 p-4 rounded-lg">
+            <span class="text-4xl font-extrabold text-indigo-600">+120%</span>
+            <span class="text-lg font-medium text-gray-800">nuevos clientes</span>
+          </div>
+        </div>
+        <!-- Imágenes Antes/Después -->
+        <div class="order-1 md:order-2 grid grid-cols-2 gap-4">
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="p-3 bg-indigo-50 border-b border-indigo-100">
+              <p class="text-center text-sm font-semibold text-indigo-700">QRCODE Solutions - Antes</p>
+            </div>
+            <img src="https://via.placeholder.com/600x400?text=Antes" alt="Antes - QRCODE Solutions" class="w-full object-cover h-56">
+          </div>
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="p-3 bg-indigo-50 border-b border-indigo-100">
+              <p class="text-center text-sm font-semibold text-indigo-700">QRCODE Solutions - Después</p>
+            </div>
+            <img src="https://via.placeholder.com/600x400?text=Despues" alt="Después - QRCODE Solutions" class="w-full object-cover h-56">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script para efectos hover -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Añade efecto de hover a todas las imágenes
+      const imageContainers = document.querySelectorAll('.grid > div');
+      imageContainers.forEach(container => {
+        container.addEventListener('mouseenter', () => {
+          container.classList.add('shadow-xl');
+        });
+        container.addEventListener('mouseleave', () => {
+          container.classList.remove('shadow-xl');
+        });
+      });
+    });
+  </script>
+</section>
 
 
 
