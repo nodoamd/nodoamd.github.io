@@ -18,6 +18,22 @@
     }
 
 
+    /* Añade esto en tu <style> o archivo CSS */
+    @media screen and (max-width: 768px) {
+
+        html,
+        body {
+            overflow-x: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .overflow-hidden {
+            overflow-x: hidden !important;
+            touch-action: pan-y pinch-zoom;
+        }
+    }
+
     ::selection {
         background: #4e53be;
         color: white;
@@ -521,7 +537,7 @@
         }
 
         .tuhaces {
-            font-size: 1.3rem;
+            font-size: 2rem;
         }
 
         .btn {
@@ -545,7 +561,8 @@
         }
 
         .hero h1 {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            font-weight: 600;
         }
 
         .timeline {
@@ -3590,28 +3607,28 @@
 
 
 
-.slider-controls {
-    margin-top: 20px;
-    text-align: center;
-}
+    .slider-controls {
+        margin-top: 20px;
+        text-align: center;
+    }
 
-.slider-dots {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
+    .slider-dots {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
 
-.slider-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #ccc;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    .slider-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #ccc;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-.slider-dot.active {
-    background-color: #4e53be;
-}
+    .slider-dot.active {
+        background-color: #4e53be;
+    }
