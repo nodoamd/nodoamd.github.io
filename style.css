@@ -349,12 +349,6 @@
     }
 
 
-    .tu {
-        font-weight: bold;
-        font-size: larger;
-        text-decoration: underline #5f6aff7c;
-    }
-
     .highlight::after {
         content: '';
         position: absolute;
@@ -402,7 +396,7 @@
         right: -5px;
         bottom: 5px;
         height: 12px;
-        background-color: #5f6aff7c;
+        background-color: #5f6aff73;
         transform: rotate(1deg);
         z-index: -1;
         /* Asegura que esté siempre por detrás */
@@ -537,7 +531,7 @@
         }
 
         .tuhaces {
-            font-size: 2rem;
+            font-size: 1.7rem;
         }
 
         .btn {
