@@ -1475,7 +1475,7 @@
                 </p>
             </header>
 
-            <div class="nodo-services-grid">
+            <!-- <div class="nodo-services-grid">
                 <article class="nodo-service-card">
                     <div class="nodo-service-icon">
                         <i class="fas fa-laptop-code"></i>
@@ -1520,7 +1520,7 @@
                         <a href="#pricing-sections" class="nodo-btn-service">Descubrir planes</a>
                     </div>
                 </article>
-            </div>
+            </div> -->
 
             <!-- Añadir después de la grid una sección de beneficios -->
             <div class="nodo-benefits-banner">
@@ -1947,175 +1947,6 @@
             pointer-events: none;
         }
     </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <section class="case-studies" id="case-studies">
-        <h2>Éxitos de nuestros clientes</h2>
-        <p><i style="font-weight: bold; font-size: larger" ;>Made in Nodo</i> <img src="./img/nodedos.svg"
-                alt="Nodo Logo" style="height: 120px; margin: 8px auto 0 auto;">
-        </p>
-
-        <div class="case-studies-grid">
-            <!-- Caso de Estudio 1 -->
-            <a style="text-decoration: none;" href="https://clinicadentalhitachi.com" target="_blank">
-                <div class="case-study-card card">
-                    <div class="case-study-images">
-                        <div class="before-after-container">
-                            <img src="./img/landinghitachi.webp" alt="Imagen de Web de Doctora Hitachi"
-                                class="after-image">
-                            <span class="made-in-nodo">Haz click</span>
-                        </div>
-                    </div>
-                    <div class="case-study-content">
-                        <h3>Clínica Dra. Hitachi</h3>
-                        <div class="metrics-grid">
-                            <div class="metric">
-                                <span class="metric-number">100%</span>
-                                <p>Incremento en reservas online</p>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-number">100x</span>
-                                <p>Aumento en tráfico web</p>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-number">75%</span>
-                                <p>Mejora en conversión</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hover-info">
-                        <img src="./img/doctorahitachi.webp" alt="Avatar">
-                        <span>Dra. Hitachi A.</span>
-                    </div>
-                </div>
-            </a>
-            <!-- Caso de Estudio 2 -->
-            <a style="text-decoration: none;" href="https://llarunica.es/" target="_blank">
-
-                <div class="case-study-card card">
-                    <div class="case-study-images">
-                        <div class="before-after-container">
-                            <img src="./img/llarunica.webp" alt="Portfolio profesional Lucas" class="after-image">
-                            <span class="made-in-nodo">Haz click</span>
-                        </div>
-                    </div>
-                    <div class="case-study-content">
-                        <h3>Inmobiliaria con Gestión de Inmuebles</h3>
-                        <div class="metrics-grid">
-                            <div class="metric">
-                                <span class="metric-number">100%</span>
-                                <p>Más consultas online</p>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-number">4x</span>
-                                <p>Incremento en leads</p>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-number">90%</span>
-                                <p>Satisfacción del cliente</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hover-info">
-                        <img src="./img/lucas.webp" alt="Avatar">
-                        <span>LlarUnica</span>
-                    </div>
-                </div>
-            </a>
-
-
-            <!-- Caso de Estudio 3 -->
-            <a style="text-decoration: none;" href="https://dfernandezy.github.io/nodo/madewebs/booth/"
-                target=" _blank">
-                <div class="case-study-card card">
-                    <div class="case-study-images">
-                        <div class="before-after-container">
-                            <img src="./img/booth.webp" alt="Imagen de Web de App Booth" class="after-image">
-                            <span class="made-in-nodo">Haz click</span>
-                        </div>
-                    </div>
-                    <div class="case-study-content">
-                        <h3>Booth - App</h3>
-                        <div class="metrics-grid">
-                            <div class="metric">
-                                <span class="metric-number">20%</span>
-                                <p>Aumento en membresías</p>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-number">3x</span>
-                                <p>Más seguidores en RRSS</p>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-number">95%</span>
-                                <p>Retención de clientes</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hover-info">
-                        <img src="./img/nodedos.svg" alt="Avatar">
-                        <span>Nodo</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </section>
-
-
-
-
-
 
 
     <section class="testimonials">
@@ -3273,7 +3104,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         const faqItems = document.querySelectorAll('.nodo-faq-question');
 
-        faqItems.forEach(item => { 
+        faqItems.forEach(item => {
             item.addEventListener('click', function () {
                 // Toggle active class on question
                 this.classList.toggle('active');
