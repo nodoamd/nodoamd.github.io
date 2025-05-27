@@ -27,7 +27,19 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="./img/nodedos.svg">
+    <link rel="icon" type="image/x-icon" href="./img/nodedos.svg">
     <link rel="apple-touch-icon" href="./img/nodedos.svg">
+
+
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="./img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
+    <link rel="mask-icon" href="./img/safari-pinned-tab.svg" color="#4e53be">
+
+    <!-- Meta Tags para Apple -->
+    <meta name="apple-mobile-web-app-title" content="Nodo">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="purple">
 
     <!-- Precargar recursos críticos -->
     <link rel="preload" href="style.css" as="style">
@@ -70,7 +82,7 @@
             <a href="#nodo-faq-section">FAQ</a>
         </nav>
         <div class="buttons">
-            <a href="https://wa.me/622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo" target="_blank"
+            <a href="https://wa.me/+34622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo" target="_blank"
                 class="btn btn-secondary">Contacto</a>
             <a href="./consulta.html" class="btn btn-primary">Cotizar Proyecto</a>
         </div>
@@ -81,8 +93,8 @@
 
     <div class="scroll-menu">
         <a href="#hero" class="scroll-link active">Inicio</a>
-        <a href="#nodo-services-section" class="scroll-link">Servicios</a>
         <a href="#case-studies" class="scroll-link">Proyectos</a>
+        <a href="#nodo-services-section" class="scroll-link">Servicios</a>
         <a href="#pricing-container" class="scroll-link">Precios</a>
         <a href="#nodo-faq-section" class="scroll-link">FAQ</a>
         <a href="#nodo-contact-section" class="scroll-link">Contacto</a>
@@ -152,17 +164,19 @@
         </div>
 
         <h1><i style="font-weight: bold; font-size: larger;" class="highlihgto"><span class="tuhaces"> Tu</i> dominas tu
-            negocio, </span>nosotros <span class="highlight"> diseñamos tu presencia digital.</span></h1>
+            negocio, <br></span>nosotros diseñamos<span class="highlight"> tu presencia digital.</span></h1>
         <p class="parallax-element">Nodo hace que tu negocio
             <span style="color: #471fa5; "><b> capte clientes
-                    24/7</span></b> mientras tú te enfocas en lo que mejor sabes hacer.
+                    a través de internet</span></b> mientras tú te enfocas en lo que mejor sabes hacer.
         </p>
         <a href="#nodo-services-section" class="btn btn-primary contacto parallax-element" style="padding: 5.0;">Impulsa
             tu negocio</a>
-        <p style="font-weight: 200; font-size: 0.5rem; animation: ease-in 1s; margin-top: 5px; animation: countUp 3s ease-out forwards;
-">Consulta Gratuita -
+        <p
+            style="font-weight: 200; font-size: 0.5rem; animation: ease-in 1s; margin-top: 5px; animation: countUp 3s ease-out forwards;">
+            Consulta Gratuita -
             Resultados
-            Garantizados</p>
+            Garantizados
+        </p>
 
         <div class="users-count parallax-element">
 
@@ -216,29 +230,1245 @@
 
 
 
-    <div class="stats-section">
-        <div class="stat-card">
-            <div class="stat-number">90<span class="percent">%</span></div>
-            <p class="stat-text">de los clientes prefieren una empresa con buena presencia en internet</p>
-            <div class="stat-icon">
-                <i class="fa-solid fa-globe"></i>
+
+
+    <div class="relative">
+        <!-- Slider principal -->
+        <div class="overflow-hidden">
+            <div id="slides-container" class="flex transition-transform duration-500">
+                <!-- Caso 1: Clínica Dental -->
+                <div class="w-full flex-shrink-0">
+                    <div class="max-w-7xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+                        <!-- Encabezado -->
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-blue-500 opacity-90"></div>
+                            <div class="relative z-10 px-8 py-12 md:py-16">
+                                <div class="flex flex-col md:flex-row items-center justify-between">
+                                    <div>
+                                        <h2 class="text-3xl md:text-4xl font-bold text-white">Clínica Dental Dra.
+                                            Hitachi
+                                        </h2>
+                                        <p class="mt-2 text-indigo-100 text-lg max-w-2xl">Transformación digital
+                                            completa
+                                            con resultados
+                                            medibles</p>
+                                    </div>
+                                    <a href="https://www.clinicadentalhitachi.com" target="_blank"
+                                        class="mt-4 md:mt-0 inline-flex items-center px-5 py-3 bg-white text-indigo-600 rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-300">
+                                        <i class="fa-solid fa-external-link mr-2"></i>
+                                        Ver Proyecto
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contenido principal -->
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-0">
+                            <!-- Columna izquierda: Antes/Después -->
+                            <div class="md:col-span-7 bg-gray-50">
+                                <div class="p-8 md:p-12">
+                                    <div class="flex mb-8">
+                                        <button
+                                            class="before-btn px-6 py-3 border-b-2 border-indigo-600 text-indigo-600 font-medium mr-6">ANTES</button>
+                                        <button
+                                            class="after-btn px-6 py-3 border-b-2 border-transparent text-gray-500 font-medium hover:text-indigo-600 transition-all">DESPUÉS</button>
+                                    </div>
+
+                                    <!-- Contenedor de imágenes antes/después -->
+                                    <div class="relative bg-white rounded-lg shadow-md overflow-hidden">
+                                        <!-- Contenido ANTES -->
+                                        <div class="before-content p-4 md:p-6 transition-opacity duration-500">
+                                            <div class="mb-4">
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                    ANTES - Sin presencia digital
+                                                </span>
+                                            </div>
+                                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                                <div class="space-y-4">
+                                                    <div class="flex items-start space-x-3">
+                                                        <div
+                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
+                                                            <i class="fa-solid fa-xmark text-red-600"></i>
+                                                        </div>
+                                                        <p class="text-gray-700 text-sm md:text-base">Sin página web
+                                                            profesional</p>
+                                                    </div>
+                                                    <div class="flex items-start space-x-3">
+                                                        <div
+                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
+                                                            <i class="fa-solid fa-xmark text-red-600"></i>
+                                                        </div>
+                                                        <p class="text-gray-700 text-sm md:text-base">Cero visibilidad
+                                                            en
+                                                            Google</p>
+                                                    </div>
+                                                    <div class="flex items-start space-x-3">
+                                                        <div
+                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
+                                                            <i class="fa-solid fa-xmark text-red-600"></i>
+                                                        </div>
+                                                        <p class="text-gray-700 text-sm md:text-base">Sistema de citas
+                                                            telefónico
+                                                            únicamente</p>
+                                                    </div>
+                                                    <div class="flex items-start space-x-3">
+                                                        <div
+                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
+                                                            <i class="fa-solid fa-xmark text-red-600"></i>
+                                                        </div>
+                                                        <p class="text-gray-700 text-sm md:text-base">Pérdida de
+                                                            pacientes
+                                                            potenciales
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center min-h-48">
+                                                    <div class="text-center">
+                                                        <i
+                                                            class="fa-solid fa-ban text-4xl md:text-6xl text-gray-300 mb-4"></i>
+                                                        <p class="text-gray-500 font-medium">Sin presencia online</p>
+                                                        <p class="text-sm text-gray-400">0 búsquedas orgánicas</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Contenido DESPUÉS -->
+                                        <div
+                                            class="after-content p-4 md:p-6 opacity-0 transition-opacity duration-500 absolute inset-0">
+                                            <div class="mb-4">
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                    DESPUÉS - Presencia digital completa
+                                                </span>
+                                            </div>
+                                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                                <div class="space-y-4">
+                                                    <div
+                                                        class="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg overflow-hidden">
+                                                        <img src="./img/metricashitachi.png" alt="Nueva web profesional"
+                                                            class="w-full h-full object-cover">
+                                                    </div>
+                                                    <div class="grid grid-cols-2 gap-3">
+                                                        <div class="bg-green-50 p-3 rounded-lg text-center">
+                                                            <p class="text-xl md:text-2xl font-bold text-green-600">24/7
+                                                            </p>
+                                                            <p class="text-xs text-green-700">Reservas Online</p>
+                                                        </div>
+                                                        <div class="bg-blue-50 p-3 rounded-lg text-center">
+                                                            <p class="text-xl md:text-2xl font-bold text-blue-600">95%
+                                                            </p>
+                                                            <p class="text-xs text-blue-700">Velocidad Web</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="space-y-4">
+                                                    <!-- Métricas de Search Console simuladas -->
+                                                    <div class="bg-gray-50 rounded-lg p-4">
+                                                        <h4 class="text-sm font-medium text-gray-700 mb-3">Métricas de
+                                                            Google
+                                                            Search
+                                                            Console</h4>
+                                                        <div class="space-y-3">
+                                                            <div class="flex justify-between items-center">
+                                                                <span class="text-xs text-gray-600">Impresiones
+                                                                    totales</span>
+                                                                <span
+                                                                    class="text-sm font-bold text-indigo-600">+1,250%</span>
+                                                            </div>
+                                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                                <div class="bg-indigo-600 h-2 rounded-full"
+                                                                    style="width: 85%"></div>
+                                                            </div>
+                                                            <div class="flex justify-between items-center">
+                                                                <span class="text-xs text-gray-600">Clics
+                                                                    orgánicos</span>
+                                                                <span
+                                                                    class="text-sm font-bold text-green-600">+890%</span>
+                                                            </div>
+                                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                                <div class="bg-green-600 h-2 rounded-full"
+                                                                    style="width: 75%"></div>
+                                                            </div>
+                                                            <div class="flex justify-between items-center">
+                                                                <span class="text-xs text-gray-600">CTR promedio</span>
+                                                                <span
+                                                                    class="text-sm font-bold text-blue-600">12.5%</span>
+                                                            </div>
+                                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                                <div class="bg-blue-600 h-2 rounded-full"
+                                                                    style="width: 60%"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg p-4">
+                                                        <div class="text-center">
+                                                            <p class="text-xl md:text-2xl font-bold text-indigo-600">
+                                                                15-20</p>
+                                                            <p class="text-sm text-indigo-700">Nuevas consultas por
+                                                                semana
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <a href="https://www.clinicadentalhitachi.com" target="_blank" class="block group">
+                                        <div
+                                            class="bg-gradient-to-br from-white to-gray-50 rounded-xl p-5 border border-gray-100 shadow-sm transition-transform group-hover:scale-105">
+                                            <img src="./img/landinghitachi.webp" alt="" class="rounded-lg mb-4">
+                                            <div class="text-center">
+                                                <button
+                                                    class="bg-indigo-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-400 transition">
+                                                    Visitar Web
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </a>
+
+
+                                    <!-- Características clave -->
+                                    <div class="mt-10">
+                                        <h3 class="text-xl font-semibold text-gray-900 mb-6">Transformación Realizada
+                                        </h3>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0">
+                                                    <div
+                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-indigo-600 text-white">
+                                                        <i class="fa-solid fa-bezier-curve"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <h4 class="text-base font-medium text-gray-900">Branding Profesional
+                                                    </h4>
+                                                    <p class="mt-1 text-sm text-gray-600">Identidad visual consistente y
+                                                        moderna
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0">
+                                                    <div
+                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-indigo-600 text-white">
+                                                        <i class="fa-solid fa-laptop-code"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <h4 class="text-base font-medium text-gray-900">Diseño Web Premium
+                                                    </h4>
+                                                    <p class="mt-1 text-sm text-gray-600">Experiencia de usuario
+                                                        optimizada
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0">
+                                                    <div
+                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-indigo-600 text-white">
+                                                        <i class="fa-solid fa-calendar-check"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <h4 class="text-base font-medium text-gray-900">Sistema de Reservas
+                                                    </h4>
+                                                    <p class="mt-1 text-sm text-gray-600">Automatización de citas online
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0">
+                                                    <div
+                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-indigo-600 text-white">
+                                                        <i class="fa-solid fa-chart-line"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <h4 class="text-base font-medium text-gray-900">Estrategia SEO</h4>
+                                                    <p class="mt-1 text-sm text-gray-600">Optimización para mayor
+                                                        visibilidad
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Columna derecha: Resultados -->
+                            <div class="md:col-span-5 bg-gradient-to-br from-slate-50 to-white">
+                                <div class="p-8 md:p-12">
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-8">Impacto en el Negocio</h3>
+
+                                    <!-- Métricas principales -->
+                                    <div class="space-y-6 mb-10">
+                                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                                            <div class="flex items-center justify-between">
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-500">Consultas Mensuales</p>
+                                                    <div class="mt-1 flex items-baseline">
+                                                        <p class="text-3xl font-extrabold text-indigo-600">+60%</p>
+                                                        <p class="ml-2 text-sm font-medium text-green-600">↑ incremento
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-50 text-indigo-700">
+                                                    <i class="fa-solid fa-phone-volume"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                                            <div class="flex items-center justify-between">
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-500">Nuevos Pacientes</p>
+                                                    <div class="mt-1 flex items-baseline">
+                                                        <p class="text-3xl font-extrabold text-indigo-600">+45%</p>
+                                                        <p class="ml-2 text-sm font-medium text-green-600">↑ incremento
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-50 text-indigo-700">
+                                                    <i class="fa-solid fa-user-plus"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                                            <div class="flex items-center justify-between">
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-500">Visibilidad en Google
+                                                    </p>
+                                                    <div class="mt-1 flex items-baseline">
+                                                        <p class="text-3xl font-extrabold text-indigo-600">+120%</p>
+                                                        <p class="ml-2 text-sm font-medium text-green-600">↑ incremento
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-50 text-indigo-700">
+                                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Testimonial -->
+                                    <div class="relative">
+                                        <div class="absolute -top-2 -left-2 text-indigo-200 text-4xl">
+                                            <i class="fa-solid fa-quote-left"></i>
+                                        </div>
+                                        <div class="relative pl-6 pt-4">
+                                            <p class="text-gray-700 italic">La transformación digital de nuestra clínica
+                                                ha
+                                                superado
+                                                nuestras expectativas. El sistema de citas online ha reducido la carga
+                                                administrativa y
+                                                los pacientes valoran la facilidad para reservar.</p>
+                                            <div class="mt-4 flex items-center">
+                                                <div
+                                                    class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-200 flex items-center justify-center text-indigo-600">
+                                                    <img src="./img/doctorahitachi.webp"
+                                                        alt="Imagen de la Dra. María Hitachi"
+                                                        class="h-10 w-10 rounded-full object-cover">
+                                                </div>
+                                                <div class="ml-3">
+                                                    <p class="text-sm font-medium text-gray-900">Dra. Hitachi A.</p>
+                                                    <p class="text-xs text-gray-500">Directora, Clínica Dental</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Caso 2: LlarÚnica -->
+                <div class="w-full flex-shrink-0">
+                    <div class="max-w-7xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-amber-600 to-orange-500 opacity-90">
+                            </div>
+                            <div class="relative z-10 px-8 py-12 md:py-16">
+                                <div class="flex flex-col md:flex-row items-center justify-between">
+                                    <div>
+                                        <h2 class="text-3xl md:text-4xl font-bold text-white">LlarÚnica</h2>
+                                        <p class="mt-2 text-amber-100 text-lg max-w-2xl">Transformación digital del
+                                            sector inmobiliario</p>
+                                    </div>
+                                    <a href="https://www.llarunica.com" target="_blank"
+                                        class="mt-4 md:mt-0 inline-flex items-center px-5 py-3 bg-white text-amber-600 rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-300">
+                                        <i class="fa-solid fa-external-link mr-2"></i>
+                                        Ver Proyecto
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contenido principal -->
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-0">
+                            <!-- Columna izquierda: Antes/Después -->
+                            <div class="md:col-span-7 bg-gray-50">
+                                <div class="p-8 md:p-12">
+                                    <div class="flex mb-8">
+                                        <button
+                                            class="before-btn px-6 py-3 border-b-2 border-indigo-600 text-indigo-600 font-medium mr-6">ANTES</button>
+                                        <button
+                                            class="after-btn px-6 py-3 border-b-2 border-transparent text-gray-500 font-medium hover:text-indigo-600 transition-all">DESPUÉS</button>
+                                    </div>
+
+                                    <!-- Contenedor de imágenes antes/después -->
+                                    <div class="relative bg-white rounded-lg shadow-md overflow-hidden">
+                                        <!-- Contenido ANTES -->
+                                        <div class="before-content p-4 md:p-6 transition-opacity duration-500">
+                                            <div class="mb-4">
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                    ANTES - Sin presencia digital
+                                                </span>
+                                            </div>
+                                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                                <div class="space-y-4">
+                                                    <div class="flex items-start space-x-3">
+                                                        <div
+                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
+                                                            <i class="fa-solid fa-xmark text-red-600"></i>
+                                                        </div>
+                                                        <p class="text-gray-700 text-sm md:text-base">Sin página web
+                                                            profesional</p>
+                                                    </div>
+                                                    <div class="flex items-start space-x-3">
+                                                        <div
+                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
+                                                            <i class="fa-solid fa-xmark text-red-600"></i>
+                                                        </div>
+                                                        <p class="text-gray-700 text-sm md:text-base">Cero visibilidad
+                                                            en
+                                                            Google</p>
+                                                    </div>
+                                                    <div class="flex items-start space-x-3">
+                                                        <div
+                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
+                                                            <i class="fa-solid fa-xmark text-red-600"></i>
+                                                        </div>
+                                                        <p class="text-gray-700 text-sm md:text-base">Sistema de citas
+                                                            telefónico
+                                                            únicamente</p>
+                                                    </div>
+                                                    <div class="flex items-start space-x-3">
+                                                        <div
+                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
+                                                            <i class="fa-solid fa-xmark text-red-600"></i>
+                                                        </div>
+                                                        <p class="text-gray-700 text-sm md:text-base">Pérdida de
+                                                            pacientes
+                                                            potenciales
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center min-h-48">
+                                                    <div class="text-center">
+                                                        <i
+                                                            class="fa-solid fa-ban text-4xl md:text-6xl text-gray-300 mb-4"></i>
+                                                        <p class="text-gray-500 font-medium">Sin presencia online</p>
+                                                        <p class="text-sm text-gray-400">0 búsquedas orgánicas</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Contenido DESPUÉS -->
+                                        <div
+                                            class="after-content p-4 md:p-6 opacity-0 transition-opacity duration-500 absolute inset-0">
+                                            <div class="mb-4">
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                    DESPUÉS - Presencia digital completa
+                                                </span>
+                                            </div>
+                                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                                <div class="space-y-4">
+                                                    <div
+                                                        class="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg overflow-hidden">
+                                                        <img src="./img/llarunicagoogle.png" alt="Nueva web profesional"
+                                                            class="w-full h-full object-cover">
+                                                    </div>
+                                                    <div class="grid grid-cols-2 gap-3">
+                                                        <div class="bg-green-50 p-3 rounded-lg text-center">
+                                                            <p class="text-xl md:text-2xl font-bold text-green-600">24/7
+                                                            </p>
+                                                            <p class="text-xs text-green-700">Reservas Online</p>
+                                                        </div>
+                                                        <div class="bg-blue-50 p-3 rounded-lg text-center">
+                                                            <p class="text-xl md:text-2xl font-bold text-blue-600">95%
+                                                            </p>
+                                                            <p class="text-xs text-blue-700">Velocidad Web</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="space-y-4">
+                                                    <!-- Métricas de Search Console simuladas -->
+                                                    <div class="bg-gray-50 rounded-lg p-4">
+                                                        <h4 class="text-sm font-medium text-gray-700 mb-3">Métricas de
+                                                            Google
+                                                            Search
+                                                            Console</h4>
+                                                        <div class="space-y-3">
+                                                            <div class="flex justify-between items-center">
+                                                                <span class="text-xs text-gray-600">Impresiones
+                                                                    totales</span>
+                                                                <span
+                                                                    class="text-sm font-bold text-indigo-600">+1,250%</span>
+                                                            </div>
+                                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                                <div class="bg-indigo-600 h-2 rounded-full"
+                                                                    style="width: 85%"></div>
+                                                            </div>
+                                                            <div class="flex justify-between items-center">
+                                                                <span class="text-xs text-gray-600">Clics
+                                                                    orgánicos</span>
+                                                                <span
+                                                                    class="text-sm font-bold text-green-600">+890%</span>
+                                                            </div>
+                                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                                <div class="bg-green-600 h-2 rounded-full"
+                                                                    style="width: 75%"></div>
+                                                            </div>
+                                                            <div class="flex justify-between items-center">
+                                                                <span class="text-xs text-gray-600">CTR promedio</span>
+                                                                <span
+                                                                    class="text-sm font-bold text-blue-600">12.5%</span>
+                                                            </div>
+                                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                                <div class="bg-blue-600 h-2 rounded-full"
+                                                                    style="width: 60%"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg p-4">
+                                                        <div class="text-center">
+                                                            <p class="text-xl md:text-2xl font-bold text-indigo-600">
+                                                                15-20</p>
+                                                            <p class="text-sm text-indigo-700">Nuevas consultas por
+                                                                semana
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <a href="https://www.llarunica.com" target="_blank" class="block group">
+                                        <div
+                                            class="bg-gradient-to-br from-white to-gray-50 rounded-xl p-5 border border-gray-100 shadow-sm transition-transform group-hover:scale-105">
+                                            <img src="./img/llarunica.webp" alt="" class="rounded-lg mb-4">
+                                            <div class="text-center">
+                                                <button
+                                                    class="bg-rose-600 text-white px-4 py-2 rounded-lg shadow hover:bg-orange-400 transition">
+                                                    Visitar Web
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </a>
+
+
+                                    <!-- Características clave -->
+                                    <div class="mt-10">
+                                        <h3 class="text-xl font-semibold text-gray-900 mb-6">Transformación Realizada
+                                        </h3>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0">
+                                                    <div
+                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-rose-600 text-white">
+                                                        <i class="fa-solid fa-utensils"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <h4 class="text-base font-medium text-gray-900">Menú Digital</h4>
+                                                    <p class="mt-1 text-sm text-gray-600">Acceso fácil y rápido desde
+                                                        cualquier
+                                                        dispositivo
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0">
+                                                    <div
+                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-rose-600 text-white">
+                                                        <i class="fa-solid fa-calendar-check"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <h4 class="text-base font-medium text-gray-900">Sistema de Reservas
+                                                    </h4>
+                                                    <p class="mt-1 text-sm text-gray-600">Automatización de reservas y
+                                                        gestión
+                                                        de
+                                                        mesas
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0">
+                                                    <div
+                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-rose-600 text-white">
+                                                        <i class="fa-solid fa-chart-line"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <h4 class="text-base font-medium text-gray-900">Estrategia SEO</h4>
+                                                    <p class="mt-1 text-sm text-gray-600">Optimización para mayor
+                                                        visibilidad
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0">
+                                                    <div
+                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-rose-600 text-white">
+                                                        <i class="fa-solid fa-mobile-alt"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <h4 class="text-base font-medium text-gray-900">Responsive Design
+                                                    </h4>
+                                                    <p class="mt-1 text-sm text-gray-600">Diseño adaptable a todos los
+                                                        dispositivos
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Columna derecha: Resultados -->
+                            <div class="md:col-span-5 bg-gradient-to-br from-slate-50 to-white">
+                                <div class="p-8 md:p-12">
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-8">Impacto en el Negocio</h3>
+
+                                    <!-- Métricas principales -->
+                                    <div class="space-y-6 mb-10">
+                                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                                            <div class="flex items-center justify-between">
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-500">Consultas Mensuales</p>
+                                                    <div class="mt-1 flex items-baseline">
+                                                        <p class="text-3xl font-extrabold text-indigo-600">+75%</p>
+                                                        <p class="ml-2 text-sm font-medium text-green-600">↑ incremento
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-50 text-indigo-700">
+                                                    <i class="fa-solid fa-phone-volume"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                                            <div class="flex items-center justify-between">
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-500">Nuevos Pacientes</p>
+                                                    <div class="mt-1 flex items-baseline">
+                                                        <p class="text-3xl font-extrabold text-indigo-600">+50%</p>
+                                                        <p class="ml-2 text-sm font-medium text-green-600">↑ incremento
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-50 text-indigo-700">
+                                                    <i class="fa-solid fa-user-plus"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                                            <div class="flex items-center justify-between">
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-500">Visibilidad en Google
+                                                    </p>
+                                                    <div class="mt-1 flex items-baseline">
+                                                        <p class="text-3xl font-extrabold text-indigo-600">+150%</p>
+                                                        <p class="ml-2 text-sm font-medium text-green-600">↑ incremento
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-50 text-indigo-700">
+                                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Testimonial -->
+                                    <div class="relative">
+                                        <div class="absolute -top-2 -left-2 text-indigo-200 text-4xl">
+                                            <i class="fa-solid fa-quote-left"></i>
+                                        </div>
+                                        <div class="relative pl-6 pt-4">
+                                            <p class="text-gray-700 italic">La transformación digital de nuestro
+                                                restaurante ha
+                                                sido
+                                                excepcional. Ahora podemos gestionar reservas y pedidos en línea sin
+                                                complicaciones.</p>
+                                            <div class="mt-4 flex items-center">
+                                                <div
+                                                    class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-200 flex items-center justify-center text-indigo-600">
+                                                    <img src="./img/lucas.webp"
+                                                        alt="Imagen de Eigen, propietario de Sakura"
+                                                        class="h-10 w-10 rounded-full object-cover">
+                                                </div>
+                                                <div class="ml-3">
+                                                    <p class="text-sm font-medium text-gray-900">Alex H.</p>
+                                                    <p class="text-xs text-gray-500">Propietario, LlarUnica Inmobiliaria
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Caso 3: Booth APP -->
+                <div class="w-full flex-shrink-0">
+                    <div class="max-w-7xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-500 opacity-90">
+                            </div>
+                            <div class="relative z-10 px-8 py-12 md:py-16">
+                                <div class="flex flex-col md:flex-row items-center justify-between">
+                                    <div>
+                                        <h2 class="text-3xl md:text-4xl font-bold text-white">Booth APP</h2>
+                                        <p class="mt-2 text-green-100 text-lg max-w-2xl">Desarrollo de aplicación móvil
+                                            multiplataforma</p>
+                                    </div>
+                                    <a href="https://dfernandezy.github.io/nodo/madewebs/booth/" _target="_blank"
+                                        class="mt-4 md:mt-0 inline-flex items-center px-5 py-3 bg-white text-green-600 rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-300">
+                                        <i class="fa-solid fa-external-link mr-2"></i>
+                                        Ver Proyecto
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contenido principal -->
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-0">
+                            <!-- Columna izquierda: Antes/Después -->
+                            <div class="md:col-span-7 bg-gray-50">
+                                <div class="p-8 md:p-12">
+                                    <div class="flex mb-8">
+                                        <button
+                                            class="before-btn px-6 py-3 border-b-2 border-indigo-600 text-indigo-600 font-medium mr-6">ANTES</button>
+                                        <button
+                                            class="after-btn px-6 py-3 border-b-2 border-transparent text-gray-500 font-medium hover:text-indigo-600 transition-all">DESPUÉS</button>
+                                    </div>
+
+                                    <!-- Contenedor de imágenes antes/después -->
+                                    <div class="relative bg-white rounded-lg shadow-md overflow-hidden">
+                                        <!-- Contenido ANTES -->
+                                        <div class="before-content p-4 md:p-6 transition-opacity duration-500">
+                                            <div class="mb-4">
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                    ANTES - Sin presencia digital
+                                                </span>
+                                            </div>
+                                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                                <div class="space-y-4">
+                                                    <div class="flex items-start space-x-3">
+                                                        <div
+                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
+                                                            <i class="fa-solid fa-xmark text-red-600"></i>
+                                                        </div>
+                                                        <p class="text-gray-700 text-sm md:text-base">Sin página web
+                                                            profesional</p>
+                                                    </div>
+                                                    <div class="flex items-start space-x-3">
+                                                        <div
+                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
+                                                            <i class="fa-solid fa-xmark text-red-600"></i>
+                                                        </div>
+                                                        <p class="text-gray-700 text-sm md:text-base">Cero visibilidad
+                                                            en
+                                                            Google</p>
+                                                    </div>
+                                                    <div class="flex items-start space-x-3">
+                                                        <div
+                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
+                                                            <i class="fa-solid fa-xmark text-red-600"></i>
+                                                        </div>
+                                                        <p class="text-gray-700 text-sm md:text-base">Sistema de citas
+                                                            telefónico
+                                                            únicamente</p>
+                                                    </div>
+                                                    <div class="flex items-start space-x-3">
+                                                        <div
+                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
+                                                            <i class="fa-solid fa-xmark text-red-600"></i>
+                                                        </div>
+                                                        <p class="text-gray-700 text-sm md:text-base">Pérdida de
+                                                            pacientes
+                                                            potenciales
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center min-h-48">
+                                                    <div class="text-center">
+                                                        <i
+                                                            class="fa-solid fa-ban text-4xl md:text-6xl text-gray-300 mb-4"></i>
+                                                        <p class="text-gray-500 font-medium">Sin presencia online</p>
+                                                        <p class="text-sm text-gray-400">0 búsquedas orgánicas</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Contenido DESPUÉS -->
+                                        <div
+                                            class="after-content p-4 md:p-6 opacity-0 transition-opacity duration-500 absolute inset-0">
+                                            <div class="mb-4">
+                                                <span
+                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                    DESPUÉS - Presencia digital completa
+                                                </span>
+                                            </div>
+                                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                                <div class="space-y-4">
+                                                    <div
+                                                        class="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg overflow-hidden">
+                                                        <img src="./img/metricasbooth.png" alt="Nueva web profesional"
+                                                            class="w-full h-full object-cover">
+                                                    </div>
+                                                    <div class="grid grid-cols-2 gap-3">
+                                                        <div class="bg-green-50 p-3 rounded-lg text-center">
+                                                            <p class="text-xl md:text-2xl font-bold text-green-600">24/7
+                                                            </p>
+                                                            <p class="text-xs text-green-700">Reservas Online</p>
+                                                        </div>
+                                                        <div class="bg-blue-50 p-3 rounded-lg text-center">
+                                                            <p class="text-xl md:text-2xl font-bold text-blue-600">95%
+                                                            </p>
+                                                            <p class="text-xs text-blue-700">Velocidad Web</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="space-y-4">
+                                                    <!-- Métricas de Search Console simuladas -->
+                                                    <div class="bg-gray-50 rounded-lg p-4">
+                                                        <h4 class="text-sm font-medium text-gray-700 mb-3">Métricas de
+                                                            Google
+                                                            Search
+                                                            Console</h4>
+                                                        <div class="space-y-3">
+                                                            <div class="flex justify-between items-center">
+                                                                <span class="text-xs text-gray-600">Impresiones
+                                                                    totales</span>
+                                                                <span
+                                                                    class="text-sm font-bold text-indigo-600">+1,250%</span>
+                                                            </div>
+                                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                                <div class="bg-indigo-600 h-2 rounded-full"
+                                                                    style="width: 85%"></div>
+                                                            </div>
+                                                            <div class="flex justify-between items-center">
+                                                                <span class="text-xs text-gray-600">Clics
+                                                                    orgánicos</span>
+                                                                <span
+                                                                    class="text-sm font-bold text-green-600">+890%</span>
+                                                            </div>
+                                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                                <div class="bg-green-600 h-2 rounded-full"
+                                                                    style="width: 75%"></div>
+                                                            </div>
+                                                            <div class="flex justify-between items-center">
+                                                                <span class="text-xs text-gray-600">CTR promedio</span>
+                                                                <span
+                                                                    class="text-sm font-bold text-blue-600">12.5%</span>
+                                                            </div>
+                                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                                <div class="bg-blue-600 h-2 rounded-full"
+                                                                    style="width: 60%"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg p-4">
+                                                        <div class="text-center">
+                                                            <p class="text-xl md:text-2xl font-bold text-indigo-600">
+                                                                15-20</p>
+                                                            <p class="text-sm text-indigo-700">Nuevas consultas por
+                                                                semana
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <a href="https://dfernandezy.github.io/nodo/madewebs/booth/" target="_blank"
+                                        class="block group">
+                                        <div
+                                            class="bg-gradient-to-br from-white to-gray-50 rounded-xl p-5 border border-gray-100 shadow-sm transition-transform group-hover:scale-105">
+                                            <img src="./img/booth.webp" alt="" class="rounded-lg mb-4">
+                                            <div class="text-center">
+                                                <button
+                                                    class="bg-green-600 text-white px-4 py-2 rounded-lg shadow hover:bg-emerald-400 transition">
+                                                    Visitar Web
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </a>
+
+
+                                    <!-- Características clave -->
+                                    <div class="mt-10">
+                                        <h3 class="text-xl font-semibold text-gray-900 mb-6">Transformación Realizada
+                                        </h3>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0">
+                                                    <div
+                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-green-600 text-white">
+                                                        <i class="fa-solid fa-mobile-alt"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <h4 class="text-base font-medium text-gray-900">Desarrollo de APP
+                                                    </h4>
+                                                    <p class="mt-1 text-sm text-gray-600">Aplicación móvil
+                                                        personalizada
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0">
+                                                    <div
+                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-green-600 text-white">
+                                                        <i class="fa-solid fa-code-branch"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <h4 class="text-base font-medium text-gray-900">Integración API
+                                                    </h4>
+                                                    <p class="mt-1 text-sm text-gray-600">Conexiones seguras y
+                                                        eficientes
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0">
+                                                    <div
+                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-green-600 text-white">
+                                                        <i class="fa-solid fa-chart-line"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <h4 class="text-base font-medium text-gray-900">Estrategia SEO</h4>
+                                                    <p class="mt-1 text-sm text-gray-600">Optimización para mayor
+                                                        visibilidad
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0">
+                                                    <div
+                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-green-600 text-white">
+                                                        <i class="fa-solid fa-desktop"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <h4 class="text-base font-medium text-gray-900">Soporte y
+                                                        Mantenimiento
+                                                    </h4>
+                                                    <p class="mt-1 text-sm text-gray-600">Actualizaciones y soporte
+                                                        continuo
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Columna derecha: Resultados -->
+                            <div class="md:col-span-5 bg-gradient-to-br from-slate-50 to-white">
+                                <div class="p-8 md:p-12">
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-8">Impacto en el Negocio</h3>
+
+                                    <!-- Métricas principales -->
+                                    <div class="space-y-6 mb-10">
+                                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                                            <div class="flex items-center justify-between">
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-500">Consultas Mensuales</p>
+                                                    <div class="mt-1 flex items-baseline">
+                                                        <p class="text-3xl font-extrabold text-indigo-600">+80%</p>
+                                                        <p class="ml-2 text-sm font-medium text-green-600">↑ incremento
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-50 text-indigo-700">
+                                                    <i class="fa-solid fa-phone-volume"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                                            <div class="flex items-center justify-between">
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-500">Nuevos Pacientes</p>
+                                                    <div class="mt-1 flex items-baseline">
+                                                        <p class="text-3xl font-extrabold text-indigo-600">+60%</p>
+                                                        <p class="ml-2 text-sm font-medium text-green-600">↑ incremento
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-50 text-indigo-700">
+                                                    <i class="fa-solid fa-user-plus"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                                            <div class="flex items-center justify-between">
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-500">Visibilidad en Google
+                                                    </p>
+                                                    <div class="mt-1 flex items-baseline">
+                                                        <p class="text-3xl font-extrabold text-indigo-600">+180%</p>
+                                                        <p class="ml-2 text-sm font-medium text-green-600">↑ incremento
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-50 text-indigo-700">
+                                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Testimonial -->
+                                    <div class="relative">
+                                        <div class="absolute -top-2 -left-2 text-indigo-200 text-4xl">
+                                            <i class="fa-solid fa-quote-left"></i>
+                                        </div>
+                                        <div class="relative pl-6 pt-4">
+                                            <p class="text-gray-700 italic">Gracias a la transformación digital, hemos
+                                                optimizado
+                                                nuestros procesos y aumentado significativamente nuestra base de
+                                                clientes.</p>
+                                            <div class="mt-4 flex items-center">
+                                                <div
+                                                    class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-200 flex items-center justify-center text-indigo-600">
+                                                    <img src="./img/booth.webp" alt="Imagen de Juan, gerente de FitPro"
+                                                        class="h-10 w-10 rounded-full object-cover">
+                                                </div>
+                                                <div class="ml-3">
+                                                    <p class="text-sm font-medium text-gray-900">Booth Company.H.S</p>
+                                                    <p class="text-xs text-gray-500">CEO, Booth - APP</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="stat-card">
-            <div class="stat-number">80<span class="percent">%</span></div>
-            <p class="stat-text">de las decisiones de compra están influenciadas por lo que se encuentra online</p>
-            <div class="stat-icon">
-                <i class="fa-solid fa-chart-line"></i>
+
+        <!-- Controles del slider -->
+        <div class="absolute inset-y-0 left-0 flex items-center">
+            <button id="prev"
+                class="p-3 m-2 rounded-full bg-white/80 hover:bg-white shadow-lg transform transition-all hover:scale-110 group">
+                <i class="fas fa-chevron-left text-gray-800 group-hover:text-indigo-600"></i>
+                <span
+                    class="absolute right-full mr-2 bg-white/90 py-1 px-2 rounded text-sm text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Caso
+                    anterior</span>
+            </button>
+        </div>
+        <div class="absolute inset-y-0 right-0 flex items-center">
+            <button id="next"
+                class="p-3 m-2 rounded-full bg-white/80 hover:bg-white shadow-lg transform transition-all hover:scale-110 group">
+                <i class="fas fa-chevron-right text-gray-800 group-hover:text-indigo-600"></i>
+                <span
+                    class="absolute left-full ml-2 bg-white/90 py-1 px-2 rounded text-sm text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Siguiente
+                    caso</span>
+            </button>
+        </div>
+
+        <!-- Indicadores mejorados -->
+        <div
+            class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex items-center space-x-4 bg-white/90 px-4 py-2 rounded-full shadow-lg">
+            <button class="indicator-btn group" data-index="0">
+                <div
+                    class="w-2.5 h-2.5 rounded-full bg-indigo-200 group-hover:bg-indigo-400 transition-all indicator active">
+                </div>
+                <span
+                    class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-white py-1 px-2 rounded text-xs text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Clínica
+                    Dental</span>
+            </button>
+            <button class="indicator-btn group" data-index="1">
+                <div class="w-2.5 h-2.5 rounded-full bg-indigo-200 group-hover:bg-indigo-400 transition-all indicator">
+                </div>
+                <span
+                    class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-white py-1 px-2 rounded text-xs text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">LlarÚnica</span>
+            </button>
+            <button class="indicator-btn group" data-index="2">
+                <div class="w-2.5 h-2.5 rounded-full bg-indigo-200 group-hover:bg-indigo-400 transition-all indicator">
+                </div>
+                <span
+                    class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-white py-1 px-2 rounded text-xs text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Booth
+                    APP</span>
+            </button>
+        </div>
+
+        <!-- Indicador de scroll horizontal -->
+        <div class="absolute bottom-28 right-8 animate-bounce">
+            <div class="bg-white/90 px-3 py-2 rounded-full shadow-lg flex items-center space-x-2">
+                <i class="fas fa-arrows-left-right text-indigo-600"></i>
+                <span class="text-sm text-gray-600">Desliza para ver más casos</span>
             </div>
         </div>
     </div>
 
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Función para configurar el antes/después para cada caso
+            function setupBeforeAfter() {
+                const cases = document.querySelectorAll('.md\\:col-span-7');
 
+                cases.forEach(caseElement => {
+                    const beforeBtn = caseElement.querySelector('.before-btn');
+                    const afterBtn = caseElement.querySelector('.after-btn');
+                    const beforeContent = caseElement.querySelector('.before-content');
+                    const afterContent = caseElement.querySelector('.after-content');
 
+                    function showBefore() {
+                        beforeBtn.classList.add('border-indigo-600', 'text-indigo-600');
+                        beforeBtn.classList.remove('border-transparent', 'text-gray-500');
+                        afterBtn.classList.add('border-transparent', 'text-gray-500');
+                        afterBtn.classList.remove('border-indigo-600', 'text-indigo-600');
 
+                        beforeContent.style.position = 'relative';
+                        beforeContent.classList.remove('opacity-0');
+                        beforeContent.classList.add('opacity-100');
+                        afterContent.style.position = 'absolute';
+                        afterContent.classList.remove('opacity-100');
+                        afterContent.classList.add('opacity-0');
+                    }
 
+                    function showAfter() {
+                        afterBtn.classList.add('border-indigo-600', 'text-indigo-600');
+                        afterBtn.classList.remove('border-transparent', 'text-gray-500');
+                        beforeBtn.classList.add('border-transparent', 'text-gray-500');
+                        beforeBtn.classList.remove('border-indigo-600', 'text-indigo-600');
 
+                        afterContent.style.position = 'relative';
+                        afterContent.classList.remove('opacity-0');
+                        afterContent.classList.add('opacity-100');
+                        beforeContent.style.position = 'absolute';
+                        beforeContent.classList.remove('opacity-100');
+                        beforeContent.classList.add('opacity-0');
+                    }
 
+                    beforeBtn.addEventListener('click', showBefore);
+                    afterBtn.addEventListener('click', showAfter);
+                });
+            }
+
+            // Inicializar el antes/después
+            setupBeforeAfter();
+
+            // Slider functionality
+            const slidesContainer = document.getElementById('slides-container');
+            const prevButton = document.getElementById('prev');
+            const nextButton = document.getElementById('next');
+            const indicators = document.querySelectorAll('.indicator');
+            let currentSlide = 0;
+            const totalSlides = 3;
+
+            function updateSlider(index) {
+                currentSlide = index;
+                slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+                // Update indicators
+                indicators.forEach((indicator, i) => {
+                    indicator.classList.toggle('bg-white', i === currentSlide);
+                    indicator.classList.toggle('bg-white/50', i !== currentSlide);
+                });
+            }
+
+            prevButton.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlider(currentSlide);
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider(currentSlide);
+            });
+
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => updateSlider(index));
+            });
+
+            // Añadir efecto de desvanecimiento al indicador de scroll después de 5 segundos
+            setTimeout(() => {
+                const scrollIndicator = document.querySelector('.animate-bounce');
+                scrollIndicator.classList.add('transition-opacity', 'duration-1000', 'opacity-0');
+                setTimeout(() => scrollIndicator.remove(), 1000);
+            }, 5000);
+
+            // Añadir interacción con el teclado
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                    updateSlider(currentSlide);
+                } else if (e.key === 'ArrowRight') {
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    updateSlider(currentSlide);
+                }
+            });
+        });
+    </script>
 
 
 
@@ -258,7 +1488,7 @@
                 </p>
             </header>
 
-            <div class="nodo-services-grid">
+            <!-- <div class="nodo-services-grid">
                 <article class="nodo-service-card">
                     <div class="nodo-service-icon">
                         <i class="fas fa-laptop-code"></i>
@@ -303,7 +1533,7 @@
                         <a href="#pricing-sections" class="nodo-btn-service">Descubrir planes</a>
                     </div>
                 </article>
-            </div>
+            </div> -->
 
             <!-- Añadir después de la grid una sección de beneficios -->
             <div class="nodo-benefits-banner">
@@ -454,6 +1684,7 @@
                 // Update on resize
                 window.addEventListener('resize', setupResponsive);
 
+
                 // Dot click handlers
                 dots.forEach((dot, index) => {
                     dot.addEventListener('click', function () {
@@ -485,101 +1716,102 @@
         <h2 class="services-title">Sitios web, apps, branding y más.</h2>
         <div class="services-container" class="nomark">
             <div class="service-item">
-                <a href="https://wa.me/622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Sitios%20Web">
+                <a href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Sitios%20Web">
                     <h3>Sitios Web</h3>
                     <div class="service-line"></div>
                 </a>
             </div>
             <div class="service-item">
-                <a href="https://wa.me/622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Flyers">
+                <a href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Flyers">
                     <h3>Flyers</h3>
                     <div class="service-line"></div>
                 </a>
             </div>
             <div class="service-item">
                 <a
-                    href="https://wa.me/622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Gr%C3%A1ficos%20para%20Email">
+                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Gr%C3%A1ficos%20para%20Email">
                     <h3>Gráficos para Email</h3>
                     <div class="service-line"></div>
                 </a>
             </div>
             <div class="service-item">
                 <a
-                    href="https://wa.me/622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Apps%20Web%20/%20M%C3%B3vil">
+                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Apps%20Web%20/%20M%C3%B3vil">
                     <h3>Apps Web / Móvil</h3>
                     <div class="service-line"></div>
                 </a>
             </div>
             <div class="service-item">
-                <a href="https://wa.me/622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20SAAS">
+                <a href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20SAAS">
                     <h3>SAAS</h3>
                     <div class="service-line"></div>
                 </a>
             </div>
             <div class="service-item">
                 <a
-                    href="https://wa.me/622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Banners%20para%20Negocios">
+                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Banners%20para%20Negocios">
                     <h3>Banners para Negocios</h3>
                     <div class="service-line"></div>
                 </a>
             </div>
             <div class="service-item">
                 <a
-                    href="https://wa.me/622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Big%20Data%20/%20SEO">
+                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Big%20Data%20/%20SEO">
                     <h3>Big Data / SEO</h3>
                     <div class="service-line"></div>
                 </a>
             </div>
             <div class="service-item">
-                <a href="https://wa.me/622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Presentaciones">
+                <a
+                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Presentaciones">
                     <h3>Presentaciones</h3>
                     <div class="service-line"></div>
                 </a>
             </div>
             <div class="service-item">
                 <a
-                    href="https://wa.me/622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Tarjetas%20de%20Visita">
+                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Tarjetas%20de%20Visita">
                     <h3>Tarjetas de Visita</h3>
                     <div class="service-line"></div>
                 </a>
             </div>
             <div class="service-item">
                 <a
-                    href="https://wa.me/622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Branding%20Completo">
+                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Branding%20Completo">
                     <h3>Branding Completo</h3>
                     <div class="service-line"></div>
                 </a>
             </div>
             <div class="service-item">
                 <a
-                    href="https://wa.me/622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Fotograf%C3%ADas%20de%20Stock%20ilimitadas">
+                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Fotograf%C3%ADas%20de%20Stock%20ilimitadas">
                     <h3>Fotografías de Stock ilimitadas</h3>
                     <div class="service-line"></div>
                 </a>
             </div>
             <div class="service-item">
                 <a
-                    href="https://wa.me/622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Flyers%20/%20Tarjetas">
+                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Flyers%20/%20Tarjetas">
                     <h3>Flyers / Tarjetas</h3>
                     <div class="service-line"></div>
                 </a>
             </div>
             <div class="service-item">
-                <a href="https://wa.me/622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Logos">
+                <a href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Logos">
                     <h3>Logos</h3>
                     <div class="service-line"></div>
                 </a>
             </div>
             <div class="service-item">
                 <a
-                    href="https://wa.me/622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Gr%C3%A1ficos%20para%20Redes">
+                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Gr%C3%A1ficos%20para%20Redes">
                     <h3>Gráficos para Redes</h3>
                     <div class="service-line"></div>
                 </a>
             </div>
             <div class="service-item">
                 <a
-                    href="https://wa.me/622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20An%C3%A1lisis%20de%20Mercado%20%26%20SEM/SEO">
+                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20An%C3%A1lisis%20de%20Mercado%20%26%20SEM/SEO">
                     <h3>Análisis de Mercado & SEM/SEO</h3>
                     <div class="service-line"></div>
                 </a>
@@ -599,6 +1831,20 @@
 
         .service-item {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pricing-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .pricing-content {
+            flex: 1;
+        }
+
+        .pricing-footer {
+            margin-top: auto;
         }
     </style>
 
@@ -698,176 +1944,24 @@
                 margin: 0 20px;
             }
         }
+
+        .transition-all {
+            transition-property: all;
+        }
+
+        .duration-500 {
+            transition-duration: 500ms;
+        }
+
+        .ease-in-out {
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #before-image,
+        #after-image {
+            pointer-events: none;
+        }
     </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <section class="case-studies" id="case-studies">
-        <h2>Éxitos de nuestros clientes</h2>
-        <p><i style="font-weight: bold; font-size: larger" ;>Made in Nodo</i> <img src="./img/nodedos.svg"
-                alt="Nodo Logo" style="height: 120px; margin: 8px auto 0 auto;">
-        </p>
-
-        <div class="case-studies-grid">
-            <!-- Caso de Estudio 1 -->
-            <a style="text-decoration: none;" href="https://clinicadentalhitachi.com" target="_blank">
-                <div class="case-study-card card">
-                    <div class="case-study-images">
-                        <div class="before-after-container">
-                            <img src="./img/landinghitachi.webp" alt="Imagen de Web de Doctora Hitachi"
-                                class="after-image">
-                            <span class="made-in-nodo">Haz click</span>
-                        </div>
-                    </div>
-                    <div class="case-study-content">
-                        <h3>Clínica Dra. Hitachi</h3>
-                        <div class="metrics-grid">
-                            <div class="metric">
-                                <span class="metric-number">100%</span>
-                                <p>Incremento en reservas online</p>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-number">100x</span>
-                                <p>Aumento en tráfico web</p>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-number">75%</span>
-                                <p>Mejora en conversión</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hover-info">
-                        <img src="./img/doctorahitachi.webp" alt="Avatar">
-                        <span>Dra. Hitachi A.</span>
-                    </div>
-                </div>
-            </a>
-            <!-- Caso de Estudio 2 -->
-            <a style="text-decoration: none;" href="https://llarunica.es/" target="_blank">
-
-                <div class="case-study-card card">
-                    <div class="case-study-images">
-                        <div class="before-after-container">
-                            <img src="./img/llarunica.webp" alt="Portfolio profesional Lucas" class="after-image">
-                            <span class="made-in-nodo">Haz click</span>
-                        </div>
-                    </div>
-                    <div class="case-study-content">
-                        <h3>Inmobiliaria con Gestión de Inmuebles</h3>
-                        <div class="metrics-grid">
-                            <div class="metric">
-                                <span class="metric-number">100%</span>
-                                <p>Más consultas online</p>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-number">4x</span>
-                                <p>Incremento en leads</p>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-number">90%</span>
-                                <p>Satisfacción del cliente</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hover-info">
-                        <img src="./img/lucas.webp" alt="Avatar">
-                        <span>LlarUnica</span>
-                    </div>
-                </div>
-            </a>
-
-
-            <!-- Caso de Estudio 3 -->
-            <a style="text-decoration: none;" href="https://dfernandezy.github.io/nodo/madewebs/booth/"
-                target=" _blank">
-                <div class="case-study-card card">
-                    <div class="case-study-images">
-                        <div class="before-after-container">
-                            <img src="./img/booth.webp" alt="Imagen de Web de App Booth" class="after-image">
-                            <span class="made-in-nodo">Haz click</span>
-                        </div>
-                    </div>
-                    <div class="case-study-content">
-                        <h3>Booth - App</h3>
-                        <div class="metrics-grid">
-                            <div class="metric">
-                                <span class="metric-number">20%</span>
-                                <p>Aumento en membresías</p>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-number">3x</span>
-                                <p>Más seguidores en RRSS</p>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-number">95%</span>
-                                <p>Retención de clientes</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hover-info">
-                        <img src="./img/nodedos.svg" alt="Avatar">
-                        <span>Nodo</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </section>
-
-
-
-
-
 
 
     <section class="testimonials">
@@ -937,7 +2031,7 @@
     <div class="nodo-services-cta" style="margin: 25px;">
         <h3>¿Listo para dar el siguiente paso?</h3>
         <p>Agenda una consulta gratuita y descubre cómo podemos ayudarte</p>
-        <a href="https://wa.me/34622494800?text=Quisiera%20una%20consulta%20con%20Nodo" target="_blank"
+        <a href="https://wa.me/+34622494800?text=Quisiera%20una%20consulta%20con%20Nodo" target="_blank"
             class="nodo-btn-primary" style="margin: 25px;">
             Consultar
         </a>
@@ -946,323 +2040,497 @@
 
 
 
-    <div class="pricing-container" id="pricing-container">
-        <div class="pricing-header" style="text-align: center;">
-            <h1 class="pricing-title" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-                Nodo Digital Agency
-                <img src="./img/nodedos.svg" alt="Nodo Logo" style="height: 120px; margin: 0 auto;">
-            </h1>
-            <p class="pricing-description">Soluciones flexibles para todas tus necesidades.</p>
-        </div>
-
-        <div class="pricing-tabs">
-            <button class="tab active" data-target="subscription">Suscripción</button>
-            <button class="tab" data-target="single-payment">Servicios Individuales</button>
-        </div>
-        <p style="text-align: center; margin: 50px;"><b style="color: #8855ff"><i
-                    style="text-decoration: underline;">Obtén descuentos</i></b> en
-            <span style=" color: #8855ff; font-weight: bold; font-style: italic; text-decoration: underline;">Servicios
-                Individuales</span> con tu suscripción a <span
-                style="color: #8855ff; font-weight: bold; font-size: larger; text-decoration: underline;">Nodo.</span>
-        </p>
-
-        <div class="pricing-sections" id="pricing-sections">
-            <!-- Sección de Suscripción -->
-            <div id="subscription" class="pricing-section active">
-                <h2 class="pricing-subtitle">Planes Estratégicos</h2>
-                <p style="text-align: center; margin: 0px 85px 20px 85px; font-size: 0.9rem; font-weight: 600;">
-                    <span style="color: #8855ff">*</span>Precios de impresión de camisetas/flyers, etc cuentan como
-                    <span style="color: #8855ff">servicios
-                        Adicionales*</span>
+    <section class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 py-16" id="pricing-container">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-sm font-semibold text-indigo-600 tracking-wide uppercase">Pricing</h2>
+                <h1 class="mt-2 text-4xl font-extrabold text-gray-900 sm:text-5xl">Elige el plan perfecto para ti</h1>
+                <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
+                    Soluciones web a medida diseñadas para impulsar tu negocio, crear conexión con tu audiencia y
+                    aumentar ventas.
                 </p>
+            </div>
 
-
-                <div class="subscription-plans">
-                    <!-- Plan Básico -->
-                    <div class="plan-card">
-                        <div class="plan-header">
-                            <h3 class="plan-name">Plan Básico</h3>
-                            <div class="plan-price">45€<span>/mes</span></div>
-                            <p class="plan-description">Ideal para pequeños negocios y emprendedores</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+                <!-- Plan Nodo Start -->
+                <div
+                    class="bg-white rounded-2xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 flex flex-col">
+                    <div class="p-8">
+                        <div class="flex items-center">
+                            <span class="p-2 rounded-lg bg-green-100 text-green-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </span>
+                            <h3 class="ml-3 text-xl font-bold text-gray-900">Nodo Start</h3>
                         </div>
-                        <div class="plan-features">
-                            <h4 class="feature-title">Incluye:</h4>
-                            <ul class="features-list">
-                                <li>Web Completa & Marketing Digital</li>
-                                <li>Stock Images Ilimitadas</li>
-                                <li>Posicionamiento Local y Digital</li>
-                                <li>Seguridad y Backup</li>
-                                <li>Soporte Técnico</li>
-                                </u>
+                        <p class="mt-2 text-gray-500 text-sm">Todo lo esencial para despegar. Escala fácilmente
+                            tu negocio.</p>
+                        <div class="mt-6">
+                            <span class="text-4xl font-extrabold text-gray-900">249€</span>
+                            <span class="text-base font-medium text-gray-500">/mes*</span>
+                            <p class="text-sm text-green-500 font-medium">(compromiso mínimo 3 meses)</p>
                         </div>
-                        <div class="plan-footer">
-                            <p style="padding: 15px; font-weight: 400; ">5% Descuento en Servicios
-                                Adicionales</p>
-
-                            <button class="btn-plan">Comenzar</button>
-                        </div>
+                        <ul class="mt-8 space-y-4">
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-gray-500">Todo lo del pack Nodo Web Go</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-gray-500">1 Blog al mes con SEO</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-gray-500">Descuentos exclusivos en impresión</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-gray-500">Servicios únicos para clientes Start</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-gray-500">Acceso a panel de cliente premium</span>
+                            </li>
+                        </ul>
                     </div>
-
-                    <!-- Plan Estándar -->
-                    <div class="plan-card">
-                        <div class="plan-badge">Más Popular</div>
-                        <div class="plan-header">
-                            <h3 class="plan-name">Plan Estándar</h3>
-                            <div class="plan-price">89€<span>/mes</span></div>
-                            <p class="plan-description">Para negocios en crecimiento que necesitan más servicios</p>
-                        </div>
-                        <div class="plan-features">
-                            <h4 class="feature-title">Todo lo anterior +</h4>
-                            <ul class="features-list">
-                                <li>Consultoría mensual Personalizada (1 hora)</li>
-                                <li>Estadísticas y Análisis de Mejora</li>
-                                <li>SEO/SEM Estratégico</li>
-                                <li>Revisiones <b>ilimitadas</b></li>
-                                <li style="font-weight: bold;">Diseños de branding Incluídos</li>
-                            </ul>
-                        </div>
-                        <div class="plan-footer">
-                            <p style="padding: 15px; font-weight: 400; ">10% Descuento en Servicios
-                                Adicionales</p>
-                            <button class="btn-plan">Seleccionar Plan</button>
-                        </div>
-                    </div>
-
-                    <div class="plan-card">
-                        <div class="plan-header">
-                            <h3 class="plan-name">Plan Premium</h3>
-                            <div class="plan-price">349€<span>/mes</span></div>
-                            <p class="plan-description">Solución completa para empresas que buscan destacar</p>
-                        </div>
-                        <div class="plan-features">
-                            <h4 class="feature-title">Todo lo anterior +</h4>
-                            <ul class="features-list">
-                                <li>Creación de web profesional</li>
-                                <li>Consultoría Estratégica Bajo Demanda</li>
-                                <li>Diseños de logo Único</li>
-                                <li>Diseño gráfico Avanzado y Creativo</li>
-                                <li>SEO Estratégico Integral</li>
-                                <li>2 Consultorías Mensuales</li>
-                                <li>Soporte Prioritario 24/7</li>
-                                <li>Prioridad máxima de entrega</li>
-                                <li>Acceso a recursos premium</li>
-                            </ul>
-                        </div>
-                        <div class="plan-footer">
-                            <p style="padding: 15px; font-weight: 400;">20% Descuento en Servicios Adicionales</p>
-                            <button class="btn-plan">Potenciar Negocio</button>
-                        </div>
-                    </div>
-
-                    <!-- Plan Enterprise -->
-                    <div class="plan-card">
-                        <div class="plan-header">
-                            <h3 class="plan-name">Plan Enterprise</h3>
-                            <div class="plan-price">Personalizado</div>
-                            <p class="plan-description">Soluciones a medida para grandes proyectos</p>
-                        </div>
-                        <div class="plan-features">
-                            <h4 class="feature-title">Todo lo anterior +</h4>
-                            <ul class="features-list">
-                                <li>Solución web totalmente personalizada</li>
-                                <li style="font-weight: bold;">Branding completo</li>
-                                <li style="font-weight: bold;">Estrategia de marketing integral</li>
-                                <li style="font-weight: bold;">Soporte 24/7 dedicado</li>
-                                <li style="font-weight: bold;">Consultor personal asignado</li>
-                                <li>Acceso total a recursos premium</li>
-                            </ul>
-                        </div>
-                        <div class="plan-footer">
-                            <p style="padding: 15px; font-weight: 400;">Condiciones <span
-                                    style="color: #8855ff">personalizadas</span></p>
-                            <button class="btn-plan">Contactar</button>
-                        </div>
+                    <div class="px-6 py-4 bg-gray-50 mt-auto">
+                        <button
+                            onclick="window.open('https://wa.me/+34622494800?text=Me%20interesa%20el%20Plan%20Nodo%20Start%20por%20149€/mes.%20¿Podemos%20hablar%20de%20los%20detalles?', '_blank')"
+                            class="block w-full py-3 px-4 rounded-md shadow bg-green-600 text-white font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                            Empezar ahora
+                        </button>
+                        <p class="mt-2 text-xs text-center text-gray-500">
+                            <span class="font-semibold text-green-600">¡Nuevo!</span> Llévate hasta 3 meses gratis si
+                            traes a un amigo*
+                        </p>
                     </div>
                 </div>
 
+                <!-- Plan Nodo Run -->
+                <div
+                    class="bg-white rounded-2xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 flex flex-col">
+                    <div class="p-8">
+                        <div class="flex items-center">
+                            <span class="p-2 rounded-lg bg-orange-100 text-orange-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7M16 3h5v5M4 20l5-5" />
+                                </svg>
+                            </span>
+                            <h3 class="ml-3 text-xl font-bold text-gray-900">Nodo Run</h3>
+                        </div>
+                        <p class="mt-2 text-gray-500 text-sm">Pack Optimizado de SEO Web + Branding</p>
+                        <div class="mt-6">
+                            <span class="text-4xl font-extrabold text-gray-900">349€</span>
+                            <span class="text-base font-medium text-gray-500">/mes*</span>
+                            <p class="text-sm text-orange-500 font-medium">¡Pruebame sin compromiso!</p>
+                        </div>
+                        <ul class="mt-8 space-y-4">
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-gray-500">Todo lo del plan Start</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-gray-500">SEO Web profesional en 2 semanas</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-gray-500">Estrategia en redes sociales</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-gray-500">Branding básico + Logo</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-gray-500">Soporte prioritario 24/7</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-gray-500">Hosting + dominio incluidos</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="px-6 py-4 bg-gray-50 mt-auto">
+                        <button
+                            onclick="window.open('https://wa.me/+34622494800?text=Me%20interesa%20el%20Plan%20Nodo%20Run%20por%20349€/mes.%20¿Podemos%20hablar%20de%20los%20detalles?', '_blank')"
+                            class="block w-full py-3 px-4 rounded-md shadow bg-orange-600 text-white font-medium hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+                            Empezar ahora
+                        </button>
+                        <p class="mt-2 text-xs text-center text-gray-500">SEO Web + Marketing en tiempo récord</p>
+                    </div>
+                </div>
+
+                <!-- Plan Nodo Pro -->
+                <div
+                    class="bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-2xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 flex flex-col">
+                    <div class="absolute top-0 right-0 mt-4 mr-4">
+                        <span
+                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-200 text-indigo-800">
+                            Popular
+                        </span>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center">
+                            <span class="p-2 rounded-lg bg-white text-indigo-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                            </span>
+                            <h3 class="ml-3 text-xl font-bold text-white">Nodo Pro</h3>
+                        </div>
+                        <p class="mt-2 text-indigo-100 text-sm">Para marcas en crecimiento que necesitan presencia
+                            digital potente.</p>
+                        <div class="mt-6">
+                            <span class="text-4xl font-extrabold text-white">Consultar</span>
+                            <span class="text-base font-medium text-indigo-100">/coste personalizado</span>
+                        </div>
+                        <ul class="mt-8 space-y-4">
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-indigo-200" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-indigo-100">Todo lo del plan Start</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-indigo-200" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-indigo-100">Branding completo</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-indigo-200" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-indigo-100">SEO on-page técnico + Google Search
+                                    Console</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-indigo-200" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-indigo-100">Modelos 3D de producto o espacio</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-indigo-200" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-indigo-100">Campañas básicas de Meta o Google Ads</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="px-6 py-4 bg-indigo-800 mt-auto">
+                        <button
+                            onclick="window.open('https://wa.me/+34622494800?text=Me%20interesa%20el%20Plan%20Nodo%20Pro.%20¿Podemos%20hablar%20de%20los%20detalles%20y%20el%20precio%20personalizado?', '_blank')"
+                            class="block w-full py-3 px-4 rounded-md shadow bg-white text-indigo-600 font-medium hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Comenzar ahora
+                        </button>
+                        <p class="mt-2 text-xs text-center text-indigo-200">Incluye soporte prioritario</p>
+                    </div>
+                </div>
+
+                <!-- Plan Nodo Web Go -->
+                <div
+                    class="bg-white rounded-2xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 flex flex-col">
+                    <div class="p-8">
+                        <div class="flex items-center">
+                            <span class="p-2 rounded-lg bg-purple-100 text-purple-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                                </svg>
+                            </span>
+                            <h3 class="ml-3 text-xl font-bold text-gray-900">Nodo Web Go</h3>
+                        </div>
+                        <p class="mt-2 text-gray-500 text-sm">Empieza con Nodo Web Go y escala cuando tu negocio lo
+                            pida.</p>
+                        <div class="mt-6">
+                            <span class="text-4xl font-extrabold text-gray-900">45€</span>
+                            <span class="text-base font-medium text-gray-500">/mes*</span>
+                            <p class="text-sm text-indigo-500 font-medium">(mínimo 12 meses)</p>
+                        </div>
+                        <ul class="mt-8 space-y-4">
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-gray-500">SEO Web Posicionada en Google</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-gray-500">Soporte técnico Incluido</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-gray-500">Certificado SSL Incluido</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-gray-500">Acceso a descuentos en Impresiones Físicas
+                                </span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span class="ml-3 text-sm text-gray-500">Optimización para móviles</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="px-6 py-4 bg-gray-50 mt-auto">
+                        <button
+                            onclick="window.open('https://wa.me/+34622494800?text=Me%20interesa%20el%20Plan%20Nodo%20Web%20Go%20por%2045€/mes.%20¿Podemos%20hablar%20de%20los%20detalles?', '_blank')"
+                            class="block w-full py-3 px-4 rounded-md shadow bg-purple-600 text-white font-medium hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                            Empezar ahora
+                        </button>
+                        <p class="mt-2 text-xs text-center text-gray-500">Panel de control compartido en Notion</p>
+                    </div>
+                </div>
             </div>
+            <!-- Servicios a medida -->
+            <div class="mt-20">
+                <h2 class="text-2xl font-bold text-center text-gray-900 mb-12">Servicios a medida (One-shot)</h2>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Servicio
+                                </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Desde (€)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-8 w-8 text-indigo-600">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                                            </svg>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Diseño web a medida</div>
+                                            <div class="text-sm text-gray-500">Incluye desarrollo + web posicionada en
+                                                Google</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-right text-sm text-gray-900 font-medium">650</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-8 w-8 text-purple-600">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                                            </svg>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Logotipo + brandbook</div>
+                                            <div class="text-sm text-gray-500">Manual de marca completo</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-right text-sm text-gray-900 font-medium">350</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-8 w-8 text-blue-600">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+                                            </svg>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Modelo 3D para producto</div>
+                                            <div class="text-sm text-gray-500">Visualización + animación básica</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-right text-sm text-gray-900 font-medium">200</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-8 w-8 text-pink-600">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+                                            </svg>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Campaña Meta o Google Ads
+                                            </div>
+                                            <div class="text-sm text-gray-500">1 mes + optimización</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-right text-sm text-gray-900 font-medium">% en función de
+                                    campaña</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 h-8 w-8 text-green-600">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                                            </svg>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900">Sistema de chatbot IA</div>
+                                            <div class="text-sm text-gray-500">Personalizado para tu negocio</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-right text-sm text-gray-900 font-medium">300</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-            <!-- Sección de Servicios Individuales -->
-            <div id="single-payment" class="pricing-section">
-                <h2 class="pricing-subtitle">Servicios Individuales</h2>
-
-                <div class="single-payment-container">
-                    <div class="custom-projects">
-                        <div class="project-card">
-                            <span class="project-icon">🌐</span>
-                            <h4 class="project-name">Servicios Web</h4>
-                            <p class="project-description">Creación y mantenimiento de sitios web</p>
-                            <ul>
-                                <li>Creación Web Básica: 300€</li>
-                                <li>Mantenimiento Mensual: 50€</li>
-                                <li>Análisis de Rendimiento: 75€</li>
-                            </ul>
-                            <a href="https://wa.me/622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo"
-                                target="_blank" class="btn-quote">Solicitar Servicio</a>
-                        </div>
-
-                        <div class="project-card">
-                            <span class="project-icon">📈</span>
-                            <h4 class="project-name">Marketing Digital</h4>
-                            <p class="project-description">Estrategias de marketing y posicionamiento</p>
-                            <ul>
-                                <li>Consultoría SEO: 100€</li>
-                                <li>Campaña SEM: 200€</li>
-                                <li>Gestión Redes Sociales: 150€/mes</li>
-                            </ul>
-                            <a href="https://wa.me/622494800?text=Me%20interesa%20contratar%20servicios%20de%20Marketing%20Digital"
-                                target="_blank" class="btn-quote">Contratar</a>
-                        </div>
-
-                        <div class="project-card">
-                            <span class="project-icon">🎨</span>
-                            <h4 class="project-name">Diseño Gráfico</h4>
-                            <p class="project-description">Diseños personalizados de ropa, vinilos, flyers y tarjetas
+                    <!-- Nota informativa -->
+                    <div class="px-8 py-6 bg-gradient-to-r from-indigo-50 to-purple-50">
+                        <div class="text-center">
+                            <p class="text-sm text-gray-600 mb-4">
+                                Los precios son orientativos y pueden variar según requisitos específicos.
                             </p>
-                            <ul>
-                                <li>Ropa Personalizada: desde <b>7€</b></li>
-                                <li>Vinilos: desde 35€</li>
-                                <li>Flyers: desde 30€</li>
-                                <li>Tarjetas de Visita: desde 25€</li>
-                            </ul>
-                            <a href="https://wa.me/622494800?text=Me%20gustaría%20solicitar%20un%20Diseño%20Gráfico%20personalizado"
-                                target="_blank" class="btn-quote">Solicitar Diseño</a>
+                            <div class="inline-flex flex-col items-center">
+                                <span class="text-lg font-semibold text-indigo-800 mb-3">¿Necesitas un presupuesto
+                                    personalizado?</span>
+                                <a href="#contact"
+                                    class="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium transition duration-300 ease-out border-2 border-indigo-600 rounded-md shadow-md text-indigo-600 hover:text-white">
+                                    <span </svg>
+                                    </span>
+                                    <span
+                                        class="absolute flex items-center justify-center w-full h-full text-indigo-600 transition-all duration-300 transform group-hover:translate-x-full ease">Contactar
+                                        ahora</span>
+                                    <span class="relative invisible">Contactar ahora</span>
+                                </a>
+                                <p class="mt-3 text-xs text-gray-500">Respuesta en menos de 24 horas</p>
+                            </div>
                         </div>
-
-                        <div class="project-card">
-                            <span class="project-icon">🏅</span>
-                            <h4 class="project-name">Branding</h4>
-                            <p class="project-description">Identidad corporativa y merchandising</p>
-                            <ul>
-                                <li>Pack Identidad Corporativa: 350€</li>
-                                <li>Merchandising Personalizado: Precio variable</li>
-                            </ul>
-                            <a href="https://wa.me/34622494800?text=Me%20interesa%20pedir%20un%20presupuesto%20para%20Branding"
-                                target="_blank" class="btn-quote">Pedir Presupuesto</a>
-                        </div>
-                    </div>
-
-                    <div class="quote-cta">
-                        <a href="https://wa.me/34622494800?text=Quisiera%20una%20consulta%20para%20un%20presupuesto%20personalizado%20con%20Nodo"
-                            target="_blank" class="btn-contact">Contacto para Presupuesto Personalizado</a>
                     </div>
                 </div>
             </div>
+
+
+
         </div>
-    </div>
-    <script>
-        // Primero, modificamos el JavaScript existente para incluir la funcionalidad de WhatsApp
-        document.addEventListener('DOMContentLoaded', function () {
-            // Tab switching functionality
-            const tabs = document.querySelectorAll('.tab');
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function () {
-                    // Remove active class from all tabs
-                    tabs.forEach(t => t.classList.remove('active'));
-                    // Add active class to clicked tab
-                    this.classList.add('active');
-
-                    // Show the corresponding section
-                    const targetId = this.getAttribute('data-target');
-                    const sections = document.querySelectorAll('.pricing-section');
-                    sections.forEach(section => {
-                        section.classList.remove('active');
-                    });
-                    document.getElementById(targetId).classList.add('active');
-                });
-            });
-
-            // Animation for plan cards on hover
-            const planCards = document.querySelectorAll('.plan-card');
-            planCards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 100 * index);
-            });
-
-            // Modificación: Redireccionar a WhatsApp con los botones de plan
-            const planButtons = document.querySelectorAll('.btn-plan');
-            planButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const planCard = this.closest('.plan-card');
-                    const planName = planCard.querySelector('.plan-name').textContent;
-                    const planPrice = planCard.querySelector('.plan-price').textContent;
-
-                    // Número de teléfono al que enviar el mensaje (reemplaza con el número real)
-                    const phoneNumber = '34622494800'; // Reemplazar con tu número
-
-                    // Construir el mensaje
-                    let message = `Hola, estoy interesado en el ${planName} de Nodo Digital Agency`;
-
-                    // Añadir precio si no es "Personalizado"
-                    if (planPrice !== 'Personalizado') {
-                        message += ` por ${planPrice}`;
-                    }
-
-                    message += `. Me gustaría recibir más información.`;
-
-                    // Codificar el mensaje para URL
-                    const encodedMessage = encodeURIComponent(message);
-
-                    // Construir la URL de WhatsApp
-                    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-                    // Abrir WhatsApp en una nueva pestaña
-                    window.open(whatsappURL, '_blank');
-                });
-            });
-
-            // Quote buttons functionality
-            const quoteButtons = document.querySelectorAll('.btn-quote');
-            quoteButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const projectCard = this.closest('.project-card');
-                    const projectName = projectCard.querySelector('.project-name').textContent;
-
-                    // Número de teléfono
-                    const phoneNumber = '34622494800'; // Reemplazar con tu número
-
-                    // Construir el mensaje
-                    const message = `Hola, estoy interesado en el servicio individual de ${projectName} de Nodo Digital Agency. Me gustaría recibir un presupuesto.`;
-
-                    // Codificar el mensaje para URL
-                    const encodedMessage = encodeURIComponent(message);
-
-                    // Construir la URL de WhatsApp
-                    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-                    // Abrir WhatsApp en una nueva pestaña
-                    window.open(whatsappURL, '_blank');
-                });
-            });
-
-            // Contact button functionality
-            const contactButton = document.querySelector('.btn-contact');
-            contactButton.addEventListener('click', function () {
-                // Número de teléfono
-                const phoneNumber = '34622494800'; // Reemplazar con tu número
-
-                // Construir el mensaje
-                const message = `Hola, estoy interesado en recibir un presupuesto personalizado para los servicios de Nodo Digital Agency.`;
-
-                // Codificar el mensaje para URL
-                const encodedMessage = encodeURIComponent(message);
-
-                // Construir la URL de WhatsApp
-                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-                // Abrir WhatsApp en una nueva pestaña
-                window.open(whatsappURL, '_blank');
-            });
-        });
-    </script>
-
-
-
-
-
-
+    </section>
 
     <section class="nodo-faq-section" id="nodo-faq-section">
         <div class="nodo-faq-container">
@@ -1278,7 +2546,8 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="nodo-faq-answer">
-                        <p>Nuestro plan básico incluye desarrollo web profesional, hosting, mantenimiento continuo y
+                        <p>Nuestro plan básico incluye desarrollo web profesional, hosting, mantenimiento
+                            continuo y
                             soporte técnico. Además, los nuevos suscriptores reciben un pack de bienvenida con
                             merchandising exclusivo de Nodo.</p>
                     </div>
@@ -1290,9 +2559,11 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="nodo-faq-answer">
-                        <p>Los tiempos varían según la complejidad del proyecto. Una web básica puede estar lista en
+                        <p>Los tiempos varían según la complejidad del proyecto. Una web básica puede estar
+                            lista en
                             2-3
-                            semanas, mientras que proyectos más complejos pueden tomar 4-8 semanas. Trabajamos de
+                            semanas, mientras que proyectos más complejos pueden tomar 4-8 semanas. Trabajamos
+                            de
                             manera
                             ágil para entregar resultados lo antes posible.</p>
                     </div>
@@ -1304,8 +2575,10 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="nodo-faq-answer">
-                        <p>Sí, ofrecemos flexibilidad total. Puedes cancelar tu suscripción cuando lo necesites sin
-                            penalizaciones. Nuestro objetivo es que permanezcas con nosotros por los resultados, no
+                        <p>Sí, ofrecemos flexibilidad total. Puedes cancelar tu suscripción cuando lo necesites
+                            sin
+                            penalizaciones. Nuestro objetivo es que permanezcas con nosotros por los resultados,
+                            no
                             por
                             contratos restrictivos.</p>
                     </div>
@@ -1317,7 +2590,8 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="nodo-faq-answer">
-                        <p>Nos distinguimos por nuestro modelo de suscripción accesible, atención personalizada y
+                        <p>Nos distinguimos por nuestro modelo de suscripción accesible, atención personalizada
+                            y
                             resultados medibles. No solo desarrollamos tu presencia digital, sino que nos
                             convertimos en
                             tu socio tecnológico a largo plazo.</p>
@@ -1331,7 +2605,8 @@
                     </button>
                     <div class="nodo-faq-answer">
                         <p>Absolutamente. El soporte continuo es parte integral de nuestro servicio. Incluimos
-                            mantenimiento, actualizaciones y soporte técnico en todos nuestros planes mensuales para
+                            mantenimiento, actualizaciones y soporte técnico en todos nuestros planes mensuales
+                            para
                             garantizar que tu proyecto siga creciendo.</p>
                     </div>
                 </div>
@@ -1342,9 +2617,11 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="nodo-faq-answer">
-                        <p>El proceso es simple: agenda una consulta gratuita, discutimos tus necesidades, definimos
+                        <p>El proceso es simple: agenda una consulta gratuita, discutimos tus necesidades,
+                            definimos
                             el
-                            alcance del proyecto y comenzamos a trabajar. Te guiamos en cada paso del proceso para
+                            alcance del proyecto y comenzamos a trabajar. Te guiamos en cada paso del proceso
+                            para
                             asegurar resultados óptimos.</p>
                     </div>
                 </div>
@@ -1355,7 +2632,8 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="nodo-faq-answer">
-                        <p>Trabajamos con empresas de todos los tamaños, desde startups hasta negocios establecidos.
+                        <p>Trabajamos con empresas de todos los tamaños, desde startups hasta negocios
+                            establecidos.
                             Nuestros planes flexibles se adaptan a diferentes necesidades y presupuestos,
                             permitiéndonos
                             escalar contigo según tus necesidades.</p>
@@ -1368,8 +2646,10 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="nodo-faq-answer">
-                        <p>Por supuesto. Nuestros planes son escalables y puedes actualizarlos en cualquier momento
-                            según las necesidades de tu negocio. Crecemos contigo y adaptamos nuestros servicios a
+                        <p>Por supuesto. Nuestros planes son escalables y puedes actualizarlos en cualquier
+                            momento
+                            según las necesidades de tu negocio. Crecemos contigo y adaptamos nuestros servicios
+                            a
                             tu
                             evolución.</p>
                     </div>
@@ -1449,7 +2729,7 @@
                     <div class="nodo-info-item">
 
                         <div class="nodo-info-icon">
-                            <a href="https://wa.me/34622494800?text=Quisiera%20una%20consulta%20para%20un%20presupuesto%20personalizado%20con%20Nodo"
+                            <a href="https://wa.me/+34622494800?text=Quisiera%20una%20consulta%20para%20un%20presupuesto%20personalizado%20con%20Nodo"
                                 target="_blank" rel="noopener noreferrer">
                                 <i class="fas fa-phone-alt"></i>
                             </a>
@@ -1476,7 +2756,7 @@
                             class="fab fa-instagram"></i></a>
                     <a href="https://www.linkedin.com/company/105128705/" title="LinkedIn"><i
                             class="fab fa-linkedin-in"></i></a>
-                    <a href="https://wa.me/34622494800?text=Quisiera%20una%20consulta%20para%20un%20presupuesto%20personalizado%20con%20Nodo"
+                    <a href="https://wa.me/+34622494800?text=Quisiera%20una%20consulta%20para%20un%20presupuesto%20personalizado%20con%20Nodo"
                         title="Behance"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
@@ -1516,7 +2796,7 @@
                     <a href="#nodo-faq-section"
                         style="color: #bdbdfc; text-decoration: none; font-weight: 500; transition: color 0.2s;"
                         onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">FAQ</a>
-                    <a href="https://wa.me/34622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo"
+                    <a href="https://wa.me/+34622494800?text=Me%20interesan%20los%20servicios%20web%20de%20nodo"
                         target="_blank"
                         style="color: #fff; background: #4e53be; border-radius: 20px; padding: 6px 18px; font-weight: 600; text-decoration: none; transition: background 0.2s;"
                         onmouseover="this.style.background='#6c72e5'"
@@ -1530,7 +2810,7 @@
                 <div style="display: flex; gap: 18px; align-items: center; margin-bottom: 8px;">
                     <a href="https://impresionesbarcelona.com/" target="_blank">
                         <img src="./img/impresiones.png" alt="Logo Impresiones Barcelona"
-                        style="height: 48px; width: auto; filter: brightness(1.5); opacity: 0.8;">                   
+                            style="height: 48px; width: auto; filter: brightness(1.5); opacity: 0.8;">
                     </a>
                 </div>
                 <!-- Social -->
@@ -1545,10 +2825,58 @@
                         onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'"><i
                             class="fab fa-linkedin-in"></i></a>
                 </div>
+                <!-- Footer con enlaces legales actualizados -->
+                <footer class="nodo-footer"
+                    style="background: #232347; color: #fff; padding: 40px 0 0 0; font-family: 'Poppins', sans-serif;">
+                    <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+                        <!-- ... contenido existente del footer ... -->
+
+                        <!-- Añadir nueva sección de enlaces legales -->
+                        <div style="border-top: 1px solid #39396a; margin-top: 24px; padding-top: 24px;">
+                            <nav
+                                style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; margin-bottom: 16px;">
+                                <a href="./legal/aviso-legal.html"
+                                    style="color: #bdbdfc; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;"
+                                    onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">
+                                    Aviso Legal
+                                </a>
+                                <a href="./legal/politica-privacidad.html"
+                                    style="color: #bdbdfc; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;"
+                                    onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">
+                                    Política de Privacidad
+                                </a>
+                                <a href="./legal/politica-cookies.html"
+                                    style="color: #bdbdfc; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;"
+                                    onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">
+                                    Política de Cookies
+                                </a>
+                                <a href="./legal/condiciones-servicio.html"
+                                    style="color: #bdbdfc; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;"
+                                    onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">
+                                    Condiciones del Servicio
+                                </a>
+                                <a href="./legal/rgpd.html"
+                                    style="color: #bdbdfc; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;"
+                                    onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">
+                                    RGPD
+                                </a>
+                            </nav>
+                            <p style="text-align: center; color: #bdbdfc; font-size: 0.85rem; margin-bottom: 16px;">
+                                Nodo cumple con el Reglamento General de Protección de Datos (RGPD) y la
+                                LOPD-GDD.
+                            </p>
+                        </div>
+
+                        <div
+                            style="border-top: 1px solid #39396a; margin-top: 32px; padding: 18px 0 8px 0; text-align: center; color: #bdbdfc; font-size: 0.95rem;">
+                            © 2025 Nodo. Todos los derechos reservados.
+                        </div>
+                    </div>
+                </footer>
             </div>
             <div
                 style="border-top: 1px solid #39396a; margin-top: 32px; padding: 18px 0 8px 0; text-align: center; color: #bdbdfc; font-size: 0.95rem;">
-                © 2025 Nodo. Todos los derechos reservados.
+
             </div>
         </div>
     </footer>
@@ -1560,308 +2888,306 @@
     <div class="custom-cursor"></div>
 
     <div class="cta">
-        <a href="https://wa.me/34622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo" target="_blank"
+        <a href="https://wa.me/+34622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo" target="_blank"
             style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; border-radius: 30px; background: #4e53be; color: #fff; font-weight: 600; font-size: 1rem; box-shadow: 0 2px 8px rgba(78,83,190,0.08); transition: background 0.2s;">
             <img src="./img/nodedos.svg" alt="Logo Nodo" style="height: 24px; width: 24px; margin-right: 6px;">
             Contactar
         </a>
     </div>
 
-</body>
+    <script>
+        document.querySelectorAll(".card").forEach(card => {
+            const hoverInfo = card.querySelector(".hover-info");
 
-<script>
-    document.querySelectorAll(".card").forEach(card => {
-        const hoverInfo = card.querySelector(".hover-info");
-
-        card.addEventListener("mousemove", (e) => {
-            const { left, top } = card.getBoundingClientRect();
-            hoverInfo.style.left = `${e.clientX - left}px`;
-            hoverInfo.style.top = `${e.clientY - top}px`;
-            hoverInfo.style.opacity = 1;
-        });
-
-        card.addEventListener("mouseleave", () => {
-            hoverInfo.style.opacity = 0;
-        });
-    });
-
-
-
-
-
-
-
-
-    // Función de animación de contador
-    function animateCounter(id, start, end, duration, format) {
-        let startTimestamp = null;
-        const element = document.getElementById(id);
-        const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            let value = Math.floor(progress * (end - start) + start);
-
-            if (format === 'percentage') {
-                element.innerText = `${value}%`;
-            } else if (format === 'plus') {
-                element.innerText = `+${value}`;
-            } else {
-                element.innerText = value;
-            }
-
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            }
-        };
-        window.requestAnimationFrame(step);
-    }
-
-    // Función para verificar si un elemento está visible en la ventana
-    function isElementInViewport(el) {
-        const rect = el.getBoundingClientRect();
-        return (
-            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
-            rect.bottom >= 0 &&
-            rect.left >= 0 &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
-    }
-
-    // Función para iniciar las animaciones cuando los elementos son visibles
-    function handleAnimations() {
-        const section = document.querySelector('.nodo-stats-section');
-
-        if (isElementInViewport(section) && !section.classList.contains('nodo-animation-ready')) {
-            section.classList.add('nodo-animation-ready');
-
-            // Iniciar contadores con un pequeño retraso
-            setTimeout(() => {
-                animateCounter('retention-counter', 0, 90, 2000, 'percentage');
-                animateCounter('services-counter', 0, 50, 1800, 'plus');
-            }, 200);
-        }
-    }
-
-    // Iniciar animaciones cuando se carga la página o se hace scroll
-    document.addEventListener('DOMContentLoaded', handleAnimations);
-    window.addEventListener('scroll', handleAnimations);
-
-    // También activamos las animaciones inmediatamente para demostración
-    setTimeout(handleAnimations, 500);
-
-
-
-
-
-
-
-
-    const cursor = document.querySelector(".custom-cursor");
-    let cursorX = 0, cursorY = 0;
-    let targetX = 0, targetY = 0;
-    const speed = 0.2; // Ajusta la fluidez (0.1 = más lento, 0.3 = más rápido)
-
-    document.addEventListener("mousemove", (e) => {
-        targetX = e.clientX;
-        targetY = e.clientY;
-    });
-
-    function smoothCursor() {
-        cursorX += (targetX - cursorX) * speed;
-        cursorY += (targetY - cursorY) * speed;
-
-        cursor.style.left = `${cursorX}px`;
-        cursor.style.top = `${cursorY}px`;
-
-        requestAnimationFrame(smoothCursor);
-    }
-
-    smoothCursor();
-
-
-
-
-
-
-
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const statsSection = document.querySelector(".stats-section");
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    statsSection.classList.add("show");
-                    observer.unobserve(statsSection); // Para que la animación solo se active una vez
-                }
-            });
-        }, { threshold: 0.3 });
-
-        observer.observe(statsSection);
-    });
-
-    // Añade este JavaScript
-    document.addEventListener('DOMContentLoaded', () => {
-        // Añadir clase parallax-element a los elementos que queremos animar
-        const elements = [
-            document.querySelector('.author'),
-            document.querySelector('.hero h1'),
-            document.querySelector('.hero p'),
-            document.querySelector('.btn.contacto'),
-            document.querySelector('.users-count')
-        ];
-
-        elements.forEach(element => {
-            if (element) {
-                element.classList.add('parallax-element');
-            }
-        });
-
-        // Función para manejar la animación al hacer scroll
-        const handleScroll = () => {
-            elements.forEach(element => {
-                if (!element) return;
-
-                const rect = element.getBoundingClientRect();
-                const windowHeight = window.innerHeight;
-
-                if (rect.top < windowHeight * 0.8) {
-                    element.classList.add('visible');
-                }
-            });
-        };
-
-        // Ejecutar una vez al cargar la página
-        handleScroll();
-
-        // Añadir el evento scroll con throttling para mejor rendimiento
-        let isScrolling = false;
-        window.addEventListener('scroll', () => {
-            if (!isScrolling) {
-                window.requestAnimationFrame(() => {
-                    handleScroll();
-                    isScrolling = false;
-                });
-                isScrolling = true;
-            }
-        });
-    });
-
-
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const cards = document.querySelectorAll(".nodo-service-card");
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                }
-            });
-        }, { threshold: 0.3 });
-
-        cards.forEach(card => observer.observe(card));
-    });
-
-
-
-
-
-    document.addEventListener('DOMContentLoaded', () => {
-        // Efecto hover suave para los enlaces
-        const links = document.querySelectorAll('.footer-links a, .footer-social a');
-
-        links.forEach(link => {
-            link.addEventListener('mouseenter', (e) => {
-                e.target.style.transform = 'translateY(-2px)';
-                e.target.style.transition = 'all 0.3s ease';
+            card.addEventListener("mousemove", (e) => {
+                const { left, top } = card.getBoundingClientRect();
+                hoverInfo.style.left = `${e.clientX - left}px`;
+                hoverInfo.style.top = `${e.clientY - top}px`;
+                hoverInfo.style.opacity = 1;
             });
 
-            link.addEventListener('mouseleave', (e) => {
-                e.target.style.transform = 'translateY(0)';
+            card.addEventListener("mouseleave", () => {
+                hoverInfo.style.opacity = 0;
             });
         });
-    });
 
 
 
 
 
 
-    document.addEventListener('DOMContentLoaded', function () {
-        const track = document.querySelector('.testimonials-track');
-        const slides = document.querySelectorAll('.testimonial-slide');
-        const dotsContainer = document.querySelector('.slider-dots');
-        let currentSlide = 0;
-
-        // Crear dots
-        slides.forEach((_, index) => {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToSlide(index));
-            dotsContainer.appendChild(dot);
-        });
-
-        function goToSlide(index) {
-            track.style.transform = `translateX(-${index * 100}%)`;
-            document.querySelectorAll('.dot').forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-            currentSlide = index;
-        }
-
-        // Auto play (opcional)
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % slides.length;
-            goToSlide(currentSlide);
-        }, 4500);
-    });
 
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const parallaxContent = document.querySelector('.parallax-content');
-        const parallaxSection = document.querySelector('.parallax-section');
+        // Función de animación de contador
+        function animateCounter(id, start, end, duration, format) {
+            let startTimestamp = null;
+            const element = document.getElementById(id);
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                let value = Math.floor(progress * (end - start) + start);
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    parallaxContent.classList.add('parallax-visible');
+                if (format === 'percentage') {
+                    element.innerText = `${value}%`;
+                } else if (format === 'plus') {
+                    element.innerText = `+${value}`;
                 } else {
-                    parallaxContent.classList.remove('parallax-visible');
+                    element.innerText = value;
                 }
-            });
-        }, {
-            threshold: 0.5
+
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Función para verificar si un elemento está visible en la ventana
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+                rect.bottom >= 0 &&
+                rect.left >= 0 &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        // Función para iniciar las animaciones cuando los elementos son visibles
+        function handleAnimations() {
+            const section = document.querySelector('.nodo-stats-section');
+
+            if (isElementInViewport(section) && !section.classList.contains('nodo-animation-ready')) {
+                section.classList.add('nodo-animation-ready');
+
+                // Iniciar contadores con un pequeño retraso
+                setTimeout(() => {
+                    animateCounter('retention-counter', 0, 100, 2000, 'percentage');
+                    animateCounter('services-counter', 0, 50, 1800, 'plus');
+                }, 200);
+            }
+        }
+
+        // Iniciar animaciones cuando se carga la página o se hace scroll
+        document.addEventListener('DOMContentLoaded', handleAnimations);
+        window.addEventListener('scroll', handleAnimations);
+
+        // También activamos las animaciones inmediatamente para demostración
+        setTimeout(handleAnimations, 500);
+
+
+
+
+
+
+
+
+        const cursor = document.querySelector(".custom-cursor");
+        let cursorX = 0, cursorY = 0;
+        let targetX = 0, targetY = 0;
+        const speed = 0.2; // Ajusta la fluidez (0.1 = más lento, 0.3 = más rápido)
+
+        document.addEventListener("mousemove", (e) => {
+            targetX = e.clientX;
+            targetY = e.clientY;
         });
 
-        observer.observe(parallaxSection);
-    });
+        function smoothCursor() {
+            cursorX += (targetX - cursorX) * speed;
+            cursorY += (targetY - cursorY) * speed;
 
-    document.addEventListener('DOMContentLoaded', function () {
-        const faqItems = document.querySelectorAll('.nodo-faq-question');
+            cursor.style.left = `${cursorX}px`;
+            cursor.style.top = `${cursorY}px`;
 
-        faqItems.forEach(item => {
-            item.addEventListener('click', function () {
-                // Toggle active class on question
-                this.classList.toggle('active');
+            requestAnimationFrame(smoothCursor);
+        }
 
-                // Toggle answer visibility
-                const answer = this.nextElementSibling;
-                answer.classList.toggle('active');
+        smoothCursor();
 
-                // Close other open answers
-                faqItems.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('active');
-                        otherItem.nextElementSibling.classList.remove('active');
+
+
+
+
+
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const statsSection = document.querySelector(".stats-section");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        statsSection.classList.add("show");
+                        observer.unobserve(statsSection); // Para que la animación solo se active una vez
                     }
                 });
+            }, { threshold: 0.3 });
+
+            observer.observe(statsSection);
+        });
+
+        // Añade este JavaScript
+        document.addEventListener('DOMContentLoaded', () => {
+            // Añadir clase parallax-element a los elementos que queremos animar
+            const elements = [
+                document.querySelector('.author'),
+                document.querySelector('.hero h1'),
+                document.querySelector('.hero p'),
+                document.querySelector('.btn.contacto'),
+                document.querySelector('.users-count')
+            ];
+
+            elements.forEach(element => {
+                if (element) {
+                    element.classList.add('parallax-element');
+                }
+            });
+
+            // Función para manejar la animación al hacer scroll
+            const handleScroll = () => {
+                elements.forEach(element => {
+                    if (!element) return;
+
+                    const rect = element.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+
+                    if (rect.top < windowHeight * 0.8) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+
+            // Ejecutar una vez al cargar la página
+            handleScroll();
+
+            // Añadir el evento scroll con throttling para mejor rendimiento
+            let isScrolling = false;
+            window.addEventListener('scroll', () => {
+                if (!isScrolling) {
+                    window.requestAnimationFrame(() => {
+                        handleScroll();
+                        isScrolling = false;
+                    });
+                    isScrolling = true;
+                }
             });
         });
-    });
 
-</script>
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const cards = document.querySelectorAll(".nodo-service-card");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            cards.forEach(card => observer.observe(card));
+        });
+
+
+
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const parallaxContent = document.querySelector('.parallax-content');
+            const parallaxSection = document.querySelector('.parallax-section');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        parallaxContent.classList.add('parallax-visible');
+                    } else {
+                        parallaxContent.classList.remove('parallax-visible');
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+
+            observer.observe(parallaxSection);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const faqItems = document.querySelectorAll('.nodo-faq-question');
+
+            faqItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    // Toggle active class on question
+                    this.classList.toggle('active');
+
+                    // Toggle answer visibility
+                    const answer = this.nextElementSibling;
+                    answer.classList.toggle('active');
+
+                    // Close other open answers
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            otherItem.nextElementSibling.classList.remove('active');
+                        }
+                    });
+                });
+            });
+        });
+
+
+        // Agregar después del último script existente
+        document.addEventListener('DOMContentLoaded', function () {
+            const track = document.querySelector('.testimonials-track');
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const dotsContainer = document.querySelector('.slider-dots');
+            const slideWidth = slides[0].offsetWidth;
+            let currentIndex = 0;
+            let autoSlideInterval;
+
+            // Crear dots
+            slides.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.classList.add('slider-dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = document.querySelectorAll('.slider-dot');
+
+            function updateDots() {
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            function goToSlide(index) {
+                currentIndex = index;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                updateDots();
+                resetAutoSlide();
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % slides.length;
+                goToSlide(currentIndex);
+            }
+
+            function resetAutoSlide() {
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = setInterval(nextSlide, 5000); // Cambiar cada 5 segundos
+            }
+
+            // Iniciar el autoplay
+            resetAutoSlide();
+
+            // Detener autoplay cuando el usuario interactúa
+            track.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+            track.addEventListener('mouseleave', resetAutoSlide);
+        });
+
+    </script>
 
 
 </html>
