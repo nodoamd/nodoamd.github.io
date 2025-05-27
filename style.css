@@ -17,6 +17,23 @@
         z-index: 1000;
     }
 
+    /* ...existing code... */
+
+    @media (max-width: 768px) {
+        .header a img {
+            display: none;
+            /* Oculta el logo */
+        }
+
+        /* Opcional: si quieres mantener el texto "Nodo" pero ocultar solo la imagen */
+        .header a span {
+            margin-right: 10px;
+            /* Elimina el margen derecho que tenía para el logo */
+        }
+    }
+
+    /* ...existing code... */
+
 
     /* Añade esto en tu <style> o archivo CSS */
     @media screen and (max-width: 768px) {
