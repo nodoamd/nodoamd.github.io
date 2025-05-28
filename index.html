@@ -530,26 +530,25 @@
                             </div>
                         </div>
 
-                 
 
-                    <!-- CTA Section -->
-                    <div class="text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-12 text-white">
-                        <h3 class="text-3xl font-bold mb-4">¿Listo para tu transformación digital?</h3>
-                        <p class="text-xl mb-8 opacity-90">Únete a más de 100 empresas que ya han revolucionado su
-                            presencia
-                            online</p>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                            <button
-                                class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                                Ver Más Casos de Éxito
-                            </button>
-                            <button
-                                class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-                                Solicitar Consulta Gratuita
-                            </button>
+
+                        <!-- CTA Section -->
+                                                <!-- Reemplaza el div actual de CTA -->
+                        <div class="text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-12 text-white h-full flex flex-col justify-center items-center">
+                            <div class="max-w-2xl mx-auto">
+                                <h3 class="text-3xl font-bold mb-4">¿Listo para tu transformación digital?</h3>
+                                <p class="text-xl mb-8 opacity-90">Únete a más de 100 empresas que ya han revolucionado su presencia online</p>
+                                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
+                                        Ver Más Casos de Éxito
+                                    </button>
+                                    <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                                        Solicitar Consulta Gratuita
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
         </section>
 
         <script>
@@ -1363,9 +1362,21 @@
                         </div>
                         <p class="mt-2 text-indigo-100 text-sm">Para marcas en crecimiento que necesitan presencia
                             digital potente.</p>
+                        <!-- Reemplazar el div de precio en el plan Nodo Pro -->
                         <div class="mt-6">
-                            <span class="text-4xl font-extrabold text-white">Consultar</span>
-                            <span class="text-base font-medium text-indigo-100">/coste personalizado</span>
+                            <div class="flex items-baseline">
+                                <span class="text-4xl font-extrabold text-white">Desde 449€</span>
+                                <span class="text-base font-medium text-indigo-100">/mes*</span>
+                            </div>
+                            <p class="text-sm text-indigo-200 font-medium mt-1">Personalizable según necesidades</p>
+                            <div class="mt-2 bg-indigo-800/30 rounded-lg p-3">
+                                <p class="text-xs text-indigo-200">
+                                    * El precio final se ajusta según:
+                                    <br>• Complejidad del proyecto
+                                    <br>• Volumen de contenido
+                                    <br>• Funcionalidades especiales
+                                </p>
+                            </div>
                         </div>
                         <ul class="mt-8 space-y-4">
                             <li class="flex items-start">
@@ -1670,13 +1681,20 @@
                             <div class="inline-flex flex-col items-center">
                                 <span class="text-lg font-semibold text-indigo-800 mb-3">¿Necesitas un presupuesto
                                     personalizado?</span>
-                                <a href="#contact"
+                                <a href="https://wa.me/+34622494800?text=Quisiera%20una%20consulta%20para%20un%20presupuesto%20personalizado%20con%20Nodo"
+                                    rel="noopener noreferrer" target="_blank"
                                     class="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium transition duration-300 ease-out border-2 border-indigo-600 rounded-md shadow-md text-indigo-600 hover:text-white">
-                                    <span>
+                                    <span
+                                        class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-indigo-600 group-hover:translate-x-0 ease">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        </svg>
                                     </span>
                                     <span
-                                        class="absolute flex items-center justify-center w-full h-full text-indigo-600 transition-all duration-300 transform group-hover:translate-x-full ease">Contactar
-                                        ahora</span>
+                                        class="absolute flex items-center justify-center w-full h-full text-indigo-600 transition-all duration-300 transform group-hover:translate-x-full ease">
+                                        Contactar ahora
+                                    </span>
                                     <span class="relative invisible">Contactar ahora</span>
                                 </a>
                                 <p class="mt-3 text-xs text-gray-500">Respuesta en menos de 24 horas</p>
@@ -2327,6 +2345,4 @@
         });
 
     </script>
-
-
 </html>
