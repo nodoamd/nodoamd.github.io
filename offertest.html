@@ -105,49 +105,47 @@
     </header>
     <!-- Hero Section -->
     <section
-        class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 to-blue-50 overflow-hidden">
+        class="relative min-h-[90vh] flex items-start md:items-center justify-center bg-gradient-to-br from-purple-50 to-blue-50 overflow-hidden py-12 md:py-0">
         <div class="absolute inset-0 bg-gradient-to-r from-purple-400/10 to-blue-400/10"></div>
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="mb-8">
-                <span class="inline-flex items-center text-nodo-purple font-medium text-lg">
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-8 md:mt-0">
+            <div class="mb-4 pt-8 md:pt-0">
+                <span class="inline-flex items-center text-nodo-purple font-medium text-base md:text-lg">
                     ⚡ Casos de Éxito
                 </span>
             </div>
-            <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
-                <span class="text-nodo-purple">Transformamos</span> negocios,<br>
-                creamos <span
-                    class="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">resultados
-                    extraordinarios</span>
+            <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 px-4">
+                <span class="text-nodo-purple">Transformamos</span> negocios,<br class="hidden sm:block">
+                creamos <span class="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">resultados extraordinarios</span>
             </h1>
-            <p class="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-                Descubre cómo hemos ayudado a empresas como la tuya a <span
-                    class="text-nodo-purple font-semibold">multiplicar sus ventas</span>
+            <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed px-4">
+                Descubre cómo hemos ayudado a empresas como la tuya a
+                <span class="text-nodo-purple font-semibold">multiplicar sus ventas</span>
                 y dominar el mundo digital con estrategias personalizadas y resultados medibles.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-                <button
-                    class="bg-nodo-purple hover:bg-purple-700 text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl">
+
+            <!-- Botones con mejor espaciado móvil -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 px-4">
+                <button class="w-full sm:w-auto bg-nodo-purple hover:bg-purple-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl">
                     Ver Todos los Casos
                 </button>
-                <button
-                    class="border-2 border-gray-300 hover:border-nodo-purple text-gray-700 hover:text-nodo-purple font-semibold py-4 px-8 rounded-full transition-all duration-300">
+                <button class="w-full sm:w-auto border-2 border-gray-300 hover:border-nodo-purple text-gray-700 hover:text-nodo-purple font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-full transition-all duration-300">
                     Impulsa tu Negocio
                 </button>
             </div>
 
-            <!-- Stats Preview -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
-                    <div class="text-3xl font-bold text-nodo-purple mb-2">+500%</div>
-                    <div class="text-gray-600">Crecimiento Promedio</div>
+            <!-- Stats con mejor diseño responsive -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 max-w-4xl mx-auto px-4">
+                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-lg border border-white/20">
+                    <div class="text-2xl md:text-3xl font-bold text-nodo-purple mb-2">+500%</div>
+                    <div class="text-sm md:text-base text-gray-600">Crecimiento Promedio</div>
                 </div>
-                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
-                    <div class="text-3xl font-bold text-nodo-blue mb-2">120+</div>
-                    <div class="text-gray-600">Proyectos Exitosos</div>
+                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-lg border border-white/20">
+                    <div class="text-2xl md:text-3xl font-bold text-nodo-blue mb-2">120+</div>
+                    <div class="text-sm md:text-base text-gray-600">Proyectos Exitosos</div>
                 </div>
-                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/20">
-                    <div class="text-3xl font-bold text-purple-600 mb-2">98%</div>
-                    <div class="text-gray-600">Satisfacción Cliente</div>
+                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-lg border border-white/20 sm:col-span-2 md:col-span-1">
+                    <div class="text-2xl md:text-3xl font-bold text-purple-600 mb-2">98%</div>
+                    <div class="text-sm md:text-base text-gray-600">Satisfacción Cliente</div>
                 </div>
             </div>
         </div>
@@ -159,27 +157,27 @@
     </section>
 
     <!-- Featured Success Story -->
-    <section class="py-24 bg-white">
+    <section class="py-12 md:py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <div class="text-center mb-8 md:mb-16">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 md:mb-6">
                     Caso Destacado
                 </h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-4">
                     Cómo transformamos una pequeña empresa local en un líder digital de su sector
                 </p>
             </div>
 
-            <div class="bg-gradient-to-br from-purple-50 to-blue-50 rounded-3xl overflow-hidden shadow-2xl">
+            <div class="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl md:rounded-3xl overflow-hidden shadow-xl">
                 <div class="grid lg:grid-cols-2 gap-0">
-                    <div class="p-12 lg:p-16">
-                        <div class="flex items-center mb-8">
-                            <div
-                                class="w-16 h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl mr-4">
+                    <div class="p-6 sm:p-8 md:p-12 lg:p-16">
+                        <!-- Contenido del caso -->
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center text-white font-bold text-lg md:text-xl mr-4">
                                 TC
                             </div>
                             <div>
-                                <h3 class="text-2xl font-bold text-gray-900">TechCorp Solutions</h3>
+                                <h3 class="text-xl md:text-2xl font-bold text-gray-900">TechCorp Solutions</h3>
                                 <p class="text-gray-600">Software B2B</p>
                             </div>
                         </div>
@@ -211,15 +209,13 @@
                         </button>
                     </div>
 
-                    <div
-                        class="relative bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center p-12">
-                        <div class="relative">
-                            <div
-                                class="w-80 h-96 bg-white/10 backdrop-blur-sm rounded-3xl border border-white/20 flex items-center justify-center transform rotate-6 hover:rotate-3 transition-transform duration-500">
+                    <div class="relative bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center p-6 sm:p-8 md:p-12">
+                        <div class="relative w-full max-w-sm mx-auto">
+                            <div class="aspect-[3/4] w-full bg-white/10 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-white/20 flex items-center justify-center transform rotate-6 hover:rotate-3 transition-transform duration-500">
                                 <div class="text-center text-white">
-                                    <div class="text-6xl mb-4">📈</div>
-                                    <div class="text-2xl font-bold">Crecimiento</div>
-                                    <div class="text-lg opacity-80">Exponencial</div>
+                                    <div class="text-4xl md:text-6xl mb-4">📈</div>
+                                    <div class="text-xl md:text-2xl font-bold">Crecimiento</div>
+                                    <div class="text-base md:text-lg opacity-80">Exponencial</div>
                                 </div>
                             </div>
                         </div>
