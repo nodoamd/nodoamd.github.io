@@ -216,8 +216,7 @@
                                         <!-- Contenido ANTES -->
                                         <div class="before-content p-4 md:p-6 transition-opacity duration-500">
                                             <div class="mb-4">
-                                                <span
-                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
                                                     ANTES - Sin presencia digital
                                                 </span>
                                             </div>
@@ -572,8 +571,7 @@
                                         <!-- Contenido ANTES -->
                                         <div class="before-content p-4 md:p-6 transition-opacity duration-500">
                                             <div class="mb-4">
-                                                <span
-                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
                                                     ANTES - Sin presencia digital
                                                 </span>
                                             </div>
@@ -931,8 +929,7 @@
                                         <!-- Contenido ANTES -->
                                         <div class="before-content p-4 md:p-6 transition-opacity duration-500">
                                             <div class="mb-4">
-                                                <span
-                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
                                                     ANTES - Sin presencia digital
                                                 </span>
                                             </div>
@@ -1300,7 +1297,6 @@
     <!-- Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Función para configurar el antes/después para cada caso
             function setupBeforeAfter() {
                 const cases = document.querySelectorAll('.md\\:col-span-7');
 
@@ -1309,6 +1305,13 @@
                     const afterBtn = caseElement.querySelector('.after-btn');
                     const beforeContent = caseElement.querySelector('.before-content');
                     const afterContent = caseElement.querySelector('.after-content');
+                    const container = beforeContent.parentElement;
+
+                    function updateContainerHeight(content) {
+                        requestAnimationFrame(() => {
+                            container.style.height = `${content.scrollHeight}px`;
+                        });
+                    }
 
                     function showBefore() {
                         beforeBtn.classList.add('border-indigo-600', 'text-indigo-600');
@@ -1322,6 +1325,8 @@
                         afterContent.style.position = 'absolute';
                         afterContent.classList.remove('opacity-100');
                         afterContent.classList.add('opacity-0');
+
+                        updateContainerHeight(beforeContent);
                     }
 
                     function showAfter() {
@@ -1336,7 +1341,21 @@
                         beforeContent.style.position = 'absolute';
                         beforeContent.classList.remove('opacity-100');
                         beforeContent.classList.add('opacity-0');
+
+                        updateContainerHeight(afterContent);
                     }
+
+                    // Altura inicial con el contenido "antes"
+                    updateContainerHeight(beforeContent);
+
+                    // Actualizar altura en resize
+                    window.addEventListener('resize', () => {
+                        if (beforeContent.classList.contains('opacity-100')) {
+                            updateContainerHeight(beforeContent);
+                        } else {
+                            updateContainerHeight(afterContent);
+                        }
+                    });
 
                     beforeBtn.addEventListener('click', showBefore);
                     afterBtn.addEventListener('click', showAfter);
