@@ -3,7 +3,7 @@
 
 
     /* Cursor personalizado */
-    .custom-cursor {
+    /* .custom-cursor {
         position: fixed;
         width: 15px;
         height: 15px;
@@ -11,28 +11,10 @@
         border: 4px black;
         border-radius: 50%;
         pointer-events: none;
-        /* No interfiere con elementos */
         top: 0;
         left: 0;
         z-index: 1000;
-    }
-
-    /* ...existing code... */
-
-    @media (max-width: 768px) {
-        .header a img {
-            display: none;
-            /* Oculta el logo */
-        }
-
-        /* Opcional: si quieres mantener el texto "Nodo" pero ocultar solo la imagen */
-        .header a span {
-            margin-right: 10px;
-            /* Elimina el margen derecho que tenía para el logo */
-        }
-    }
-
-    /* ...existing code... */
+    } */
 
 
     /* Añade esto en tu <style> o archivo CSS */
@@ -57,15 +39,15 @@
     }
 
     /* Efecto de magnetismo */
-    .custom-cursor.cursor-hover {
+    /* .custom-cursor.cursor-hover {
         transform: translate(calc(-50% + var(--magnetic-x, 0)), calc(-50% + var(--magnetic-y, 0)));
-    }
+    } */
 
     /* Efecto de rotación */
-    .custom-cursor.cursor-hover {
+    /* .custom-cursor.cursor-hover {
         animation: cursorRotate 2s linear infinite;
-    }
-
+    } */
+    /* 
     @keyframes cursorRotate {
         from {
             transform: translate(-50%, -50%) rotate(0deg);
@@ -74,7 +56,7 @@
         to {
             transform: translate(-50%, -50%) rotate(360deg);
         }
-    }
+    } */
 
 
 
@@ -116,7 +98,7 @@
 
 
     * {
-        cursor: none;
+        /* cursor: none; */
         scroll-behavior: smooth;
 
         margin: 0;
