@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>La Chiquitana | Auténticas Salteñas Bolivianas en España</title>
+    <meta name="description"
+        content="Descubre el auténtico sabor de Bolivia en España. Salteñas artesanales, platos típicos y postres tradicionales bolivianos en Madrid. ¡Haz tu pedido online!">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Custom scrollbar for horizontal browse */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-[#fff3f0] text-gray-900 flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm fixed w-full z-30">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16">
+            <h1 class="font-extrabold text-xl">LA CHIQUITANA</h1>
+            <nav class="hidden md:flex space-x-8 text-gray-700 font-semibold">
+                <a href="#" class="hover:text-[#fc5a32]">Inicio</a>
+                <a href="#" class="hover:text-[#fc5a32]">Nuestra Historia</a>
+                <a href="#" class="hover:text-[#fc5a32]">Carta</a>
+                <a href="#" class="hover:text-[#fc5a32]">Pedidos</a>
+            </nav>
+            <button
+                class="hidden md:block bg-black text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#fc5a32] transition"
+                aria-label="Contact button">Contact</button>
+
+            <!-- Mobile Hamburger -->
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-btn" aria-label="Toggle menu"
+                    class="material-icons text-3xl cursor-pointer">menu</button>
+            </div>
+        </div>
+
+        <!-- Mobile menu panel -->
+        <nav id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 shadow-lg">
+            <div class="flex flex-col px-6 py-4 space-y-4 font-semibold text-gray-700">
+                <a href="#" class="hover:text-[#fc5a32]">Home</a>
+                <a href="#" class="hover:text-[#fc5a32]">About</a>
+                <a href="#" class="hover:text-[#fc5a32]">Menu</a>
+                <a href="#" class="hover:text-[#fc5a32]">Services</a>
+                <button
+                    class="bg-black text-white rounded-full px-4 py-2 text-center hover:bg-[#fc5a32] transition">Contact</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-grow pt-20 max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+
+        <!-- Hero Section -->
+        <section aria-label="Hero section" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div
+                class="relative rounded-3xl bg-[#fc8000] flex flex-col justify-between p-8 max-w-full md:max-w-none md:min-w-0 h-56 md:h-auto md:col-span-2">
+                <div>
+                    <p
+                        class="uppercase text-sm font-bold text-white tracking-wide mb-2 px-3 inline-block bg-black bg-opacity-20 rounded-lg max-w-max">
+                        Sabores de Bolivia
+                    </p>
+                    <h2 class="text-4xl font-extrabold text-white leading-tight mb-6">
+                        AUTÉNTICAS SALTEÑAS<br />BOLIVIANAS
+                    </h2>
+                    <button
+                        class="bg-black text-white px-6 py-2 rounded-full shadow-lg font-semibold hover:bg-white hover:text-[#fc5a32] transition w-max"
+                        type="button">
+                        Pedir Ahora
+                    </button>
+                </div>
+                <div class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white flex items-center justify-center cursor-pointer hover:scale-110 transition"
+                    title="Arrow icon">
+                    <span class="material-icons text-[#fc5a32]">arrow_forward</span>
+                </div>
+            </div>
+            <div class="rounded-3xl overflow-hidden h-56 md:h-auto md:row-span-2">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/83493d4a-2d2b-4f9e-833f-c173a9e8727f.png"
+                    alt="Close up of delicious food in bowl with bread on side" class="object-cover w-full h-full"
+                    loading="lazy" />
+            </div>
+
+            <div class="rounded-3xl p-6 bg-[#d0f4ff] flex flex-col justify-between space-y-4">
+                <div class="flex items-center space-x-4">
+                    <div class="rounded-full bg-yellow-400 p-2 flex-shrink-0">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/24bdad49-bd98-4809-806c-319fa917a21f.png"
+                            alt="Cheddar Cheeseburger closeup" class="rounded-full w-12 h-12 object-cover" />
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 text-lg">Cheddar Cheeseburger</h3>
+                        <p class="text-gray-700 font-semibold">$5.30</p>
+                    </div>
+                    <button
+                        class="ml-auto bg-gray-900 text-white px-4 py-2 rounded-full shadow hover:bg-[#fc5a32] transition"
+                        type="button">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="rounded-3xl p-6 bg-[#fee2e2] flex flex-col justify-center space-y-6">
+                <div class="flex items-center space-x-3 justify-center">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/110c49a4-0275-494c-aa84-e17c711b822d.png"
+                        alt="Apple icon for download app" class="w-8 h-8" />
+                    <img src="https://placehold.co/32x32?text=" alt="Apple icon for download app" class="w-8 h-8" />
+                </div>
+                <div class="text-center">
+                    <p class="font-semibold text-gray-900 text-lg">Download Tastyhub</p>
+                    <p class="text-gray-700 text-sm mt-1">2nd Get 10% Cashback</p>
+                    <p class="text-yellow-500 font-semibold text-base flex items-center justify-center mt-2">
+                        4.9
+                        <span class="material-icons text-yellow-400 ml-2">star</span>
+                        <span class="material-icons text-yellow-400">star</span>
+                        <span class="material-icons text-yellow-400">star</span>
+                        <span class="material-icons text-yellow-400">star</span>
+                        <span class="material-icons text-yellow-400">star</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recipes Section -->
+        <section aria-label="Recipes section" class="space-y-8">
+            <h2 class="text-3xl font-extrabold">Nuestra Carta</h2>
+            <div class="flex flex-wrap gap-4">
+                <button
+                    class="bg-[#fc5a32] text-white py-2 px-6 rounded-full font-semibold hover:bg-[#d6421d] transition">Salteñas</button>
+                <button
+                    class="border border-[#fc5a32] text-[#fc5a32] py-2 px-6 rounded-full font-semibold hover:bg-[#fc5a32] hover:text-white transition">Empanadas</button>
+                <button
+                    class="border border-[#fc5a32] text-[#fc5a32] py-2 px-6 rounded-full font-semibold hover:bg-[#fc5a32] hover:text-white transition">Platos
+                    Típicos</button>
+                <button
+                    class="border border-[#fc5a32] text-[#fc5a32] py-2 px-6 rounded-full font-semibold hover:bg-[#fc5a32] hover:text-white transition">Postres</button>
+            </div>
+
+            <form role="search" class="max-w-xl mx-auto">
+                <label for="search-recipes" class="sr-only">Search Recipe And More</label>
+                <div class="relative text-gray-600 focus-within:text-gray-900">
+                    <input id="search-recipes" type="search" placeholder="Search Recipe And More..."
+                        class="block w-full rounded-full py-3 pl-12 pr-4 border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#fc5a32] focus:border-[#fc5a32] transition"
+                        autocomplete="off" />
+                    <span
+                        class="material-icons absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">search</span>
+                </div>
+            </form>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 max-w-5xl mx-auto">
+                <div class="md:col-span-3 rounded-3xl overflow-hidden relative">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/72eccabc-6051-47bd-95a2-30babb604896.png"
+                        alt="Delicious pizza recipe image" class="object-cover w-full h-full" loading="lazy" />
+                    <span
+                        class="absolute top-4 left-4 bg-[#fc5a32] text-white px-4 py-1 rounded-full text-xs font-bold">Best
+                        Meals Pizza</span>
+                </div>
+                <div class="hidden md:flex flex-col space-y-4 col-span-2">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f5eba947-559c-4462-9c3a-ff6fc4c12412.png"
+                        alt="Small dish image 1" class="rounded-3xl object-cover w-full h-28" loading="lazy" />
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/14858f45-c877-433a-8ceb-55a8fa7ca7af.png"
+                        alt="Small dish image 2" class="rounded-3xl object-cover w-full h-28" loading="lazy" />
+                    <div class="relative rounded-3xl overflow-hidden h-28 bg-black text-white flex justify-center items-center text-xl font-bold cursor-default"
+                        aria-label="30+ more items">
+                        +30
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Items Section -->
+        <section aria-label="Popular items" class="space-y-8 max-w-5xl mx-auto">
+            <h2 class="text-3xl font-extrabold text-center">Popular Items</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="bg-black rounded-3xl overflow-hidden relative shadow-lg group cursor-pointer">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c7947e52-ce2d-4963-96fc-a2b822ce6936.png"
+                        alt="Chicken Fry" class="object-cover w-full h-64 transition-transform group-hover:scale-105"
+                        loading="lazy" />
+                    <div
+                        class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 p-6 flex justify-between items-center text-white font-semibold rounded-b-3xl">
+                        <span>Chicken Fry</span>
+                        <span class="flex items-center space-x-1 text-yellow-400 text-lg">
+                            <span>$6.50</span>
+                            <span class="material-icons">arrow_forward</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="bg-black rounded-3xl overflow-hidden relative shadow-lg group cursor-pointer">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/49ea6935-44c4-477c-acc4-3bce4ed01216.png"
+                        alt="Mutton Pizza" class="object-cover w-full h-64 transition-transform group-hover:scale-105"
+                        loading="lazy" />
+                    <div
+                        class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 p-6 flex justify-between items-center text-white font-semibold rounded-b-3xl">
+                        <span>Mutton Pizza</span>
+                        <span class="flex items-center space-x-1 text-yellow-400 text-lg">
+                            <span>$4.50</span>
+                            <span class="material-icons">arrow_forward</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center items-center space-x-4 mt-6">
+                <button aria-label="Previous page" class="text-gray-700 hover:text-[#fc5a32] transition">
+                    <span class="material-icons">arrow_back</span>
+                </button>
+                <button aria-label="Next page" class="text-gray-700 hover:text-[#fc5a32] transition">
+                    <span class="material-icons">arrow_forward</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Our Gallery -->
+        <section aria-label="Our gallery" class="space-y-8 max-w-6xl mx-auto">
+            <h2 class="text-3xl font-extrabold text-center">Our Gallery</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                <figure class="group relative rounded-3xl overflow-hidden cursor-pointer shadow-lg">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ebc1b08b-e0d8-47b8-b0f9-343f94c1a9ce.png"
+                        alt="Crispy Fried Chicken on plate with garnish"
+                        class="object-cover w-full h-52 transition-transform group-hover:scale-105" loading="lazy" />
+                    <figcaption
+                        class="absolute top-3 left-3 bg-white rounded-full px-3 py-1 text-xs font-semibold shadow text-gray-900">
+                        Crispy Fried Chicken</figcaption>
+                </figure>
+
+                <figure class="group relative rounded-3xl overflow-hidden cursor-pointer shadow-lg">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d284a8ec-f40e-491b-8ca8-19fbdb7259a2.png"
+                        alt="Pasta in tomato sauce served in bowl with garnish"
+                        class="object-cover w-full h-52 transition-transform group-hover:scale-105" loading="lazy" />
+                    <figcaption
+                        class="absolute top-3 left-3 bg-white rounded-full px-3 py-1 text-xs font-semibold shadow text-gray-900">
+                        Pasta In Tomato Sauce</figcaption>
+                </figure>
+
+                <figure class="group relative rounded-3xl overflow-hidden cursor-pointer shadow-lg">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6f3f85fd-bec8-45ab-a7ac-b332cbf8ea5f.png"
+                        alt="Three Mexican tacos filled with fresh lettuce, tomatoes, and meat on black plate"
+                        class="object-cover w-full h-52 transition-transform group-hover:scale-105" loading="lazy" />
+                    <figcaption
+                        class="absolute top-3 left-3 bg-white rounded-full px-3 py-1 text-xs font-semibold shadow text-gray-900">
+                        Mexican Tacos</figcaption>
+                </figure>
+
+                <figure class="group relative rounded-3xl overflow-hidden cursor-pointer shadow-lg">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5ae2d46a-2237-4df9-ad23-13bd38a3e545.png"
+                        alt="Pilaf rice with beef and spices on plate close up"
+                        class="object-cover w-full h-52 transition-transform group-hover:scale-105" loading="lazy" />
+                    <figcaption
+                        class="absolute top-3 left-3 bg-white rounded-full px-3 py-1 text-xs font-semibold shadow text-gray-900">
+                        Pilaf With Beef</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- Customer Testimonials -->
+        <section aria-label="Customer testimonials"
+            class="max-w-4xl mx-auto rounded-3xl bg-white p-8 shadow-lg space-y-6">
+            <h2 class="text-3xl font-extrabold text-center">Lo Que Dicen Nuestros Clientes</h2>
+            <div class="flex flex-col sm:flex-row items-center sm:items-start space-y-6 sm:space-y-0 sm:space-x-8">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/af1a9884-6026-44c0-856d-e61f6479b6a9.png"
+                    alt="Portrait photo of customer David Clarck"
+                    class="w-36 h-36 rounded-2xl object-cover object-top flex-shrink-0" loading="lazy" />
+                <blockquote class="text-gray-700 text-lg">
+                    "Las mejores salteñas que he probado fuera de Bolivia. El sabor es idéntico al de las salteñas de
+                    Santa Cruz.
+                    La masa perfecta y el jugo exquisito. ¡Un pedacito de Bolivia en Madrid!"
+                    <footer class="mt-4 font-bold text-gray-900">María García</footer>
+                    <span class="text-sm text-gray-500">Cliente Habitual</span>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section aria-label="Contact form" class="bg-[#fc5a32] rounded-3xl py-12 px-6 md:px-20 max-w-5xl mx-auto">
+            <h3 class="text-white text-3xl font-extrabold mb-6 max-w-xl mx-auto text-center">Contacta con Nosotros</h3>
+            <p class="text-white text-center max-w-xl mx-auto mb-8 font-light text-sm">
+                ¿Tienes dudas sobre nuestros productos o quieres hacer un pedido especial? Déjanos tu correo y te
+                contestaremos
+                lo antes posible.
+            </p>
+            <form class="flex max-w-lg mx-auto" role="search" aria-label="Subscribe form">
+                <label for="email" class="sr-only">Enter your email address</label>
+                <input id="email" type="email" placeholder="Enter Your Email Address..." required
+                    class="flex-grow rounded-l-full px-6 py-3 text-gray-900 focus:outline-none focus:ring-4 focus:ring-white focus:border-white" />
+                <button type="submit"
+                    class="bg-black text-white rounded-r-full px-6 py-3 hover:bg-white hover:text-[#fc5a32] font-semibold transition">
+                    Submit
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#f7d7cf] py-10 mt-20">
+        <div
+            class="max-w-7xl mx-auto px-6 md:px-12 text-gray-900 flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
+            <div class="flex space-x-10 font-semibold text-lg">
+                <a href="#" class="hover:text-[#fc5a32] transition">Home</a>
+                <a href="#" class="hover:text-[#fc5a32] transition">About</a>
+                <a href="#" class="hover:text-[#fc5a32] transition">Menu</a>
+                <a href="#" class="hover:text-[#fc5a32] transition">Services</a>
+            </div>
+            <div class="flex space-x-6 text-gray-600">
+                <a href="#" aria-label="Facebook" class="hover:text-[#fc5a32] transition">
+                    <span class="material-icons">facebook</span>
+                </a>
+                <a href="#" aria-label="Twitter" class="hover:text-[#fc5a32] transition">
+                    <span class="material-icons">twitter</span>
+                </a>
+                <a href="#" aria-label="Instagram" class="hover:text-[#fc5a32] transition">
+                    <span class="material-icons">instagram</span>
+                </a>
+                <a href="#" aria-label="LinkedIn" class="hover:text-[#fc5a32] transition">
+                    <span class="material-icons">linkedin</span>
+                </a>
+            </div>
+        </div>
+        <div class="mt-8 text-center text-gray-800 text-sm font-semibold">&copy; Copyright 2024 La Chiquitana - Salteñas
+            y
+            Comida Boliviana en España</div>
+    </footer>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+
+</html>
