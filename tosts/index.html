@@ -35,17 +35,18 @@
                                 </svg>
                             </span><span class="yt">La Chiquitana</span></h1>
                     </div>
-                </div>                <div class="images">
-                    <img data-speed="1.2"
+                </div>
+                <div class="images">
+                    <img data-speed="clamp(2.4)"
                         src='https://images.unsplash.com/photo-1530569673472-307dc017a82d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODM2NTUwMDA&ixlib=rb-4.0.3&q=80&w=400'
                         alt=''>
-                    <img data-speed="0.8"
+                    <img data-speed="clamp(1.8)"
                         src='https://images.unsplash.com/photo-1439853949127-fa647821eba0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODM2NTQ5Njk&ixlib=rb-4.0.3&q=80&w=400'
                         alt=''>
-                    <img data-speed="1.0"
+                    <img data-speed="clamp(2.2)"
                         src='https://images.unsplash.com/photo-1551376347-075b0121a65b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODM2NTQ5MTE&ixlib=rb-4.0.3&q=80&w=400'
                         alt=''>
-                    <img data-speed="0.6"
+                    <img data-speed="clamp(1.5)"
                         src='https://images.unsplash.com/photo-1500817487388-039e623edc21?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODM2NTQ5MTE&ixlib=rb-4.0.3&q=80&w=400'
                         alt=''>
                 </div>
@@ -67,111 +68,41 @@
             // Registrar plugins
             gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin);
 
-            // Detectar si es dispositivo móvil
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-            // Inicializar ScrollSmoother con configuración adaptativa
+            // Inicializar ScrollSmoother
             function initSmoother() {
-                // Ajustar velocidades de las imágenes según el dispositivo
-                document.querySelectorAll('.images img').forEach(img => {
-                    // En móvil, establecemos velocidades fijas más bajas
-                    const speed = isMobile ? 0.3 : parseFloat(img.getAttribute('data-speed'));
-                    img.setAttribute('data-speed', speed.toString());
-                });
-
                 smoother = ScrollSmoother.create({
                     wrapper: "#smooth-wrapper",
                     content: "#smooth-content",
-                    smooth: isMobile ? 0.3 : 1.5, // Reducir aún más en móviles
-                    normalizeScroll: false,
+                    smooth: 1.5,
+                    normalizeScroll: true,
                     ignoreMobileResize: true,
-                    effects: false, // Desactivar efectos por defecto
-                    smoothTouch: 0.05, // Reducir suavizado touch
-                    preventDefault: true,
-                    renderGlare: false,
-                    touchResistance: 0.75, // Añadir resistencia al touch
-                    lockAxis: true
-                });
-
-                if (isMobile) {
-                    // Desactivar efectos completamente en móvil
-                    smoother.effects(false);
-                    
-                    // Mejorar el rendimiento en móviles
-                    gsap.ticker.lagSmoothing(0);
-                    
-                    // Configurar ScrollTrigger para mejor rendimiento en móvil
-                    ScrollTrigger.config({
-                        autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
-                        syncInterval: 60, // Reducir la frecuencia de sincronización
-                        ignoreMobileResize: true,
-                        fastScrollEnd: true // Terminar el scroll rápidamente
-                    });
-
-                    // Añadir un debounce al scroll para evitar actualizaciones excesivas
-                    let scrollTimeout;
-                    window.addEventListener('scroll', () => {
-                        clearTimeout(scrollTimeout);
-                        scrollTimeout = setTimeout(() => {
-                            ScrollTrigger.refresh(true);
-                        }, 150);
-                    }, { passive: true });
-                }
-
-                // Manejar la actualización de scroll de manera más eficiente
-                ScrollTrigger.addEventListener("refresh", () => {
-                    requestAnimationFrame(() => {
-                        smoother.update();
-                    });
+                    effects: true
                 });
             }
 
             // Configurar animaciones
             function setupAnimations() {
-                // Configuración específica para móviles
-                const config = {
-                    scale: isMobile ? 1.1 : 1.5,
-                    scrub: isMobile ? 0.3 : 1,
-                    batchMax: isMobile ? 1 : 3, // Limitar el número de actualizaciones simultáneas en móvil
-                };
-
-                if (isMobile) {
-                    // Batch todas las animaciones para mejor rendimiento
-                    gsap.set(".images img", { willChange: "transform" });
-                    ScrollTrigger.batch(".images img", {
-                        batchMax: config.batchMax,
-                        onEnter: batch => {
-                            gsap.to(batch, {
-                                autoAlpha: 1,
-                                stagger: 0.15,
-                                overwrite: true
-                            });
-                        }
-                    });
-                }
-
-                // Resto de las animaciones...
-                // Animación del mapa con configuración adaptativa
+                // Animación del mapa
                 gsap.to("#mapa-animado", {
                     scrollTrigger: {
                         trigger: ".hero",
                         start: "top top",
                         end: "bottom top",
-                        scrub: config.scrub,
+                        scrub: 1,
                         invalidateOnRefresh: true
                     },
-                    scale: config.scale,
+                    scale: 1.5,
                     transformOrigin: "center center"
                 });
 
-                // Animación del título adaptada
+                // Animación del título con mejor control
                 gsap.to("#heading-hero", {
-                    y: isMobile ? 100 : 180,
+                    y: 180,
                     scrollTrigger: {
                         trigger: ".hero",
                         start: "top top",
                         end: "center top",
-                        scrub: config.scrub,
+                        scrub: 1,
                         invalidateOnRefresh: true
                     }
                 });
@@ -203,42 +134,25 @@
                     gsap.fromTo(section,
                         {
                             opacity: 0,
-                            y: isMobile ? 25 : 50,
-                            scale: 0.98
+                            y: 50,
+                            scale: 0.95
                         },
                         {
                             scrollTrigger: {
                                 trigger: section,
-                                start: "top 85%",
-                                toggleActions: "play none none none"
+                                start: "top 80%",
+                                toggleActions: "play none none none",
+
                             },
                             opacity: 1,
                             y: 0,
                             scale: 1,
-                            duration: isMobile ? 0.8 : 1.2,
-                            ease: "power2.out",
-                            delay: isMobile ? index * 0.2 : index * 0.3
+                            duration: 1.2,
+                            ease: "power3.out",
+                            delay: index * 0.3
                         }
                     );
                 });
-
-                // Mejorar el manejo del resize
-                let resizeTimeout;
-                window.addEventListener('resize', () => {
-                    clearTimeout(resizeTimeout);
-                    resizeTimeout = setTimeout(() => {
-                        ScrollTrigger.refresh(true); // Force refresh
-                    }, isMobile ? 100 : 250);
-                });
-
-                // Añadir listener para orientación en móviles
-                if (isMobile) {
-                    window.addEventListener('orientationchange', () => {
-                        setTimeout(() => {
-                            ScrollTrigger.refresh(true);
-                        }, 200);
-                    });
-                }
             }
 
             // Inicialización cuando el DOM está listo
@@ -246,6 +160,15 @@
                 try {
                     initSmoother();
                     setupAnimations();
+
+                    // Manejar redimensionamiento
+                    let resizeTimeout;
+                    window.addEventListener('resize', () => {
+                        clearTimeout(resizeTimeout);
+                        resizeTimeout = setTimeout(() => {
+                            ScrollTrigger.refresh();
+                        }, 250);
+                    });
                 } catch (error) {
                     console.error('Error initializing animations:', error);
                 }
