@@ -35,18 +35,17 @@
                                 </svg>
                             </span><span class="yt">La Chiquitana</span></h1>
                     </div>
-                </div>
-                <div class="images">
-                    <img data-speed="clamp(2.4)"
+                </div>                <div class="images">
+                    <img data-speed="1.2"
                         src='https://images.unsplash.com/photo-1530569673472-307dc017a82d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODM2NTUwMDA&ixlib=rb-4.0.3&q=80&w=400'
                         alt=''>
-                    <img data-speed="clamp(1.8)"
+                    <img data-speed="0.8"
                         src='https://images.unsplash.com/photo-1439853949127-fa647821eba0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODM2NTQ5Njk&ixlib=rb-4.0.3&q=80&w=400'
                         alt=''>
-                    <img data-speed="clamp(2.2)"
+                    <img data-speed="1.0"
                         src='https://images.unsplash.com/photo-1551376347-075b0121a65b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODM2NTQ5MTE&ixlib=rb-4.0.3&q=80&w=400'
                         alt=''>
-                    <img data-speed="clamp(1.5)"
+                    <img data-speed="0.6"
                         src='https://images.unsplash.com/photo-1500817487388-039e623edc21?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2ODM2NTQ5MTE&ixlib=rb-4.0.3&q=80&w=400'
                         alt=''>
                 </div>
@@ -73,39 +72,95 @@
 
             // Inicializar ScrollSmoother con configuración adaptativa
             function initSmoother() {
+                // Ajustar velocidades de las imágenes según el dispositivo
+                document.querySelectorAll('.images img').forEach(img => {
+                    // En móvil, establecemos velocidades fijas más bajas
+                    const speed = isMobile ? 0.3 : parseFloat(img.getAttribute('data-speed'));
+                    img.setAttribute('data-speed', speed.toString());
+                });
+
                 smoother = ScrollSmoother.create({
                     wrapper: "#smooth-wrapper",
                     content: "#smooth-content",
-                    smooth: isMobile ? 0.8 : 1.5,
+                    smooth: isMobile ? 0.3 : 1.5, // Reducir aún más en móviles
                     normalizeScroll: false,
                     ignoreMobileResize: true,
-                    effects: true,
-                    smoothTouch: 0.1, // Suavizado específico para touch
-                    preventDefault: true
+                    effects: false, // Desactivar efectos por defecto
+                    smoothTouch: 0.05, // Reducir suavizado touch
+                    preventDefault: true,
+                    renderGlare: false,
+                    touchResistance: 0.75, // Añadir resistencia al touch
+                    lockAxis: true
                 });
 
-                // Desactivar efectos en móvil si hay problemas de rendimiento
                 if (isMobile) {
+                    // Desactivar efectos completamente en móvil
                     smoother.effects(false);
+                    
+                    // Mejorar el rendimiento en móviles
+                    gsap.ticker.lagSmoothing(0);
+                    
+                    // Configurar ScrollTrigger para mejor rendimiento en móvil
+                    ScrollTrigger.config({
+                        autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+                        syncInterval: 60, // Reducir la frecuencia de sincronización
+                        ignoreMobileResize: true,
+                        fastScrollEnd: true // Terminar el scroll rápidamente
+                    });
+
+                    // Añadir un debounce al scroll para evitar actualizaciones excesivas
+                    let scrollTimeout;
+                    window.addEventListener('scroll', () => {
+                        clearTimeout(scrollTimeout);
+                        scrollTimeout = setTimeout(() => {
+                            ScrollTrigger.refresh(true);
+                        }, 150);
+                    }, { passive: true });
                 }
+
+                // Manejar la actualización de scroll de manera más eficiente
+                ScrollTrigger.addEventListener("refresh", () => {
+                    requestAnimationFrame(() => {
+                        smoother.update();
+                    });
+                });
             }
 
             // Configurar animaciones
             function setupAnimations() {
-                // Reducir la intensidad de las animaciones en móvil
-                const scaleAmount = isMobile ? 1.2 : 1.5;
-                const scrubAmount = isMobile ? 0.5 : 1;
+                // Configuración específica para móviles
+                const config = {
+                    scale: isMobile ? 1.1 : 1.5,
+                    scrub: isMobile ? 0.3 : 1,
+                    batchMax: isMobile ? 1 : 3, // Limitar el número de actualizaciones simultáneas en móvil
+                };
 
+                if (isMobile) {
+                    // Batch todas las animaciones para mejor rendimiento
+                    gsap.set(".images img", { willChange: "transform" });
+                    ScrollTrigger.batch(".images img", {
+                        batchMax: config.batchMax,
+                        onEnter: batch => {
+                            gsap.to(batch, {
+                                autoAlpha: 1,
+                                stagger: 0.15,
+                                overwrite: true
+                            });
+                        }
+                    });
+                }
+
+                // Resto de las animaciones...
                 // Animación del mapa con configuración adaptativa
                 gsap.to("#mapa-animado", {
                     scrollTrigger: {
                         trigger: ".hero",
                         start: "top top",
                         end: "bottom top",
-                        scrub: scrubAmount,
+                        scrub: config.scrub,
                         invalidateOnRefresh: true
                     },
-                    scale: scaleAmount,
+                    scale: config.scale,
                     transformOrigin: "center center"
                 });
 
@@ -116,7 +171,7 @@
                         trigger: ".hero",
                         start: "top top",
                         end: "center top",
-                        scrub: scrubAmount,
+                        scrub: config.scrub,
                         invalidateOnRefresh: true
                     }
                 });
