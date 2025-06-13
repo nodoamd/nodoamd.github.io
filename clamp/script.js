@@ -13,7 +13,7 @@ if (document.querySelector('.draw') && document.querySelector('.heading')) {
     ease: "expo.out",
     scrollTrigger: {
       trigger: '.heading',
-      start: "clamp(top center)",
+      start: "clamp(center center)",
       scrub: true,
       pin: '.pin',
       pinSpacing: false,
