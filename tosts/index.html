@@ -24,9 +24,6 @@
                 </nav>
             </header>
 
-            <div class="logo-background">
-                <img src="./img/lachiquitanaLogo.png" alt="Logo La Chiquitana">
-            </div>
             <section class="hero pad-l">
                 <div class="heading">
                     <div class="pin">
@@ -71,41 +68,55 @@
             // Registrar plugins
             gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin);
 
-            // Inicializar ScrollSmoother
+            // Detectar si es dispositivo móvil
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            // Inicializar ScrollSmoother con configuración adaptativa
             function initSmoother() {
                 smoother = ScrollSmoother.create({
                     wrapper: "#smooth-wrapper",
                     content: "#smooth-content",
-                    smooth: 1.5,
-                    normalizeScroll: true,
+                    smooth: isMobile ? 0.8 : 1.5,
+                    normalizeScroll: false,
                     ignoreMobileResize: true,
-                    effects: true
+                    effects: true,
+                    smoothTouch: 0.1, // Suavizado específico para touch
+                    preventDefault: true
                 });
+
+                // Desactivar efectos en móvil si hay problemas de rendimiento
+                if (isMobile) {
+                    smoother.effects(false);
+                }
             }
 
             // Configurar animaciones
             function setupAnimations() {
-                // Animación del mapa
+                // Reducir la intensidad de las animaciones en móvil
+                const scaleAmount = isMobile ? 1.2 : 1.5;
+                const scrubAmount = isMobile ? 0.5 : 1;
+
+                // Animación del mapa con configuración adaptativa
                 gsap.to("#mapa-animado", {
                     scrollTrigger: {
                         trigger: ".hero",
                         start: "top top",
                         end: "bottom top",
-                        scrub: 1,
+                        scrub: scrubAmount,
                         invalidateOnRefresh: true
                     },
-                    scale: 1.5,
+                    scale: scaleAmount,
                     transformOrigin: "center center"
                 });
 
-                // Animación del título con mejor control
+                // Animación del título adaptada
                 gsap.to("#heading-hero", {
-                    y: 180,
+                    y: isMobile ? 100 : 180,
                     scrollTrigger: {
                         trigger: ".hero",
                         start: "top top",
                         end: "center top",
-                        scrub: 1,
+                        scrub: scrubAmount,
                         invalidateOnRefresh: true
                     }
                 });
@@ -137,25 +148,42 @@
                     gsap.fromTo(section,
                         {
                             opacity: 0,
-                            y: 50,
-                            scale: 0.95
+                            y: isMobile ? 25 : 50,
+                            scale: 0.98
                         },
                         {
                             scrollTrigger: {
                                 trigger: section,
-                                start: "top 80%",
-                                toggleActions: "play none none none",
-
+                                start: "top 85%",
+                                toggleActions: "play none none none"
                             },
                             opacity: 1,
                             y: 0,
                             scale: 1,
-                            duration: 1.2,
-                            ease: "power3.out",
-                            delay: index * 0.3
+                            duration: isMobile ? 0.8 : 1.2,
+                            ease: "power2.out",
+                            delay: isMobile ? index * 0.2 : index * 0.3
                         }
                     );
                 });
+
+                // Mejorar el manejo del resize
+                let resizeTimeout;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimeout);
+                    resizeTimeout = setTimeout(() => {
+                        ScrollTrigger.refresh(true); // Force refresh
+                    }, isMobile ? 100 : 250);
+                });
+
+                // Añadir listener para orientación en móviles
+                if (isMobile) {
+                    window.addEventListener('orientationchange', () => {
+                        setTimeout(() => {
+                            ScrollTrigger.refresh(true);
+                        }, 200);
+                    });
+                }
             }
 
             // Inicialización cuando el DOM está listo
@@ -163,15 +191,6 @@
                 try {
                     initSmoother();
                     setupAnimations();
-
-                    // Manejar redimensionamiento
-                    let resizeTimeout;
-                    window.addEventListener('resize', () => {
-                        clearTimeout(resizeTimeout);
-                        resizeTimeout = setTimeout(() => {
-                            ScrollTrigger.refresh();
-                        }, 250);
-                    });
                 } catch (error) {
                     console.error('Error initializing animations:', error);
                 }
