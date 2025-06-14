@@ -221,10 +221,10 @@ img {
     background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    padding: 3rem;
+    border-radius: 32px;
+    padding: 4rem;
     margin: 2rem auto;
-    max-width: 800px;
+    max-width: 1000px;
     position: relative;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -236,62 +236,76 @@ img {
 }
 
 .overline {
-    font-size: 0.875rem;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     color: var(--jungle-light);
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     font-weight: 500;
 }
 
 .about-title,
 .exp-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 2rem;
     background: linear-gradient(90deg, var(--jungle-light), var(--jungle));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
+    letter-spacing: -0.02em;
 }
 
 .about-desc,
 .exp-desc {
-    font-size: clamp(1.125rem, 2vw, 1.25rem);
-    line-height: 1.7;
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    line-height: 1.6;
     color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     font-weight: 300;
 }
 
 .highlight-text {
     position: relative;
-    padding: 2rem;
-    margin-top: 2rem;
+    padding: 3rem 2rem;
+    margin-top: 2.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .about-strong,
 .exp-highlight {
-    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-    line-height: 1.6;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.5;
     color: var(--earth-light);
     font-weight: 500;
     font-style: italic;
     display: block;
     text-align: center;
+    letter-spacing: 0.01em;
 }
 
-@media (max-width: 900px) {
-    .images img {
-        height: 100vh;
-        min-height: 60vh;
-        object-fit: cover;
+.about-map {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin: 20px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .card-text {
+        font-size: 1.2rem;
+        /* Aumenta el tamaño del texto en móviles */
+        line-height: 1.4;
+        /* Ajusta el espaciado entre líneas */
+    }
+
+    .about-map {
+        max-width: 100%;
+        margin: 15px 0;
     }
 }
-
 
 @media (max-width: 900px) {
     .images img {
