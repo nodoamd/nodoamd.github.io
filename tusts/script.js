@@ -1,9 +1,54 @@
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin);
 
-// Crear el efecto de scroll suave
+// Detectar si es dispositivo móvil
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+if (isMobile) {
+    // Configuración de los puntos de anclaje solo para la primera parte
+    const controlledSections = [".hero", ".heading"];
+    let isScrollControlled = true;
+    
+    // Crear un ScrollTrigger para los snaps iniciales
+    const snapControl = ScrollTrigger.create({
+        snap: {
+            snapTo: controlledSections.map((_, i) => i / (controlledSections.length - 1)),
+            duration: { min: 0.3, max: 0.6 },
+            ease: "power1.inOut",
+            inertia: true
+        }
+    });
+
+    // Configurar cada sección controlada
+    controlledSections.forEach(section => {
+        ScrollTrigger.create({
+            trigger: section,
+            start: "top center",
+            end: "bottom center",
+            markers: false
+        });
+    });
+
+    // Desactivar el control del scroll después de "En España"
+    ScrollTrigger.create({
+        trigger: "#en-espana",
+        start: "top center",
+        onEnter: () => {
+            if (isScrollControlled) {
+                snapControl.kill(); // Eliminar el control del scroll
+                isScrollControlled = false;
+            }
+        }
+    });
+}
+
+// Crear el efecto de scroll suave optimizado para móvil
 let smoother = ScrollSmoother.create({
-    smooth: 1,
-    effects: true
+    smooth: isMobile ? 1.2 : 2, // Ajuste más natural para móvil
+    effects: true,
+    smoothTouch: 0.8, // Suavizado específico para touch
+    normalizeScroll: true,
+    ignoreMobileResize: true,
+    preventDefault: true
 });
 
 // Animación de trazado SVG
@@ -60,3 +105,5 @@ gsap.from([".overline", ".about-title, .exp-title", ".about-desc, .exp-desc", ".
     stagger: 0.2,
     ease: "power2.out"
 });
+
+
