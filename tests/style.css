@@ -55,9 +55,8 @@ button:hover {
 .hero {
     min-height: 100vh;
     margin-top: 0;
-    /* Elimina margen superior si lo hay */
     padding-top: 0.5rem;
-    margin-bottom: 400px;
+    margin-bottom: 100px;
 }
 
 
@@ -212,9 +211,78 @@ img {
     pointer-events: none;
 }
 
+.content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
 
+.text-card {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 3rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.text-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
 
+.overline {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--jungle-light);
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.about-title,
+.exp-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, var(--jungle-light), var(--jungle));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.about-desc,
+.exp-desc {
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+.highlight-text {
+    position: relative;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-strong,
+.exp-highlight {
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    line-height: 1.6;
+    color: var(--earth-light);
+    font-weight: 500;
+    font-style: italic;
+    display: block;
+    text-align: center;
+}
 
 @media (max-width: 900px) {
     .images img {
@@ -279,7 +347,11 @@ img {
     transform: translateY(0);
 }
 
-
+.about-hero {
+    margin-top: -100px;
+    position: relative;
+    z-index: 1;
+}
 
 /* Ajustes para Desktop (pantallas grandes) */
 @media (min-width: 1024px) {
