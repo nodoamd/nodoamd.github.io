@@ -60,3 +60,5 @@ gsap.from([".overline", ".about-title, .exp-title", ".about-desc, .exp-desc", ".
     stagger: 0.2,
     ease: "power2.out"
 });
+
+
