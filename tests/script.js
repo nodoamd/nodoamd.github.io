@@ -32,17 +32,3 @@ ScrollTrigger.create({
 
 // Setup visual
 gsap.set(".logo svg", { opacity: 1 });
-
-// Animación para las tarjetas de texto
-gsap.from(".text-card", {
-    scrollTrigger: {
-        trigger: ".text-card",
-        start: "top bottom-=100",
-        toggleActions: "play none none reverse"
-    },
-    y: 50,
-    opacity: 0,
-    duration: 1,
-    stagger: 0.3,
-    ease: "power3.out"
-});
