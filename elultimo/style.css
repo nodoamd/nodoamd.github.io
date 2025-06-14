@@ -200,16 +200,6 @@ img {
   opacity: 0
 }
 
-.scroll-down-indicator {
-  position: fixed;
-  margin-top: 50px;
-  left: 50%;
-  z-index: 9999;
-  animation: bounceDown 1.5s infinite;
-  opacity: 1;
-  background: rgba(255, 255, 255, 0.2);
-  pointer-events: none;
-}
 
 .content-wrapper {
   max-width: 1400px;
@@ -250,7 +240,7 @@ img {
   font-size: clamp(2rem, 5vw, 3.5rem);
   line-height: 1.2;
   margin-bottom: 1.5rem;
-  background: linear-gradient(90deg, var(--jungle-light), var(--jungle));
+  background: linear-gradient(90deg, white, green);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -275,9 +265,9 @@ img {
 
 .about-strong,
 .exp-highlight {
-  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-size: 1rem;
   line-height: 1.6;
-  color: var(--earth-light);
+  color: white;
   font-weight: 500;
   font-style: italic;
   display: block;
