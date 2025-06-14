@@ -4,40 +4,27 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin);
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 if (isMobile) {
-    // Configuración de los puntos de anclaje solo para la primera parte
-    const controlledSections = [".hero", ".heading"];
-    let isScrollControlled = true;
+    // Configuración de los puntos de anclaje
+    const sections = [".hero", ".heading", ".about-hero"];
     
-    // Crear un ScrollTrigger para los snaps iniciales
-    const snapControl = ScrollTrigger.create({
+    // Crear un ScrollTrigger principal que maneje todos los snaps
+    ScrollTrigger.create({
         snap: {
-            snapTo: controlledSections.map((_, i) => i / (controlledSections.length - 1)),
+            snapTo: sections.map((_, i) => i / (sections.length - 1)),
             duration: { min: 0.3, max: 0.6 },
             ease: "power1.inOut",
             inertia: true
         }
     });
 
-    // Configurar cada sección controlada
-    controlledSections.forEach(section => {
+    // Configurar cada sección
+    sections.forEach(section => {
         ScrollTrigger.create({
             trigger: section,
             start: "top center",
             end: "bottom center",
             markers: false
         });
-    });
-
-    // Desactivar el control del scroll después de "En España"
-    ScrollTrigger.create({
-        trigger: "#en-espana",
-        start: "top center",
-        onEnter: () => {
-            if (isScrollControlled) {
-                snapControl.kill(); // Eliminar el control del scroll
-                isScrollControlled = false;
-            }
-        }
     });
 }
 
