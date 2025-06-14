@@ -21,14 +21,6 @@ if (document.querySelector('.draw') && document.querySelector('.heading')) {
     });
 }
 
-// Mostrar "En España." cuando el pin está activo
-ScrollTrigger.create({
-    trigger: ".hero",
-    start: "center center",
-    end: "bottom top",
-    onEnter: () => document.getElementById('en-espana').classList.add('visible'),
-    onLeaveBack: () => document.getElementById('en-espana').classList.remove('visible')
-});
 
 // Setup visual
 gsap.set(".logo svg", { opacity: 1 });
