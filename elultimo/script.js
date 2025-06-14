@@ -1,31 +1,9 @@
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin);
 
-// Crear el efecto de scroll suave con configuración optimizada
+// Crear el efecto de scroll suave
 let smoother = ScrollSmoother.create({
-    wrapper: "#smooth-wrapper",
-    content: "#smooth-content",
-    smooth: 1.5,
-    effects: true,
-    normalizeScroll: true,
-    ignoreMobileResize: true,
-    smoothTouch: 0.1
-});
-
-// Configurar el parallax para las imágenes de manera más eficiente
-gsap.utils.toArray('.images img').forEach(image => {
-    const speed = image.dataset.speed || 1;
-    
-    gsap.to(image, {
-        y: () => (ScrollTrigger.maxScroll(window) * (1 - parseFloat(speed))),
-        ease: "none",
-        scrollTrigger: {
-            trigger: image,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-            invalidateOnRefresh: true
-        }
-    });
+    smooth: 1,
+    effects: true
 });
 
 // Animación de trazado SVG
