@@ -222,8 +222,8 @@ img {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px;
-    padding: 2rem;
-    margin: 2rem 1rem;
+    padding: 3rem;
+    margin: 2rem auto;
     max-width: 800px;
     position: relative;
     overflow: hidden;
@@ -428,143 +428,46 @@ img {
 /* Ajustes responsive */
 @media (max-width: 768px) {
 
-    .text-card {
-        padding: 1.5rem;
-        margin: 1rem;
-    }
-
     .features-grid,
     .experience-grid {
         grid-template-columns: 1fr;
-        gap: 1rem;
-        margin: 1.5rem 0;
     }
 
-    .feature-item {
-        padding: 1.5rem;
-    }
-
-    .feature-icon {
-        font-size: 3rem;
-    }
-
-    .feature-item h3 {
-        font-size: 1.5rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .feature-item p {
-        font-size: 1.1rem;
-        line-height: 1.5;
-    }
-
-    .about-title,
-    .exp-title {
-        font-size: 2.5rem;
-        text-align: center;
-        width: 100%;
-        display: block;
-    }
-
-    .about-desc,
-    .exp-desc {
-        font-size: 1.2rem;
-        text-align: center;
-        padding: 0 0.5rem;
-    }
-
-    .highlight-text {
-        padding: 1rem;
-    }
-
-    .about-strong,
-    .exp-highlight {
-        font-size: 1.3rem;
+    .text-card {
+        padding: 2rem;
     }
 
     .cta-container {
         flex-direction: column;
-        gap: 1rem;
-        padding: 0 1rem;
     }
 
     .cta-button {
         width: 100%;
-        font-size: 1.2rem;
-        padding: 1.2rem 2rem;
-    }
-
-    .experience-item {
-        margin: 0 1rem;
-    }
-
-    .experience-item h3 {
-        font-size: 1.5rem;
-    }
-
-    .experience-item p {
-        font-size: 1.1rem;
-    }
-
-    .experience-link {
-        font-size: 1.2rem;
-    }
-
-    .content-wrapper {
-        padding: 0 1rem;
-    }
-
-    .overline {
-        font-size: 1rem;
-        text-align: center;
-    }
-}
-
-/* Ajustes específicos para tablets */
-@media (min-width: 769px) and (max-width: 1023px) {
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr);
     }
 
     .about-title,
     .exp-title {
-        font-size: 3rem;
+        font-size: 2rem;
+        text-align: center;
     }
 
     .about-desc,
     .exp-desc {
-        font-size: 1.3rem;
-    }
-
-    .feature-item h3 {
-        font-size: 1.4rem;
-    }
-
-    .feature-item p {
-        font-size: 1.1rem;
-    }
-
-    .cta-button {
-        font-size: 1.2rem;
-        padding: 1.2rem 2.5rem;
+        text-align: center;
     }
 }
 
-/* Mejoras generales de espaciado y alineación */
-.feature-item,
-.experience-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100%;
-}
+@media (max-width: 900px) {
+    .images img {
+        height: 100vh;
+        min-height: 60vh;
+        object-fit: cover;
+    }
 
-.features-grid,
-.experience-grid {
-    width: 100%;
-    max-width: 100%;
+    .heading {
+        margin-top: 500px;
+    }
+
 }
 
 .dribbble-hero {
