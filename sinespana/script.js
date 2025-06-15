@@ -1,30 +1,36 @@
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin);
 
-// Detectar si es dispositivo móvil
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+let scrollControl;
 
-if (isMobile) {
-    // Configuración de los puntos de anclaje
-    const sections = [".hero", ".heading"];
-    
-    // Crear un ScrollTrigger principal que maneje todos los snaps
-    ScrollTrigger.create({
+// Detectar si es móvil
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+// Configuración más ligera para móviles
+const smootherConfig = {
+    smooth: isMobile ? 0.8 : 1.2, // Menos suavizado en móvil
+    effects: true,
+    smoothTouch: 0.1, // Valor más bajo para mejor rendimiento
+    touchInertia: 0.5,
+    ignoreMobileResize: true,
+    preventDefault: true
+};
+
+// Inicializar solo si no es móvil o es un dispositivo de gama alta
+if (!isMobile || window.devicePixelRatio > 1) {
+    scrollControl = ScrollTrigger.create({
         snap: {
-            snapTo: sections.map((_, i) => i / (sections.length - 1)),
-            duration: { min: 0.3, max: 0.6 },
-            ease: "power1.inOut",
-            inertia: true
+            snapTo: [0, 0.33, 0.66],
+            duration: { min: 0.2, max: 0.4 }, // Duración más corta
+            delay: 0,
+            ease: "power1.inOut"
+        },
+        end: "+=200%",
+        onUpdate: self => {
+            // Desactivar el snap después de "En España"
+            if (document.querySelector('#en-espana').getBoundingClientRect().top < window.innerHeight * 0.5) {
+                self.disable();
+            }
         }
-    });
-
-    // Configurar cada sección
-    sections.forEach(section => {
-        ScrollTrigger.create({
-            trigger: section,
-            start: "top center",
-            end: "bottom center",
-            markers: false
-        });
     });
 }
 
