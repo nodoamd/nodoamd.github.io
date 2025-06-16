@@ -1,51 +1,31 @@
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin);
 
-let scrollControl;
-let lastScrollTime = Date.now();
-const SCROLL_TIMEOUT = 2000; // 2 segundos de inactividad antes de considerar que el scroll está quieto
+// Detectar si es dispositivo móvil
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-// Detectar si es móvil
-const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+if (isMobile) {
+    // Configuración de los puntos de anclaje
+    const sections = [".hero", ".heading", ".about-hero"];
+    
+    // Crear un ScrollTrigger principal que maneje todos los snaps
+    ScrollTrigger.create({
+        snap: {
+            snapTo: sections.map((_, i) => i / (sections.length - 1)),
+            duration: { min: 0.3, max: 0.6 },
+            ease: "power1.inOut",
+            inertia: true
+        }
+    });
 
-// Configuración más ligera para móviles
-const smootherConfig = {
-  smooth: isMobile ? 0.8 : 1.2, // Menos suavizado en móvil
-  effects: true,
-  smoothTouch: 0.1, // Valor más bajo para mejor rendimiento
-  touchInertia: 0.5,
-  ignoreMobileResize: true,
-  preventDefault: true
-};
-
-// Prevenir el scroll automático no deseado
-document.addEventListener('scroll', () => {
-  lastScrollTime = Date.now();
-}, { passive: true });
-
-// Inicializar solo si no es móvil o es un dispositivo de gama alta
-if (!isMobile || window.devicePixelRatio > 1) {
-  scrollControl = ScrollTrigger.create({
-    snap: {
-      snapTo: [0, 0.33, 0.66],
-      duration: {min: 0.2, max: 0.4}, // Duración más corta
-      delay: 0,
-      ease: "power1.inOut"
-    },
-    end: "+=200%",
-    onUpdate: self => {
-      const currentTime = Date.now();
-      
-      // Si el usuario no ha hecho scroll en los últimos 2 segundos, no permitir scroll automático
-      if (currentTime - lastScrollTime > SCROLL_TIMEOUT) {
-        return;
-      }
-
-      // Desactivar el snap después de "En España"
-      if (document.querySelector('#en-espana').getBoundingClientRect().top < window.innerHeight * 0.5) {
-        self.disable();
-      }
-    }
-  });
+    // Configurar cada sección
+    sections.forEach(section => {
+        ScrollTrigger.create({
+            trigger: section,
+            start: "top center",
+            end: "bottom center",
+            markers: false
+        });
+    });
 }
 
 // Crear el efecto de scroll suave optimizado para móvil
