@@ -222,9 +222,21 @@ img {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 2rem;
+    box-sizing: border-box;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Asegurar que el ancho máximo sea consistente en todas las secciones */
+.content-wrapper,
+.content-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .text-card {
@@ -273,7 +285,9 @@ img {
     .content-grid {
         grid-template-columns: 1fr;
         padding: 1rem;
-        width: calc(100% - 2rem);
+        width: 100%;
+        transform: none;
+        left: 0;
         margin: 0 auto;
     }
 
@@ -303,6 +317,11 @@ img {
         font-size: 1.8rem;
         text-align: center;
         margin-bottom: 1rem;
+    }
+
+    .about-hero {
+        padding: 0;
+        width: 100%;
     }
 }
 
@@ -398,6 +417,8 @@ img {
     margin-top: -100px;
     position: relative;
     z-index: 1;
+    padding: 0;
+    width: 100%;
 }
 
 /* Ajustes para Desktop (pantallas grandes) */
