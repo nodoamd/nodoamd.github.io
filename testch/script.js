@@ -6,7 +6,7 @@ const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 if (isMobile) {
     // Configuración de los puntos de anclaje
     const sections = [".hero", ".heading", ".about-hero"];
-
+    
     // Crear un ScrollTrigger principal que maneje todos los snaps
     ScrollTrigger.create({
         snap: {
