@@ -34,10 +34,10 @@ let smoother = ScrollSmoother.create({
     content: "#smooth-content",
     smooth: 1,
     effects: true,
-    normalizeScroll: true,
-    ignoreMobileResize: true,
+    // normalizeScroll: true, // a ver
+    // ignoreMobileResize: true, // a ver
     // smoothTouch: 0.1,  // reduce la suavidad en dispositivos táctiles
-    preventDefault: true,
+    // preventDefault: true, // previene el comportamiento por defecto del scroll
     lockAxis: true,    // bloquea el eje para evitar saltos
     renderFixed: false // ayuda con elementos fijos
 });
