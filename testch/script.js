@@ -28,19 +28,19 @@ if (isMobile) {
     });
 }
 
-// Crear el efecto de scroll suave optimizado para móvil
-let smoother = ScrollSmoother.create({
-    wrapper: "#smooth-wrapper",
-    content: "#smooth-content",
-    smooth: 1,
-    effects: true,
-    normalizeScroll: true,
-    ignoreMobileResize: true,
-    smoothTouch: 0.1,  // reduce la suavidad en dispositivos táctiles
-    preventDefault: true,
-    lockAxis: true,    // bloquea el eje para evitar saltos
-    renderFixed: false // ayuda con elementos fijos
-});
+// // Crear el efecto de scroll suave optimizado para móvil
+// let smoother = ScrollSmoother.create({
+//     wrapper: "#smooth-wrapper",
+//     content: "#smooth-content",
+//     smooth: 1,
+//     effects: true,
+//     normalizeScroll: true,
+//     ignoreMobileResize: true,
+//     smoothTouch: 0.1,  // reduce la suavidad en dispositivos táctiles
+//     preventDefault: true,
+//     lockAxis: true,    // bloquea el eje para evitar saltos
+//     renderFixed: false // ayuda con elementos fijos
+// });
 
 // Animación de trazado SVG
 if (document.querySelector('.draw') && document.querySelector('.heading')) {
