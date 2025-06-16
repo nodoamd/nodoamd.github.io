@@ -36,7 +36,7 @@ let smoother = ScrollSmoother.create({
     effects: true,
     normalizeScroll: true,
     ignoreMobileResize: true,
-    // smoothTouch: 0.1,  // reduce la suavidad en dispositivos táctiles
+    smoothTouch: 0.1,  // reduce la suavidad en dispositivos táctiles
     preventDefault: true,
     lockAxis: true,    // bloquea el eje para evitar saltos
     renderFixed: false // ayuda con elementos fijos
