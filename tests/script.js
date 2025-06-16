@@ -28,15 +28,7 @@ if (isMobile) {
     });
 }
 
-// Crear el efecto de scroll suave optimizado para móvil
-let smoother = ScrollSmoother.create({
-    smooth: isMobile ? 1.2 : 2, // Ajuste más natural para móvil
-    effects: true,
-    smoothTouch: 0.8, // Suavizado específico para touch
-    normalizeScroll: true,
-    ignoreMobileResize: true,
-    preventDefault: true
-});
+
 
 // Animación de trazado SVG
 if (document.querySelector('.draw') && document.querySelector('.heading')) {
