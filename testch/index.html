@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ScrollSmoother/ScrollTrigger - Clamp</title>
+    <link rel='stylesheet' href='https://codepen.io/GreenSock/pen/gOWxmWG.css'>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <header>
+                <div class="logo" style="width: 250px; height: 50px;">
+                    <img src="./img/lachiquitanaLogo.png" alt="">
+                </div>
+                <nav>
+                    <ul role="list">
+                        <li><a
+                                href="https://greensock.com/forums/topic/36177-scrollsmoother-data-speed-and-firstlast-folds/#comment-183450">about</a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+
+            <div class="lazo-decorativo">
+                <img id="mapa-animado" src="./img/lachiquitanaLogo.png" alt="Lazo decorativo">
+            </div>
+
+            <section class="hero pad-l">
+                <div class="heading" id="heading-hero">
+                    <div class="pin">
+                        <h1>
+                            <span class="clamp">Vive
+                                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 842.14 500">
+                                    <path class="draw"
+                                        d="M336.2,130.05C261.69,118,16.52,122,20.65,244.29c4.17,123,484.3,299.8,734.57,108.37,244-186.65-337.91-311-546.54-268.47"
+                                        fill="none" stroke="#7bb661" stroke-miterlimit="10" stroke-width="12" />
+                                </svg>
+                            </span>
+                            <span class="yt">La Chiquitanía</span>
+                        </h1>
+                        <div class="en-espana" id="en-espana">En España.</div>
+                    </div>
+                </div>
+                <div class="images">
+                    <img data-speed="clamp(2.4)" src='./img/ala6.webp' alt=''>
+                    <img data-speed="clamp(1.8)" src='./img/maiz-cuñape.webp' alt=''>
+                    <img data-speed="clamp(2.2)" src='./img/ala5.webp' alt=''>
+                    <img data-speed="clamp(1.5)" src='./img/maiz-empa.webp' alt=''>
+                </div>
+
+
+
+
+            </section>
+            <section class="about-hero" id="about-hero">
+                <div class="content-grid">
+                    <div class="text-card featured">
+                        <div class="card-content">
+                            <span class="overline">Descubre</span>
+                            <h2 class="about-title">¿Qué es la Chiquitania?</h2>
+                            <p class="about-desc">
+                                La Chiquitania es una región histórica ubicada en el departamento de Santa Cruz,
+                                Bolivia.
+                                Un tesoro cultural y natural que combina la herencia de las misiones jesuíticas con una
+                                biodiversidad extraordinaria.
+                            </p>
+                            <div class="highlight-text">
+                                <span class="about-strong">Tierra de tradiciones milenarias y sabores únicos</span>
+                            </div>
+                        </div>
+                        <div class="slider-container">
+                            <div class="slider">
+                                <img src="./img/iglesiacerca.jpg" alt="Iglesia">
+                                <img src="./img/familia.jpg" alt="Naturaleza">
+                                <img src="./img/niño.jpg" alt="Niño chiquitano">
+                            </div>
+                            <div class="slider-nav">
+                                <button class="slider-dot active" data-index="0"></button>
+                                <button class="slider-dot" data-index="1"></button>
+                                <button class="slider-dot" data-index="2"></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-card">
+                        <div class="card-image">
+                            <img src="./img/chiquitania.jpg" alt="Misiones Jesuíticas">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="about-title">Patrimonio Cultural</h3>
+                            <p class="about-desc">
+                                Hogar de las impresionantes misiones jesuíticas, declaradas Patrimonio de la Humanidad
+                                por la UNESCO.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="text-card">
+                        <div class="card-image">
+                            <img src="./img/diversas.jpg" alt="Naturaleza Chiquitana">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="about-title">Biodiversidad</h3>
+                            <p class="about-desc">
+                                Un ecosistema único donde convergen el Amazonas, el Cerrado y el Chaco.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="experiencia-hero" id="experiencia-hero">
+                <div class="content-wrapper">
+                    <div class="text-card">
+                        <span class="overline">Experiencia</span>
+                        <h2 class="exp-title">Vívelo en primera persona</h2>
+                        <p class="exp-desc">
+                            Recorre sus senderos, prueba su gastronomía y déjate llevar por la calidez de su gente
+                        </p>
+                        <div class="highlight-text">
+                            <img src="./img/lachiquitanaLogo.png" alt="" srcset="">
+                            <span class="exp-highlight">¡La aventura te espera!</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="spacer">
+            </section>
+        </div>
+    </div>
+
+    <script src="./gsap/gsap.min.js"></script>
+    <script src="./gsap/ScrollTrigger.min.js"></script>
+    <script src="./gsap/ScrollSmoother.min.js"></script>
+    <script src="./gsap/DrawSVGPlugin.min.js"></script>
+    <script type="module" src="./script.js"></script>
+    <script src="./slider.js"></script>
+</body>
+
+</html>
