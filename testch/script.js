@@ -1,32 +1,32 @@
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin);
 
-// Detectar si es dispositivo móvil
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+// // Detectar si es dispositivo móvil
+// const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-if (isMobile) {
-    // Configuración de los puntos de anclaje
-    const sections = [".hero", ".heading", ".about-hero"];
+// if (isMobile) {
+//     // Configuración de los puntos de anclaje
+//     const sections = [".hero", ".heading", ".about-hero"];
     
-    // Crear un ScrollTrigger principal que maneje todos los snaps
-    ScrollTrigger.create({
-        snap: {
-            snapTo: sections.map((_, i) => i / (sections.length - 1)),
-            duration: { min: 0.3, max: 0.6 },
-            ease: "power1.inOut",
-            inertia: true
-        }
-    });
+//     // Crear un ScrollTrigger principal que maneje todos los snaps
+//     ScrollTrigger.create({
+//         snap: {
+//             snapTo: sections.map((_, i) => i / (sections.length - 1)),
+//             duration: { min: 0.3, max: 0.6 },
+//             ease: "power1.inOut",
+//             inertia: true
+//         }
+//     });
 
-    // Configurar cada sección
-    sections.forEach(section => {
-        ScrollTrigger.create({
-            trigger: section,
-            start: "top center",
-            end: "bottom center",
-            markers: false
-        });
-    });
-}
+//     // Configurar cada sección
+//     sections.forEach(section => {
+//         ScrollTrigger.create({
+//             trigger: section,
+//             start: "top center",
+//             end: "bottom center",
+//             markers: false
+//         });
+//     });
+// }
 
 // Crear el efecto de scroll suave optimizado para móvil
 let smoother = ScrollSmoother.create({
