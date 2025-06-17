@@ -220,17 +220,14 @@ img {
 }
 
 .content-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
     padding: 2rem;
     box-sizing: border-box;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 /* Asegurar que el ancho máximo sea consistente en todas las secciones */
@@ -258,11 +255,12 @@ img {
 
 .card-content {
     padding: 2.5rem;
+    width: 100%;
 }
 
 .card-image {
-    height: 300px;
     width: 100%;
+    height: 300px;
 }
 
 .card-image img {
@@ -276,11 +274,56 @@ img {
 }
 
 .text-card.featured {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     margin-bottom: 2rem;
+}
+
+.text-card {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+/* Modifica la altura de las tarjetas sin slider */
+.text-card:not(.featured) {
+    width: 100%;
+    margin-bottom: 2rem;
+    min-height: 500px; /* Aumentamos la altura mínima */
+    display: flex;
+    flex-direction: column;
+}
+
+.text-card:not(.featured) .card-image {
+    width: 100%;
+    height: 400px; /* Aumentamos la altura de la imagen */
+}
+
+.text-card:not(.featured) .card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Ajustes responsive */
+@media (max-width: 768px) {
+    .text-card.featured {
+        flex-direction: column;
+    }
+
+    .slider-container {
+        width: 100%;
+        border-radius: 0 0 24px 24px;
+    }
+
+    .text-card:not(.featured) {
+        min-height: 400px;
+    }
+
+    .text-card:not(.featured) .card-image {
+        height: 300px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -512,10 +555,9 @@ img {
 .slider-container {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 400px; /* Altura fija para el contenedor */
     overflow: hidden;
     border-radius: 0 24px 24px 0;
-    min-height: 300px;
 }
 
 .slider {
@@ -526,10 +568,13 @@ img {
 
 .slider img {
     min-width: 100%;
-    height: 100%;
+    width: 100%;
+    height: 400px; /* La misma altura que el contenedor */
     object-fit: cover;
+    object-position: center;
 }
 
+/* Añade estos estilos para los controles del slider */
 .slider-nav {
     position: absolute;
     bottom: 20px;
@@ -537,28 +582,37 @@ img {
     transform: translateX(-50%);
     display: flex;
     gap: 10px;
-    z-index: 2;
 }
 
 .slider-dot {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     border: 2px solid white;
     background: transparent;
-    padding: 0;
     cursor: pointer;
-    transition: all 0.3s ease;
+    padding: 0;
+    transition: background-color 0.3s ease;
 }
 
 .slider-dot.active {
     background: white;
-    transform: scale(1.2);
 }
 
+/* Asegúrate que los controles estén siempre visibles */
+.slider-container {
+    position: relative;
+    /* ...existing code... */
+}
+
+/* Ajuste responsive para los controles */
 @media (max-width: 768px) {
-    .slider-container {
-        border-radius: 0 0 24px 24px;
-        height: 300px;
+    .slider-nav {
+        bottom: 15px;
+    }
+    
+    .slider-dot {
+        width: 10px;
+        height: 10px;
     }
 }
