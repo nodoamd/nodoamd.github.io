@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ScrollSmoother/ScrollTrigger - Clamp</title>
     <link rel='stylesheet' href='https://codepen.io/GreenSock/pen/gOWxmWG.css'>
     <link rel="stylesheet" href="./style.css">
@@ -47,18 +48,10 @@
                     </div>
                 </div>
                 <div class="images">
-                    <img data-speed="clamp(2.4)"
-                        src='./img/ala5.webp'
-                        alt=''>
-                    <img data-speed="clamp(1.8)"
-                        src='./img/maiz-cuñape.webp'
-                        alt=''>
-                    <img data-speed="clamp(2.2)"
-                        src='./img/ala6.webp'
-                        alt=''>
-                    <img data-speed="clamp(1.5)"
-                        src='https://images.unsplash.com/photo-1565493774908-90717173f1a4?w=1600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGJvbGl2aWElMjBzYW50YSUyMGNydXp8ZW58MHx8MHx8fDA%3D'
-                        alt=''>
+                    <img data-speed="clamp(2.4)" src='./img/ala6.webp' alt=''>
+                    <img data-speed="clamp(1.8)" src='./img/maiz-cuñape.webp' alt=''>
+                    <img data-speed="clamp(2.2)" src='./img/ala5.webp' alt=''>
+                    <img data-speed="clamp(1.5)" src='./img/maiz-empa.webp' alt=''>
                 </div>
 
 
@@ -66,17 +59,57 @@
 
             </section>
             <section class="about-hero" id="about-hero">
-                <div class="content-wrapper">
+                <div class="content-grid">
+                    <div class="text-card featured">
+                        <div class="card-content">
+                            <span class="overline">Descubre</span>
+                            <h2 class="about-title">¿Qué es la Chiquitania?</h2>
+                            <p class="about-desc">
+                                La Chiquitania es una región histórica ubicada en el departamento de Santa Cruz,
+                                Bolivia.
+                                Un tesoro cultural y natural que combina la herencia de las misiones jesuíticas con una
+                                biodiversidad extraordinaria.
+                            </p>
+                            <div class="highlight-text">
+                                <span class="about-strong">Tierra de tradiciones milenarias y sabores únicos</span>
+                            </div>
+                        </div>
+                        <div class="slider-container">
+                            <div class="slider">
+                                <img src="./img/iglesiacerca.jpg" alt="Iglesia">
+                                <img src="./img/familia.jpg" alt="Naturaleza">
+                                <img src="./img/niño.jpg" alt="Niño chiquitano">
+                            </div>
+                            <div class="slider-nav">
+                                <button class="slider-dot active" data-index="0"></button>
+                                <button class="slider-dot" data-index="1"></button>
+                                <button class="slider-dot" data-index="2"></button>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="text-card">
-                        <span class="overline">Descubre</span>
-                        <h2 class="about-title">¿Qué es la Chiquitania?</h2>
-                        <p class="about-desc">
-                            Un paraíso natural y cultural en el corazón de Bolivia
-                        </p>
-                        <div class="highlight-text">
-                            <img src="./img/acountry.svg" alt="">
-                            <span class="about-strong">Tierra de tradiciones, sabores únicos y paisajes que
-                                enamoran.</span>
+                        <div class="card-image">
+                            <img src="./img/chiquitania.jpg" alt="Misiones Jesuíticas">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="about-title">Patrimonio Cultural</h3>
+                            <p class="about-desc">
+                                Hogar de las impresionantes misiones jesuíticas, declaradas Patrimonio de la Humanidad
+                                por la UNESCO.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="text-card">
+                        <div class="card-image">
+                            <img src="./img/diversas.jpg" alt="Naturaleza Chiquitana">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="about-title">Biodiversidad</h3>
+                            <p class="about-desc">
+                                Un ecosistema único donde convergen el Amazonas, el Cerrado y el Chaco.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -108,8 +141,7 @@
     <script src="./gsap/ScrollSmoother.min.js"></script>
     <script src="./gsap/DrawSVGPlugin.min.js"></script>
     <script type="module" src="./script.js"></script>
-
-
+    <script src="./slider.js"></script>
 </body>
 
 </html>
