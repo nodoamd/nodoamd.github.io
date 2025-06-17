@@ -34,12 +34,12 @@ let smoother = ScrollSmoother.create({
     content: "#smooth-content",
     smooth: 1,
     effects: true,
-    normalizeScroll: true,
-    ignoreMobileResize: true,
+    // normalizeScroll: true, // Probar 17/6/25
+    // ignoreMobileResize: true, // Probar 17/6/25
     smoothTouch: 0.1,  // reduce la suavidad en dispositivos táctiles
-    preventDefault: true,
-    lockAxis: true,    // bloquea el eje para evitar saltos
-    renderFixed: false // ayuda con elementos fijos
+    // preventDefault: true, // Probar 17/6/25
+    // lockAxis: true,    // bloquea el eje para evitar saltos // Probar 17/6/25
+    // renderFixed: false // ayuda con elementos fijos // Probar 17/6/25
 });
 
 // Animación de trazado SVG
