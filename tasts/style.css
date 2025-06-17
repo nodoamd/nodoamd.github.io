@@ -322,53 +322,62 @@ img {
     }
 
     .hero {
-        margin-bottom: 50px;
+        margin-bottom: 30px;
+        min-height: 60vh; /* Reducido de 80vh */
     }
-/* 
-    .heading {
-        margin-top: 150px;
-    } */
 
-    h1 {
-        font-size: clamp(2rem, 8vw, 3rem);
+    .heading {
+        margin-top: 50px; /* Reducido para subir todo el contenido */
     }
 
     .clamp {
-        font-size: clamp(3rem, 10vw, 6rem);
+        font-size: clamp(4rem, 12vw, 6rem); /* Aumentado el tamaño mínimo */
     }
 
     .en-espana {
-        font-size: clamp(2rem, 8vw, 4rem);
+        font-size: clamp(2rem, 6vw, 3rem); /* Reducido significativamente */
     }
 
-    .text-card {
-        margin-bottom: 1.5rem;
+    .images {
+        margin-top: 2rem;
+        gap: 0.5rem;
     }
 
-    .card-content {
-        padding: 1.5rem;
+    .images img {
+        height: 250px; /* Altura fija más pequeña */
     }
 
-    .about-title, 
-    .exp-title {
-        font-size: 1.5rem;
+    /* Ajusta el grid de imágenes para móvil */
+    .images {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
+        padding: 0 1rem;
     }
 
-    .about-desc, 
-    .exp-desc {
-        font-size: 1rem;
-        line-height: 1.5;
+    .pin {
+        margin-top: 100px; /* Reducido el margen superior */
+    }
+
+    .yt {
+        font-size: clamp(2.5rem, 8vw, 4rem); /* Ajusta el tamaño de "La Chiquitanía" */
     }
 }
 
-/* Añadir soporte para pantallas muy pequeñas */
-@media screen and (max-width: 320px) {
-    html {
-        font-size: 12px;
+/* Ajustes específicos para pantallas muy pequeñas */
+@media screen and (max-width: 480px) {
+    .clamp {
+        font-size: clamp(3.5rem, 10vw, 5rem);
     }
-    
-    .content-grid {
-        padding: 0.5rem;
+
+    .yt {
+        font-size: clamp(2rem, 6vw, 3rem);
+    }
+
+    .en-espana {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+    }
+
+    .images img {
+        height: 200px;
     }
 }
 
@@ -635,5 +644,54 @@ img {
     .slider-dot {
         width: 10px;
         height: 10px;
+    }
+}
+
+/* Modifica los media queries para móvil */
+@media screen and (max-width: 768px) {
+    /* ...existing code... */
+
+    /* Ajusta el grid de imágenes */
+    .images {
+        grid-template-columns: repeat(4, 1fr); /* Vuelve a 4 columnas */
+        gap: 0.5rem;
+        padding: 0 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .images img {
+        height: 150px; /* Altura más pequeña para que quepan todas */
+        width: 100%;
+        object-fit: cover;
+    }
+
+    /* Ajusta el tamaño del texto "En España" */
+    .en-espana {
+        font-size: clamp(1.5rem, 4vw, 2rem); /* Reducido significativamente */
+        margin-top: 0.5rem;
+        bottom: -10px;
+    }
+
+    .clamp {
+        font-size: clamp(3rem, 8vw, 4rem);
+    }
+
+    .yt {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media screen and (max-width: 480px) {
+    .images {
+        gap: 0.25rem;
+    }
+
+    .images img {
+        height: 120px;
+    }
+
+    .en-espana {
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
     }
 }
