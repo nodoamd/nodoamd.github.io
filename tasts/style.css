@@ -156,6 +156,7 @@ img {
 .yt {
     z-index: 3;
     mix-blend-mode: lighten;
+    font-size: clamp(4rem, 10vw, 8rem); /* Aumentado significativamente */
 }
 
 .clamp svg {
@@ -358,7 +359,7 @@ img {
     }
 
     .yt {
-        font-size: clamp(2.5rem, 8vw, 4rem); /* Ajusta el tamaño de "La Chiquitanía" */
+        font-size: clamp(3rem, 8vw, 5rem); /* Aumentado para móviles */
     }
 }
 
@@ -369,11 +370,11 @@ img {
     }
 
     .yt {
-        font-size: clamp(2rem, 6vw, 3rem);
+        font-size: clamp(2.5rem, 7vw, 4rem); /* Aumentado para pantallas muy pequeñas */
     }
 
     .en-espana {
-        font-size: clamp(1.8rem, 5vw, 2.5rem);
+        font-size: clamp(2.5rem, 6vw, 4rem); /* Aumentado para pantallas muy pequeñas */
     }
 
     .images img {
@@ -476,7 +477,7 @@ img {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.7s cubic-bezier(.77, 0, .18, 1), transform 0.7s cubic-bezier(.77, 0, .18, 1);
-    font-size: 8rem;
+    font-size: clamp(6rem, 12vw, 10rem); /* Aumentado significativamente */
     font-weight: 700;
     letter-spacing: 0.01em;
     margin-top: 1.2rem;
@@ -677,7 +678,7 @@ img {
     }
 
     .yt {
-        font-size: clamp(1.8rem, 5vw, 2.5rem);
+        font-size: clamp(3rem, 8vw, 5rem); /* Aumentado para móviles */
     }
 }
 
@@ -692,6 +693,6 @@ img {
     }
 
     .en-espana {
-        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        font-size: clamp(2.5rem, 6vw, 4rem); /* Aumentado para pantallas muy pequeñas */
     }
 }
