@@ -156,7 +156,8 @@ img {
 .yt {
     z-index: 3;
     mix-blend-mode: lighten;
-    font-size: clamp(4rem, 10vw, 8rem); /* Aumentado significativamente */
+    font-size: clamp(4rem, 10vw, 8rem);
+    /* Aumentado significativamente */
 }
 
 .clamp svg {
@@ -180,7 +181,7 @@ img {
 }
 
 
-.experiencia-hero{
+.experiencia-hero {
     margin-top: 350px;
 }
 
@@ -295,14 +296,16 @@ img {
 .text-card:not(.featured) {
     width: 100%;
     margin-bottom: 2rem;
-    min-height: 500px; /* Aumentamos la altura mínima */
+    min-height: 350px;
+    /* Aumentamos la altura mínima */
     display: flex;
     flex-direction: column;
 }
 
 .text-card:not(.featured) .card-image {
     width: 100%;
-    height: 400px; /* Aumentamos la altura de la imagen */
+    height: 400px;
+    /* Aumentamos la altura de la imagen */
 }
 
 .text-card:not(.featured) .card-content {
@@ -315,7 +318,8 @@ img {
 /* Ajustes responsive */
 @media (max-width: 768px) {
     html {
-        font-size: 14px; /* Ajuste base para tipografía en móvil */
+        font-size: 14px;
+        /* Ajuste base para tipografía en móvil */
     }
 
     .content-grid {
@@ -324,19 +328,23 @@ img {
 
     .hero {
         margin-bottom: 30px;
-        min-height: 60vh; /* Reducido de 80vh */
+        min-height: 60vh;
+        /* Reducido de 80vh */
     }
 
     .heading {
-        margin-top: 50px; /* Reducido para subir todo el contenido */
+        margin-top: 50px;
+        /* Reducido para subir todo el contenido */
     }
 
     .clamp {
-        font-size: clamp(4rem, 12vw, 6rem); /* Aumentado el tamaño mínimo */
+        font-size: clamp(4rem, 12vw, 6rem);
+        /* Aumentado el tamaño mínimo */
     }
 
     .en-espana {
-        font-size: clamp(2rem, 6vw, 3rem); /* Reducido significativamente */
+        font-size: clamp(2rem, 6vw, 3rem);
+        /* Reducido significativamente */
     }
 
     .images {
@@ -345,21 +353,25 @@ img {
     }
 
     .images img {
-        height: 250px; /* Altura fija más pequeña */
+        height: 250px;
+        /* Altura fija más pequeña */
     }
 
     /* Ajusta el grid de imágenes para móvil */
     .images {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columnas en móvil */
         padding: 0 1rem;
     }
 
     .pin {
-        margin-top: 100px; /* Reducido el margen superior */
+        margin-top: 100px;
+        /* Reducido el margen superior */
     }
 
     .yt {
-        font-size: clamp(3rem, 8vw, 5rem); /* Aumentado para móviles */
+        font-size: clamp(3rem, 8vw, 5rem);
+        /* Aumentado para móviles */
     }
 }
 
@@ -370,11 +382,13 @@ img {
     }
 
     .yt {
-        font-size: clamp(2.5rem, 7vw, 4rem); /* Aumentado para pantallas muy pequeñas */
+        font-size: clamp(2.5rem, 7vw, 4rem);
+        /* Aumentado para pantallas muy pequeñas */
     }
 
     .en-espana {
-        font-size: clamp(2.5rem, 6vw, 4rem); /* Aumentado para pantallas muy pequeñas */
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        /* Aumentado para pantallas muy pequeñas */
     }
 
     .images img {
@@ -441,7 +455,8 @@ img {
         min-height: 60vh;
         object-fit: cover;
     }
-/* 
+
+    /* 
     .heading {
         margin-top: 500px;
     } */
@@ -477,7 +492,8 @@ img {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.7s cubic-bezier(.77, 0, .18, 1), transform 0.7s cubic-bezier(.77, 0, .18, 1);
-    font-size: clamp(6rem, 12vw, 10rem); /* Aumentado significativamente */
+    font-size: clamp(6rem, 12vw, 10rem);
+    /* Aumentado significativamente */
     font-weight: 700;
     letter-spacing: 0.01em;
     margin-top: 1.2rem;
@@ -511,7 +527,7 @@ img {
 
     /* .heading {
         /* margin-top: 200px; */
-        /* Reducido de 500px */
+    /* Reducido de 500px */
     /* } */
 
     h1 {
@@ -586,7 +602,8 @@ img {
 .slider-container {
     position: relative;
     width: 100%;
-    height: 600px; /* Aumentado de 400px */
+    height: 600px;
+    /* Aumentado de 400px */
     overflow: hidden;
     border-radius: 0 24px 24px 0;
 }
@@ -600,7 +617,8 @@ img {
 .slider img {
     min-width: 100%;
     width: 100%;
-    height: 600px; /* Aumentado de 400px */
+    height: 600px;
+    /* Aumentado de 400px */
     object-fit: cover;
     object-position: center;
 }
@@ -641,7 +659,7 @@ img {
     .slider-nav {
         bottom: 15px;
     }
-    
+
     .slider-dot {
         width: 10px;
         height: 10px;
@@ -654,21 +672,24 @@ img {
 
     /* Ajusta el grid de imágenes */
     .images {
-        grid-template-columns: repeat(4, 1fr); /* Vuelve a 4 columnas */
+        grid-template-columns: repeat(4, 1fr);
+        /* Vuelve a 4 columnas */
         gap: 0.5rem;
         padding: 0 0.5rem;
         margin-top: 1rem;
     }
 
     .images img {
-        height: 150px; /* Altura más pequeña para que quepan todas */
+        height: 150px;
+        /* Altura más pequeña para que quepan todas */
         width: 100%;
         object-fit: cover;
     }
 
     /* Ajusta el tamaño del texto "En España" */
     .en-espana {
-        font-size: clamp(1.5rem, 4vw, 2rem); /* Reducido significativamente */
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        /* Reducido significativamente */
         margin-top: 0.5rem;
         bottom: -10px;
     }
@@ -678,7 +699,8 @@ img {
     }
 
     .yt {
-        font-size: clamp(3rem, 8vw, 5rem); /* Aumentado para móviles */
+        font-size: clamp(3rem, 8vw, 5rem);
+        /* Aumentado para móviles */
     }
 }
 
@@ -693,6 +715,7 @@ img {
     }
 
     .en-espana {
-        font-size: clamp(2.5rem, 6vw, 4rem); /* Aumentado para pantallas muy pequeñas */
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        /* Aumentado para pantallas muy pequeñas */
     }
 }
