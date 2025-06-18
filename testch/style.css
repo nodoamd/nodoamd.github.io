@@ -708,7 +708,7 @@ img {
 }
 
 .producto-card {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.05);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
@@ -763,7 +763,7 @@ img {
 /* Historia Section */
 .historia-hero {
     padding: 6rem 0;
-    background: linear-gradient(135deg, rgba(46, 83, 57, 0.1), rgba(194, 178, 128, 0.1));
+    /* background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)); */
     position: relative;
     z-index: 1;
     overflow: hidden;
@@ -873,7 +873,6 @@ img {
     padding: 6rem 0;
     position: relative;
     z-index: 2;
-    background: linear-gradient(135deg, rgba(46, 83, 57, 0.08), rgba(152, 106, 37, 0.08));
     margin-top: 2rem;
 }
 
@@ -936,7 +935,6 @@ img {
 /* Testimonios */
 .testimonios-hero {
     padding: 6rem 0;
-    background: linear-gradient(135deg, rgba(78, 124, 89, 0.1), rgba(166, 139, 91, 0.1));
 }
 
 .testimonios-grid {
@@ -996,7 +994,6 @@ img {
 /* Contacto Section */
 .contacto-hero {
     padding: 6rem 0;
-    background: linear-gradient(135deg, rgba(46, 83, 57, 0.2), rgba(152, 106, 37, 0.2));
 }
 
 .contacto-container {
@@ -1214,7 +1211,6 @@ img {
 .proceso-hero {
     position: relative;
     z-index: 2;
-    background: linear-gradient(135deg, rgba(46, 83, 57, 0.08), rgba(152, 106, 37, 0.08));
     margin-top: 2rem;
 }
 
@@ -1236,7 +1232,6 @@ img {
 
 /* Estilos del Footer */
 .footer {
-    background: linear-gradient(135deg, rgba(46, 83, 57, 0.2), rgba(152, 106, 37, 0.2));
     padding: 4rem 0 2rem;
     color: var(--earth-light);
     margin-top: 4rem;
