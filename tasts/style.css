@@ -585,7 +585,7 @@ img {
 .slider-container {
     position: relative;
     width: 100%;
-    height: 400px; /* Altura fija para el contenedor */
+    height: 600px; /* Aumentado de 400px */
     overflow: hidden;
     border-radius: 0 24px 24px 0;
 }
@@ -599,7 +599,7 @@ img {
 .slider img {
     min-width: 100%;
     width: 100%;
-    height: 400px; /* La misma altura que el contenedor */
+    height: 600px; /* Aumentado de 400px */
     object-fit: cover;
     object-position: center;
 }
