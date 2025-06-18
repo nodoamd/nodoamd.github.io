@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin);
 // if (isMobile) {
 //     // Configuración de los puntos de anclaje
 //     const sections = [".hero", ".heading", ".about-hero"];
-    
+
 //     // Crear un ScrollTrigger principal que maneje todos los snaps
 //     ScrollTrigger.create({
 //         snap: {
@@ -32,14 +32,13 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin);
 let smoother = ScrollSmoother.create({
     wrapper: "#smooth-wrapper",
     content: "#smooth-content",
-    smooth: 1,
+    smooth: 0.1,
     effects: true,
-    // normalizeScroll: true, // Probar 17/6/25
-    // ignoreMobileResize: true, // Probar 17/6/25
-    smoothTouch: 0.1,  // reduce la suavidad en dispositivos táctiles
-    // preventDefault: true, // Probar 17/6/25
-    // lockAxis: true,    // bloquea el eje para evitar saltos // Probar 17/6/25
-    // renderFixed: false // ayuda con elementos fijos // Probar 17/6/25
+    // normalizeScroll: true, // PRueba
+    // ignoreMobileResize: true, // PRueba
+    // preventDefault: true, // PRueba
+    // lockAxis: true,    // bloquea el eje para evitar saltos
+    // renderFixed: false // ayuda con elementos fijos
 });
 
 // Animación de trazado SVG
