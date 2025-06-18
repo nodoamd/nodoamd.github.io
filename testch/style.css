@@ -764,6 +764,9 @@ img {
 .historia-hero {
     padding: 6rem 0;
     background: linear-gradient(135deg, rgba(46, 83, 57, 0.1), rgba(194, 178, 128, 0.1));
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
 }
 
 .historia-container {
@@ -771,6 +774,7 @@ img {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
+    position: relative;
 }
 
 .historia-desc {
@@ -816,6 +820,8 @@ img {
 .historia-image-stack {
     position: relative;
     height: 500px;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 .historia-img {
@@ -823,6 +829,7 @@ img {
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease;
+    max-width: 100%;
 }
 
 .historia-img-1 {
@@ -864,6 +871,10 @@ img {
 /* Proceso Section */
 .proceso-hero {
     padding: 6rem 0;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, rgba(46, 83, 57, 0.08), rgba(152, 106, 37, 0.08));
+    margin-top: 2rem;
 }
 
 .proceso-steps {
@@ -1196,5 +1207,194 @@ img {
     .en-espana {
         font-size: clamp(2.5rem, 6vw, 4rem);
         /* Aumentado para pantallas muy pequeñas */
+    }
+}
+
+/* Correcciones de z-index y posicionamiento */
+.proceso-hero {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, rgba(46, 83, 57, 0.08), rgba(152, 106, 37, 0.08));
+    margin-top: 2rem;
+}
+
+/* Ajustes para las imágenes de historia */
+.historia-image-stack {
+    position: relative;
+    height: 500px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.historia-img {
+    position: absolute;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    max-width: 100%;
+}
+
+/* Estilos del Footer */
+.footer {
+    background: linear-gradient(135deg, rgba(46, 83, 57, 0.2), rgba(152, 106, 37, 0.2));
+    padding: 4rem 0 2rem;
+    color: var(--earth-light);
+    margin-top: 4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-logo {
+    width: 150px;
+    margin-bottom: 1rem;
+}
+
+.footer-logo img {
+    width: 100%;
+    height: auto;
+}
+
+.footer-title {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+    color: var(--earth-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.footer-social {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.footer-social a {
+    color: var(--earth-light);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--earth-light);
+}
+
+/* Mejoras en la responsividad */
+@media (max-width: 1024px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .historia-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .historia-image-stack {
+        height: 400px;
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .historia-img-1 {
+        width: 70%;
+        height: 60%;
+        left: 5%;
+    }
+
+    .historia-img-2 {
+        width: 60%;
+        height: 50%;
+        right: 5%;
+    }
+
+    .historia-img-3 {
+        width: 50%;
+        height: 40%;
+        left: 25%;
+    }
+
+    .proceso-step {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .proceso-step.reverse {
+        grid-template-columns: 1fr;
+    }
+
+    .step-visual {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .step-number {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-logo {
+        margin: 0 auto;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+
+    .historia-image-stack {
+        height: 300px;
+    }
+
+    .proceso-step {
+        padding: 1.5rem;
     }
 }
