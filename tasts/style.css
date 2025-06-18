@@ -396,6 +396,7 @@ img {
     }
 }
 
+
 @media (max-width: 768px) {
     .text-card.featured {
         flex-direction: column;
@@ -668,9 +669,7 @@ img {
 
 /* Modifica los media queries para móvil */
 @media screen and (max-width: 768px) {
-    /* ...existing code... */
 
-    /* Ajusta el grid de imágenes */
     .images {
         grid-template-columns: repeat(4, 1fr);
         /* Vuelve a 4 columnas */
@@ -701,6 +700,12 @@ img {
     .yt {
         font-size: clamp(3rem, 8vw, 5rem);
         /* Aumentado para móviles */
+    }
+
+
+    .slider-container {
+        height: 400px;
+        /* Reducido de 600px */
     }
 }
 
