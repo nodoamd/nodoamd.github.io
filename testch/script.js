@@ -29,15 +29,17 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin);
 // }
 
 // Crear el efecto de scroll suave optimizado para móvil
-let smoother;
-if (!isMobile) {
-    smoother = ScrollSmoother.create({
-        wrapper: "#smooth-wrapper",
-        content: "#smooth-content",
-        smooth: 0.1,
-        effects: true
-    });
-}
+let smoother = ScrollSmoother.create({
+    wrapper: "#smooth-wrapper",
+    content: "#smooth-content",
+    smooth: 0.1,
+    effects: true,
+    // normalizeScroll: true, // PRueba
+    // ignoreMobileResize: true, // PRueba
+    // preventDefault: true, // PRueba
+    // lockAxis: true,    // bloquea el eje para evitar saltos
+    // renderFixed: false // ayuda con elementos fijos
+});
 
 // Animación de trazado SVG
 if (document.querySelector('.draw') && document.querySelector('.heading')) {
