@@ -32,7 +32,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin);
 let smoother = ScrollSmoother.create({
     wrapper: "#smooth-wrapper",
     content: "#smooth-content",
-    smooth: 0.1,
+    smooth: 5,
     effects: true,
     // normalizeScroll: true, // PRueba
     // ignoreMobileResize: true, // PRueba
