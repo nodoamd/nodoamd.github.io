@@ -36,7 +36,7 @@ body {
 }
 
 body {
-    background-color: #986a25;
+    background-color: #af7927;
     background-image: url("data:image/svg+xml;utf8,<svg width='80' height='80' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='20' cy='20' r='1.5' fill='%23c2b280' opacity='0.18'/><circle cx='0' cy='40' r='1.5' fill='%23e6d3b3' opacity='0.13'/><circle cx='40' cy='0' r='1.5' fill='%23a68b5b' opacity='0.10'/></svg>");
     background-repeat: repeat;
 }
@@ -246,7 +246,7 @@ img {
 }
 
 .text-card {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.108);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
