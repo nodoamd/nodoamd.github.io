@@ -426,8 +426,12 @@ img {
 .highlight-text {
     position: relative;
     padding: 2rem;
-    margin-top: 2rem;
+    margin-top: auto; /* Cambiado de 2rem a auto */
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px; /* Asegura un espacio mínimo */
 }
 
 .about-strong,
@@ -439,6 +443,7 @@ img {
     font-style: italic;
     display: block;
     text-align: center;
+    margin: 0; /* Elimina márgenes por defecto */
 }
 
 @media (max-width: 900px) {
