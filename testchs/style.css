@@ -673,7 +673,7 @@ img {
 .overline {
     display: block;
     font-size: 0.9rem;
-    color: var(--jungle-light);
+    color: #e8a238;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 1rem;
@@ -756,7 +756,7 @@ img {
 
 .producto-origin {
     font-size: 0.9rem;
-    color: var(--jungle-light);
+    color: #e8a238;
     font-style: italic;
 }
 
@@ -798,7 +798,7 @@ img {
 .timeline-year {
     font-size: 1.2rem;
     font-weight: 700;
-    color: var(--jungle-light);
+    color: #e8a238;
     min-width: 80px;
 }
 
@@ -904,7 +904,7 @@ img {
 .step-number {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--jungle-light);
+    color: #ffa41c;
     text-align: center;
 }
 
@@ -1097,7 +1097,6 @@ img {
 
     .historia-container,
     .contacto-container {
-        grid-template-columns: 1fr;
         gap: 2rem;
     }
 
@@ -1389,3 +1388,15 @@ img {
         font-size: 0.8rem;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
