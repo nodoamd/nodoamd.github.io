@@ -1389,6 +1389,19 @@ img {
     }
 }
 
+@media (max-width: 900px) {
+    .historia-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .historia-visual {
+        order: 2;
+    }
+    .historia-desc {
+        order: 1;
+    }
+}
+
 
 
 
