@@ -1216,6 +1216,132 @@ img {
     }
 }
 
+/* CONTACTO: Ajustes responsive */
+@media (max-width: 1024px) {
+    .contacto-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .contacto-info, .contacto-form {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .contacto-hero {
+        padding: 3rem 0;
+    }
+    .contacto-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .contacto-info, .contacto-form {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    .pedido-form {
+        padding: 1.2rem;
+    }
+    .contacto-details {
+        gap: 1rem;
+    }
+    .contacto-item {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contacto-hero {
+        padding: 1.5rem 0;
+    }
+    .contacto-container {
+        gap: 1rem;
+    }
+    .pedido-form {
+        padding: 0.5rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.7rem;
+        font-size: 0.95rem;
+    }
+    .btn-pedido {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+    .contacto-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+    .contacto-icon {
+        font-size: 1.2rem;
+        width: 30px;
+    }
+}
+
+/* FOOTER: Mejorar responsividad */
+@media (max-width: 1024px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 2rem 0 1rem;
+    }
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+    .footer-column {
+        align-items: center;
+        text-align: center;
+    }
+    .footer-logo {
+        margin: 0 auto 1rem;
+    }
+    .footer-social {
+        justify-content: center;
+    }
+    .footer-links {
+        text-align: center;
+    }
+    .footer-bottom {
+        margin-top: 2rem;
+        padding-top: 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 1rem 0 0.5rem;
+    }
+    .footer-content {
+        padding: 0 0.5rem;
+    }
+    .footer-title {
+        font-size: 1rem;
+    }
+    .footer-bottom {
+        margin-top: 1rem;
+        font-size: 0.8rem;
+    }
+    .footer-logo {
+        width: 100px;
+    }
+}
+
 /* Correcciones de z-index y posicionamiento */
 .proceso-hero {
     position: relative;
