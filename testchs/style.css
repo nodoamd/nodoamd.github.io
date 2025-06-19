@@ -1014,6 +1014,10 @@ img {
     space-y: 2rem;
 }
 
+.testimonio-author .author-info span {
+    color: #e8a238;
+}
+
 .contacto-item {
     display: flex;
     gap: 1rem;
@@ -1044,6 +1048,12 @@ img {
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     padding: 2.5rem;
+}
+
+.form-group select,
+.form-group option {
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
 }
 
 .pedido-form h3 {
@@ -1394,22 +1404,12 @@ img {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
+
     .historia-visual {
         order: 2;
     }
+
     .historia-desc {
         order: 1;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
