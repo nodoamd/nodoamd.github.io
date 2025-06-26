@@ -1,41 +1,44 @@
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin);
 
-// Detectar si es dispositivo móvil
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+// // Detectar si es dispositivo móvil
+// const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-if (isMobile) {
-    // Configuración de los puntos de anclaje
-    const sections = [".hero", ".heading", ".about-hero"];
-    
-    // Crear un ScrollTrigger principal que maneje todos los snaps
-    ScrollTrigger.create({
-        snap: {
-            snapTo: sections.map((_, i) => i / (sections.length - 1)),
-            duration: { min: 0.3, max: 0.6 },
-            ease: "power1.inOut",
-            inertia: true
-        }
-    });
+// if (isMobile) {
+//     // Configuración de los puntos de anclaje
+//     const sections = [".hero", ".heading", ".about-hero"];
 
-    // Configurar cada sección
-    sections.forEach(section => {
-        ScrollTrigger.create({
-            trigger: section,
-            start: "top center",
-            end: "bottom center",
-            markers: false
-        });
-    });
-}
+//     // Crear un ScrollTrigger principal que maneje todos los snaps
+//     ScrollTrigger.create({
+//         snap: {
+//             snapTo: sections.map((_, i) => i / (sections.length - 1)),
+//             duration: { min: 0.3, max: 0.6 },
+//             ease: "power1.inOut",
+//             inertia: true
+//         }
+//     });
+
+//     // Configurar cada sección
+//     sections.forEach(section => {
+//         ScrollTrigger.create({
+//             trigger: section,
+//             start: "top center",
+//             end: "bottom center",
+//             markers: false
+//         });
+//     });
+// }
 
 // Crear el efecto de scroll suave optimizado para móvil
 let smoother = ScrollSmoother.create({
-    smooth: isMobile ? 1.2 : 2, // Ajuste más natural para móvil
+    wrapper: "#smooth-wrapper",
+    content: "#smooth-content",
+    smooth: 0.1,
     effects: true,
-    smoothTouch: 0.8, // Suavizado específico para touch
-    normalizeScroll: true,
-    ignoreMobileResize: true,
-    preventDefault: true
+    // normalizeScroll: true, // PRueba
+    // ignoreMobileResize: true, // PRueba
+    // preventDefault: true, // PRueba
+    // lockAxis: true,    // bloquea el eje para evitar saltos
+    // renderFixed: false // ayuda con elementos fijos
 });
 
 // Animación de trazado SVG
@@ -92,5 +95,7 @@ gsap.from([".overline", ".about-title, .exp-title", ".about-desc, .exp-desc", ".
     stagger: 0.2,
     ease: "power2.out"
 });
+
+
 
 
