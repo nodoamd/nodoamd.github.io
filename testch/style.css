@@ -15,25 +15,15 @@
 
 
 :root {
-    /* Paleta tierra brillante y cálida */
-    --earth-light: #f4e8d0;      /* Crema cálido (antes #e6d3b3) */
-    --earth-medium: #d4b896;     /* Beige dorado (antes #c2b280) */
-    --earth-dark: #8b6914;       /* Ocre dorado oscuro (antes #a68b5b) */
-    
-    /* Verdes naturales más vivos */
-    --jungle-dark: #2d5016;      /* Verde bosque profundo (antes #2e5339) */
-    --jungle: #4a7c59;           /* Verde natural (mantener similar) */
-    --jungle-light: #7cb342;     /* Verde lima natural (antes #7bb661) */
-    
-    /* Nuevos colores complementarios */
-    --coco-dark: #3e2723;        /* Marrón coco oscuro para fondos elegantes */
-    --crema-warm: #fff8e1;       /* Crema muy claro para textos y contrastes */
-    --terracota: #d7623a;        /* Terracota para acentos cálidos */
-    --gold-accent: #ffb300;      /* Dorado brillante para highlights */
-    
-    /* Variables actualizadas */
-    --dark: var(--coco-dark);     /* Cambiar de earth-dark a coco-dark */
-    --purple: var(--jungle);      /* Mantener */
+    --earth-light: #e6d3b3;
+    --earth-medium: #c2b280;
+    --earth-dark: #a68b5b;
+    --jungle-dark: #2e5339;
+    --jungle: #4e7c59;
+    --jungle-light: #7bb661;
+
+    --dark: var(--earth-dark);
+    --purple: var(--jungle);
     --f-5-min: 30;
     --f-5-max: 120;
     --step-5: calc(((var(--f-5-min) / 16) * 1rem) + (var(--f-5-max) - var(--f-5-min)) * var(--fluid-bp));
@@ -46,15 +36,15 @@ body {
 }
 
 body {
-    background-color: #6d4c28;    /* Marrón tierra más cálido (antes #af7927) */
-    background-image: url("data:image/svg+xml;utf8,<svg width='80' height='80' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='20' cy='20' r='1.5' fill='%23d4b896' opacity='0.25'/><circle cx='0' cy='40' r='1.5' fill='%23f4e8d0' opacity='0.20'/><circle cx='40' cy='0' r='1.5' fill='%238b6914' opacity='0.15'/></svg>");
+    background-color: #af7927;
+    background-image: url("data:image/svg+xml;utf8,<svg width='80' height='80' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='20' cy='20' r='1.5' fill='%23c2b280' opacity='0.18'/><circle cx='0' cy='40' r='1.5' fill='%23e6d3b3' opacity='0.13'/><circle cx='40' cy='0' r='1.5' fill='%23a68b5b' opacity='0.10'/></svg>");
     background-repeat: repeat;
 }
 
 header {
     padding: 1.5rem;
     display: flex;
-    border-bottom: 2px solid var(--gold-accent);  /* Dorado en lugar del amarillo apagado */
+    border-bottom: 2px solid rgb(224, 171, 48);
 
 }
 
@@ -684,7 +674,7 @@ img {
 .overline {
     display: block;
     font-size: 0.9rem;
-    color: var(--gold-accent);    /* Dorado brillante para overlines */
+    color: #e8a238;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 1rem;
@@ -826,7 +816,7 @@ img {
 .timeline-year {
     font-size: 1.2rem;
     font-weight: 700;
-    color: var(--gold-accent);    /* Usar dorado consistentemente */
+    color: #e8a238;
     min-width: 80px;
     position: relative;
     z-index: 2;
@@ -1004,7 +994,7 @@ img {
 .step-number {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--gold-accent);    /* Usar dorado consistentemente */
+    color: #ffa41c;
     text-align: center;
 }
 
@@ -1088,7 +1078,7 @@ img {
 
 .author-info span {
     font-size: 0.9rem;
-    color: var(--gold-accent);
+    color: var(--jungle-light);
 }
 
 /* Contacto Section */
@@ -1115,7 +1105,7 @@ img {
 }
 
 .testimonio-author .author-info span {
-    color: var(--gold-accent);
+    color: #e8a238;
 }
 
 .contacto-item {
@@ -1187,7 +1177,7 @@ img {
 .btn-pedido {
     width: 100%;
     padding: 1.2rem;
-    background: linear-gradient(135deg, var(--terracota), var(--jungle));
+    background: linear-gradient(135deg, var(--jungle), var(--jungle-light));
     color: white;
     border: none;
     border-radius: 10px;
@@ -1533,7 +1523,7 @@ img {
 }
 
 .footer-social a:hover {
-    color: var(--gold-accent);
+    color: var(--jungle-light);
     transform: translateY(-3px);
 }
 
@@ -1562,7 +1552,7 @@ img {
 }
 
 .footer-links a:hover {
-    color: var(--gold-accent);
+    color: var(--jungle-light);
     padding-left: 5px;
 }
 
@@ -1673,7 +1663,7 @@ img {
 .historia-caption-title {
     font-size: 1.08rem;
     font-weight: 700;
-    color: var(--gold-accent);
+    color: #e8a238;
     margin-bottom: 0.2rem;
     letter-spacing: 0.01em;
 }

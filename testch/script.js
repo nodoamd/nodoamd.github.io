@@ -97,3 +97,5 @@ gsap.from([".overline", ".about-title, .exp-title", ".about-desc, .exp-desc", ".
 });
 
 
+
+
