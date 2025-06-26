@@ -32,7 +32,7 @@ if (isMobile) {
 let smoother = ScrollSmoother.create({
     smooth: isMobile ? 1.2 : 2, // Ajuste más natural para móvil
     effects: true,
-    smoothTouch: 0.8, // Suavizado específico para touch
+    smoothTouch: 0.1, // Suavizado específico para touch
     normalizeScroll: true,
     ignoreMobileResize: true,
     preventDefault: true
