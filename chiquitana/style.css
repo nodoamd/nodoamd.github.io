@@ -1303,6 +1303,43 @@ img {
     box-shadow: 0 10px 25px rgba(78, 124, 89, 0.3);
 }
 
+/* Mejora el botón .btn-ver-mas */
+.btn-ver-mas {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.9rem 2rem;
+    background: linear-gradient(135deg, var(--jungle), var(--jungle-light));
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.12rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 18px rgba(78, 124, 89, 0.18), 0 1.5px 6px 0 rgba(224, 171, 48, 0.10);
+    transition: background 0.3s, transform 0.18s, box-shadow 0.18s;
+    letter-spacing: 0.01em;
+    position: relative;
+    overflow: hidden;
+}
+.btn-ver-mas:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 20%;
+    top: 0;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.03) 100%);
+    pointer-events: none;
+    border-radius: 12px;
+}
+.btn-ver-mas:hover, .btn-ver-mas:focus {
+    background: linear-gradient(135deg, var(--jungle-light), var(--jungle));
+    transform: translateY(-3px) scale(1.045);
+    box-shadow: 0 8px 28px rgba(78, 124, 89, 0.22), 0 2px 8px 0 rgba(224, 171, 48, 0.13);
+    color: #fff;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
 
