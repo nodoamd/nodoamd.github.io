@@ -457,7 +457,7 @@ img {
         object-fit: cover;
     }
 
-    /* 
+    /*
     .heading {
         /* margin-top: 500px; */
     /* Reducido de 500px */
@@ -1028,6 +1028,7 @@ img {
 }
 
 @media (max-width: 1024px) {
+
     .proceso-step,
     .proceso-step.reverse {
         grid-template-columns: 1fr;
@@ -1035,29 +1036,36 @@ img {
         gap: 1.5rem;
         direction: ltr;
     }
+
     .step-visual {
         width: 100%;
         max-width: 300px;
         margin: 0 auto;
         height: 180px;
     }
+
     .step-number {
         margin-bottom: 0.5rem;
     }
 }
+
 @media (max-width: 600px) {
+
     .proceso-step,
     .proceso-step.reverse {
         padding: 1rem;
         margin-bottom: 2rem;
     }
+
     .step-visual {
         max-width: 100%;
         height: 120px;
     }
+
     .step-content h3 {
         font-size: 1.1rem;
     }
+
     .step-content p {
         font-size: 0.98rem;
     }
@@ -1072,6 +1080,7 @@ img {
     align-items: center;
     margin-bottom: 3rem;
 }
+
 .hero-visual-img {
     flex: 1 1 260px;
     min-width: 220px;
@@ -1080,54 +1089,66 @@ img {
     align-items: center;
     justify-content: center;
 }
+
 .hero-visual-img img {
     width: 100%;
     border-radius: 18px;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13);
     object-fit: cover;
 }
+
 .hero-visual-text {
     flex: 2 1 320px;
     min-width: 220px;
     max-width: 600px;
     color: var(--earth-light);
 }
+
 .hero-visual-text h2 {
     color: #e8a238;
     font-size: 1.5rem;
     margin-bottom: 1rem;
     margin-top: 1.5rem;
 }
+
 .hero-visual-text ul {
     font-size: 1.1rem;
     line-height: 1.7;
     margin-bottom: 1rem;
     padding-left: 1.2em;
 }
+
 @media (max-width: 1024px) {
     .responsive-hero-visual {
         flex-direction: column;
         gap: 1.5rem;
         align-items: stretch;
     }
-    .hero-visual-img, .hero-visual-text {
+
+    .hero-visual-img,
+    .hero-visual-text {
         max-width: 100%;
         min-width: 0;
     }
+
     .hero-visual-img img {
         max-height: 220px;
     }
 }
+
 @media (max-width: 600px) {
     .responsive-hero-visual {
         gap: 1rem;
     }
+
     .hero-visual-img img {
         max-height: 160px;
     }
+
     .hero-visual-text h2 {
         font-size: 1.15rem;
     }
+
     .hero-visual-text ul {
         font-size: 1rem;
     }
@@ -1321,6 +1342,7 @@ img {
     position: relative;
     overflow: hidden;
 }
+
 .btn-ver-mas:after {
     content: '';
     display: block;
@@ -1329,11 +1351,13 @@ img {
     top: 0;
     width: 60%;
     height: 100%;
-    background: linear-gradient(90deg, rgba(255,255,255,0.13) 0%, rgba(255,255,255,0.03) 100%);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.03) 100%);
     pointer-events: none;
     border-radius: 12px;
 }
-.btn-ver-mas:hover, .btn-ver-mas:focus {
+
+.btn-ver-mas:hover,
+.btn-ver-mas:focus {
     background: linear-gradient(135deg, var(--jungle-light), var(--jungle));
     transform: translateY(-3px) scale(1.045);
     box-shadow: 0 8px 28px rgba(78, 124, 89, 0.22), 0 2px 8px 0 rgba(224, 171, 48, 0.13);
@@ -1721,24 +1745,27 @@ img {
     min-width: 220px;
     max-width: 600px;
 }
+
 .hero-card {
-    background: rgba(0,0,0,0.45);
+    background: rgba(0, 0, 0, 0.45);
     border-radius: 18px;
     padding: 2rem 1.5rem;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.10);
     display: flex;
     flex-direction: column;
     align-items: center;
     min-width: 220px;
     max-width: 350px;
     text-align: center;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
+
 .hero-card-icon {
     font-size: 2.5rem;
     color: #e8a238;
     margin-bottom: 1rem;
 }
+
 .hero-card-title {
     font-size: 1.25rem;
     color: #fff;
@@ -1746,33 +1773,46 @@ img {
     margin-bottom: 0.5rem;
     letter-spacing: 0.01em;
 }
+
 .hero-card-desc {
     color: var(--earth-light);
     font-size: 1.08rem;
     line-height: 1.6;
 }
+
 @media (min-width: 700px) {
     .hero-visual-cards {
         flex-direction: row;
         gap: 2.5rem;
     }
+
     .hero-card {
         min-width: 220px;
         max-width: 300px;
     }
 }
+
 @media (max-width: 600px) {
     .hero-visual-cards {
         gap: 1rem;
     }
+
     .hero-card {
         padding: 1.2rem 0.7rem;
         font-size: 0.98rem;
     }
+
     .hero-card-title {
         font-size: 1.05rem;
     }
+
     .hero-card-icon {
         font-size: 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .about-hero {
+        margin-top: 250px !important;
     }
 }
