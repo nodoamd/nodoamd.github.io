@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Salteñas - La Chiquitana</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="../img/lachiquitanaLogo.png" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/lachiquitanaLogo.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(232, 162, 56, 0.2);
+        }
+
+        .logo {
+            width: 200px;
+            height: 40px;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #e8a238;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero-saltena {
+            padding: 6rem 0 4rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-saltena::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('../img/salteñas.png') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-saltena h1 {
+            font-size: 4rem;
+            color: #e8a238;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .breadcrumb {
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .breadcrumb a {
+            color: #e8a238;
+            text-decoration: none;
+            margin-right: 0.5rem;
+        }
+
+        .breadcrumb span {
+            color: #ccc;
+            margin: 0 0.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 4rem 0;
+            background: #fff;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .overline {
+            display: inline-block;
+            color: #e8a238;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Historia Section */
+        .historia-saltena {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin: 3rem 0;
+        }
+
+        .historia-text h3 {
+            font-size: 2rem;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+        }
+
+        .historia-text p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .historia-image {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .historia-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Ingredientes Section */
+        .ingredientes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .ingrediente-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .ingrediente-card:hover {
+            border-color: #e8a238;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(232, 162, 56, 0.2);
+        }
+
+        .ingrediente-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #e8a238;
+        }
+
+        .ingrediente-card h4 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .ingrediente-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Proceso Section */
+        .proceso-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .step-card {
+            background: linear-gradient(135deg, #e8a238, #f4b942);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover::before {
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .step-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-card p {
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* Valores Nutricionales */
+        .valores-nutricionales {
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+
+        .valores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .valor-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .valor-numero {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #e8a238;
+            margin-bottom: 0.5rem;
+        }
+
+        .valor-label {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin: 4rem 0;
+        }
+
+        .cta-section h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #e8a238;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-pedido {
+            display: inline-block;
+            background: linear-gradient(135deg, #e8a238, #f4b942);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(232, 162, 56, 0.3);
+        }
+
+        .btn-pedido:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(232, 162, 56, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            color: #e8a238;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #e8a238;
+        }
+
+        .footer-social {
+            margin-top: 1rem;
+        }
+
+        .footer-social a {
+            color: #ccc;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: #e8a238;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+            color: #ccc;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-saltena h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .historia-saltena {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            header {
+                padding: 1rem;
+            }
+
+            .logo {
+                width: 150px;
+                height: 30px;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="../img/lachiquitanaLogo.png" alt="La Chiquitana Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-saltena">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="breadcrumb">
+                        <a href="../index.html">Inicio</a>
+                        <span>/</span>
+                        <a href="#productos">Productos</a>
+                        <span>/</span>
+                        <span>Salteñas</span>
+                    </div>
+                    <h1>Salteñas</h1>
+                    <p class="hero-subtitle">El sabor auténtico de Bolivia en cada bocado</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Historia Section -->
+        <section class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="overline">Tradición Boliviana</span>
+                    <h2 class="section-title">La Historia de Nuestras Salteñas</h2>
+                    <p class="section-desc">
+                        Las salteñas son mucho más que una simple empanada. Son el corazón de la gastronomía boliviana,
+                        un legado culinario que ha pasado de generación en generación en nuestra familia chiquitana.
+                    </p>
+                </div>
+
+                <div class="historia-saltena">
+                    <div class="historia-text">
+                        <h3>Un Legado de Sabor</h3>
+                        <p>
+                            Nuestras salteñas siguen la receta original de doña Carmen, quien las preparaba en su horno
+                            de barro
+                            en San José de Chiquitos desde 1952. Cada salteña es una obra de arte culinaria, con su masa
+                            dorada
+                            perfectamente sellada y su jugoso relleno que combina carne, papas, arvejas y ese toque
+                            especial de
+                            especias que solo conocen los maestros chiquitanos.
+                        </p>
+                        <p>
+                            Lo que hace únicas a nuestras salteñas es el equilibrio perfecto entre la textura crujiente
+                            de la masa
+                            y la suculencia del relleno. Cada bocado es una explosión de sabores que te transporta
+                            directamente
+                            a las cocinas tradicionales de la Chiquitanía boliviana.
+                        </p>
+                    </div>
+                    <div class="historia-image">
+                        <img src="../img/salteñas.png" alt="Salteñas tradicionales">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ingredientes Section -->
+        <section class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="overline">Ingredientes Premium</span>
+                    <h2 class="section-title">Los Secretos de Nuestras Salteñas</h2>
+                    <p class="section-desc">
+                        Cada ingrediente es cuidadosamente seleccionado para mantener la autenticidad y calidad que nos
+                        caracteriza
+                    </p>
+                </div>
+
+                <div class="ingredientes-grid">
+                    <div class="ingrediente-card">
+                        <div class="ingrediente-icon">🥩</div>
+                        <h4>Carne de Res Premium</h4>
+                        <p>Carne de res tierna y jugosa, cortada en cubos perfectos y condimentada con especias
+                            tradicionales bolivianas.</p>
+                    </div>
+                    <div class="ingrediente-card">
+                        <div class="ingrediente-icon">🥔</div>
+                        <h4>Papas Seleccionadas</h4>
+                        <p>Papas de primera calidad, cocidas al punto exacto para mantener su textura y sabor
+                            característico.</p>
+                    </div>
+                    <div class="ingrediente-card">
+                        <div class="ingrediente-icon">🟢</div>
+                        <h4>Arvejas Frescas</h4>
+                        <p>Arvejas tiernas que aportan color, textura y un toque dulce natural al relleno de nuestras
+                            salteñas.</p>
+                    </div>
+                    <div class="ingrediente-card">
+                        <div class="ingrediente-icon">🌶️</div>
+                        <h4>Especias Tradicionales</h4>
+                        <p>Mezcla secreta de especias chiquitanas: comino, pimentón, ají colorado y hierbas aromáticas.
+                        </p>
+                    </div>
+                    <div class="ingrediente-card">
+                        <div class="ingrediente-icon">🥚</div>
+                        <h4>Huevos Duros</h4>
+                        <p>Huevos frescos cocidos perfectamente, que añaden cremosidad y sabor al relleno tradicional.
+                        </p>
+                    </div>
+                    <div class="ingrediente-card">
+                        <div class="ingrediente-icon">🌾</div>
+                        <h4>Masa Artesanal</h4>
+                        <p>Masa preparada con harina de trigo de alta calidad, manteca y el toque dorado que las
+                            caracteriza.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proceso Section -->
+        <section class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="overline">Proceso Artesanal</span>
+                    <h2 class="section-title">Cómo Hacemos Nuestras Salteñas</h2>
+                    <p class="section-desc">
+                        Un proceso meticuloso que respeta la tradición chiquitana y garantiza la calidad en cada salteña
+                    </p>
+                </div>
+
+                <div class="proceso-steps">
+                    <div class="step-card">
+                        <div class="step-number">01</div>
+                        <h4>Preparación del Relleno</h4>
+                        <p>Comenzamos cocinando la carne con especias tradicionales, añadiendo papas, arvejas y huevos
+                            duros.
+                            El secreto está en el tiempo de cocción y el equilibrio de sabores.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">02</div>
+                        <h4>Elaboración de la Masa</h4>
+                        <p>Preparamos la masa con harina de trigo, manteca y agua, amasando hasta conseguir la textura
+                            perfecta:
+                            elástica pero resistente, que no se rompa al sellar.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">03</div>
+                        <h4>Formado y Sellado</h4>
+                        <p>Extendemos la masa, colocamos el relleno jugoso y sellamos con la técnica tradicional del
+                            repulgue,
+                            creando ese borde característico que evita que se derrame el caldo.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">04</div>
+                        <h4>Horneado Perfecto</h4>
+                        <p>Horneamos a temperatura controlada hasta conseguir ese color dorado perfecto y la textura
+                            crujiente
+                            que contrasta con el relleno jugoso del interior.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Valores Nutricionales -->
+        <section class="content-section">
+            <div class="container">
+                <div class="valores-nutricionales">
+                    <div class="section-header">
+                        <span class="overline">Información Nutricional</span>
+                        <h2 class="section-title">Valores por Salteña</h2>
+                        <p class="section-desc">
+                            Una salteña no solo es deliciosa, también es nutritiva y balanceada
+                        </p>
+                    </div>
+
+                    <div class="valores-grid">
+                        <div class="valor-item">
+                            <div class="valor-numero">280</div>
+                            <div class="valor-label">Calorías</div>
+                        </div>
+                        <div class="valor-item">
+                            <div class="valor-numero">15g</div>
+                            <div class="valor-label">Proteínas</div>
+                        </div>
+                        <div class="valor-item">
+                            <div class="valor-numero">25g</div>
+                            <div class="valor-label">Carbohidratos</div>
+                        </div>
+                        <div class="valor-item">
+                            <div class="valor-numero">12g</div>
+                            <div class="valor-label">Grasas</div>
+                        </div>
+                        <div class="valor-item">
+                            <div class="valor-numero">3g</div>
+                            <div class="valor-label">Fibra</div>
+                        </div>
+                        <div class="valor-item">
+                            <div class="valor-numero">450mg</div>
+                            <div class="valor-label">Sodio</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h3>¿Listo para Probar Nuestras Salteñas?</h3>
+                <p>Haz tu pedido ahora y disfruta del auténtico sabor boliviano en tu mesa</p>
+                <a href="../index.html#contacto-hero" class="btn-pedido">Hacer Pedido</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <img src="../img/lachiquitanaLogo.png" alt="La Chiquitana Logo"
+                            style="width: 150px; height: 30px;">
+                    </div>
+                    <p>Llevando los sabores auténticos de la Chiquitanía boliviana a España</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Productos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#productos">Salteñas</a></li>
+                        <li><a href="#productos">Empanadas</a></li>
+                        <li><a href="#productos">Cuñapé</a></li>
+                        <li><a href="#productos">Pan Batido</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul class="footer-links">
+                        <li>Barcelona, España</li>
+                        <li>Tel: +34 XXX XXX XXX</li>
+                        <li>Email: info@lachiquitana.es</li>
+                        <li><a href="../index.html#contacto-hero">Hacer un pedido</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 La Chiquitana. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
