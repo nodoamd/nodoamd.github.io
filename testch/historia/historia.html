@@ -552,6 +552,23 @@
                 display: block;
             }
         }
+
+        @media (max-width: 768px) {
+            .story-visual .image-overlay {
+                pointer-events: none;
+                transition: transform 0.3s;
+            }
+
+            .story-visual.overlay-visible .image-overlay {
+                transform: translateY(0);
+                pointer-events: auto;
+            }
+
+            .story-visual .image-overlay {
+                /* Oculto por defecto en móvil */
+                transform: translateY(100%);
+            }
+        }
     </style>
 </head>
 
@@ -738,6 +755,24 @@
             const scrolled = window.scrollY;
             // Ajusta el divisor para controlar la fuerza del parallax
             hero.style.backgroundPosition = `center ${scrolled * 0.4}px`;
+        });
+
+        document.querySelectorAll('.story-visual').forEach(function (visual) {
+            // Solo en móvil
+            function isMobile() {
+                return window.innerWidth <= 768;
+            }
+            // Click en imagen o icono
+            visual.addEventListener('click', function (e) {
+                if (!isMobile()) return;
+                // Solo activar si se hace clic en la imagen o el icono
+                if (
+                    e.target.classList.contains('story-image') ||
+                    e.target.classList.contains('clic-indicador')
+                ) {
+                    visual.classList.toggle('overlay-visible');
+                }
+            });
         });
     </script>
 </body>
