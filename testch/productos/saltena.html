@@ -4,43 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Salteñas - La Chiquitana</title>
+    <title>Historia de la Chiquitanía - La Chiquitana</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="../img/lachiquitanaLogo.png" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="../img/lachiquitanaLogo.png">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="./img/lachiquitanaLogo.webp" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/lachiquitanaLogo.webp">
+    <link rel="stylesheet" href="../style.css">
+    <!-- Fuente Unbounded de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
+        :root {
+            --earth-light: #e6d3b3;
+            --earth-medium: #c2b280;
+            --earth-dark: #a68b5b;
+            --jungle-dark: #2e5339;
+            --jungle: #4e7c59;
+            --jungle-light: #7bb661;
+            --dark: var(--earth-dark);
+            --purple: var(--jungle);
+            --accent: #e8a238;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html,
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            max-width: 100vw;
             overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #af7927;
+            background-image: url("data:image/svg+xml;utf8,<svg width='80' height='80' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='20' cy='20' r='1.5' fill='%23c2b280' opacity='0.18'/><circle cx='0' cy='40' r='1.5' fill='%23e6d3b3' opacity='0.13'/><circle cx='40' cy='0' r='1.5' fill='%23a68b5b' opacity='0.10'/></svg>");
+            background-repeat: repeat;
+            color: #333;
+            font-family: 'Unbounded', sans-serif;
+            /* Aplica la fuente Unbounded */
         }
 
         /* Header */
         header {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(232, 162, 56, 0.2);
+            transition: all 0.3s ease;
         }
 
         .logo {
@@ -61,84 +85,310 @@
         }
 
         nav a {
-            color: #e8a238;
             text-decoration: none;
+            color: var(--jungle-dark);
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         nav a:hover {
-            color: #fff;
+            color: var(--accent);
         }
 
-        /* Main Content */
-        main {
-            margin-top: 80px;
-            min-height: 100vh;
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        nav a:hover::after {
+            width: 100%;
         }
 
         /* Hero Section */
-        .hero-saltena {
-            padding: 6rem 0 4rem;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+        .hero-section {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('../img/newmontañacasa.webp') no-repeat center center;
+            background-size: cover;
+            background-position: center 0;
+            background-attachment: scroll;
+            overflow: hidden;
+            transition: ease-in
+        }
+
+
+        /* @media (max-width: 768px) {
+            .hero-section {
+                height: 80vh;
+                background-position: 35% 0;
+                /* Mueve la imagen a la izquierda 
+        background-size: 450%;
+
+        /* Hace un pequeño zoom out 
+            }
+        } 
+        */
+
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(46, 83, 57, 0.45);
+            /* Color semitransparente (puedes cambiarlo) */
+            backdrop-filter: blur(4px);
+            /* Desenfoque (ajusta el valor si quieres más o menos blur) */
+            z-index: 1;
+            pointer-events: none;
+        }
+
+
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: #fff;
+            /* o var(--earth-light) */
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(232, 162, 56, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(232, 162, 56, 0.4);
+        }
+
+        /* Story Sections */
+        .story-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .story-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .story-content h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            color: var(--jungle-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .story-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-visual {
+            position: relative;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .story-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .story-visual:hover .story-image {
+            transform: scale(1.05);
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .story-visual:hover .image-overlay {
+            transform: translateY(0);
+        }
+
+        /* Mission Cards */
+        .mission-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .mission-card {
+            background: linear-gradient(135deg, var(--earth-light), var(--earth-medium));
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .mission-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .mission-year {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .mission-title {
+            font-size: 1.4rem;
+            color: var(--jungle-dark);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .mission-desc {
+            color: #666;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Connection Section */
+        .connection-section {
+            background: linear-gradient(135deg, var(--jungle-dark), var(--jungle));
+            color: white;
+            padding: 6rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .hero-saltena::before {
+        .connection-section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('../img/salteñas.png') center/cover;
-            opacity: 0.1;
-            z-index: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/><circle cx="20" cy="30" r="1" fill="white" opacity="0.05"/><circle cx="80" cy="70" r="1.5" fill="white" opacity="0.08"/></svg>');
+            animation: drift 20s linear infinite;
         }
 
-        .hero-content {
+        .connection-content {
+            max-width: 800px;
+            margin: 0 auto;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
-        .hero-saltena h1 {
-            font-size: 4rem;
-            color: #e8a238;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: #fff;
+        .connection-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .connection-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
             opacity: 0.9;
-            animation: fadeInUp 1s ease-out 0.2s both;
         }
 
-        .breadcrumb {
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease-out 0.4s both;
-        }
-
-        .breadcrumb a {
-            color: #e8a238;
+        .back-home {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--accent);
+            color: white;
             text-decoration: none;
-            margin-right: 0.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(232, 162, 56, 0.3);
         }
 
-        .breadcrumb span {
-            color: #ccc;
-            margin: 0 0.5rem;
+        .back-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(232, 162, 56, 0.4);
         }
 
         /* Animations */
@@ -154,326 +404,32 @@
             }
         }
 
-        /* Content Sections */
-        .content-section {
-            padding: 4rem 0;
-            background: #fff;
-            margin: 2rem 0;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
+        @keyframes drift {
+            from {
+                transform: translateX(-100px);
+            }
+
+            to {
+                transform: translateX(100px);
+            }
         }
 
-        .overline {
-            display: inline-block;
-            color: #e8a238;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-        }
 
-        .section-title {
-            font-size: 2.5rem;
-            color: #1a1a1a;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
 
-        .section-desc {
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        /* Historia Section */
-        .historia-saltena {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin: 3rem 0;
-        }
-
-        .historia-text h3 {
-            font-size: 2rem;
-            color: #1a1a1a;
-            margin-bottom: 1.5rem;
-        }
-
-        .historia-text p {
-            font-size: 1.1rem;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .historia-image {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        .historia-image img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
-
-        /* Ingredientes Section */
-        .ingredientes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .ingrediente-card {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .ingrediente-card:hover {
-            border-color: #e8a238;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(232, 162, 56, 0.2);
-        }
-
-        .ingrediente-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #e8a238;
-        }
-
-        .ingrediente-card h4 {
-            font-size: 1.3rem;
-            color: #1a1a1a;
-            margin-bottom: 1rem;
-        }
-
-        .ingrediente-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Proceso Section */
-        .proceso-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .step-card {
-            background: linear-gradient(135deg, #e8a238, #f4b942);
-            color: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .step-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: rotate(45deg);
-            transition: transform 0.3s ease;
-        }
-
-        .step-card:hover::before {
-            transform: rotate(45deg) translate(50%, 50%);
-        }
-
-        .step-number {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            opacity: 0.8;
-        }
-
-        .step-card h4 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .step-card p {
-            line-height: 1.6;
-            opacity: 0.9;
-        }
-
-        /* Valores Nutricionales */
-        .valores-nutricionales {
-            background: #f8f9fa;
-            padding: 3rem;
-            border-radius: 15px;
-            margin: 3rem 0;
-        }
-
-        .valores-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .valor-item {
-            text-align: center;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .valor-numero {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #e8a238;
-            margin-bottom: 0.5rem;
-        }
-
-        .valor-label {
-            color: #666;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            color: white;
-            text-align: center;
-            padding: 4rem 2rem;
-            border-radius: 20px;
-            margin: 4rem 0;
-        }
-
-        .cta-section h3 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #e8a238;
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .btn-pedido {
-            display: inline-block;
-            background: linear-gradient(135deg, #e8a238, #f4b942);
-            color: white;
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(232, 162, 56, 0.3);
-        }
-
-        .btn-pedido:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(232, 162, 56, 0.4);
-        }
-
-        /* Footer */
-        .footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 3rem 2rem 1rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            color: #e8a238;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #e8a238;
-        }
-
-        .footer-social {
-            margin-top: 1rem;
-        }
-
-        .footer-social a {
-            color: #ccc;
-            font-size: 1.5rem;
-            margin: 0 0.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-social a:hover {
-            color: #e8a238;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #333;
-            padding-top: 1rem;
-            color: #ccc;
-        }
-
-        /* Responsive Design */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .hero-saltena h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .historia-saltena {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
             header {
                 padding: 1rem;
             }
@@ -487,275 +443,233 @@
                 gap: 1rem;
             }
 
-            .container {
-                padding: 0 1rem;
+            nav a {
+                font-size: 0.9rem;
+            }
+
+            .hero-section {
+                height: 100vh;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .story-visual {
+                height: 300px;
+            }
+
+            .mission-timeline {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .story-section {
+                padding: 3rem 1rem;
+            }
+
+            .connection-section {
+                padding: 4rem 1rem;
+            }
+        }
+
+     
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .clic-indicador {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            font-size: 2.2rem;
+            color: #fff;
+            background: rgba(46, 83, 57, 0.65);
+            border-radius: 50%;
+            padding: 0.5rem 0.6rem;
+            z-index: 3;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+            animation: pulse-clic 2.2s infinite ease-in-out;
+            display: none;
+        }
+
+        @keyframes pulse-clic {
+            0% {
+                transform: scale(1);
+            }
+
+            60% {
+                transform: scale(1.18);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .clic-indicador {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .story-visual .image-overlay {
+                pointer-events: none;
+                transition: transform 0.3s;
+            }
+
+            .story-visual.overlay-visible .image-overlay {
+                transform: translateY(0);
+                pointer-events: auto;
+            }
+
+            .story-visual .image-overlay {
+                /* Oculto por defecto en móvil */
+                transform: translateY(100%);
             }
         }
     </style>
 </head>
 
 <body>
+
     <header>
-        <div class="logo">
-            <img src="../img/lachiquitanaLogo.png" alt="La Chiquitana Logo">
+        <div class="logo" style="width: 150px; height: 50px;">
+            <a href="../index.html"><img src="../img/lachiquitanaLogo.webp"" alt=" La Chiquitana"></a>
         </div>
         <nav>
-            <ul>
-                <li><a href="../index.html">Inicio</a></li>
-                <li><a href="#productos">Productos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+            <ul role="list">
+                <li><a href="index.html#about-hero">Sobre Nosotros</a></li>
+                <li><a href="index.html#productos-hero">Productos</a></li>
+                <li><a href="index.html#historia-hero">Historia</a></li>
+                <li><a href="index.html#contacto-hero">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
+    <!-- SOLO TE MUESTRO EL <body> CAMBIADO PARA NO REPETIRTE TODO -->
+
+    <body>
+
+        <header>
+            <div class="logo" style="width: 150px; height: 50px;">
+                <a href="../index.html"><img src="../img/lachiquitanaLogo.webp" alt="La Chiquitana"></a>
+            </div>
+            <nav>
+                <ul role="list">
+                    <li><a href="../index.html#about-hero">Sobre Nosotros</a></li>
+                    <li><a href="../index.html#productos-hero">Productos</a></li>
+                    <li><a href="../index.html#historia-hero">Historia</a></li>
+                    <li><a href="../index.html#contacto-hero">Contacto</a></li>
+                </ul>
+            </nav>
+        </header>
+
         <!-- Hero Section -->
-        <section class="hero-saltena">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="breadcrumb">
-                        <a href="../index.html">Inicio</a>
-                        <span>/</span>
-                        <a href="#productos">Productos</a>
-                        <span>/</span>
-                        <span>Salteñas</span>
-                    </div>
-                    <h1>Salteñas</h1>
-                    <p class="hero-subtitle">El sabor auténtico de Bolivia en cada bocado</p>
-                </div>
+        <section class="hero-section" style="background-image: url('../img/salteña.webp');">
+            <div class="hero-content">
+                <h1 class="hero-title">La Salteña Original</h1>
+                <p
+                    style="font-size:1.3rem; font-weight:400; margin-top:-0.7rem; margin-bottom:1.5rem; letter-spacing:0.03em; color:#e6d3b3; text-shadow:0 2px 8px rgba(0,0,0,0.13);">
+                    Receta auténtica de la cocinera de la Chiquitanía
+                </p>
+                <p class="hero-subtitle">Un viaje de sabor desde Santa Cruz hasta tu paladar</p>
+                <a href="#receta" class="hero-cta">Descubre el secreto</a>
             </div>
         </section>
 
-        <!-- Historia Section -->
-        <section class="content-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="overline">Tradición Boliviana</span>
-                    <h2 class="section-title">La Historia de Nuestras Salteñas</h2>
-                    <p class="section-desc">
-                        Las salteñas son mucho más que una simple empanada. Son el corazón de la gastronomía boliviana,
-                        un legado culinario que ha pasado de generación en generación en nuestra familia chiquitana.
-                    </p>
-                </div>
-
-                <div class="historia-saltena">
-                    <div class="historia-text">
-                        <h3>Un Legado de Sabor</h3>
-                        <p>
-                            Nuestras salteñas siguen la receta original de doña Carmen, quien las preparaba en su horno
-                            de barro
-                            en San José de Chiquitos desde 1952. Cada salteña es una obra de arte culinaria, con su masa
-                            dorada
-                            perfectamente sellada y su jugoso relleno que combina carne, papas, arvejas y ese toque
-                            especial de
-                            especias que solo conocen los maestros chiquitanos.
-                        </p>
-                        <p>
-                            Lo que hace únicas a nuestras salteñas es el equilibrio perfecto entre la textura crujiente
-                            de la masa
-                            y la suculencia del relleno. Cada bocado es una explosión de sabores que te transporta
-                            directamente
-                            a las cocinas tradicionales de la Chiquitanía boliviana.
-                        </p>
+        <!-- Origen Section -->
+        <section class="story-section" id="receta">
+            <div class="story-container">
+                <div class="story-grid scroll-animate">
+                    <div class="story-content">
+                        <h2>Una Receta con Raíces</h2>
+                        <p>Esta salteña nace del corazón de la Chiquitanía, con la sazón heredada de generaciones de
+                            cocineras que cocinaban con leña, amor y respeto por los ingredientes.</p>
+                        <p>La receta fue traída directamente por nuestra cocinera, nacida y criada entre las misiones
+                            jesuíticas y los aromas de la selva boliviana.</p>
                     </div>
-                    <div class="historia-image">
-                        <img src="../img/salteñas.png" alt="Salteñas tradicionales">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Ingredientes Section -->
-        <section class="content-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="overline">Ingredientes Premium</span>
-                    <h2 class="section-title">Los Secretos de Nuestras Salteñas</h2>
-                    <p class="section-desc">
-                        Cada ingrediente es cuidadosamente seleccionado para mantener la autenticidad y calidad que nos
-                        caracteriza
-                    </p>
-                </div>
-
-                <div class="ingredientes-grid">
-                    <div class="ingrediente-card">
-                        <div class="ingrediente-icon">🥩</div>
-                        <h4>Carne de Res Premium</h4>
-                        <p>Carne de res tierna y jugosa, cortada en cubos perfectos y condimentada con especias
-                            tradicionales bolivianas.</p>
-                    </div>
-                    <div class="ingrediente-card">
-                        <div class="ingrediente-icon">🥔</div>
-                        <h4>Papas Seleccionadas</h4>
-                        <p>Papas de primera calidad, cocidas al punto exacto para mantener su textura y sabor
-                            característico.</p>
-                    </div>
-                    <div class="ingrediente-card">
-                        <div class="ingrediente-icon">🟢</div>
-                        <h4>Arvejas Frescas</h4>
-                        <p>Arvejas tiernas que aportan color, textura y un toque dulce natural al relleno de nuestras
-                            salteñas.</p>
-                    </div>
-                    <div class="ingrediente-card">
-                        <div class="ingrediente-icon">🌶️</div>
-                        <h4>Especias Tradicionales</h4>
-                        <p>Mezcla secreta de especias chiquitanas: comino, pimentón, ají colorado y hierbas aromáticas.
-                        </p>
-                    </div>
-                    <div class="ingrediente-card">
-                        <div class="ingrediente-icon">🥚</div>
-                        <h4>Huevos Duros</h4>
-                        <p>Huevos frescos cocidos perfectamente, que añaden cremosidad y sabor al relleno tradicional.
-                        </p>
-                    </div>
-                    <div class="ingrediente-card">
-                        <div class="ingrediente-icon">🌾</div>
-                        <h4>Masa Artesanal</h4>
-                        <p>Masa preparada con harina de trigo de alta calidad, manteca y el toque dorado que las
-                            caracteriza.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Proceso Section -->
-        <section class="content-section">
-            <div class="container">
-                <div class="section-header">
-                    <span class="overline">Proceso Artesanal</span>
-                    <h2 class="section-title">Cómo Hacemos Nuestras Salteñas</h2>
-                    <p class="section-desc">
-                        Un proceso meticuloso que respeta la tradición chiquitana y garantiza la calidad en cada salteña
-                    </p>
-                </div>
-
-                <div class="proceso-steps">
-                    <div class="step-card">
-                        <div class="step-number">01</div>
-                        <h4>Preparación del Relleno</h4>
-                        <p>Comenzamos cocinando la carne con especias tradicionales, añadiendo papas, arvejas y huevos
-                            duros.
-                            El secreto está en el tiempo de cocción y el equilibrio de sabores.</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-number">02</div>
-                        <h4>Elaboración de la Masa</h4>
-                        <p>Preparamos la masa con harina de trigo, manteca y agua, amasando hasta conseguir la textura
-                            perfecta:
-                            elástica pero resistente, que no se rompa al sellar.</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-number">03</div>
-                        <h4>Formado y Sellado</h4>
-                        <p>Extendemos la masa, colocamos el relleno jugoso y sellamos con la técnica tradicional del
-                            repulgue,
-                            creando ese borde característico que evita que se derrame el caldo.</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-number">04</div>
-                        <h4>Horneado Perfecto</h4>
-                        <p>Horneamos a temperatura controlada hasta conseguir ese color dorado perfecto y la textura
-                            crujiente
-                            que contrasta con el relleno jugoso del interior.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Valores Nutricionales -->
-        <section class="content-section">
-            <div class="container">
-                <div class="valores-nutricionales">
-                    <div class="section-header">
-                        <span class="overline">Información Nutricional</span>
-                        <h2 class="section-title">Valores por Salteña</h2>
-                        <p class="section-desc">
-                            Una salteña no solo es deliciosa, también es nutritiva y balanceada
-                        </p>
-                    </div>
-
-                    <div class="valores-grid">
-                        <div class="valor-item">
-                            <div class="valor-numero">280</div>
-                            <div class="valor-label">Calorías</div>
-                        </div>
-                        <div class="valor-item">
-                            <div class="valor-numero">15g</div>
-                            <div class="valor-label">Proteínas</div>
-                        </div>
-                        <div class="valor-item">
-                            <div class="valor-numero">25g</div>
-                            <div class="valor-label">Carbohidratos</div>
-                        </div>
-                        <div class="valor-item">
-                            <div class="valor-numero">12g</div>
-                            <div class="valor-label">Grasas</div>
-                        </div>
-                        <div class="valor-item">
-                            <div class="valor-numero">3g</div>
-                            <div class="valor-label">Fibra</div>
-                        </div>
-                        <div class="valor-item">
-                            <div class="valor-numero">450mg</div>
-                            <div class="valor-label">Sodio</div>
+                    <div class="story-visual">
+                        <img src="../img/proceso1.webp" alt="Preparación de la salteña" class="story-image">
+                        <i class="fa-solid fa-circle-info clic-indicador"></i>
+                        <div class="image-overlay">
+                            <h3>Tradición Viva</h3>
+                            <p>Una receta guardada como un tesoro familiar</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <div class="container">
-                <h3>¿Listo para Probar Nuestras Salteñas?</h3>
-                <p>Haz tu pedido ahora y disfruta del auténtico sabor boliviano en tu mesa</p>
-                <a href="../index.html#contacto-hero" class="btn-pedido">Hacer Pedido</a>
+        <!-- Historia de Sabor -->
+        <section class="story-section" id="sabores">
+            <div class="story-container">
+                <div class="story-grid scroll-animate">
+                    <div class="story-visual">
+                        <img src="../img/salteñas.webp" alt="Salteña recién horneada" class="story-image">
+                        <i class="fa-solid fa-circle-info clic-indicador"></i>
+                        <div class="image-overlay">
+                            <h3>Explosión de Sabores</h3>
+                            <p>Caldo espeso, carne jugosa, masa dorada y dulce picante</p>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <h2>¿Qué la hace especial?</h2>
+                        <p>Usamos los ingredientes originales: ají amarillo, papa criolla, aceituna negra y el toque
+                            secreto
+                            que solo la cocinera conoce.</p>
+                        <p>Cada mordisco cuenta una historia, cada bocado te lleva de vuelta a las cocinas humildes pero
+                            mágicas de la Chiquitanía.</p>
+                    </div>
+                </div>
+
+                <div class="mission-timeline scroll-animate">
+                    <div class="mission-card">
+                        <div class="mission-year">Ayer</div>
+                        <h3 class="mission-title">Heredada</h3>
+                        <p class="mission-desc">Aprendida a fuego lento, amasada con sabiduría de abuela.</p>
+                    </div>
+                    <div class="mission-card">
+                        <div class="mission-year">Hoy</div>
+                        <h3 class="mission-title">Artesanal</h3>
+                        <p class="mission-desc">Cada salteña se hace a mano, con respeto por la tradición.</p>
+                    </div>
+                    <div class="mission-card">
+                        <div class="mission-year">Mañana</div>
+                        <h3 class="mission-title">Compartida</h3>
+                        <p class="mission-desc">Nuestro sueño es que el mundo descubra este sabor tan nuestro.</p>
+                    </div>
+                </div>
             </div>
         </section>
-    </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <div class="footer-logo">
-                        <img src="../img/lachiquitanaLogo.png" alt="La Chiquitana Logo"
-                            style="width: 150px; height: 30px;">
-                    </div>
-                    <p>Llevando los sabores auténticos de la Chiquitanía boliviana a España</p>
-                    <div class="footer-social">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-
-                <div class="footer-column">
-                    <h3>Productos</h3>
-                    <ul class="footer-links">
-                        <li><a href="#productos">Salteñas</a></li>
-                        <li><a href="#productos">Empanadas</a></li>
-                        <li><a href="#productos">Cuñapé</a></li>
-                        <li><a href="#productos">Pan Batido</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-column">
-                    <h3>Contacto</h3>
-                    <ul class="footer-links">
-                        <li>Barcelona, España</li>
-                        <li>Tel: +34 XXX XXX XXX</li>
-                        <li>Email: info@lachiquitana.es</li>
-                        <li><a href="../index.html#contacto-hero">Hacer un pedido</a></li>
-                    </ul>
-                </div>
+        <!-- Conexión emocional -->
+        <section class="connection-section" id="conecta">
+            <div class="connection-content scroll-animate">
+                <h2 class="connection-title">Un abrazo boliviano en cada salteña</h2>
+                <p class="connection-text">
+                    Cada vez que la cocinera hornea estas salteñas, no solo prepara comida. Crea un puente entre su
+                    infancia
+                    en la Chiquitanía y tu mesa.
+                </p>
+                <p class="connection-text">
+                    Si cierras los ojos, puedes oler el carbón encendido, la masa recién amasada y el picante del ají
+                    mientras las campanas de la misión suenan a lo lejos.
+                </p>
+                <a href="../index.html" class="back-home">Vuelve al Inicio 🏠</a>
             </div>
+        </section>
+    </body>
 
-            <div class="footer-bottom">
-                <p>&copy; 2025 La Chiquitana. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
+
 </body>
 
 </html>
