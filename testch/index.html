@@ -121,8 +121,8 @@
                     </div> -->
                 </div>
                 <!-- Botón CTA fuera del container, más estrecho y centrado -->
-                <div class="cta-bajo-slider">
-                    <a href="./historia/historia.html" class="btn-ver-mas">Descubre más de qué es la Chiquitanía</a>
+                <div class="cta-bajo-slider" style="margin-top: 50px;">
+                    <a href="./historia/historia.html" class="btn-ver-mas">Descubre más</a>
                 </div>
             </section>
 
@@ -146,23 +146,22 @@
                 <div class="content-wrapper">
                     <div class="section-header">
                         <span class="overline">Sabores Auténticos</span>
-                        <h2 class="section-title">Nuestra Cocina Panadería</h2>
+                        <h2 class="section-title">Nuestra Cocina y Panadería</h2>
                         <p class="section-desc">
-                            Detrás de cada producto hay una historia, cada receta guarda los secretos de generaciones de
-                            maestros
-                            reposteros chiquitanos
+                            Descubre los sabores más representativos de la Chiquitanía boliviana, elaborados con recetas
+                            tradicionales y el cariño de nuestra familia.
                         </p>
                     </div>
 
                     <div class="productos-grid">
                         <div class="producto-card">
                             <div class="producto-image">
-                                <img src="./img/salteñas.webp" alt="Cuñapé tradicional">
+                                <img src="./img/salteñas.webp" alt="Salteñas">
                             </div>
                             <div class="producto-content">
                                 <h3>Salteñas</h3>
-                                <p>Pan de queso tradicional, esponjoso y aromático, preparado con queso fresco local y
-                                    almidón de yuca.</p>
+                                <p>La empanada jugosa y tradicional de Bolivia, rellena de carne, papa, huevo, aceituna
+                                    y un toque de ají. ¡Perfecta para el desayuno o la merienda!</p>
                                 <div class="producto-origin">Origen: Tradición Chiquitana</div>
                                 <a href="./productos/saltena.html" class="btn-ver-mas">Ver más</a>
                             </div>
@@ -170,42 +169,46 @@
 
                         <div class="producto-card">
                             <div class="producto-image">
-                                <img src="./img/maiz-empa.webp" alt="Empanadas de queso">
+                                <img src="./img/asadito.webp" alt="Asadito">
                             </div>
                             <div class="producto-content">
-                                <h3>Empanadas de Queso</h3>
-                                <p>Masa crujiente rellena de queso fresco derretido, horneadas según la receta ancestral
-                                    de las misiones.</p>
-                                <div class="producto-origin">Origen: Misiones Jesuíticas</div>
-                                <a href="productos.html" class="btn-ver-mas">Ver más</a>
-                            </div>
-                        </div>
-
-                        <div class="producto-card">
-                            <div class="producto-image">
-                                <img src="./img/maiz-empa.webp" alt="Rosquitas de maíz">
-                            </div>
-                            <div class="producto-content">
-                                <h3>Rosquitas de Maíz</h3>
-                                <p>Deliciosas galletas crujientes hechas con harina de maíz tostado, endulzadas con miel
-                                    de caña local.</p>
+                                <h3>Asadito</h3>
+                                <p>Delicioso pastel de carne de res y cerdo, condimentado con especias y cocido al
+                                    horno. Un clásico de las fiestas y reuniones familiares.</p>
                                 <div class="producto-origin">Origen: Receta Familiar</div>
-                                <a href="./productos/productos.html" class="btn-ver-mas">Ver más</a>
+                                <a href="./productos/productos.html#asadito" class="btn-ver-mas">Ver más</a>
                             </div>
                         </div>
 
                         <div class="producto-card">
                             <div class="producto-image">
-                                <img src="./img/maiz-empa.webp" alt="Pan batido">
+                                <img src="./img/cuñape.webp" alt="Cuñapé">
                             </div>
                             <div class="producto-content">
-                                <h3>Pan Batido</h3>
-                                <p>Pan dulce esponjoso con toques de anís y canela, perfecto para acompañar el mate o
-                                    café de la tarde.</p>
-                                <div class="producto-origin">Origen: Tradición Colonial</div>
-                                <a href="productos.html" class="btn-ver-mas">Ver más</a>
+                                <h3>Cuñapé</h3>
+                                <p>Panecillo de queso típico de Santa Cruz, elaborado con almidón de yuca y queso
+                                    fresco. Crujiente por fuera y suave por dentro.</p>
+                                <div class="producto-origin">Origen: Oriente Boliviano</div>
+                                <a href="./productos/productos.html#cunape" class="btn-ver-mas">Ver más</a>
                             </div>
                         </div>
+
+                        <div class="producto-card">
+                            <div class="producto-image">
+                                <img src="./img/tortitamaiz.webp" alt="Tamal">
+                            </div>
+                            <div class="producto-content">
+                                <h3>Empanada de Maíz</h3>
+                                <p>Empanada de maíz rellena de queso fresco, suave y cremosa, envuelta en hojas de
+                                    plátano y cocida al vapor. Un clásico reconfortante de la tradición chiquitana.</p>
+                                <div class="producto-origin">Origen: Tradición Chiquitana</div>
+                                <a href="./productos/productos.html#tamal" class="btn-ver-mas">Ver más</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Botón debajo del grid -->
+                    <div style="display:flex; justify-content:center; margin-top:2.5rem;">
+                        <a href="./productos/productos.html" class="btn-ver-mas">Ver productos</a>
                     </div>
                 </div>
             </section>
@@ -619,7 +622,7 @@
     }
 
     .cta-bajo-slider .btn-ver-mas {
-        max-width: 320px;
+        max-width: 350px;
         width: 100%;
         text-align: center;
         padding-left: 2rem;
