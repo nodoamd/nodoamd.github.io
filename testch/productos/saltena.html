@@ -474,7 +474,7 @@
             }
         }
 
-     
+
         @keyframes spin {
             0% {
                 transform: rotate(0deg);
@@ -537,24 +537,32 @@
             }
         }
 
-        /* Professional Section - ARREGLADA */
         .professional-section {
             background: linear-gradient(120deg, #fff 60%, #e6d3b3 100%);
             padding: 6rem 2rem 4rem 2rem;
-            min-height: auto;
         }
 
         .content-wrapper {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-wrap: wrap;
             gap: 4rem;
-            align-items: center;
+            align-items: stretch;
+        }
+
+        .content-left,
+        .content-right {
+            flex: 1 1 340px;
+            min-width: 320px;
+            box-sizing: border-box;
         }
 
         .content-left {
             padding-right: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .content-left h2 {
@@ -577,13 +585,17 @@
             list-style: none;
             padding: 0;
             margin: 0 0 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem 2.5rem;
         }
 
         .feature-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 1.2rem;
-            gap: 1rem;
+            gap: 0.7rem;
+            min-width: 220px;
+            font-size: 1.05rem;
         }
 
         .feature-icon {
@@ -621,6 +633,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: flex-start;
         }
 
         .main-image {
@@ -672,41 +685,66 @@
             color: #666;
         }
 
-        @media (max-width: 1200px) {
+        @media (max-width: 1100px) {
             .content-wrapper {
-                max-width: 98vw;
+                flex-direction: column;
                 gap: 3rem;
             }
 
+            .content-left,
+            .content-right {
+                min-width: 0;
+                width: 100%;
+                padding-right: 0;
+            }
+
             .content-left {
-                padding-right: 1.5rem;
+                text-align: center;
+                align-items: center;
+            }
+
+            .feature-list {
+                flex-direction: column;
+                gap: 1.2rem 0;
+                align-items: center;
+            }
+
+            .feature-item {
+                justify-content: center;
+                min-width: 0;
+            }
+
+            .main-image {
+                height: 220px;
             }
 
             .stats-grid {
+                grid-template-columns: 1fr 1fr;
                 max-width: 100%;
             }
         }
 
-        @media (max-width: 900px) {
-            .content-wrapper {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-                max-width: 100vw;
-            }
-
-            .content-left {
-                padding-right: 0;
-                text-align: center;
-            }
-
+        @media (max-width: 700px) {
             .stats-grid {
-                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-columns: 1fr;
+            }
+
+            .main-image {
+                height: 180px;
             }
         }
 
         @media (max-width: 600px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
+            .professional-section {
+                padding: 3rem 0.5rem 2rem 0.5rem;
+            }
+
+            .content-left h2 {
+                font-size: 2rem;
+            }
+
+            .main-image {
+                height: 240px;
             }
         }
     </style>
@@ -796,23 +834,27 @@
                     </div>
                     <div class="story-content">
                         <h2>¿Qué la hace especial?</h2>
-                        <p>Usamos los ingredientes originales: ají amarillo, papa criolla, aceituna negra y el toque secreto que solo la cocinera conoce.</p>
-                        <p>Cada mordisco cuenta una historia, cada bocado te lleva de vuelta a las cocinas humildes pero mágicas de la Chiquitanía.</p>
+                        <p>Usamos los ingredientes originales: ají amarillo, papa criolla, aceituna negra y el toque
+                            secreto que solo la cocinera conoce.</p>
+                        <p>Cada mordisco cuenta una historia, cada bocado te lleva de vuelta a las cocinas humildes pero
+                            mágicas de la Chiquitanía.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sección profesional estilo Fortune 500 / Dribbble -->
         <section class="professional-section">
             <div class="content-wrapper">
                 <div class="content-left">
                     <h2>Calidad, Innovación y Confianza</h2>
-                    <p>En La Chiquitana, fusionamos la tradición con los más altos estándares de calidad. Cada salteña es elaborada bajo procesos controlados, con ingredientes seleccionados y un equipo comprometido con la excelencia.</p>
+                    <p>En La Chiquitana, fusionamos la tradición con los más altos estándares de calidad. Cada salteña
+                        es elaborada bajo procesos controlados, con ingredientes seleccionados y un equipo comprometido
+                        con la excelencia.</p>
                     <ul class="feature-list">
                         <li class="feature-item">
                             <i class="fa-solid fa-check-circle feature-icon"></i>
-                            <span class="feature-text">Certificación de calidad alimentaria y trazabilidad de ingredientes</span>
+                            <span class="feature-text">Certificación de calidad alimentaria y trazabilidad de
+                                ingredientes</span>
                         </li>
                         <li class="feature-item">
                             <i class="fa-solid fa-check-circle feature-icon"></i>
@@ -853,10 +895,12 @@
             <div class="connection-content scroll-animate">
                 <h2 class="connection-title">Un abrazo boliviano en cada salteña</h2>
                 <p class="connection-text">
-                    Cada vez que la cocinera hornea estas salteñas, no solo prepara comida. Crea un puente entre su infancia en la Chiquitanía y tu mesa.
+                    Cada vez que la cocinera hornea estas salteñas, no solo prepara comida. Crea un puente entre su
+                    infancia en la Chiquitanía y tu mesa.
                 </p>
                 <p class="connection-text">
-                    Si cierras los ojos, puedes oler el carbón encendido, la masa recién amasada y el picante del ají mientras las campanas de la misión suenan a lo lejos.
+                    Si cierras los ojos, puedes oler el carbón encendido, la masa recién amasada y el picante del ají
+                    mientras las campanas de la misión suenan a lo lejos.
                 </p>
                 <a href="../index.html" class="back-home">Vuelve al Inicio 🏠</a>
             </div>

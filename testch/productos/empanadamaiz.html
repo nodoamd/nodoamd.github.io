@@ -310,12 +310,12 @@
             z-index: 2;
         }
 
-        /* Professional Section - ARREGLADA */
+
         .professional-section {
             background: linear-gradient(120deg, #fff 60%, #e6d3b3 100%);
             padding: 6rem 2rem 4rem 2rem;
-            min-height: auto;
         }
+
 
         .content-wrapper {
             max-width: 1200px;
@@ -640,10 +640,6 @@
                 transform: translateY(100%);
             }
 
-            /* Professional Section Mobile */
-            .professional-section {
-                padding: 4rem 1rem;
-            }
 
             .content-wrapper {
                 grid-template-columns: 1fr;
@@ -675,6 +671,20 @@
 
             .main-image {
                 height: 250px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .professional-section {
+                padding: 3rem 0.5rem 2rem 0.5rem;
+            }
+
+            .content-left h2 {
+                font-size: 2rem;
+            }
+
+            .main-image {
+                height: 240px;
             }
         }
     </style>
@@ -772,49 +782,51 @@
         </div>
     </section>
 
-   <section class="professional-section">
-    <div class="content-wrapper">
-        <div class="content-left">
-            <h2>Calidad, Innovación y Confianza</h2>
-            <p>En La Chiquitana, fusionamos la tradición con los más altos estándares de calidad...</p>
-            <ul class="feature-list">
-                <li class="feature-item">
-                    <i class="fa-solid fa-check-circle feature-icon"></i>
-                    <span class="feature-text">Certificación de calidad alimentaria...</span>
-                </li>
-                <li class="feature-item">
-                    <i class="fa-solid fa-check-circle feature-icon"></i>
-                    <span class="feature-text">Producción sostenible y empaques ecológicos</span>
-                </li>
-                <li class="feature-item">
-                    <i class="fa-solid fa-check-circle feature-icon"></i>
-                    <span class="feature-text">Reserva tu pedido y recógelo en nuestro local</span>
-                </li>
-            </ul>
-            <a href="../index.html#contacto-hero" class="cta-button">Reserva tu pedido para recoger</a>
-        </div>
-        <div class="content-right">
-            <img src="../img/tortitamaiz.webp" alt="Empanada de maíz profesional" class="main-image">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fa-solid fa-award"></i></div>
-                    <div class="stat-value">+10 años</div>
-                    <div class="stat-label">de experiencia</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fa-solid fa-leaf"></i></div>
-                    <div class="stat-value">100% natural</div>
-                    <div class="stat-label">sin aditivos</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fa-solid fa-store"></i></div>
-                    <div class="stat-value">Recogida local</div>
-                    <div class="stat-label">Reserva y ven a buscarlo</div>
+    <section class="professional-section">
+        <div class="content-wrapper">
+            <div class="content-left">
+                <h2>Calidad, Innovación y Confianza</h2>
+                <p>En La Chiquitana, fusionamos la tradición con los más altos estándares de calidad...</p>
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <i class="fa-solid fa-check-circle feature-icon"></i>
+                        <span class="feature-text">Certificación de calidad alimentaria...</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fa-solid fa-check-circle feature-icon"></i>
+                        <span class="feature-text">Producción sostenible y empaques ecológicos</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fa-solid fa-check-circle feature-icon"></i>
+                        <span class="feature-text">Reserva tu pedido y recógelo en nuestro local</span>
+                    </li>
+                </ul>
+                <a href="../index.html#contacto-hero" class="cta-button">Reserva tu pedido para recoger</a>
+            </div>
+            <div class="content-right">
+                <img src="../img/tortitamaiz.webp" alt="Empanada de maíz profesional" class="main-image">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-award"></i></div>
+                        <div class="stat-value">+10 años</div>
+                        <div class="stat-label">de experiencia</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-leaf"></i></div>
+                        <div class="stat-value">100% natural</div>
+                        <div class="stat-label">sin aditivos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-store"></i></div>
+                        <div class="stat-value">Recogida local</div>
+                        <div class="stat-label">Reserva y ven a buscarlo</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+
 
 
     <!-- Conexión emocional -->
