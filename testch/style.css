@@ -482,6 +482,9 @@ img {
     }
 }
 
+.hero{
+    margin-bottom: 0px !important;
+}
 
 @media (max-width: 900px) {
     .images img {
