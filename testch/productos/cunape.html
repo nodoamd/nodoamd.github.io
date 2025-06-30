@@ -4,12 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Cuñapé - La Chiquitana</title>
+    <title>Historia de la Chiquitanía - La Chiquitana</title>
+
+    <!-- Favicon -->
     <link rel="icon" href="./img/lachiquitanaLogo.webp" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="180x180" href="./img/lachiquitanaLogo.webp">
     <link rel="stylesheet" href="../style.css">
+    <!-- Fuente Unbounded de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
     <style>
         :root {
             --earth-light: #e6d3b3;
@@ -533,24 +537,32 @@
             }
         }
 
-        /* Professional Section - ARREGLADA */
         .professional-section {
             background: linear-gradient(120deg, #fff 60%, #e6d3b3 100%);
             padding: 6rem 2rem 4rem 2rem;
-            min-height: auto;
         }
 
         .content-wrapper {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-wrap: wrap;
             gap: 4rem;
-            align-items: center;
+            align-items: stretch;
+        }
+
+        .content-left,
+        .content-right {
+            flex: 1 1 340px;
+            min-width: 320px;
+            box-sizing: border-box;
         }
 
         .content-left {
             padding-right: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .content-left h2 {
@@ -573,13 +585,17 @@
             list-style: none;
             padding: 0;
             margin: 0 0 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem 2.5rem;
         }
 
         .feature-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 1.2rem;
-            gap: 1rem;
+            gap: 0.7rem;
+            min-width: 220px;
+            font-size: 1.05rem;
         }
 
         .feature-icon {
@@ -617,6 +633,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: flex-start;
         }
 
         .main-image {
@@ -668,181 +685,220 @@
             color: #666;
         }
 
-        @media (max-width: 1200px) {
+        @media (max-width: 1100px) {
             .content-wrapper {
-                max-width: 98vw;
+                flex-direction: column;
                 gap: 3rem;
             }
 
+            .content-left,
+            .content-right {
+                min-width: 0;
+                width: 100%;
+                padding-right: 0;
+            }
+
             .content-left {
-                padding-right: 1.5rem;
+                text-align: center;
+                align-items: center;
+            }
+
+            .feature-list {
+                flex-direction: column;
+                gap: 1.2rem 0;
+                align-items: center;
+            }
+
+            .feature-item {
+                justify-content: center;
+                min-width: 0;
+            }
+
+            .main-image {
+                height: 220px;
             }
 
             .stats-grid {
+                grid-template-columns: 1fr 1fr;
                 max-width: 100%;
             }
         }
 
-        @media (max-width: 900px) {
-            .content-wrapper {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-                max-width: 100vw;
-            }
-
-            .content-left {
-                padding-right: 0;
-                text-align: center;
-            }
-
+        @media (max-width: 700px) {
             .stats-grid {
-                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-columns: 1fr;
+            }
+
+            .main-image {
+                height: 180px;
             }
         }
 
         @media (max-width: 600px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
+            .professional-section {
+                padding: 3rem 0.5rem 2rem 0.5rem;
+            }
+
+            .content-left h2 {
+                font-size: 2rem;
+            }
+
+            .main-image {
+                height: 240px;
             }
         }
     </style>
 </head>
 
 <body>
+
     <header>
         <div class="logo" style="width: 150px; height: 50px;">
-            <a href="../index.html"><img src="../img/lachiquitanaLogo.webp" alt="La Chiquitana"></a>
+            <a href="../index.html"><img src="../img/lachiquitanaLogo.webp"" alt=" La Chiquitana"></a>
         </div>
         <nav>
             <ul role="list">
-                <li><a href="../index.html#about-hero">Sobre Nosotros</a></li>
-                <li><a href="../index.html#productos-hero">Productos</a></li>
-                <li><a href="../index.html#historia-hero">Historia</a></li>
-                <li><a href="../index.html#contacto-hero">Contacto</a></li>
+                <li><a href="index.html#about-hero">Sobre Nosotros</a></li>
+                <li><a href="index.html#productos-hero">Productos</a></li>
+                <li><a href="index.html#historia-hero">Historia</a></li>
+                <li><a href="index.html#contacto-hero">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-section" style="background-image: url('../img/cuñape.webp');">
-        <div class="hero-content">
-            <h1 class="hero-title">El Cuñapé Auténtico</h1>
-            <p
-                style="font-size:1.3rem; font-weight:400; margin-top:-0.7rem; margin-bottom:1.5rem; letter-spacing:0.03em; color:#e6d3b3; text-shadow:0 2px 8px rgba(0,0,0,0.13);">
-                Tradición del oriente boliviano en cada bocado
-            </p>
-            <p class="hero-subtitle">Crujiente por fuera, suave por dentro</p>
-            <a href="#receta" class="hero-cta">Descubre el secreto</a>
-        </div>
-    </section>
+    <!-- SOLO TE MUESTRO EL <body> CAMBIADO PARA NO REPETIRTE TODO -->
 
-    <!-- Origen Section -->
-    <section class="story-section" id="receta">
-        <div class="story-container">
-            <div class="story-grid scroll-animate">
-                <div class="story-content">
-                    <h2>Raíces y Sabor</h2>
-                    <p>El Cuñapé es el panecillo de queso más querido del oriente boliviano. Su receta, sencilla y
-                        natural, ha acompañado desayunos y meriendas de generaciones.</p>
-                    <p>Elaborado con almidón de yuca y queso fresco, es símbolo de hospitalidad y tradición familiar.
-                    </p>
-                </div>
-                <div class="story-visual">
-                    <img src="../img/proceso1.webp" alt="Preparación del cuñapé" class="story-image">
-                    <i class="fa-solid fa-circle-info clic-indicador"></i>
-                    <div class="image-overlay">
-                        <h3>Receta Tradicional</h3>
-                        <p>Hecho a mano, con ingredientes frescos y locales</p>
-                    </div>
-                </div>
+    <body>
+
+        <header>
+            <div class="logo" style="width: 150px; height: 50px;">
+                <a href="../index.html"><img src="../img/lachiquitanaLogo.webp" alt="La Chiquitana"></a>
             </div>
-        </div>
-    </section>
-
-    <!-- Historia de Sabor -->
-    <section class="story-section" id="sabores">
-        <div class="story-container">
-            <div class="story-grid scroll-animate">
-                <div class="story-visual">
-                    <img src="../img/cuñape.webp" alt="Cuñapé recién horneado" class="story-image">
-                    <i class="fa-solid fa-circle-info clic-indicador"></i>
-                    <div class="image-overlay">
-                        <h3>Textura y Aroma</h3>
-                        <p>Exterior dorado, interior esponjoso y aroma a queso</p>
-                    </div>
-                </div>
-                <div class="story-content">
-                    <h2>¿Por qué es especial?</h2>
-                    <p>El Cuñapé es naturalmente libre de gluten, nutritivo y delicioso. Cada bolita es una explosión de
-                        sabor y tradición.</p>
-                    <p>Perfecto para acompañar café, mate o simplemente disfrutarlo solo, recién salido del horno.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección profesional ARREGLADA -->
-    <section class="professional-section">
-        <div class="content-wrapper">
-            <div class="content-left">
-                <h2>Calidad, Innovación y Confianza</h2>
-                <p>En La Chiquitana, fusionamos la tradición con los más altos estándares de calidad. Cada salteña
-                    es elaborada bajo procesos controlados, con ingredientes seleccionados y un equipo comprometido
-                    con la excelencia.</p>
-                <ul class="feature-list">
-                    <li class="feature-item">
-                        <i class="fa-solid fa-check-circle feature-icon"></i>
-                        <span class="feature-text">Certificación de calidad alimentaria y trazabilidad de
-                            ingredientes</span>
-                    </li>
-                    <li class="feature-item">
-                        <i class="fa-solid fa-check-circle feature-icon"></i>
-                        <span class="feature-text">Producción sostenible y empaques ecológicos</span>
-                    </li>
-                    <li class="feature-item">
-                        <i class="fa-solid fa-check-circle feature-icon"></i>
-                        <span class="feature-text">Reserva tu pedido y recógelo en nuestro local</span>
-                    </li>
+            <nav>
+                <ul role="list">
+                    <li><a href="../index.html#about-hero">Sobre Nosotros</a></li>
+                    <li><a href="../index.html#productos-hero">Productos</a></li>
+                    <li><a href="../index.html#historia-hero">Historia</a></li>
+                    <li><a href="../index.html#contacto-hero">Contacto</a></li>
                 </ul>
-                <a href="../index.html#contacto-hero" class="cta-button">Reserva tu pedido para recoger</a>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section" style="background-image: url('../img/cuñape.webp');">
+            <div class="hero-content">
+                <h1 class="hero-title">El Cuñapé Original</h1>
+                <p
+                    style="font-size:1.3rem; font-weight:400; margin-top:-0.7rem; margin-bottom:1.5rem; letter-spacing:0.03em; color:#e6d3b3; text-shadow:0 2px 8px rgba(0,0,0,0.13);">
+                    Receta auténtica de la Chiquitanía boliviana
+                </p>
+                <p class="hero-subtitle">Sabor a hogar, tradición y queso fresco</p>
+                <a href="#receta" class="hero-cta">Descubre el secreto</a>
             </div>
-            <div class="content-right">
-                <img src="../img/cuñape.webp" alt="Salteñas profesionales" class="main-image">
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon"><i class="fa-solid fa-award"></i></div>
-                        <div class="stat-value">+10 años</div>
-                        <div class="stat-label">de experiencia</div>
+        </section>
+
+        <!-- Origen Section -->
+        <section class="story-section" id="receta">
+            <div class="story-container">
+                <div class="story-grid scroll-animate">
+                    <div class="story-content">
+                        <h2>Raíces y Tradición</h2>
+                        <p>El cuñapé es un panecillo de queso típico del oriente boliviano, preparado con almidón de yuca y queso fresco. Es un símbolo de la cultura chiquitana y de la hospitalidad de sus pueblos.</p>
+                        <p>Su receta ha pasado de generación en generación, acompañando desayunos, meriendas y celebraciones familiares.</p>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-icon"><i class="fa-solid fa-leaf"></i></div>
-                        <div class="stat-value">100% natural</div>
-                        <div class="stat-label">sin aditivos</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon"><i class="fa-solid fa-store"></i></div>
-                        <div class="stat-value">Recogida local</div>
-                        <div class="stat-label">Reserva y ven a buscarlo</div>
+                    <div class="story-visual">
+                        <img src="../img/proceso1.webp" alt="Preparación del cuñapé" class="story-image">
+                        <i class="fa-solid fa-circle-info clic-indicador"></i>
+                        <div class="image-overlay">
+                            <h3>Tradición Viva</h3>
+                            <p>Elaborado con queso fresco y almidón de yuca</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Conexión emocional -->
-    <section class="connection-section" id="conecta">
-        <div class="connection-content scroll-animate">
-            <h2 class="connection-title">Un sabor que une familias</h2>
-            <p class="connection-text">
-                Cada cuñapé es un abrazo del oriente boliviano, una invitación a compartir y disfrutar de la sencillez y
-                el cariño de nuestra tierra.
-            </p>
-            <p class="connection-text">
-                Al probarlo, sentirás la calidez del hogar y la alegría de las reuniones familiares.
-            </p>
-            <a href="../index.html" class="back-home">Vuelve al Inicio 🏠</a>
-        </div>
-    </section>
+        <!-- Historia de Sabor -->
+        <section class="story-section" id="sabores">
+            <div class="story-container">
+                <div class="story-grid scroll-animate">
+                    <div class="story-visual">
+                        <img src="../img/cuñape.webp" alt="Cuñapé recién horneado" class="story-image">
+                        <i class="fa-solid fa-circle-info clic-indicador"></i>
+                        <div class="image-overlay">
+                            <h3>Textura y Sabor</h3>
+                            <p>Exterior dorado, interior suave y aroma a queso</p>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <h2>¿Por qué es especial?</h2>
+                        <p>El cuñapé es naturalmente libre de gluten, nutritivo y delicioso. Cada bolita es una explosión de sabor y tradición.</p>
+                        <p>Perfecto para acompañar café, mate o simplemente disfrutarlo solo, recién salido del horno.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="professional-section">
+            <div class="content-wrapper">
+                <div class="content-left">
+                    <h2>Calidad, Innovación y Confianza</h2>
+                    <p>En La Chiquitana, fusionamos la tradición con los más altos estándares de calidad. Cada cuñapé es elaborado bajo procesos controlados, con ingredientes seleccionados y un equipo comprometido con la excelencia.</p>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fa-solid fa-check-circle feature-icon"></i>
+                            <span class="feature-text">Certificación de calidad alimentaria y trazabilidad de ingredientes</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fa-solid fa-check-circle feature-icon"></i>
+                            <span class="feature-text">Producción sostenible y empaques ecológicos</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fa-solid fa-check-circle feature-icon"></i>
+                            <span class="feature-text">Reserva tu pedido y recógelo en nuestro local</span>
+                        </li>
+                    </ul>
+                    <a href="../index.html#contacto-hero" class="cta-button">Reserva tu pedido para recoger</a>
+                </div>
+                <div class="content-right">
+                    <img src="../img/cuñape.webp" alt="Cuñapé profesional" class="main-image">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fa-solid fa-award"></i></div>
+                            <div class="stat-value">+10 años</div>
+                            <div class="stat-label">de experiencia</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fa-solid fa-leaf"></i></div>
+                            <div class="stat-value">100% natural</div>
+                            <div class="stat-label">sin aditivos</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fa-solid fa-store"></i></div>
+                            <div class="stat-value">Recogida local</div>
+                            <div class="stat-label">Reserva y ven a buscarlo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conexión emocional -->
+        <section class="connection-section" id="conecta">
+            <div class="connection-content scroll-animate">
+                <h2 class="connection-title">Un sabor que une familias</h2>
+                <p class="connection-text">
+                    Cada cuñapé es un abrazo del oriente boliviano, una invitación a compartir y disfrutar de la sencillez y el cariño de nuestra tierra.
+                </p>
+                <p class="connection-text">
+                    Al probarlo, sentirás la calidez del hogar y la alegría de las reuniones familiares.
+                </p>
+                <a href="../index.html" class="back-home">Vuelve al Inicio 🏠</a>
+            </div>
+        </section>
+    </body>
+
+
 </body>
 
 </html>

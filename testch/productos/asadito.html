@@ -534,24 +534,32 @@
             }
         }
 
-        /* Sección profesional - ARREGLADA */
         .professional-section {
             background: linear-gradient(120deg, #fff 60%, #e6d3b3 100%);
             padding: 6rem 2rem 4rem 2rem;
-            min-height: auto;
         }
 
         .content-wrapper {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-wrap: wrap;
             gap: 4rem;
-            align-items: center;
+            align-items: stretch;
+        }
+
+        .content-left,
+        .content-right {
+            flex: 1 1 340px;
+            min-width: 320px;
+            box-sizing: border-box;
         }
 
         .content-left {
             padding-right: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .content-left h2 {
@@ -574,13 +582,17 @@
             list-style: none;
             padding: 0;
             margin: 0 0 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem 2.5rem;
         }
 
         .feature-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 1.2rem;
-            gap: 1rem;
+            gap: 0.7rem;
+            min-width: 220px;
+            font-size: 1.05rem;
         }
 
         .feature-icon {
@@ -618,6 +630,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: flex-start;
         }
 
         .main-image {
@@ -669,41 +682,66 @@
             color: #666;
         }
 
-        @media (max-width: 1200px) {
+        @media (max-width: 1100px) {
             .content-wrapper {
-                max-width: 98vw;
+                flex-direction: column;
                 gap: 3rem;
             }
 
+            .content-left,
+            .content-right {
+                min-width: 0;
+                width: 100%;
+                padding-right: 0;
+            }
+
             .content-left {
-                padding-right: 1.5rem;
+                text-align: center;
+                align-items: center;
+            }
+
+            .feature-list {
+                flex-direction: column;
+                gap: 1.2rem 0;
+                align-items: center;
+            }
+
+            .feature-item {
+                justify-content: center;
+                min-width: 0;
+            }
+
+            .main-image {
+                height: 220px;
             }
 
             .stats-grid {
+                grid-template-columns: 1fr 1fr;
                 max-width: 100%;
             }
         }
 
-        @media (max-width: 900px) {
-            .content-wrapper {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-                max-width: 100vw;
-            }
-
-            .content-left {
-                padding-right: 0;
-                text-align: center;
-            }
-
+        @media (max-width: 700px) {
             .stats-grid {
-                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-columns: 1fr;
+            }
+
+            .main-image {
+                height: 180px;
             }
         }
 
         @media (max-width: 600px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
+            .professional-section {
+                padding: 3rem 0.5rem 2rem 0.5rem;
+            }
+
+            .content-left h2 {
+                font-size: 2rem;
+            }
+
+            .main-image {
+                height: 240px;
             }
         }
     </style>
@@ -727,12 +765,12 @@
     <!-- Hero Section -->
     <section class="hero-section" style="background-image: url('../img/asadito.webp');">
         <div class="hero-content">
-            <h1 class="hero-title">El Asadito Tradicional</h1>
+            <h1 class="hero-title">Asadito Chiquitano</h1>
             <p
                 style="font-size:1.3rem; font-weight:400; margin-top:-0.7rem; margin-bottom:1.5rem; letter-spacing:0.03em; color:#e6d3b3; text-shadow:0 2px 8px rgba(0,0,0,0.13);">
-                Sabor auténtico de la Chiquitanía boliviana
+                El sabor auténtico de la tradición oriental
             </p>
-            <p class="hero-subtitle">Un clásico de las fiestas y reuniones familiares</p>
+            <p class="hero-subtitle">Carne jugosa, especias y aroma a leña</p>
             <a href="#receta" class="hero-cta">Descubre el secreto</a>
         </div>
     </section>
@@ -743,17 +781,17 @@
             <div class="story-grid scroll-animate">
                 <div class="story-content">
                     <h2>Raíces y Tradición</h2>
-                    <p>El Asadito es mucho más que un pastel de carne: es una receta que ha pasado de generación en
-                        generación, preparada en celebraciones y momentos especiales en la Chiquitanía.</p>
-                    <p>Su sabor intenso y su textura jugosa son el resultado de la mezcla de carnes, especias y el toque
-                        familiar que lo hace único.</p>
+                    <p>El asadito es un clásico de la gastronomía chiquitana, preparado con carne de res, condimentos
+                        naturales y cocido lentamente para lograr un sabor intenso y auténtico.</p>
+                    <p>Su receta es parte de la identidad de la región, compartida en fiestas, desayunos y reuniones
+                        familiares.</p>
                 </div>
                 <div class="story-visual">
-                    <img src="../img/proceso1.webp" alt="Preparación del asadito" class="story-image">
+                    <img src="../img/proceso1.webp" alt="Preparación del asadito chiquitano" class="story-image">
                     <i class="fa-solid fa-circle-info clic-indicador"></i>
                     <div class="image-overlay">
-                        <h3>Receta Familiar</h3>
-                        <p>Elaborado con dedicación y tradición artesanal</p>
+                        <h3>Tradición Viva</h3>
+                        <p>Carne seleccionada, especias y cocción lenta</p>
                     </div>
                 </div>
             </div>
@@ -765,32 +803,35 @@
         <div class="story-container">
             <div class="story-grid scroll-animate">
                 <div class="story-visual">
-                    <img src="../img/asadito.webp" alt="Asadito recién horneado" class="story-image">
+                    <img src="../img/asadito.webp" alt="Asadito chiquitano recién hecho" class="story-image">
                     <i class="fa-solid fa-circle-info clic-indicador"></i>
                     <div class="image-overlay">
-                        <h3>Sabor y Textura</h3>
-                        <p>Carne jugosa, especias tradicionales y masa dorada</p>
+                        <h3>Textura y Sabor</h3>
+                        <p>Carne desmenuzada, jugosa y llena de sabor</p>
                     </div>
                 </div>
                 <div class="story-content">
                     <h2>¿Por qué es especial?</h2>
-                    <p>El Asadito combina carne de res y cerdo, cebolla, huevo y especias, todo envuelto en una masa suave y horneado hasta dorar.</p>
-                    <p>Perfecto para compartir, cada bocado te transporta a las celebraciones y reuniones familiares de la Chiquitanía.</p>
+                    <p>El asadito chiquitano es jugoso, aromático y lleno de tradición. Perfecto para acompañar con
+                        yuca, arroz o disfrutarlo solo, recién hecho.</p>
+                    <p>Un imprescindible en la mesa oriental, ideal para compartir en familia o con amigos.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección profesional ARREGLADA -->
     <section class="professional-section">
         <div class="content-wrapper">
             <div class="content-left">
                 <h2>Calidad, Innovación y Confianza</h2>
-                <p>En La Chiquitana, fusionamos la tradición con los más altos estándares de calidad. Cada asadito es elaborado bajo procesos controlados, con ingredientes seleccionados y un equipo comprometido con la excelencia.</p>
+                <p>En La Chiquitana, fusionamos la tradición con los más altos estándares de calidad. Cada empanada de
+                    maíz es elaborada bajo procesos controlados, con ingredientes seleccionados y un equipo comprometido
+                    con la excelencia.</p>
                 <ul class="feature-list">
                     <li class="feature-item">
                         <i class="fa-solid fa-check-circle feature-icon"></i>
-                        <span class="feature-text">Certificación de calidad alimentaria y trazabilidad de ingredientes</span>
+                        <span class="feature-text">Certificación de calidad alimentaria y trazabilidad de
+                            ingredientes</span>
                     </li>
                     <li class="feature-item">
                         <i class="fa-solid fa-check-circle feature-icon"></i>
@@ -804,7 +845,7 @@
                 <a href="../index.html#contacto-hero" class="cta-button">Reserva tu pedido para recoger</a>
             </div>
             <div class="content-right">
-                <img src="../img/asadito.webp" alt="Asadito profesional" class="main-image">
+                <img src="../img/asadito.webp" alt="Empanada de maíz profesional" class="main-image">
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-icon"><i class="fa-solid fa-award"></i></div>
@@ -831,10 +872,12 @@
         <div class="connection-content scroll-animate">
             <h2 class="connection-title">Un pedazo de hogar en cada Asadito</h2>
             <p class="connection-text">
-                Cada Asadito que preparamos es un homenaje a las reuniones familiares, a la alegría de compartir y a la tradición viva de la Chiquitanía.
+                Cada Asadito que preparamos es un homenaje a las reuniones familiares, a la alegría de compartir y a la
+                tradición viva de la Chiquitanía.
             </p>
             <p class="connection-text">
-                Al probarlo, sentirás el calor del horno, el aroma de las especias y el cariño de una receta que une generaciones.
+                Al probarlo, sentirás el calor del horno, el aroma de las especias y el cariño de una receta que une
+                generaciones.
             </p>
             <a href="../index.html" class="back-home">Vuelve al Inicio 🏠</a>
         </div>

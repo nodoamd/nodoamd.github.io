@@ -4,12 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Empanada de Maíz - La Chiquitana</title>
+    <title>Historia de la Chiquitanía - La Chiquitana</title>
+
+    <!-- Favicon -->
     <link rel="icon" href="./img/lachiquitanaLogo.webp" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="180x180" href="./img/lachiquitanaLogo.webp">
     <link rel="stylesheet" href="../style.css">
+    <!-- Fuente Unbounded de Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
     <style>
         :root {
             --earth-light: #e6d3b3;
@@ -43,6 +47,7 @@
             background-repeat: repeat;
             color: #333;
             font-family: 'Unbounded', sans-serif;
+            /* Aplica la fuente Unbounded */
         }
 
         /* Header */
@@ -121,15 +126,32 @@
             transition: ease-in
         }
 
+
+        /* @media (max-width: 768px) {
+            .hero-section {
+                height: 80vh;
+                background-position: 35% 0;
+                /* Mueve la imagen a la izquierda 
+        background-size: 450%;
+
+        /* Hace un pequeño zoom out 
+            }
+        } 
+        */
+
         .hero-section::before {
             content: "";
             position: absolute;
             inset: 0;
             background: rgba(46, 83, 57, 0.45);
+            /* Color semitransparente (puedes cambiarlo) */
             backdrop-filter: blur(4px);
+            /* Desenfoque (ajusta el valor si quieres más o menos blur) */
             z-index: 1;
             pointer-events: none;
         }
+
+
 
         .hero-content {
             text-align: center;
@@ -145,6 +167,7 @@
             font-weight: 300;
             margin-bottom: 1rem;
             color: #fff;
+            /* o var(--earth-light) */
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
@@ -310,141 +333,6 @@
             z-index: 2;
         }
 
-
-        .professional-section {
-            background: linear-gradient(120deg, #fff 60%, #e6d3b3 100%);
-            padding: 6rem 2rem 4rem 2rem;
-        }
-
-
-        .content-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .content-left {
-            padding-right: 2rem;
-        }
-
-        .content-left h2 {
-            font-size: 2.7rem;
-            font-weight: 700;
-            color: #2e5339;
-            margin-bottom: 1.5rem;
-            letter-spacing: -1px;
-            line-height: 1.2;
-        }
-
-        .content-left p {
-            font-size: 1.25rem;
-            color: #444;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .feature-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 2rem 0;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.2rem;
-            gap: 1rem;
-        }
-
-        .feature-icon {
-            color: #4e7c59;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-            margin-top: 0.1rem;
-        }
-
-        .feature-text {
-            font-size: 1.1rem;
-            color: #333;
-            line-height: 1.5;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: #4e7c59;
-            color: #fff;
-            font-size: 1.1rem;
-            padding: 1rem 2.5rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(78, 124, 89, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(78, 124, 89, 0.4);
-        }
-
-        .content-right {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .main-image {
-            width: 100%;
-            max-width: 420px;
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(46, 83, 57, 0.10);
-            margin-bottom: 2rem;
-            object-fit: cover;
-            height: 300px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 1.5rem;
-            width: 100%;
-            max-width: 500px;
-        }
-
-        .stat-card {
-            background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 2px 12px rgba(232, 162, 56, 0.08);
-            padding: 1.5rem;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-icon {
-            font-size: 2rem;
-            color: #e8a238;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-value {
-            font-weight: 600;
-            color: #2e5339;
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .stat-label {
-            font-size: 0.98rem;
-            color: #666;
-        }
-
         /* Connection Section */
         .connection-section {
             background: linear-gradient(135deg, var(--jungle-dark), var(--jungle));
@@ -538,44 +426,7 @@
             }
         }
 
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
 
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .clic-indicador {
-            position: absolute;
-            top: 18px;
-            right: 18px;
-            font-size: 2.2rem;
-            color: #fff;
-            background: rgba(46, 83, 57, 0.65);
-            border-radius: 50%;
-            padding: 0.5rem 0.6rem;
-            z-index: 3;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
-            animation: pulse-clic 2.2s infinite ease-in-out;
-            display: none;
-        }
-
-        @keyframes pulse-clic {
-            0% {
-                transform: scale(1);
-            }
-
-            60% {
-                transform: scale(1.18);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
@@ -621,11 +472,55 @@
             .connection-section {
                 padding: 4rem 1rem;
             }
+        }
 
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .clic-indicador {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            font-size: 2.2rem;
+            color: #fff;
+            background: rgba(46, 83, 57, 0.65);
+            border-radius: 50%;
+            padding: 0.5rem 0.6rem;
+            z-index: 3;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+            animation: pulse-clic 2.2s infinite ease-in-out;
+            display: none;
+        }
+
+        @keyframes pulse-clic {
+            0% {
+                transform: scale(1);
+            }
+
+            60% {
+                transform: scale(1.18);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
             .clic-indicador {
                 display: block;
             }
+        }
 
+        @media (max-width: 768px) {
             .story-visual .image-overlay {
                 pointer-events: none;
                 transition: transform 0.3s;
@@ -637,40 +532,205 @@
             }
 
             .story-visual .image-overlay {
+                /* Oculto por defecto en móvil */
                 transform: translateY(100%);
             }
+        }
 
+        .professional-section {
+            background: linear-gradient(120deg, #fff 60%, #e6d3b3 100%);
+            padding: 6rem 2rem 4rem 2rem;
+        }
 
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+            align-items: stretch;
+        }
+
+        .content-left,
+        .content-right {
+            flex: 1 1 340px;
+            min-width: 320px;
+            box-sizing: border-box;
+        }
+
+        .content-left {
+            padding-right: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .content-left h2 {
+            font-size: 2.7rem;
+            font-weight: 700;
+            color: #2e5339;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .content-left p {
+            font-size: 1.25rem;
+            color: #444;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem 2.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+            min-width: 220px;
+            font-size: 1.05rem;
+        }
+
+        .feature-icon {
+            color: #4e7c59;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .feature-text {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #4e7c59;
+            color: #fff;
+            font-size: 1.1rem;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(78, 124, 89, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(78, 124, 89, 0.4);
+        }
+
+        .content-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .main-image {
+            width: 100%;
+            max-width: 420px;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(46, 83, 57, 0.10);
+            margin-bottom: 2rem;
+            object-fit: cover;
+            height: 300px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .stat-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(232, 162, 56, 0.08);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            color: #e8a238;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-weight: 600;
+            color: #2e5339;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.98rem;
+            color: #666;
+        }
+
+        @media (max-width: 1100px) {
             .content-wrapper {
-                grid-template-columns: 1fr;
+                flex-direction: column;
                 gap: 3rem;
             }
 
-            .content-left {
+            .content-left,
+            .content-right {
+                min-width: 0;
+                width: 100%;
                 padding-right: 0;
+            }
+
+            .content-left {
                 text-align: center;
+                align-items: center;
             }
 
-            .content-left h2 {
-                font-size: 2.2rem;
-            }
-
-            .content-left p {
-                font-size: 1.1rem;
+            .feature-list {
+                flex-direction: column;
+                gap: 1.2rem 0;
+                align-items: center;
             }
 
             .feature-item {
                 justify-content: center;
-                text-align: left;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
+                min-width: 0;
             }
 
             .main-image {
-                height: 250px;
+                height: 220px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-image {
+                height: 180px;
             }
         }
 
@@ -691,159 +751,153 @@
 </head>
 
 <body>
+
     <header>
         <div class="logo" style="width: 150px; height: 50px;">
-            <a href="../index.html"><img src="../img/lachiquitanaLogo.webp" alt="La Chiquitana"></a>
+            <a href="../index.html"><img src="../img/lachiquitanaLogo.webp"" alt=" La Chiquitana"></a>
         </div>
         <nav>
             <ul role="list">
-                <li><a href="../index.html#about-hero">Sobre Nosotros</a></li>
-                <li><a href="../index.html#productos-hero">Productos</a></li>
-                <li><a href="../index.html#historia-hero">Historia</a></li>
-                <li><a href="../index.html#contacto-hero">Contacto</a></li>
+                <li><a href="index.html#about-hero">Sobre Nosotros</a></li>
+                <li><a href="index.html#productos-hero">Productos</a></li>
+                <li><a href="index.html#historia-hero">Historia</a></li>
+                <li><a href="index.html#contacto-hero">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-section" style="background-image: url('../img/tortitamaiz.webp');">
-        <div class="hero-content">
-            <h1 class="hero-title">Empanada de Maíz Tradicional</h1>
-            <p
-                style="font-size:1.3rem; font-weight:400; margin-top:-0.7rem; margin-bottom:1.5rem; letter-spacing:0.03em; color:#e6d3b3; text-shadow:0 2px 8px rgba(0,0,0,0.13);">
-                Un clásico reconfortante de la Chiquitanía
-            </p>
-            <p class="hero-subtitle">Suave, cremosa y envuelta en hojas de plátano</p>
-            <a href="#receta" class="hero-cta">Descubre el secreto</a>
-        </div>
-    </section>
 
-    <!-- Origen Section -->
-    <section class="story-section" id="receta">
-        <div class="story-container">
-            <div class="story-grid scroll-animate">
-                <div class="story-content">
-                    <h2>Raíces y Tradición</h2>
-                    <p>La Empanada de Maíz es uno de los tesoros culinarios de la Chiquitanía. Su receta, transmitida de
-                        generación en generación, combina la suavidad del maíz con el sabor del queso fresco y el aroma
-                        de las hojas de plátano.</p>
-                    <p>Preparada con ingredientes naturales y cocida al vapor, es símbolo de hogar y tradición familiar.
-                    </p>
-                </div>
-                <div class="story-visual">
-                    <img src="../img/proceso1.webp" alt="Preparación de la empanada de maíz" class="story-image">
-                    <i class="fa-solid fa-circle-info clic-indicador"></i>
-                    <div class="image-overlay">
-                        <h3>Receta Artesanal</h3>
-                        <p>Hecha a mano, con maíz molido y queso fresco</p>
-                    </div>
-                </div>
+    <body>
+
+        <header>
+            <div class="logo" style="width: 150px; height: 50px;">
+                <a href="../index.html"><img src="../img/lachiquitanaLogo.webp" alt="La Chiquitana"></a>
             </div>
-        </div>
-    </section>
-
-    <!-- Historia de Sabor -->
-    <section class="story-section" id="sabores">
-        <div class="story-container">
-            <div class="story-grid scroll-animate">
-                <div class="story-visual">
-                    <img src="../img/tortitamaiz.webp" alt="Empanada de maíz recién hecha" class="story-image">
-                    <i class="fa-solid fa-circle-info clic-indicador"></i>
-                    <div class="image-overlay">
-                        <h3>Textura y Sabor</h3>
-                        <p>Masa suave, relleno cremoso y aroma a plátano</p>
-                    </div>
-                </div>
-                <div class="story-content">
-                    <h2>¿Por qué es especial?</h2>
-                    <p>La Empanada de Maíz es suave, cremosa y reconfortante. Su cocción al vapor en hojas de plátano le
-                        da un aroma y sabor únicos, evocando la calidez de la cocina chiquitana.</p>
-                    <p>Ideal para el desayuno, la merienda o como acompañamiento en celebraciones familiares.</p>
-                </div>
-            </div>
-
-            <div class="mission-timeline scroll-animate">
-                <div class="mission-card">
-                    <div class="mission-year">Ayer</div>
-                    <h3 class="mission-title">Herencia</h3>
-                    <p class="mission-desc">Receta de madres y abuelas, presente en cada hogar chiquitano.</p>
-                </div>
-                <div class="mission-card">
-                    <div class="mission-year">Hoy</div>
-                    <h3 class="mission-title">Natural</h3>
-                    <p class="mission-desc">Preparada con maíz, queso fresco y hojas de plátano.</p>
-                </div>
-                <div class="mission-card">
-                    <div class="mission-year">Mañana</div>
-                    <h3 class="mission-title">Compartida</h3>
-                    <p class="mission-desc">Queremos que la empanada de maíz llegue a todas las mesas de España.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="professional-section">
-        <div class="content-wrapper">
-            <div class="content-left">
-                <h2>Calidad, Innovación y Confianza</h2>
-                <p>En La Chiquitana, fusionamos la tradición con los más altos estándares de calidad...</p>
-                <ul class="feature-list">
-                    <li class="feature-item">
-                        <i class="fa-solid fa-check-circle feature-icon"></i>
-                        <span class="feature-text">Certificación de calidad alimentaria...</span>
-                    </li>
-                    <li class="feature-item">
-                        <i class="fa-solid fa-check-circle feature-icon"></i>
-                        <span class="feature-text">Producción sostenible y empaques ecológicos</span>
-                    </li>
-                    <li class="feature-item">
-                        <i class="fa-solid fa-check-circle feature-icon"></i>
-                        <span class="feature-text">Reserva tu pedido y recógelo en nuestro local</span>
-                    </li>
+            <nav>
+                <ul role="list">
+                    <li><a href="../index.html#about-hero">Sobre Nosotros</a></li>
+                    <li><a href="../index.html#productos-hero">Productos</a></li>
+                    <li><a href="../index.html#historia-hero">Historia</a></li>
+                    <li><a href="../index.html#contacto-hero">Contacto</a></li>
                 </ul>
-                <a href="../index.html#contacto-hero" class="cta-button">Reserva tu pedido para recoger</a>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section" style="background-image: url('../img/tortitamaiz.webp');">
+            <div class="hero-content">
+                <h1 class="hero-title">Empanada de Maíz Tradicional</h1>
+                <p
+                    style="font-size:1.3rem; font-weight:400; margin-top:-0.7rem; margin-bottom:1.5rem; letter-spacing:0.03em; color:#e6d3b3; text-shadow:0 2px 8px rgba(0,0,0,0.13);">
+                    Un clásico reconfortante de la Chiquitanía
+                </p>
+                <p class="hero-subtitle">Suave, cremosa y envuelta en hojas de plátano</p>
+                <a href="#receta" class="hero-cta">Descubre el secreto</a>
             </div>
-            <div class="content-right">
-                <img src="../img/tortitamaiz.webp" alt="Empanada de maíz profesional" class="main-image">
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon"><i class="fa-solid fa-award"></i></div>
-                        <div class="stat-value">+10 años</div>
-                        <div class="stat-label">de experiencia</div>
+        </section>
+
+        <!-- Origen Section -->
+        <section class="story-section" id="receta">
+            <div class="story-container">
+                <div class="story-grid scroll-animate">
+                    <div class="story-content">
+                        <h2>Raíces y Tradición</h2>
+                        <p>La empanada de maíz es uno de los tesoros culinarios de la Chiquitanía. Su receta, transmitida de generación en generación, combina la suavidad del maíz con el sabor del queso fresco y el aroma de las hojas de plátano.</p>
+                        <p>Preparada con ingredientes naturales y cocida al vapor, es símbolo de hogar y tradición familiar.</p>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-icon"><i class="fa-solid fa-leaf"></i></div>
-                        <div class="stat-value">100% natural</div>
-                        <div class="stat-label">sin aditivos</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon"><i class="fa-solid fa-store"></i></div>
-                        <div class="stat-value">Recogida local</div>
-                        <div class="stat-label">Reserva y ven a buscarlo</div>
+                    <div class="story-visual">
+                        <img src="../img/proceso1.webp" alt="Preparación de la empanada de maíz" class="story-image">
+                        <i class="fa-solid fa-circle-info clic-indicador"></i>
+                        <div class="image-overlay">
+                            <h3>Tradición Viva</h3>
+                            <p>Hecha a mano, con maíz molido y queso fresco</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Historia de Sabor -->
+        <section class="story-section" id="sabores">
+            <div class="story-container">
+                <div class="story-grid scroll-animate">
+                    <div class="story-visual">
+                        <img src="../img/tortitamaiz.webp" alt="Empanada de maíz recién hecha" class="story-image">
+                        <i class="fa-solid fa-circle-info clic-indicador"></i>
+                        <div class="image-overlay">
+                            <h3>Textura y Sabor</h3>
+                            <p>Masa suave, relleno cremoso y aroma a plátano</p>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <h2>¿Por qué es especial?</h2>
+                        <p>La empanada de maíz es suave, cremosa y reconfortante. Su cocción al vapor en hojas de plátano le da un aroma y sabor únicos, evocando la calidez de la cocina chiquitana.</p>
+                        <p>Ideal para el desayuno, la merienda o como acompañamiento en celebraciones familiares.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="professional-section">
+            <div class="content-wrapper">
+                <div class="content-left">
+                    <h2>Calidad, Innovación y Confianza</h2>
+                    <p>En La Chiquitana, fusionamos la tradición con los más altos estándares de calidad. Cada empanada de maíz es elaborada bajo procesos controlados, con ingredientes seleccionados y un equipo comprometido con la excelencia.</p>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fa-solid fa-check-circle feature-icon"></i>
+                            <span class="feature-text">Certificación de calidad alimentaria y trazabilidad de ingredientes</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fa-solid fa-check-circle feature-icon"></i>
+                            <span class="feature-text">Producción sostenible y empaques ecológicos</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fa-solid fa-check-circle feature-icon"></i>
+                            <span class="feature-text">Reserva tu pedido y recógelo en nuestro local</span>
+                        </li>
+                    </ul>
+                    <a href="../index.html#contacto-hero" class="cta-button">Reserva tu pedido para recoger</a>
+                </div>
+                <div class="content-right">
+                    <img src="../img/tortitamaiz.webp" alt="Empanada de maíz profesional" class="main-image">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fa-solid fa-award"></i></div>
+                            <div class="stat-value">+10 años</div>
+                            <div class="stat-label">de experiencia</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fa-solid fa-leaf"></i></div>
+                            <div class="stat-value">100% natural</div>
+                            <div class="stat-label">sin aditivos</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon"><i class="fa-solid fa-store"></i></div>
+                            <div class="stat-value">Recogida local</div>
+                            <div class="stat-label">Reserva y ven a buscarlo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conexión emocional -->
+        <section class="connection-section" id="conecta">
+            <div class="connection-content scroll-animate">
+                <h2 class="connection-title">Un sabor que une familias</h2>
+                <p class="connection-text">
+                    Cada cuñapé es un abrazo del oriente boliviano, una invitación a compartir y disfrutar de la sencillez y el cariño de nuestra tierra.
+                </p>
+                <p class="connection-text">
+                    Al probarlo, sentirás la calidez del hogar y la alegría de las reuniones familiares.
+                </p>
+                <a href="../index.html" class="back-home">Vuelve al Inicio 🏠</a>
+            </div>
+        </section>
+    </body>
 
 
-
-
-    <!-- Conexión emocional -->
-    <section class="connection-section" id="conecta">
-        <div class="connection-content scroll-animate">
-            <h2 class="connection-title">Un sabor que reconforta el alma</h2>
-            <p class="connection-text">
-                Cada empanada de maíz es un pedacito de la Chiquitanía, un abrazo cálido y familiar que te conecta con
-                la tierra y la tradición.
-            </p>
-            <p class="connection-text">
-                Al probarla, sentirás la suavidad del maíz, el sabor del queso y el aroma de las hojas de plátano, como
-                si estuvieras en casa.
-            </p>
-            <a href="../index.html" class="back-home">Vuelve al Inicio 🏠</a>
-        </div>
-    </section>
 </body>
 
 </html>
