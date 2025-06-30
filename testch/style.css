@@ -1846,8 +1846,8 @@ img {
     }
 }
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
     .about-hero {
         margin-top: 250px !important;
     }
-}
+} */
