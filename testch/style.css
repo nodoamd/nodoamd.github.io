@@ -177,7 +177,7 @@ img {
 }
 
 .pin {
-    margin-top: 200px;
+    margin-top: 300px;
 }
 
 .clamp {
@@ -358,9 +358,9 @@ img {
     .content-grid {
         padding: 1rem;
     }
-
+/* probar margin menor */
     .hero {
-        margin-bottom: 30px;
+        /* margin-bottom: 30px; */
         min-height: 60vh;
         /* Reducido de 80vh */
     }
