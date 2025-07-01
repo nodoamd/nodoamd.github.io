@@ -349,41 +349,51 @@
 
 
 
-
-
             <!-- Sección de Impacto Social Positivo -->
             <section class="impacto-hero" id="impacto-hero" style="margin-top: 100px;">
                 <div class="content-wrapper">
                     <div class="section-header centered">
                         <span class="overline">Impacto Social</span>
-                        <h2 class="section-title">Nuestro Compromiso Social</h2>
+                        <h2 class="section-title" style="color:#5d421b;">Nuestro Compromiso</h2>
                         <p class="section-desc">
-                            Apoyamos a comunidades chiquitanas, promovemos la economía local y colaboramos con proyectos
-                            educativos y de sostenibilidad en Bolivia.
+                            Cada compra apoya a mujeres artesanas, fomenta la educación y protege la naturaleza chiquitana.
                         </p>
                     </div>
-                    <div class="productos-grid">
-                        <div class="producto-card">
-                            <div class="producto-content">
-                                <h3>Apoyo a Artesanas</h3>
-                                <p>Colaboramos con mujeres artesanas de la Chiquitanía para preservar técnicas
-                                    tradicionales y generar ingresos justos.</p>
-                            </div>
+                    <div class="impacto-cards-grid">
+                        <div class="impacto-card">
+                            <div class="impacto-icon"><i class="fa-solid fa-people-group"></i></div>
+                            <h3>Empoderamiento Femenino</h3>
+                            <p>Apoyamos a más de 150 familias de artesanas locales.</p>
                         </div>
-                        <div class="producto-card">
-                            <div class="producto-content">
-                                <h3>Educación y Cultura</h3>
-                                <p>Parte de nuestros beneficios se destinan a becas escolares y actividades culturales
-                                    para niños y jóvenes de la región.</p>
-                            </div>
+                        <div class="impacto-card">
+                            <div class="impacto-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <h3>Educación</h3>
+                            <p>Becas y talleres para niños y jóvenes de la región.</p>
                         </div>
-                        <div class="producto-card">
-                            <div class="producto-content">
-                                <h3>Sostenibilidad</h3>
-                                <p>Priorizamos ingredientes locales y envases ecológicos, minimizando nuestro impacto
-                                    ambiental.</p>
-                            </div>
+                        <div class="impacto-card">
+                            <div class="impacto-icon"><i class="fa-solid fa-leaf"></i></div>
+                            <h3>Sostenibilidad</h3>
+                            <p>Ingredientes locales y envases ecológicos.</p>
                         </div>
+                    </div>
+                    <div class="impacto-stats">
+                        <div>
+                            <span class="impacto-stat-num">8</span>
+                            <span class="impacto-stat-label">Comunidades</span>
+                        </div>
+                        <div>
+                            <span class="impacto-stat-num">150+</span>
+                            <span class="impacto-stat-label">Familias</span>
+                        </div>
+                        <div>
+                            <span class="impacto-stat-num">5</span>
+                            <span class="impacto-stat-label">Años de impacto</span>
+                        </div>
+                    </div>
+                    <div class="call-to-action">
+                        <h3>Únete a Nuestra Causa</h3>
+                        <p>Juntos hacemos la diferencia. ¡Descubre cómo colaborar!</p>
+                        <a href="#contacto-hero" class="btn btn-impacto" style="margin-bottom: 50px; margin-top: 50px;">Contáctanos</a>
                     </div>
                 </div>
             </section>
@@ -1051,6 +1061,156 @@
 
         100% {
             transform: translateY(-8px) rotate(8deg);
+        }
+    }
+
+    .impacto-hero {
+        background: wheat;
+        padding: 80px 0 40px 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .impacto-hero p{
+        color: #6a4d21;
+        font-size: 1.05rem;
+        margin-bottom: 24px;
+        line-height: 1.6;
+    }
+
+    .impacto-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 32px;
+        margin: 40px 0 32px 0;
+    }
+
+    .impacto-card {
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 6px 32px rgba(232,162,56,0.10);
+        padding: 36px 28px 28px 28px;
+        text-align: center;
+        border: 1.5px solid #f4e6d0;
+        transition: box-shadow 0.2s, transform 0.2s;
+        position: relative;
+    }
+
+    .impacto-card:hover {
+        box-shadow: 0 16px 40px rgba(232,162,56,0.18);
+        transform: translateY(-6px) scale(1.03);
+        border-color: #e8a238;
+    }
+
+    .impacto-icon {
+        font-size: 2.6rem;
+        color: #e8a238;
+        margin-bottom: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 56px;
+    }
+
+    .impacto-card h3 {
+        color: #8b4513;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    .impacto-card p {
+        color: #3a2d1a;
+        font-size: 1.05rem;
+        margin-bottom: 0;
+    }
+
+    .impacto-stats {
+        display: flex;
+        justify-content: center;
+        gap: 48px;
+        margin: 32px 0 0 0;
+        padding: 0;
+    }
+
+    .impacto-stats > div {
+        text-align: center;
+    }
+
+    .impacto-stat-num {
+        display: block;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #e8a238;
+        margin-bottom: 4px;
+    }
+
+    .impacto-stat-label {
+        font-size: 1rem;
+        color: #8b4513;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    .call-to-action {
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    .call-to-action h3 {
+        color: #8b4513;
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+
+    .call-to-action p {
+        color: #3a2d1a;
+        font-size: 1.05rem;
+        margin-bottom: 18px;
+    }
+
+    .btn-impacto {
+        background: linear-gradient(90deg, #e8a238 60%, #f4b942 100%);
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        padding: 14px 38px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 8px 24px rgba(232,162,56,0.13);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: background 0.2s, transform 0.2s;
+        display: inline-block;
+        text-decoration: none;
+    }
+
+    .btn-impacto:hover {
+        background: linear-gradient(90deg, #4e7c59 60%, #e8a238 100%);
+        color: #fff;
+        transform: translateY(-2px) scale(1.04);
+    }
+
+    @media (max-width: 900px) {
+        .impacto-cards-grid {
+            grid-template-columns: 1fr;
+        }
+        .impacto-stats {
+            gap: 24px;
+        }
+    }
+    @media (max-width: 600px) {
+        .impacto-hero {
+            padding: 50px 0 20px 0;
+        }
+        .impacto-card {
+            padding: 28px 12px 20px 12px;
+        }
+        .impacto-stats {
+            flex-direction: column;
+            gap: 12px;
         }
     }
 </style>
