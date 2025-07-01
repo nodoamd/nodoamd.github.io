@@ -1937,3 +1937,12 @@ img {
 .menu-nav.open .menu-list {
     left: -150px;
 }
+
+.contacto-modern-list {
+    list-style: none;
+    margin: 0; /* <-- Asegúrate de que esté así */
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
