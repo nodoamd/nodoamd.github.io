@@ -629,61 +629,55 @@
             box-shadow: 0 15px 40px rgba(78, 124, 89, 0.4);
         }
 
-        .content-right {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-        }
-
-        .main-image {
-            width: 100%;
-            max-width: 420px;
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(46, 83, 57, 0.10);
-            margin-bottom: 2rem;
-            object-fit: cover;
-            height: 300px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            width: 100%;
-            max-width: 700px;
-        }
-
-        .stat-card {
+        .menu-toggle {
+            display: block;
             background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 2px 12px rgba(232, 162, 56, 0.08);
-            padding: 1.5rem;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-icon {
-            font-size: 2rem;
-            color: #e8a238;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-value {
-            font-weight: 600;
-            color: #2e5339;
+            color: #4e7c59;
+            border: 2px solid #e8a238;
+            border-radius: 12px;
+            padding: 0.6rem 1.5rem;
             font-size: 1.1rem;
-            margin-bottom: 0.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 1100;
         }
 
-        .stat-label {
-            font-size: 0.98rem;
-            color: #666;
+        .menu-toggle:hover{
+            color: white;
         }
+
+        .menu-list {
+            display: none;
+            flex-direction: column;
+            gap: 1.2rem;
+            background: #fff;
+            position: absolute;
+            top: 110%;
+            right: 0;
+            min-width: 220px;
+            box-shadow: 0 8px 32px rgba(46, 83, 57, 0.10);
+            border-radius: 16px;
+            padding: 1.2rem 1.5rem;
+            z-index: 1001;
+            list-style: none;
+        }
+
+        .menu-list.open {
+            display: flex;
+        }
+
+        .menu-list li a {
+            color: #2e5339;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+
+        .menu-list li a:hover {
+            color: #e8a238;
+        }
+
 
         @media (max-width: 1100px) {
             .content-wrapper {
@@ -747,6 +741,35 @@
                 height: 240px;
             }
         }
+
+
+        .menu-list {
+            left: auto;
+            right: 0;
+            width: 260px;
+            /* o el ancho que prefieras */
+        }
+
+        @media (max-width: 900px) {
+            .menu-list {
+                display: none;
+                flex-direction: column;
+                gap: 1.2rem;
+                background: #fff;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                left: 0;
+                z-index: 1001;
+                padding: 1.5rem 2rem;
+                box-shadow: 0 8px 32px rgba(46, 83, 57, 0.10);
+            }
+
+            .menu-list.open {
+                display: flex;
+                left: -150px;
+            }
+        }
     </style>
 </head>
 
@@ -774,12 +797,18 @@
             <div class="logo" style="width: 150px; height: 50px;">
                 <a href="../index.html"><img src="../img/lachiquitanaLogo.webp" alt="La Chiquitana"></a>
             </div>
-            <nav>
-                <ul role="list">
-                    <li><a href="../index.html#about-hero">Sobre Nosotros</a></li>
-                    <li><a href="../index.html#productos-hero">Productos</a></li>
-                    <li><a href="../index.html#historia-hero">Historia</a></li>
-                    <li><a href="../index.html#contacto-hero">Contacto</a></li>
+            <nav class="menu-nav">
+                <button class="menu-toggle" aria-expanded="false" aria-controls="menu-list">
+                    Menú <i class="fa fa-chevron-down"></i>
+                </button>
+                <ul class="menu-list" id="menu-list">
+                    <li><a href="#about-hero">Sobre Nosotros</a></li>
+                    <li><a href="#productos-hero">Productos</a></li>
+                    <li><a href="#historia-hero">Historia</a></li>
+                    <li><a href="#poemas-hero">Poemas</a></li>
+                    <li><a href="#impacto-hero">Impacto Social</a></li>
+                    <li><a href="#testimonios-hero">Testimonios</a></li>
+                    <li><a href="#contacto-hero">Contacto</a></li>
                 </ul>
             </nav>
         </header>
@@ -907,7 +936,20 @@
         </section>
     </body>
 
-
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu-list');
+            if (toggle && menu) {
+                toggle.addEventListener('click', function () {
+                    menu.classList.toggle('open');
+                    // Opcional: cambia el icono o aria-expanded
+                    toggle.setAttribute('aria-expanded', menu.classList.contains('open'));
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

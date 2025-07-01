@@ -136,3 +136,16 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.menu-list');
+    if (toggle && menu) {
+        toggle.addEventListener('click', function () {
+            menu.classList.toggle('open');
+            // Opcional: cambia el icono o aria-expanded
+            toggle.setAttribute('aria-expanded', menu.classList.contains('open'));
+        });
+    }
+});

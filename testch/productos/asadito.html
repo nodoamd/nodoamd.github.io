@@ -744,6 +744,84 @@
                 height: 240px;
             }
         }
+
+        /* ...existing responsive menu styles... */
+
+        .menu-toggle {
+            display: block;
+            background: #fff;
+            color: #4e7c59;
+            border: 2px solid #e8a238;
+            border-radius: 12px;
+            padding: 0.6rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        .menu-toggle:hover {
+            color: white;
+        }
+
+        .menu-list {
+            display: none;
+            flex-direction: column;
+            gap: 1.2rem;
+            background: #fff;
+            position: absolute;
+            top: 110%;
+            right: 0;
+            min-width: 220px;
+            box-shadow: 0 8px 32px rgba(46, 83, 57, 0.10);
+            border-radius: 16px;
+            padding: 1.2rem 1.5rem;
+            z-index: 1001;
+            list-style: none;
+        }
+
+        .menu-list.open {
+            display: flex;
+        }
+
+        .menu-list li a {
+            color: #2e5339;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+
+        .menu-list li a:hover {
+            color: #e8a238;
+        }
+
+        .menu-list {
+            left: auto;
+            right: 0;
+            width: 260px;
+        }
+
+        @media (max-width: 900px) {
+            .menu-list {
+                display: none;
+                flex-direction: column;
+                gap: 1.2rem;
+                background: #fff;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                left: 0;
+                z-index: 1001;
+                padding: 1.5rem 2rem;
+                box-shadow: 0 8px 32px rgba(46, 83, 57, 0.10);
+            }
+
+            .menu-list.open {
+                display: flex;
+                left: -150px;
+            }
+        }
     </style>
 </head>
 
@@ -752,11 +830,17 @@
         <div class="logo" style="width: 150px; height: 50px;">
             <a href="../index.html"><img src="../img/lachiquitanaLogo.webp" alt="La Chiquitana"></a>
         </div>
-        <nav>
-            <ul role="list">
+        <nav class="menu-nav">
+            <button class="menu-toggle" aria-expanded="false" aria-controls="menu-list">
+                Menú <i class="fa fa-chevron-down"></i>
+            </button>
+            <ul class="menu-list" id="menu-list">
                 <li><a href="../index.html#about-hero">Sobre Nosotros</a></li>
                 <li><a href="../index.html#productos-hero">Productos</a></li>
                 <li><a href="../index.html#historia-hero">Historia</a></li>
+                <li><a href="../index.html#poemas-hero">Poemas</a></li>
+                <li><a href="../index.html#impacto-hero">Impacto Social</a></li>
+                <li><a href="../index.html#testimonios-hero">Testimonios</a></li>
                 <li><a href="../index.html#contacto-hero">Contacto</a></li>
             </ul>
         </nav>
@@ -882,6 +966,18 @@
             <a href="../index.html" class="back-home">Vuelve al Inicio 🏠</a>
         </div>
     </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu-list');
+            if (toggle && menu) {
+                toggle.addEventListener('click', function () {
+                    menu.classList.toggle('open');
+                    toggle.setAttribute('aria-expanded', menu.classList.contains('open'));
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

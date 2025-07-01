@@ -747,157 +747,232 @@
                 height: 240px;
             }
         }
+
+        /* Menu Responsive */
+        .menu-toggle {
+            display: block;
+            background: #fff;
+            color: #4e7c59;
+            border: 2px solid #e8a238;
+            border-radius: 12px;
+            padding: 0.6rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        .menu-toggle:hover {
+            color: white;
+        }
+
+        .menu-list {
+            display: none;
+            flex-direction: column;
+            gap: 1.2rem;
+            background: #fff;
+            position: absolute;
+            top: 110%;
+            right: 0;
+            min-width: 220px;
+            box-shadow: 0 8px 32px rgba(46, 83, 57, 0.10);
+            border-radius: 16px;
+            padding: 1.2rem 1.5rem;
+            z-index: 1001;
+            list-style: none;
+        }
+
+        .menu-list.open {
+            display: flex;
+        }
+
+        .menu-list li a {
+            color: #2e5339;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+
+        .menu-list li a:hover {
+            color: #e8a238;
+        }
+
+        .menu-list {
+            left: auto;
+            right: 0;
+            width: 260px;
+        }
+
+        @media (max-width: 900px) {
+            .menu-list {
+                display: none;
+                flex-direction: column;
+                gap: 1.2rem;
+                background: #fff;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                left: 0;
+                z-index: 1001;
+                padding: 1.5rem 2rem;
+                box-shadow: 0 8px 32px rgba(46, 83, 57, 0.10);
+            }
+
+            .menu-list.open {
+                display: flex;
+                left: -150px;
+            }
+        }
     </style>
 </head>
 
 <body>
-
     <header>
         <div class="logo" style="width: 150px; height: 50px;">
-            <a href="../index.html"><img src="../img/lachiquitanaLogo.webp"" alt=" La Chiquitana"></a>
+            <a href="../index.html"><img src="../img/lachiquitanaLogo.webp" alt="La Chiquitana"></a>
         </div>
-        <nav>
-            <ul role="list">
-                <li><a href="index.html#about-hero">Sobre Nosotros</a></li>
-                <li><a href="index.html#productos-hero">Productos</a></li>
-                <li><a href="index.html#historia-hero">Historia</a></li>
-                <li><a href="index.html#contacto-hero">Contacto</a></li>
+        <nav class="menu-nav">
+            <button class="menu-toggle" aria-expanded="false" aria-controls="menu-list">
+                Menú <i class="fa fa-chevron-down"></i>
+            </button>
+            <ul class="menu-list" id="menu-list">
+                <li><a href="../index.html#about-hero">Sobre Nosotros</a></li>
+                <li><a href="../index.html#productos-hero">Productos</a></li>
+                <li><a href="../index.html#historia-hero">Historia</a></li>
+                <li><a href="../index.html#poemas-hero">Poemas</a></li>
+                <li><a href="../index.html#impacto-hero">Impacto Social</a></li>
+                <li><a href="../index.html#testimonios-hero">Testimonios</a></li>
+                <li><a href="../index.html#contacto-hero">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
+    <!-- Hero Section -->
+    <section class="hero-section" style="background-image: url('../img/tortitamaiz.webp');">
+        <div class="hero-content">
+            <h1 class="hero-title">Empanada de Maíz Tradicional</h1>
+            <p
+                style="font-size:1.3rem; font-weight:400; margin-top:-0.7rem; margin-bottom:1.5rem; letter-spacing:0.03em; color:#e6d3b3; text-shadow:0 2px 8px rgba(0,0,0,0.13);">
+                Un clásico reconfortante de la Chiquitanía
+            </p>
+            <p class="hero-subtitle">Suave, cremosa y envuelta en hojas de plátano</p>
+            <a href="#receta" class="hero-cta">Descubre el secreto</a>
+        </div>
+    </section>
 
-    <body>
-
-        <header>
-            <div class="logo" style="width: 150px; height: 50px;">
-                <a href="../index.html"><img src="../img/lachiquitanaLogo.webp" alt="La Chiquitana"></a>
+    <!-- Origen Section -->
+    <section class="story-section" id="receta">
+        <div class="story-container">
+            <div class="story-grid scroll-animate">
+                <div class="story-content">
+                    <h2>Raíces y Tradición</h2>
+                    <p>La empanada de maíz es uno de los tesoros culinarios de la Chiquitanía. Su receta, transmitida de generación en generación, combina la suavidad del maíz con el sabor del queso fresco y el aroma de las hojas de plátano.</p>
+                    <p>Preparada con ingredientes naturales y cocida al vapor, es símbolo de hogar y tradición familiar.</p>
+                </div>
+                <div class="story-visual">
+                    <img src="../img/proceso1.webp" alt="Preparación de la empanada de maíz" class="story-image">
+                    <i class="fa-solid fa-circle-info clic-indicador"></i>
+                    <div class="image-overlay">
+                        <h3>Tradición Viva</h3>
+                        <p>Hecha a mano, con maíz molido y queso fresco</p>
+                    </div>
+                </div>
             </div>
-            <nav>
-                <ul role="list">
-                    <li><a href="../index.html#about-hero">Sobre Nosotros</a></li>
-                    <li><a href="../index.html#productos-hero">Productos</a></li>
-                    <li><a href="../index.html#historia-hero">Historia</a></li>
-                    <li><a href="../index.html#contacto-hero">Contacto</a></li>
+        </div>
+    </section>
+
+    <!-- Historia de Sabor -->
+    <section class="story-section" id="sabores">
+        <div class="story-container">
+            <div class="story-grid scroll-animate">
+                <div class="story-visual">
+                    <img src="../img/tortitamaiz.webp" alt="Empanada de maíz recién hecha" class="story-image">
+                    <i class="fa-solid fa-circle-info clic-indicador"></i>
+                    <div class="image-overlay">
+                        <h3>Textura y Sabor</h3>
+                        <p>Masa suave, relleno cremoso y aroma a plátano</p>
+                    </div>
+                </div>
+                <div class="story-content">
+                    <h2>¿Por qué es especial?</h2>
+                    <p>La empanada de maíz es suave, cremosa y reconfortante. Su cocción al vapor en hojas de plátano le da un aroma y sabor únicos, evocando la calidez de la cocina chiquitana.</p>
+                    <p>Ideal para el desayuno, la merienda o como acompañamiento en celebraciones familiares.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="professional-section">
+        <div class="content-wrapper">
+            <div class="content-left">
+                <h2>Calidad, Innovación y Confianza</h2>
+                <p>En La Chiquitana, fusionamos la tradición con los más altos estándares de calidad. Cada empanada de maíz es elaborada bajo procesos controlados, con ingredientes seleccionados y un equipo comprometido con la excelencia.</p>
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <i class="fa-solid fa-check-circle feature-icon"></i>
+                        <span class="feature-text">Certificación de calidad alimentaria y trazabilidad de ingredientes</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fa-solid fa-check-circle feature-icon"></i>
+                        <span class="feature-text">Producción sostenible y empaques ecológicos</span>
+                    </li>
+                    <li class="feature-item">
+                        <i class="fa-solid fa-check-circle feature-icon"></i>
+                        <span class="feature-text">Reserva tu pedido y recógelo en nuestro local</span>
+                    </li>
                 </ul>
-            </nav>
-        </header>
-
-        <!-- Hero Section -->
-        <section class="hero-section" style="background-image: url('../img/tortitamaiz.webp');">
-            <div class="hero-content">
-                <h1 class="hero-title">Empanada de Maíz Tradicional</h1>
-                <p
-                    style="font-size:1.3rem; font-weight:400; margin-top:-0.7rem; margin-bottom:1.5rem; letter-spacing:0.03em; color:#e6d3b3; text-shadow:0 2px 8px rgba(0,0,0,0.13);">
-                    Un clásico reconfortante de la Chiquitanía
-                </p>
-                <p class="hero-subtitle">Suave, cremosa y envuelta en hojas de plátano</p>
-                <a href="#receta" class="hero-cta">Descubre el secreto</a>
+                <a href="../index.html#contacto-hero" class="cta-button">Reserva tu pedido para recoger</a>
             </div>
-        </section>
-
-        <!-- Origen Section -->
-        <section class="story-section" id="receta">
-            <div class="story-container">
-                <div class="story-grid scroll-animate">
-                    <div class="story-content">
-                        <h2>Raíces y Tradición</h2>
-                        <p>La empanada de maíz es uno de los tesoros culinarios de la Chiquitanía. Su receta, transmitida de generación en generación, combina la suavidad del maíz con el sabor del queso fresco y el aroma de las hojas de plátano.</p>
-                        <p>Preparada con ingredientes naturales y cocida al vapor, es símbolo de hogar y tradición familiar.</p>
+            <div class="content-right">
+                <img src="../img/tortitamaiz.webp" alt="Empanada de maíz profesional" class="main-image">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-award"></i></div>
+                        <div class="stat-value">+10 años</div>
+                        <div class="stat-label">de experiencia</div>
                     </div>
-                    <div class="story-visual">
-                        <img src="../img/proceso1.webp" alt="Preparación de la empanada de maíz" class="story-image">
-                        <i class="fa-solid fa-circle-info clic-indicador"></i>
-                        <div class="image-overlay">
-                            <h3>Tradición Viva</h3>
-                            <p>Hecha a mano, con maíz molido y queso fresco</p>
-                        </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-leaf"></i></div>
+                        <div class="stat-value">100% natural</div>
+                        <div class="stat-label">sin aditivos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-store"></i></div>
+                        <div class="stat-value">Recogida local</div>
+                        <div class="stat-label">Reserva y ven a buscarlo</div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Historia de Sabor -->
-        <section class="story-section" id="sabores">
-            <div class="story-container">
-                <div class="story-grid scroll-animate">
-                    <div class="story-visual">
-                        <img src="../img/tortitamaiz.webp" alt="Empanada de maíz recién hecha" class="story-image">
-                        <i class="fa-solid fa-circle-info clic-indicador"></i>
-                        <div class="image-overlay">
-                            <h3>Textura y Sabor</h3>
-                            <p>Masa suave, relleno cremoso y aroma a plátano</p>
-                        </div>
-                    </div>
-                    <div class="story-content">
-                        <h2>¿Por qué es especial?</h2>
-                        <p>La empanada de maíz es suave, cremosa y reconfortante. Su cocción al vapor en hojas de plátano le da un aroma y sabor únicos, evocando la calidez de la cocina chiquitana.</p>
-                        <p>Ideal para el desayuno, la merienda o como acompañamiento en celebraciones familiares.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Conexión emocional -->
+    <section class="connection-section" id="conecta">
+        <div class="connection-content scroll-animate">
+            <h2 class="connection-title">Un sabor que une familias</h2>
+            <p class="connection-text">
+                Cada cuñapé es un abrazo del oriente boliviano, una invitación a compartir y disfrutar de la sencillez y el cariño de nuestra tierra.
+            </p>
+            <p class="connection-text">
+                Al probarlo, sentirás la calidez del hogar y la alegría de las reuniones familiares.
+            </p>
+            <a href="../index.html" class="back-home">Vuelve al Inicio 🏠</a>
+        </div>
+    </section>
 
-        <section class="professional-section">
-            <div class="content-wrapper">
-                <div class="content-left">
-                    <h2>Calidad, Innovación y Confianza</h2>
-                    <p>En La Chiquitana, fusionamos la tradición con los más altos estándares de calidad. Cada empanada de maíz es elaborada bajo procesos controlados, con ingredientes seleccionados y un equipo comprometido con la excelencia.</p>
-                    <ul class="feature-list">
-                        <li class="feature-item">
-                            <i class="fa-solid fa-check-circle feature-icon"></i>
-                            <span class="feature-text">Certificación de calidad alimentaria y trazabilidad de ingredientes</span>
-                        </li>
-                        <li class="feature-item">
-                            <i class="fa-solid fa-check-circle feature-icon"></i>
-                            <span class="feature-text">Producción sostenible y empaques ecológicos</span>
-                        </li>
-                        <li class="feature-item">
-                            <i class="fa-solid fa-check-circle feature-icon"></i>
-                            <span class="feature-text">Reserva tu pedido y recógelo en nuestro local</span>
-                        </li>
-                    </ul>
-                    <a href="../index.html#contacto-hero" class="cta-button">Reserva tu pedido para recoger</a>
-                </div>
-                <div class="content-right">
-                    <img src="../img/tortitamaiz.webp" alt="Empanada de maíz profesional" class="main-image">
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-icon"><i class="fa-solid fa-award"></i></div>
-                            <div class="stat-value">+10 años</div>
-                            <div class="stat-label">de experiencia</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon"><i class="fa-solid fa-leaf"></i></div>
-                            <div class="stat-value">100% natural</div>
-                            <div class="stat-label">sin aditivos</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon"><i class="fa-solid fa-store"></i></div>
-                            <div class="stat-value">Recogida local</div>
-                            <div class="stat-label">Reserva y ven a buscarlo</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Conexión emocional -->
-        <section class="connection-section" id="conecta">
-            <div class="connection-content scroll-animate">
-                <h2 class="connection-title">Un sabor que une familias</h2>
-                <p class="connection-text">
-                    Cada cuñapé es un abrazo del oriente boliviano, una invitación a compartir y disfrutar de la sencillez y el cariño de nuestra tierra.
-                </p>
-                <p class="connection-text">
-                    Al probarlo, sentirás la calidez del hogar y la alegría de las reuniones familiares.
-                </p>
-                <a href="../index.html" class="back-home">Vuelve al Inicio 🏠</a>
-            </div>
-        </section>
-    </body>
-
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu-list');
+            if (toggle && menu) {
+                toggle.addEventListener('click', function () {
+                    menu.classList.toggle('open');
+                    toggle.setAttribute('aria-expanded', menu.classList.contains('open'));
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
