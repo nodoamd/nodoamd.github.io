@@ -1848,4 +1848,44 @@
         margin: 0;
         padding-left: 0;
     }
+
+    .impacto-stats {
+        display: flex;
+        justify-content: center;
+        gap: 48px;
+        margin: 32px 0 0 0;
+        padding: 0;
+        flex-wrap: wrap;
+        /* Permite que los elementos bajen en pantallas pequeñas */
+    }
+
+    .impacto-stats>div {
+        text-align: center;
+        min-width: 120px;
+        margin-bottom: 16px;
+    }
+
+    /* Responsive para tablets y móviles */
+    @media (max-width: 700px) {
+        .impacto-stats {
+            gap: 24px;
+        }
+
+        .impacto-stats>div {
+            min-width: 90px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        .impacto-stats {
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .impacto-stats>div {
+            width: 100%;
+            min-width: unset;
+        }
+    }
 </style>
