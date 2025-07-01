@@ -78,7 +78,8 @@ header {
     padding: 1.5rem;
     display: flex;
     border-bottom: 2px solid rgb(224, 171, 48);
-
+    align-items: center;
+    justify-content: space-between;
 }
 
 button {
@@ -358,7 +359,8 @@ img {
     .content-grid {
         padding: 1rem;
     }
-/* probar margin menor */
+
+    /* probar margin menor */
     .hero {
         /* margin-bottom: 30px; */
         min-height: 60vh;
@@ -484,7 +486,7 @@ img {
 
 
 
-.hero{
+.hero {
     margin-bottom: 0px !important;
 }
 
@@ -1856,3 +1858,78 @@ img {
         margin-top: 250px !important;
     }
 } */
+
+
+.menu-nav {
+    position: relative;
+    display: inline-block;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 0 auto;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.menu-toggle:focus {
+    outline: 2px solid #e8a238;
+}
+
+.menu-list {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 110%;
+    background: rgba(0, 0, 0, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(46, 83, 57, 0.10);
+    min-width: 180px;
+    z-index: 1000;
+    padding: 0.5rem 0;
+    margin: 0;
+    list-style: none;
+}
+
+.menu-list li {
+    width: 100%;
+}
+
+.menu-list li a {
+    display: block;
+    color: var(--earth-light);
+    padding: 0.9rem 1.5rem;
+    text-decoration: none;
+    font-size: 1.08rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.menu-list li a:hover {
+    background: var(--jungle-light);
+    color: #fff;
+    border-radius: 8px;
+}
+
+.menu-nav.open .menu-list {
+    display: block;
+}
+
+/* Responsive: menú ocupa todo el ancho en móvil */
+@media (max-width: 600px) {
+    .menu-list {
+        left: 0;
+        right: 0;
+        min-width: unset;
+        width: 100vw;
+        border-radius: 0 0 12px 12px;
+    }
+}

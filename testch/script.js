@@ -109,5 +109,30 @@ gsap.from([".overline", ".about-title, .exp-title", ".about-desc, .exp-desc", ".
 });
 
 
+document.addEventListener('DOMContentLoaded', function () {
+    const menuNav = document.querySelector('.menu-nav');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menuList = document.querySelector('.menu-list');
 
+    menuToggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        menuNav.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', menuNav.classList.contains('open'));
+    });
 
+    // Cierra el menú al hacer clic fuera
+    document.addEventListener('click', function (e) {
+        if (!menuNav.contains(e.target)) {
+            menuNav.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // Cierra el menú al seleccionar una opción
+    menuList.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuNav.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+});
