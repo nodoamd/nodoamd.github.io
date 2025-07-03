@@ -49,7 +49,7 @@ let smoother = ScrollSmoother.create({
     // normalizeScroll: true, // PRueba
     // ignoreMobileResize: true, // PRueba
     // preventDefault: true, // PRueba
-    // lockAxis: true,    // bloquea el eje para evitar saltos
+    lockAxis: true,    // bloquea el eje para evitar saltos
     // renderFixed: false // ayuda con elementos fijos
 });
 
