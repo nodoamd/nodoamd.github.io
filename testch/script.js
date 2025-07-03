@@ -162,3 +162,114 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
         }
     });
 });
+
+
+// Funcionalidad de deslizamiento para el slider
+const slider = document.querySelector('.slider');
+const slides = document.querySelectorAll('.slider img');
+const dots = document.querySelectorAll('.slider-dot');
+let currentSlide = 0;
+let startX = 0;
+let isDragging = false;
+let startTime = 0;
+
+// Función para mostrar slide específico
+function showSlide(index) {
+    currentSlide = index;
+    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    // Actualizar dots
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+    });
+}
+
+// Función para ir al siguiente slide
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
+
+// Función para ir al slide anterior
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+}
+
+// Event listeners para los dots
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => showSlide(index));
+});
+
+// Event listeners para touch (móvil)
+slider.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    startTime = Date.now();
+    isDragging = true;
+}, { passive: true });
+
+slider.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+}, { passive: false });
+
+slider.addEventListener('touchend', (e) => {
+    if (!isDragging) return;
+
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+    const timeDiff = Date.now() - startTime;
+
+    // Determinar si fue un swipe válido (mínimo 50px de distancia y máximo 300ms)
+    if (Math.abs(diff) > 50 && timeDiff < 300) {
+        if (diff > 0) {
+            nextSlide(); // Deslizar hacia la izquierda - siguiente imagen
+        } else {
+            prevSlide(); // Deslizar hacia la derecha - imagen anterior
+        }
+    }
+
+    isDragging = false;
+}, { passive: true });
+
+// Event listeners para mouse (escritorio)
+slider.addEventListener('mousedown', (e) => {
+    startX = e.clientX;
+    startTime = Date.now();
+    isDragging = true;
+    slider.style.cursor = 'grabbing';
+    e.preventDefault();
+});
+
+slider.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+});
+
+slider.addEventListener('mouseup', (e) => {
+    if (!isDragging) return;
+
+    const endX = e.clientX;
+    const diff = startX - endX;
+    const timeDiff = Date.now() - startTime;
+
+    // Determinar si fue un swipe válido
+    if (Math.abs(diff) > 50 && timeDiff < 300) {
+        if (diff > 0) {
+            nextSlide();
+        } else {
+            prevSlide();
+        }
+    }
+
+    isDragging = false;
+    slider.style.cursor = 'grab';
+});
+
+// Prevenir arrastre de imágenes
+slider.addEventListener('dragstart', (e) => {
+    e.preventDefault();
+});
+
+// Inicializar
+showSlide(0);
