@@ -277,6 +277,8 @@ img {
     max-width: 1000px;
     margin: 0 auto;
     padding: 0 2rem;
+    /* margin-top: 25px; */
+    /* Cuando España toca Descubre */
 }
 
 .text-card {
@@ -295,7 +297,7 @@ img {
 }
 
 .card-content {
-    padding: 2.5rem;
+    padding: 3rem;
     width: 100%;
 }
 
@@ -487,7 +489,7 @@ img {
 
 
 .hero {
-    margin-bottom: 0px !important;
+    margin-bottom: 0px;
 }
 
 @media (max-width: 900px) {
@@ -1856,11 +1858,11 @@ img {
     }
 }
 
-/* @media (min-width: 1024px) {
+@media (min-width: 1024px) {
     .about-hero {
-        margin-top: 250px !important;
+        margin-top: 250px;
     }
-} */
+}
 
 
 .menu-nav {
@@ -2312,7 +2314,7 @@ img {
 .footer-modern-bottom {
     text-align: center;
     color: #e6d3b3;
-    font-size: 1rem;
+    font-size: 0.89rem;
     padding: 32px 15px 24px 15px;
     border-top: 1px solid rgba(232, 162, 56, 0.3);
     margin-top: 40px;
@@ -2383,7 +2385,7 @@ img {
 
 @media (max-width: 600px) {
     .contacto-modern-title {
-        font-size: 1.3rem !important;
+        font-size: 1.3rem;
         line-height: 1.2;
         flex-direction: column;
         gap: 8px;
@@ -3058,15 +3060,7 @@ img {
     padding-left: 8px;
 }
 
-.footer-modern-bottom {
-    text-align: center;
-    color: #e6d3b3;
-    font-size: 1rem;
-    padding: 32px 15px 24px 15px;
-    border-top: 1px solid rgba(232, 162, 56, 0.3);
-    margin-top: 40px;
-    background: rgba(26, 48, 39, 0.5);
-}
+
 
 /* RESPONSIVE MEJORADO */
 @media (max-width: 1200px) {
