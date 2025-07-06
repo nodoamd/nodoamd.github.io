@@ -277,6 +277,8 @@ img {
     max-width: 1000px;
     margin: 0 auto;
     padding: 0 2rem;
+    /* margin-top: 25px; */
+    /* Cuando España toca Descubre */
 }
 
 .text-card {
@@ -295,7 +297,7 @@ img {
 }
 
 .card-content {
-    padding: 2.5rem;
+    padding: 3rem;
     width: 100%;
 }
 
@@ -487,7 +489,7 @@ img {
 
 
 .hero {
-    margin-bottom: 0px !important;
+    margin-bottom: 0px;
 }
 
 @media (max-width: 900px) {
@@ -711,10 +713,13 @@ img {
     text-align: center;
 }
 
+
+
 .overline {
     display: block;
     font-size: 0.9rem;
-    color: #e8a238;
+    color: #ffb94f;
+    text-shadow: #1a3027 0px 0px 5px;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 1rem;
@@ -1182,7 +1187,7 @@ img {
     }
 
     .hero-visual-img img {
-        max-height: 160px;
+        max-height: 360px;
     }
 
     .hero-visual-text h2 {
@@ -1853,11 +1858,11 @@ img {
     }
 }
 
-/* @media (min-width: 1024px) {
+@media (min-width: 1024px) {
     .about-hero {
-        margin-top: 250px !important;
+        margin-top: 250px;
     }
-} */
+}
 
 
 .menu-nav {
@@ -1948,34 +1953,33 @@ img {
     gap: 16px;
 }
 
-
-
-
-.contacto-hero {
-    background: linear-gradient(135deg, #fff 0%, #faf8f3 60%, #e6d3b3 100%);
-    padding: 80px 0;
-    position: relative;
-    overflow: hidden;
+.productos-boton-centro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 2.5rem;
 }
 
-.contacto-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #e8a238, #4e7c59, #e8a238);
+.productos-boton-centro .btn-ver-mas {
+    /* El botón no debe ocupar todo el ancho, solo el necesario */
+    min-width: 220px;
+    max-width: 100%;
+    text-align: center;
 }
 
-.contacto-modern-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
-    align-items: start;
+/* ...existing code... */
+
+@media (max-width: 600px) {
+    .productos-boton-centro {
+        margin-top: 1.5rem;
+    }
+
+    .productos-boton-centro .btn-ver-mas {
+        width: 100%;
+        min-width: unset;
+        max-width: 100%;
+    }
 }
 
 .contacto-modern-info {
@@ -2381,7 +2385,7 @@ img {
 
 @media (max-width: 600px) {
     .contacto-modern-title {
-        font-size: 1.3rem !important;
+        font-size: 1.3rem;
         line-height: 1.2;
         flex-direction: column;
         gap: 8px;
@@ -2481,223 +2485,7 @@ img {
     }
 }
 
-.impacto-hero {
-    background: wheat;
-    padding: 80px 0 40px 0;
-    position: relative;
-    overflow: hidden;
-}
 
-.impacto-hero p {
-    color: #6a4d21;
-    font-size: 1.05rem;
-    margin-bottom: 24px;
-    line-height: 1.6;
-}
-
-.impacto-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 32px;
-    margin: 40px 0 32px 0;
-}
-
-.impacto-card {
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 6px 32px rgba(232, 162, 56, 0.10);
-    padding: 36px 28px 28px 28px;
-    text-align: center;
-    border: 1.5px solid #f4e6d0;
-    transition: box-shadow 0.2s, transform 0.2s;
-    position: relative;
-}
-
-.impacto-card:hover {
-    box-shadow: 0 16px 40px rgba(232, 162, 56, 0.18);
-    transform: translateY(-6px) scale(1.03);
-    border-color: #e8a238;
-}
-
-.impacto-icon {
-    font-size: 2.6rem;
-    color: #e8a238;
-    margin-bottom: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 56px;
-}
-
-.impacto-card h3 {
-    color: #8b4513;
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.impacto-card p {
-    color: #3a2d1a;
-    font-size: 1.05rem;
-    margin-bottom: 0;
-}
-
-.impacto-stats {
-    display: flex;
-    justify-content: center;
-    gap: 48px;
-    margin: 32px 0 0 0;
-    padding: 0;
-}
-
-.impacto-stats>div {
-    text-align: center;
-}
-
-.impacto-stat-num {
-    display: block;
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: #e8a238;
-    margin-bottom: 4px;
-}
-
-.impacto-stat-label {
-    font-size: 1rem;
-    color: #8b4513;
-    font-weight: 600;
-    letter-spacing: 1px;
-}
-
-.call-to-action {
-    margin-top: 40px;
-    text-align: center;
-}
-
-.call-to-action h3 {
-    color: #8b4513;
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-.call-to-action p {
-    color: #3a2d1a;
-    font-size: 1.05rem;
-    margin-bottom: 18px;
-}
-
-.btn-impacto {
-    background: linear-gradient(90deg, #e8a238 60%, #f4b942 100%);
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    padding: 14px 38px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 8px 24px rgba(232, 162, 56, 0.13);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: background 0.2s, transform 0.2s;
-    display: inline-block;
-    text-decoration: none;
-}
-
-.btn-impacto:hover {
-    background: linear-gradient(90deg, #4e7c59 60%, #e8a238 100%);
-    color: #fff;
-    transform: translateY(-2px) scale(1.04);
-}
-
-@media (max-width: 900px) {
-    .contacto-modern-wrapper {
-        grid-template-columns: 1fr;
-        gap: 32px;
-        padding: 0 10px;
-    }
-
-    .contacto-modern_info,
-    .contacto-modern-form {
-        padding: 20px 10px;
-    }
-}
-
-@media (max-width: 600px) {
-    .contacto-modern-title {
-        font-size: 1.3rem !important;
-        line-height: 1.2;
-        flex-direction: column;
-        gap: 8px;
-        text-align: center;
-        word-break: break-word;
-        padding: 0 2px;
-    }
-
-    .contacto-modern-icon {
-        width: 44px;
-        height: 44px;
-        font-size: 1.2rem;
-    }
-
-    .contacto-modern-info,
-    .contacto-modern-form {
-        padding: 10px 2px;
-    }
-
-    .contacto-modern-desc {
-        font-size: 1rem;
-    }
-
-    .contacto-modern-list li {
-        font-size: 0.98rem;
-        padding: 8px 0;
-    }
-
-    .btn-pedido {
-        font-size: 1rem;
-        padding: 14px 0;
-    }
-
-    .footer-modern-wrapper {
-        padding: 40px 16px 24px;
-    }
-
-    .footer-modern-brand {
-        text-align: center;
-    }
-
-    .footer-modern-links {
-        grid-template-columns: 1fr;
-        gap: 24px;
-        text-align: center;
-    }
-
-    .footer-modern-links h4::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-}
-
-@media (max-width: 480px) {
-    .contacto-modern-title {
-        font-size: 1.8rem;
-    }
-
-    .contacto-modern-desc {
-        font-size: 1.1rem;
-    }
-
-    .contacto-modern_info,
-    .contacto-modern-form {
-        padding: 20px;
-    }
-}
-
-.footer-modern-links ul {
-    margin: 0;
-    padding-left: 0;
-}
 
 
 .poema-icono {
@@ -2725,223 +2513,8 @@ img {
     }
 }
 
-.impacto-hero {
-    background: wheat;
-    padding: 80px 0 40px 0;
-    position: relative;
-    overflow: hidden;
-}
 
-.impacto-hero p {
-    color: #6a4d21;
-    font-size: 1.05rem;
-    margin-bottom: 24px;
-    line-height: 1.6;
-}
 
-.impacto-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 32px;
-    margin: 40px 0 32px 0;
-}
-
-.impacto-card {
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 6px 32px rgba(232, 162, 56, 0.10);
-    padding: 36px 28px 28px 28px;
-    text-align: center;
-    border: 1.5px solid #f4e6d0;
-    transition: box-shadow 0.2s, transform 0.2s;
-    position: relative;
-}
-
-.impacto-card:hover {
-    box-shadow: 0 16px 40px rgba(232, 162, 56, 0.18);
-    transform: translateY(-6px) scale(1.03);
-    border-color: #e8a238;
-}
-
-.impacto-icon {
-    font-size: 2.6rem;
-    color: #e8a238;
-    margin-bottom: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 56px;
-}
-
-.impacto-card h3 {
-    color: #8b4513;
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.impacto-card p {
-    color: #3a2d1a;
-    font-size: 1.05rem;
-    margin-bottom: 0;
-}
-
-.impacto-stats {
-    display: flex;
-    justify-content: center;
-    gap: 48px;
-    margin: 32px 0 0 0;
-    padding: 0;
-}
-
-.impacto-stats>div {
-    text-align: center;
-}
-
-.impacto-stat-num {
-    display: block;
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: #e8a238;
-    margin-bottom: 4px;
-}
-
-.impacto-stat-label {
-    font-size: 1rem;
-    color: #8b4513;
-    font-weight: 600;
-    letter-spacing: 1px;
-}
-
-.call-to-action {
-    margin-top: 40px;
-    text-align: center;
-}
-
-.call-to-action h3 {
-    color: #8b4513;
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-.call-to-action p {
-    color: #3a2d1a;
-    font-size: 1.05rem;
-    margin-bottom: 18px;
-}
-
-.btn-impacto {
-    background: linear-gradient(90deg, #e8a238 60%, #f4b942 100%);
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    padding: 14px 38px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 8px 24px rgba(232, 162, 56, 0.13);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: background 0.2s, transform 0.2s;
-    display: inline-block;
-    text-decoration: none;
-}
-
-.btn-impacto:hover {
-    background: linear-gradient(90deg, #4e7c59 60%, #e8a238 100%);
-    color: #fff;
-    transform: translateY(-2px) scale(1.04);
-}
-
-@media (max-width: 900px) {
-    .contacto-modern-wrapper {
-        grid-template-columns: 1fr;
-        gap: 32px;
-        padding: 0 10px;
-    }
-
-    .contacto-modern_info,
-    .contacto-modern-form {
-        padding: 20px 10px;
-    }
-}
-
-@media (max-width: 600px) {
-    .contacto-modern-title {
-        font-size: 1.3rem !important;
-        line-height: 1.2;
-        flex-direction: column;
-        gap: 8px;
-        text-align: center;
-        word-break: break-word;
-        padding: 0 2px;
-    }
-
-    .contacto-modern-icon {
-        width: 44px;
-        height: 44px;
-        font-size: 1.2rem;
-    }
-
-    .contacto-modern-info,
-    .contacto-modern-form {
-        padding: 10px 2px;
-    }
-
-    .contacto-modern-desc {
-        font-size: 1rem;
-    }
-
-    .contacto-modern-list li {
-        font-size: 0.98rem;
-        padding: 8px 0;
-    }
-
-    .btn-pedido {
-        font-size: 1rem;
-        padding: 14px 0;
-    }
-
-    .footer-modern-wrapper {
-        padding: 40px 16px 24px;
-    }
-
-    .footer-modern-brand {
-        text-align: center;
-    }
-
-    .footer-modern-links {
-        grid-template-columns: 1fr;
-        gap: 24px;
-        text-align: center;
-    }
-
-    .footer-modern-links h4::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-}
-
-@media (max-width: 480px) {
-    .contacto-modern-title {
-        font-size: 1.8rem;
-    }
-
-    .contacto-modern-desc {
-        font-size: 1.1rem;
-    }
-
-    .contacto-modern_info,
-    .contacto-modern-form {
-        padding: 20px;
-    }
-}
-
-.footer-modern-links ul {
-    margin: 0;
-    padding-left: 0;
-}
 
 
 .poema-icono {
@@ -2969,66 +2542,7 @@ img {
     }
 }
 
-.impacto-hero {
-    background: wheat;
-    padding: 80px 0 40px 0;
-    position: relative;
-    overflow: hidden;
-}
 
-.impacto-hero p {
-    color: #6a4d21;
-    font-size: 1.05rem;
-    margin-bottom: 24px;
-    line-height: 1.6;
-}
-
-.impacto-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 32px;
-    margin: 40px 0 32px 0;
-}
-
-.impacto-card {
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 6px 32px rgba(232, 162, 56, 0.10);
-    padding: 36px 28px 28px 28px;
-    text-align: center;
-    border: 1.5px solid #f4e6d0;
-    transition: box-shadow 0.2s, transform 0.2s;
-    position: relative;
-}
-
-.impacto-card:hover {
-    box-shadow: 0 16px 40px rgba(232, 162, 56, 0.18);
-    transform: translateY(-6px) scale(1.03);
-    border-color: #e8a238;
-}
-
-.impacto-icon {
-    font-size: 2.6rem;
-    color: #e8a238;
-    margin-bottom: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 56px;
-}
-
-.impacto-card h3 {
-    color: #8b4513;
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.impacto-card p {
-    color: #3a2d1a;
-    font-size: 1.05rem;
-    margin-bottom: 0;
-}
 
 .impacto-stats {
     display: flex;
@@ -3046,13 +2560,12 @@ img {
     display: block;
     font-size: 2.2rem;
     font-weight: 800;
-    color: #e8a238;
+    color: #ffbb56;
     margin-bottom: 4px;
 }
 
 .impacto-stat-label {
     font-size: 1rem;
-    color: #8b4513;
     font-weight: 600;
     letter-spacing: 1px;
 }
@@ -3063,17 +2576,11 @@ img {
 }
 
 .call-to-action h3 {
-    color: #8b4513;
     font-size: 1.3rem;
     margin-bottom: 10px;
     font-weight: 700;
 }
 
-.call-to-action p {
-    color: #3a2d1a;
-    font-size: 1.05rem;
-    margin-bottom: 18px;
-}
 
 .btn-impacto {
     background: linear-gradient(90deg, #e8a238 60%, #f4b942 100%);
@@ -3727,66 +3234,7 @@ img {
     }
 }
 
-.impacto-hero {
-    background: wheat;
-    padding: 80px 0 40px 0;
-    position: relative;
-    overflow: hidden;
-}
 
-.impacto-hero p {
-    color: #6a4d21;
-    font-size: 1.05rem;
-    margin-bottom: 24px;
-    line-height: 1.6;
-}
-
-.impacto-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 32px;
-    margin: 40px 0 32px 0;
-}
-
-.impacto-card {
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 6px 32px rgba(232, 162, 56, 0.10);
-    padding: 36px 28px 28px 28px;
-    text-align: center;
-    border: 1.5px solid #f4e6d0;
-    transition: box-shadow 0.2s, transform 0.2s;
-    position: relative;
-}
-
-.impacto-card:hover {
-    box-shadow: 0 16px 40px rgba(232, 162, 56, 0.18);
-    transform: translateY(-6px) scale(1.03);
-    border-color: #e8a238;
-}
-
-.impacto-icon {
-    font-size: 2.6rem;
-    color: #e8a238;
-    margin-bottom: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 56px;
-}
-
-.impacto-card h3 {
-    color: #8b4513;
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.impacto-card p {
-    color: #3a2d1a;
-    font-size: 1.05rem;
-    margin-bottom: 0;
-}
 
 .impacto-stats {
     display: flex;
@@ -3800,55 +3248,146 @@ img {
     text-align: center;
 }
 
-.impacto-stat-num {
-    display: block;
-    font-size: 2.2rem;
-    font-weight: 800;
+
+
+.btn-impacto:hover {
+    background: linear-gradient(90deg, #4e7c59 60%, #e8a238 100%);
+    color: #fff;
+    transform: translateY(-2px) scale(1.04);
+}
+
+@media (max-width: 900px) {
+    .contacto-modern-wrapper {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 0 10px;
+    }
+
+    .contacto-modern_info,
+    .contacto-modern-form {
+        padding: 20px 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .contacto-modern-title {
+        font-size: 1.3rem !important;
+        line-height: 1.2;
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+        word-break: break-word;
+        padding: 0 2px;
+    }
+
+    .contacto-modern-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
+    }
+
+    .contacto-modern-info,
+    .contacto-modern-form {
+        padding: 10px 2px;
+    }
+
+    .contacto-modern-desc {
+        font-size: 1rem;
+    }
+
+    .contacto-modern-list li {
+        font-size: 0.98rem;
+        padding: 8px 0;
+    }
+
+    .btn-pedido {
+        font-size: 1rem;
+        padding: 14px 0;
+    }
+
+    .footer-modern-wrapper {
+        padding: 40px 16px 24px;
+    }
+
+    .footer-modern-brand {
+        text-align: center;
+    }
+
+    .footer-modern-links {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+    }
+
+    .footer-modern-links h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 480px) {
+    .contacto-modern-title {
+        font-size: 1.8rem;
+    }
+
+    .contacto-modern-desc {
+        font-size: 1.1rem;
+    }
+
+    .contacto-modern_info,
+    .contacto-modern-form {
+        padding: 20px;
+    }
+}
+
+.footer-modern-links ul {
+    margin: 0;
+    padding-left: 0;
+}
+
+
+.poema-icono {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 0.7rem;
+}
+
+.poema-icono i {
     color: #e8a238;
-    margin-bottom: 4px;
+    font-size: 2.1rem;
+    filter: drop-shadow(0 2px 8px rgba(232, 162, 56, 0.13));
+    margin-right: 0.5rem;
+    animation: poema-feather-float 2.5s ease-in-out infinite alternate;
 }
 
-.impacto-stat-label {
-    font-size: 1rem;
-    color: #8b4513;
-    font-weight: 600;
-    letter-spacing: 1px;
+@keyframes poema-feather-float {
+    0% {
+        transform: translateY(0) rotate(-8deg);
+    }
+
+    100% {
+        transform: translateY(-8px) rotate(8deg);
+    }
 }
 
-.call-to-action {
-    margin-top: 40px;
+
+
+
+
+.impacto-stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin: 32px 0 0 0;
+    padding: 0;
+}
+
+.impacto-stats>div {
     text-align: center;
 }
 
-.call-to-action h3 {
-    color: #8b4513;
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
 
-.call-to-action p {
-    color: #3a2d1a;
-    font-size: 1.05rem;
-    margin-bottom: 18px;
-}
-
-.btn-impacto {
-    background: linear-gradient(90deg, #e8a238 60%, #f4b942 100%);
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    padding: 14px 38px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 8px 24px rgba(232, 162, 56, 0.13);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: background 0.2s, transform 0.2s;
-    display: inline-block;
-    text-decoration: none;
-}
 
 .btn-impacto:hover {
     background: linear-gradient(90deg, #4e7c59 60%, #e8a238 100%);
@@ -3972,14 +3511,14 @@ img {
 }
 
 .impacto-hero {
-    background: wheat;
     padding: 80px 0 40px 0;
     position: relative;
     overflow: hidden;
+    background: rgba(0, 0, 0, 0.49);
 }
 
 .impacto-hero p {
-    color: #6a4d21;
+    color: #e3cba6;
     font-size: 1.05rem;
     margin-bottom: 24px;
     line-height: 1.6;
@@ -4044,299 +3583,6 @@ img {
     text-align: center;
 }
 
-.impacto-stat-num {
-    display: block;
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: #e8a238;
-    margin-bottom: 4px;
-}
-
-.impacto-stat-label {
-    font-size: 1rem;
-    color: #8b4513;
-    font-weight: 600;
-    letter-spacing: 1px;
-}
-
-.call-to-action {
-    margin-top: 40px;
-    text-align: center;
-}
-
-.call-to-action h3 {
-    color: #8b4513;
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-.call-to-action p {
-    color: #3a2d1a;
-    font-size: 1.05rem;
-    margin-bottom: 18px;
-}
-
-.btn-impacto {
-    background: linear-gradient(90deg, #e8a238 60%, #f4b942 100%);
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    padding: 14px 38px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 8px 24px rgba(232, 162, 56, 0.13);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: background 0.2s, transform 0.2s;
-    display: inline-block;
-    text-decoration: none;
-}
-
-.btn-impacto:hover {
-    background: linear-gradient(90deg, #4e7c59 60%, #e8a238 100%);
-    color: #fff;
-    transform: translateY(-2px) scale(1.04);
-}
-
-@media (max-width: 900px) {
-    .contacto-modern-wrapper {
-        grid-template-columns: 1fr;
-        gap: 32px;
-        padding: 0 10px;
-    }
-
-    .contacto-modern_info,
-    .contacto-modern-form {
-        padding: 20px 10px;
-    }
-}
-
-@media (max-width: 600px) {
-    .contacto-modern-title {
-        font-size: 1.3rem !important;
-        line-height: 1.2;
-        flex-direction: column;
-        gap: 8px;
-        text-align: center;
-        word-break: break-word;
-        padding: 0 2px;
-    }
-
-    .contacto-modern-icon {
-        width: 44px;
-        height: 44px;
-        font-size: 1.2rem;
-    }
-
-    .contacto-modern-info,
-    .contacto-modern-form {
-        padding: 10px 2px;
-    }
-
-    .contacto-modern-desc {
-        font-size: 1rem;
-    }
-
-    .contacto-modern-list li {
-        font-size: 0.98rem;
-        padding: 8px 0;
-    }
-
-    .btn-pedido {
-        font-size: 1rem;
-        padding: 14px 0;
-    }
-
-    .footer-modern-wrapper {
-        padding: 40px 16px 24px;
-    }
-
-    .footer-modern-brand {
-        text-align: center;
-    }
-
-    .footer-modern-links {
-        grid-template-columns: 1fr;
-        gap: 24px;
-        text-align: center;
-    }
-
-    .footer-modern-links h4::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-}
-
-@media (max-width: 480px) {
-    .contacto-modern-title {
-        font-size: 1.8rem;
-    }
-
-    .contacto-modern-desc {
-        font-size: 1.1rem;
-    }
-
-    .contacto-modern_info,
-    .contacto-modern-form {
-        padding: 20px;
-    }
-}
-
-.footer-modern-links ul {
-    margin: 0;
-    padding-left: 0;
-}
-
-
-.poema-icono {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-bottom: 0.7rem;
-}
-
-.poema-icono i {
-    color: #e8a238;
-    font-size: 2.1rem;
-    filter: drop-shadow(0 2px 8px rgba(232, 162, 56, 0.13));
-    margin-right: 0.5rem;
-    animation: poema-feather-float 2.5s ease-in-out infinite alternate;
-}
-
-@keyframes poema-feather-float {
-    0% {
-        transform: translateY(0) rotate(-8deg);
-    }
-
-    100% {
-        transform: translateY(-8px) rotate(8deg);
-    }
-}
-
-.impacto-hero {
-    background: wheat;
-    padding: 80px 0 40px 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.impacto-hero p {
-    color: #6a4d21;
-    font-size: 1.05rem;
-    margin-bottom: 24px;
-    line-height: 1.6;
-}
-
-.impacto-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 32px;
-    margin: 40px 0 32px 0;
-}
-
-.impacto-card {
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 6px 32px rgba(232, 162, 56, 0.10);
-    padding: 36px 28px 28px 28px;
-    text-align: center;
-    border: 1.5px solid #f4e6d0;
-    transition: box-shadow 0.2s, transform 0.2s;
-    position: relative;
-}
-
-.impacto-card:hover {
-    box-shadow: 0 16px 40px rgba(232, 162, 56, 0.18);
-    transform: translateY(-6px) scale(1.03);
-    border-color: #e8a238;
-}
-
-.impacto-icon {
-    font-size: 2.6rem;
-    color: #e8a238;
-    margin-bottom: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 56px;
-}
-
-.impacto-card h3 {
-    color: #8b4513;
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.impacto-card p {
-    color: #3a2d1a;
-    font-size: 1.05rem;
-    margin-bottom: 0;
-}
-
-.impacto-stats {
-    display: flex;
-    justify-content: center;
-    gap: 48px;
-    margin: 32px 0 0 0;
-    padding: 0;
-}
-
-.impacto-stats>div {
-    text-align: center;
-}
-
-.impacto-stat-num {
-    display: block;
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: #e8a238;
-    margin-bottom: 4px;
-}
-
-.impacto-stat-label {
-    font-size: 1rem;
-    color: #8b4513;
-    font-weight: 600;
-    letter-spacing: 1px;
-}
-
-.call-to-action {
-    margin-top: 40px;
-    text-align: center;
-}
-
-.call-to-action h3 {
-    color: #8b4513;
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    font-weight: 700;
-}
-
-.call-to-action p {
-    color: #3a2d1a;
-    font-size: 1.05rem;
-    margin-bottom: 18px;
-}
-
-.btn-impacto {
-    background: linear-gradient(90deg, #e8a238 60%, #f4b942 100%);
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    padding: 14px 38px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 8px 24px rgba(232, 162, 56, 0.13);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: background 0.2s, transform 0.2s;
-    display: inline-block;
-    text-decoration: none;
-}
 
 .btn-impacto:hover {
     background: linear-gradient(90deg, #4e7c59 60%, #e8a238 100%);
