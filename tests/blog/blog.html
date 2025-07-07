@@ -47,6 +47,7 @@
             font-family: 'Unbounded', sans-serif;
         }
 
+
         /* Header */
         header {
             padding: 1.5rem;
@@ -75,43 +76,74 @@
             object-fit: contain;
         }
 
+        .menu-toggle {
+            display: block;
+            background: #fff;
+            color: #4e7c59;
+            border: 2px solid #e8a238;
+            border-radius: 12px;
+            padding: 0.6rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 1100;
+        }
 
-        /* Menu List (Desktop) */
+        .menu-toggle:hover {
+            color: white;
+        }
+
         .menu-list {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-            margin: 0;
-            padding: 0;
-        }
-
-
-        .menu-list a {
-            text-decoration: none;
-            color: var(--jungle-dark);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-
-        .menu-list a:hover {
-            color: var(--accent);
-        }
-
-
-        .menu-list a::after {
-            content: '';
+            display: none;
+            flex-direction: column;
+            gap: 1.2rem;
+            background: #fff;
             position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s ease;
+            top: 110%;
+            right: 0;
+            min-width: 220px;
+            box-shadow: 0 8px 32px rgba(46, 83, 57, 0.10);
+            border-radius: 16px;
+            padding: 1.2rem 1.5rem;
+            z-index: 1001;
+            list-style: none;
         }
-        .menu-list a:hover::after {
-            width: 100%;
+
+        .menu-list.open {
+            display: flex;
+        }
+
+        .menu-list li a {
+            color: #2e5339;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+
+        .menu-list li a:hover {
+            color: #e8a238;
+        }
+
+        @media (max-width: 900px) {
+            .menu-list {
+                display: none;
+                flex-direction: column;
+                gap: 1.2rem;
+                background: #fff;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                left: 0;
+                z-index: 1001;
+                padding: 1.5rem 2rem;
+                box-shadow: 0 8px 32px rgba(46, 83, 57, 0.10);
+            }
+
+            .menu-list.open {
+                display: flex;
+                left: -150px;
+            }
         }
 
         /* Hero Section */
@@ -504,6 +536,7 @@
                 padding: 1.5rem 2rem;
                 box-shadow: 0 8px 32px rgba(46, 83, 57, 0.10);
             }
+
             .menu-list.open {
                 display: flex;
             }
@@ -575,6 +608,7 @@
 </head>
 
 <body>
+
     <header>
         <div class="logo" style="width: 150px; height: 50px;">
             <a href="../index.html"><img src="../img/lachiquitanaLogo.webp" alt="La Chiquitana"></a>
@@ -584,17 +618,17 @@
                 Menú <i class="fa fa-chevron-down"></i>
             </button>
             <ul class="menu-list" id="menu-list">
+
                 <li><a href="../index.html">Inicio</a></li>
                 <li><a href="../productos/productos.html">Productos</a></li>
                 <li><a href="../historia/historia.html">Historia</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-section" style="background: linear-gradient(135deg, var(--jungle-dark), var(--jungle)), url('../img/mountains.webp') center bottom/cover no-repeat; background-blend-mode: multiply;">
+    <section class="hero-section"
+        style="background: linear-gradient(135deg, var(--jungle-dark), var(--jungle)), url('../img/mountains.webp') center bottom/cover no-repeat; background-blend-mode: multiply;">
         <div class="hero-content">
             <h1 class="hero-title">Nuestro Blog</h1>
             <p class="hero-subtitle">Descubre historias, recetas y tradiciones de la cocina boliviana</p>
@@ -613,7 +647,7 @@
                         se ha convertido en el desayuno favorito de millones de personas.</p>
                     <a href="#" class="featured-btn">Leer más</a>
                 </div>
-                <img src="../img/salteña.webp" alt="Salteña La Chiquitana" class="featured-image">
+                <img src="../img/salteñas.webp" alt="Salteña La Chiquitana" class="featured-image">
             </div>
 
             <!-- Categories Filter -->
@@ -652,153 +686,153 @@
     </section>
 
     <script>
-    // --- Blog posts data ---
-    const blogPosts = [
-        {
-            img: '../img/proceso1.webp',
-            category: 'recetas',
-            categoryText: 'Recetas',
-            title: 'Cómo hacer la masa perfecta para salteñas',
-            date: '15 Dic 2024',
-            readTime: '5 min',
-            excerpt: 'Los secretos para lograr una masa dorada, crujiente por fuera y suave por dentro. Aprende las técnicas que han pasado de generación en generación...',
-            link: '#'
-        },
-        {
-            img: '../img/salteñas.webp',
-            category: 'historia',
-            categoryText: 'Historia',
-            title: 'El origen de la Salteña: Una historia de amor y tradición',
-            date: '10 Dic 2024',
-            readTime: '8 min',
-            excerpt: 'Conoce la fascinante historia de Juana Manuela Gorriti y cómo nació la salteña en el siglo XIX. Un relato que mezcla romance, exilio y gastronomía...',
-            link: '#'
-        },
-        {
-            img: '../img/cunape.webp',
-            category: 'ingredientes',
-            categoryText: 'Ingredientes',
-            title: 'El queso: El alma del Cuñapé',
-            date: '5 Dic 2024',
-            readTime: '6 min',
-            excerpt: 'Descubre qué tipos de queso utilizamos y por qué son fundamentales para lograr el sabor auténtico del cuñapé chiquitano...',
-            link: '#'
-        },
-        {
-            img: '../img/asadito.webp',
-            category: 'tradiciones',
-            categoryText: 'Tradiciones',
-            title: 'El Asadito: Tradición de celebración',
-            date: '1 Dic 2024',
-            readTime: '4 min',
-            excerpt: 'En las fiestas bolivianas, el asadito nunca falta. Conoce su importancia cultural y las ocasiones especiales donde se comparte...',
-            link: '#'
-        },
-        {
-            img: '../img/empanadamaiz.webp',
-            category: 'recetas',
-            categoryText: 'Recetas',
-            title: 'Empanadas de maíz: El secreto está en el grano',
-            date: '25 Nov 2024',
-            readTime: '7 min',
-            excerpt: 'La empanada de maíz es una joya gastronómica. Aprende sobre la selección del maíz y los métodos tradicionales de preparación...',
-            link: '#'
-        },
-        {
-            img: '../img/newmontañacasa.webp',
-            category: 'historia',
-            categoryText: 'Historia',
-            title: 'De la Chiquitanía a España: Nuestro viaje',
-            date: '20 Nov 2024',
-            readTime: '10 min',
-            excerpt: 'La historia de cómo trajimos los sabores auténticos de Bolivia a España, manteniendo viva la tradición familiar desde 1952...',
-            link: '#'
-        },
-        // Puedes agregar más posts aquí para simular más páginas
-        {
-            img: '../img/ingredientes.webp',
-            category: 'ingredientes',
-            categoryText: 'Ingredientes',
-            title: 'Maíz y tradición: El ingrediente estrella',
-            date: '10 Nov 2024',
-            readTime: '6 min',
-            excerpt: 'El maíz es la base de muchas recetas bolivianas. Descubre su historia y cómo lo usamos en La Chiquitana...',
-            link: '#'
-        },
-        {
-            img: '../img/familia.webp',
-            category: 'tradiciones',
-            categoryText: 'Tradiciones',
-            title: 'Reuniones familiares: El corazón de la cocina',
-            date: '5 Nov 2024',
-            readTime: '5 min',
-            excerpt: 'Las reuniones familiares son el alma de la gastronomía chiquitana. Te contamos cómo celebramos en casa...',
-            link: '#'
-        },
-        {
-            img: '../img/maiz-empa.webp',
-            category: 'recetas',
-            categoryText: 'Recetas',
-            title: 'Empanadas de maíz: Receta tradicional',
-            date: '1 Nov 2024',
-            readTime: '8 min',
-            excerpt: 'Aprende a preparar empanadas de maíz con la receta tradicional de la abuela...',
-            link: '#'
-        },
-        {
-            img: '../img/iglesia.webp',
-            category: 'historia',
-            categoryText: 'Historia',
-            title: 'Las iglesias de la Chiquitanía',
-            date: '28 Oct 2024',
-            readTime: '7 min',
-            excerpt: 'Un recorrido por las iglesias más emblemáticas de la región y su influencia en la cultura local...',
-            link: '#'
-        },
-        {
-            img: '../img/ingredientes.webp',
-            category: 'ingredientes',
-            categoryText: 'Ingredientes',
-            title: 'El secreto de la yuca',
-            date: '20 Oct 2024',
-            readTime: '5 min',
-            excerpt: 'La yuca es un ingrediente esencial en la cocina boliviana. Descubre cómo la usamos en nuestros platos...',
-            link: '#'
-        },
-        {
-            img: '../img/familiamontaña.webp',
-            category: 'tradiciones',
-            categoryText: 'Tradiciones',
-            title: 'Cocinar en la montaña: Una experiencia única',
-            date: '15 Oct 2024',
-            readTime: '6 min',
-            excerpt: 'Cocinar en la montaña es una tradición que une a la familia y a la comunidad. Te contamos cómo lo vivimos...',
-            link: '#'
-        }
-    ];
+        // --- Blog posts data ---
+        const blogPosts = [
+            {
+                img: '../img/proceso1.webp',
+                category: 'recetas',
+                categoryText: 'Recetas',
+                title: 'Cómo hacer la masa perfecta para salteñas',
+                date: '15 Dic 2024',
+                readTime: '5 min',
+                excerpt: 'Los secretos para lograr una masa dorada, crujiente por fuera y suave por dentro. Aprende las técnicas que han pasado de generación en generación...',
+                link: '#'
+            },
+            {
+                img: '../img/iglesiaignaciovelasco.webp',
+                category: 'historia',
+                categoryText: 'Historia',
+                title: 'El origen de la Salteña: Una historia de amor y tradición',
+                date: '10 Dic 2024',
+                readTime: '8 min',
+                excerpt: 'Conoce la fascinante historia de Juana Manuela Gorriti y cómo nació la salteña en el siglo XIX. Un relato que mezcla romance, exilio y gastronomía...',
+                link: '#'
+            },
+            {
+                img: '../img/cuñape.webp',
+                category: 'ingredientes',
+                categoryText: 'Ingredientes',
+                title: 'El queso: El alma del Cuñapé',
+                date: '5 Dic 2024',
+                readTime: '6 min',
+                excerpt: 'Descubre qué tipos de queso utilizamos y por qué son fundamentales para lograr el sabor auténtico del cuñapé chiquitano...',
+                link: '#'
+            },
+            {
+                img: '../img/asadito.webp',
+                category: 'tradiciones',
+                categoryText: 'Tradiciones',
+                title: 'El Asadito: Tradición de celebración',
+                date: '1 Dic 2024',
+                readTime: '4 min',
+                excerpt: 'En las fiestas bolivianas, el asadito nunca falta. Conoce su importancia cultural y las ocasiones especiales donde se comparte...',
+                link: '#'
+            },
+            {
+                img: '../img/proceso22.webp',
+                category: 'recetas',
+                categoryText: 'Recetas',
+                title: 'Empanadas de maíz: El secreto está en el grano',
+                date: '25 Nov 2024',
+                readTime: '7 min',
+                excerpt: 'La empanada de maíz es una joya gastronómica. Aprende sobre la selección del maíz y los métodos tradicionales de preparación...',
+                link: '#'
+            },
+            {
+                img: '../img/newmontañacasa.webp',
+                category: 'historia',
+                categoryText: 'Historia',
+                title: 'De la Chiquitanía a España: Nuestro viaje',
+                date: '20 Nov 2024',
+                readTime: '10 min',
+                excerpt: 'La historia de cómo trajimos los sabores auténticos de Bolivia a España, manteniendo viva la tradición familiar desde 1952...',
+                link: '#'
+            },
+            // Puedes agregar más posts aquí para simular más páginas
+            {
+                img: '../img/ingredientes.webp',
+                category: 'ingredientes',
+                categoryText: 'Ingredientes',
+                title: 'Maíz y tradición: El ingrediente estrella',
+                date: '10 Nov 2024',
+                readTime: '6 min',
+                excerpt: 'El maíz es la base de muchas recetas bolivianas. Descubre su historia y cómo lo usamos en La Chiquitana...',
+                link: '#'
+            },
+            {
+                img: '../img/familia.webp',
+                category: 'tradiciones',
+                categoryText: 'Tradiciones',
+                title: 'Reuniones familiares: El corazón de la cocina',
+                date: '5 Nov 2024',
+                readTime: '5 min',
+                excerpt: 'Las reuniones familiares son el alma de la gastronomía chiquitana. Te contamos cómo celebramos en casa...',
+                link: '#'
+            },
+            {
+                img: '../img/maiz-empa.webp',
+                category: 'recetas',
+                categoryText: 'Recetas',
+                title: 'Empanadas de maíz: Receta tradicional',
+                date: '1 Nov 2024',
+                readTime: '8 min',
+                excerpt: 'Aprende a preparar empanadas de maíz con la receta tradicional de la abuela...',
+                link: '#'
+            },
+            {
+                img: '../img/iglesia.webp',
+                category: 'historia',
+                categoryText: 'Historia',
+                title: 'Las iglesias de la Chiquitanía',
+                date: '28 Oct 2024',
+                readTime: '7 min',
+                excerpt: 'Un recorrido por las iglesias más emblemáticas de la región y su influencia en la cultura local...',
+                link: '#'
+            },
+            {
+                img: '../img/ingredientes.webp',
+                category: 'ingredientes',
+                categoryText: 'Ingredientes',
+                title: 'El secreto de la yuca',
+                date: '20 Oct 2024',
+                readTime: '5 min',
+                excerpt: 'La yuca es un ingrediente esencial en la cocina boliviana. Descubre cómo la usamos en nuestros platos...',
+                link: '#'
+            },
+            {
+                img: '../img/familiamontaña.webp',
+                category: 'tradiciones',
+                categoryText: 'Tradiciones',
+                title: 'Cocinar en la montaña: Una experiencia única',
+                date: '15 Oct 2024',
+                readTime: '6 min',
+                excerpt: 'Cocinar en la montaña es una tradición que une a la familia y a la comunidad. Te contamos cómo lo vivimos...',
+                link: '#'
+            }
+        ];
 
-    const POSTS_PER_PAGE = 6;
-    let currentPage = 1;
-    let currentCategory = 'all';
+        const POSTS_PER_PAGE = 6;
+        let currentPage = 1;
+        let currentCategory = 'all';
 
-    function renderPosts() {
-        const grid = document.getElementById('blogGrid');
-        grid.innerHTML = '';
-        // Filtrar por categoría
-        const filtered = currentCategory === 'all' ? blogPosts : blogPosts.filter(p => p.category === currentCategory);
-        // Paginación
-        const start = (currentPage - 1) * POSTS_PER_PAGE;
-        const end = start + POSTS_PER_PAGE;
-        const postsToShow = filtered.slice(start, end);
-        if (postsToShow.length === 0) {
-            grid.innerHTML = '<p style="text-align:center;">No hay publicaciones en esta categoría.</p>';
-            return;
-        }
-        postsToShow.forEach(post => {
-            const card = document.createElement('article');
-            card.className = 'blog-card';
-            card.setAttribute('data-category', post.category);
-            card.innerHTML = `
+        function renderPosts() {
+            const grid = document.getElementById('blogGrid');
+            grid.innerHTML = '';
+            // Filtrar por categoría
+            const filtered = currentCategory === 'all' ? blogPosts : blogPosts.filter(p => p.category === currentCategory);
+            // Paginación
+            const start = (currentPage - 1) * POSTS_PER_PAGE;
+            const end = start + POSTS_PER_PAGE;
+            const postsToShow = filtered.slice(start, end);
+            if (postsToShow.length === 0) {
+                grid.innerHTML = '<p style="text-align:center;">No hay publicaciones en esta categoría.</p>';
+                return;
+            }
+            postsToShow.forEach(post => {
+                const card = document.createElement('article');
+                card.className = 'blog-card';
+                card.setAttribute('data-category', post.category);
+                card.innerHTML = `
                 <img src="${post.img}" alt="${post.title}" class="blog-image">
                 <div class="blog-content">
                     <span class="blog-category">${post.categoryText}</span>
@@ -817,100 +851,100 @@
                     <a href="${post.link}" class="blog-link">Leer más →</a>
                 </div>
             `;
-            grid.appendChild(card);
+                grid.appendChild(card);
+            });
+        }
+
+        function renderPagination() {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+            const filtered = currentCategory === 'all' ? blogPosts : blogPosts.filter(p => p.category === currentCategory);
+            const totalPages = Math.ceil(filtered.length / POSTS_PER_PAGE);
+            if (totalPages <= 1) return;
+            for (let i = 1; i <= totalPages; i++) {
+                const a = document.createElement('a');
+                a.href = '#';
+                a.textContent = i;
+                if (i === currentPage) a.classList.add('active');
+                a.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    currentPage = i;
+                    renderPosts();
+                    renderPagination();
+                    window.scrollTo({ top: document.getElementById('blogGrid').offsetTop - 120, behavior: 'smooth' });
+                });
+                pagination.appendChild(a);
+            }
+            // Flecha siguiente
+            if (currentPage < totalPages) {
+                const next = document.createElement('a');
+                next.href = '#';
+                next.textContent = '→';
+                next.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    currentPage++;
+                    renderPosts();
+                    renderPagination();
+                    window.scrollTo({ top: document.getElementById('blogGrid').offsetTop - 120, behavior: 'smooth' });
+                });
+                pagination.appendChild(next);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Menu toggle functionality
+            const toggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu-list');
+            if (toggle && menu) {
+                toggle.addEventListener('click', function () {
+                    menu.classList.toggle('open');
+                    toggle.setAttribute('aria-expanded', menu.classList.contains('open'));
+                });
+            }
+
+            // Category filter functionality
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentCategory = this.getAttribute('data-category');
+                    currentPage = 1;
+                    renderPosts();
+                    renderPagination();
+                });
+            });
+
+            // Newsletter form
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const email = this.querySelector('.newsletter-input').value;
+                    if (email) {
+                        alert('¡Gracias por suscribirte! Te mantendremos informado sobre nuestras novedades.');
+                        this.reset();
+                    }
+                });
+            }
+
+            // Smooth scroll for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Render inicial
+            renderPosts();
+            renderPagination();
         });
-    }
-
-    function renderPagination() {
-        const pagination = document.getElementById('pagination');
-        pagination.innerHTML = '';
-        const filtered = currentCategory === 'all' ? blogPosts : blogPosts.filter(p => p.category === currentCategory);
-        const totalPages = Math.ceil(filtered.length / POSTS_PER_PAGE);
-        if (totalPages <= 1) return;
-        for (let i = 1; i <= totalPages; i++) {
-            const a = document.createElement('a');
-            a.href = '#';
-            a.textContent = i;
-            if (i === currentPage) a.classList.add('active');
-            a.addEventListener('click', function(e) {
-                e.preventDefault();
-                currentPage = i;
-                renderPosts();
-                renderPagination();
-                window.scrollTo({ top: document.getElementById('blogGrid').offsetTop - 120, behavior: 'smooth' });
-            });
-            pagination.appendChild(a);
-        }
-        // Flecha siguiente
-        if (currentPage < totalPages) {
-            const next = document.createElement('a');
-            next.href = '#';
-            next.textContent = '→';
-            next.addEventListener('click', function(e) {
-                e.preventDefault();
-                currentPage++;
-                renderPosts();
-                renderPagination();
-                window.scrollTo({ top: document.getElementById('blogGrid').offsetTop - 120, behavior: 'smooth' });
-            });
-            pagination.appendChild(next);
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        // Menu toggle functionality
-        const toggle = document.querySelector('.menu-toggle');
-        const menu = document.querySelector('.menu-list');
-        if (toggle && menu) {
-            toggle.addEventListener('click', function () {
-                menu.classList.toggle('open');
-                toggle.setAttribute('aria-expanded', menu.classList.contains('open'));
-            });
-        }
-
-        // Category filter functionality
-        const categoryBtns = document.querySelectorAll('.category-btn');
-        categoryBtns.forEach(btn => {
-            btn.addEventListener('click', function () {
-                categoryBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                currentCategory = this.getAttribute('data-category');
-                currentPage = 1;
-                renderPosts();
-                renderPagination();
-            });
-        });
-
-        // Newsletter form
-        const newsletterForm = document.querySelector('.newsletter-form');
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-                const email = this.querySelector('.newsletter-input').value;
-                if (email) {
-                    alert('¡Gracias por suscribirte! Te mantendremos informado sobre nuestras novedades.');
-                    this.reset();
-                }
-            });
-        }
-
-        // Smooth scroll for internal links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Render inicial
-        renderPosts();
-        renderPagination();
-    });
     </script>
 
     <footer class="footer-modern">
