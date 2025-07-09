@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComissionHub - Where people bring business. And get paid for it.</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & SF Pro Display (fallback) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/sf-pro-display@5.0.12/index.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                fontFamily: {
+                    'sans': ["'SF Pro Display'", 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+                },
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#f59e0b',
+                        success: '#10b981',
+                        danger: '#ef4444'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html,
+        body {
+            font-family: 'SF Pro Display', Inter, ui-sans-serif, system-ui, sans-serif;
+            letter-spacing: -0.01em;
+        }
+
+        .fa-fw {
+            min-width: 1.25em;
+            text-align: center;
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 640px) {
+            .dashboard-cards {
+                grid-template-columns: 1fr !important;
+            }
+
+            .dashboard-tabs {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">CH</span>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-800">ComissionHub</h1>
+                </div>
+
+                <div class="hidden md:flex space-x-6">
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors">Campañas</a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors">Mi Wallet</a>
+                    <a href="#" class="text-gray-600 hover:text-primary transition-colors">Perfil</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <div class="bg-success/10 text-success px-3 py-1 rounded-full text-sm font-medium">
+                        Balance: $<span id="user-balance">0.00</span>
+                    </div>
+                    <button id="user-menu-btn"
+                        class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                        <span class="text-gray-600 font-medium">U</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-20 pb-8 font-sans">
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-r from-primary to-purple-600 text-white py-16">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight"
+                    style="font-family:'SF Pro Display',Inter,sans-serif;">Donde las personas traen clientes.
+                </h2>
+                <p class="text-xl md:text-2xl mb-8 font-medium">Y ganan por ello.</p>
+
+                <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto dashboard-cards">
+                    <div class="bg-white/10 p-6 rounded-lg flex flex-col items-center">
+                        <div class="text-3xl mb-2">
+                            <i class="fa-solid fa-building fa-fw"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Para Empresas</h3>
+                        <p class="text-sm">Paga solo por resultados reales, no por clics</p>
+                    </div>
+                    <div class="bg-white/10 p-6 rounded-lg flex flex-col items-center">
+                        <div class="text-3xl mb-2">
+                            <i class="fa-solid fa-hand-holding-dollar fa-fw"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Para Referidores</h3>
+                        <p class="text-sm">Gana dinero recomendando productos que realmente conoces</p>
+                    </div>
+                    <div class="bg-white/10 p-6 rounded-lg flex flex-col items-center">
+                        <div class="text-3xl mb-2">
+                            <i class="fa-solid fa-shield-halved fa-fw"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Seguro</h3>
+                        <p class="text-sm">Sistema de validación y reputación para confianza total</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Tabs -->
+        <section class="container mx-auto px-4 py-8">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="border-b border-gray-200">
+                    <nav class="flex space-x-8 px-6">
+                        <button class="tab-btn active py-4 px-2 border-b-2 border-primary text-primary font-medium"
+                            data-tab="campaigns">
+                            Campañas Activas
+                        </button>
+                        <button
+                            class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700"
+                            data-tab="my-referrals">
+                            Mis Referidos
+                        </button>
+                        <button
+                            class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700"
+                            data-tab="create-campaign">
+                            Crear Campaña
+                        </button>
+                        <button
+                            class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700"
+                            data-tab="wallet">
+                            Mi Wallet
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Campaigns Tab -->
+                <div id="campaigns" class="tab-content p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-semibold">Campañas Disponibles</h3>
+                        <div class="flex space-x-4">
+                            <select class="border rounded-lg px-3 py-2">
+                                <option>Todas las categorías</option>
+                                <option>E-commerce</option>
+                                <option>Servicios</option>
+                                <option>Software</option>
+                                <option>Educación</option>
+                            </select>
+                            <select class="border rounded-lg px-3 py-2">
+                                <option>Ordenar por comisión</option>
+                                <option>Más recientes</option>
+                                <option>Mejor puntuadas</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="campaigns-grid">
+                        <!-- Campaign cards will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- My Referrals Tab -->
+                <div id="my-referrals" class="tab-content p-6 hidden">
+                    <h3 class="text-xl font-semibold mb-6">Mis Referidos</h3>
+                    <div class="grid md:grid-cols-4 gap-4 mb-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <div class="text-2xl font-bold text-blue-600">12</div>
+                            <div class="text-sm text-blue-600">Referidos Enviados</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <div class="text-2xl font-bold text-green-600">8</div>
+                            <div class="text-sm text-green-600">Conversiones</div>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <div class="text-2xl font-bold text-yellow-600">3</div>
+                            <div class="text-sm text-yellow-600">Pendientes</div>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <div class="text-2xl font-bold text-purple-600">$320</div>
+                            <div class="text-sm text-purple-600">Comisiones Ganadas</div>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse border border-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="border border-gray-200 p-3 text-left">Campaña</th>
+                                    <th class="border border-gray-200 p-3 text-left">Cliente</th>
+                                    <th class="border border-gray-200 p-3 text-left">Estado</th>
+                                    <th class="border border-gray-200 p-3 text-left">Comisión</th>
+                                    <th class="border border-gray-200 p-3 text-left">Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody id="referrals-table">
+                                <!-- Referrals will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Create Campaign Tab -->
+                <div id="create-campaign" class="tab-content p-6 hidden">
+                    <h3 class="text-xl font-semibold mb-6">Crear Nueva Campaña</h3>
+                    <form id="campaign-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Nombre de la Campaña</label>
+                                <input type="text" name="name" class="w-full border rounded-lg px-3 py-2" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Categoría</label>
+                                <select name="category" class="w-full border rounded-lg px-3 py-2" required>
+                                    <option value="">Seleccionar categoría</option>
+                                    <option value="ecommerce">E-commerce</option>
+                                    <option value="services">Servicios</option>
+                                    <option value="software">Software</option>
+                                    <option value="education">Educación</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Descripción</label>
+                            <textarea name="description" rows="4" class="w-full border rounded-lg px-3 py-2"
+                                required></textarea>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Comisión por
+                                    Conversión</label>
+                                <input type="number" name="commission" step="0.01"
+                                    class="w-full border rounded-lg px-3 py-2" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Precio del
+                                    Producto/Servicio</label>
+                                <input type="number" name="price" step="0.01" class="w-full border rounded-lg px-3 py-2"
+                                    required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Duración (días)</label>
+                                <input type="number" name="duration" class="w-full border rounded-lg px-3 py-2"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Requisitos del Referido</label>
+                            <textarea name="requirements" rows="3" class="w-full border rounded-lg px-3 py-2"
+                                placeholder="Ejemplo: Cliente debe completar registro y realizar primer pago"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors">
+                            Crear Campaña
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Wallet Tab -->
+                <div id="wallet" class="tab-content p-6 hidden">
+                    <h3 class="text-xl font-semibold mb-6">Mi Wallet</h3>
+
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-green-50 p-6 rounded-lg">
+                            <div class="text-3xl font-bold text-green-600">$<span id="available-balance">0.00</span>
+                            </div>
+                            <div class="text-sm text-green-600">Disponible para Retirar</div>
+                        </div>
+                        <div class="bg-yellow-50 p-6 rounded-lg">
+                            <div class="text-3xl font-bold text-yellow-600">$<span id="pending-balance">0.00</span>
+                            </div>
+                            <div class="text-sm text-yellow-600">Pendiente de Confirmación</div>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <div class="text-3xl font-bold text-blue-600">$<span id="total-earned">0.00</span></div>
+                            <div class="text-sm text-blue-600">Total Ganado</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border rounded-lg p-6 mb-6">
+                        <h4 class="text-lg font-semibold mb-4">Retirar Fondos</h4>
+                        <form id="withdraw-form">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Método de Pago</label>
+                                    <select name="payment-method" class="w-full border rounded-lg px-3 py-2">
+                                        <option value="paypal">PayPal</option>
+                                        <option value="bank">Transferencia Bancaria</option>
+                                        <option value="crypto">Criptomonedas</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Cantidad</label>
+                                    <input type="number" name="amount" step="0.01"
+                                        class="w-full border rounded-lg px-3 py-2" max="0">
+                                </div>
+                            </div>
+                            <button type="submit"
+                                class="mt-4 bg-success text-white px-4 py-2 rounded-lg hover:bg-success/90 transition-colors">
+                                Solicitar Retiro
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="bg-white border rounded-lg p-6">
+                        <h4 class="text-lg font-semibold mb-4">Historial de Transacciones</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse border border-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="border border-gray-200 p-3 text-left">Fecha</th>
+                                        <th class="border border-gray-200 p-3 text-left">Descripción</th>
+                                        <th class="border border-gray-200 p-3 text-left">Tipo</th>
+                                        <th class="border border-gray-200 p-3 text-left">Cantidad</th>
+                                        <th class="border border-gray-200 p-3 text-left">Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="transactions-table">
+                                    <!-- Transactions will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Join Campaign Modal -->
+    <div id="join-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <h3 class="text-lg font-semibold mb-4">Unirse a Campaña</h3>
+            <div id="modal-content">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+            <div class="flex justify-end space-x-4 mt-6">
+                <button id="modal-cancel" class="px-4 py-2 text-gray-600 hover:text-gray-800">Cancelar</button>
+                <button id="modal-confirm"
+                    class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div id="success-toast" class="fixed bottom-4 right-4 bg-success text-white px-6 py-3 rounded-lg shadow-lg hidden">
+        <div class="flex items-center space-x-2">
+            <span>✓</span>
+            <span id="toast-message"></span>
+        </div>
+    </div>
+
+    <script>
+        // Sample data
+        const campaigns = [
+            {
+                id: 1,
+                name: "Curso de Marketing Digital",
+                company: "EduTech Pro",
+                category: "education",
+                description: "Curso completo de marketing digital con certificación oficial",
+                commission: 45,
+                price: 299,
+                duration: 30,
+                requirements: "Cliente debe completar registro y realizar primer pago",
+                rating: 4.8,
+                conversions: 156,
+                image: "🎓"
+            },
+            {
+                id: 2,
+                name: "Software de Gestión CRM",
+                company: "TechSolutions",
+                category: "software",
+                description: "Sistema CRM completo para pequeñas y medianas empresas",
+                commission: 89,
+                price: 599,
+                duration: 45,
+                requirements: "Demo completada y plan mensual activado",
+                rating: 4.6,
+                conversions: 89,
+                image: "💼"
+            },
+            {
+                id: 3,
+                name: "Tienda Online Premium",
+                company: "ShopBuilder",
+                category: "ecommerce",
+                description: "Desarrollo de tienda online completa con diseño personalizado",
+                commission: 120,
+                price: 1200,
+                duration: 60,
+                requirements: "Contrato firmado y primer pago del 50%",
+                rating: 4.9,
+                conversions: 67,
+                image: "🛒"
+            },
+            {
+                id: 4,
+                name: "Consultoría Empresarial",
+                company: "BizConsult",
+                category: "services",
+                description: "Consultoría estratégica para optimización de procesos empresariales",
+                commission: 200,
+                price: 2000,
+                duration: 90,
+                requirements: "Reunión inicial completada y propuesta aceptada",
+                rating: 4.7,
+                conversions: 34,
+                image: "📊"
+            },
+            {
+                id: 5,
+                name: "App Mobile Personalizada",
+                company: "MobileFirst",
+                category: "software",
+                description: "Desarrollo de aplicación móvil nativa para iOS y Android",
+                commission: 350,
+                price: 3500,
+                duration: 120,
+                requirements: "Especificaciones aprobadas y primer milestone pagado",
+                rating: 4.8,
+                conversions: 23,
+                image: "📱"
+            },
+            {
+                id: 6,
+                name: "Programa de Coaching",
+                company: "LifeCoach Pro",
+                category: "services",
+                description: "Programa de coaching personal y profesional de 3 meses",
+                commission: 75,
+                price: 750,
+                duration: 30,
+                requirements: "Sesión inicial completada y programa de 3 meses iniciado",
+                rating: 4.9,
+                conversions: 112,
+                image: "🎯"
+            }
+        ];
+
+        let userReferrals = [
+            {
+                id: 1,
+                campaignName: "Curso de Marketing Digital",
+                clientName: "Ana García",
+                status: "confirmed",
+                commission: 45,
+                date: "2024-01-15"
+            },
+            {
+                id: 2,
+                campaignName: "Software CRM",
+                clientName: "Carlos López",
+                status: "pending",
+                commission: 89,
+                date: "2024-01-20"
+            },
+            {
+                id: 3,
+                campaignName: "Tienda Online",
+                clientName: "María Rodríguez",
+                status: "confirmed",
+                commission: 120,
+                date: "2024-01-18"
+            },
+            {
+                id: 4,
+                campaignName: "Consultoría",
+                clientName: "Juan Pérez",
+                status: "rejected",
+                commission: 200,
+                date: "2024-01-22"
+            }
+        ];
+
+        let userBalance = {
+            available: 165.00,
+            pending: 89.00,
+            total: 254.00
+        };
+
+        let transactions = [
+            {
+                id: 1,
+                date: "2024-01-20",
+                description: "Comisión - Curso Marketing Digital",
+                type: "commission",
+                amount: 45,
+                status: "completed"
+            },
+            {
+                id: 2,
+                date: "2024-01-18",
+                description: "Comisión - Tienda Online Premium",
+                type: "commission",
+                amount: 120,
+                status: "completed"
+            },
+            {
+                id: 3,
+                date: "2024-01-15",
+                description: "Retiro PayPal",
+                type: "withdrawal",
+                amount: -100,
+                status: "completed"
+            }
+        ];
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function () {
+            updateBalanceDisplay();
+            renderCampaigns();
+            renderReferrals();
+            renderTransactions();
+            initializeEventListeners();
+        });
+
+        // Update balance display
+        function updateBalanceDisplay() {
+            document.getElementById('user-balance').textContent = userBalance.available.toFixed(2);
+            document.getElementById('available-balance').textContent = userBalance.available.toFixed(2);
+            document.getElementById('pending-balance').textContent = userBalance.pending.toFixed(2);
+            document.getElementById('total-earned').textContent = userBalance.total.toFixed(2);
+
+            // Update withdraw form max amount
+            const withdrawAmountInput = document.querySelector('input[name="amount"]');
+            if (withdrawAmountInput) {
+                withdrawAmountInput.max = userBalance.available.toFixed(2);
+            }
+        }
+
+        // Render campaigns
+        function renderCampaigns() {
+            const grid = document.getElementById('campaigns-grid');
+            grid.innerHTML = campaigns.map(campaign => `
+                <div class="bg-white border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="text-3xl">${campaign.image}</div>
+                        <div class="bg-${getCategoryColor(campaign.category)}-100 text-${getCategoryColor(campaign.category)}-800 px-2 py-1 rounded text-xs">
+                            ${getCategoryName(campaign.category)}
+                        </div>
+                    </div>
+                    
+                    <h4 class="font-semibold text-lg mb-2">${campaign.name}</h4>
+                    <p class="text-gray-600 text-sm mb-3">${campaign.company}</p>
+                    <p class="text-gray-700 text-sm mb-4">${campaign.description}</p>
+                    
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Comisión:</span>
+                            <span class="font-semibold text-success">$${campaign.commission}</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Precio:</span>
+                            <span class="font-semibold">$${campaign.price}</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Duración:</span>
+                            <span>${campaign.duration} días</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-1">
+                            <span class="text-yellow-400">⭐</span>
+                            <span class="text-sm font-medium">${campaign.rating}</span>
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            ${campaign.conversions} conversiones
+                        </div>
+                    </div>
+                    
+                    <button onclick="joinCampaign(${campaign.id})" 
+                            class="w-full bg-primary text-white py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                        Unirse a Campaña
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Render referrals table
+        function renderReferrals() {
+            const table = document.getElementById('referrals-table');
+            table.innerHTML = userReferrals.map(referral => `
+                <tr>
+                    <td class="border border-gray-200 p-3">${referral.campaignName}</td>
+                    <td class="border border-gray-200 p-3">${referral.clientName}</td>
+                    <td class="border border-gray-200 p-3">
+                        <span class="px-2 py-1 rounded text-xs ${getStatusColor(referral.status)}">
+                            ${getStatusText(referral.status)}
+                        </span>
+                    </td>
+                    <td class="border border-gray-200 p-3">$${referral.commission}</td>
+                    <td class="border border-gray-200 p-3">${formatDate(referral.date)}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Render transactions table
+        function renderTransactions() {
+            const table = document.getElementById('transactions-table');
+            table.innerHTML = transactions.map(transaction => `
+                <tr>
+                    <td class="border border-gray-200 p-3">${formatDate(transaction.date)}</td>
+                    <td class="border border-gray-200 p-3">${transaction.description}</td>
+                    <td class="border border-gray-200 p-3">
+                        <span class="px-2 py-1 rounded text-xs ${getTransactionTypeColor(transaction.type)}">
+                            ${getTransactionTypeText(transaction.type)}
+                        </span>
+                    </td>
+                    <td class="border border-gray-200 p-3 ${transaction.amount > 0 ? 'text-success' : 'text-danger'}">
+                        ${transaction.amount > 0 ? '+' : ''}$${Math.abs(transaction.amount)}
+                    </td>
+                    <td class="border border-gray-200 p-3">
+                        <span class="px-2 py-1 rounded text-xs ${getStatusColor(transaction.status)}">
+                            ${getStatusText(transaction.status)}
+                        </span>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Initialize event listeners
+        function initializeEventListeners() {
+            // Tab navigation
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const tabName = this.dataset.tab;
+                    switchTab(tabName);
+                });
+            });
+
+            // Campaign form
+            document.getElementById('campaign-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                handleCampaignSubmit(this);
+            });
+
+            // Withdraw form
+            document.getElementById('withdraw-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                handleWithdrawSubmit(this);
+            });
+
+            // Modal handlers
+            document.getElementById('modal-cancel').addEventListener('click', closeModal);
+            document.getElementById('modal-confirm').addEventListener('click', confirmJoinCampaign);
+        }
+
+        // Switch tabs
+        function switchTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active', 'border-primary', 'text-primary');
+                btn.classList.add('border-transparent', 'text-gray-500');
+            });
+
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active', 'border-primary', 'text-primary');
+            document.querySelector(`[data-tab="${tabName}"]`).classList.remove('border-transparent', 'text-gray-500');
+
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            document.getElementById(tabName).classList.remove('hidden');
+        }
+
+        // Join campaign
+        let selectedCampaign = null;
+
+        function joinCampaign(campaignId) {
+            selectedCampaign = campaigns.find(c => c.id === campaignId);
+
+            const modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = `
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="text-2xl">${selectedCampaign.image}</div>
+                        <div>
+                            <h4 class="font-semibold">${selectedCampaign.name}</h4>
+                            <p class="text-gray-600">${selectedCampaign.company}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <span class="text-gray-600">Comisión:</span>
+                                <span class="font-semibold text-success ml-2">${selectedCampaign.commission}</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-600">Precio:</span>
+                                <span class="font-semibold ml-2">${selectedCampaign.price}</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-600">Duración:</span>
+                                <span class="ml-2">${selectedCampaign.duration} días</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-600">Rating:</span>
+                                <span class="ml-2">⭐ ${selectedCampaign.rating}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-medium mb-2">Requisitos:</h5>
+                        <p class="text-sm text-gray-600">${selectedCampaign.requirements}</p>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h5 class="font-medium text-blue-800 mb-2">📋 Cómo funciona:</h5>
+                        <ol class="text-sm text-blue-700 space-y-1">
+                            <li>1. Te unes a la campaña</li>
+                            <li>2. Compartes tu enlace de referido</li>
+                            <li>3. Tus contactos se registran y compran</li>
+                            <li>4. La empresa valida la conversión</li>
+                            <li>5. Recibes tu comisión</li>
+                        </ol>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('join-modal').classList.remove('hidden');
+        }
+
+        function confirmJoinCampaign() {
+            if (selectedCampaign) {
+                // Simulate joining campaign
+                showToast(`¡Te has unido a la campaña "${selectedCampaign.name}"!`);
+                closeModal();
+
+                // Add to user's campaigns (in a real app, this would be saved to backend)
+                console.log('Joined campaign:', selectedCampaign.id);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('join-modal').classList.add('hidden');
+            selectedCampaign = null;
+        }
+
+        // Handle campaign creation
+        function handleCampaignSubmit(form) {
+            const formData = new FormData(form);
+
+            const newCampaign = {
+                id: campaigns.length + 1,
+                name: formData.get('name'),
+                company: 'Mi Empresa', // In real app, this would be from user profile
+                category: formData.get('category'),
+                description: formData.get('description'),
+                commission: parseFloat(formData.get('commission')),
+                price: parseFloat(formData.get('price')),
+                duration: parseInt(formData.get('duration')),
+                requirements: formData.get('requirements'),
+                rating: 0,
+                conversions: 0,
+                image: getCategoryEmoji(formData.get('category'))
+            };
+
+            campaigns.unshift(newCampaign);
+            renderCampaigns();
+            form.reset();
+
+            showToast('¡Campaña creada exitosamente!');
+            switchTab('campaigns');
+        }
+
+        // Handle withdrawal
+        function handleWithdrawSubmit(form) {
+            const formData = new FormData(form);
+            const amount = parseFloat(formData.get('amount'));
+            const paymentMethod = formData.get('payment-method');
+
+            if (amount > userBalance.available) {
+                alert('Fondos insuficientes');
+                return;
+            }
+
+            if (amount < 10) {
+                alert('El monto mínimo de retiro es $10');
+                return;
+            }
+
+            // Simulate withdrawal
+            userBalance.available -= amount;
+
+            // Add transaction
+            transactions.unshift({
+                id: transactions.length + 1,
+                date: new Date().toISOString().split('T')[0],
+                description: `Retiro ${getPaymentMethodText(paymentMethod)}`,
+                type: 'withdrawal',
+                amount: -amount,
+                status: 'pending'
+            });
+
+            updateBalanceDisplay();
+            renderTransactions();
+            form.reset();
+
+            showToast('Solicitud de retiro enviada');
+        }
+
+        // Utility functions
+        function getCategoryColor(category) {
+            const colors = {
+                'education': 'blue',
+                'software': 'purple',
+                'ecommerce': 'green',
+                'services': 'orange'
+            };
+            return colors[category] || 'gray';
+        }
+
+        function getCategoryName(category) {
+            const names = {
+                'education': 'Educación',
+                'software': 'Software',
+                'ecommerce': 'E-commerce',
+                'services': 'Servicios'
+            };
+            return names[category] || category;
+        }
+
+        function getCategoryEmoji(category) {
+            const emojis = {
+                'education': '🎓',
+                'software': '💻',
+                'ecommerce': '🛒',
+                'services': '🔧'
+            };
+            return emojis[category] || '📋';
+        }
+
+        function getStatusColor(status) {
+            const colors = {
+                'confirmed': 'bg-green-100 text-green-800',
+                'pending': 'bg-yellow-100 text-yellow-800',
+                'rejected': 'bg-red-100 text-red-800',
+                'completed': 'bg-green-100 text-green-800'
+            };
+            return colors[status] || 'bg-gray-100 text-gray-800';
+        }
+
+        function getStatusText(status) {
+            const texts = {
+                'confirmed': 'Confirmado',
+                'pending': 'Pendiente',
+                'rejected': 'Rechazado',
+                'completed': 'Completado'
+            };
+            return texts[status] || status;
+        }
+
+        function getTransactionTypeColor(type) {
+            const colors = {
+                'commission': 'bg-green-100 text-green-800',
+                'withdrawal': 'bg-blue-100 text-blue-800',
+                'bonus': 'bg-purple-100 text-purple-800'
+            };
+            return colors[type] || 'bg-gray-100 text-gray-800';
+        }
+
+        function getTransactionTypeText(type) {
+            const texts = {
+                'commission': 'Comisión',
+                'withdrawal': 'Retiro',
+                'bonus': 'Bonus'
+            };
+            return texts[type] || type;
+        }
+
+        function getPaymentMethodText(method) {
+            const texts = {
+                'paypal': 'PayPal',
+                'bank': 'Transferencia',
+                'crypto': 'Crypto'
+            };
+            return texts[method] || method;
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('success-toast');
+            const messageEl = document.getElementById('toast-message');
+
+            messageEl.textContent = message;
+            toast.classList.remove('hidden');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Simulate real-time updates
+        function simulateRealTimeUpdates() {
+            setInterval(() => {
+                // Randomly update some campaign conversions
+                const randomCampaign = campaigns[Math.floor(Math.random() * campaigns.length)];
+                if (Math.random() > 0.8) {
+                    randomCampaign.conversions++;
+                    renderCampaigns();
+                }
+
+                // Randomly confirm pending referrals
+                const pendingReferrals = userReferrals.filter(r => r.status === 'pending');
+                if (pendingReferrals.length > 0 && Math.random() > 0.9) {
+                    const referral = pendingReferrals[0];
+                    referral.status = 'confirmed';
+
+                    // Update balances
+                    userBalance.available += referral.commission;
+                    userBalance.pending -= referral.commission;
+                    userBalance.total += referral.commission;
+
+                    // Add transaction
+                    transactions.unshift({
+                        id: transactions.length + 1,
+                        date: new Date().toISOString().split('T')[0],
+                        description: `Comisión - ${referral.campaignName}`,
+                        type: 'commission',
+                        amount: referral.commission,
+                        status: 'completed'
+                    });
+
+                    updateBalanceDisplay();
+                    renderReferrals();
+                    renderTransactions();
+
+                    showToast(`¡Comisión de ${referral.commission} confirmada!`);
+                }
+            }, 5000);
+        }
+
+        // Start real-time updates
+        simulateRealTimeUpdates();
+
+        // Add some sample referrals periodically
+        setInterval(() => {
+            if (Math.random() > 0.95) {
+                const randomCampaign = campaigns[Math.floor(Math.random() * campaigns.length)];
+                const names = ['Pedro Silva', 'Laura Martín', 'Diego Ruiz', 'Elena Vega', 'Andrés Torres'];
+                const randomName = names[Math.floor(Math.random() * names.length)];
+
+                const newReferral = {
+                    id: userReferrals.length + 1,
+                    campaignName: randomCampaign.name,
+                    clientName: randomName,
+                    status: 'pending',
+                    commission: randomCampaign.commission,
+                    date: new Date().toISOString().split('T')[0]
+                };
+
+                userReferrals.unshift(newReferral);
+                userBalance.pending += newReferral.commission;
+
+                updateBalanceDisplay();
+                renderReferrals();
+
+                showToast(`¡Nuevo referido: ${randomName}!`);
+            }
+        }, 10000);
+    </script>
+</body>
+
+</html>
