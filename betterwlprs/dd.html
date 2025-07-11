@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BetterWlprs - Premium Gaming & Movie Wallpapers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .wallpaper-card {
+            transition: all 0.3s ease;
+        }
+
+        .wallpaper-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .gradient-overlay {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        .category-filter {
+            transition: all 0.3s ease;
+        }
+
+        .category-filter.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .wallpaper-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .wallpaper-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white overflow-x-hidden">
+    <!-- Header -->
+    <header class="hero-bg py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center">
+                <h1
+                    class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                    BetterWlprs
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-gray-200 max-w-2xl mx-auto">
+                    Wallpapers premium de videojuegos y películas en alta calidad
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 text-sm">
+                    <span class="glass-effect px-4 py-2 rounded-full border border-white/20">Watch Dogs 2</span>
+                    <span class="glass-effect px-4 py-2 rounded-full border border-white/20">Death Stranding</span>
+                    <span class="glass-effect px-4 py-2 rounded-full border border-white/20">Spider-Man 2</span>
+                    <span class="glass-effect px-4 py-2 rounded-full border border-white/20">Movies</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 glass-effect border-b border-white/10">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex flex-wrap justify-center gap-2">
+                <button class="category-filter active px-6 py-2 rounded-full text-sm font-medium" data-category="all">
+                    Todos
+                </button>
+                <button class="category-filter px-6 py-2 rounded-full text-sm font-medium bg-gray-800 hover:bg-gray-700"
+                    data-category="games">
+                    Videojuegos
+                </button>
+                <button class="category-filter px-6 py-2 rounded-full text-sm font-medium bg-gray-800 hover:bg-gray-700"
+                    data-category="movies">
+                    Películas
+                </button>
+                <button class="category-filter px-6 py-2 rounded-full text-sm font-medium bg-gray-800 hover:bg-gray-700"
+                    data-category="watchdogs">
+                    Watch Dogs 2
+                </button>
+                <button class="category-filter px-6 py-2 rounded-full text-sm font-medium bg-gray-800 hover:bg-gray-700"
+                    data-category="deathstranding">
+                    Death Stranding
+                </button>
+                <button class="category-filter px-6 py-2 rounded-full text-sm font-medium bg-gray-800 hover:bg-gray-700"
+                    data-category="spiderman">
+                    Spider-Man 2
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Gallery -->
+    <main class="container mx-auto px-6 py-12">
+        <div class="wallpaper-grid" id="wallpaper-grid">
+            <!-- Gaming Wallpapers -->
+            <div class="wallpaper-card fade-in bg-gray-800 rounded-xl overflow-hidden shadow-2xl border border-gray-700"
+                data-category="games watchdogs" style="animation-delay: 0.1s">
+                <div class="relative group">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center">
+                        <!-- Imagen añadida -->
+                        <img src="img/sanfracampview.jpg" alt="San Francisco Nights - Watch Dogs 2"
+                            class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div class="text-center relative z-10">
+                            <div
+                                class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
+                                </svg>
+                            </div>
+                            <p class="text-sm text-gray-300">Watch Dogs 2</p>
+                        </div>
+                    </div>
+                    <div
+                        class="absolute inset-0 gradient-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <button
+                            class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full backdrop-blur-sm transition-all duration-300">
+                            <svg class="w-6 h-6 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            Ver
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">San Francisco Nights</h3>
+                    <p class="text-gray-400 text-sm mb-4">Captura nocturna de la ciudad en Watch Dogs 2</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-purple-400 font-medium">Gaming</span>
+                        <span class="text-sm text-gray-500">4K • 3840x2160</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wallpaper-card fade-in bg-gray-800 rounded-xl overflow-hidden shadow-2xl border border-gray-700"
+                data-category="games deathstranding" style="animation-delay: 0.2s">
+                <div class="relative group">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-orange-600 to-red-700 flex items-center justify-center">
+                        <img src="img/samizquierdasentado.png" alt="Desolate Landscape - Death Stranding"
+                            class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div class="text-center relative z-10">
+                            <div
+                                class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
+                                </svg>
+                            </div>
+                            <p class="text-sm text-gray-300">Death Stranding</p>
+                        </div>
+                    </div>
+                    <div
+                        class="absolute inset-0 gradient-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <button
+                            class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full backdrop-blur-sm transition-all duration-300">
+                            <svg class="w-6 h-6 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            Ver
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Desolate Landscape</h3>
+                    <p class="text-gray-400 text-sm mb-4">Paisaje apocalíptico de Death Stranding</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-orange-400 font-medium">Gaming</span>
+                        <span class="text-sm text-gray-500">4K • 3840x2160</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wallpaper-card fade-in bg-gray-800 rounded-xl overflow-hidden shadow-2xl border border-gray-700"
+                data-category="movies" style="animation-delay: 0.5s">
+                <div class="relative group">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-green-600 to-teal-700 flex items-center justify-center">
+                        <img src="img/thelongdarkwolfs.png" alt="Action Thriller - The Long Dark"
+                            class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div class="text-center relative z-10">
+                            <div
+                                class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+                                </svg>
+                            </div>
+                            <p class="text-sm text-gray-300">Foto</p>
+                        </div>
+                    </div>
+                    <div
+                        class="absolute inset-0 gradient-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <button
+                            class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full backdrop-blur-sm transition-all duration-300">
+                            <svg class="w-6 h-6 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            Ver
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">The Long Dark</h3>
+                    <p class="text-gray-400 text-sm mb-4">Momento intenso de The Long Dark</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-green-400 font-medium">Foto</span>
+                        <span class="text-sm text-gray-500">4K • 3840x2160</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Movie Wallpapers -->
+            <div class="wallpaper-card fade-in bg-gray-800 rounded-xl overflow-hidden shadow-2xl border border-gray-700"
+                data-category="movies" style="animation-delay: 0.4s">
+                <div class="relative group">
+                    <div
+                        class="aspect-video bg-gradient-to-br from-purple-600 to-pink-700 flex items-center justify-center relative overflow-hidden">
+                        <iframe src="https://streamable.com/e/y6zdsr?autoplay=1"
+                            class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                            frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="text-center relative z-10">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+                            </svg>
+                        </div>
+                        <p class="text-sm text-gray-300">Película</p>
+                    </div>
+                </div>
+                <div
+                    class="absolute inset-0 gradient-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <button
+                        class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full backdrop-blur-sm transition-all duration-300">
+                        <svg class="w-6 h-6 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                        Ver
+                    </button>
+                </div>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">Cinematic Masterpiece</h3>
+                <p class="text-gray-400 text-sm mb-4">Escena épica de película de ciencia ficción</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-purple-400 font-medium">Movies</span>
+                    <span class="text-sm text-gray-500">4K • 3840x2160</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="wallpaper-card fade-in bg-gray-800 rounded-xl overflow-hidden shadow-2xl border border-gray-700"
+            data-category="games spiderman" style="animation-delay: 0.3s">
+            <div class="relative group">
+                <div class="aspect-video bg-gradient-to-br from-red-600 to-blue-700 flex items-center justify-center">
+                    <img src="img/marcusittingfocused.jpg" alt="Web-Slinging NYC - Spider-Man 2"
+                        class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div class="text-center relative z-10">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
+                        </div>
+                        <p class="text-sm text-gray-300">Watch Dogs 2</p>
+                    </div>
+                </div>
+                <div
+                    class="absolute inset-0 gradient-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <button
+                        class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full backdrop-blur-sm transition-all duration-300">
+                        <svg class="w-6 h-6 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                        Ver
+                    </button>
+                </div>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">San Francisco coder vibe</h3>
+                <p class="text-gray-400 text-sm mb-4">Programando por San Francisco en Watch Dogs 2</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-red-400 font-medium">Gaming</span>
+                    <span class="text-sm text-gray-500">4K • 3840x2160</span>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- More Gaming Wallpapers -->
+        <div class="wallpaper-card fade-in bg-gray-800 rounded-xl overflow-hidden shadow-2xl border border-gray-700"
+            data-category="games watchdogs" style="animation-delay: 0.6s">
+            <div class="relative group">
+                <div class="aspect-video bg-gradient-to-br from-cyan-600 to-blue-700 flex items-center justify-center">
+                    <img src="img/watchdogs2_cyberpunk.jpg" alt="Hacker's Paradise - Watch Dogs 2"
+                        class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div class="text-center relative z-10">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
+                        </div>
+                        <p class="text-sm text-gray-300">Watch Dogs 2</p>
+                    </div>
+                </div>
+                <div
+                    class="absolute inset-0 gradient-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <button
+                        class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full backdrop-blur-sm transition-all duration-300">
+                        <svg class="w-6 h-6 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                        Ver
+                    </button>
+                </div>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">Hacker's Paradise</h3>
+                <p class="text-gray-400 text-sm mb-4">Vista cyberpunk de Watch Dogs 2</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-cyan-400 font-medium">Gaming</span>
+                    <span class="text-sm text-gray-500">4K • 3840x2160</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="wallpaper-card fade-in bg-gray-800 rounded-xl overflow-hidden shadow-2xl border border-gray-700"
+            data-category="movies" style="animation-delay: 0.5s">
+            <div class="relative group">
+                <div class="aspect-video bg-gradient-to-br from-green-600 to-teal-700 flex items-center justify-center">
+                    <img src="img/thelongdarkwolfs.png" alt="Action Thriller - The Long Dark"
+                        class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div class="text-center relative z-10">
+                        <div
+                            class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+                            </svg>
+                        </div>
+                        <p class="text-sm text-gray-300">Foto</p>
+                    </div>
+                </div>
+                <div
+                    class="absolute inset-0 gradient-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <button
+                        class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full backdrop-blur-sm transition-all duration-300">
+                        <svg class="w-6 h-6 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                        Ver
+                    </button>
+                </div>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">The Long Dark</h3>
+                <p class="text-gray-400 text-sm mb-4">Momento intenso de The Long Dark</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-green-400 font-medium">Foto</span>
+                    <span class="text-sm text-gray-500">4K • 3840x2160</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="wallpaper-card fade-in bg-gray-800 rounded-xl overflow-hidden shadow-2xl border border-gray-700"
+            data-category="games deathstranding" style="animation-delay: 0.7s">
+            <div class="relative group">
+                <div
+                    class="aspect-video bg-gradient-to-br from-amber-600 to-orange-700 flex items-center justify-center">
+                    <img src="img/deathstranding_sunset.jpg" alt="Golden Hour Journey - Death Stranding"
+                        class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div class="text-center relative z-10">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
+                        </div>
+                        <p class="text-sm text-gray-300">Death Stranding</p>
+                    </div>
+                </div>
+                <div
+                    class="absolute inset-0 gradient-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <button
+                        class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full backdrop-blur-sm transition-all duration-300">
+                        <svg class="w-6 h-6 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                        Ver
+                    </button>
+                </div>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">Golden Hour Journey</h3>
+                <p class="text-gray-400 text-sm mb-4">Atardecer épico en Death Stranding</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-amber-400 font-medium">Gaming</span>
+                    <span class="text-sm text-gray-500">4K • 3840x2160</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="wallpaper-card fade-in bg-gray-800 rounded-xl overflow-hidden shadow-2xl border border-gray-700"
+            data-category="games spiderman" style="animation-delay: 0.8s">
+            <div class="relative group">
+                <div class="aspect-video bg-gradient-to-br from-rose-600 to-red-700 flex items-center justify-center">
+                    <img src="img/spiderman2_battle.jpg" alt="Superhero Showdown - Spider-Man 2"
+                        class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div class="text-center relative z-10">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" />
+                        </div>
+                        <p class="text-sm text-gray-300">Spider-Man 2</p>
+                    </div>
+                </div>
+                <div
+                    class="absolute inset-0 gradient-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <button
+                        class="bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full backdrop-blur-sm transition-all duration-300">
+                        <svg class="w-6 h-6 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                        Ver
+                    </button>
+                </div>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">Superhero Showdown</h3>
+                <p class="text-gray-400 text-sm mb-4">Batalla épica en Spider-Man 2</p>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-rose-400 font-medium">Gaming</span>
+                    <span class="text-sm text-gray-500">4K • 3840x2160</span>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 border-t border-gray-700 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-8">
+                <h3
+                    class="text-2xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    BetterWlprs
+                </h3>
+                <p class="text-gray-400 max-w-md mx-auto">
+                    Wallpapers premium de alta calidad para gamers y cinéfilos. Contenido original y cuidadosamente
+                    seleccionado.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-6 mb-8">
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-purple-400">50+</div>
+                    <div class="text-sm text-gray-400">Wallpapers</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-blue-400">4K</div>
+                    <div class="text-sm text-gray-400">Calidad</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-green-400">Gratis</div>
+                    <div class="text-sm text-gray-400">Descarga</div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-8">
+                <p class="text-gray-500 text-sm">
+                    © 2025 BetterWlprs. Todos los derechos reservados.
+                </p>
+                <p class="text-gray-600 text-xs mt-2">
+                    Todas las imágenes son capturas originales de gameplay o escenas cinematográficas.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.category-filter');
+        const wallpaperCards = document.querySelectorAll('.wallpaper-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const category = button.dataset.category;
+
+                // Update active button
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.style.background = '';
+                });
+                button.classList.add('active');
+
+                // Filter wallpapers
+                wallpaperCards.forEach(card => {
+                    const cardCategories = card.dataset.category.split(' ');
+                    if (category === 'all' || cardCategories.includes(category)) {
+                        card.style.display = 'block';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+
+                        setTimeout(() => {
+                            card.style.transition = 'all 0.4s ease';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        card.style.transition = 'all 0.3s ease';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(-20px)';
+
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all wallpaper cards
+        wallpaperCards.forEach(card => {
+            observer.observe(card);
+        });
+
+        // Add hover effects to wallpaper cards
+        wallpaperCards.forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+                this.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.5)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+            });
+        });
+
+        // Add click functionality to view buttons
+        document.querySelectorAll('.wallpaper-card button').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const card = this.closest('.wallpaper-card');
+                const title = card.querySelector('h3').textContent;
+                // Buscar imagen o video
+                let mediaHtml = '';
+                const img = card.querySelector('img');
+                const iframe = card.querySelector('iframe');
+                if (iframe) {
+                    mediaHtml = `<div class="aspect-video mb-4"><iframe src="${iframe.src}" class="w-full h-64 md:h-96 rounded-lg" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
+                } else if (img) {
+                    mediaHtml = `<img src="${img.src}" alt="${img.alt}" class="w-full h-auto rounded-lg mb-4" />`;
+                } else {
+                    mediaHtml = `<div class="mb-4 text-gray-400">Sin vista previa disponible</div>`;
+                }
+
+                const overlay = document.createElement('div');
+                overlay.className = 'fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50';
+                overlay.innerHTML = `
+                    <div class="bg-gray-800 p-6 rounded-xl max-w-lg mx-4 text-center relative">
+                        <h3 class="text-xl font-bold mb-4">${title}</h3>
+                        ${mediaHtml}
+                        <button class="bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-lg transition-colors mt-2" onclick="this.parentElement.parentElement.remove()">
+                            Cerrar
+                        </button>
+                    </div>
+                `;
+                document.body.appendChild(overlay);
+
+                // Close on click outside
+                overlay.addEventListener('click', function (e) {
+                    if (e.target === overlay) {
+                        overlay.remove();
+                    }
+                });
+            });
+        });
+
+        // Parallax effect for header
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const header = document.querySelector('header');
+            if (header) {
+                header.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+
+</html>
