@@ -104,7 +104,6 @@
                 height: 500px;
             }
         }
-        
     </style>
 </head>
 
@@ -473,4 +472,224 @@
             });
         });
 
-        // Add scroll effect to
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-dark-light/95');
+            } else {
+                nav.classList.remove('bg-dark-light/95');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.glass-effect, .iframe-container').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add hover effects for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-2px)';
+            });
+
+            button.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Particle background effect (optional)
+        function createParticles() {
+            const particleContainer = document.createElement('div');
+            particleContainer.className = 'fixed inset-0 pointer-events-none z-0';
+            document.body.appendChild(particleContainer);
+
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'absolute w-1 h-1 bg-primary/20 rounded-full';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 20) + 's';
+
+                const keyframes = `
+                    @keyframes float-particle-${i} {
+                        0%, 100% { transform: translateY(0px) translateX(0px); }
+                        25% { transform: translateY(-20px) translateX(10px); }
+                        50% { transform: translateY(-10px) translateX(-5px); }
+                        75% { transform: translateY(-30px) translateX(15px); }
+                    }
+                `;
+
+                const style = document.createElement('style');
+                style.textContent = keyframes;
+                document.head.appendChild(style);
+
+                particle.style.animation = `float-particle-${i} ${Math.random() * 10 + 20}s ease-in-out infinite`;
+                particleContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize particles on load
+        window.addEventListener('load', createParticles);
+
+        // Add typing effect to main title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+
+            type();
+        }
+
+        // Counter animation for stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.text-3xl');
+
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent.replace(/[^0-9]/g, ''));
+                const increment = target / 100;
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+
+                    let displayValue = Math.floor(current);
+                    if (counter.textContent.includes('K')) {
+                        displayValue = Math.floor(current / 1000) + 'K+';
+                    } else if (counter.textContent.includes('★')) {
+                        displayValue = (current / 1000).toFixed(1) + '★';
+                    } else {
+                        displayValue = Math.floor(current) + '+';
+                    }
+
+                    counter.textContent = displayValue;
+                }, 20);
+            });
+        }
+
+        // Trigger counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.grid.grid-cols-2.md\\:grid-cols-4');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.float-animation');
+
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Add click ripple effect to buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function (e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple animation CSS
+        const rippleStyle = document.createElement('style');
+        rippleStyle.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(rippleStyle);
+
+        // Loading animation for iframe
+        const iframeContainer = document.querySelector('.iframe-container');
+        const iframe = iframeContainer.querySelector('iframe');
+
+        if (iframe) {
+            const loader = document.createElement('div');
+            loader.className = 'absolute inset-0 flex items-center justify-center bg-dark-light/80 z-10';
+            loader.innerHTML = `
+                <div class="text-center">
+                    <div class="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                    <p class="text-primary font-semibold">Cargando modelo 3D...</p>
+                </div>
+            `;
+
+            iframeContainer.appendChild(loader);
+
+            iframe.addEventListener('load', () => {
+                setTimeout(() => {
+                    loader.style.opacity = '0';
+                    setTimeout(() => {
+                        loader.remove();
+                    }, 300);
+                }, 1000);
+            });
+        }
+    </script>
+</body>
+
+</html>
