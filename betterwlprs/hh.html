@@ -717,6 +717,58 @@
                 }, 1000);
             });
         }
+
+
+        // Añadir manejo de eventos táctiles para el modelo 3D
+        const splineViewer = document.querySelector('spline-viewer');
+        const iframeContainer = document.querySelector('.iframe-container');
+
+        if (splineViewer && iframeContainer) {
+            // Prevenir el desplazamiento cuando se toca el modelo
+            splineViewer.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                iframeContainer.style.touchAction = 'none';
+            }, { passive: false });
+
+            // Restaurar el comportamiento normal cuando se suelta
+            splineViewer.addEventListener('touchend', () => {
+                iframeContainer.style.touchAction = 'auto';
+            });
+
+            // También manejar el caso de que el usuario mueva el dedo fuera del modelo
+            splineViewer.addEventListener('touchcancel', () => {
+                iframeContainer.style.touchAction = 'auto';
+            });
+        }
+
+        // Añadir un indicador visual para móviles
+        const touchIndicator = document.createElement('div');
+        touchIndicator.className = 'touch-indicator';
+        touchIndicator.innerHTML = `
+    <div class="touch-hint md:hidden" style="
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(5px);
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        color: white;
+        pointer-events: none;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+    ">
+        Mantén presionado para rotar
+    </div>
+`;
+        iframeContainer.appendChild(touchIndicator);
+
+        // Ocultar el indicador después de un tiempo
+        setTimeout(() => {
+            touchIndicator.style.opacity = '0';
+        }, 3000);
     </script>
 </body>
 
