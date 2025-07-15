@@ -3710,3 +3710,29 @@ img {
         min-width: unset;
     }
 }
+
+
+
+.recomendado-badge {
+    position: absolute;
+    top: -15px;
+    right: 15px;
+    background: #e8a238;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.producto-card {
+    position: relative;
+    overflow: visible;
+    /* Para permitir que el badge se muestre fuera del card */
+}
+
+.producto-content {
+    position: relative;
+    /* Para el posicionamiento correcto del contenido */
+}
