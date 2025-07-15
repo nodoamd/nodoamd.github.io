@@ -101,9 +101,9 @@
         <div class="container mx-auto px-6 py-20 grid md:grid-cols-2 gap-16 items-center">
             <div>
                 <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-                    <span class="bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent">Visual
-                        Excellence</span><br>
-                    <span>for Next-Gen Media</span>
+                    <span class="bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent">Better
+                        WallPapers</span><br>
+                    <span>for Every Device</span>
                 </h1>
                 <p class="text-lg text-gray-300 mb-8 max-w-lg">
                     We craft stunning visual experiences for video games and films that push creative boundaries and
@@ -128,12 +128,28 @@
                 <div class="absolute -top-8 -left-8 w-full h-full border-2 border-accent rounded-xl"></div>
                 <div
                     class="relative bg-gradient-to-br from-secondary to-primary rounded-xl overflow-hidden image-hover">
-                    <img src="./img/marcusittingfocused.jpg"
-                        alt="Game character development showcase with futuristic armor design and detailed textures, cinematic lighting"
-                        class="w-full h-auto">
+                    <!-- Reemplazar la imagen con el visor de Spline -->
+                    <script type="module"
+                        src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
+                    <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
+                        style="width: 100%; height: 400px;"></spline-viewer>
                 </div>
             </div>
         </div>
+
+        <style>
+            /* Añadir estos estilos en la sección <style> del head */
+            spline-viewer {
+                border-radius: 0.75rem;
+                /* rounded-xl */
+                background: transparent;
+                transition: all 0.3s ease;
+            }
+
+            .image-hover:hover spline-viewer {
+                transform: translateY(-8px);
+            }
+        </style>
 
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
             <a href="#about" class="text-gray-400 hover:text-white">
