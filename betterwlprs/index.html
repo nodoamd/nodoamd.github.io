@@ -58,6 +58,35 @@
         #gallery img:hover {
             transform: scale(1.05);
         }
+
+        spline-viewer {
+            border-radius: 0.75rem;
+            background: transparent;
+            transition: box-shadow 0.3s, transform 0.3s;
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25);
+        }
+
+        .image-hover:hover spline-viewer {
+            transform: translateY(-12px) scale(1.04);
+            box-shadow: 0 25px 50px -12px rgba(124, 58, 237, 0.4);
+        }
+
+        /* Animación flotante */
+        #device-viewer {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
     </style>
 </head>
 
@@ -97,68 +126,79 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center pt-24">
-        <div class="container mx-auto px-6 py-20 grid md:grid-cols-2 gap-16 items-center">
-            <div>
-                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-                    <span class="bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent">Better
-                        WallPapers</span><br>
-                    <span>for Every Device</span>
+    <section id="home" class="relative min-h-screen flex flex-col md:flex-row items-center pt-24">
+        <div class="container mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <!-- Visor interactivo primero en mobile -->
+            <div class="order-1 md:order-2 flex flex-col items-center">
+                <div class="relative w-full flex justify-center mb-8 md:mb-0">
+                    <div
+                        class="absolute -top-6 -left-2 md:-top-8 md:-left-8 w-full h-full border-2 border-accent rounded-xl pointer-events-none">
+                    </div>
+                    <div class="relative bg-gradient-to-br from-secondary to-primary rounded-xl overflow-hidden shadow-2xl image-hover transition-transform duration-300"
+                        style="width:100%;max-width:400px;">
+                        <!-- Spline Viewer -->
+                        <script type="module"
+                            src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
+                        <spline-viewer id="device-viewer"
+                            url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
+                            style="width: 100%; height: 300px; border-radius: 0.75rem; background: transparent;"></spline-viewer>
+                    </div>
+                </div>
+            </div>
+            <div class="order-2 md:order-1 text-center md:text-left">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                    <span class="bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent">Mejores
+                        Fondos de Pantalla</span> para todos tus dispositivos.
                 </h1>
-                <p class="text-lg text-gray-300 mb-8 max-w-lg">
-                    We craft stunning visual experiences for video games and films that push creative boundaries and
-                    captivate audiences worldwide.
+                <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto md:mx-0">
+                    Capturamos fondos de pantalla con mimo y cariño para que cada vez que enciendas tu dispositivo veas
+                    algo que te alegre, te aliente o simplemente te guste.
                 </p>
-                <div class="flex flex-wrap gap-4">
-                    <button
-                        class="bg-accent hover:bg-purple-700 text-white px-8 py-3 rounded-full font-medium transition-colors">
-                        View Portfolio
-                    </button>
-                    <button
-                        class="border border-gray-600 hover:border-white text-white px-8 py-3 rounded-full font-medium transition-colors hover:bg-white/5">
-                        Learn More
-                    </button>
-                </div>
+                <button
+                    class="bg-accent hover:bg-purple-700 text-white px-8 py-3 rounded-full font-medium transition-colors">
+                    Explora nuestro trabajo
+                </button>
             </div>
 
-
-
-
-            <div class="relative mt-10 md:mt-0">
-                <div class="absolute -top-8 -left-8 w-full h-full border-2 border-accent rounded-xl"></div>
-                <div
-                    class="relative bg-gradient-to-br from-secondary to-primary rounded-xl overflow-hidden image-hover">
-                    <!-- Reemplazar la imagen con el visor de Spline -->
-                    <script type="module"
-                        src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
-                    <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
-                        style="width: 100%; height: 400px;"></spline-viewer>
-                </div>
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <a href="#about" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-chevron-down text-2xl"></i>
+                </a>
             </div>
-        </div>
-
-        <style>
-            /* Añadir estos estilos en la sección <style> del head */
-            spline-viewer {
-                border-radius: 0.75rem;
-                /* rounded-xl */
-                background: transparent;
-                transition: all 0.3s ease;
-            }
-
-            .image-hover:hover spline-viewer {
-                transform: translateY(-8px);
-            }
-        </style>
-
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <a href="#about" class="text-gray-400 hover:text-white">
-                <i class="fas fa-chevron-down text-2xl"></i>
-            </a>
-        </div>
+            <script>
+                // Demo: Cambiar url del visor según selección (simulado)
+                document.addEventListener('DOMContentLoaded', function () {
+                    const viewer = document.getElementById('device-viewer');
+                    const deviceSelect = document.getElementById('device-select');
+                    const wallpaperSelect = document.getElementById('wallpaper-select');
+                    // Demo: Cambia el url del visor (deberías tener diferentes .splinecode para cada dispositivo/fondo)
+                    deviceSelect.addEventListener('change', function () {
+                        // Simulación: cambia el url según dispositivo
+                        if (deviceSelect.value === 'steamdeck') {
+                            viewer.setAttribute('url', 'https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode');
+                        } else if (deviceSelect.value === 'phone') {
+                            viewer.setAttribute('url', 'https://prod.spline.design/your-phone-scene/scene.splinecode');
+                        } else if (deviceSelect.value === 'desktop') {
+                            viewer.setAttribute('url', 'https://prod.spline.design/your-desktop-scene/scene.splinecode');
+                        }
+                    });
+                    wallpaperSelect.addEventListener('change', function () {
+                        // Simulación: cambia el url según fondo (deberías tener diferentes fondos en Spline)
+                        // Aquí solo cambia el fondo si el dispositivo es SteamDeck
+                        if (deviceSelect.value === 'steamdeck') {
+                            if (wallpaperSelect.value === 'wall1') {
+                                viewer.setAttribute('url', 'https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode');
+                            } else if (wallpaperSelect.value === 'wall2') {
+                                viewer.setAttribute('url', 'https://prod.spline.design/your-steamdeck-wall2/scene.splinecode');
+                            } else if (wallpaperSelect.value === 'wall3') {
+                                viewer.setAttribute('url', 'https://prod.spline.design/your-steamdeck-wall3/scene.splinecode');
+                            }
+                        }
+                        // Repite lógica para otros dispositivos si tienes más escenas
+                    });
+                });
+            </script>
     </section>
-
-
 
     <!-- About Section -->
     <section id="about" class="py-20 bg-secondary">
