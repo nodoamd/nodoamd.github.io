@@ -152,64 +152,77 @@
 
     <!-- Hero Section -->
     <section id="inicio" class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12 fade-in">
-                <div
-                    class="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-                    <span class="text-primary text-sm font-medium">✨ Bienvenido a BetterWLPRS</span>
-                </div>
-                <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6">
-                    <span class="gradient-text">Transforma</span> tu Steam Deck
+        <div class="container mx-auto px-6 py-20 grid md:grid-cols-2 gap-16 items-center">
+            <div class="flex flex-col items-center justify-center w-full">
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 text-center">
+                    <span class="bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent">Better
+                        WallPapers</span><br>
+                    <span>for Every Device</span>
                 </h1>
-                <p class="text-xl sm:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                    Wallpapers premium de alta calidad diseñados específicamente para tu Steam Deck.
-                    <span class="text-primary font-semibold">Personaliza tu experiencia</span> como nunca antes.
+                <p class="text-lg text-gray-300 mb-8 max-w-lg text-center">
+                    We craft stunning visual experiences for video games and films that push creative boundaries and
+                    captivate audiences worldwide.
                 </p>
-            </div>
-
-            <!-- 3D Model Container -->
-            <div class="flex justify-center mb-12">
-                <div class="iframe-container pulse-glow float-animation">
+                <div class="relative bg-gradient-to-br from-secondary to-primary rounded-xl overflow-hidden image-hover w-full mb-8" style="margin-top: -150px;">
                     <script type="module"
                         src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
                     <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
                         style="width: 100%; height: 400px;"></spline-viewer>
                 </div>
             </div>
-
-            <!-- CTA Buttons -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-                <button
-                    class="w-full sm:w-auto bg-primary hover:bg-primary-dark text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                    Explorar Wallpapers
-                </button>
-                <button
-                    class="w-full sm:w-auto border-2 border-white/20 hover:border-primary text-white hover:text-primary font-semibold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
-                    Ver Demo
-                </button>
-            </div>
-
-            <!-- Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div class="fade-in">
-                    <div class="text-3xl font-bold text-primary mb-2">500+</div>
-                    <div class="text-gray-400">Wallpapers HD</div>
-                </div>
-                <div class="fade-in">
-                    <div class="text-3xl font-bold text-primary mb-2">10K+</div>
-                    <div class="text-gray-400">Usuarios Activos</div>
-                </div>
-                <div class="fade-in">
-                    <div class="text-3xl font-bold text-primary mb-2">4.9★</div>
-                    <div class="text-gray-400">Calificación</div>
-                </div>
-                <div class="fade-in">
-                    <div class="text-3xl font-bold text-primary mb-2">24/7</div>
-                    <div class="text-gray-400">Soporte</div>
+            <div>
+                <!-- Aquí puedes poner botones u otro contenido secundario -->
+                <div class="flex flex-wrap gap-4 mt-8 md:mt-0">
+                    <button
+                        class="bg-accent hover:bg-purple-700 text-white px-8 py-3 rounded-full font-medium transition-colors">
+                        View Portfolio
+                    </button>
+                    <button
+                        class="border border-gray-600 hover:border-white text-white px-8 py-3 rounded-full font-medium transition-colors hover:bg-white/5">
+                        Learn More
+                    </button>
                 </div>
             </div>
         </div>
+
+        <style>
+            /* Añadir estos estilos en la sección <style> del head */
+            spline-viewer {
+                border-radius: 0.75rem;
+                /* rounded-xl */
+                background: transparent;
+                transition: all 0.3s ease;
+            }
+
+            .image-hover:hover spline-viewer {
+                transform: translateY(-8px);
+            }
+        </style>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-gray-400 hover:text-white">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
     </section>
+
+
+    <section id="destacados" class="py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-center gradient-text">Wallpapers Destacados</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <img src="./img/samsittedahh.gif"
+                    class="rounded-xl shadow-lg hover:scale-105 transition-all duration-300" alt="Wallpaper Animado" />
+                <img src="./img/marcussittedahh.gif"
+                    class="rounded-xl shadow-lg hover:scale-105 transition-all duration-300" alt="Wallpaper 1" />
+                <img src="./img/samsatori.gif" class="rounded-xl shadow-lg hover:scale-105 transition-all duration-300"
+                    alt="Wallpaper 2" />
+                <img src="./img/thelongdarkwolfs.png"
+                    class="rounded-xl shadow-lg hover:scale-105 transition-all duration-300" alt="Wallpaper 3" />
+            </div>
+        </div>
+    </section>
+
 
     <!-- Features Section -->
     <section id="características" class="py-20 px-4 sm:px-6 lg:px-8">
@@ -255,19 +268,6 @@
                     <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-6">
                         <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">Personalización Total</h3>
-                    <p class="text-gray-300">Ajusta brillo, contraste y saturación para que cada wallpaper se adapte a
-                        tu gusto</p>
-                </div>
-
-                <div
-                    class="glass-effect p-8 rounded-2xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-                    <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
                     </div>
@@ -275,31 +275,19 @@
                     <p class="text-gray-300">Más de 500 wallpapers únicos en constante actualización con nuevos diseños
                     </p>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div
-                    class="glass-effect p-8 rounded-2xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-                    <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">Compatibilidad Total</h3>
-                    <p class="text-gray-300">Compatible con todas las versiones de SteamOS y actualizaciones automáticas
-                    </p>
-                </div>
-
-                <div
-                    class="glass-effect p-8 rounded-2xl hover:bg-white/10 transition-all duration-300 transform hover:scale-105">
-                    <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 100 19.5 9.75 9.75 0 000-19.5z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-4">Soporte 24/7</h3>
-                    <p class="text-gray-300">Asistencia técnica especializada disponible las 24 horas del día</p>
-                </div>
+    <section id="galeria" class="py-20 bg-dark-light">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold gradient-text mb-6 text-center">Nuestra Colección</h2>
+            <p class="text-center text-gray-400 mb-12">Explora cientos de fondos made in BetterWLPRS.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <!-- Muestra varios wallpapers -->
+                <img src="./img/marcusittingfocused.jpg" class="rounded-xl shadow-md hover:scale-105 transition-all" />
+                <!-- Repetir -->
             </div>
         </div>
     </section>
@@ -569,8 +557,13 @@
             const counters = document.querySelectorAll('.text-3xl');
 
             counters.forEach(counter => {
-                const target = parseInt(counter.textContent.replace(/[^0-9]/g, ''));
-                const increment = target / 100;
+                const text = counter.textContent;
+                let target = parseFloat(text.replace(/[^0-9.]/g, ''));
+
+                // Si no hay un número válido, salir
+                if (isNaN(target)) return;
+
+                const increment = target / 50;
                 let current = 0;
 
                 const timer = setInterval(() => {
@@ -580,17 +573,15 @@
                         clearInterval(timer);
                     }
 
-                    let displayValue = Math.floor(current);
-                    if (counter.textContent.includes('K')) {
-                        displayValue = Math.floor(current / 1000) + 'K+';
-                    } else if (counter.textContent.includes('★')) {
-                        displayValue = (current / 1000).toFixed(1) + '★';
+                    let displayValue;
+                    if (text.includes('★')) {
+                        displayValue = current.toFixed(1) + '★';
                     } else {
                         displayValue = Math.floor(current) + '+';
                     }
 
                     counter.textContent = displayValue;
-                }, 20);
+                }, 40);
             });
         }
 
@@ -719,7 +710,7 @@
         }
 
 
-        
+
     </script>
 </body>
 
