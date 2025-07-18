@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BetterWLPRS - Galería Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#6366f1',
+                        'primary-dark': '#4f46e5',
+                        'accent': '#ec4899',
+                        'dark': '#0f172a',
+                        'dark-light': '#1e293b'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateY(0);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(99, 102, 241, 0.3);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+            z-index: 1;
+        }
+
+        .gallery-item:hover::before {
+            transform: translateX(100%);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(15, 23, 42, 0.8) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            z-index: 3;
+        }
+
+        .gallery-item:hover .gallery-content {
+            transform: translateY(0);
+        }
+
+        .filter-button {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-button.active {
+            background: linear-gradient(135deg, #6366f1, #ec4899);
+            transform: translateY(-2px);
+        }
+
+        .filter-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .filter-button:hover::before {
+            left: 100%;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scale-in {
+            animation: scaleIn 0.5s ease-out forwards;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal {
+            backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .modal-content {
+            animation: modalSlide 0.3s ease-out forwards;
+        }
+
+        @keyframes modalSlide {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .search-bar {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+        }
+
+        .parallax-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .hero-pattern {
+            background-image:
+                radial-gradient(circle at 1px 1px, rgba(99, 102, 241, 0.3) 1px, transparent 0);
+            background-size: 20px 20px;
+            animation: patternMove 20s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 20px 20px;
+            }
+        }
+
+        .premium-badge {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .masonry-grid {
+            columns: 1;
+            column-gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .masonry-grid {
+                columns: 2;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                columns: 3;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .masonry-grid {
+                columns: 4;
+            }
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+
+<body class="bg-dark text-white font-sans overflow-x-hidden">
+
+    <div class="parallax-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-effect">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-xl font-bold gradient-text">BetterWLPRS</h1>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#"
+                            class="text-white hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Inicio</a>
+                        <a href="#" class="text-primary px-3 py-2 rounded-md text-sm font-medium">Galería</a>
+                        <a href="#"
+                            class="text-white hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Contacto</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white hover:text-primary focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 hero-pattern">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="premium-badge inline-flex items-center px-4 py-2 rounded-full text-sm font-bold text-dark mb-6">
+                <span class="mr-2">⭐</span>
+                Colección Premium
+            </div>
+            <h1 class="text-6xl md:text-8xl font-extrabold mb-6 leading-tight">
+                <span class="gradient-text">Galería</span><br>
+                <span class="text-white">BetterWLPRS</span>
+            </h1>
+            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                Descubre nuestra colección curada de wallpapers premium diseñados para elevar tu experiencia visual
+            </p>
+            <div class="flex justify-center mb-12">
+                <div class="relative">
+                    <input type="text" id="searchInput" placeholder="Buscar wallpapers..."
+                        class="search-bar w-80 px-6 py-4 rounded-full text-white placeholder-gray-400 focus:outline-none">
+                    <svg class="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button
+                    class="filter-button active px-8 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-primary to-accent"
+                    data-filter="all">
+                    Todos
+                </button>
+                <button
+                    class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20"
+                    data-filter="gaming">
+                    Gaming
+                </button>
+                <button
+                    class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20"
+                    data-filter="nature">
+                    Naturaleza
+                </button>
+                <button
+                    class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20"
+                    data-filter="abstract">
+                    Abstracto
+                </button>
+                <button
+                    class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20"
+                    data-filter="anime">
+                    Anime
+                </button>
+                <button
+                    class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20"
+                    data-filter="minimalist">
+                    Minimalista
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div id="galleryGrid" class="masonry-grid">
+                <!-- Gaming Category -->
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="gaming" data-title="Arkham Knight" data-premium="true">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&h=300&fit=crop"
+                        alt="Gaming Wallpaper" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Arkham Knight</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Resolución 4K • Gaming</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Vista Previa
+                            </button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Descargar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="gaming" data-title="Cyberpunk City" data-premium="true">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=500&h=400&fit=crop"
+                        alt="Gaming Wallpaper" class="w-full h-80 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Cyberpunk City</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Resolución 4K • Gaming</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Vista Previa
+                            </button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Descargar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nature Category -->
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="nature" data-title="Mountain Vista" data-premium="false">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=350&fit=crop"
+                        alt="Nature Wallpaper" class="w-full h-72 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Mountain Vista</h3>
+                            <span class="bg-green-500 px-2 py-1 rounded-full text-xs font-bold text-dark">GRATIS</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Resolución 4K • Naturaleza</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Vista Previa
+                            </button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Descargar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="nature" data-title="Ocean Waves" data-premium="false">
+                    <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=500&h=300&fit=crop"
+                        alt="Nature Wallpaper" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Ocean Waves</h3>
+                            <span class="bg-green-500 px-2 py-1 rounded-full text-xs font-bold text-dark">GRATIS</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Resolución 4K • Naturaleza</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Vista Previa
+                            </button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Descargar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Abstract Category -->
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="abstract" data-title="Neon Waves" data-premium="true">
+                    <img src="https://images.unsplash.com/photo-1557683304-673a23048d34?w=500&h=400&fit=crop"
+                        alt="Abstract Wallpaper" class="w-full h-80 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Neon Waves</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Resolución 4K • Abstracto</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Vista Previa
+                            </button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Descargar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anime Category -->
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="anime" data-title="Anime Sunset" data-premium="true">
+                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&h=350&fit=crop"
+                        alt="Anime Wallpaper" class="w-full h-72 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Anime Sunset</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Resolución 4K • Anime</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Vista Previa
+                            </button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Descargar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Minimalist Category -->
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="minimalist" data-title="Clean Lines" data-premium="false">
+                    <img src="https://images.unsplash.com/photo-1521567497834-b5e7965b1ccc?w=500&h=300&fit=crop"
+                        alt="Minimalist Wallpaper" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Clean Lines</h3>
+                            <span class="bg-green-500 px-2 py-1 rounded-full text-xs font-bold text-dark">GRATIS</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Resolución 4K • Minimalista</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Vista Previa
+                            </button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Descargar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More items... -->
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="gaming" data-title="Retro Gaming" data-premium="true">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&h=450&fit=crop"
+                        alt="Gaming Wallpaper" class="w-full h-96 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Retro Gaming</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Resolución 4K • Gaming</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Vista Previa
+                            </button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Descargar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="abstract" data-title="Digital Art" data-premium="true">
+                    <img src="https://images.unsplash.com/photo-1614543158492-b2c7c1735d6b?w=500&h=320&fit=crop"
+                        alt="Abstract Wallpaper" class="w-full h-72 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Digital Art</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Resolución 4K • Abstracto</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Vista Previa
+                            </button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Descargar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-16">
+                <button id="loadMore"
+                    class="bg-gradient-to-r from-primary to-accent text-white px-12 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform duration-300">
+                    Cargar Más Wallpapers
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold gradient-text mb-2">500+</div>
+                    <div class="text-gray-400">Wallpapers</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold gradient-text mb-2">50K+</div>
+                    <div class="text-gray-400">Descargas</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold gradient-text mb-2">4.9★</div>
+                    <div class="text-gray-400">Valoración</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold gradient-text mb-2">24/7</div>
+                    <div class="text-gray-400">Soporte</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="previewModal" class="fixed inset-0 z-50 hidden modal">
+        <div class="flex items-center justify-center min-h-screen px-4">
+            <div class="modal-content bg-dark-light rounded-2xl p-8 max-w-4xl w-full mx-4">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 id="modalTitle" class="text-2xl font-bold text-white">Wallpaper Preview</h3>
+                    <button id="closeModal" class="text-gray-400 hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="mb-6">
+                    <img id="modalImage" src="" alt="Preview" class="w-full h-96 object-cover rounded-xl">
+                </div>
+                <div class="flex justify-end gap-4">
+                    <button id="downloadModal"
+                        class="bg-primary hover:bg-primary-dark px-6 py-2 rounded-lg text-white font-semibold transition-colors">Descargar</button>
+                    <button id="closeModalBottom"
+                        class="bg-white/10 hover:bg-white/20 px-6 py-2 rounded-lg text-white font-semibold transition-colors">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal logic
+        const previewModal = document.getElementById('previewModal');
+        const closeModal = document.getElementById('closeModal');
+        const closeModalBottom = document.getElementById('closeModalBottom');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const downloadModal = document.getElementById('downloadModal');
+
+        document.querySelectorAll('.gallery-item .bg-primary').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const item = btn.closest('.gallery-item');
+                const img = item.querySelector('img');
+                const title = item.getAttribute('data-title');
+                modalImage.src = img.src;
+                modalTitle.textContent = title;
+                previewModal.classList.remove('hidden');
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            previewModal.classList.add('hidden');
+        });
+        closeModalBottom.addEventListener('click', () => {
+            previewModal.classList.add('hidden');
+        });
+
+        downloadModal.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.href = modalImage.src;
+            link.download = modalTitle.textContent + '.jpg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+        // Load More logic (demo)
+        document.getElementById('loadMore').addEventListener('click', () => {
+            alert('Próximamente más wallpapers exclusivos.');
+        });
+    </script>
+</body>
+
+</html>
