@@ -187,7 +187,7 @@
 
     <!-- Hero Section -->
     <section id="inicio" class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16">
-        <div class="container mx-auto px-6 py-20 grid md:grid-cols-2 gap-16 items-center aifreim">
+        <div class="container mx-auto px-6 py-20 flex flex-col items-center justify-center aifreim">
             <div class="flex flex-col items-center justify-center w-full">
                 <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 text-center">
                     <span class="bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent">Better
@@ -197,18 +197,8 @@
                 <p class="text-lg text-gray-300 mb-8 max-w-lg text-center">
                     Capturamos experiencias visuales impresionantes para que las disfrutes en todos tus Dispositivos.
                 </p>
-                <div class="relative bg-gradient-to-br from-secondary to-primary rounded-xl overflow-hidden image-hover w-full mb-8 steamdeck-viewer"
-                    style="margin-top: -160px;">
-                    <script type="module"
-                        src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
-                    <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode" class="w-full"
-                        style="width: 100vw; max-width: 100%; height: 220px; display: block; margin: 0 auto; border-radius: 0.75rem;"
-                        class="steamdeck-viewer-main"></spline-viewer>
-                </div>
-            </div>
-            <div>
-                <!-- Botones centrados vertical y horizontalmente -->
-                <div class="flex flex-col items-center justify-center h-full gap-4" style="margin-top: -150px;">
+                <!-- Botones alineados y centrados debajo del texto -->
+                <div class="flex flex-col items-center justify-center gap-4 md:flex-row md:justify-center md:gap-6 mb-8">
                     <button
                         class="bg-accent hover:bg-purple-700 text-white px-8 py-3 rounded-full font-medium transition-colors">
                         Ver Galería
@@ -217,6 +207,14 @@
                         class="border border-gray-600 hover:border-white text-white px-8 py-3 rounded-full font-medium transition-colors hover:bg-white/5">
                         Saber más
                     </button>
+                </div>
+                <div class="relative bg-gradient-to-br from-secondary to-primary rounded-xl overflow-hidden image-hover w-full steamdeck-viewer"
+                    style="margin-top: -160px;">
+                    <script type="module"
+                        src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
+                    <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode" class="w-full"
+                        style="width: 100vw; max-width: 100%; height: 220px; display: block; margin: 0 auto; border-radius: 0.75rem;"
+                        class="steamdeck-viewer-main"></spline-viewer>
                 </div>
             </div>
         </div>
