@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>La Chiquitana - Sabores de Bolivia en España</title>
+    <title>La Chiquitana - El Mejor Restaurante Boliviano en Barcelona | Comida Boliviana Auténtica</title>
+    <meta name="description" content="Descubre La Chiquitana, el auténtico restaurante boliviano en Barcelona. Salteñas, cuñapé, empanadas y más. Sabores de Bolivia preparados con recetas tradicionales.">
+    <meta name="keywords" content="comida boliviana Barcelona, restaurante boliviano Barcelona, la chiquitana, salteñas Barcelona, cuñapé, empanadas bolivianas, gastronomía boliviana, Bolivia Barcelona">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.lachiquitana.es/">
+    <meta property="og:title" content="La Chiquitana - Restaurante Boliviano Auténtico en Barcelona">
+    <meta property="og:description" content="Auténtica comida boliviana en Barcelona. Salteñas, cuñapé y empanadas tradicionales de Bolivia preparadas con amor.">
+    <meta property="og:image" content="./img/lachiquitanaLogo.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.lachiquitana.es/">
+    <meta property="twitter:title" content="La Chiquitana - Restaurante Boliviano en Barcelona">
+    <meta property="twitter:description" content="Auténtica comida boliviana en Barcelona. Salteñas, cuñapé y empanadas tradicionales de Bolivia.">
+    <meta property="twitter:image" content="./img/lachiquitanaLogo.webp">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.lachiquitana.es/">
 
     <!-- Favicon -->
     <link rel="icon" href="./img/lachiquitanaLogo.webp" type="image/x-icon">
@@ -16,6 +35,44 @@
     <link rel='stylesheet' href='https://codepen.io/GreenSock/pen/gOWxmWG.css'>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "La Chiquitana",
+      "image": "./img/lachiquitanaLogo.webp",
+      "url": "https://www.lachiquitana.es",
+      "telephone": "+34619084848",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Barcelona",
+        "addressRegion": "Cataluña",
+        "addressCountry": "ES"
+      },
+      "geo": {
+        "@type": "GeoCoordinates"
+      },
+      "servesCuisine": "Boliviana",
+      "priceRange": "€€",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "08:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "09:00",
+          "closes": "15:00"
+        }
+      ],
+      "menu": "https://www.lachiquitana.es/productos/productos.html"
+    }
+    </script>
 </head>
 
 
@@ -28,7 +85,7 @@
         <div id="smooth-content">
             <header>
                 <div class="logo" style="width: 250px; height: 50px;">
-                    <a href="./index.html" style="display:block;"> <img src="./img/lachiquitanaLogo.webp" alt=""></a>
+                    <a href="./index.html" style="display:block;"> <img src="./img/lachiquitanaLogo.webp" alt="La Chiquitana - Restaurante Boliviano en Barcelona"></a>
 
                 </div>
                 <nav class="menu-nav">
@@ -36,10 +93,10 @@
                             class="fa fa-chevron-down"></i></button>
                     <ul class="menu-list" id="menu-list">
                         <li><a href="#historia-hero">Sobre Nosotros</a></li>
-                        <li><a href="#productos-hero">Productos</a></li>
-                        <li><a href="./historia/historia.html" target="_blank">Historia</a></li>
-                        <li><a href="#poemas-hero">Poemas</a></li>
-                        <li><a href="#impacto-hero">Impacto Social</a></li>
+                        <li><a href="#productos-hero">Comida Boliviana</a></li>
+                        <li><a href="./historia/historia.html">Historia de Bolivia</a></li>
+                        <li><a href="#poemas-hero">Cultura Boliviana</a></li>
+                        <li><a href="#impacto-hero">Bolivia en Barcelona</a></li>
                         <li><a href="#testimonios-hero">Testimonios</a></li>
                         <li><a href="#contacto-hero">Contacto</a></li>
                     </ul>
@@ -47,13 +104,14 @@
             </header>
 
             <div class="lazo-decorativo">
-                <img id="mapa-animado" src="./img/lachiquitanaLogo.webp" alt="Lazo decorativo">
+                <img id="mapa-animado" src="./img/lachiquitanaLogo.webp" alt="La Chiquitana - Auténtica Comida Boliviana en Barcelona">
             </div>
 
             <section class="hero pad-l">
                 <div class="heading" id="heading-hero">
                     <div class="pin">
-                        <h1>
+                        <h1 style="position: relative;">
+                            <!-- Texto visible para la animación -->
                             <span class="clamp">Vive
                                 <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 842.14 500">
                                     <path class="draw"
@@ -62,15 +120,21 @@
                                 </svg>
                             </span>
                             <span class="yt">La Chiquitana</span>
+                            <!-- Texto SEO oculto -->
+                            <span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">El Mejor Restaurante Boliviano en Barcelona</span>
                         </h1>
-                        <div class="en-espana" id="en-espana">En España.</div>
+                        <div class="en-espana" id="en-espana">
+                            En España.
+                            <!-- Texto SEO oculto -->
+                            <span style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">Auténtica Comida Boliviana en Barcelona</span>
+                        </div>
                     </div>
                 </div>
                 <div class="images">
-                    <img data-speed="clamp(2.4)" src='./img/ala6.webp' alt=''>
-                    <img data-speed="clamp(1.8)" src='./img/iglesiacerca.webp' alt=''>
-                    <img data-speed="clamp(2.2)" src='./img/ala9.webp' alt=''>
-                    <img data-speed="clamp(1.5)" src='./img/diversas.webp' alt=''>
+                    <img data-speed="clamp(2.4)" src='./img/ala6.webp' alt='Gastronomía Boliviana en Barcelona'>
+                    <img data-speed="clamp(1.8)" src='./img/iglesiacerca.webp' alt='Cultura de Bolivia en Barcelona'>
+                    <img data-speed="clamp(2.2)" src='./img/ala9.webp' alt='Salteñas Bolivianas en Barcelona'>
+                    <img data-speed="clamp(1.5)" src='./img/diversas.webp' alt='Restaurante Boliviano Barcelona'>
                 </div>
 
 
@@ -82,16 +146,16 @@
                     <div class="text-card featured producto-card-blanco">
                         <div class="card-content" style="background: rgba(32, 32, 32, 0.82); border-radius: 22px; box-shadow: 0 8px 32px 0 rgba(46,83,57,0.18),0 1.5px 6px 0 rgba(224,171,48,0.07); padding: 2.5rem 2.2rem 2.2rem 2.2rem; border: 2.5px solid #e8a238; position: relative; z-index: 2;">
                             <span class="overline" style="color: #e8a238; font-size: 1.1rem; letter-spacing: 2px; text-shadow: 0 2px 8px rgba(0,0,0,0.18);">Descubre</span>
-                            <h2 class="about-title" style="margin-bottom: 28px; font-size: 2.3rem; font-weight: 900; color: #fff; text-shadow: 0 4px 18px rgba(0,0,0,0.22), 0 1.5px 6px #e8a238; letter-spacing: 0.5px;">¿De dónde viene la Chiquitana?</h2>
+                            <h2 class="about-title" style="margin-bottom: 28px; font-size: 2.3rem; font-weight: 900; color: #fff; text-shadow: 0 4px 18px rgba(0,0,0,0.22), 0 1.5px 6px #e8a238; letter-spacing: 0.5px;">La Auténtica Comida Boliviana en Barcelona</h2>
                             <p class="about-desc" style="margin-top: 0px; color: #fffbe6; font-size: 1.18rem; font-weight: 500; text-shadow: 0 2px 8px rgba(0,0,0,0.18);">
-                                Región histórica de <span style="color:#e8a238; font-weight:700;">Santa Cruz, Bolivia</span>, con herencia jesuítica y biodiversidad única.
+                                Bienvenidos al mejor <span style="color:#e8a238; font-weight:700;">restaurante boliviano de Barcelona</span>. Traemos los sabores auténticos de la región de <span style="color:#e8a238; font-weight:700;">Santa Cruz, Bolivia</span> directamente a tu mesa, con recetas tradicionales y el cariño de nuestra tierra. Si buscas el verdadero sabor de Bolivia en España, lo has encontrado.
                             </p>
                         </div>
                         <div class="slider-container">
                             <div class="slider">
-                                <img src="./img/iglesiacerca.webp" alt="Iglesia">
-                                <img src="./img/familia.webp" alt="Naturaleza">
-                                <img src="./img/nino.webp" alt="Niño Chiquitana">
+                                <img src="./img/iglesiacerca.webp" alt="Restaurante Boliviano en Barcelona">
+                                <img src="./img/familia.webp" alt="Comida Boliviana Tradicional">
+                                <img src="./img/nino.webp" alt="Gastronomía Boliviana en Barcelona">
                             </div>
                             <div class="slider-nav">
                                 <button class="slider-dot active" data-index="0"></button>
@@ -152,18 +216,19 @@
             <section class="productos-hero" id="productos-hero">
                 <div class="content-wrapper">
                     <div class="section-header">
-                        <span class="overline">Sabores Cruceños</span>
-                        <h2 class="section-title">Nuestra Cocina</h2>
+                        <span class="overline">El Mejor Restaurante Boliviano en Barcelona</span>
+                        <h2 class="section-title">Auténtica Comida Boliviana</h2>
                         <p class="section-desc">
-                            Descubre los sabores más representativos de la Chiquitanía boliviana, elaborados con recetas
-                            tradicionales y el cariño de nuestra familia.
+                            Descubre los sabores más auténticos de la gastronomía boliviana en Barcelona, elaborados con recetas
+                            tradicionales que traen el espíritu de Bolivia directamente a tu mesa. Nuestro restaurante boliviano ofrece
+                            la experiencia más genuina fuera de Bolivia.
                         </p>
                     </div>
 
                     <div class="productos-grid">
                         <div class="producto-card">
                             <div class="producto-image">
-                                <img src="./img/saltenas.webp" alt="Salteñas">
+                                <img src="./img/saltenas.webp" alt="Salteñas Bolivianas en Barcelona">
                             </div>
                             <div class="producto-content">
                                 <div class="recomendado-badge"
@@ -172,8 +237,8 @@
                                 </div>
                                 <h3>Salteñas</h3>
                                 <p>La empanada jugosa y tradicional de Bolivia, rellena de carne, papa, huevo, aceituna
-                                    y un toque de ají. ¡Perfecta para el desayuno o la merienda!</p>
-                                <div class="producto-origin">Origen: Tradición Chiquitana</div>
+                                    y un toque de ají. El plato estrella de cualquier restaurante boliviano en Barcelona. ¡Perfecta para el desayuno o la merienda!</p>
+                                <div class="producto-origin">Origen: Tradición Boliviana Auténtica</div>
                                 <a href="./productos/saltena.html" class="btn-ver-mas"
                                     style="border: 2px solid #fff;">Ver más</a>
                             </div>
@@ -181,13 +246,13 @@
 
                         <div class="producto-card">
                             <div class="producto-image">
-                                <img src="./img/asadito.webp" alt="Asadito">
+                                <img src="./img/asadito.webp" alt="Asadito Boliviano en Barcelona">
                             </div>
                             <div class="producto-content">
                                 <h3>Asadito</h3>
-                                <p>Delicioso pastel de carne de res y cerdo, condimentado con especias y cocido al
-                                    horno. Un clásico de las fiestas y reuniones familiares.</p>
-                                <div class="producto-origin">Origen: Receta Familiar</div>
+                                <p>Delicioso pastel de carne de res y cerdo, condimentado con especias tradicionales bolivianas y cocido al
+                                    horno. Uno de los platos favoritos en nuestro restaurante boliviano en Barcelona para reuniones familiares.</p>
+                                <div class="producto-origin">Origen: Receta Familiar de Bolivia</div>
                                 <a href="./productos/asadito.html" class="btn-ver-mas"
                                     style="border: 2px solid #fff;">Ver más</a>
                             </div>
@@ -195,13 +260,13 @@
 
                         <div class="producto-card">
                             <div class="producto-image">
-                                <img src="./img/cuñape.webp" alt="Cuñapé">
+                                <img src="./img/cuñape.webp" alt="Cuñapé Boliviano en Barcelona">
                             </div>
                             <div class="producto-content">
                                 <h3>Cuñapé</h3>
-                                <p>Panecillo de queso típico de Santa Cruz, elaborado con almidón de yuca y queso
-                                    fresco. Crujiente por fuera y suave por dentro.</p>
-                                <div class="producto-origin">Origen: Oriente Boliviano</div>
+                                <p>Panecillo de queso típico de Santa Cruz, Bolivia, elaborado con almidón de yuca y queso
+                                    fresco. Crujiente por fuera y suave por dentro. Un sabor único de la gastronomía boliviana en Barcelona.</p>
+                                <div class="producto-origin">Origen: Santa Cruz, Bolivia</div>
                                 <a href="./productos/cunape.html" class="btn-ver-mas"
                                     style="border: 2px solid #fff;">Ver más</a>
                             </div>
@@ -209,13 +274,13 @@
 
                         <div class="producto-card">
                             <div class="producto-image">
-                                <img src="./img/tortitamaiz.webp" alt="Tamal">
+                                <img src="./img/tortitamaiz.webp" alt="Empanada de Maíz Boliviana en Barcelona">
                             </div>
                             <div class="producto-content">
                                 <h3>Empanada de Maíz</h3>
-                                <p>Empanada de maíz rellena de queso fresco, suave y cremosa, envuelta en hojas de
-                                    plátano y cocida al vapor. Un clásico reconfortante de la tradición chiquitana.</p>
-                                <div class="producto-origin">Origen: Tradición Chiquitana</div>
+                                <p>Empanada de maíz boliviana rellena de queso fresco, suave y cremosa, envuelta en hojas de
+                                    plátano y cocida al vapor. Un plato imprescindible en nuestro restaurante boliviano en Barcelona.</p>
+                                <div class="producto-origin">Origen: Auténtica Receta Boliviana</div>
                                 <a href="./productos/empanadamaiz.html" class="btn-ver-mas"
                                     style="border: 2px solid #fff;">Ver más</a>
                             </div>
@@ -223,8 +288,7 @@
                     </div>
                     <!-- Botón debajo del grid -->
                     <div style="display:flex; justify-content:center; margin-top:2.5rem;">
-                        <a href="./productos/productos.html" class="btn-ver-mas" style="border: 2px solid #fff;">Ver
-                            productos</a>
+                        <a href="./productos/productos.html" class="btn-ver-mas" style="border: 2px solid #fff;">Descubre toda nuestra comida boliviana</a>
                     </div>
                 </div>
             </section>
@@ -234,14 +298,14 @@
                 <div class="content-wrapper">
                     <div class="historia-container">
                         <div class="historia-text">
-                            <span class="overline">Nuestra Historia</span>
-                            <h2 class="section-title">Tres Generaciones de Sabor</h2>
+                            <span class="overline">Bolivia en Barcelona</span>
+                            <h2 class="section-title">El Mejor Restaurante Boliviano en Barcelona</h2>
                             <p class="historia-desc">
-                                Desde 1952, nuestra familia ha preservado las recetas tradicionales de la Chiquitanía
-                                boliviana.
-                                Lo que comenzó como un pequeño horno de barro en Santa Cruz, hoy se ha convertido en un
-                                puente
-                                cultural que lleva los sabores auténticos de Bolivia hasta España.
+                                Desde 1952, nuestra familia ha preservado las auténticas recetas bolivianas con amor y dedicación.
+                                Lo que comenzó como un pequeño horno de barro en Santa Cruz, Bolivia, hoy se ha convertido en el 
+                                restaurante boliviano favorito de Barcelona, un puente cultural que lleva los sabores más auténticos 
+                                de Bolivia hasta España, para quienes buscan revivir los sabores de su tierra o descubrir la riqueza 
+                                gastronómica boliviana.
                             </p>
                             <div class="timeline">
                                 <div class="timeline-item">
@@ -605,18 +669,17 @@
                     <div class="contacto-modern-info">
                         <h2 class="contacto-modern-title">
                             <span class="contacto-modern-icon"><i class="fa-solid fa-envelope-open-text"></i></span>
-                            ¿Listo para probar la Chiquitanía?
+                            Visita el Mejor Restaurante Boliviano en Barcelona
                         </h2>
                         <p class="contacto-modern-desc">
-                            Haz tu pedido o consúltanos cualquier duda. Te respondemos rápido y con el cariño que nos
-                            caracteriza.
+                            Descubre La Chiquitana, tu restaurante boliviano de confianza en Barcelona. Prueba nuestra auténtica comida boliviana, reserva tu mesa o haz tu pedido a domicilio. Si buscas sabores de Bolivia en España, estamos a tu servicio.
                         </p>
                         <ul class="contacto-modern-list">
                             <li>
                                 <i class="fa-solid fa-location-dot"></i>
                                 <a href="https://g.co/kgs/s23htE8" target="_blank" rel="noopener"
                                     style="color:inherit;">
-                                    Barcelona, (Madrid próximamente) · Envíos a toda España
+                                    Restaurante Boliviano en Barcelona · (Madrid próximamente) · Envíos a toda España
                                 </a>
                             </li>
                             <li>
@@ -666,9 +729,9 @@
                     <div class="footer-modern-brand">
                         <img src="./img/lachiquitanaLogo.webp" alt="La Chiquitana Logo" class="footer-modern-logo">
                         <div class="footer-modern-desc">
-                            <strong>La Chiquitana</strong>
-                            Sabores auténticos de Bolivia en España. Desde 1952, tres generaciones preservando la
-                            tradición culinaria de la Chiquitanía.
+                            <strong>La Chiquitana - Restaurante Boliviano en Barcelona</strong>
+                            El mejor restaurante de comida boliviana en Barcelona. Desde 1952, tres generaciones preservando la
+                            tradición culinaria de Bolivia en España, con recetas auténticas y el sabor de nuestra tierra.
                         </div>
                         <div class="footer-modern-social">
                             <a href="https://www.facebook.com/lachiquitanaoriginal/?locale=es_ES"
@@ -681,17 +744,17 @@
                     </div>
                     <div class="footer-modern-links">
                         <div>
-                            <h4>Productos</h4>
+                            <h4>Nuestra Gastronomía Boliviana</h4>
                             <ul style="margin: 0%;">
-                                <li><a href="./productos/saltena.html" target="_blank">Salteñas</a></li>
-                                <li><a href="./productos/cunape.html" target="_blank">Cuñapé</a></li>
-                                <li><a href="./productos/asadito.html" target="_blank">Asadito</a></li>
-                                <li><a href="./productos/empanadamaiz.html" target="_blank">Empanada de Maíz</a></li>
-                                <li><a href="./productos/productos.html"">Ver todos</a></li>
+                                <li><a href="./productos/saltena.html">Salteñas Bolivianas en Barcelona</a></li>
+                                <li><a href="./productos/cunape.html">Cuñapé Tradicional Boliviano</a></li>
+                                <li><a href="./productos/asadito.html">Asadito de Bolivia</a></li>
+                                <li><a href="./productos/empanadamaiz.html">Empanada de Maíz Boliviana</a></li>
+                                <li><a href="./productos/productos.html">Ver toda la comida boliviana</a></li>
                             </ul>
                         </div>
                         <div>
-                            <h4>La Chiquitana</h4>
+                            <h4>La Chiquitana - Bolivia en Barcelona</h4>
                             <ul>
                                 <li><a href=" #historia-hero">Sobre Nosotros</a></li>
                                 <li><a href="#productos-hero">Productos</a></li>
@@ -721,7 +784,7 @@
                 </div>
                 <div class="footer-modern-bottom">
                     Todos los derechos reservados. | La
-                    Chiquitana Sabores de Bolivia en España. &copy; 2025 Hecho con 💜 <a
+                    Chiquitana - Restaurante Boliviano en Barcelona - Comida Boliviana Auténtica. &copy; 2025 Hecho con 💜 <a
                         href="https://nodoamd.github.io" target="_blank"
                         style="color:#e8a238;text-decoration:underline;">por Nodo Agencia Marketing Digital</a>.
                 </div>
