@@ -144,18 +144,18 @@
             <section class="about-hero" id="about-hero">
                 <div class="content-grid">
                     <div class="text-card featured producto-card-blanco">
-                        <div class="card-content" style="background: rgba(32, 32, 32, 0.82); border-radius: 22px; box-shadow: 0 8px 32px 0 rgba(46,83,57,0.18),0 1.5px 6px 0 rgba(224,171,48,0.07); padding: 2.5rem 2.2rem 2.2rem 2.2rem; border: 2.5px solid #e8a238; position: relative; z-index: 2;">
+                        <div class="card-content" style="background: rgba(32, 32, 32, 0.82); box-shadow: 0 8px 32px 0 rgba(46,83,57,0.18),0 1.5px 6px 0 rgba(224,171,48,0.07); padding: 2.5rem 2.2rem 2.2rem 2.2rem; border: 2.5px solid #e8a238; position: relative; z-index: 2;">
                             <span class="overline" style="color: #e8a238; font-size: 1.1rem; letter-spacing: 2px; text-shadow: 0 2px 8px rgba(0,0,0,0.18);">Descubre</span>
                             <h2 class="about-title" style="margin-bottom: 28px; font-size: 2.3rem; font-weight: 900; color: #fff; text-shadow: 0 4px 18px rgba(0,0,0,0.22), 0 1.5px 6px #e8a238; letter-spacing: 0.5px;">La Auténtica Comida Boliviana en Barcelona</h2>
                             <p class="about-desc" style="margin-top: 0px; color: #fffbe6; font-size: 1.18rem; font-weight: 500; text-shadow: 0 2px 8px rgba(0,0,0,0.18);">
                                 Bienvenidos al mejor <span style="color:#e8a238; font-weight:700;">restaurante boliviano de Barcelona</span>. Traemos los sabores auténticos de la región de <span style="color:#e8a238; font-weight:700;">Santa Cruz, Bolivia</span> directamente a tu mesa, con recetas tradicionales y el cariño de nuestra tierra. Si buscas el verdadero sabor de Bolivia en España, lo has encontrado.
                             </p>
                         </div>
-                        <div class="slider-container">
-                            <div class="slider">
-                                <img src="./img/iglesiacerca.webp" alt="Restaurante Boliviano en Barcelona">
-                                <img src="./img/familia.webp" alt="Comida Boliviana Tradicional">
-                                <img src="./img/nino.webp" alt="Gastronomía Boliviana en Barcelona">
+                        <div class="slider-container" style="border-radius: 0 !important; overflow: visible;">
+                            <div class="slider" style="overflow: visible;">
+                                <img src="./img/iglesiacerca.webp" alt="Restaurante Boliviano en Barcelona" class="slider-img-cuadrada">
+                                <img src="./img/familia.webp" alt="Comida Boliviana Tradicional" class="slider-img-cuadrada">
+                                <img src="./img/nino.webp" alt="Gastronomía Boliviana en Barcelona" class="slider-img-cuadrada">
                             </div>
                             <div class="slider-nav">
                                 <button class="slider-dot active" data-index="0"></button>
@@ -195,6 +195,11 @@
                     <a href="./historia/historia.html" class="btn-ver-mas"
                         style="padding: 25px; border: solid 1px #fff;">Descubre más</a>
                 </div>
+                <style>
+                .slider-img-cuadrada {
+                    border-radius: 0 !important;
+                }
+                </style>
             </section>
 
             <!-- <section class="experiencia-hero" id="experiencia-hero">
@@ -228,7 +233,7 @@
                     <div class="productos-grid">
                         <div class="producto-card">
                             <div class="producto-image">
-                                <img src="./img/saltenas.webp" alt="Salteñas Bolivianas en Barcelona">
+                                <img src="./img/saltenas.webp" alt="Salteñas Bolivianas en Barcelona" class="producto-img-redonda">
                             </div>
                             <div class="producto-content">
                                 <div class="recomendado-badge"
@@ -246,7 +251,7 @@
 
                         <div class="producto-card">
                             <div class="producto-image">
-                                <img src="./img/asadito.webp" alt="Asadito Boliviano en Barcelona">
+                                <img src="./img/asadito.webp" alt="Asadito Boliviano en Barcelona" class="producto-img-redonda">
                             </div>
                             <div class="producto-content">
                                 <h3>Asadito</h3>
@@ -260,7 +265,7 @@
 
                         <div class="producto-card">
                             <div class="producto-image">
-                                <img src="./img/cuñape.webp" alt="Cuñapé Boliviano en Barcelona">
+                                <img src="./img/cuñape.webp" alt="Cuñapé Boliviano en Barcelona" class="producto-img-redonda">
                             </div>
                             <div class="producto-content">
                                 <h3>Cuñapé</h3>
@@ -274,7 +279,7 @@
 
                         <div class="producto-card">
                             <div class="producto-image">
-                                <img src="./img/tortitamaiz.webp" alt="Empanada de Maíz Boliviana en Barcelona">
+                                <img src="./img/tortitamaiz.webp" alt="Empanada de Maíz Boliviana en Barcelona" class="producto-img-redonda">
                             </div>
                             <div class="producto-content">
                                 <h3>Empanada de Maíz</h3>
@@ -290,6 +295,11 @@
                     <div style="display:flex; justify-content:center; margin-top:2.5rem;">
                         <a href="./productos/productos.html" class="btn-ver-mas" style="border: 2px solid #fff;">Descubre toda nuestra comida boliviana</a>
                     </div>
+                    <style>
+                    .producto-img-redonda {
+                        border-radius: 20px;
+                    }
+                    </style>
                 </div>
             </section>
 
