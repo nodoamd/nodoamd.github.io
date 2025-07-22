@@ -1048,6 +1048,111 @@ img {
     text-align: center;
 }
 
+/* Estilos responsivos para testimonios y eventos */
+@media (max-width: 768px) {
+    .testimonios-grid, .eventos-grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px;
+    }
+    
+    .google-reviews-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .section-title {
+        font-size: 2rem !important;
+    }
+    
+    .section-desc {
+        font-size: 1rem !important;
+        max-width: 100% !important;
+    }
+    
+    .google-reviews-header img {
+        height: 40px !important;
+    }
+    
+    .rating-text {
+        font-size: 16px !important;
+    }
+    
+    .testimonio-content p {
+        font-size: 1rem !important;
+        padding-left: 20px !important;
+    }
+    
+    .testimonio-author h4 {
+        font-size: 1.1rem !important;
+    }
+    
+    .reviewer-info {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+    
+    .reviewer-icon {
+        margin-bottom: 10px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonios-hero, .eventos-hero {
+        padding: 50px 0 40px !important;
+    }
+    
+    .section-header {
+        margin-bottom: 30px !important;
+    }
+    
+    .section-title {
+        font-size: 1.8rem !important;
+    }
+    
+    .overline {
+        font-size: 0.9rem !important;
+    }
+    
+    .google-reviews-container {
+        padding: 30px 15px !important;
+    }
+    
+    .review-card, .evento-card {
+        padding: 25px 20px !important;
+    }
+    
+    .evento-fecha {
+        position: relative !important;
+        top: 0 !important;
+        right: 0 !important;
+        font-size: 0.85rem !important;
+        padding: 6px 14px !important;
+        display: inline-block !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .evento-info {
+        margin-top: 5px !important;
+    }
+    
+    .evento-info h3 {
+        font-size: 1.3rem !important;
+        margin-top: 5px !important;
+    }
+    
+    .btn-ver-mas {
+        padding: 12px 25px !important;
+        font-size: 0.9rem !important;
+    }
+    
+    .testimonio-author {
+        padding: 15px 20px !important;
+    }
+    
+    .stars {
+        font-size: 1rem !important;
+    }
+}
+
 .step-content h3 {
     color: white;
     font-size: 1.5rem;
@@ -1278,7 +1383,9 @@ img {
 }
 
 .contacto-details {
-    space-y: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .testimonio-author .author-info span {
