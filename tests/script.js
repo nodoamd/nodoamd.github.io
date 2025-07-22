@@ -165,111 +165,194 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
 
 // Funcionalidad de deslizamiento para el slider
-const slider = document.querySelector('.slider');
-const slides = document.querySelectorAll('.slider img');
-const dots = document.querySelectorAll('.slider-dot');
-let currentSlide = 0;
-let startX = 0;
-let isDragging = false;
-let startTime = 0;
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.slider');
+    
+    // Verificar si existe el slider antes de continuar
+    if (!slider) {
+        console.log("No se encontró el elemento slider");
+        return;
+    }
+    
+    const slides = document.querySelectorAll('.slider > div');
+    const dots = document.querySelectorAll('.slider-dot');
+    const prevBtn = document.querySelector('.slider-arrow.prev');
+    const nextBtn = document.querySelector('.slider-arrow.next');
+    let currentSlide = 0;
+    let startX = 0;
+    let isDragging = false;
+    let startTime = 0;
+    let autoplayInterval;
 
-// Función para mostrar slide específico
-function showSlide(index) {
-    currentSlide = index;
-    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    // Función para mostrar slide específico
+    function showSlide(index) {
+        // Comprobar que el índice es válido
+        if (slides.length === 0) return;
+        
+        // Asegurarnos de que el índice está dentro del rango válido
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+        
+        currentSlide = index;
+        slider.style.transform = `translateX(-${currentSlide * 33.333}%)`;
 
-    // Actualizar dots
-    dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentSlide);
+        // Actualizar dots si existen
+        if (dots && dots.length > 0) {
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+    }
+
+    // Función para ir al siguiente slide
+    function nextSlide() {
+        if (slides.length <= 1) return; // No avanzar si solo hay un slide o ninguno
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Función para ir al slide anterior
+    function prevSlide() {
+        if (slides.length <= 1) return; // No retroceder si solo hay un slide o ninguno
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Event listeners para los dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => showSlide(index));
     });
-}
 
-// Función para ir al siguiente slide
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-}
+    // Event listeners para los botones de navegación
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
 
-// Función para ir al slide anterior
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-}
-
-// Event listeners para los dots
-dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => showSlide(index));
-});
-
-// Event listeners para touch (móvil)
-slider.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    startTime = Date.now();
-    isDragging = true;
-}, { passive: true });
-
-slider.addEventListener('touchmove', (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-}, { passive: false });
-
-slider.addEventListener('touchend', (e) => {
-    if (!isDragging) return;
-
-    const endX = e.changedTouches[0].clientX;
-    const diff = startX - endX;
-    const timeDiff = Date.now() - startTime;
-
-    // Determinar si fue un swipe válido (mínimo 50px de distancia y máximo 300ms)
-    if (Math.abs(diff) > 50 && timeDiff < 300) {
-        if (diff > 0) {
-            nextSlide(); // Deslizar hacia la izquierda - siguiente imagen
-        } else {
-            prevSlide(); // Deslizar hacia la derecha - imagen anterior
-        }
-    }
-
-    isDragging = false;
-}, { passive: true });
-
-// Event listeners para mouse (escritorio)
-slider.addEventListener('mousedown', (e) => {
-    startX = e.clientX;
-    startTime = Date.now();
-    isDragging = true;
-    slider.style.cursor = 'grabbing';
-    e.preventDefault();
-});
-
-slider.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-});
-
-slider.addEventListener('mouseup', (e) => {
-    if (!isDragging) return;
-
-    const endX = e.clientX;
-    const diff = startX - endX;
-    const timeDiff = Date.now() - startTime;
-
-    // Determinar si fue un swipe válido
-    if (Math.abs(diff) > 50 && timeDiff < 300) {
-        if (diff > 0) {
+    // Iniciar autoplay
+    function startAutoplay() {
+        // No iniciar autoplay si no hay suficientes slides
+        if (slides.length <= 1) return;
+        
+        // Detener cualquier intervalo existente
+        stopAutoplay();
+        
+        autoplayInterval = setInterval(() => {
             nextSlide();
-        } else {
-            prevSlide();
+        }, 5000); // Cambiar cada 5 segundos
+    }
+
+    function stopAutoplay() {
+        if (autoplayInterval) {
+            clearInterval(autoplayInterval);
+            autoplayInterval = null;
         }
     }
 
-    isDragging = false;
-    slider.style.cursor = 'grab';
+    // Pausar autoplay cuando se interactúa con el slider
+    function pauseAutoplay() {
+        stopAutoplay();
+        // Reiniciar después de 10 segundos de inactividad solo si hay más de un slide
+        if (slides.length > 1) {
+            setTimeout(startAutoplay, 10000);
+        }
+    }
+
+    // Agregar listeners para pausar autoplay
+    slider.addEventListener('mouseenter', stopAutoplay);
+    slider.addEventListener('mouseleave', startAutoplay);
+    dots.forEach(dot => dot.addEventListener('click', pauseAutoplay));
+    if (prevBtn) prevBtn.addEventListener('click', pauseAutoplay);
+    if (nextBtn) nextBtn.addEventListener('click', pauseAutoplay);
+
+    // Event listeners para touch (móvil)
+    slider.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startTime = Date.now();
+        isDragging = true;
+        stopAutoplay();
+    }, { passive: true });
+
+    slider.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+    }, { passive: false });
+
+    slider.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+        const timeDiff = Date.now() - startTime;
+
+        // Determinar si fue un swipe válido (mínimo 30px de distancia y máximo 300ms)
+        if (Math.abs(diff) > 30 && timeDiff < 300) {
+            if (diff > 0) {
+                nextSlide(); // Deslizar hacia la izquierda - siguiente imagen
+            } else {
+                prevSlide(); // Deslizar hacia la derecha - imagen anterior
+            }
+        }
+
+        isDragging = false;
+        startAutoplay();
+    }, { passive: true });
+    
+    // Event listeners para mouse (escritorio)
+    slider.addEventListener('mousedown', (e) => {
+        startX = e.clientX;
+        startTime = Date.now();
+        isDragging = true;
+        slider.style.cursor = 'grabbing';
+        stopAutoplay();
+        e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+    });
+
+    document.addEventListener('mouseup', (e) => {
+        if (!isDragging) return;
+
+        const endX = e.clientX;
+        const diff = startX - endX;
+        const timeDiff = Date.now() - startTime;
+
+        // Determinar si fue un swipe válido
+        if (Math.abs(diff) > 30 && timeDiff < 300) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+
+        isDragging = false;
+        slider.style.cursor = 'grab';
+        startAutoplay();
+    });
+
+    // Prevenir arrastre de imágenes
+    slider.addEventListener('dragstart', (e) => {
+        e.preventDefault();
+    });
+    
+    // Comprobar el número de slides
+    if (slides.length > 0) {
+        console.log(`Número de slides encontrados: ${slides.length}`);
+        // Inicializar
+        showSlide(0);
+        // Iniciar autoplay solo si hay más de un slide
+        if (slides.length > 1) {
+            startAutoplay();
+        }
+    } else {
+        console.log("No se encontraron slides");
+    }
 });
 
-// Prevenir arrastre de imágenes
-slider.addEventListener('dragstart', (e) => {
-    e.preventDefault();
-});
+// Estos event listeners ya están definidos dentro del DOMContentLoaded
+// y están causando duplicación y conflictos, así que los eliminamos
 
-// Inicializar
-showSlide(0);
+// Estos event listeners ya están definidos o deberían estar dentro del DOMContentLoaded
+// y están causando errores porque las variables no están definidas en este ámbito
