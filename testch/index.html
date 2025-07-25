@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>La Chiquitana - Sabores de Bolivia en España</title>
+    <title>La Chiquitana - El Mejor Restaurante Boliviano en Barcelona | Comida Boliviana Auténtica</title>
+    <meta name="description"
+        content="Descubre La Chiquitana, el auténtico restaurante boliviano en Barcelona. Salteñas, cuñapé, empanadas y más. Sabores de Bolivia preparados con recetas tradicionales.">
+    <meta name="keywords"
+        content="comida boliviana Barcelona, restaurante boliviano Barcelona, la chiquitana, salteñas Barcelona, cuñapé, empanadas bolivianas, gastronomía boliviana, Bolivia Barcelona">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.lachiquitana.es/">
+    <meta property="og:title" content="La Chiquitana - Restaurante Boliviano Auténtico en Barcelona">
+    <meta property="og:description"
+        content="Auténtica comida boliviana en Barcelona. Salteñas, cuñapé y empanadas tradicionales de Bolivia preparadas con amor.">
+    <meta property="og:image" content="./img/lachiquitanaLogo.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.lachiquitana.es/">
+    <meta property="twitter:title" content="La Chiquitana - Restaurante Boliviano en Barcelona">
+    <meta property="twitter:description"
+        content="Auténtica comida boliviana en Barcelona. Salteñas, cuñapé y empanadas tradicionales de Bolivia.">
+    <meta property="twitter:image" content="./img/lachiquitanaLogo.webp">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.lachiquitana.es/">
 
     <!-- Favicon -->
     <link rel="icon" href="./img/lachiquitanaLogo.webp" type="image/x-icon">
@@ -16,6 +39,44 @@
     <link rel='stylesheet' href='https://codepen.io/GreenSock/pen/gOWxmWG.css'>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "La Chiquitana",
+      "image": "./img/lachiquitanaLogo.webp",
+      "url": "https://www.lachiquitana.es",
+      "telephone": "+34619084848",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Barcelona",
+        "addressRegion": "Cataluña",
+        "addressCountry": "ES"
+      },
+      "geo": {
+        "@type": "GeoCoordinates"
+      },
+      "servesCuisine": "Boliviana",
+      "priceRange": "€€",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "08:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "09:00",
+          "closes": "15:00"
+        }
+      ],
+      "menu": "https://www.lachiquitana.es/productos/productos.html"
+    }
+    </script>
 </head>
 
 
@@ -28,7 +89,8 @@
         <div id="smooth-content">
             <header>
                 <div class="logo" style="width: 250px; height: 50px;">
-                    <a href="./index.html" style="display:block;"> <img src="./img/lachiquitanaLogo.webp" alt=""></a>
+                    <a href="./index.html" style="display:block;"> <img src="./img/lachiquitanaLogo.webp"
+                            alt="La Chiquitana - Restaurante Boliviano en Barcelona"></a>
 
                 </div>
                 <nav class="menu-nav">
@@ -36,10 +98,11 @@
                             class="fa fa-chevron-down"></i></button>
                     <ul class="menu-list" id="menu-list">
                         <li><a href="#historia-hero">Sobre Nosotros</a></li>
-                        <li><a href="#productos-hero">Productos</a></li>
-                        <li><a href="./historia/historia.html" target="_blank">Historia</a></li>
-                        <li><a href="#poemas-hero">Poemas</a></li>
-                        <li><a href="#impacto-hero">Impacto Social</a></li>
+                        <li><a href="#productos-hero">Comida Boliviana</a></li>
+                        <li><a href="#clica-recoge-hero">Clica y Recoge</a></li>
+                        <li><a href="./historia/historia.html">Historia de Bolivia</a></li>
+                        <li><a href="#poemas-hero">Cultura Boliviana</a></li>
+                        <li><a href="#impacto-hero">Bolivia en Barcelona</a></li>
                         <li><a href="#testimonios-hero">Testimonios</a></li>
                         <li><a href="#contacto-hero">Contacto</a></li>
                     </ul>
@@ -47,13 +110,15 @@
             </header>
 
             <div class="lazo-decorativo">
-                <img id="mapa-animado" src="./img/lachiquitanaLogo.webp" alt="Lazo decorativo">
+                <img id="mapa-animado" src="./img/lachiquitanaLogo.webp"
+                    alt="La Chiquitana - Auténtica Comida Boliviana en Barcelona">
             </div>
 
             <section class="hero pad-l">
                 <div class="heading" id="heading-hero">
                     <div class="pin">
-                        <h1>
+                        <h1 style="position: relative;">
+                            <!-- Texto visible para la animación -->
                             <span class="clamp">Vive
                                 <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 842.14 500">
                                     <path class="draw"
@@ -61,16 +126,26 @@
                                         fill="none" stroke="#e8a238" stroke-miterlimit="10" stroke-width="15" />
                                 </svg>
                             </span>
-                            <span class="yt">La Chiquitanía</span>
+                            <span class="yt">La Chiquitana</span>
+                            <!-- Texto SEO oculto -->
+                            <span
+                                style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">El
+                                Mejor Restaurante Boliviano en Barcelona</span>
                         </h1>
-                        <div class="en-espana" id="en-espana">En España.</div>
+                        <div class="en-espana" id="en-espana">
+                            En España.
+                            <!-- Texto SEO oculto -->
+                            <span
+                                style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">Auténtica
+                                Comida Boliviana en Barcelona</span>
+                        </div>
                     </div>
                 </div>
                 <div class="images">
-                    <img data-speed="clamp(2.4)" src='./img/ala6.webp' alt=''>
-                    <img data-speed="clamp(1.8)" src='./img/iglesiacerca.webp' alt=''>
-                    <img data-speed="clamp(2.2)" src='./img/ala9.webp' alt=''>
-                    <img data-speed="clamp(1.5)" src='./img/diversas.webp' alt=''>
+                    <img data-speed="clamp(2.4)" src='./img/ala6.webp' alt='Gastronomía Boliviana en Barcelona'>
+                    <img data-speed="clamp(1.8)" src='./img/iglesiacerca.webp' alt='Cultura de Bolivia en Barcelona'>
+                    <img data-speed="clamp(2.2)" src='./img/ala9.webp' alt='Salteñas Bolivianas en Barcelona'>
+                    <img data-speed="clamp(1.5)" src='./img/diversas.webp' alt='Restaurante Boliviano Barcelona'>
                 </div>
 
 
@@ -79,58 +154,116 @@
             </section>
             <section class="about-hero" id="about-hero">
                 <div class="content-grid">
-                    <div class="text-card featured">
-                        <div class="card-content">
-                            <span class="overline">Descubre</span>
-                            <h2 class="about-title">¿Qué es la Chiquitania?</h2>
-                            <p class="about-desc"> La Chiquitania es una región histórica en Santa Cruz, Bolivia, que
-                                combina la herencia de las misiones jesuíticas con una biodiversidad extraordinaria.
+                    <div class="text-card featured producto-card-blanco">
+                        <div class="card-content"
+                            style="background: rgba(32, 32, 32, 0.82); box-shadow: 0 8px 32px 0 rgba(46,83,57,0.18),0 1.5px 6px 0 rgba(224,171,48,0.07); padding: 2rem 1.8rem; border: 2.5px solid #e8a238; position: relative; z-index: 2;">
+                            <span class="overline"
+                                style="color: #e8a238; font-size: 1.1rem; letter-spacing: 2px; text-shadow: 0 2px 8px rgba(0,0,0,0.18);">Descubre</span>
+                            <h2 class="about-title"
+                                style="margin-bottom: 20px; font-size: 2.2rem; font-weight: 900; color: #fff; text-shadow: 0 4px 18px rgba(0,0,0,0.22), 0 1.5px 6px #e8a238; letter-spacing: 0.5px;">
+                                La Auténtica Comida Boliviana en Barcelona</h2>
+                            <p class="about-desc"
+                                style="margin-top: 0px; margin-bottom: 20px; color: #fffbe6; font-size: 1.1rem; font-weight: 500; text-shadow: 0 2px 8px rgba(0,0,0,0.18);">
+                                Sabores auténticos de <span style="color:#e8a238; font-weight:700;">Santa Cruz,
+                                    Bolivia</span> directamente a tu mesa. Recetas tradicionales elaboradas con amor y
+                                el auténtico sabor de nuestra tierra.
                             </p>
-
-                        </div>
-                        <div class="slider-container">
-                            <div class="slider">
-                                <img src="./img/iglesiacerca.webp" alt="Iglesia">
-                                <img src="./img/familia.webp" alt="Naturaleza">
-                                <img src="./img/niño.webp" alt="Niño chiquitano">
+                            <!-- Botón integrado dentro del content -->
+                            <div class="cta-integrado" style="text-align: right;">
+                                <a href="./historia/historia.html" class="btn-ver-mas"
+                                    style="padding: 12px 25px; border: solid 1px #e8a238; display: inline-block; background: rgba(232,162,56,0.15); font-size: 0.95rem; font-weight: 600;">Descubre
+                                    más</a>
                             </div>
-                            <div class="slider-nav">
+                        </div>
+                        <div class="slider-container" style="border-radius: 0 !important; overflow: hidden;">
+                            <div class="slider"
+                                style="display: flex; width: 300%; transform: translateX(0%); transition: transform 0.5s ease;">
+                                <div style="width: 33.333%; flex-shrink: 0;">
+                                    <img src="./img/iglesiacerca.webp" alt="Restaurante Boliviano en Barcelona"
+                                        class="slider-img-cuadrada"
+                                        style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div style="width: 33.333%; flex-shrink: 0;">
+                                    <img src="./img/familia.webp" alt="Comida Boliviana Tradicional"
+                                        class="slider-img-cuadrada"
+                                        style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div style="width: 33.333%; flex-shrink: 0;">
+                                    <img src="./img/nino.webp" alt="Gastronomía Boliviana en Barcelona"
+                                        class="slider-img-cuadrada"
+                                        style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                            </div>
+                            <div class="slider-controls"
+                                style="position: absolute; top: 50%; transform: translateY(-50%); left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; padding: 0 15px; pointer-events: none;">
+                                <button class="slider-arrow prev"
+                                    style="background: rgba(0,0,0,0.3); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; pointer-events: auto;">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </button>
+                                <button class="slider-arrow next"
+                                    style="background: rgba(0,0,0,0.3); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; pointer-events: auto;">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            <!-- <div class="slider-nav" style="position: absolute; bottom: 20px; left: 0; right: 0; display: flex; justify-content: center; gap: 10px; z-index: 5;">
                                 <button class="slider-dot active" data-index="0"></button>
                                 <button class="slider-dot" data-index="1"></button>
                                 <button class="slider-dot" data-index="2"></button>
+                            </div> -->
+                            <!-- Indicador de deslizamiento para móviles -->
+                            <div class="swipe-indicator"
+                                style="position: absolute; bottom: 60px; left: 0; right: 0; text-align: center; color: white; font-size: 0.9rem; opacity: 0.8; display: none; z-index: 5; text-shadow: 0 1px 3px rgba(0,0,0,0.5);">
+                                <i class="fa-solid fa-hand-pointer" style="margin-right: 5px;"></i> Desliza para ver más
                             </div>
                         </div>
                     </div>
-
-                    <!-- <div class="text-card">
-                        <div class="card-image">
-                            <img src="./img/iglesiaconsol.webp" alt="Misiones Jesuíticas">
-                        </div>
-                        <div class="card-content">
-                            <h3 class="about-title">Patrimonio Cultural</h3>
-                            <p class="about-desc">
-                                Hogar de las impresionantes misiones jesuíticas, declaradas Patrimonio de la Humanidad
-                                por la UNESCO.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="text-card">
-                        <div class="card-image">
-                            <img src="./img/chiquitania.webp" alt="Naturaleza Chiquitana">
-                        </div>
-                        <div class="card-content">
-                            <h3 class="about-title">Biodiversidad</h3>
-                            <p class="about-desc">
-                                Un ecosistema único donde convergen el Amazonas, el Cerrado y el Chaco.
-                            </p>
-                        </div>
-                    </div> -->
                 </div>
-                <!-- Botón CTA fuera del container, más estrecho y centrado -->
-                <div class="cta-bajo-slider" style="margin-top: 50px; display: flex; justify-content: center;">
-                    <a href="./historia/historia.html" class="btn-ver-mas" style="padding: 25px;">Descubre más</a>
-                </div>
+                <style>
+                    .slider-img-cuadrada {
+                        border-radius: 0 !important;
+                        display: block;
+                    }
+
+                    .slider-container {
+                        position: relative;
+                    }
+
+                    .slider {
+                        position: relative;
+                    }
+
+                    @media (max-width: 768px) {
+                        .swipe-indicator {
+                            display: block !important;
+                        }
+
+                        .slider-arrow {
+                            display: none !important;
+                        }
+
+                        .about-desc {
+                            font-size: 1rem !important;
+                        }
+
+                        .about-title {
+                            font-size: 1.8rem !important;
+                        }
+
+                        .slider-container {
+                            height: 350px !important;
+                        }
+                    }
+
+                    @media (max-width: 480px) {
+                        .slider-container {
+                            height: 280px !important;
+                        }
+
+                        .about-title {
+                            font-size: 1.5rem !important;
+                        }
+                    }
+                </style>
             </section>
 
             <!-- <section class="experiencia-hero" id="experiencia-hero">
@@ -151,90 +284,471 @@
             <!-- Sección de Productos Tradicionales -->
             <section class="productos-hero" id="productos-hero">
                 <div class="content-wrapper">
-                    <div class="section-header">
-                        <span class="overline">Sabores Auténticos</span>
-                        <h2 class="section-title">Nuestra Cocina y Panadería</h2>
-                        <p class="section-desc">
-                            Descubre los sabores más representativos de la Chiquitanía boliviana, elaborados con recetas
-                            tradicionales y el cariño de nuestra familia.
+                    <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+                        <span
+                            style="color: #e8a238; font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;">Especialidades</span>
+                        <h2 class="section-title"
+                            style="font-size: 2.2rem; margin: 0.5rem 0 1rem 0; color: rgb(24, 24, 24);">Sabores de
+                            Bolivia</h2>
+                        <p class="section-desc" style="font-size: 1rem; color: #666; max-width: 600px; margin: 0 auto;">
+                            Auténticas recetas bolivianas preparadas con amor
                         </p>
                     </div>
 
-                    <div class="productos-grid">
-                        <div class="producto-card">
-                            <div class="producto-image">
-                                <img src="./img/salteñas.webp" alt="Salteñas">
+                    <div class="productos-grid-modern">
+                        <!-- Producto 1 - Destacado -->
+                        <div class="producto-card-modern producto-featured">
+                            <div class="producto-badge">⭐ Favorito</div>
+                            <div class="producto-image-modern">
+                                <img src="./img/saltenas.webp" alt="Salteñas Bolivianas">
                             </div>
-                            <div class="producto-content">
+                            <div class="producto-info-modern">
                                 <h3>Salteñas</h3>
-                                <p>La empanada jugosa y tradicional de Bolivia, rellena de carne, papa, huevo, aceituna
-                                    y un toque de ají. ¡Perfecta para el desayuno o la merienda!</p>
-                                <div class="producto-origin">Origen: Tradición Chiquitana</div>
-                                <a href="./productos/saltena.html" class="btn-ver-mas">Ver más</a>
+                                <p>Empanada jugosa tradicional con carne, papa y ají</p>
+                                <a href="./productos/saltena.html" class="btn-modern">Descubrir</a>
                             </div>
                         </div>
 
-                        <div class="producto-card">
-                            <div class="producto-image">
-                                <img src="./img/asadito.webp" alt="Asadito">
+                        <!-- Producto 2 -->
+                        <div class="producto-card-modern">
+                            <div class="producto-image-modern">
+                                <img src="./img/asadito.webp" alt="Asadito Boliviano">
                             </div>
-                            <div class="producto-content">
+                            <div class="producto-info-modern">
                                 <h3>Asadito</h3>
-                                <p>Delicioso pastel de carne de res y cerdo, condimentado con especias y cocido al
-                                    horno. Un clásico de las fiestas y reuniones familiares.</p>
-                                <div class="producto-origin">Origen: Receta Familiar</div>
-                                <a href="./productos/asadito.html" class="btn-ver-mas">Ver más</a>
+                                <p>Pastel de carne con especias bolivianas</p>
+                                <a href="./productos/asadito.html" class="btn-modern">Ver más</a>
                             </div>
                         </div>
 
-                        <div class="producto-card">
-                            <div class="producto-image">
-                                <img src="./img/cuñape.webp" alt="Cuñapé">
+                        <!-- Producto 3 -->
+                        <div class="producto-card-modern">
+                            <div class="producto-image-modern">
+                                <img src="./img/cuñape.webp" alt="Cuñapé Boliviano">
                             </div>
-                            <div class="producto-content">
+                            <div class="producto-info-modern">
                                 <h3>Cuñapé</h3>
-                                <p>Panecillo de queso típico de Santa Cruz, elaborado con almidón de yuca y queso
-                                    fresco. Crujiente por fuera y suave por dentro.</p>
-                                <div class="producto-origin">Origen: Oriente Boliviano</div>
-                                <a href="./productos/cunape.html" class="btn-ver-mas">Ver más</a>
+                                <p>Panecillo de queso de Santa Cruz</p>
+                                <a href="./productos/cunape.html" class="btn-modern">Ver más</a>
                             </div>
                         </div>
 
-                        <div class="producto-card">
-                            <div class="producto-image">
-                                <img src="./img/tortitamaiz.webp" alt="Tamal">
+                        <!-- Producto 4 -->
+                        <div class="producto-card-modern">
+                            <div class="producto-image-modern">
+                                <img src="./img/tortitamaiz.webp" alt="Empanada de Maíz">
                             </div>
-                            <div class="producto-content">
+                            <div class="producto-info-modern">
                                 <h3>Empanada de Maíz</h3>
-                                <p>Empanada de maíz rellena de queso fresco, suave y cremosa, envuelta en hojas de
-                                    plátano y cocida al vapor. Un clásico reconfortante de la tradición chiquitana.</p>
-                                <div class="producto-origin">Origen: Tradición Chiquitana</div>
-                                <a href="./productos/empanadamaiz.html" class="btn-ver-mas">Ver más</a>
+                                <p>Rellena de queso, cocida al vapor</p>
+                                <a href="./productos/empanadamaiz.html" class="btn-modern">Ver más</a>
                             </div>
                         </div>
                     </div>
-                    <!-- Botón debajo del grid -->
-                    <div style="display:flex; justify-content:center; margin-top:2.5rem;">
-                        <a href="./productos/productos.html" class="btn-ver-mas">Ver productos</a>
+
+                    <!-- CTA compacto -->
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="./productos/productos.html" class="btn-cta-modern">
+                            Ver toda la carta
+                            <i class="fas fa-arrow-right" style="margin-left: 8px; font-size: 0.9rem;"></i>
+                        </a>
                     </div>
+
+                    <style>
+                        .productos-grid-modern {
+                            display: grid;
+                            grid-template-columns: 2fr 1fr 1fr 1fr;
+                            gap: 1rem;
+                            max-width: 1000px;
+                            margin: 0 auto;
+                        }
+
+                        .producto-card-modern {
+                            background: white;
+                            border-radius: 16px;
+                            overflow: hidden;
+                            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                            transition: all 0.3s ease;
+                            position: relative;
+                            border: 1px solid rgba(232, 162, 56, 0.1);
+                        }
+
+                        .producto-card-modern:hover {
+                            transform: translateY(-4px);
+                            box-shadow: 0 8px 30px rgba(232, 162, 56, 0.15);
+                        }
+
+                        .producto-featured {
+                            grid-row: span 2;
+                        }
+
+                        .producto-featured .producto-image-modern {
+                            height: 200px;
+                        }
+
+                        .producto-featured .producto-info-modern {
+                            padding: 1.5rem;
+                        }
+
+                        .producto-featured h3 {
+                            font-size: 1.4rem;
+                        }
+
+                        .producto-image-modern {
+                            height: 120px;
+                            width: 100%;
+                            overflow: hidden;
+                            position: relative;
+                        }
+
+                        .producto-image-modern img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            transition: transform 0.3s ease;
+                        }
+
+                        .producto-card-modern:hover .producto-image-modern img {
+                            transform: scale(1.05);
+                        }
+
+                        .producto-info-modern {
+                            padding: 1rem;
+                        }
+
+                        .producto-info-modern h3 {
+                            font-size: 1.1rem;
+                            font-weight: 700;
+                            color: #2c2c2c;
+                            margin: 0 0 0.5rem 0;
+                        }
+
+                        .producto-info-modern p {
+                            font-size: 0.85rem;
+                            color: #666;
+                            margin: 0 0 1rem 0;
+                            line-height: 1.4;
+                        }
+
+                        .btn-modern {
+                            display: inline-block;
+                            padding: 0.5rem 1rem;
+                            background: linear-gradient(135deg, #e8a238, #ffc062);
+                            color: white;
+                            text-decoration: none;
+                            border-radius: 20px;
+                            font-size: 0.8rem;
+                            font-weight: 600;
+                            transition: all 0.3s ease;
+                            text-transform: uppercase;
+                            letter-spacing: 0.5px;
+                        }
+
+                        .btn-modern:hover {
+                            background: linear-gradient(135deg, #d4941f, #e8a238);
+                            transform: translateY(-1px);
+                            color: white;
+                        }
+
+                        .clica-recoge-hero {
+                            background: #fff6e9;
+                        }
+
+                        .producto-badge {
+                            position: absolute;
+                            top: 0.5rem;
+                            right: 0.5rem;
+                            background: linear-gradient(135deg, #e8a238, #ffc062);
+                            color: white;
+                            padding: 0.25rem 0.75rem;
+                            border-radius: 12px;
+                            font-size: 0.7rem;
+                            font-weight: 600;
+                            z-index: 2;
+                            box-shadow: 0 2px 8px rgba(232, 162, 56, 0.3);
+                        }
+
+                        .btn-cta-modern {
+                            display: inline-flex;
+                            align-items: center;
+                            padding: 0.75rem 1.5rem;
+                            background: rgba(232, 162, 56, 0.1);
+                            color: #e8a238;
+                            text-decoration: none;
+                            border-radius: 25px;
+                            font-weight: 600;
+                            border: 2px solid #e8a238;
+                            transition: all 0.3s ease;
+                        }
+
+                        .btn-cta-modern:hover {
+                            background: #e8a238;
+                            color: white;
+                        }
+
+                        /* Responsive */
+                        @media (max-width: 768px) {
+                            .productos-grid-modern {
+                                grid-template-columns: 1fr 1fr;
+                                gap: 0.8rem;
+                            }
+
+                            .producto-featured {
+                                grid-column: span 2;
+                                grid-row: span 1;
+                            }
+
+                            .producto-featured .producto-image-modern {
+                                height: 150px;
+                            }
+                        }
+
+                        @media (max-width: 480px) {
+                            .productos-grid-modern {
+                                grid-template-columns: 1fr;
+                                gap: 0.8rem;
+                            }
+
+                            .producto-featured {
+                                grid-column: span 1;
+                            }
+
+                            .producto-image-modern {
+                                height: 140px;
+                            }
+
+                            .producto-featured .producto-image-modern {
+                                height: 160px;
+                            }
+
+                        }
+                    </style>
                 </div>
             </section>
 
+            <!-- Sección Clica y Recoge -->
+            <section class="clica-recoge-hero" id="clica-recoge-hero">
+                <!-- Elementos decorativos -->
+                <div
+                    style="position: absolute; top: -50px; left: -50px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle at center, rgba(232,162,56,0.15) 0%, rgba(232,162,56,0) 70%);">
+                </div>
+                <div
+                    style="position: absolute; bottom: -80px; right: -80px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle at center, rgba(232,162,56,0.08) 0%, rgba(232,162,56,0) 70%);">
+                </div>
 
+                <div class="content-wrapper" style="position: relative; z-index: 2;">
+                    <div class="section-header centered" style="max-width: 900px; margin: 0 auto 60px auto;">
+                        <span
+                            style="color: #e8a238; font-size: 1.2rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;">Servicio
+                            Exclusivo</span>
+                        <h2 class="section-title"
+                            style="font-size: 3.2rem; font-weight: 900; color: #2c2c2c; margin: 20px 0; text-align: center;">
+                            Clica y Recoge
+                        </h2>
+                        <p class="section-desc"
+                            style="font-size: 1.3rem; color: #666; text-align: center; line-height: 1.6;">
+                            Haz tu pedido por WhatsApp y recógelo en cualquiera de nuestros dos locales.
+                            <strong style="color: #e8a238;">¡Rápido, fácil y sin esperas!</strong>
+                        </p>
+                    </div>
+
+                    <!-- Botón WhatsApp Principal -->
+                    <div style="text-align: center; margin-bottom: 60px;">
+                        <a href="https://wa.me/34619084848?text=¡Hola! Me gustaría hacer un pedido para recoger en La Chiquitana"
+                            target="_blank" class="btn-whatsapp-principal">
+                            <i class="fab fa-whatsapp" style="font-size: 1.8rem;"></i>
+                            <span>Hacer Pedido por WhatsApp</span>
+                            <div
+                                style="position: absolute; top: 0; left: -100%; width: 200%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: all 0.6s ease; transform: skewX(-20deg);">
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Grid de Locales -->
+                    <div class="locales-grid">
+
+                        <!-- Local Barcelona Centro -->
+                        <div class="local-card">
+                            <div class="local-header"
+                                style="background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%);">
+
+                                <h3>
+                                    <i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>
+                                    Barcelona Centro
+                                </h3>
+                                <p>Local Principal</p>
+                            </div>
+
+                            <div class="local-content">
+                                <div class="direccion-info">
+                                    <h4>📍 Dirección</h4>
+                                    <p>
+                                        Carrer de València, 234<br>
+                                        08007 Barcelona, España
+                                    </p>
+                                </div>
+
+                                <div class="horarios-info">
+                                    <h4>🕒 Horarios de Recogida</h4>
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                            <span><strong>Lun - Sáb:</strong></span>
+                                            <span>08:00 - 20:00</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span><strong>Domingo:</strong></span>
+                                            <span>09:00 - 15:00</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mapa-container">
+                                    <iframe
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2993.6897271847687!2d2.0977193!3d41.3726831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a498e7f1bf4445%3A0x1b8b3f43d8205e01!2sCarrer%20de%20la%20Pubilla%20Cases%2C%2021%2C%20L&#39;Hospitalet%20de%20Llobregat%2C%20Barcelona!5e0!3m2!1ses!2ses!4v1705348160545!5m2!1ses!2ses"
+                                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                                        referrerpolicy="no-referrer-when-downgrade">
+                                    </iframe>
+                                </div>
+
+                                <div class="acciones-local">
+                                    <a href="https://wa.me/34619084848?text=Hola, quiero hacer un pedido para recoger en el local de Barcelona Centro (Carrer de València)"
+                                        target="_blank" class="btn-local-whatsapp">
+                                        <i class="fab fa-whatsapp"></i>
+                                        Pedir a este local
+                                    </a>
+                                    <a href="https://goo.gl/maps/valencia234barcelona" target="_blank">
+                                        <i class="fas fa-directions"></i>
+                                        Cómo llegar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Local Barcelona Gràcia -->
+                        <div class="local-card"
+                            style="background: white; border-radius: 25px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.1); transition: all 0.3s ease; border: 3px solid transparent;">
+                            <div class="local-header"
+                                style="background: linear-gradient(135deg, #4e7c59 0%, #7bb661 100%); padding: 25px; text-align: center; position: relative;">
+                                <h3 style="color: white; font-size: 1.8rem; font-weight: 800; margin: 0;">
+                                    <i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>
+                                    Barcelona Gràcia
+                                </h3>
+                                <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-weight: 500;">Segundo
+                                    Local</p>
+                            </div>
+
+                            <div class="local-content" style="padding: 30px;">
+                                <div class="direccion-info" style="margin-bottom: 25px;">
+                                    <h4
+                                        style="color: #2c2c2c; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">
+                                        📍 Dirección
+                                    </h4>
+                                    <p style="color: #666; font-size: 1rem; line-height: 1.5; margin: 0;">
+                                        Carrer de Verdi, 45<br>
+                                        08012 Barcelona, España
+                                    </p>
+                                </div>
+
+                                <div class="horarios-info" style="margin-bottom: 25px;">
+                                    <h4
+                                        style="color: #2c2c2c; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">
+                                        🕒 Horarios de Recogida
+                                    </h4>
+                                    <div style="color: #666; font-size: 0.95rem; line-height: 1.4;">
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                            <span><strong>Lun - Vie:</strong></span>
+                                            <span>09:00 - 19:30</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                            <span><strong>Sábado:</strong></span>
+                                            <span>10:00 - 20:00</span>
+                                        </div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span><strong>Domingo:</strong></span>
+                                            <span>Cerrado</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mapa-container"
+                                    style="margin-bottom: 25px; border-radius: 15px; overflow: hidden; height: 200px; position: relative;">
+                                    <iframe
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.8!2d2.1587!3d41.4145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4985c7a890b45%3A0x987654321!2sCarrer%20de%20Verdi%2C%2045%2C%2008012%20Barcelona!5e0!3m2!1ses!2ses!4v1642000000001!5m2!1ses!2ses"
+                                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                                        referrerpolicy="no-referrer-when-downgrade">
+                                    </iframe>
+                                </div>
+
+                                <div class="acciones-local">
+                                    <a href="https://wa.me/34619084848?text=Hola, quiero hacer un pedido para recoger en el local de Barcelona Gràcia (Carrer de Verdi)"
+                                        target="_blank" class="btn-local-whatsapp"
+                                        style="display: flex; align-items: center; justify-content: center; gap: 10px; background: #25d366; color: white; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: 600; margin-bottom: 10px; transition: all 0.3s ease;">
+                                        <i class="fab fa-whatsapp"></i>
+                                        Pedir a este local
+                                    </a>
+                                    <a href="https://goo.gl/maps/verdi45barcelona" target="_blank"
+                                        style="display: flex; align-items: center; justify-content: center; gap: 10px; background: #f8f9fa; color: #666; padding: 12px; border-radius: 12px; text-decoration: none; font-weight: 500; border: 2px solid #e9ecef; transition: all 0.3s ease;">
+                                        <i class="fas fa-directions"></i>
+                                        Cómo llegar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Información adicional -->
+                    <div class="info-adicional"
+                        style="margin-top: 60px; text-align: center; background: rgba(232,162,56,0.1); padding: 40px; border-radius: 20px;">
+                        <h3 style="color: #2c2c2c; font-size: 1.8rem; font-weight: 800; margin-bottom: 20px;">
+                            💡 ¿Cómo funciona?
+                        </h3>
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 30px;">
+                            <div class="paso" style="text-align: center;">
+                                <div
+                                    style="width: 60px; height: 60px; background: #e8a238; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: white; font-weight: 800; font-size: 1.5rem;">
+                                    1</div>
+                                <h4 style="color: #2c2c2c; margin-bottom: 10px;">Haz tu pedido</h4>
+                                <p style="color: #666; font-size: 0.95rem;">Contacta por WhatsApp y dinos qué quieres
+                                    comer</p>
+                            </div>
+                            <div class="paso" style="text-align: center;">
+                                <div
+                                    style="width: 60px; height: 60px; background: #e8a238; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: white; font-weight: 800; font-size: 1.5rem;">
+                                    2</div>
+                                <h4 style="color: #2c2c2c; margin-bottom: 10px;">Elige tu local</h4>
+                                <p style="color: #666; font-size: 0.95rem;">Selecciona el local más cómodo para ti</p>
+                            </div>
+                            <div class="paso" style="text-align: center;">
+                                <div
+                                    style="width: 60px; height: 60px; background: #e8a238; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; color: white; font-weight: 800; font-size: 1.5rem;">
+                                    3</div>
+                                <h4 style="color: #2c2c2c; margin-bottom: 10px;">Recoge y disfruta</h4>
+                                <p style="color: #666; font-size: 0.95rem;">Te avisamos cuando esté listo. ¡Ven a
+                                    recogerlo!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <!-- Sección de Historia y Tradición -->
             <section class="historia-hero" id="historia-hero">
                 <div class="content-wrapper">
                     <div class="historia-container">
                         <div class="historia-text">
-                            <span class="overline">Nuestra Historia</span>
-                            <h2 class="section-title">Tres Generaciones de Sabor</h2>
+                            <span class="overline">Bolivia en Barcelona</span>
+                            <h2 class="section-title">El Mejor Restaurante Boliviano en Barcelona</h2>
                             <p class="historia-desc">
-                                Desde 1952, nuestra familia ha preservado las recetas tradicionales de la Chiquitanía
-                                boliviana.
-                                Lo que comenzó como un pequeño horno de barro en Santa Cruz, hoy se ha convertido en un
-                                puente
-                                cultural que lleva los sabores auténticos de Bolivia hasta España.
+                                Desde 1952, nuestra familia ha preservado las auténticas recetas bolivianas con amor y
+                                dedicación.
+                                Lo que comenzó como un pequeño horno de barro en Santa Cruz, Bolivia, hoy se ha
+                                convertido en el
+                                restaurante boliviano favorito de Barcelona, un puente cultural que lleva los sabores
+                                más auténticos
+                                de Bolivia hasta España, para quienes buscan revivir los sabores de su tierra o
+                                descubrir la riqueza
+                                gastronómica boliviana.
                             </p>
                             <div class="timeline">
                                 <div class="timeline-item">
@@ -259,17 +773,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Bloque destacado para historia ampliada -->
-                            <div class="highlight-text" style="margin-top:2rem;">
-                                <strong>¿Quieres saber más sobre la historia de la Chiquitana y la
-                                    Chiquitanía?</strong><br>
-                                <a href="./historia/historia.html"
-                                    style="color:#e8a238;text-decoration:underline;">Descubre la
-                                    historia completa aquí</a>
-                            </div>
+
                             <!-- Botón CTA en nuestra historia -->
                             <div style="text-align:center; margin-top:4rem;">
-                                <a href="./historia/historia.html" class="btn-ver-mas">Descubre más de nuestra
+                                <a href="./historia/historia.html" class="btn-ver-mas"
+                                    style="border: 1px solid #fff">Descubre más de nuestra
                                     historia</a>
                             </div>
                             <!-- Imagen de historia SOLO en móvil/tablet con pie de foto -->
@@ -299,187 +807,546 @@
                 </div>
             </section>
 
+            <style>
+                .producto-card-blanco {
+                    border: 3px solid #fff;
 
+                    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.07);
+                }
+            </style>
 
-            <!-- Sección de Poemas del padre -->
-            <section class="poemas-hero" id="poemas-hero" style="margin-top: 100px;">
-                <div class="content-wrapper">
-                    <div class="section-header centered">
-                        <span class="overline">Poemas de mi padre</span>
-                        <h2 class="section-title">Versos de la Chiquitanía</h2>
-                        <p class="section-desc">
-                            Un rincón para compartir la sensibilidad y el amor por la tierra chiquitana a través de la
-                            poesía de mi padre.
-                        </p>
-                    </div>
-                    <div class="productos-grid">
-                        <div class="producto-card">
-                            <div class="producto-content">
-                                <div class="poema-icono">
-                                    <i class="fa-solid fa-mountain-sun"></i>
-                                </div>
-                                <h3>La tierra canta</h3>
-                                <p>
-                                    Bajo el cielo de la Chiquitanía<br>
-                                    el viento lleva historias y pan,<br>
-                                    la memoria florece in cada día,<br>
-                                    y el alma nunca deja de soñar.
-                                </p>
-                                <div class="producto-origin">— Autor: Don [Nombre del padre]</div>
-                            </div>
-                        </div>
-                        <div class="producto-card">
-                            <div class="producto-content">
-                                <div class="poema-icono">
-                                    <i class="fa-solid fa-feather-pointed"></i>
-                                </div>
-                                <h3>Raíces</h3>
-                                <p>
-                                    En la raíz del árbol y del canto<br>
-                                    vive el recuerdo de mi hogar,<br>
-                                    la esperanza crece en cada manto,<br>
-                                    y el amor nunca deja de brotar.
-                                </p>
-                                <div class="producto-origin">— Autor: Don [Nombre del padre]</div>
-                            </div>
-                        </div>
-                        <!-- Puedes añadir más poemas aquí -->
-                    </div>
-                </div>
-            </section>
 
 
 
             <!-- Sección de Impacto Social Positivo -->
-            <section class="impacto-hero" id="impacto-hero" style="margin-top: 100px;">
-                <div class="content-wrapper">
-                    <div class="section-header centered">
-                        <span class="overline">Impacto Social</span>
-                        <h2 class="section-title" style="color:#5d421b;">Nuestro Compromiso</h2>
-                        <p class="section-desc">
+            <section class="impacto-hero" id="impacto-hero"
+                style="margin-top: 100px; background: linear-gradient(to bottom, rgba(255,251,230,0.4), rgba(255,255,255,0)); padding: 60px 0;">
+                <div class="content-wrapper" style="max-width: 1200px;">
+                    <div class="section-header centered" style="max-width: 800px; margin: 0 auto 50px auto;">
+                        <span class="overline"
+                            style="color: #e8a238; letter-spacing: 3px; font-weight: 600; font-size: 1.05rem; display: block; margin-bottom: 12px; text-transform: uppercase;">Impacto
+                            Social</span>
+                        <h2 class="section-title"
+                            style="margin: 15px 0; font-size: 2.5rem; color: #222; font-weight: 800; text-shadow: 0 1px 3px rgba(232,162,56,0.2);">
+                            Nuestro Compromiso</h2>
+                        <p class="section-desc"
+                            style="font-size: 1.15rem; line-height: 1.7; color: #444; max-width: 700px; margin: 20px auto 0;">
                             Cada compra apoya a mujeres artesanas, fomenta la educación y protege la naturaleza
                             chiquitana.
                         </p>
                     </div>
-                    <div class="impacto-cards-grid">
-                        <div class="impacto-card">
-                            <div class="impacto-icon"><i class="fa-solid fa-people-group"></i></div>
-                            <h3>Empoderamiento Femenino</h3>
-                            <p>Apoyamos a más de 150 familias de artesanas locales.</p>
+                    <div class="impacto-cards-grid"
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin: 50px 0;">
+                        <div class="impacto-card"
+                            style="background: #fff; padding: 35px; border-radius: 16px; box-shadow: 0 15px 30px rgba(0,0,0,0.05), 0 2px 8px rgba(232,162,56,0.07); position: relative; overflow: hidden; transition: transform 0.3s ease;">
+                            <div class="impacto-icon"
+                                style="margin-bottom: 25px; position: relative; z-index: 2; width: 80px; height: 80px; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 25px rgba(232,162,56,0.3);">
+                                <i class="fa-solid fa-people-group" style="font-size: 2rem; color: #fff;"></i>
+                            </div>
+                            <div
+                                style="position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: linear-gradient(135deg, rgba(232,162,56,0.1) 0%, rgba(255,251,230,0.2) 100%); border-radius: 50%;">
+                            </div>
+                            <h3
+                                style="margin: 15px 0; font-size: 1.5rem; font-weight: 700; color: #333; position: relative; z-index: 2;">
+                                Empoderamiento Femenino</h3>
+                            <p
+                                style="color: #555; font-size: 1.1rem; line-height: 1.6; position: relative; z-index: 2;">
+                                Apoyamos a más de 150 familias de artesanas locales creando oportunidades de desarrollo
+                                y crecimiento.</p>
                         </div>
-                        <div class="impacto-card">
-                            <div class="impacto-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                            <h3>Educación</h3>
-                            <p>Becas y talleres para niños y jóvenes de la región.</p>
+                        <div class="impacto-card"
+                            style="background: #fff; padding: 35px; border-radius: 16px; box-shadow: 0 15px 30px rgba(0,0,0,0.05), 0 2px 8px rgba(232,162,56,0.07); position: relative; overflow: hidden; transition: transform 0.3s ease;">
+                            <div class="impacto-icon"
+                                style="margin-bottom: 25px; position: relative; z-index: 2; width: 80px; height: 80px; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 25px rgba(232,162,56,0.3);">
+                                <i class="fa-solid fa-graduation-cap" style="font-size: 2rem; color: #fff;"></i>
+                            </div>
+                            <div
+                                style="position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: linear-gradient(135deg, rgba(232,162,56,0.1) 0%, rgba(255,251,230,0.2) 100%); border-radius: 50%;">
+                            </div>
+                            <h3
+                                style="margin: 15px 0; font-size: 1.5rem; font-weight: 700; color: #333; position: relative; z-index: 2;">
+                                Educación</h3>
+                            <p
+                                style="color: #555; font-size: 1.1rem; line-height: 1.6; position: relative; z-index: 2;">
+                                Becas y talleres para niños y jóvenes de la región, construyendo un futuro más brillante
+                                para Bolivia.</p>
                         </div>
-                        <div class="impacto-card">
-                            <div class="impacto-icon"><i class="fa-solid fa-leaf"></i></div>
-                            <h3>Sostenibilidad</h3>
-                            <p>Ingredientes locales y envases ecológicos.</p>
+                        <div class="impacto-card"
+                            style="background: #fff; padding: 35px; border-radius: 16px; box-shadow: 0 15px 30px rgba(0,0,0,0.05), 0 2px 8px rgba(232,162,56,0.07); position: relative; overflow: hidden; transition: transform 0.3s ease;">
+                            <div class="impacto-icon"
+                                style="margin-bottom: 25px; position: relative; z-index: 2; width: 80px; height: 80px; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 25px rgba(232,162,56,0.3);">
+                                <i class="fa-solid fa-leaf" style="font-size: 2rem; color: #fff;"></i>
+                            </div>
+                            <div
+                                style="position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: linear-gradient(135deg, rgba(232,162,56,0.1) 0%, rgba(255,251,230,0.2) 100%); border-radius: 50%;">
+                            </div>
+                            <h3
+                                style="margin: 15px 0; font-size: 1.5rem; font-weight: 700; color: #333; position: relative; z-index: 2;">
+                                Sostenibilidad</h3>
+                            <p
+                                style="color: #555; font-size: 1.1rem; line-height: 1.6; position: relative; z-index: 2;">
+                                Ingredientes locales y envases ecológicos para preservar la belleza natural de nuestra
+                                tierra.</p>
                         </div>
                     </div>
-                    <div class="impacto-stats">
-                        <div>
-                            <span class="impacto-stat-num">8</span>
-                            <span class="impacto-stat-label">Comunidades</span>
+                    <div class="impacto-stats"
+                        style="display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin: 50px 0; position: relative;">
+                        <div
+                            style="text-align: center; position: relative; z-index: 1; background: linear-gradient(135deg,#fffbe6 0%,#fff8d6 100%); padding: 32px 38px 24px 38px; min-width: 160px; border-radius: 18px; box-shadow: 0 8px 32px rgba(232,162,56,0.12), 0 2px 8px rgba(224,171,48,0.09); border: 2px solid #ffe5b4; transition: transform 0.18s, box-shadow 0.18s;">
+                            <span
+                                style="font-size: 3.2rem; font-weight: 900; color: #e8a238; display: block; line-height: 1.1; margin-bottom: 10px; text-shadow: 0 2px 8px rgba(232,162,56,0.18); letter-spacing: 1px;">8</span>
+                            <span
+                                style="font-size: 1.08rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; background: linear-gradient(90deg,#e8a238 10%,#ffc062 90%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #e8a238; display: block;">Comunidades</span>
                         </div>
-                        <div>
-                            <span class="impacto-stat-num">150+</span>
-                            <span class="impacto-stat-label">Familias</span>
+                        <div
+                            style="text-align: center; position: relative; z-index: 1; background: linear-gradient(135deg,#fffbe6 0%,#fff8d6 100%); padding: 32px 38px 24px 38px; min-width: 160px; border-radius: 18px; box-shadow: 0 8px 32px rgba(232,162,56,0.12), 0 2px 8px rgba(224,171,48,0.09); border: 2px solid #ffe5b4; transition: transform 0.18s, box-shadow 0.18s;">
+                            <span
+                                style="font-size: 3.2rem; font-weight: 900; color: #e8a238; display: block; line-height: 1.1; margin-bottom: 10px; text-shadow: 0 2px 8px rgba(232,162,56,0.18); letter-spacing: 1px;">150+</span>
+                            <span
+                                style="font-size: 1.08rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; background: linear-gradient(90deg,#e8a238 10%,#ffc062 90%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #e8a238; display: block;">Familias</span>
                         </div>
-                        <div>
-                            <span class="impacto-stat-num">5</span>
-                            <span class="impacto-stat-label">Años de impacto</span>
+                        <div
+                            style="text-align: center; position: relative; z-index: 1; background: linear-gradient(135deg,#fffbe6 0%,#fff8d6 100%); padding: 32px 38px 24px 38px; min-width: 160px; border-radius: 18px; box-shadow: 0 8px 32px rgba(232,162,56,0.12), 0 2px 8px rgba(224,171,48,0.09); border: 2px solid #ffe5b4; transition: transform 0.18s, box-shadow 0.18s;">
+                            <span
+                                style="font-size: 3.2rem; font-weight: 900; color: #e8a238; display: block; line-height: 1.1; margin-bottom: 10px; text-shadow: 0 2px 8px rgba(232,162,56,0.18); letter-spacing: 1px;">5</span>
+                            <span
+                                style="font-size: 1.08rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; background: linear-gradient(90deg,#e8a238 10%,#ffc062 90%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #e8a238; display: block;">Años
+                                de impacto</span>
                         </div>
                     </div>
-                    <div class="call-to-action">
-                        <h3>Únete a Nuestra Causa</h3>
-                        <p>Juntos hacemos la diferencia. ¡Descubre cómo colaborar!</p>
+                    <div class="call-to-action"
+                        style="text-align: center; background: linear-gradient(135deg, #fffbe6 0%, #fff8d6 100%); padding: 40px; border-radius: 16px; max-width: 800px; margin: 60px auto 20px; position: relative; overflow: hidden; box-shadow: 0 15px 40px rgba(46,83,57,0.07), 0 5px 15px rgba(232,162,56,0.1);">
+                        <div
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 8px; background: linear-gradient(to right, #e8a238, #ffc062);">
+                        </div>
+                        <h3 style="margin: 10px 0; font-size: 2rem; color: #333; font-weight: 700;">Únete a Nuestra
+                            Causa</h3>
+                        <p
+                            style="color: #555; font-size: 1.15rem; line-height: 1.7; max-width: 600px; margin: 15px auto 30px;">
+                            Juntos hacemos la diferencia. ¡Descubre cómo colaborar con nuestra misión social!</p>
                         <a href="#contacto-hero" class="btn btn-impacto"
-                            style="margin-bottom: 50px; margin-top: 50px;">Contáctanos</a>
+                            style="display: inline-block; padding: 15px 40px; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); color: #fff; font-size: 1.1rem; font-weight: 600; border-radius: 50px; text-decoration: none; box-shadow: 0 8px 25px rgba(232,162,56,0.3); transition: transform 0.3s ease, box-shadow 0.3s ease;">Contáctanos</a>
                     </div>
                 </div>
             </section>
 
+
+
+
             <!-- Sección de Testimonios -->
-            <section class="testimonios-hero" id="testimonios-hero">
-                <div class="content-wrapper" style="margin-top: 50px;">
-                    <div class="section-header centered">
-                        <span class="overline">Testimonios</span>
-                        <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            <section class="testimonios-hero" id="testimonios-hero"
+                style="padding: 70px 0 60px; background: linear-gradient(to bottom, #fff, #fffdf2); position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('./img/lazochiquitana.svg'); background-repeat: no-repeat; background-position: left -150px top 50px; background-size: 300px; opacity: 0.05; z-index: 1;">
+                </div>
+                <div
+                    style="position: absolute; top: 0; right: 0; width: 100%; height: 100%; background-image: url('./img/lazochiquitana.svg'); background-repeat: no-repeat; background-position: right -150px bottom 50px; background-size: 300px; opacity: 0.05; z-index: 1;">
+                </div>
+
+                <div class="content-wrapper" style="position: relative; z-index: 2; max-width: 1200px; margin-top: 0;">
+                    <div class="section-header centered" style="max-width: 800px; margin: 0 auto 50px auto;">
+                        <span class="overline"
+                            style="color: #e8a238; letter-spacing: 3px; font-weight: 600; font-size: 1.05rem; display: block; margin-bottom: 12px; text-transform: uppercase;">Testimonios</span>
+                        <h2 class="section-title"
+                            style="margin: 15px 0; font-size: 2.5rem; color: #222; font-weight: 800; text-shadow: 0 1px 3px rgba(232,162,56,0.2);">
+                            Lo que dicen nuestros clientes</h2>
+                        <div
+                            style="width: 80px; height: 3px; background: linear-gradient(to right, #e8a238, #ffc062); margin: 25px auto;">
+                        </div>
                     </div>
 
-                    <div class="testimonios-grid">
-                        <div class="testimonio-card">
-                            <div class="testimonio-content">
+                    <div class="testimonios-grid"
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin: 40px 0;">
+                        <div class="testimonio-card"
+                            style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.05), 0 5px 20px rgba(232,162,56,0.08); display: flex; flex-direction: column;">
+                            <div class="testimonio-content" style="padding: 0 0 30px 0; position: relative;">
                                 <img src="./img/puebloespañol.jpg" alt="María González"
-                                    style="height: 35rem; border-radius: 20px;">
-                                <div class="stars">★★★★★</div>
-                                <p>"¡Este lugar es un pedacito auténtico de la cultura cruceña! Me encantan todos los
-                                    productos y recomiendo a todos que los prueben. ¡La chica de cabello ondulado es muy
-                                    atenta! ¡Felicidades!"</p>
+                                    style="height: 280px; width: 100%; object-fit: cover; border-radius: 0; margin-bottom: 30px;">
+                                <div class="stars"
+                                    style="position: absolute; top: calc(280px - 15px); left: 20px; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); color: white; padding: 5px 15px; border-radius: 20px; font-size: 1rem; box-shadow: 0 5px 15px rgba(232,162,56,0.4);">
+                                    ★★★★★</div>
+                                <div style="padding: 0 30px;">
+                                    <p
+                                        style="color: #444; line-height: 1.7; font-size: 1.05rem; font-style: italic; position: relative; padding-left: 25px;">
+                                        <span
+                                            style="position: absolute; left: 0; top: -10px; font-size: 2rem; color: #e8a238;">"</span>
+                                        ¡Este lugar es un pedacito auténtico de la cultura cruceña! Me encantan todos
+                                        los
+                                        productos y recomiendo a todos que los prueben. ¡La chica de cabello ondulado es
+                                        muy
+                                        atenta! ¡Felicidades!
+                                        <span
+                                            style="position: absolute; right: 0; bottom: -10px; font-size: 2rem; color: #e8a238;">"</span>
+                                    </p>
+                                </div>
                             </div>
-                            <div class="testimonio-author">
-
-                                <div class="author-info">
-                                    <h4>Puesto Salteña en Pueblo Español</h4>
-                                    <span>+ 1000 clientes felices</span>
+                            <div class="testimonio-author"
+                                style="margin-top: auto; padding: 20px 30px; border-top: 1px solid rgba(232,162,56,0.2); background: rgba(255,251,230,0.5);">
+                                <div class="author-info" style="display: flex; flex-direction: column;">
+                                    <h4 style="margin: 0; font-size: 1.2rem; font-weight: 700; color: #333;">Puesto
+                                        Salteña en Pueblo Español</h4>
+                                    <span style="color: #777; font-size: 0.95rem; margin-top: 3px;">+ 1000 clientes
+                                        felices</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="testimonio-card">
-                            <div class="testimonio-content">
-                                <div class="stars">★★★★★</div>
-                                <p>"Nunca había probado repostería boliviana y me enamoré. La calidad y el sabor son
-                                    incomparables."</p>
-                            </div>
-                            <div class="testimonio-author">
-                                <div class="author-info">
-                                    <h4>Carla Mendoza</h4>
-                                    <span>Residente en Barcelona</span>
+                        <div class="testimonio-card"
+                            style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.05), 0 5px 20px rgba(232,162,56,0.08); display: flex; flex-direction: column;">
+                            <div class="testimonio-content" style="padding: 30px; position: relative; flex-grow: 1;">
+                                <div class="stars" style="margin-bottom: 20px; color: #e8a238; font-size: 1.2rem;">★★★★★
                                 </div>
-
-                            </div>
-                            <img src="./img/findesemana.webp" alt="Carlos Mendoza"
-                                style="margin-top: 15px; height: 35rem; border-radius: 20px;">
-                        </div>
-
-                        <div class="testimonio-card">
-                            <div class="testimonio-content">
-                                <img src="./img/ala6.webp" alt="María González"
-                                    style="height: 35rem; border-radius: 20px;">
-                                <div class="stars">★★★★★</div>
-                                <p>"Probar el cuñapé aquí fue como volver a casa. El sabor auténtico y la textura me
-                                    recordaron los desayunos en familia en Santa Cruz."</p>
-                            </div>
-                            <div class="testimonio-author">
-                                <div class="author-info">
-                                    <h4>Daviana Pérez</h4>
-                                    <span>Boliviana en Barcelona</span>
+                                <div>
+                                    <p
+                                        style="color: #444; line-height: 1.7; font-size: 1.05rem; font-style: italic; position: relative; padding-left: 25px; margin-bottom: 30px;">
+                                        <span
+                                            style="position: absolute; left: 0; top: -10px; font-size: 2rem; color: #e8a238;">"</span>
+                                        Nunca había probado repostería boliviana y me enamoré. La calidad y el sabor son
+                                        incomparables. Un verdadero pedacito de Bolivia en el corazón de Barcelona.
+                                        <span
+                                            style="position: absolute; right: 0; bottom: -10px; font-size: 2rem; color: #e8a238;">"</span>
+                                    </p>
                                 </div>
                             </div>
-
+                            <div class="testimonio-author"
+                                style="padding: 20px 30px; border-top: 1px solid rgba(232,162,56,0.2); background: rgba(255,251,230,0.5);">
+                                <div class="author-info" style="display: flex; flex-direction: column;">
+                                    <h4 style="margin: 0; font-size: 1.2rem; font-weight: 700; color: #333;">Carla
+                                        Mendoza</h4>
+                                    <span style="color: #777; font-size: 0.95rem; margin-top: 3px;">Madre Boliviana en
+                                        Barcelona</span>
+                                </div>
+                            </div>
+                            <img src="./img/clientesfelices.webp" alt="Carlos Mendoza"
+                                style="height: 250px; width: 100%; object-fit: cover; border-radius: 0;">
                         </div>
                     </div>
+
+                    <!-- Google Reviews Section -->
+                    <div class="google-reviews-container"
+                        style="width: 100%; margin-top: 70px; text-align: center; background: #fff; border-radius: 20px; padding: 40px 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.05), 0 5px 15px rgba(232,162,56,0.05);">
+                        <div class="google-reviews-header"
+                            style="margin-bottom: 40px; display: flex; flex-direction: column; align-items: center;">
+                            <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
+                                alt="Google Logo"
+                                style="height: 50px; margin-bottom: 20px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));">
+                            <div class="rating-summary" style="margin-top: 10px;">
+                                <div class="stars"
+                                    style="font-size: 28px; color: #e8a238; margin-bottom: 10px; filter: drop-shadow(0 2px 3px rgba(232,162,56,0.2));">
+                                    ★★★★★</div>
+                                <div class="rating-text" style="color: #1d1d1d; font-size: 18px; font-weight: 500;">
+                                    4.9 de 5 basado en 50+ reseñas
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="google-reviews-grid"
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; margin-top: 30px;">
+                            <!-- Review Card 1 -->
+                            <div class="review-card"
+                                style="background: linear-gradient(135deg, #ffffff 0%, #fffdf5 100%); padding: 25px; border-radius: 16px; box-shadow: 0 15px 30px rgba(0,0,0,0.03), 0 5px 15px rgba(232,162,56,0.05); text-align: left; border: none; position: relative; overflow: hidden; transition: transform 0.3s ease;">
+                                <div
+                                    style="position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: linear-gradient(to bottom, #e8a238, #ffc062);">
+                                </div>
+                                <div class="reviewer-info"
+                                    style="display: flex; align-items: center; margin-bottom: 20px;">
+                                    <div class="reviewer-icon"
+                                        style="width: 45px; height: 45px; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; color: white; font-weight: bold; box-shadow: 0 5px 15px rgba(232,162,56,0.3);">
+                                        M
+                                    </div>
+                                    <div>
+                                        <div style="font-weight: bold; font-size: 1.1rem; color: #333;">María Rodriguez
+                                        </div>
+                                        <div style="color: #666; font-size: 0.9rem;">Hace 2 semanas</div>
+                                    </div>
+                                </div>
+                                <div class="stars" style="color: #e8a238; margin-bottom: 15px; font-size: 1rem;">★★★★★
+                                </div>
+                                <p
+                                    style="color: #444; line-height: 1.7; font-size: 1rem; position: relative; padding-left: 20px;">
+                                    <span
+                                        style="position: absolute; left: 0; top: -5px; font-size: 1.5rem; color: #e8a238;">"</span>
+                                    Las mejores salteñas que he probado fuera de Bolivia. El sabor es auténtico y el
+                                    servicio es excelente. ¡Volveré!
+                                    <span
+                                        style="position: absolute; margin-left: 3px; bottom: -8px; font-size: 1.5rem; color: #e8a238;">"</span>
+                                </p>
+                            </div>
+
+                            <!-- Review Card 2 -->
+                            <div class="review-card"
+                                style="background: linear-gradient(135deg, #ffffff 0%, #fffdf5 100%); padding: 25px; border-radius: 16px; box-shadow: 0 15px 30px rgba(0,0,0,0.03), 0 5px 15px rgba(232,162,56,0.05); text-align: left; border: none; position: relative; overflow: hidden; transition: transform 0.3s ease;">
+                                <div
+                                    style="position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: linear-gradient(to bottom, #e8a238, #ffc062);">
+                                </div>
+                                <div class="reviewer-info"
+                                    style="display: flex; align-items: center; margin-bottom: 20px;">
+                                    <div class="reviewer-icon"
+                                        style="width: 45px; height: 45px; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; color: white; font-weight: bold; box-shadow: 0 5px 15px rgba(232,162,56,0.3);">
+                                        J
+                                    </div>
+                                    <div>
+                                        <div style="font-weight: bold; font-size: 1.1rem; color: #333;">Juan Carlos
+                                            Pérez</div>
+                                        <div style="color: #666; font-size: 0.9rem;">Hace 1 mes</div>
+                                    </div>
+                                </div>
+                                <div class="stars" style="color: #e8a238; margin-bottom: 15px; font-size: 1rem;">★★★★★
+                                </div>
+                                <p
+                                    style="color: #444; line-height: 1.7; font-size: 1rem; position: relative; padding-left: 20px;">
+                                    <span
+                                        style="position: absolute; left: 0; top: -5px; font-size: 1.5rem; color: #e8a238;">"</span>
+                                    El cuñapé es increíble, me recuerda a mi infancia en Santa Cruz. La atención es muy
+                                    cálida y el local siempre está limpio.
+                                    <span
+                                        style="position: absolute; margin-left: 3px; bottom: -8px; font-size: 1.5rem; color: #e8a238;">"</span>
+                                </p>
+                            </div>
+
+                            <!-- Review Card 3 -->
+                            <div class="review-card"
+                                style="background: linear-gradient(135deg, #ffffff 0%, #fffdf5 100%); padding: 25px; border-radius: 16px; box-shadow: 0 15px 30px rgba(0,0,0,0.03), 0 5px 15px rgba(232,162,56,0.05); text-align: left; border: none; position: relative; overflow: hidden; transition: transform 0.3s ease;">
+                                <div
+                                    style="position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: linear-gradient(to bottom, #e8a238, #ffc062);">
+                                </div>
+                                <div class="reviewer-info"
+                                    style="display: flex; align-items: center; margin-bottom: 20px;">
+                                    <div class="reviewer-icon"
+                                        style="width: 45px; height: 45px; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; color: white; font-weight: bold; box-shadow: 0 5px 15px rgba(232,162,56,0.3);">
+                                        A
+                                    </div>
+                                    <div>
+                                        <div style="font-weight: bold; font-size: 1.1rem; color: #333;">Ana Martínez
+                                        </div>
+                                        <div style="color: #666; font-size: 0.9rem;">Hace 3 semanas</div>
+                                    </div>
+                                </div>
+                                <div class="stars" style="color: #e8a238; margin-bottom: 15px; font-size: 1rem;">★★★★★
+                                </div>
+                                <p
+                                    style="color: #444; line-height: 1.7; font-size: 1rem; position: relative; padding-left: 20px;">
+                                    <span
+                                        style="position: absolute; left: 0; top: -5px; font-size: 1.5rem; color: #e8a238;">"</span>
+                                    Un pedacito de Bolivia en Barcelona. La comida es deliciosa y los precios son muy
+                                    razonables. ¡100% recomendado!
+                                    <span
+                                        style="position: absolute; margin-left: 3px; bottom: -8px; font-size: 1.5rem; color: #e8a238;">"</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <a href="https://es.restaurantguru.com/La-Chiquitana-LHospitalet-de-Llobregat" target="_blank"
+                            class="btn-ver-mas"
+                            style="display: inline-block; margin-top: 40px; border: none; color: #fff; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; box-shadow: 0 10px 25px rgba(232,162,56,0.3);">
+                            Ver más reseñas en Google
+                        </a>
+                    </div>
+                </div>
             </section>
+            <!-- Sección de Eventos Próximos -->
+            <section class="eventos-hero" id="eventos-hero"
+                style="padding: 80px 0; background: linear-gradient(to bottom, #fffdf2, #fff); position: relative; overflow: hidden;">
+                <!-- Elementos decorativos -->
+                <div
+                    style="position: absolute; top: 40px; left: -100px; width: 250px; height: 250px; border-radius: 50%; background: radial-gradient(circle at center, rgba(232,162,56,0.08) 0%, rgba(232,162,56,0) 70%);">
+                </div>
+                <div
+                    style="position: absolute; bottom: 80px; right: -70px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle at center, rgba(232,162,56,0.07) 0%, rgba(232,162,56,0) 70%);">
+                </div>
+
+                <div class="content-wrapper" style="position: relative; z-index: 2;">
+                    <div class="section-header centered" style="max-width: 800px; margin: 0 auto 60px auto;">
+                        <span class="overline"
+                            style="color: #e8a238; letter-spacing: 3px; font-weight: 600; font-size: 1.05rem; display: block; margin-bottom: 12px; text-transform: uppercase;">Eventos
+                            y Noticias</span>
+                        <h2 class="section-title"
+                            style="margin: 15px 0; font-size: 2.8rem; color: #222; font-weight: 800; text-shadow: 0 1px 3px rgba(232,162,56,0.2);">
+                            Próximos Eventos</h2>
+                        <div
+                            style="width: 80px; height: 3px; background: linear-gradient(to right, #e8a238, #ffc062); margin: 25px auto;">
+                        </div>
+                        <p style="color: #555; font-size: 1.1rem; line-height: 1.7; max-width: 90%; margin: 0 auto;">
+                            Mantente al día con nuestros eventos especiales y degustaciones. Una oportunidad para
+                            acercarte a nuestra cultura y tradiciones.</p>
+                    </div>
+
+                    <div class="eventos-grid"
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; margin-top: 30px;">
+                        <!-- Evento 1 -->
+                        <div class="evento-card"
+                            style="background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.05), 0 5px 20px rgba(232,162,56,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative;">
+                            <!-- Banda decorativa superior -->
+                            <div
+                                style="height: 8px; width: 100%; background: linear-gradient(90deg, #e8a238, #ffc062);">
+                            </div>
+
+                            <div style="padding: 35px 30px;">
+                                <div class="evento-fecha"
+                                    style="position: absolute; top: 20px; right: 20px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); border-radius: 50px; padding: 8px 18px; font-size: 0.95rem; letter-spacing: 1px; box-shadow: 0 8px 15px rgba(232,162,56,0.25);">
+                                    20 Jul 2025
+                                </div>
+
+                                <div class="evento-info" style="margin-top: 25px;">
+                                    <h3
+                                        style="margin-bottom: 20px; font-size: 1.5rem; font-weight: 700; color: #333; line-height: 1.3;">
+                                        Degustación en Pueblo Español
+                                    </h3>
+
+                                    <p style="margin-bottom: 20px; color: #555; font-size: 1.05rem; line-height: 1.7;">
+                                        Ven a probar nuestras salteñas y cuñapés en el mercado de verano.
+                                        <strong style="color: #e8a238;">¡Te esperamos con los brazos abiertos y mucho
+                                            cariño!</strong>
+                                    </p>
+
+                                    <div
+                                        style="padding: 15px; background: rgba(255,251,230,0.7); border-radius: 10px; margin: 25px 0 20px 0; border-left: 4px solid #e8a238;">
+                                        <span style="color: #666; font-size: 1rem; display: block; font-style: italic;">
+                                            Un encuentro para compartir sabores, música y sonrisas en familia.
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div
+                                    style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(232,162,56,0.15); display: flex; align-items: center;">
+                                    <div
+                                        style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #fffbe6 0%, #ffe5b4 100%); display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 5px 15px rgba(232,162,56,0.15);">
+                                        <i class="fa-solid fa-people-group"
+                                            style="color: #e8a238; font-size: 1.2rem;"></i>
+                                    </div>
+                                    <span style="color: #666; font-size: 0.95rem; font-weight: 500;">Evento familiar y
+                                        abierto a todos</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Evento 2 -->
+                        <div class="evento-card"
+                            style="background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.05), 0 5px 20px rgba(232,162,56,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative;">
+                            <!-- Banda decorativa superior -->
+                            <div
+                                style="height: 8px; width: 100%; background: linear-gradient(90deg, #e8a238, #ffc062);">
+                            </div>
+
+                            <div style="padding: 35px 30px;">
+                                <div class="evento-fecha"
+                                    style="position: absolute; top: 20px; right: 20px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); border-radius: 50px; padding: 8px 18px; font-size: 0.95rem; letter-spacing: 1px; box-shadow: 0 8px 15px rgba(232,162,56,0.25);">
+                                    15 Ago 2025
+                                </div>
+
+                                <div class="evento-info" style="margin-top: 25px;">
+                                    <h3
+                                        style="margin-bottom: 20px; font-size: 1.5rem; font-weight: 700; color: #333; line-height: 1.3;">
+                                        Feria Gastronómica de Barcelona
+                                    </h3>
+
+                                    <p style="margin-bottom: 20px; color: #555; font-size: 1.05rem; line-height: 1.7;">
+                                        Participamos con stand propio, recetas tradicionales y sorpresas para toda la
+                                        familia.
+                                        <strong style="color: #e8a238;">¡Ven a sentir el calor de nuestra
+                                            tierra!</strong>
+                                    </p>
+
+                                    <div
+                                        style="padding: 15px; background: rgba(255,251,230,0.7); border-radius: 10px; margin: 25px 0 20px 0; border-left: 4px solid #e8a238;">
+                                        <span style="color: #666; font-size: 1rem; display: block; font-style: italic;">
+                                            Te esperamos para celebrar juntos la pasión por la buena comida y la
+                                            amistad.
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div
+                                    style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(232,162,56,0.15); display: flex; align-items: center;">
+                                    <div
+                                        style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #fffbe6 0%, #ffe5b4 100%); display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 5px 15px rgba(232,162,56,0.15);">
+                                        <i class="fa-solid fa-utensils" style="color: #e8a238; font-size: 1.2rem;"></i>
+                                    </div>
+                                    <span style="color: #666; font-size: 0.95rem; font-weight: 500;">Gastronomía,
+                                        cultura y tradición</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Evento 3 (Añadido nuevo) -->
+                        <div class="evento-card"
+                            style="background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.05), 0 5px 20px rgba(232,162,56,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative;">
+                            <!-- Banda decorativa superior -->
+                            <div
+                                style="height: 8px; width: 100%; background: linear-gradient(90deg, #e8a238, #ffc062);">
+                            </div>
+
+                            <div style="padding: 35px 30px;">
+                                <div class="evento-fecha"
+                                    style="position: absolute; top: 20px; right: 20px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); border-radius: 50px; padding: 8px 18px; font-size: 0.95rem; letter-spacing: 1px; box-shadow: 0 8px 15px rgba(232,162,56,0.25);">
+                                    30 Sep 2025
+                                </div>
+
+                                <div class="evento-info" style="margin-top: 25px;">
+                                    <h3
+                                        style="margin-bottom: 20px; font-size: 1.5rem; font-weight: 700; color: #333; line-height: 1.3;">
+                                        Taller de Cocina Boliviana
+                                    </h3>
+
+                                    <p style="margin-bottom: 20px; color: #555; font-size: 1.05rem; line-height: 1.7;">
+                                        Aprende a preparar auténticas salteñas y cuñapés con nuestros chefs expertos.
+                                        Plazas limitadas.
+                                        <strong style="color: #e8a238;">¡Reserva tu lugar ahora!</strong>
+                                    </p>
+
+                                    <div
+                                        style="padding: 15px; background: rgba(255,251,230,0.7); border-radius: 10px; margin: 25px 0 20px 0; border-left: 4px solid #e8a238;">
+                                        <span style="color: #666; font-size: 1rem; display: block; font-style: italic;">
+                                            Descubre los secretos de la cocina boliviana en un ambiente acogedor y
+                                            divertido.
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div
+                                    style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(232,162,56,0.15); display: flex; align-items: center;">
+                                    <div
+                                        style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #fffbe6 0%, #ffe5b4 100%); display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 5px 15px rgba(232,162,56,0.15);">
+                                        <i class="fa-solid fa-kitchen-set"
+                                            style="color: #e8a238; font-size: 1.2rem;"></i>
+                                    </div>
+                                    <span style="color: #666; font-size: 0.95rem; font-weight: 500;">Taller práctico,
+                                        incluye degustación</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: center; margin-top: 50px;">
+                        <a href="./blog/blog.html" class="btn-ver-mas"
+                            style="display: inline-block; border: none; color: #fff; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); padding: 16px 40px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.05rem; transition: all 0.3s ease; box-shadow: 0 10px 25px rgba(232,162,56,0.3); position: relative; overflow: hidden;">
+                            <span style="position: relative; z-index: 2;">Ver más eventos y noticias</span>
+                            <div
+                                style="position: absolute; top: 0; left: -100%; width: 200%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: all 0.5s ease; transform: skewX(-20deg);">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
             <section class="contacto-hero contacto-modern" id="contacto-hero">
                 <div class="contacto-modern-wrapper">
                     <div class="contacto-modern-info">
                         <h2 class="contacto-modern-title">
                             <span class="contacto-modern-icon"><i class="fa-solid fa-envelope-open-text"></i></span>
-                            ¿Listo para probar la Chiquitanía?
+                            Visita el Mejor Restaurante Boliviano en Barcelona
                         </h2>
                         <p class="contacto-modern-desc">
-                            Haz tu pedido o consúltanos cualquier duda. Te respondemos rápido y con el cariño que nos
-                            caracteriza.
+                            Descubre La Chiquitana, tu restaurante boliviano de confianza en Barcelona. Prueba nuestra
+                            auténtica comida boliviana, reserva tu mesa o haz tu pedido a domicilio. Si buscas sabores
+                            de Bolivia en España, estamos a tu servicio.
                         </p>
                         <ul class="contacto-modern-list">
                             <li>
                                 <i class="fa-solid fa-location-dot"></i>
                                 <a href="https://g.co/kgs/s23htE8" target="_blank" rel="noopener"
                                     style="color:inherit;">
-                                    Barcelona, (Madrid próximamente) · Envíos a toda España
+                                    Restaurante Boliviano en Barcelona · (Madrid próximamente) · Envíos a toda España
                                 </a>
                             </li>
                             <li>
@@ -510,40 +1377,15 @@
                     </div>
 
                     <div class="contacto-modern-form">
-                        <h3>¿Necesitas Chiquitana para tus eventos?</h3>
-                        <form>
-                            <div class="form-row">
-                                <label for="nombre">Nombre completo *</label>
-                                <input type="text" id="nombre" name="nombre" required>
-                            </div>
-                            <div class="form-row">
-                                <label for="telefono">Teléfono *</label>
-                                <input type="tel" id="telefono" name="telefono" required>
-                            </div>
-                            <div class="form-row">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email">
-                            </div>
-                            <div class="form-row">
-                                <label for="producto">Producto de interés</label>
-                                <select id="producto" name="producto">
-                                    <option value="">Selecciona un producto</option>
-                                    <option value="saltenas">Salteñas</option>
-                                    <option value="cunape">Cuñapé</option>
-                                    <option value="asadito">Asadito</option>
-                                    <option value="empanada-maiz">Empanada de Maíz</option>
-                                    <option value="varios">Varios productos</option>
-                                </select>
-                            </div>
-                            <div class="form-row">
-                                <label for="mensaje">Mensaje</label>
-                                <textarea id="mensaje" name="mensaje"
-                                    placeholder="Cuéntanos qué te interesa, cantidad, fecha de entrega, etc."></textarea>
-                            </div>
-                            <button type="submit" class="btn-pedido">
-                                Enviar pedido
-                            </button>
-                        </form>
+                        <h3>¿Dónde estamos?</h3>
+                        <div
+                            style="width:100%;height:400px;border-radius:18px;overflow:hidden;box-shadow:0 8px 32px 0 rgba(46,83,57,0.10),0 1.5px 6px 0 rgba(224,171,48,0.07);margin-top:2rem;">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2993.6897271847687!2d2.0977193!3d41.3726831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a498e7f1bf4445%3A0x1b8b3f43d8205e01!2sCarrer%20de%20la%20Pubilla%20Cases%2C%2021%2C%20L&#39;Hospitalet%20de%20Llobregat%2C%20Barcelona!5e0!3m2!1ses!2ses!4v1705348160545!5m2!1ses!2ses"
+                                width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -554,9 +1396,11 @@
                     <div class="footer-modern-brand">
                         <img src="./img/lachiquitanaLogo.webp" alt="La Chiquitana Logo" class="footer-modern-logo">
                         <div class="footer-modern-desc">
-                            <strong>La Chiquitana</strong>
-                            Sabores auténticos de Bolivia en España. Desde 1952, tres generaciones preservando la
-                            tradición culinaria de la Chiquitanía.
+                            <strong>La Chiquitana - Restaurante Boliviano en Barcelona</strong>
+                            El mejor restaurante de comida boliviana en Barcelona. Desde 1952, tres generaciones
+                            preservando la
+                            tradición culinaria de Bolivia en España, con recetas auténticas y el sabor de nuestra
+                            tierra.
                         </div>
                         <div class="footer-modern-social">
                             <a href="https://www.facebook.com/lachiquitanaoriginal/?locale=es_ES"
@@ -569,17 +1413,17 @@
                     </div>
                     <div class="footer-modern-links">
                         <div>
-                            <h4>Productos</h4>
+                            <h4>Nuestra Gastronomía Boliviana</h4>
                             <ul style="margin: 0%;">
-                                <li><a href="./productos/saltena.html" target="_blank">Salteñas</a></li>
-                                <li><a href="./productos/cunape.html" target="_blank">Cuñapé</a></li>
-                                <li><a href="./productos/asadito.html" target="_blank">Asadito</a></li>
-                                <li><a href="./productos/empanadamaiz.html" target="_blank">Empanada de Maíz</a></li>
-                                <li><a href="./productos/productos.html"">Ver todos</a></li>
+                                <li><a href="./productos/saltena.html">Salteñas Bolivianas en Barcelona</a></li>
+                                <li><a href="./productos/cunape.html">Cuñapé Tradicional Boliviano</a></li>
+                                <li><a href="./productos/asadito.html">Asadito de Bolivia</a></li>
+                                <li><a href="./productos/empanadamaiz.html">Empanada de Maíz Boliviana</a></li>
+                                <li><a href="./productos/productos.html">Ver toda la comida boliviana</a></li>
                             </ul>
                         </div>
                         <div>
-                            <h4>La Chiquitana</h4>
+                            <h4>La Chiquitana - Bolivia en Barcelona</h4>
                             <ul>
                                 <li><a href=" #historia-hero">Sobre Nosotros</a></li>
                                 <li><a href="#productos-hero">Productos</a></li>
@@ -609,8 +1453,8 @@
                 </div>
                 <div class="footer-modern-bottom">
                     Todos los derechos reservados. | La
-                    Chiquitana Sabores de Bolivia en España. &copy; 2025 Hecho con 💜 <a
-                        href="https://nodoamd.github.io" target="_blank"
+                    Chiquitana - Restaurante Boliviano en Barcelona - Comida Boliviana Auténtica. &copy; 2025 Hecho con
+                    💜 <a href="https://nodoamd.github.io" target="_blank"
                         style="color:#e8a238;text-decoration:underline;">por Nodo Agencia Marketing Digital</a>.
                 </div>
             </footer>
