@@ -787,70 +787,30 @@ img {
     margin-bottom: 2rem;
 }
 
-/* Productos Grid */
+/* Productos Grid - Nuevo diseño moderno */
 .productos-hero {
-    padding: 6rem 0;
-    margin-top: 4rem;
+    padding: 3rem 0 2rem 0;
+    margin-top: 1rem;
+    background: rgba(255,255,255,0.98);
 }
 
+/* Eliminar estilos antiguos de productos-grid para evitar conflictos */
 .productos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
+    display: none;
 }
 
-.producto-card {
-    background: rgba(0, 0, 0, 0.49);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Responsive para productos modernos */
+@media (max-width: 768px) {
+    .productos-hero {
+        padding: 2.5rem 0 1.5rem 0;
+        margin-top: 0.5rem;
+    }
 }
 
-.producto-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-}
-
-.producto-image {
-    width: 100%;
-    height: 250px;
-    overflow: hidden;
-}
-
-.producto-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.producto-card:hover .producto-image img {
-    transform: scale(1.05);
-}
-
-.producto-content {
-    padding: 2rem;
-    color: white;
-}
-
-.producto-content h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--earth-light);
-}
-
-.producto-content p {
-    line-height: 1.6;
-    margin-bottom: 1rem;
-}
-
-.producto-origin {
-    font-size: 0.9rem;
-    color: #e8a238;
-    font-style: italic;
+@media (max-width: 480px) {
+    .productos-hero {
+        padding: 2rem 0 1rem 0;
+    }
 }
 
 /* Historia Section */
@@ -2698,6 +2658,32 @@ img {
 
 
 
+.impacto-stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin: 32px 0 0 0;
+    padding: 0;
+}
+
+.impacto-stats>div {
+    text-align: center;
+}
+
+.impacto-stat-num {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #ffbb56;
+    margin-bottom: 4px;
+}
+
+.impacto-stat-label {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
 .call-to-action {
     margin-top: 40px;
     text-align: center;
@@ -2816,6 +2802,12 @@ img {
         padding: 20px;
     }
 }
+
+.footer-modern-links ul {
+    margin: 0;
+    padding-left: 0;
+}
+
 
 
 
@@ -3317,6 +3309,53 @@ img {
     }
 }
 
+.footer-modern-links ul {
+    margin: 0;
+    padding-left: 0;
+}
+
+
+.poema-icono {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 0.7rem;
+}
+
+.poema-icono i {
+    color: #e8a238;
+    font-size: 2.1rem;
+    filter: drop-shadow(0 2px 8px rgba(232, 162, 56, 0.13));
+    margin-right: 0.5rem;
+    animation: poema-feather-float 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes poema-feather-float {
+    0% {
+        transform: translateY(0) rotate(-8deg);
+    }
+
+    100% {
+        transform: translateY(-8px) rotate(8deg);
+    }
+}
+
+
+
+.impacto-stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin: 32px 0 0 0;
+    padding: 0;
+}
+
+.impacto-stats>div {
+    text-align: center;
+}
+
+
+
 .btn-impacto:hover {
     background: linear-gradient(90deg, #4e7c59 60%, #e8a238 100%);
     color: #fff;
@@ -3439,6 +3478,20 @@ img {
 }
 
 
+
+
+
+.impacto-stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin: 32px 0 0 0;
+    padding: 0;
+}
+
+.impacto-stats>div {
+    text-align: center;
+}
 
 
 
@@ -3834,7 +3887,7 @@ img {
     .local-header h3 {
         font-size: 1.5rem !important;
     }
-    
+}
     .impacto-stats {
         gap: 24px;
     }
@@ -3842,7 +3895,7 @@ img {
     .impacto-stats>div {
         min-width: 90px;
     }
-}
+
 
 @media (max-width: 500px) {
     .impacto-stats {
