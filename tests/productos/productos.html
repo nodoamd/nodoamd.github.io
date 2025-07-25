@@ -45,8 +45,7 @@
 
     .productos-hero,
     .content-wrapper,
-    .story-section,
-    .producto-card {
+    .story-section {
         background: none !important;
     }
 
@@ -558,6 +557,8 @@
         flex-wrap: wrap;
         gap: 4rem;
         align-items: stretch;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 
     .content-left,
@@ -718,6 +719,277 @@
     .overline {
         color: #ffc56f;
     }
+
+    /* Agrega este bloque para mostrar el catálogo de productos correctamente */
+    .productos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2.5rem;
+        margin: 3rem 0 2rem 0;
+        width: 100%;
+    }
+
+    .producto-card {
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 6px 24px rgba(46, 83, 57, 0.08);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s, box-shadow 0.2s;
+        min-width: 0;
+    }
+
+    .producto-card:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 16px 40px rgba(46, 83, 57, 0.13);
+    }
+
+    .producto-image img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+        background: #e6d3b3;
+    }
+
+    .producto-content {
+        padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .producto-content h3 {
+        font-size: 1.4rem;
+        color: #2e5339;
+        margin-bottom: 0.7rem;
+        font-weight: 700;
+    }
+
+    .producto-content p {
+        color: #555;
+        font-size: 1.05rem;
+        margin-bottom: 0.8rem;
+        flex: 1 1 auto;
+    }
+
+    .producto-origin {
+        font-size: 0.98rem;
+        color: #a68b5b;
+        margin-bottom: 1rem;
+    }
+
+    .btn-ver-mas {
+        display: inline-block;
+        background: #e8a238;
+        color: #fff;
+        padding: 0.7rem 1.7rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: background 0.2s, color 0.2s;
+        margin-top: 0.5rem;
+        text-align: center;
+    }
+
+    .btn-ver-mas:hover {
+        background: #4e7c59;
+        color: #fff;
+    }
+
+    .productos-boton-centro {
+        text-align: center;
+        margin-top: 2.5rem;
+    }
+
+    /* Fondo blanco para tarjetas de "Nuestro Proceso" */
+    .proceso-step {
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 6px 24px rgba(46, 83, 57, 0.08);
+        display: flex;
+        align-items: center;
+        margin-bottom: 2.2rem;
+        padding: 1.5rem 1.2rem;
+        gap: 2rem;
+        transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .proceso-step.reverse {
+        flex-direction: row-reverse;
+    }
+
+    .proceso-step:hover {
+        box-shadow: 0 16px 40px rgba(46, 83, 57, 0.13);
+        transform: translateY(-4px) scale(1.01);
+    }
+
+    .step-number {
+        font-size: 2.2rem;
+        font-weight: bold;
+        color: #e8a238;
+        margin-right: 1.2rem;
+        min-width: 40px;
+        text-align: center;
+    }
+
+    .step-content h3 {
+        font-size: 1.25rem;
+        color: #2e5339;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+    }
+
+    .step-content p {
+        color: #555;
+        font-size: 1.05rem;
+    }
+
+    .step-visual img {
+        width: 170px;
+        height: 170px;
+        object-fit: cover;
+        border-radius: 12px;
+        background: #e6d3b3;
+        box-shadow: 0 2px 8px rgba(46, 83, 57, 0.08);
+        margin: 0 auto;
+        display: block;
+    }
+
+    /* Responsive para imágenes de proceso */
+    @media (max-width: 900px) {
+        .step-visual img {
+            width: 120px;
+            height: 120px;
+        }
+
+        .proceso-step {
+            flex-direction: column !important;
+            gap: 1rem;
+            padding: 1.2rem 0.7rem;
+        }
+
+        .hero-card {
+            margin: 0.7rem 0;
+            min-width: 0;
+        }
+    }
+
+    /* Márgenes consistentes entre secciones */
+    .productos-hero,
+    .proceso-hero {
+        margin-bottom: 3.5rem;
+        padding-bottom: 0;
+        padding-top: 3.5rem;
+    }
+
+    #productos-hero {
+        margin-top: 85px;
+        padding-top: 0;
+    }
+
+    #proceso-hero {
+        margin-top: 0;
+    }
+
+    /* Ajuste de padding para el wrapper de contenido */
+    .content-wrapper {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Proceso: imagen grande y texto conciso, mobile first */
+    .proceso-step {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+        padding: 1.2rem 0.7rem;
+    }
+
+    .proceso-step.reverse {
+        flex-direction: column;
+    }
+
+    .step-visual {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .step-visual img {
+        width: 92vw;
+        max-width: 350px;
+        height: auto;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        border-radius: 14px;
+        background: #e6d3b3;
+        box-shadow: 0 2px 8px rgba(46, 83, 57, 0.08);
+        margin: 0 auto;
+        display: block;
+    }
+
+    .step-number {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #e8a238;    }
+
+    .step-content h3 {
+        font-size: 1.1rem;
+        color: #2e5339;
+        margin-bottom: 0.3rem;
+        font-weight: 700;
+    }
+
+    .step-content p {
+        color: #555;
+        font-size: 0.98rem;
+        margin-bottom: 0;
+        line-height: 1.4;
+    }
+
+    /* Mejora el tamaño de las imágenes del proceso para que sean tan grandes como las de productos en mobile */
+    .proceso-step .step-visual img {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        height: auto;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        border-radius: 14px;
+        background: #e6d3b3;
+        box-shadow: 0 2px 8px rgba(46, 83, 57, 0.08);
+        margin: 0 auto;
+        display: block;
+    }
+
+    /* Ajusta el contenedor para que la imagen ocupe todo el ancho disponible */
+    .proceso-step .step-visual {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* En desktop, mantén el tamaño adecuado */
+    @media (min-width: 900px) {
+        .proceso-step .step-visual {
+            max-width: 340px;
+            min-width: 220px;
+        }
+
+        .proceso-step .step-visual img {
+            width: 320px;
+            max-width: 320px;
+            aspect-ratio: 1/1;
+        }
+    }
+
+
 </style>
 
 <body>
@@ -741,7 +1013,7 @@
             </header>
 
             <!-- HERO INFORMATIVO -->
-            <section class="productos-hero" id="productos-hero" style="padding-bottom: 0; margin-top: 85px;">
+            <section class="productos-hero" id="productos-hero" style="padding-bottom: 0; margin-top: 125px;">
                 <div class="content-wrapper">
                     <div class="section-header">
                         <span class="overline">Calidad Artesanal</span>
@@ -783,17 +1055,15 @@
                         <span class="overline">Nuestro Proceso</span>
                         <h2 class="section-title">De la tierra a tu mesa</h2>
                         <p class="section-desc">
-                            Así elaboramos cada uno de nuestros productos, cuidando cada detalle para que disfrutes la
-                            auténtica experiencia chiquitana.
+                            Así elaboramos cada producto, cuidando cada detalle.
                         </p>
                     </div>
                     <div class="proceso-steps">
                         <div class="proceso-step">
                             <div class="step-number">1</div>
                             <div class="step-content">
-                                <h3>Selección de Ingredientes</h3>
-                                <p>Elegimos yuca, maíz, queso y huevos frescos de productores locales, asegurando
-                                    calidad y sostenibilidad.</p>
+                                <h3>Ingredientes frescos</h3>
+                                <p>Yuca, maíz, queso y huevos locales.</p>
                             </div>
                             <div class="step-visual">
                                 <img src="../img/ingredientes.webp" alt="Ingredientes frescos">
@@ -802,9 +1072,8 @@
                         <div class="proceso-step reverse">
                             <div class="step-number">2</div>
                             <div class="step-content">
-                                <h3>Amasado Artesanal</h3>
-                                <p>Elaboramos las masas a mano, respetando los tiempos de reposo y las técnicas
-                                    tradicionales para lograr texturas únicas.</p>
+                                <h3>Amasado a mano</h3>
+                                <p>Respetamos la tradición.</p>
                             </div>
                             <div class="step-visual">
                                 <img src="../img/proceso1.webp" alt="Amasado artesanal">
@@ -813,9 +1082,8 @@
                         <div class="proceso-step">
                             <div class="step-number">3</div>
                             <div class="step-content">
-                                <h3>Horneado Tradicional</h3>
-                                <p>Horneamos en horno de barro o piedra, logrando ese sabor y aroma inconfundibles de la
-                                    repostería chiquitana.</p>
+                                <h3>Horneado tradicional</h3>
+                                <p>En horno de barro o piedra.</p>
                             </div>
                             <div class="step-visual">
                                 <img src="../img/horno.webp" alt="Horno de barro">
@@ -824,9 +1092,8 @@
                         <div class="proceso-step reverse">
                             <div class="step-number">4</div>
                             <div class="step-content">
-                                <h3>Presentación y Envío</h3>
-                                <p>Cuidamos la presentación y el empaque ecológico para que recibas frescura y tradición
-                                    en cada pedido, en toda España.</p>
+                                <h3>Presentación y envío</h3>
+                                <p>Empaque ecológico y fresco.</p>
                             </div>
                             <div class="step-visual">
                                 <img src="../img/resultado.webp" alt="Empaque ecológico">
@@ -851,7 +1118,7 @@
                     <div class="productos-grid">
                         <div class="producto-card">
                             <div class="producto-image">
-                                <img src="../img/salteñas.webp" alt="Salteñas">
+                                <img src="../img/saltenas.webp" alt="Salteñas">
                             </div>
                             <div class="producto-content">
                                 <h3>Salteñas</h3>
@@ -946,7 +1213,7 @@
                         <li><a href="../productos/cunape.html" target="_blank">Cuñapé</a></li>
                         <li><a href="../productos/asadito.html" target="_blank">Asadito</a></li>
                         <li><a href="../productos/empanadamaiz.html" target="_blank">Empanada de Maíz</a></li>
-                        <li><a href="../productos/productos.html"">Ver todos</a></li>
+                        <li><a href="../productos/productos.html">Ver todos</a></li>
                             </ul>
                         </div>
                         <div>
