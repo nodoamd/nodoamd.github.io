@@ -266,20 +266,106 @@
                 </style>
             </section>
 
+            <!-- Tarjeta flotante de transición -->
+            <div class="floating-card">
+                <div class="floating-card-content">
+                    <span class="card-tag">Especialidades</span>
+                    <h2 class="card-title">Sabores de Bolivia</h2>
+                    <p class="card-desc">Descubre nuestras recetas tradicionales</p>
+                </div>
+            </div>
 
             <section class="productos-hero" id="productos-hero">
-                <div class="content-wrapper">
-                    <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
-                        <span
-                            style="color: #e8a238; font-size: 0.9rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;">Especialidades</span>
-                        <h2 class="section-title"
-                            style="font-size: 2.2rem; margin: 0.5rem 0 1rem 0; color: rgb(24, 24, 24);">Sabores de
-                            Bolivia</h2>
-                        <p class="section-desc" style="font-size: 1rem; color: #666; max-width: 600px; margin: 0 auto;">
-                            Auténticas recetas bolivianas preparadas con amor
-                        </p>
-                    </div>
+                <style>
+                    .floating-card {
+                        position: relative;
+                        max-width: 900px;
+                        margin: -120px auto 0;
+                        z-index: 10;
+                        padding: 0 1rem;
+                    }
 
+                    .floating-card-content {
+                        background: white;
+                        border-radius: 20px;
+                        padding: 2rem;
+                        text-align: center;
+                        box-shadow: 0 20px 40px rgba(232, 162, 56, 0.15);
+                        border: 2px solid rgba(232, 162, 56, 0.1);
+                        transform: translateY(0);
+                        transition: transform 0.3s ease;
+                    }
+
+                    .floating-card-content:hover {
+                        transform: translateY(-5px);
+                    }
+
+                    .card-tag {
+                        color: #e8a238;
+                        font-size: 0.9rem;
+                        font-weight: 600;
+                        letter-spacing: 2px;
+                        text-transform: uppercase;
+                        display: block;
+                        margin-bottom: 0.5rem;
+                    }
+
+                    .card-title {
+                        font-size: 2rem;
+                        color: #2c2c2c;
+                        margin: 0.5rem 0;
+                        font-weight: 900;
+                    }
+
+                    .card-desc {
+                        font-size: 1rem;
+                        color: #666;
+                        margin: 0.5rem 0 0;
+                    }
+
+                    @media (max-width: 768px) {
+                        .floating-card {
+                            margin-top: -50px;
+                        }
+
+                        .floating-card-content {
+                            padding: 1.5rem;
+                            background: rgba(255, 255, 255, 0.98);
+                        }
+
+                        .card-title {
+                            font-size: 1.6rem;
+                        }
+
+                        .productos-hero {
+                            margin-top: -10px;
+                        }
+
+                        .about-hero {
+                            margin-bottom: 50px;
+                        }
+                    }
+
+                    @media (max-width: 480px) {
+                        .floating-card {
+                            margin-top: -50px;
+                        }
+
+                        .productos-hero {
+                            margin-top: -10px;
+                        }
+
+                        .floating-card-content {
+                            padding: 1.25rem;
+                        }
+
+                        .about-hero {
+                            margin-bottom: 50px;
+                        }
+                    }
+                </style>
+
+                <div class="content-wrapper">
                     <div class="productos-grid-modern">
                         <!-- Producto 1 - Destacado -->
                         <div class="producto-card-modern producto-featured">
@@ -340,12 +426,18 @@
                     </div>
 
                     <style>
+                        .productos-hero {
+                            padding: 2rem 1rem;
+                            background: #fff;
+                        }
+
                         .productos-grid-modern {
                             display: grid;
-                            grid-template-columns: 2fr 1fr 1fr 1fr;
-                            gap: 1rem;
-                            max-width: 1000px;
+                            grid-template-columns: repeat(4, 1fr);
+                            gap: 1.5rem;
+                            max-width: 1200px;
                             margin: 0 auto;
+                            padding: 0 1rem;
                         }
 
                         .producto-card-modern {
@@ -356,6 +448,9 @@
                             transition: all 0.3s ease;
                             position: relative;
                             border: 1px solid rgba(232, 162, 56, 0.1);
+                            height: 100%;
+                            display: flex;
+                            flex-direction: column;
                         }
 
                         .producto-card-modern:hover {
@@ -364,23 +459,25 @@
                         }
 
                         .producto-featured {
+                            grid-column: span 2;
                             grid-row: span 2;
                         }
 
                         .producto-featured .producto-image-modern {
-                            height: 200px;
+                            height: 300px;
                         }
 
                         .producto-featured .producto-info-modern {
-                            padding: 1.5rem;
+                            padding: 2rem;
                         }
 
                         .producto-featured h3 {
-                            font-size: 1.4rem;
+                            font-size: 1.6rem;
+                            margin-bottom: 1rem;
                         }
 
                         .producto-image-modern {
-                            height: 120px;
+                            height: 180px;
                             width: 100%;
                             overflow: hidden;
                             position: relative;
@@ -472,26 +569,40 @@
                         }
 
                         /* Responsive */
+                        @media (max-width: 1024px) {
+                            .productos-grid-modern {
+                                grid-template-columns: repeat(3, 1fr);
+                            }
+
+                            .producto-featured {
+                                grid-column: span 3;
+                            }
+                        }
+
                         @media (max-width: 768px) {
                             .productos-grid-modern {
-                                grid-template-columns: 1fr 1fr;
-                                gap: 0.8rem;
+                                grid-template-columns: repeat(2, 1fr);
+                                gap: 1rem;
+                                padding: 0 0.5rem;
                             }
 
                             .producto-featured {
                                 grid-column: span 2;
-                                grid-row: span 1;
                             }
 
                             .producto-featured .producto-image-modern {
-                                height: 150px;
+                                height: 200px;
+                            }
+
+                            .producto-featured h3 {
+                                font-size: 1.4rem;
                             }
                         }
 
                         @media (max-width: 480px) {
                             .productos-grid-modern {
                                 grid-template-columns: 1fr;
-                                gap: 0.8rem;
+                                gap: 1rem;
                             }
 
                             .producto-featured {
@@ -499,13 +610,16 @@
                             }
 
                             .producto-image-modern {
-                                height: 140px;
+                                height: 200px;
                             }
 
                             .producto-featured .producto-image-modern {
-                                height: 160px;
+                                height: 220px;
                             }
 
+                            .producto-featured .producto-info-modern {
+                                padding: 1.5rem;
+                            }
                         }
 
                         @media (max-width: 900px) {
