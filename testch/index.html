@@ -256,15 +256,40 @@
                     <div class="productos-grid-modern">
                         <!-- Producto 1 - Destacado -->
                         <div class="producto-card-modern producto-featured">
-                            <div class="producto-badge">⭐ Favorito</div>
-                            <div class="producto-image-modern">
+                            <div class="producto-badge">⭐ Más vendida</div>
+                            <div class="producto-image-modern saltena-bg-desktop">
                                 <img src="./img/saltenas.webp" alt="Salteñas Bolivianas">
                             </div>
                             <div class="producto-info-modern">
                                 <h3>Salteñas</h3>
+                                <p class="saltena-frase-destacada">¡La empanada boliviana más famosa y jugosa de
+                                    Barcelona!</p>
                                 <p>Empanada jugosa tradicional con carne, papa y ají</p>
                                 <a href="./productos/saltena.html" class="btn-modern">Descubrir</a>
                             </div>
+                            <style>
+                                @media (min-width: 1025px) {
+                                    .saltena-bg-desktop {
+                                        background: url('./img/lazochiquitana.svg') no-repeat right bottom/120px, linear-gradient(135deg, #fffbe6 0%, #fff8d6 100%);
+                                        position: relative;
+                                    }
+
+                                    .saltena-frase-destacada {
+                                        font-size: 1.08rem;
+                                        color: #e8a238;
+                                        font-weight: 700;
+                                        margin-bottom: 0.7rem;
+                                        margin-top: 0.2rem;
+                                        letter-spacing: 0.2px;
+                                    }
+                                }
+
+                                @media (max-width: 1024px) {
+                                    .saltena-frase-destacada {
+                                        display: none;
+                                    }
+                                }
+                            </style>
                         </div>
 
                         <!-- Producto 2 -->
@@ -461,6 +486,10 @@
                                 grid-template-columns: repeat(3, 1fr);
                             }
 
+                            .hero pad-l{
+                                margin-bottom: 390px;
+                            }
+
                             .producto-featured {
                                 grid-column: span 3;
                             }
@@ -477,6 +506,8 @@
                                 grid-column: span 2;
                             }
 
+                            
+                 
                             .producto-featured .producto-image-modern {
                                 height: 200px;
                             }
@@ -691,7 +722,8 @@
                                     <img src="./img/familias.webp" alt="Familia fundadora"
                                         class="historia-img historia-img-1">
                                     <figcaption class="historia-caption">
-                                        <span class="historia-caption-title" style="padding: 5px;">Nuestra familia, origen de la
+                                        <span class="historia-caption-title" style="padding: 5px;">Nuestra familia,
+                                            origen de la
                                             tradición</span>
                                         <span class="historia-caption-desc">San José de Chiquitos, 1952</span>
                                     </figcaption>
@@ -940,7 +972,7 @@
                         <div
                             style="width: 80px; height: 3px; background: linear-gradient(to right, #e8a238, #ffc062); margin: 25px auto;">
                         </div>
-                   
+
 
                         <div class="testimonios-grid"
                             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin: 40px 0;">
