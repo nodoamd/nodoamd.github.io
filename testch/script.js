@@ -44,7 +44,7 @@ window.addEventListener('load', () => {
 let smoother = ScrollSmoother.create({
     wrapper: "#smooth-wrapper",
     content: "#smooth-content",
-    smooth: 1,
+    smooth: 0.1,
     effects: true,
     // normalizeScroll: true, // PRueba
     // ignoreMobileResize: true, // PRueba
