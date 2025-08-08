@@ -4,494 +4,1119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nodo | Exitos de Clientes Nodo</title>
-    <meta name="description" content="Innovación donde merece + Mejoras constantes = Un futuro brillante.">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nodoamd.github.io/">
-    <meta property="og:title" content="Nodo | Tu Agencia de Márketing Digital">
-    <meta property="og:description" content="Innovación donde merece + Mejoras constantes = Un futuro brillante.">
-    <meta property="og:image" content="https://nodoamd.github.io/phone_mockup_1.png">
-    <meta property="og:image:alt" content="Mockup de teléfono mostrando el sitio de Nodo">
-    <meta property="og:site_name" content="Nodo">
-    <meta property="og:locale" content="es_ES">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta property="twitter:domain" content="nodoamd.github.io">
-    <meta property="twitter:url" content="https://nodoamd.github.io/">
-    <meta name="twitter:title" content="Nodo | Tu Agencia de Márketing Digital">
-    <meta name="twitter:description" content="Innovación donde merece + Mejoras constantes = Un futuro brillante.">
-    <meta name="twitter:image" content="https://nodoamd.github.io/phone_mockup_1.png">
+    <title>Nodo - Transformación Digital Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="./img/nodedos.svg">
-    <link rel="icon" type="image/x-icon" href="./img/nodedos.svg">
-    <link rel="apple-touch-icon" href="./img/nodedos.svg">
-
-
-    <!-- Apple Touch Icons -->
-    <link rel="apple-touch-icon" href="./img/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
-    <link rel="mask-icon" href="./img/safari-pinned-tab.svg" color="#4e53be">
-
-    <!-- Meta Tags para Apple -->
-    <meta name="apple-mobile-web-app-title" content="Nodo">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="purple">
-
-    <!-- Precargar recursos críticos -->
-    <link rel="preload" href="style.css" as="style">
-    <link rel="preload" href="./img/nodedos.svg" as="image">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Font Awesome con carga optimizada -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        media="print" onload="this.media='all'">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
+    <link rel="icon" type="image/svg+xml" href="nodedos.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="nodedos.svg">
+    <link rel="apple-touch-icon" href="nodedos.svg">
     <meta name="theme-color" content="#4e53be">
 
-    <!-- Estilos -->
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casos de Éxito - Nodo</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'nodo-purple': '#6366f1',
-                        'nodo-blue': '#3b82f6',
-                        'nodo-light': '#f8fafc',
-                        'nodo-gray': '#64748b'
-                    }
-                }
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --primary: #4e53be;
+            --primary-light: #6c72e5;
+            --primary-dark: #3c40a0;
+            --secondary: #ffffff;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a4a68;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(78, 83, 190, 0.05) 0%, rgba(108, 114, 229, 0.1) 100%);
+        }
+
+        .glass-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(78, 83, 190, 0.1);
+        }
+
+        .hover-up {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-up:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(78, 83, 190, 0.15);
+        }
+
+        .feature-card {
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-card {
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-card::before {
+            content: "";
+            position: absolute;
+            top: -30px;
+            left: 20px;
+            font-size: 120px;
+            color: rgba(78, 83, 190, 0.1);
+            font-family: 'Georgia', serif;
+            z-index: -1;
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.8) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
             }
         }
-    </script>
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .fade-in {
+            opacity: 0;
+        }
+
+        .slide-up {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .slide-right {
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        /* Cursor effect */
+        .cursor-glow {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(108, 114, 229, 0.6) 0%, rgba(108, 114, 229, 0) 70%);
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: screen;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
+        }
+
+        .animated-gradient-text {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 50%, var(--primary) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s linear infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Modern button styles */
+        .btn-modern {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.4s ease;
+        }
+
+        .btn-modern:hover::before {
+            left: 100%;
+        }
+
+        /* Animated checkmark */
+        .checkmark-circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .checkmark {
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards;
+        }
+
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* Stats counter animation */
+        .counter-value {
+            transition: all 2s ease;
+        }
+    </style>
 </head>
 
-<body class="bg-white">
+<body class="bg-white text-gray-900 relative">
+    <!-- Custom cursor glow -->
+    <div class="cursor-glow hidden md:block"></div>
 
-    <header class="header">
-        <a href="https://nodoamd.github.io/" class="flex items-center group">
-            <span class="mr-2 relative">
-                <span class="text-xl font-extrabold tracking-tight text-[#4e53be]">Nodo</span>
+    <!-- Floating shapes for visual interest -->
+    <div
+        class="fixed top-20 left-20 w-40 h-40 rounded-full bg-gradient-to-r from-indigo-300/10 to-purple-300/10 blur-3xl">
+    </div>
+    <div
+        class="fixed bottom-20 right-20 w-60 h-60 rounded-full bg-gradient-to-l from-blue-300/10 to-indigo-300/10 blur-3xl">
+    </div>
+
+    <!-- Navegación -->
+    <nav
+        class="container mx-auto px-4 py-6 flex justify-between items-center sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="text-2xl font-bold text-[#6c72e5] flex items-center">
+            <a href="https://nodoamd.github.io/" class="flex items-center group">
+                <span class="mr-2 relative">
+                    Nodo
+                    <span
+                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#6c72e5] group-hover:w-full transition-all duration-300"></span>
+                </span>
+                <img src="./img/nodedos.svg" height="25" width="25" alt="Nodo Logo"
+                    class="transform group-hover:rotate-12 transition-all duration-300">
+            </a>
+        </div>
+
+        <div class="hidden md:flex space-x-6 items-center">
+            <a href="#servicios" class="text-gray-700 hover:text-[#6c72e5] transition relative group">
+                Servicios
                 <span
                     class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#6c72e5] group-hover:w-full transition-all duration-300"></span>
-            </span>
-            <img src="./img/nodedos.svg" height="25" width="25" alt="Nodo Logo"
-                class="transform group-hover:rotate-12 transition-all duration-300">
+            </a>
+            <a href="#transformacion" class="text-gray-700 hover:text-[#6c72e5] transition relative group">
+                Transformación
+                <span
+                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#6c72e5] group-hover:w-full transition-all duration-300"></span>
+            </a>
+            <a href="#testimonios" class="text-gray-700 hover:text-[#6c72e5] transition relative group">
+                Testimonios
+                <span
+                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#6c72e5] group-hover:w-full transition-all duration-300"></span>
+            </a>
+        </div>
+
+        <a href="https://wa.me/622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo" target="_blank"
+            class="btn-modern bg-green-500 text-white px-5 py-2.5 rounded-full flex items-center hover:bg-green-600 transition-all shadow-lg shadow-green-500/20">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M20.4054 3.5865C18.1607 1.33284 15.1751 0.0948748 12.0146 0.0915C5.44978 0.0915 0.0942602 5.44815 0.090926 12.0161C0.0892574 14.1228 0.6342 16.1811 1.67253 18.0009L0 24.0915L6.21284 22.4456C7.97039 23.3811 9.96767 23.875 12.0062 23.8767H12.0146C18.5778 23.8767 23.9333 18.5184 23.9366 12.0496C23.9399 8.88867 22.6518 5.8418 20.4054 3.5865ZM12.0146 21.8716H12.0079C10.235 21.8699 8.49561 21.3883 6.96453 20.4866L6.60026 20.2734L2.85716 21.2325L3.83228 17.57L3.59637 17.1924C2.60759 15.6064 2.09282 13.8344 2.09448 12.0161C2.09614 6.55286 6.55118 2.09663 12.0212 2.09663C14.6707 2.09829 17.1639 3.12617 19.0456 5.01176C20.9273 6.89734 21.9502 9.39386 21.9485 12.048C21.9469 17.5129 17.4928 21.8716 12.0146 21.8716ZM17.4638 14.5281C17.1655 14.3782 15.6927 13.6546 15.4177 13.5546C15.1427 13.4547 14.9427 13.4047 14.7428 13.7031C14.5428 14.0015 13.9679 14.6751 13.7929 14.8751C13.618 15.0751 13.443 15.1001 13.1447 14.9501C12.8464 14.8001 11.872 14.4885 10.7226 13.4631C9.82334 12.6529 9.2218 11.6625 9.04685 11.3641C8.8719 11.0658 9.03013 10.9025 9.17935 10.7508C9.31358 10.6142 9.47687 10.3925 9.62686 10.2176C9.77684 10.0426 9.82646 9.91767 9.92626 9.71768C10.026 9.5177 9.97644 9.34274 9.90184 9.19277C9.82686 9.04281 9.2293 7.56821 8.9793 6.9715C8.73659 6.3915 8.4906 6.4844 8.30728 6.4744C8.1323 6.4644 7.93236 6.4644 7.73241 6.4644C7.53247 6.4644 7.20751 6.53939 6.93254 6.83774C6.65758 7.13609 5.88339 7.85967 5.88339 9.33427C5.88339 10.8089 6.95754 12.2335 7.10753 12.4334C7.25751 12.6334 9.2218 15.6729 12.2431 16.9724C13.0356 17.3141 13.6522 17.5191 14.1321 17.674C14.9119 17.9273 15.6183 17.8907 16.1798 17.814C16.8047 17.7274 18.0117 17.0871 18.2617 16.3904C18.5117 15.6937 18.5117 15.0969 18.4367 14.9751C18.3617 14.8534 18.1618 14.7784 17.4638 14.5281Z" />
+            </svg>
+            Contáctanos
         </a>
-        <nav class="nav-links">
-            <a href="#nodo-services-section">Servicios</a>
-            <a href="#case-studies">Proyectos</a>
-            <a href="#pricing-container">Precios</a>
-            <a href="#nodo-faq-section">FAQ</a>
-        </nav>
-        <div class="buttons">
-            <a href="https://wa.me/+34622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo" target="_blank"
-                class="btn btn-secondary">Contacto</a>
-            <a href="./consulta.html" class="btn btn-primary">Cotizar Proyecto</a>
-        </div>
-    </header>
-    <!-- Hero Section -->
-    <section
-        class="relative min-h-[90vh] flex items-start md:items-center justify-center bg-gradient-to-br from-purple-50 to-blue-50 overflow-hidden py-12 md:py-0">
-        <div class="absolute inset-0 bg-gradient-to-r from-purple-400/10 to-blue-400/10"></div>
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-8 md:mt-0">
-            <div class="mb-4 pt-8 md:pt-0">
-                <span class="inline-flex items-center text-nodo-purple font-medium text-base md:text-lg">
-                    ⚡ Casos de Éxito
-                </span>
-            </div>
-            <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 px-4">
-                <span class="text-nodo-purple">Transformamos</span> negocios,<br class="hidden sm:block">
-                creamos <span class="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">resultados extraordinarios</span>
-            </h1>
-            <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed px-4">
-                Descubre cómo hemos ayudado a empresas como la tuya a
-                <span class="text-nodo-purple font-semibold">multiplicar sus ventas</span>
-                y dominar el mundo digital con estrategias personalizadas y resultados medibles.
-            </p>
+    </nav>
 
-            <!-- Botones con mejor espaciado móvil -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 px-4">
-                <button class="w-full sm:w-auto bg-nodo-purple hover:bg-purple-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl">
-                    Ver Todos los Casos
-                </button>
-                <button class="w-full sm:w-auto border-2 border-gray-300 hover:border-nodo-purple text-gray-700 hover:text-nodo-purple font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-full transition-all duration-300">
-                    Impulsa tu Negocio
-                </button>
+    <!-- Hero Section with animated elements -->
+    <section class="hero-gradient min-h-[90vh] flex items-center relative overflow-hidden">
+        <div class="container mx-auto px-4 py-16 grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="slide-right">
+                <h1
+                    class="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight text-gray-900">
+                    Marketing digital <span class="animated-gradient-text">orientado a resultados</span>.
+                </h1>
+                <p class="text-xl text-gray-700 mb-8 slide-up">
+                    <span class="font-bold text-[#4e53be] text-2xl">Nodo</span> impulsa tu negocio con <br> <span
+                        id="palabra-cambia" class="animated-gradient-text font-bold">diseño</span> <br>
+                    Todo lo <span
+                        class="font-bold text-[#4e53be] underline decoration-wavy decoration-2 underline-offset-4">digital</span>
+                    y <span
+                        class="font-bold text-[#6c72e5] underline decoration-dotted decoration-2 underline-offset-4">físico</span>
+                    para que consigas más clientes, sin complicaciones.
+                </p>
+
+                <!-- Beneficios Clave con animaciones -->
+                <div class="space-y-5 mb-10">
+                    <div class="flex items-center transform hover:translate-x-2 transition-all">
+                        <div
+                            class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-[#4e53be]" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <span class="text-lg">Estrategias Personalizadas que se Adaptan a Tus Necesidades</span>
+                    </div>
+                    <div class="flex items-center transform hover:translate-x-2 transition-all">
+                        <div
+                            class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-[#4e53be]" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <span class="text-lg">Resultados Garantizados Basados en Datos Reales</span>
+                    </div>
+                    <div class="flex items-center transform hover:translate-x-2 transition-all">
+                        <div
+                            class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-[#4e53be]" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <span class="text-lg">Equipo de Expertos con Más de 10 Años de Experiencia</span>
+                    </div>
+                    <div class="flex items-center transform hover:translate-x-2 transition-all">
+                        <div
+                            class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-[#4e53be]" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <span class="text-lg">Branding Integral: Desde Diseño hasta Publicidad</span>
+                    </div>
+                </div>
+
+                <!-- Llamada a la Acción -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="https://wa.me/622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo"
+                        target="_blank"
+                        class="btn-modern bg-[#4e53be] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#6c72e5] transition shadow-lg shadow-[#4e53be]/30 flex items-center justify-center whitespace-nowrap">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20.4054 3.5865C18.1607 1.33284 15.1751 0.0948748 12.0146 0.0915C5.44978 0.0915 0.0942602 5.44815 0.090926 12.0161C0.0892574 14.1228 0.6342 16.1811 1.67253 18.0009L0 24.0915L6.21284 22.4456C7.97039 23.3811 9.96767 23.875 12.0062 23.8767H12.0146C18.5778 23.8767 23.9333 18.5184 23.9366 12.0496C23.9399 8.88867 22.6518 5.8418 20.4054 3.5865ZM12.0146 21.8716H12.0079C10.235 21.8699 8.49561 21.3883 6.96453 20.4866L6.60026 20.2734L2.85716 21.2325L3.83228 17.57L3.59637 17.1924C2.60759 15.6064 2.09282 13.8344 2.09448 12.0161C2.09614 6.55286 6.55118 2.09663 12.0212 2.09663C14.6707 2.09829 17.1639 3.12617 19.0456 5.01176C20.9273 6.89734 21.9502 9.39386 21.9485 12.048C21.9469 17.5129 17.4928 21.8716 12.0146 21.8716ZM17.4638 14.5281C17.1655 14.3782 15.6927 13.6546 15.4177 13.5546C15.1427 13.4547 14.9427 13.4047 14.7428 13.7031C14.5428 14.0015 13.9679 14.6751 13.7929 14.8751C13.618 15.0751 13.443 15.1001 13.1447 14.9501C12.8464 14.8001 11.872 14.4885 10.7226 13.4631C9.82334 12.6529 9.2218 11.6625 9.04685 11.3641C8.8719 11.0658 9.03013 10.9025 9.17935 10.7508C9.31358 10.6142 9.47687 10.3925 9.62686 10.2176C9.77684 10.0426 9.82646 9.91767 9.92626 9.71768C10.026 9.5177 9.97644 9.34274 9.90184 9.19277C9.82686 9.04281 9.2293 7.56821 8.9793 6.9715C8.73659 6.3915 8.4906 6.4844 8.30728 6.4744C8.1323 6.4644 7.93236 6.4644 7.73241 6.4644C7.53247 6.4644 7.20751 6.53939 6.93254 6.83774C6.65758 7.13609 5.88339 7.85967 5.88339 9.33427C5.88339 10.8089 6.95754 12.2335 7.10753 12.4334C7.25751 12.6334 9.2218 15.6729 12.2431 16.9724C13.0356 17.3141 13.6522 17.5191 14.1321 17.674C14.9119 17.9273 15.6183 17.8907 16.1798 17.814C16.8047 17.7274 18.0117 17.0871 18.2617 16.3904C18.5117 15.6937 18.5117 15.0969 18.4367 14.9751C18.3617 14.8534 18.1618 14.7784 17.4638 14.5281Z" />
+                        </svg>
+                        Reserva Tu Consulta Gratuita
+                    </a>
+                    <a href="#servicios"
+                        class="btn-modern bg-white text-[#4e53be] border-2 border-[#4e53be] px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-50 transition shadow-lg shadow-[#4e53be]/10 flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        Ver Servicios
+                    </a>
+                </div>
             </div>
 
-            <!-- Stats con mejor diseño responsive -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 max-w-4xl mx-auto px-4">
-                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-lg border border-white/20">
-                    <div class="text-2xl md:text-3xl font-bold text-nodo-purple mb-2">+500%</div>
-                    <div class="text-sm md:text-base text-gray-600">Crecimiento Promedio</div>
+            <!-- Formulario de Contacto con elementos modernos -->
+            <div class="glass-card p-8 rounded-2xl shadow-xl slide-up">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-3xl font-bold">
+                        Agenda tu <span class="text-[#6c72e5]">Consulta</span>
+                    </h2>
+                    <div class="flex space-x-1">
+                        <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                    </div>
                 </div>
-                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-lg border border-white/20">
-                    <div class="text-2xl md:text-3xl font-bold text-nodo-blue mb-2">120+</div>
-                    <div class="text-sm md:text-base text-gray-600">Proyectos Exitosos</div>
-                </div>
-                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-lg border border-white/20 sm:col-span-2 md:col-span-1">
-                    <div class="text-2xl md:text-3xl font-bold text-purple-600 mb-2">98%</div>
-                    <div class="text-sm md:text-base text-gray-600">Satisfacción Cliente</div>
+
+                <form id="formulario-contacto" class="space-y-5" action="https://formspree.io/f/mkgjngab" method="POST"
+                    target="_blank">
+                    <div class="relative">
+                        <input type="text" name="nombre" placeholder=" " required
+                            class="peer w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#4e53be] focus:border-transparent transition-all" />
+                        <label
+                            class="absolute left-4 -top-2.5 bg-white px-1 text-sm text-gray-600 transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-[#4e53be]">Tu
+                            Nombre</label>
+                    </div>
+
+                    <div class="relative">
+                        <input type="email" name="email" placeholder=" " required
+                            class="peer w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#4e53be] focus:border-transparent transition-all" />
+                        <label
+                            class="absolute left-4 -top-2.5 bg-white px-1 text-sm text-gray-600 transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-[#4e53be]">Tu
+                            Correo Electrónico</label>
+                    </div>
+
+                    <div class="relative">
+                        <textarea name="mensaje" placeholder=" " rows="4"
+                            class="peer w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#4e53be] focus:border-transparent transition-all"></textarea>
+                        <label
+                            class="absolute left-4 -top-2.5 bg-white px-1 text-sm text-gray-600 transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-base peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-[#4e53be]">Cuéntanos
+                            sobre tu proyecto</label>
+                    </div>
+
+                    <button type="submit"
+                        class="btn-modern w-full bg-[#4e53be] text-white py-4 rounded-full hover:bg-[#6c72e5] transition font-semibold shadow-lg shadow-[#4e53be]/30 relative overflow-hidden group">
+                        <span class="relative z-10 flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2 group-hover:rotate-12 transition-all" viewBox="0 0 24 24"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 11L12 6M12 6L17 11M12 6V18" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            Reservar Consulta Gratuita
+                        </span>
+                        <div
+                            class="absolute inset-0 h-full w-0 bg-gradient-to-r from-[#6c72e5] to-[#4e53be] transition-all duration-300 group-hover:w-full">
+                        </div>
+                    </button>
+
+                    <!-- Indicador de seguridad -->
+                    <div class="flex items-center justify-center text-xs text-gray-500 mt-2">
+                        <svg class="w-4 h-4 mr-1 text-green-500" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 15V17M6 21H18C19.1046 21 20 20.1046 20 19V13C20 11.8954 19.1046 11 18 11H6C4.89543 11 4 11.8954 4 13V19C4 20.1046 4.89543 21 6 21ZM16 11V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V11H16Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        Información segura y protegida
+                    </div>
+                </form>
+
+                <!-- Indicadores de confianza -->
+                <div class="mt-6 pt-6 border-t border-gray-200">
+                    <div class="text-center text-sm text-gray-600 mb-2">Confían en nosotros</div>
+                    <div
+                        class="confianza-logos flex justify-center items-center gap-x-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all">
+                        <img src="./img/luis.jpeg" alt="Cliente 1"
+                            class="h-10 w-10 object-cover rounded-full border-2 border-[#4e53be]/10 shadow" />
+                        <img src="./img/lucas.webp" alt="Cliente 2"
+                            class="h-10 w-10 object-cover rounded-full border-2 border-[#4e53be]/10 shadow" />
+                        <img src="./img/doctorahitachi.webp" alt="Cliente 3"
+                            class="h-10 w-10 object-cover rounded-full border-2 border-[#4e53be]/10 shadow" />
+                        <img src="./img/YOOOOO.webp" alt="Cliente 4"
+                            class="h-10 w-10 object-cover rounded-full border-2 border-[#4e53be]/10 shadow" />
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Floating Elements -->
-        <div class="absolute top-20 left-10 w-20 h-20 bg-purple-400/20 rounded-full blur-xl animate-pulse"></div>
-        <div class="absolute bottom-32 right-16 w-32 h-32 bg-blue-400/20 rounded-full blur-xl animate-pulse delay-1000">
-        </div>
+        <!-- Elementos decorativos del hero -->
+        <div class="absolute -bottom-10 left-0 right-0 h-20 bg-white transform -skew-y-3"></div>
     </section>
 
-    <!-- Featured Success Story -->
-    <section class="py-12 md:py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8 md:mb-16">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 md:mb-6">
-                    Caso Destacado
+
+
+
+
+
+
+    <section id="servicios" class="py-20 bg-white relative overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <div class="inline-block px-3 py-1 rounded-full bg-[#4e53be]/10 text-[#6c72e5] font-semibold mb-4">
+                    TODO LO QUE NECESITA TU NEGOCIO
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 slide-up">
+                    Soluciones <span class="text-[#4e53be]">Digitales</span> y <span
+                        class="text-[#6c72e5]">Físicas</span>
                 </h2>
-                <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto px-4">
-                    Cómo transformamos una pequeña empresa local en un líder digital de su sector
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto fade-in">
+                    En Nodo diseñamos, creamos y producimos todo lo que tu marca necesita para destacar en el mundo
+                    digital y físico.
                 </p>
             </div>
-
-            <div class="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl md:rounded-3xl overflow-hidden shadow-xl">
-                <div class="grid lg:grid-cols-2 gap-0">
-                    <div class="p-6 sm:p-8 md:p-12 lg:p-16">
-                        <!-- Contenido del caso -->
-                        <div class="flex items-center mb-6">
-                            <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center text-white font-bold text-lg md:text-xl mr-4">
-                                TC
-                            </div>
-                            <div>
-                                <h3 class="text-xl md:text-2xl font-bold text-gray-900">TechCorp Solutions</h3>
-                                <p class="text-gray-600">Software B2B</p>
-                            </div>
-                        </div>
-
-                        <h4 class="text-3xl font-bold text-gray-900 mb-6">
-                            De startup a líder del mercado en 8 meses
-                        </h4>
-
-                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                            Rediseñamos completamente su presencia digital, implementamos una estrategia de marketing
-                            automatizada
-                            y desarrollamos una plataforma SaaS que revolucionó su modelo de negocio.
-                        </p>
-
-                        <div class="grid grid-cols-2 gap-6 mb-8">
-                            <div>
-                                <div class="text-3xl font-bold text-nodo-purple mb-2">850%</div>
-                                <div class="text-gray-600">Aumento en leads</div>
-                            </div>
-                            <div>
-                                <div class="text-3xl font-bold text-nodo-blue mb-2">€2.3M</div>
-                                <div class="text-gray-600">Facturación anual</div>
-                            </div>
-                        </div>
-
-                        <button
-                            class="bg-nodo-purple hover:bg-purple-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
-                            Ver Caso Completo
-                        </button>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+                <!-- Webs -->
+                <div class="feature-card p-8 bg-white rounded-xl shadow-lg text-center slide-up">
+                    <div class="mb-4 flex justify-center">
+                        <svg class="w-12 h-12 text-[#4e53be]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2" />
+                            <path d="M3 8h18" stroke="currentColor" stroke-width="2" />
+                        </svg>
                     </div>
-
-                    <div class="relative bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center p-6 sm:p-8 md:p-12">
-                        <div class="relative w-full max-w-sm mx-auto">
-                            <div class="aspect-[3/4] w-full bg-white/10 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-white/20 flex items-center justify-center transform rotate-6 hover:rotate-3 transition-transform duration-500">
-                                <div class="text-center text-white">
-                                    <div class="text-4xl md:text-6xl mb-4">📈</div>
-                                    <div class="text-xl md:text-2xl font-bold">Crecimiento</div>
-                                    <div class="text-base md:text-lg opacity-80">Exponencial</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <h3 class="text-xl font-bold mb-2">Páginas Web</h3>
+                    <p class="text-gray-600">Sitios modernos, rápidos y optimizados para captar clientes.</p>
                 </div>
+                <!-- Flyers -->
+                <div class="feature-card p-8 bg-white rounded-xl shadow-lg text-center slide-up">
+                    <div class="mb-4 flex justify-center">
+                        <svg class="w-12 h-12 text-[#6c72e5]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" />
+                            <path d="M8 8h8v8H8z" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Flyers y Folletos</h3>
+                    <p class="text-gray-600">Diseño e impresión de flyers que venden y comunican.</p>
+                </div>
+                <!-- Tarjetas -->
+                <div class="feature-card p-8 bg-white rounded-xl shadow-lg text-center slide-up">
+                    <div class="mb-4 flex justify-center">
+                        <svg class="w-12 h-12 text-[#4e53be]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <rect x="3" y="7" width="18" height="10" rx="2" stroke="currentColor" stroke-width="2" />
+                            <path d="M7 11h2" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Tarjetas de Visita</h3>
+                    <p class="text-gray-600">Impresiona con tarjetas profesionales y creativas.</p>
+                </div>
+                <!-- Banners -->
+                <div class="feature-card p-8 bg-white rounded-xl shadow-lg text-center slide-up">
+                    <div class="mb-4 flex justify-center">
+                        <svg class="w-12 h-12 text-[#6c72e5]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <rect x="4" y="6" width="16" height="12" rx="2" stroke="currentColor" stroke-width="2" />
+                            <path d="M4 10h16" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Banners y Lonas</h3>
+                    <p class="text-gray-600">Gran formato para eventos, tiendas y promociones.</p>
+                </div>
+                <!-- Rótulos -->
+                <div class="feature-card p-8 bg-white rounded-xl shadow-lg text-center slide-up">
+                    <div class="mb-4 flex justify-center">
+                        <svg class="w-12 h-12 text-[#4e53be]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <rect x="2" y="7" width="20" height="10" rx="2" stroke="currentColor" stroke-width="2" />
+                            <path d="M6 11h12" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Rótulos y Señalética</h3>
+                    <p class="text-gray-600">Haz visible tu negocio con rótulos impactantes y duraderos.</p>
+                </div>
+                <!-- Branding -->
+                <div class="feature-card p-8 bg-white rounded-xl shadow-lg text-center slide-up">
+                    <div class="mb-4 flex justify-center">
+                        <svg class="w-12 h-12 text-[#6c72e5]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                            <path d="M8 12h8" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Branding Integral</h3>
+                    <p class="text-gray-600">Desde el logo hasta la papelería y la presencia digital.</p>
+                </div>
+            </div>
+            <div class="flex justify-center mt-12">
+                <a href="https://wa.me/622494800?text=Quiero%20saber%20más%20sobre%20los%20servicios%20de%20Nodo"
+                    target="_blank"
+                    class="btn-modern bg-[#4e53be] text-white px-10 py-4 rounded-full text-lg font-bold hover:bg-[#6c72e5] transition shadow-xl shadow-[#4e53be]/30 inline-flex items-center scale-in border-4 border-white/20">
+                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M20.4054 3.5865C18.1607 1.33284 15.1751 0.0948748 12.0146 0.0915C5.44978 0.0915 0.0942602 5.44815 0.090926 12.0161C0.0892574 14.1228 0.6342 16.1811 1.67253 18.0009L0 24.0915L6.21284 22.4456C7.97039 23.3811 9.96767 23.875 12.0062 23.8767H12.0146C18.5778 23.8767 23.9333 18.5184 23.9366 12.0496C23.9399 8.88867 22.6518 5.8418 20.4054 3.5865ZM12.0146 21.8716H12.0079C10.235 21.8699 8.49561 21.3883 6.96453 20.4866L6.60026 20.2734L2.85716 21.2325L3.83228 17.57L3.59637 17.1924C2.60759 15.6064 2.09282 13.8344 2.09448 12.0161C2.09614 6.55286 6.55118 2.09663 12.0212 2.09663C14.6707 2.09829 17.1639 3.12617 19.0456 5.01176C20.9273 6.89734 21.9502 9.39386 21.9485 12.048C21.9469 17.5129 17.4928 21.8716 12.0146 21.8716ZM17.4638 14.5281C17.1655 14.3782 15.6927 13.6546 15.4177 13.5546C15.1427 13.4547 14.9427 13.4047 14.7428 13.7031C14.5428 14.0015 13.9679 14.6751 13.7929 14.8751C13.618 15.0751 13.443 15.1001 13.1447 14.9501C12.8464 14.8001 11.872 14.4885 10.7226 13.4631C9.82334 12.6529 9.2218 11.6625 9.04685 11.3641C8.8719 11.0658 9.03013 10.9025 9.17935 10.7508C9.31358 10.6142 9.47687 10.3925 9.62686 10.2176C9.77684 10.0426 9.82646 9.91767 9.92626 9.71768C10.026 9.5177 9.97644 9.34274 9.90184 9.19277C9.82686 9.04281 9.2293 7.56821 8.9793 6.9715C8.73659 6.3915 8.4906 6.4844 8.30728 6.4744C8.1323 6.4644 7.93236 6.4644 7.73241 6.4644C7.53247 6.4644 7.20751 6.53939 6.93254 6.83774C6.65758 7.13609 5.88339 7.85967 5.88339 9.33427C5.88339 10.8089 6.95754 12.2335 7.10753 12.4334C7.25751 12.6334 9.2218 15.6729 12.2431 16.9724C13.0356 17.3141 13.6522 17.5191 14.1321 17.674C14.9119 17.9273 15.6183 17.8907 16.1798 17.814C16.8047 17.7274 18.0117 17.0871 18.2617 16.3904C18.5117 15.6937 18.5117 15.0969 18.4367 14.9751C18.3617 14.8534 18.1618 14.7784 17.4638 14.5281Z" />
+                    </svg>
+                    Solicita información personalizada
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Success Stories Grid -->
-    <section class="py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                    Más Casos de Éxito
+
+
+
+
+    <section id="exitos" class="py-24 bg-gray-50 relative overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-14">
+                <div class="inline-block px-3 py-1 rounded-full bg-[#4e53be]/10 text-[#6c72e5] font-semibold mb-4">
+                    ÉXITOS RECIENTES
+                </div>
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 slide-up">
+                    Proyectos que <span class="text-[#4e53be]">Transforman</span> Marcas
                 </h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Cada proyecto es único, cada resultado es extraordinario
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto fade-in">
+                    Descubre cómo ayudamos a nuestros clientes a crecer en el mundo digital y físico, con soluciones
+                    integrales y creativas.
                 </p>
             </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Case 1 -->
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Caso de éxito 1 -->
                 <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="h-48 bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
-                        <div class="text-6xl">🛍️</div>
-                    </div>
-                    <div class="p-8">
-                        <div class="flex items-center mb-4">
-                            <div
-                                class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center text-white font-bold mr-3">
-                                FS
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-900">Fashion Store</h3>
-                                <p class="text-gray-600 text-sm">E-commerce</p>
-                            </div>
+                    class="bg-white rounded-2xl shadow-xl p-8 flex flex-col md:flex-row items-center gap-8 hover-up fade-in">
+                    <img src="./img/landinghitachi.webp" alt="Branding Cliente"
+                        class="w-40 h-40 rounded-xl object-cover shadow-lg border-4 border-[#4e53be]/10 mb-4 md:mb-0">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2 text-[#4e53be]">Clínica Dental Dra. Hitachi</h3>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span
+                                class="px-3 py-1 rounded-full bg-[#6c72e5]/10 text-[#6c72e5] text-xs font-semibold">Branding</span>
+                            <span
+                                class="px-3 py-1 rounded-full bg-[#4e53be]/10 text-[#4e53be] text-xs font-semibold">Web</span>
+                            <span
+                                class="px-3 py-1 rounded-full bg-[#4e53be]/10 text-[#4e53be] text-xs font-semibold">Rótulos</span>
+                            <span
+                                class="px-3 py-1 rounded-full bg-[#4e53be]/10 text-[#4e53be] text-xs font-semibold">Tarjetas
+                                de visita</span>
+
                         </div>
-                        <h4 class="text-xl font-bold text-gray-900 mb-3">
-                            Tienda online que triplicó sus ventas
-                        </h4>
-                        <p class="text-gray-600 mb-6">
-                            Rediseño completo de UX/UI y estrategia de marketing digital personalizada.
+                        <p class="text-gray-700 mb-4">
+                            Creamos la identidad visual completa, el diseño web, rótulos exteriores, tarjetas de visita
+                            y un sistema QR para facilitar las reseñas de sus pacientes. Resultado: <span
+                                class="font-bold text-[#6c72e5]">+40% de reseñas positivas y aumento de clientes en 3
+                                meses.</span>
                         </p>
-                        <div class="flex justify-between items-center mb-6">
-                            <div>
-                                <div class="text-2xl font-bold text-green-500">+320%</div>
-                                <div class="text-sm text-gray-600">Ventas</div>
-                            </div>
-                            <div>
-                                <div class="text-2xl font-bold text-blue-500">6 meses</div>
-                                <div class="text-sm text-gray-600">Tiempo</div>
-                            </div>
+                        <div class="flex justify-center gap-3">
+                            <a href="https://clinicadentalhitachi.com/"
+                                class="btn-modern bg-[#4e53be] text-white px-6 py-3 rounded-full font-bold shadow-lg hover:bg-[#6c72e5] transition-all flex items-center gap-2 border-2 border-[#4e53be]/20">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path d="M14 5l7 7-7 7M21 12H3" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                Ver web
+                            </a>
                         </div>
-                        <button
-                            class="w-full border-2 border-gray-200 hover:border-nodo-purple text-gray-700 hover:text-nodo-purple font-semibold py-3 rounded-full transition-all duration-300">
-                            Ver Detalles
-                        </button>
                     </div>
                 </div>
-
-                <!-- Case 2 -->
+                <!-- Caso de éxito 2 -->
                 <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="h-48 bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
-                        <div class="text-6xl">🏥</div>
-                    </div>
-                    <div class="p-8">
-                        <div class="flex items-center mb-4">
-                            <div
-                                class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center text-white font-bold mr-3">
-                                MC
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-900">MediCare Plus</h3>
-                                <p class="text-gray-600 text-sm">Salud</p>
-                            </div>
+                    class="bg-white rounded-2xl shadow-xl p-8 flex flex-col md:flex-row items-center gap-8 hover-up fade-in">
+                    <img src="./img/llarunica.webp" alt="Flyer Cliente"
+                        class="w-40 h-40 rounded-xl object-cover shadow-lg border-4 border-[#6c72e5]/10 mb-4 md:mb-0">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2 text-[#6c72e5]">LlarUnica</h3>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span
+                                class="px-3 py-1 rounded-full bg-[#4e53be]/10 text-[#4e53be] text-xs font-semibold">Flyers</span>
+                            <span
+                                class="px-3 py-1 rounded-full bg-[#6c72e5]/10 text-[#6c72e5] text-xs font-semibold">Lonas</span>
+                            <span
+                                class="px-3 py-1 rounded-full bg-[#4e53be]/10 text-[#4e53be] text-xs font-semibold">Web</span>
+                            <span class="px-3 py-1 rounded-full bg-[#4e53be]/10 text-[#4e53be] text-xs font-semibold">QR
+                                menú</span>
                         </div>
-                        <h4 class="text-xl font-bold text-gray-900 mb-3">
-                            Plataforma médica digital
-                        </h4>
-                        <p class="text-gray-600 mb-6">
-                            Sistema de gestión de pacientes y telemedicina que revolucionó su servicio.
+                        <p class="text-gray-700 mb-4">
+                            Creamos y posicionamos su web de manera localizada, creamos su blog, flyers promocionales,
+                            tarjetas de visita y tarjetas personales, señalética, vinilos y rótulo. Resultado: <span
+                                class="font-bold text-[#4e53be]">Posicionamos su web de manera localizada, generando
+                                notoriedad local y mayor
+                                número de leads.<br><br></span>
                         </p>
-                        <div class="flex justify-between items-center mb-6">
-                            <div>
-                                <div class="text-2xl font-bold text-purple-500">+450%</div>
-                                <div class="text-sm text-gray-600">Pacientes</div>
-                            </div>
-                            <div>
-                                <div class="text-2xl font-bold text-pink-500">12 meses</div>
-                                <div class="text-sm text-gray-600">Tiempo</div>
-                            </div>
+                        <div class="flex justify-center gap-3">
+                            <a href="https://llarunica.es"
+                                class="btn-modern bg-[#4e53be] text-white px-6 py-3 rounded-full font-bold shadow-lg hover:bg-[#6c72e5] transition-all flex items-center gap-2 border-2 border-[#4e53be]/20">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path d="M14 5l7 7-7 7M21 12H3" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                Ver web
+                            </a>
                         </div>
-                        <button
-                            class="w-full border-2 border-gray-200 hover:border-nodo-purple text-gray-700 hover:text-nodo-purple font-semibold py-3 rounded-full transition-all duration-300">
-                            Ver Detalles
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Case 3 -->
-                <div
-                    class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div class="h-48 bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center">
-                        <div class="text-6xl">🍕</div>
-                    </div>
-                    <div class="p-8">
-                        <div class="flex items-center mb-4">
-                            <div
-                                class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center text-white font-bold mr-3">
-                                PR
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-900">Pizza Roma</h3>
-                                <p class="text-gray-600 text-sm">Restauración</p>
-                            </div>
-                        </div>
-                        <h4 class="text-xl font-bold text-gray-900 mb-3">
-                            App de delivery que cambió todo
-                        </h4>
-                        <p class="text-gray-600 mb-6">
-                            Aplicación móvil y sistema de pedidos online que duplicó sus ingresos.
-                        </p>
-                        <div class="flex justify-between items-center mb-6">
-                            <div>
-                                <div class="text-2xl font-bold text-orange-500">+200%</div>
-                                <div class="text-sm text-gray-600">Pedidos</div>
-                            </div>
-                            <div>
-                                <div class="text-2xl font-bold text-red-500">4 meses</div>
-                                <div class="text-sm text-gray-600">Tiempo</div>
-                            </div>
-                        </div>
-                        <button
-                            class="w-full border-2 border-gray-200 hover:border-nodo-purple text-gray-700 hover:text-nodo-purple font-semibold py-3 rounded-full transition-all duration-300">
-                            Ver Detalles
-                        </button>
                     </div>
                 </div>
             </div>
         </div>
+
     </section>
 
-    <!-- Testimonials -->
-    <section class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+
+
+
+    <!-- Sección de Transformación con Mockups Interactivos -->
+    <section id="transformacion" class="py-24 bg-white relative overflow-hidden">
+        <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                    Lo que Dicen Nuestros Clientes
-                </h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Sus palabras valen más que mil promesas
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl p-8 border border-purple-100">
-                    <div class="flex items-center mb-6">
-                        <div
-                            class="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                            AM
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-900">Ana Martínez</h4>
-                            <p class="text-gray-600">CEO, TechCorp</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 italic mb-4">
-                        "Nodo no solo transformó nuestra presencia digital, nos ayudó a pensar diferente sobre nuestro
-                        negocio. Los resultados hablan por sí solos."
-                    </p>
-                    <div class="flex text-yellow-400">
-                        ⭐⭐⭐⭐⭐
-                    </div>
+                <div class="inline-block px-3 py-1 rounded-full bg-[#4e53be]/10 text-[#6c72e5] font-semibold mb-4">
+                    NUESTRA METODOLOGÍA
                 </div>
-
-                <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8 border border-green-100">
-                    <div class="flex items-center mb-6">
-                        <div
-                            class="w-12 h-12 bg-gradient-to-r from-green-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                            CG
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-900">Carlos González</h4>
-                            <p class="text-gray-600">Fundador, Fashion Store</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 italic mb-4">
-                        "En 6 meses pasamos de una tienda física a dominar el mercado online. El equipo de Nodo es
-                        simplemente excepcional."
-                    </p>
-                    <div class="flex text-yellow-400">
-                        ⭐⭐⭐⭐⭐
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-8 border border-orange-100">
-                    <div class="flex items-center mb-6">
-                        <div
-                            class="w-12 h-12 bg-gradient-to-r from-orange-600 to-red-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                            MR
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-900">María Rodríguez</h4>
-                            <p class="text-gray-600">Directora, Pizza Roma</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 italic mb-4">
-                        "La app que desarrollaron cambió completamente nuestro negocio. Ahora somos líderes en delivery
-                        de nuestra zona."
-                    </p>
-                    <div class="flex text-yellow-400">
-                        ⭐⭐⭐⭐⭐
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Results Section -->
-    <section class="py-24 bg-gray-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold mb-6">
-                    Resultados que Hablan por Sí Solos
+                    Cómo <span class="text-[#4e53be]">Nodo Transforma</span> tu Negocio
                 </h2>
-                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
-                    Números reales de transformaciones digitales exitosas
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Aplicamos un enfoque científico y creativo para impulsar tu empresa hacia el siguiente nivel.
+                    Descubre nuestro proceso y conoce los resultados que podemos lograr juntos.
                 </p>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="text-5xl font-bold text-nodo-purple mb-2">120+</div>
-                    <div class="text-gray-300">Proyectos Completados</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-5xl font-bold text-nodo-blue mb-2">€50M+</div>
-                    <div class="text-gray-300">Facturación Generada</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-5xl font-bold text-green-400 mb-2">98%</div>
-                    <div class="text-gray-300">Clientes Satisfechos</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-5xl font-bold text-yellow-400 mb-2">24/7</div>
-                    <div class="text-gray-300">Soporte Dedicado</div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Descripción de Growth con animación de texto de escritura -->
+                <div class="slide-right">
+                    <h3 class="text-3xl font-bold mb-6 flex items-center">
+                        <span
+                            class="step-number w-16 h-16 flex items-center justify-center mr-4 text-3xl md:text-4xl font-extrabold bg-gradient-to-br from-[#6c72e5] to-[#4e53be] text-white rounded-full shadow-lg border-4 border-white ring-2 ring-[#6c72e5]/20 transition-all duration-300">
+                            1
+                        </span>
+                        Estrategias de crecimiento
+                    </h3>
+                    <p class="text-lg text-gray-700 mb-6 pl-16">
+                        Nuestro equipo de expertos analiza tu negocio en profundidad para identificar oportunidades
+                        de crecimiento y desarrollar estrategias personalizadas que maximicen tu ROI.
+                    </p>
+                    <h3 class="text-3xl font-bold mb-6 flex items-center">
+                        <span
+                            class="step-number w-16 h-16 flex items-center justify-center mr-4 text-3xl md:text-4xl font-extrabold bg-gradient-to-br from-[#6c72e5] to-[#4e53be] text-white rounded-full shadow-lg border-4 border-white ring-2 ring-[#6c72e5]/20 transition-all duration-300">
+                            2
+                        </span>
+                        Implementación y optimización
+                    </h3>
+                    <p class="text-lg text-gray-700 mb-6 pl-16">
+                        Implementamos las estrategias definidas y realizamos ajustes continuos basados en datos
+                        para asegurar los mejores resultados posibles.
+                    </p>
+
+                    <h3 class="text-3xl font-bold mb-6 flex items-center">
+                        <span
+                            class="step-number w-16 h-16 flex items-center justify-center mr-4 text-3xl md:text-4xl font-extrabold bg-gradient-to-br from-[#6c72e5] to-[#4e53be] text-white rounded-full shadow-lg border-4 border-white ring-2 ring-[#6c72e5]/20 transition-all duration-300">
+                            3
+                        </span>
+                        Escalado y automatización
+                    </h3>
+
+                    <p class="text-lg text-gray-700 mb-8 pl-16">
+                        Una vez validadas las estrategias, escalamos las acciones que funcionan y automatizamos
+                        procesos para multiplicar resultados con menos recursos.
+                    </p>
+
+                    <div class="flex justify-center">
+                        <a href="https://wa.me/622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo"
+                            target="_blank"
+                            class="btn-modern bg-[#4e53be] text-white px-8 py-4 rounded-full hover:bg-[#6c72e5] transition shadow-lg shadow-[#4e53be]/20 inline-flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M20.4054 3.5865C18.1607 1.33284 15.1751 0.0948748 12.0146 0.0915C5.44978 0.0915 0.0942602 5.44815 0.090926 12.0161C0.0892574 14.1228 0.6342 16.1811 1.67253 18.0009L0 24.0915L6.21284 22.4456C7.97039 23.3811 9.96767 23.875 12.0062 23.8767H12.0146C18.5778 23.8767 23.9333 18.5184 23.9366 12.0496C23.9399 8.88867 22.6518 5.8418 20.4054 3.5865ZM12.0146 21.8716H12.0079C10.235 21.8699 8.49561 21.3883 6.96453 20.4866L6.60026 20.2734L2.85716 21.2325L3.83228 17.57L3.59637 17.1924C2.60759 15.6064 2.09282 13.8344 2.09448 12.0161C2.09614 6.55286 6.55118 2.09663 12.0212 2.09663C14.6707 2.09829 17.1639 3.12617 19.0456 5.01176C20.9273 6.89734 21.9502 9.39386 21.9485 12.048C21.9469 17.5129 17.4928 21.8716 12.0146 21.8716ZM17.4638 14.5281C17.1655 14.3782 15.6927 13.6546 15.4177 13.5546C15.1427 13.4547 14.9427 13.4047 14.7428 13.7031C14.5428 14.0015 13.9679 14.6751 13.7929 14.8751C13.618 15.0751 13.443 15.1001 13.1447 14.9501C12.8464 14.8001 11.872 14.4885 10.7226 13.4631C9.82334 12.6529 9.2218 11.6625 9.04685 11.3641C8.8719 11.0658 9.03013 10.9025 9.17935 10.7508C9.31358 10.6142 9.47687 10.3925 9.62686 10.2176C9.77684 10.0426 9.82646 9.91767 9.92626 9.71768C10.026 9.5177 9.97644 9.34274 9.90184 9.19277C9.82686 9.04281 9.2293 7.56821 8.9793 6.9715C8.73659 6.3915 8.4906 6.4844 8.30728 6.4744C8.1323 6.4644 7.93236 6.4644 7.73241 6.4644C7.53247 6.4644 7.20751 6.53939 6.93254 6.83774C6.65758 7.13609 5.88339 7.85967 5.88339 9.33427C5.88339 10.8089 6.95754 12.2335 7.10753 12.4334C7.25751 12.6334 9.2218 15.6729 12.2431 16.9724C13.0356 17.3141 13.6522 17.5191 14.1321 17.674C14.9119 17.9273 15.6183 17.8907 16.1798 17.814C16.8047 17.7274 18.0117 17.0871 18.2617 16.3904C18.5117 15.6937 18.5117 15.0969 18.4367 14.9751C18.3617 14.8534 18.1618 14.7784 17.4638 14.5281Z" />
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-24 bg-gradient-to-br from-purple-600 to-blue-600 text-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">
-                ¿Listo para Ser el Próximo Caso de Éxito?
+    <!-- SOBRE NOSOTROS -->
+    <section id="sobre-nodo" class="pt-14 pb-0 bg-gray-50 relative overflow-hidden">
+        <div class="container mx-auto px-4 text-center">
+            <div class="inline-block px-3 py-1 rounded-full bg-[#4e53be]/10 text-[#6c72e5] font-semibold mb-4">
+                SOBRE NOSOTROS
+            </div>
+            <h2 class="text-4xl md:text-5xl font-extrabold leading-tight text-gray-900 animated-gradient-text slide-up">
+                ¿Quiénes está detrás de <span class="text-[#4e53be]">Nodo</span>?
             </h2>
-            <p class="text-xl mb-12 opacity-90">
-                Únete a más de 120 empresas que ya han transformado su negocio con Nodo.
-                Tu historia de éxito puede ser la siguiente.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <button
-                    class="bg-white text-nodo-purple hover:bg-gray-100 font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl">
-                    Cotizar Proyecto
-                </button>
-                <button
-                    class="border-2 border-white text-white hover:bg-white hover:text-nodo-purple font-semibold py-4 px-8 rounded-full transition-all duration-300">
-                    Agenda una Consulta
-                </button>
+            <div class="max-w-2xl mx-auto slide-up">
+                <p class="text-xl text-gray-700 mb-4">
+                    Somos un equipo multidisciplinar de <span class="font-bold text-[#4e53be]">expertos en marketing
+                        digital, diseño y tecnología</span> con más de 10 años de experiencia.
+                </p>
+                <p class="text-xl text-gray-700 mb-4">
+                    <span class="text-[#6c72e5] font-bold">Nos apasiona impulsar negocios</span> como el tuyo,
+                    combinando creatividad y datos para lograr resultados reales y sostenibles.
+                </p>
+            </div>
+            <div class="flex flex-col sm:flex-row justify-center gap-6 mb-8">
+                <div class="flex items-center mx-auto sm:mx-0">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                        <svg class="w-6 h-6 text-[#4e53be]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path d="M9 12L11 14L15 10"></path>
+                            <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                    </div>
+                    <span class="text-lg font-medium text-gray-800">Estrategias a medida</span>
+                </div>
+                <div class="flex items-center mx-auto sm:mx-0">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                        <svg class="w-6 h-6 text-[#4e53be]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path d="M9 12L11 14L15 10"></path>
+                            <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                    </div>
+                    <span class="text-lg font-medium text-gray-800">Innovación constante</span>
+                </div>
+                <div class="flex items-center mx-auto sm:mx-0">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                        <svg class="w-6 h-6 text-[#4e53be]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path d="M9 12L11 14L15 10"></path>
+                            <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                    </div>
+                    <span class="text-lg font-medium text-gray-800">Resultados medibles</span>
+                </div>
+            </div>
+            <img src="./img/nodedos.svg" alt="Equipo Nodo"
+                class="mx-auto rounded-full w-32 h-32 shadow-lg border-4 border-[#4e53be]/20 bg-white floating mb-4" />
+            <div
+                class="absolute -top-20 -left-20 w-60 h-60 bg-gradient-to-br from-[#4e53be]/10 to-[#6c72e5]/10 rounded-full blur-3xl animate-pulse">
+            </div>
+            <div
+                class="absolute -bottom-20 -right-20 w-80 h-80 bg-gradient-to-tr from-[#6c72e5]/10 to-[#4e53be]/10 rounded-full blur-3xl animate-pulse">
             </div>
         </div>
     </section>
+
+    <!-- TESTIMONIOS -->
+    <section id="testimonios" class="py-12 bg-gray-50 relative overflow-hidden">
+        <div class="container mx-auto px-8 text-center">
+            <div class="inline-block px-3 py-1 rounded-full bg-[#4e53be]/10 text-[#6c72e5] font-semibold mb-4">
+                TESTIMONIOS
+            </div>
+            <h2
+                class="text-4xl md:text-5xl font-extrabold text-center mb-10 leading-tight text-gray-900 animated-gradient-text slide-up">
+                Lo que dicen quienes ya confiaron en <span class="text-[#4e53be]">Nodo</span>
+            </h2>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="testimonial-card p-8 bg-white rounded-xl shadow-xl text-center fade-in">
+                    <img src="./img/luis.jpeg" alt="Luis L."
+                        class="mx-auto mb-4 w-16 h-16 rounded-full object-cover border-4 border-[#6c72e5]/20 shadow" />
+                    <p class="text-xl text-gray-700 mb-4 italic">"Nodo nos ayudó a duplicar nuestras ventas en solo
+                        3
+                        meses. <span class='font-bold text-[#6c72e5]'>¡Recomendados!</span>"</p>
+                    <div class="font-bold text-[#4e53be]">Luis L.</div>
+                    <div class="text-xs text-gray-400">CEO, Impresiones Barcelona</div>
+                </div>
+                <div class="testimonial-card p-8 bg-white rounded-xl shadow-xl text-center fade-in">
+                    <img src="./img/lucas.webp" alt="Carlos Ch."
+                        class="mx-auto mb-4 w-16 h-16 rounded-full object-cover border-4 border-[#6c72e5]/20 shadow" />
+                    <p class="text-xl text-gray-700 mb-4 italic">"El equipo de Nodo es <span
+                            class='font-bold text-[#6c72e5]'>profesional, creativo</span> y siempre está
+                        disponible."
+                    </p>
+                    <div class="font-bold text-[#4e53be]">Carlos Ch.</div>
+                    <div class="text-xs text-gray-400">Director, LlarUnica</div>
+                </div>
+                <div class="testimonial-card p-8 bg-white rounded-xl shadow-xl text-center fade-in">
+                    <img src="./img/doctorahitachi.webp" alt="Dra Hitachi."
+                        class="mx-auto mb-4 w-16 h-16 rounded-full object-cover border-4 border-[#6c72e5]/20 shadow" />
+                    <p class="text-xl text-gray-700 mb-4 italic">"Gracias a Nodo, nuestra marca tiene una <span
+                            class='font-bold text-[#6c72e5]'>presencia digital impactante</span>."</p>
+                    <div class="font-bold text-[#4e53be]">Dra Hitachi.</div>
+                    <div class="text-xs text-gray-400">CEO, Clinica Dental Dra.Hitachi</div>
+                </div>
+            </div>
+            <div
+                class="absolute -top-16 right-0 w-40 h-40 bg-gradient-to-br from-[#4e53be]/10 to-[#6c72e5]/10 rounded-full blur-3xl animate-pulse">
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-24 bg-white relative overflow-hidden">
+        <div class="container mx-auto px-8 text-center">
+            <div class="inline-block px-3 py-1 rounded-full bg-[#4e53be]/10 text-[#6c72e5] font-semibold mb-4">
+                PREGUNTAS FRECUENTES
+            </div>
+            <h2
+                class="text-4xl md:text-5xl font-extrabold text-center mb-10 leading-tight text-gray-900 animated-gradient-text slide-up">
+                ¿Tienes dudas? <span class="text-[#4e53be]">Resolvemos tus preguntas</span>
+            </h2>
+            <div class="max-w-2xl mx-auto space-y-8">
+                <div class="fade-in flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mt-1">
+                        <svg class="w-6 h-6 text-[#4e53be]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path d="M9 12L11 14L15 10"></path>
+                            <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-[#4e53be] mb-2 text-lg">¿Trabajan con cualquier tipo de
+                            empresa?
+                        </h3>
+                        <p class="text-gray-700 text-base">Sí, ayudamos a empresas de todos los tamaños y sectores a
+                            crecer digitalmente.</p>
+                    </div>
+                </div>
+                <div class="fade-in flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mt-1">
+                        <svg class="w-6 h-6 text-[#4e53be]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path d="M9 12L11 14L15 10"></path>
+                            <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-[#4e53be] mb-2 text-lg">¿Cuánto tiempo tardan en ver
+                            resultados?
+                        </h3>
+                        <p class="text-gray-700 text-base">Depende del servicio, pero la mayoría de nuestros
+                            clientes
+                            ven mejoras en 1-3 meses.</p>
+                    </div>
+                </div>
+                <div class="fade-in flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mt-1">
+                        <svg class="w-6 h-6 text-[#4e53be]" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path d="M9 12L11 14L15 10"></path>
+                            <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-[#4e53be] mb-2 text-lg">¿Cómo empiezo con Nodo?</h3>
+                        <p class="text-gray-700 text-base">Reserva tu consulta gratuita y te guiaremos en todo el
+                            proceso.</p>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="absolute -bottom-16 left-0 w-40 h-40 bg-gradient-to-br from-[#4e53be]/10 to-[#6c72e5]/10 rounded-full blur-3xl animate-pulse">
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL MEJORADA -->
+    <section
+        class="py-24 bg-gradient-to-br from-[#4e53be] via-[#6c72e5] to-[#4e53be] text-white text-center relative overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10">
+            <div
+                class="inline-block px-4 py-2 rounded-full bg-white/10 text-white font-semibold mb-6 tracking-wide shadow-lg">
+                ¿LISTO PARA CRECER?
+            </div>
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-6 slide-up drop-shadow-lg">
+                <span class="text-white">Da el siguiente paso con Nodo</span>
+            </h2>
+            <p class="text-xl mb-10 fade-in max-w-2xl mx-auto">
+                Agenda una consulta gratuita y descubre cómo podemos transformar tu negocio digitalmente.<br>
+                <span class="font-bold text-white drop-shadow-lg">¡El futuro de tu marca empieza hoy!</span>
+            </p>
+            <a href="https://wa.me/622494800?text=Quiero%20transformar%20mi%20negocio%20con%20Nodo" target="_blank"
+                class="btn-modern bg-[#4e53be] text-white px-10 py-5 rounded-full text-xl font-bold hover:bg-[#6c72e5] transition shadow-xl shadow-[#4e53be]/30 inline-flex items-center scale-in border-4 border-white/20">
+                <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M20.4054 3.5865C18.1607 1.33284 15.1751 0.0948748 12.0146 0.0915C5.44978 0.0915 0.0942602 5.44815 0.090926 12.0161C0.0892574 14.1228 0.6342 16.1811 1.67253 18.0009L0 24.0915L6.21284 22.4456C7.97039 23.3811 9.96767 23.875 12.0062 23.8767H12.0146C18.5778 23.8767 23.9333 18.5184 23.9366 12.0496C23.9399 8.88867 22.6518 5.8418 20.4054 3.5865ZM12.0146 21.8716H12.0079C10.235 21.8699 8.49561 21.3883 6.96453 20.4866L6.60026 20.2734L2.85716 21.2325L3.83228 17.57L3.59637 17.1924C2.60759 15.6064 2.09282 13.8344 2.09448 12.0161C2.09614 6.55286 6.55118 2.09663 12.0212 2.09663C14.6707 2.09829 17.1639 3.12617 19.0456 5.01176C20.9273 6.89734 21.9502 9.39386 21.9485 12.048C21.9469 17.5129 17.4928 21.8716 12.0146 21.8716ZM17.4638 14.5281C17.1655 14.3782 15.6927 13.6546 15.4177 13.5546C15.1427 13.4547 14.9427 13.4047 14.7428 13.7031C14.5428 14.0015 13.9679 14.6751 13.7929 14.8751C13.618 15.0751 13.443 15.1001 13.1447 14.9501C12.8464 14.8001 11.872 14.4885 10.7226 13.4631C9.82334 12.6529 9.2218 11.6625 9.04685 11.3641C8.8719 11.0658 9.03013 10.9025 9.17935 10.7508C9.31358 10.6142 9.47687 10.3925 9.62686 10.2176C9.77684 10.0426 9.82646 9.91767 9.92626 9.71768C10.026 9.5177 9.97644 9.34274 9.90184 9.19277C9.82686 9.04281 9.2293 7.56821 8.9793 6.9715C8.73659 6.3915 8.4906 6.4844 8.30728 6.4744C8.1323 6.4644 7.93236 6.4644 7.73241 6.4644C7.53247 6.4644 7.20751 6.53939 6.93254 6.83774C6.65758 7.13609 5.88339 7.85967 5.88339 9.33427C5.88339 10.8089 6.95754 12.2335 7.10753 12.4334C7.25751 12.6334 9.2218 15.6729 12.2431 16.9724C13.0356 17.3141 13.6522 17.5191 14.1321 17.674C14.9119 17.9273 15.6183 17.8907 16.1798 17.814C16.8047 17.7274 18.0117 17.0871 18.2617 16.3904C18.5117 15.6937 18.5117 15.0969 18.4367 14.9751C18.3617 14.8534 18.1618 14.7784 17.4638 14.5281Z" />
+                </svg>
+                ¡Quiero mi consulta gratuita!
+            </a>
+        </div>
+        <!-- Fondo decorativo animado -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div
+                class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-32 bg-gradient-to-r from-white/10 to-[#6c72e5]/10 rounded-full blur-3xl animate-pulse">
+            </div>
+            <div
+                class="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-br from-[#6c72e5]/20 to-[#4e53be]/10 rounded-full blur-3xl animate-pulse">
+            </div>
+            <div
+                class="absolute -bottom-16 right-0 w-40 h-40 bg-gradient-to-br from-[#4e53be]/10 to-[#6c72e5]/10 rounded-full blur-3xl animate-pulse">
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER MODERNO -->
+    <footer class="bg-[#23244a] text-white py-12 mt-0 relative z-10">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="mb-6 md:mb-0 flex items-center gap-3">
+                <img src="./img/nodedos.svg" alt="Nodo Logo" class="w-10 h-10 rounded-full bg-white p-1 shadow" />
+                <span class="text-2xl font-bold tracking-wide">Nodo</span>
+            </div>
+            <div class="flex flex-col md:flex-row gap-6 text-center md:text-left">
+                <a href="#servicios" class="hover:text-[#6c72e5] transition">Servicios</a>
+                <a href="#transformacion" class="hover:text-[#6c72e5] transition">Transformación</a>
+                <a href="#testimonios" class="hover:text-[#6c72e5] transition">Testimonios</a>
+                <a href="#faq" class="hover:text-[#6c72e5] transition">FAQ</a>
+            </div>
+            <div class="text-sm text-gray-300 text-center md:text-right">
+                <div class="mb-2">Contacto: <a href="mailto:hola@nodoamd.com"
+                        class="underline hover:text-[#6c72e5]">hola@nodoamd.com</a></div>
+                <div>WhatsApp: <a href="https://wa.me/622494800" class="underline hover:text-[#6c72e5]">622 494
+                        800</a>
+                </div>
+                <div class="mt-2">&copy; 2025 Nodo. Todos los derechos reservados.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animar todos los elementos con la clase .slide-right al hacer scroll
+        document.addEventListener("DOMContentLoaded", function () {
+            if (window.gsap && window.ScrollTrigger) {
+                gsap.utils.toArray('.slide-right').forEach(function (el) {
+                    gsap.to(el, {
+                        opacity: 1,
+                        x: 0,
+                        duration: 1,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 80%",
+                            toggleActions: "play none none none"
+                        }
+                    });
+                });
+                gsap.utils.toArray('.slide-up').forEach(function (el) {
+                    gsap.to(el, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 80%",
+                            toggleActions: "play none none none"
+                        }
+                    });
+                });
+                // Agrega animación para .fade-in
+                gsap.utils.toArray('.fade-in').forEach(function (el) {
+                    gsap.to(el, {
+                        opacity: 1,
+                        duration: 1.2,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 85%",
+                            toggleActions: "play none none none"
+                        }
+                    });
+                });
+
+
+                // Agrega animación para .scale-in
+                gsap.utils.toArray('.scale-in').forEach(function (el) {
+                    gsap.to(el, {
+                        opacity: 1,
+                        scale: 1,
+                        duration: 1.2,
+                        ease: "back.out(1.7)",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 85%",
+                            toggleActions: "play none none none"
+                        }
+                    });
+                });
+            }
+        });
+
+
+
+        // Mostrar imágenes de confianza a color al entrar en viewport (para móviles y desktop)
+        document.addEventListener("DOMContentLoaded", function () {
+            const confianza = document.querySelector('.confianza-logos');
+            if (!confianza) return;
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            confianza.classList.remove('grayscale', 'opacity-60');
+                        } else {
+                            confianza.classList.add('grayscale', 'opacity-60');
+                        }
+                    });
+                },
+                { threshold: 0.3 }
+            );
+            observer.observe(confianza);
+        });
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const palabras = ["diseño", "marketing", "web", "impresiones", "branding"];
+            const el = document.getElementById("palabra-cambia");
+            let i = 0;
+            let timeout;
+            function animateWord(next) {
+                // Sale hacia arriba y se desvanece
+                el.style.transition = "transform 0.5s cubic-bezier(.77,0,.18,1), opacity 0.4s";
+                el.style.transform = "translateY(-40%) scale(0.8) rotateX(40deg)";
+                el.style.opacity = "0";
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    el.textContent = next;
+                    // Entra desde abajo con rebote
+                    el.style.transition = "none";
+                    el.style.transform = "translateY(40%) scale(1.2) rotateX(-40deg)";
+                    el.style.opacity = "0";
+                    setTimeout(() => {
+                        el.style.transition = "transform 0.6s cubic-bezier(.77,0,.18,1), opacity 0.5s";
+                        el.style.transform = "translateY(0) scale(1) rotateX(0deg)";
+                        el.style.opacity = "1";
+                    }, 20);
+                }, 400);
+            }
+            el.style.display = "inline-block";
+            el.style.willChange = "transform, opacity";
+            setInterval(() => {
+                i = (i + 1) % palabras.length;
+                animateWord(palabras[i]);
+            }, 2000);
+        });
+    </script>
+
 </body>
 
 </html>
