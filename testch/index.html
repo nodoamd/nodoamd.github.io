@@ -563,23 +563,28 @@
                 <div class="content-grid">
                     <div class="text-card featured producto-card-blanco">
                         <div class="card-content"
-                            style="background: rgba(32, 32, 32, 0.82); box-shadow: 0 8px 32px 0 rgba(46,83,57,0.18),0 1.5px 6px 0 rgba(224,171,48,0.07); padding: 2rem 1.8rem; border: 2.5px solid #e8a238; position: relative; z-index: 2;">
+                            style="background: #f6e3c3; box-shadow: 0 8px 24px rgba(0,0,0,0.08); padding: 1.25rem 1rem; border: 2.5px solid #e8a238; position: relative; z-index: 2; border-radius: 18px 18px 0 0; line-height: 1.25;">
                             <span class="overline"
-                                style="color: #e8a238; font-size: 1.1rem; letter-spacing: 2px; text-shadow: 0 2px 8px rgba(0,0,0,0.18);">Nuestra Misión</span>
+                                style="color: #e8a238; font-size: 1rem; letter-spacing: 2px; text-shadow: 0 1px 4px rgba(0,0,0,0.08);">Nuestra
+                                Misión</span>
                             <h2 class="about-title"
-                                style="margin-bottom: 20px; font-size: 2.2rem; font-weight: 900; color: #fff; text-shadow: 0 4px 18px rgba(0,0,0,0.22), 0 1.5px 6px #e8a238; letter-spacing: 0.5px;">
-                                Llevamos Bolivia a Tu Mesa Cada Día</h2>
+                                style="margin-bottom: 10px; font-size: 1.7rem; font-weight: 900; color: #2d2210; letter-spacing: 0.2px; line-height: 1.15;">
+                                Llevamos Bolivia a tu mesa cada día</h2>
                             <p class="about-desc"
-                                style="margin-top: 0px; margin-bottom: 20px; color: #fffbe6; font-size: 1.1rem; font-weight: 500; text-shadow: 0 2px 8px rgba(0,0,0,0.18);">
-                                Desde <span style="color:#e8a238; font-weight:700;">2020</span>, traemos los sabores auténticos de Santa Cruz directamente a Barcelona. <span style="color:#e8a238; font-weight:700;">Más de 5,000 clientes</span> ya han descubierto por qué nuestras salteñas son las mejores de la ciudad.
+                                style="margin-top: 0; margin-bottom: 10px; color: #3a2a13; font-size: 1.02rem; font-weight: 500; line-height: 1.45;">
+                                Sabores auténticos de Santa Cruz en Barcelona <span
+                                    style="color:#e8a238; font-weight:800;">desde 2020</span>. <span
+                                    style="color:#e8a238; font-weight:800;">Más de 5,000 clientes</span> nos eligen por
+                                su sabor casero.
                             </p>
                             <!-- Botón integrado dentro del content -->
-                            <div class="cta-integrado" style="text-align: right;">
+                            <div class="cta-integrado" style="text-align: center;">
                                 <a href="./productos/productos.html" class="btn-ver-mas"
-                                    style="padding: 12px 25px; border: solid 1px #e8a238; display: inline-block; background: rgba(232,162,56,0.15); font-size: 0.95rem; font-weight: 600;">Ver Carta Completa</a>
+                                    style="padding: 12px 22px; border: solid 1px #e8a238; display: inline-block; background: #e8a238; color:#3a2a13; font-size: 1.05rem; font-weight: 700; border-radius: 12px; box-shadow: 0 2px 8px rgba(232,162,56,0.20);">Ver
+                                    carta completa</a>
                             </div>
                         </div>
-                        <div class="slider-container" style="border-radius: 0 !important; overflow: hidden;">
+                        <div class="slider-container" style="overflow: hidden;">
                             <div class="slider"
                                 style="display: flex; width: 300%; transform: translateX(0%); transition: transform 0.5s ease;">
                                 <div style="width: 33.333%; flex-shrink: 0;">
@@ -601,11 +606,11 @@
                             <div class="slider-controls"
                                 style="position: absolute; top: 50%; transform: translateY(-50%); left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; padding: 0 15px; pointer-events: none;">
                                 <button class="slider-arrow prev"
-                                    style="background: rgba(0,0,0,0.3); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; pointer-events: auto;">
+                                    style="background: rgba(58,42,19,0.28); border: none; color: #fff; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; pointer-events: auto; backdrop-filter: blur(2px);">
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </button>
                                 <button class="slider-arrow next"
-                                    style="background: rgba(0,0,0,0.3); border: none; color: white; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; pointer-events: auto;">
+                                    style="background: rgba(58,42,19,0.28); border: none; color: #fff; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; pointer-events: auto; backdrop-filter: blur(2px);">
                                     <i class="fa-solid fa-chevron-right"></i>
                                 </button>
                             </div>
@@ -623,8 +628,29 @@
                     </div>
                 </div>
                 <style>
+                    /* Cohesión de la tarjeta y el slider */
+                    .about-hero .producto-card-blanco {
+                        border-radius: 22px;
+                        overflow: hidden;
+                    }
+
+                    .about-hero .card-content {
+                        border-bottom: 0;
+                    }
+
+                    .about-hero .slider-container {
+                        border: 2.5px solid #e8a238;
+                        border-top: 0;
+                        border-bottom-left-radius: 18px;
+                        border-bottom-right-radius: 18px;
+                    }
+
+                    .about-hero .slider img {
+                        display: block;
+                    }
+
                     .slider-img-cuadrada {
-                        border-radius: 0 !important;
+                        border-radius: 0;
                         display: block;
                     }
 
@@ -638,33 +664,33 @@
 
                     @media (max-width: 768px) {
                         .swipe-indicator {
-                            display: block !important;
+                            display: block;
                         }
 
                         .slider-arrow {
-                            display: none !important;
+                            display: none;
                         }
 
                         .about-desc {
-                            font-size: 1rem !important;
+                            font-size: 0.95rem;
                         }
 
                         .about-title {
-                            font-size: 1.8rem !important;
+                            font-size: 1.45rem;
                         }
 
                         .slider-container {
-                            height: 350px !important;
+                            height: 300px;
                         }
                     }
 
                     @media (max-width: 480px) {
                         .slider-container {
-                            height: 280px !important;
+                            height: 240px;
                         }
 
                         .about-title {
-                            font-size: 1.5rem !important;
+                            font-size: 1.35rem;
                         }
                     }
                 </style>
@@ -761,7 +787,8 @@
                         <span class="impacto-uniq-overline">Por Qué Elegirnos</span>
                         <h2 class="impacto-uniq-section-title">Más Que Un Restaurante</h2>
                         <p class="impacto-uniq-section-desc">
-                            Al elegir La Chiquitana, no solo disfrutas la mejor comida boliviana de Barcelona - también contribuyes a un impacto positivo en comunidades de Bolivia.
+                            Al elegir La Chiquitana, no solo disfrutas la mejor comida boliviana de Barcelona - también
+                            contribuyes a un impacto positivo en comunidades de Bolivia.
                         </p>
                     </div>
 
@@ -773,7 +800,8 @@
                             </div>
                             <div class="impacto-uniq-card-content">
                                 <h3>Ingredientes Premium</h3>
-                                <p>Trabajamos directamente con <strong>150 familias</strong> productoras bolivianas para garantizar ingredientes frescos y auténticos en cada plato.</p>
+                                <p>Trabajamos directamente con <strong>150 familias</strong> productoras bolivianas para
+                                    garantizar ingredientes frescos y auténticos en cada plato.</p>
                                 <div class="impacto-uniq-card-stat">
                                     <span class="impacto-uniq-stat-number">8</span>
                                     <span class="impacto-uniq-stat-label">Regiones de Bolivia</span>
@@ -787,7 +815,8 @@
                             </div>
                             <div class="impacto-uniq-card-content">
                                 <h3>Tradición Garantizada</h3>
-                                <p>Más de <strong>5 años</strong> perfeccionando recetas familiares de 3 generaciones. Cada salteña mantiene el sabor auténtico de Santa Cruz.</p>
+                                <p>Más de <strong>5 años</strong> perfeccionando recetas familiares de 3 generaciones.
+                                    Cada salteña mantiene el sabor auténtico de Santa Cruz.</p>
                                 <div class="impacto-uniq-card-stat">
                                     <span class="impacto-uniq-stat-number">5</span>
                                     <span class="impacto-uniq-stat-label">Años en Barcelona</span>
@@ -801,7 +830,8 @@
                             </div>
                             <div class="impacto-uniq-card-content">
                                 <h3>Calidad Artesanal</h3>
-                                <p>Elaboración diaria con técnicas tradicionales y ingredientes naturales. Sin conservantes ni sabores artificiales.</p>
+                                <p>Elaboración diaria con técnicas tradicionales y ingredientes naturales. Sin
+                                    conservantes ni sabores artificiales.</p>
                                 <div class="impacto-uniq-card-stat">
                                     <span class="impacto-uniq-stat-number">100%</span>
                                     <span class="impacto-uniq-stat-label">Artesanal</span>
@@ -814,7 +844,8 @@
                     <div class="impacto-uniq-cta-container">
                         <div class="impacto-uniq-cta-content">
                             <h3>¿Listo Para Probarlo?</h3>
-                            <p>Únete a más de 5,000 barceloneses que ya han descubierto el mejor sabor boliviano de la ciudad.</p>
+                            <p>Únete a más de 5,000 barceloneses que ya han descubierto el mejor sabor boliviano de la
+                                ciudad.</p>
                             <a href="./productos/productos.html" class="impacto-uniq-cta-button">
                                 <span>Ver Carta y Precios</span>
                                 <i class="fa-solid fa-arrow-right"></i>
@@ -833,6 +864,7 @@
                     position: relative;
                     overflow: hidden;
                 }
+
                 .impacto-uniq-hero::before {
                     content: '';
                     position: absolute;
@@ -844,17 +876,20 @@
                         radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
                     pointer-events: none;
                 }
+
                 .impacto-uniq-content-wrapper {
                     max-width: 1200px;
                     margin: 0 auto;
                     position: relative;
                     z-index: 1;
                 }
+
                 /* Header */
                 .impacto-uniq-section-header {
                     text-align: center;
                     margin-bottom: 3rem;
                 }
+
                 .impacto-uniq-overline {
                     display: inline-block;
                     color: #ffa928;
@@ -864,6 +899,7 @@
                     letter-spacing: 2px;
                     margin-bottom: 0.5rem;
                 }
+
                 .impacto-uniq-section-title {
                     color: #ffffff;
                     font-size: 2rem;
@@ -871,6 +907,7 @@
                     margin-bottom: 1rem;
                     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 }
+
                 .impacto-uniq-section-desc {
                     color: rgba(255, 255, 255, 0.9);
                     font-size: 1rem;
@@ -878,12 +915,14 @@
                     margin: 0 auto;
                     line-height: 1.6;
                 }
+
                 /* Cards */
                 .impacto-uniq-cards {
                     display: grid;
                     gap: 1.5rem;
                     margin-bottom: 3rem;
                 }
+
                 .impacto-uniq-card {
                     background: rgba(255, 255, 255, 0.95);
                     backdrop-filter: blur(10px);
@@ -895,6 +934,7 @@
                     position: relative;
                     overflow: hidden;
                 }
+
                 .impacto-uniq-card::before {
                     content: '';
                     position: absolute;
@@ -904,10 +944,12 @@
                     height: 4px;
                     background: linear-gradient(90deg, #e8a238, #ffc062);
                 }
+
                 .impacto-uniq-card:hover {
                     transform: translateY(-5px);
                     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
                 }
+
                 .impacto-uniq-card-icon {
                     width: 64px;
                     height: 64px;
@@ -919,22 +961,26 @@
                     margin-bottom: 1.5rem;
                     box-shadow: 0 8px 25px rgba(232, 162, 56, 0.3);
                 }
+
                 .impacto-uniq-card-icon i {
                     font-size: 1.5rem;
                     color: white;
                 }
+
                 .impacto-uniq-card-content h3 {
                     color: #333;
                     font-size: 1.25rem;
                     font-weight: 700;
                     margin-bottom: 1rem;
                 }
+
                 .impacto-uniq-card-content p {
                     color: #666;
                     font-size: 0.95rem;
                     line-height: 1.6;
                     margin-bottom: 1.5rem;
                 }
+
                 .impacto-uniq-card-stat {
                     display: flex;
                     align-items: baseline;
@@ -944,12 +990,14 @@
                     border-radius: 12px;
                     border-left: 4px solid #e8a238;
                 }
+
                 .impacto-uniq-stat-number {
                     font-size: 2rem;
                     font-weight: 900;
                     color: #e8a238;
                     line-height: 1;
                 }
+
                 .impacto-uniq-stat-label {
                     font-size: 0.875rem;
                     font-weight: 600;
@@ -957,11 +1005,13 @@
                     text-transform: uppercase;
                     letter-spacing: 0.5px;
                 }
+
                 /* CTA */
                 .impacto-uniq-cta-container {
                     display: flex;
                     justify-content: center;
                 }
+
                 .impacto-uniq-cta-content {
                     background: rgba(255, 255, 255, 0.1);
                     backdrop-filter: blur(10px);
@@ -972,18 +1022,21 @@
                     max-width: 500px;
                     width: 100%;
                 }
+
                 .impacto-uniq-cta-content h3 {
                     color: white;
                     font-size: 1.5rem;
                     font-weight: 700;
                     margin-bottom: 0.5rem;
                 }
+
                 .impacto-uniq-cta-content p {
                     color: rgba(255, 255, 255, 0.8);
                     font-size: 1rem;
                     margin-bottom: 1.5rem;
                     line-height: 1.5;
                 }
+
                 .impacto-uniq-cta-button {
                     display: inline-flex;
                     align-items: center;
@@ -998,46 +1051,58 @@
                     box-shadow: 0 8px 25px rgba(232, 162, 56, 0.4);
                     transition: all 0.3s ease;
                 }
+
                 .impacto-uniq-cta-button:hover {
                     transform: translateY(-2px);
                     box-shadow: 0 12px 35px rgba(232, 162, 56, 0.5);
                 }
+
                 .impacto-uniq-cta-button i {
                     transition: transform 0.3s ease;
                 }
+
                 .impacto-uniq-cta-button:hover i {
                     transform: translateX(3px);
                 }
+
                 /* Tablet */
                 @media (min-width: 768px) {
                     .impacto-uniq-hero {
                         padding: 4rem 2rem;
                     }
+
                     .impacto-uniq-section-title {
                         font-size: 2.5rem;
                     }
+
                     .impacto-uniq-section-desc {
                         font-size: 1.125rem;
                     }
+
                     .impacto-uniq-cards {
                         grid-template-columns: repeat(2, 1fr);
                         gap: 2rem;
                     }
+
                     .impacto-uniq-card {
                         padding: 2.5rem;
                     }
                 }
+
                 /* Desktop */
                 @media (min-width: 1024px) {
                     .impacto-uniq-hero {
                         padding: 5rem 2rem;
                     }
+
                     .impacto-uniq-section-title {
                         font-size: 3rem;
                     }
+
                     .impacto-uniq-cards {
                         grid-template-columns: repeat(3, 1fr);
                     }
+
                     .impacto-uniq-cta-content {
                         padding: 3rem;
                     }
@@ -1143,15 +1208,14 @@
 
 
 
-                        <a href="./productos/productos.html" target="_self"
-                            class="btn-ver-mas"
+                        <a href="./productos/productos.html" target="_self" class="btn-ver-mas"
                             style="display: inline-block; margin-top: 40px; border: none; color: #fff; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; box-shadow: 0 10px 25px rgba(232,162,56,0.3);">
                             ¡Quiero Probar También!
                         </a>
-                        
+
                         <div style="margin-top: 20px;">
-                            <a href="https://es.restaurantguru.com/La-Chiquitana-LHospitalet-de-Llobregat" target="_blank"
-                                style="color: #e8a238; text-decoration: underline; font-size: 0.9rem;">
+                            <a href="https://es.restaurantguru.com/La-Chiquitana-LHospitalet-de-Llobregat"
+                                target="_blank" style="color: #e8a238; text-decoration: underline; font-size: 0.9rem;">
                                 Ver todas las reseñas en Google
                             </a>
                         </div>

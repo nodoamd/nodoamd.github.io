@@ -165,15 +165,15 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
 
 // Funcionalidad de deslizamiento para el slider
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const slider = document.querySelector('.slider');
-    
+
     // Verificar si existe el slider antes de continuar
     if (!slider) {
         console.log("No se encontró el elemento slider");
         return;
     }
-    
+
     const slides = document.querySelectorAll('.slider > div');
     const dots = document.querySelectorAll('.slider-dot');
     const prevBtn = document.querySelector('.slider-arrow.prev');
@@ -188,11 +188,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function showSlide(index) {
         // Comprobar que el índice es válido
         if (slides.length === 0) return;
-        
+
         // Asegurarnos de que el índice está dentro del rango válido
         if (index < 0) index = slides.length - 1;
         if (index >= slides.length) index = 0;
-        
+
         currentSlide = index;
         slider.style.transform = `translateX(-${currentSlide * 33.333}%)`;
 
@@ -231,10 +231,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function startAutoplay() {
         // No iniciar autoplay si no hay suficientes slides
         if (slides.length <= 1) return;
-        
+
         // Detener cualquier intervalo existente
         stopAutoplay();
-        
+
         autoplayInterval = setInterval(() => {
             nextSlide();
         }, 5000); // Cambiar cada 5 segundos
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
         isDragging = false;
         startAutoplay();
     }, { passive: true });
-    
+
     // Event listeners para mouse (escritorio)
     slider.addEventListener('mousedown', (e) => {
         startX = e.clientX;
@@ -336,7 +336,7 @@ document.addEventListener('DOMContentLoaded', function() {
     slider.addEventListener('dragstart', (e) => {
         e.preventDefault();
     });
-    
+
     // Comprobar el número de slides
     if (slides.length > 0) {
         console.log(`Número de slides encontrados: ${slides.length}`);
