@@ -32,6 +32,66 @@
     .logo {
       letter-spacing: 0.05em;
     }
+
+    /* Indicador de scroll */
+    .scroll-indicator {
+      position: fixed;
+      left: 50%;
+      bottom: 10%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.2rem;
+      color: #888;
+      opacity: 0.85;
+      z-index: 20;
+      pointer-events: none;
+      animation: fadein 1.2s;
+    }
+
+    .scroll-indicator .arrow {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 4px;
+      animation: bounce 1.2s infinite;
+      stroke: #888;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    @keyframes bounce {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(10px);
+      }
+    }
+
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 0.85;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .scroll-indicator {
+        font-size: 1rem;
+        bottom: 10%;
+      }
+
+      .scroll-indicator .arrow {
+        width: 18px;
+        height: 18px;
+      }
+    }
   </style>
 
 </head>
@@ -144,6 +204,13 @@
     </div>
   </main>
 
+  <div class="scroll-indicator">
+    <svg class="arrow" viewBox="0 0 24 24">
+      <path d="M12 5v14M12 19l-6-6M12 19l6-6" />
+    </svg>
+    <span>Desliza hacia abajo</span>
+  </div>
+
   <!-- partial -->
   <script src="js/gsap.min.js"></script>
   <script src="js/SplitText.min.js"></script>
@@ -151,6 +218,17 @@
   <script src="js/ScrollSmoother.min.js"></script>
   <script src="js/chroma.min.js"></script>
   <script src="./script.js"></script>
+  <script>
+    // Ocultar indicador al hacer scroll
+    window.addEventListener('scroll', function () {
+      const indicator = document.querySelector('.scroll-indicator');
+      if (window.scrollY > 40) {
+        indicator.style.opacity = '0';
+      } else {
+        indicator.style.opacity = '0.85';
+      }
+    });
+  </script>
 
 
 
