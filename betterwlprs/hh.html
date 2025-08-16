@@ -1,584 +1,893 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BetterWLPRS | Visual Experiences for Games & Films</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>BetterWLPRS - Comunidad de Wallpapers Gaming</title>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>BetterWLPRS</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#hero" class="nav-link">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#gallery" class="nav-link">Galería</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">Acerca</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#downloads" class="nav-link">Descargas</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#community" class="nav-link">Comunidad</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Original Parallax -->
+    <div id="wrapper">
+        <div id="content">
+            <section id="hero">
+                <h1 class="text">BetterWLPRS</h1>
+                <h1 aria-hidden="true" class="text outline-text">BetterWLPRS</h1>
+                <h1 aria-hidden="true" class="text filter-text">BetterWLPRS</h1>
+                
+                <section class="images scroll">
+                    <img data-speed="0.8" src="./img/videowlprs/discoelysiumstart.gif" alt="Disco Elysium Wallpaper">
+                    <img data-speed="0.9" src="./img/spidersky.gif" alt="Spider Sky Animation">
+                    <img data-speed="1" src="./img/samsatori.gif" alt="Samsatori Wallpaper">
+                    <img data-speed="1.1" src="./img/webp Watch Dogs 2/webp Watch Dogs 2-webp Watch Dogs 2-1img_0702122130503_8.webp" alt="Watch Dogs 2">
+                    <img data-speed="0.9" src="./img/marcussittedahh.gif" alt="Marcus Sitting">
+                    <img data-speed="1.2" src="./img/sanfracampview.jpg" alt="San Francisco View">
+                    <img data-speed="0.8" src="./img/webp Battlefront 2/bf2pinky.webp" alt="Battlefront 2">
+                    <img data-speed="1" src="./img/barman.png" alt="Barman Wallpaper">
+                </section>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="content-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Acerca de BetterWLPRS</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p>Bienvenido a BetterWLPRS, la comunidad definitiva para los amantes de los wallpapers gaming en resolución 2K. Aquí encontrarás una colección curada de las mejores capturas in-game, fondos de pantalla artísticos y contenido visual de la más alta calidad.</p>
+                            <p>Nuestra misión es proporcionar a la comunidad gaming los wallpapers más impresionantes, todos disponibles para descarga gratuita en resolución 2K y superiores.</p>
+                        </div>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <span class="stat-number">2000+</span>
+                                <span class="stat-label">Wallpapers</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">Juegos</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">10K+</span>
+                                <span class="stat-label">Usuarios</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gallery Section -->
+            <section id="gallery" class="content-section gallery-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Galería Destacada</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    <div class="gallery-grid">
+                        <div class="gallery-item" data-category="cyberpunk">
+                            <div class="gallery-image">
+                                <div class="placeholder-img" style="background: linear-gradient(45deg, #ff006e, #8338ec);"></div>
+                            </div>
+                            <div class="gallery-info">
+                                <h3>Cyberpunk 2077</h3>
+                                <span class="gallery-resolution">2560x1440</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item" data-category="fantasy">
+                            <div class="gallery-image">
+                                <div class="placeholder-img" style="background: linear-gradient(45deg, #f72585, #4895ef);"></div>
+                            </div>
+                            <div class="gallery-info">
+                                <h3>The Witcher 3</h3>
+                                <span class="gallery-resolution">2560x1440</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item" data-category="action">
+                            <div class="gallery-image">
+                                <div class="placeholder-img" style="background: linear-gradient(45deg, #43aa8b, #f8961e);"></div>
+                            </div>
+                            <div class="gallery-info">
+                                <h3>Red Dead Redemption 2</h3>
+                                <span class="gallery-resolution">2560x1440</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item" data-category="space">
+                            <div class="gallery-image">
+                                <div class="placeholder-img" style="background: linear-gradient(45deg, #7209b7, #560bad);"></div>
+                            </div>
+                            <div class="gallery-info">
+                                <h3>No Man's Sky</h3>
+                                <span class="gallery-resolution">2560x1440</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item" data-category="horror">
+                            <div class="gallery-image">
+                                <div class="placeholder-img" style="background: linear-gradient(45deg, #d90429, #2d1b69);"></div>
+                            </div>
+                            <div class="gallery-info">
+                                <h3>Resident Evil 4</h3>
+                                <span class="gallery-resolution">2560x1440</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item" data-category="racing">
+                            <div class="gallery-image">
+                                <div class="placeholder-img" style="background: linear-gradient(45deg, #f77f00, #fcbf49);"></div>
+                            </div>
+                            <div class="gallery-info">
+                                <h3>Forza Horizon 5</h3>
+                                <span class="gallery-resolution">2560x1440</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Downloads Section -->
+            <section id="downloads" class="content-section downloads-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Descargas Populares</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    <div class="downloads-content">
+                        <div class="download-categories">
+                            <button class="category-btn active" data-category="all">Todos</button>
+                            <button class="category-btn" data-category="new">Nuevos</button>
+                            <button class="category-btn" data-category="popular">Populares</button>
+                            <button class="category-btn" data-category="featured">Destacados</button>
+                        </div>
+                        <div class="downloads-grid">
+                            <div class="download-item">
+                                <div class="download-preview">
+                                    <div class="placeholder-img" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                                    <div class="download-overlay">
+                                        <button class="download-btn">
+                                            <span>⬇</span>
+                                            Descargar 2K
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="download-info">
+                                    <h4>Landscape Cyberpunk</h4>
+                                    <span class="download-stats">1.2k descargas</span>
+                                </div>
+                            </div>
+                            <div class="download-item">
+                                <div class="download-preview">
+                                    <div class="placeholder-img" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                                    <div class="download-overlay">
+                                        <button class="download-btn">
+                                            <span>⬇</span>
+                                            Descargar 2K
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="download-info">
+                                    <h4>Neon Night City</h4>
+                                    <span class="download-stats">950 descargas</span>
+                                </div>
+                            </div>
+                            <div class="download-item">
+                                <div class="download-preview">
+                                    <div class="placeholder-img" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                                    <div class="download-overlay">
+                                        <button class="download-btn">
+                                            <span>⬇</span>
+                                            Descargar 2K
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="download-info">
+                                    <h4>Ocean Depths</h4>
+                                    <span class="download-stats">2.1k descargas</span>
+                                </div>
+                            </div>
+                            <div class="download-item">
+                                <div class="download-preview">
+                                    <div class="placeholder-img" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                                    <div class="download-overlay">
+                                        <button class="download-btn">
+                                            <span>⬇</span>
+                                            Descargar 2K
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="download-info">
+                                    <h4>Sunset Gaming</h4>
+                                    <span class="download-stats">1.8k descargas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Community Section -->
+            <section id="community" class="content-section community-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Únete a la Comunidad</h2>
+                        <div class="section-line"></div>
+                    </div>
+                    <div class="community-content">
+                        <div class="community-text">
+                            <h3>Conecta con otros gamers</h3>
+                            <p>Únete a nuestra comunidad activa de creadores y entusiastas de wallpapers gaming. Comparte tus creaciones, descubre contenido nuevo y conecta con personas que comparten tu pasión por el gaming y el arte digital.</p>
+                        </div>
+                        <div class="community-links">
+                            <a href="#" class="community-link discord">
+                                <span class="link-icon">💬</span>
+                                <div class="link-info">
+                                    <h4>Discord</h4>
+                                    <p>Chat en tiempo real</p>
+                                </div>
+                            </a>
+                            <a href="#" class="community-link reddit">
+                                <span class="link-icon">📱</span>
+                                <div class="link-info">
+                                    <h4>Reddit</h4>
+                                    <p>Discusiones y feedback</p>
+                                </div>
+                            </a>
+                            <a href="#" class="community-link twitter">
+                                <span class="link-icon">🐦</span>
+                                <div class="link-info">
+                                    <h4>Twitter</h4>
+                                    <p>Últimas noticias</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-section">
+                            <h3>BetterWLPRS</h3>
+                            <p>La mejor colección de wallpapers gaming en 2K. Descarga gratis y mejora tu setup.</p>
+                        </div>
+                        <div class="footer-section">
+                            <h4>Enlaces Rápidos</h4>
+                            <ul>
+                                <li><a href="#hero">Inicio</a></li>
+                                <li><a href="#gallery">Galería</a></li>
+                                <li><a href="#downloads">Descargas</a></li>
+                                <li><a href="#community">Comunidad</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-section">
+                            <h4>Resoluciones</h4>
+                            <ul>
+                                <li>2560x1440 (2K)</li>
+                                <li>3840x2160 (4K)</li>
+                                <li>1920x1080 (FHD)</li>
+                                <li>Ultrawide</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; 2025 BetterWLPRS. Todos los derechos reservados.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="./gsap/gsap.min.js"></script>
+    <script src="./gsap/ScrollTrigger.min.js"></script>
+    <script src="./gsap/ScrollSmoother.min.js"></script>
+    <script src="./gsap/DrawSVGPlugin.min.js"></script>
+
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#0F172A',
-                        secondary: '#1E293B',
-                        accent: '#7C3AED',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+        gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+        
+        let skewSetter = gsap.quickTo("img", "skewY"), // rápido
+            clamp = gsap.utils.clamp(-20, 20); // límite de 20 grados.
+
+        ScrollSmoother.create({
+            wrapper: "#wrapper",
+            content: "#content",
+            smooth: 2,
+            speed: 3,
+            effects: true,
+            onUpdate: self => skewSetter(clamp(self.getVelocity() / -50)),
+            onStop: () => skewSetter(0)
+        });
+
+        
+
+        // Asegurar que las imágenes tengan el efecto parallax
+        gsap.utils.toArray(".images img").forEach((img) => {
+            let speed = img.getAttribute("data-speed");
+            gsap.to(img, {
+                yPercent: -50 * speed,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: img,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
                 }
-            }
-        }
+            });
+        });
     </script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .text {
+        position: fixed;
+        top: 50vh;
+        font-family: termina, sans-serif;
+        font-weight: 900;
+        font-style: normal;
+        font-size: 8vw;
+        text-align: center;
+        width: 100%;
+        transform: translateY(-100%);
+        z-index: 2;
+        color: white;
+        -webkit-text-stroke-width: 1.5px;
+        -webkit-text-stroke-color: white;
+        z-index: -2;
+    }
 
         body {
-            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: #1a1721;
+            color: white;
+            overscroll-behavior: none;
+            margin: 0;
+            padding: 0;
             overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
         }
 
-        .hero-video {
+        /* Navigation Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 23, 33, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #804691, #ff006e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #804691;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(45deg, #804691, #ff006e);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section - Original Styles Preserved */
+        #hero {
+            position: relative;
+            height: 200vh; /* Aumentado para que el parallax dure más */
+        }
+
+        #wrapper {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        #content {
+            overflow: visible;
+            width: 100%;
+        }
+
+        .text {
+            position: absolute;
+            top: 50vh;
+            font-family: termina, sans-serif;
+            font-weight: 900;
+            font-style: normal;
+            font-size: 8vw;
+            text-align: center;
+            width: 100%;
+            transform: translateY(-100%);
+            z-index: 5; /* Aumentado para que esté por encima de las imágenes */
+            color: white;
+            -webkit-text-stroke-width: 1.5px;
+            -webkit-text-stroke-color: white;
+        }
+
+        .outline-text {
+            color: transparent;
+            -webkit-text-stroke-width: 1.5px;
+            -webkit-text-stroke-color: white;
+            z-index: 6; /* Aumentado */
+        }
+
+        .filter-text {
+            mix-blend-mode: screen;
+            color: #804691;
+            z-index: 7; /* Aumentado */
+        }
+
+        .images {
+            padding-top: 60vh;
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 200vh; /* Aumentado para que dure más */
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(20, 2%);
+            grid-template-rows: repeat(40, 3%); /* Aumentado para más tiempo */
+            justify-content: center;
+            justify-items: center;
+            align-items: center;
+            z-index: 1;
+            object-fit: cover;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        img:nth-child(1) { grid-area: 1/1/6/8; }
+        img:nth-child(2) { grid-area: 3/12/8/20; }
+        img:nth-child(3) { grid-area: 9/5/13/15; }
+        img:nth-child(4) { grid-area: 14/1/18/8; }
+        img:nth-child(5) { grid-area: 16/12/20/19; }
+        img:nth-child(6) { grid-area: 20/2/25/9; }
+        img:nth-child(7) { grid-area: 22/11/24/20; }
+        img:nth-child(8) { grid-area: 26/5/30/15; }
+
+        /* Content Sections */
+        .content-section {
+            position: relative;
+            z-index: 10; /* Reducido para que funcione correctamente */
+            background: #1a1721;
+            padding: 5rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #804691, #ff006e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-line {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #804691, #ff006e);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #b8b9ba;
+        }
+
+        .stats {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #804691;
+        }
+
+        .stat-label {
+            color: #b8b9ba;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            background: linear-gradient(135deg, rgba(128, 70, 145, 0.1) 0%, rgba(255, 0, 110, 0.1) 100%);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(128, 70, 145, 0.3);
+        }
+
+        .gallery-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .placeholder-img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .gallery-info {
+            padding: 1.5rem;
+        }
+
+        .gallery-info h3 {
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .gallery-resolution {
+            color: #804691;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* Downloads Section */
+        .downloads-section {
+            background: #151218;
+        }
+
+        .download-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn.active,
+        .category-btn:hover {
+            background: linear-gradient(45deg, #804691, #ff006e);
+            border-color: transparent;
+        }
+
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .download-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .download-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .download-preview {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .download-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            opacity: 0.3;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .image-hover {
-            transition: all 0.3s ease;
+        .download-item:hover .download-overlay {
+            opacity: 1;
         }
 
-        .image-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        .download-btn {
+            background: linear-gradient(45deg, #804691, #ff006e);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.2s ease;
         }
 
-        #gallery img {
-            transition: transform 0.5s ease;
-        }
-
-        #gallery img:hover {
+        .download-btn:hover {
             transform: scale(1.05);
         }
 
-        spline-viewer {
-            border-radius: 0.75rem;
-            background: transparent;
-            transition: box-shadow 0.3s, transform 0.3s;
-            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.25);
+        .download-info {
+            padding: 1.5rem;
         }
 
-        .image-hover:hover spline-viewer {
-            transform: translateY(-12px) scale(1.04);
-            box-shadow: 0 25px 50px -12px rgba(124, 58, 237, 0.4);
+        .download-info h4 {
+            margin-bottom: 0.5rem;
+            color: white;
         }
 
-        /* Animación flotante */
-        #device-viewer {
-            animation: float 3s ease-in-out infinite;
+        .download-stats {
+            color: #b8b9ba;
+            font-size: 0.9rem;
         }
 
-        @keyframes float {
+        /* Community Section */
+        .community-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
 
-            0%,
-            100% {
-                transform: translateY(0);
-            }
+        .community-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
 
-            50% {
-                transform: translateY(-12px);
-            }
+        .community-text p {
+            color: #b8b9ba;
+            font-size: 1.1rem;
+        }
+
+        .community-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .community-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .community-link:hover {
+            background: rgba(128, 70, 145, 0.2);
+            transform: translateX(10px);
+        }
+
+        .link-icon {
+            font-size: 2rem;
+        }
+
+        .link-info h4 {
+            margin-bottom: 0.25rem;
+        }
+
+        .link-info p {
+            color: #b8b9ba;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f0d14;
+            padding: 3rem 0 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-section h3 {
+            background: linear-gradient(45deg, #804691, #ff006e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-section p {
+            color: #b8b9ba;
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #b8b9ba;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #804691;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
     </style>
-</head>
-
-<body class="bg-primary text-gray-100">
-    <!-- Video Background -->
-    <video autoplay muted loop class="hero-video">
-        <source src="https://streamable.com/e/y6zdsr?autoplay=1" type="video/mp4">
-    </video>
-
-    <!-- Header -->
-    <header class="fixed w-full bg-primary/80 backdrop-blur-md z-50 border-b border-secondary/50">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <span
-                        class="text-2xl font-bold bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent">BETTERWLPRS</span>
-                </div>
-
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#home" class="text-gray-300 hover:text-white transition-colors font-medium">Home</a>
-                    <a href="#about" class="text-gray-300 hover:text-white transition-colors font-medium">About</a>
-                    <a href="#work" class="text-gray-300 hover:text-white transition-colors font-medium">Our Work</a>
-                    <a href="#contact" class="text-gray-300 hover:text-white transition-colors font-medium">Contact</a>
-                </nav>
-
-                <div class="flex items-center space-x-4">
-                    <button class="md:hidden text-gray-300 hover:text-white">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                    <button
-                        class="hidden md:block bg-accent hover:bg-purple-700 text-white px-6 py-2 rounded-full font-medium transition-colors">
-                        Get Started
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex flex-col md:flex-row items-center pt-24">
-        <div class="container mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <!-- Mobile: Título por delante y debajo del visor, Desktop: layout original -->
-            <div class="order-1 flex flex-col items-center md:order-2 md:col-span-1 w-full">
-                <div class="relative w-full flex justify-center mb-8 md:mb-0">
-                    <div
-                        class="absolute -top-6 -left-2 md:-top-8 md:-left-8 w-full h-full border-2 border-accent rounded-xl pointer-events-none">
-                    </div>
-                    <div class="relative bg-gradient-to-br from-secondary to-primary rounded-xl overflow-hidden shadow-2xl image-hover transition-transform duration-300"
-                        style="width:100%;max-width:400px;">
-                        <!-- Spline Viewer -->
-                        <script type="module"
-                            src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
-                        <spline-viewer id="device-viewer"
-                            url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
-                            style="width: 100%; height: 300px; border-radius: 0.75rem; background: transparent;"></spline-viewer>
-                    </div>
-                </div>
-            </div>
-            <div class="order-2 w-full text-center md:text-left md:order-1 md:col-span-1 mt-2 relative"
-                style="margin-top: -120px;">
-                <h1 class="text-4xl md:text-5xl font-bold mb-6 relative z-[999] md:static md:z-auto">
-                    <span class="bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent">Mejores
-                        Fondos de Pantalla</span> para todos tus dispositivos.
-                </h1>
-                <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto md:mx-0 relative z-[999] md:static md:z-auto">
-                    Capturamos fondos de pantalla con mimo y cariño para que cada vez que enciendas tu dispositivo veas
-                    algo que te alegre, te aliente o simplemente te guste.
-                </p>
-                <button
-                    class="bg-accent hover:bg-purple-700 text-white px-8 py-3 rounded-full font-medium transition-colors relative z-[999] md:static md:z-auto">
-                    Explora nuestro trabajo
-                </button>
-            </div>
-
-            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <a href="#about" class="text-gray-400 hover:text-white">
-                    <i class="fas fa-chevron-down text-2xl"></i>
-                </a>
-            </div>
-            <script>
-                // Demo: Cambiar url del visor según selección (simulado)
-                document.addEventListener('DOMContentLoaded', function () {
-                    const viewer = document.getElementById('device-viewer');
-                    const deviceSelect = document.getElementById('device-select');
-                    const wallpaperSelect = document.getElementById('wallpaper-select');
-                    // Demo: Cambia el url del visor (deberías tener diferentes .splinecode para cada dispositivo/fondo)
-                    deviceSelect.addEventListener('change', function () {
-                        // Simulación: cambia el url según dispositivo
-                        if (deviceSelect.value === 'steamdeck') {
-                            viewer.setAttribute('url', 'https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode');
-                        } else if (deviceSelect.value === 'phone') {
-                            viewer.setAttribute('url', 'https://prod.spline.design/your-phone-scene/scene.splinecode');
-                        } else if (deviceSelect.value === 'desktop') {
-                            viewer.setAttribute('url', 'https://prod.spline.design/your-desktop-scene/scene.splinecode');
-                        }
-                    });
-                    wallpaperSelect.addEventListener('change', function () {
-                        // Simulación: cambia el url según fondo (deberías tener diferentes fondos en Spline)
-                        // Aquí solo cambia el fondo si el dispositivo es SteamDeck
-                        if (deviceSelect.value === 'steamdeck') {
-                            if (wallpaperSelect.value === 'wall1') {
-                                viewer.setAttribute('url', 'https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode');
-                            } else if (wallpaperSelect.value === 'wall2') {
-                                viewer.setAttribute('url', 'https://prod.spline.design/your-steamdeck-wall2/scene.splinecode');
-                            } else if (wallpaperSelect.value === 'wall3') {
-                                viewer.setAttribute('url', 'https://prod.spline.design/your-steamdeck-wall3/scene.splinecode');
-                            }
-                        }
-                        // Repite lógica para otros dispositivos si tienes más escenas
-                    });
-                });
-            </script>
-    </section>
-
-
-    <section id="destacados" class="py-20">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-center gradient-text">Wallpapers Destacados</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <img src="./img/samsittedahh.gif"
-                    class="rounded-xl shadow-lg hover:scale-105 transition-all duration-300" alt="Wallpaper Animado" />
-                <img src="./img/marcussittedahh.gif"
-                    class="rounded-xl shadow-lg hover:scale-105 transition-all duration-300" alt="Wallpaper 1" />
-                <img src="./img/samsatori.gif" class="rounded-xl shadow-lg hover:scale-105 transition-all duration-300"
-                    alt="Wallpaper 2" />
-                <img src="./img/thelongdarkwolfs.png"
-                    class="rounded-xl shadow-lg hover:scale-105 transition-all duration-300" alt="Wallpaper 3" />
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-secondary">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    <span class="bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent">Who We
-                        Are</span>
-                </h2>
-                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
-                    A collective of visual artists pushing the boundaries of digital experiences
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div
-                    class="bg-primary/50 p-8 rounded-xl border border-secondary hover:border-accent transition-all duration-300">
-                    <div class="text-accent text-4xl mb-4">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Innovative Vision</h3>
-                    <p class="text-gray-300">
-                        We combine cutting-edge technology with artistic vision to create visuals that stand out in
-                        competitive markets.
-                    </p>
-                </div>
-
-                <div
-                    class="bg-primary/50 p-8 rounded-xl border border-secondary hover:border-accent transition-all duration-300">
-                    <div class="text-accent text-4xl mb-4">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Game Specialists</h3>
-                    <p class="text-gray-300">
-                        From AAA titles to indie gems, we elevate game visuals with optimized high-quality assets and
-                        effects.
-                    </p>
-                </div>
-
-                <div
-                    class="bg-primary/50 p-8 rounded-xl border border-secondary hover:border-accent transition-all duration-300">
-                    <div class="text-accent text-4xl mb-4">
-                        <i class="fas fa-film"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Film Production</h3>
-                    <p class="text-gray-300">
-                        We provide VFX, matte paintings, and post-production services for films that demand visual
-                        excellence.
-                    </p>
-                </div>
-            </div>
-
-            <div class="mt-16 grid md:grid-cols-12 gap-8 items-center">
-                <div class="md:col-span-5">
-                    <div class="relative">
-                        <div class="absolute -top-4 -left-4 w-full h-full border-2 border-accent rounded-xl"></div>
-                        <div class="relative">
-                            <iframe src="https://streamable.com/e/y6zdsr?autoplay=1" class="rounded-xl w-full h-full"
-                                frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
-                            </iframe>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="md:col-span-7">
-                    <h3 class="text-2xl font-bold mb-4">Our Philosophy</h3>
-                    <p class="text-gray-300 mb-6">
-                        At BetterWLPRS, we believe that visual storytelling should be as immersive as the narrative
-                        itself. Our team of artists, designers, and technical experts collaborate to create visuals that
-                        enhance the emotional impact of every project.
-                    </p>
-                    <p class="text-gray-300 mb-8">
-                        With over a decade of combined experience in the gaming and film industries, we've developed
-                        workflows that balance artistic vision with technical constraints, delivering optimized assets
-                        without compromising on quality.
-                    </p>
-                    <button
-                        class="border border-accent text-accent hover:bg-accent/10 px-8 py-3 rounded-full font-medium transition-colors">
-                        Meet Our Team
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="work" class="py-20 bg-primary">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    <span class="bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent">Our
-                        Portfolio</span>
-                </h2>
-                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
-                    A showcase of our work across game development and film production
-                </p>
-            </div>
-
-            <div id="gallery" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="relative group overflow-hidden rounded-xl">
-                    <img src="./img/marcusittingfocused.jpg"
-                        alt="Sci-fi video game environment with futuristic cityscape and flying vehicles, neon lighting"
-                        class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <h3 class="text-xl font-bold mb-1">Neon Frontier</h3>
-                            <p class="text-gray-300 text-sm">Open-world RPG Environment</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative group overflow-hidden rounded-xl">
-                    <img src="https://placehold.co/800x600"
-                        alt="Fantasy game character with detailed armor casting magic spells, cinematic composition"
-                        class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <h3 class="text-xl font-bold mb-1">Arcane Warriors</h3>
-                            <p class="text-gray-300 text-sm">Character Design & Animation</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative group overflow-hidden rounded-xl">
-                    <img src="https://placehold.co/800x600"
-                        alt="Film still showing dramatic sci-fi battle sequence with spaceships and explosive visual effects"
-                        class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <h3 class="text-xl font-bold mb-1">Stellar Conflict</h3>
-                            <p class="text-gray-300 text-sm">Film VFX Sequence</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative group overflow-hidden rounded-xl">
-                    <img src="https://placehold.co/800x600"
-                        alt="Horror game environment with atmospheric lighting and decaying industrial setting"
-                        class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <h3 class="text-xl font-bold mb-1">Abandoned Complex</h3>
-                            <p class="text-gray-300 text-sm">Environment Design</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative group overflow-hidden rounded-xl">
-                    <img src="https://placehold.co/800x600"
-                        alt="Post-apocalyptic game weapon designs with intricate mechanical details and weathering"
-                        class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <h3 class="text-xl font-bold mb-1">Wasteland Arsenal</h3>
-                            <p class="text-gray-300 text-sm">Prop Design Collection</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="relative group overflow-hidden rounded-xl">
-                    <img src="https://placehold.co/800x600"
-                        alt="Fantasy film creature design concept showing detailed monster with organic textures and dynamic pose"
-                        class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                        <div>
-                            <h3 class="text-xl font-bold mb-1">Ancient Guardian</h3>
-                            <p class="text-gray-300 text-sm">Creature Design</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-12">
-                <button
-                    class="border border-accent text-accent hover:bg-accent/10 px-8 py-3 rounded-full font-medium transition-colors">
-                    View Full Portfolio
-                </button>
-            </div>
-        </div>
-    </section>
-    <!-- 4K Upgrade Section -->
-    <section class="py-20 bg-gradient-to-r from-accent to-accent-light">
-        <div class="container mx-auto px-4 text-center">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6">
-                    Upgrade to 4K Quality
-                </h2>
-                <p class="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
-                    Experience your wallpapers in stunning 4K resolution. One-time payment gives you access to all
-                    current and future 4K wallpapers.
-                </p>
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-8 max-w-md mx-auto">
-                    <div class="text-6xl font-bold mb-2">$2.99</div>
-                    <div class="text-purple-100 mb-4">One-time payment</div>
-                    <div class="text-sm text-purple-200">
-                        ✓ All wallpapers in 4K<br>
-                        ✓ Future releases included<br>
-                        ✓ No subscription required
-                    </div>
-                </div>
-                <button
-                    class="bg-white text-accent px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-100 transition-colors">
-                    Upgrade Now
-                </button>
-            </div>
-        </div>
-    </section>
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gradient-to-br from-primary to-secondary">
-        <div class="container mx-auto px-6">
-            <div
-                class="max-w-4xl mx-auto bg-primary/50 border border-secondary rounded-xl p-8 md:p-12 backdrop-blur-sm">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                        <span class="bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent">Get In
-                            Touch</span>
-                    </h2>
-                    <p class="text-lg text-gray-300 max-w-2xl mx-auto">
-                        Ready to elevate your project with stunning visuals? Contact us to discuss how we can bring your
-                        vision to life.
-                    </p>
-                </div>
-
-                <form class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="name" class="block text-gray-300 mb-2">Name</label>
-                        <input type="text" id="name"
-                            class="w-full bg-secondary border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
-                            placeholder="Your name">
-                    </div>
-                    <div>
-                        <label for="email" class="block text-gray-300 mb-2">Email</label>
-                        <input type="email" id="email"
-                            class="w-full bg-secondary border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
-                            placeholder="your.email@example.com">
-                    </div>
-                    <div class="md:col-span-2">
-                        <label for="subject" class="block text-gray-300 mb-2">Subject</label>
-                        <input type="text" id="subject"
-                            class="w-full bg-secondary border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
-                            placeholder="What's this about?">
-                    </div>
-                    <div class="md:col-span-2">
-                        <label for="message" class="block text-gray-300 mb-2">Message</label>
-                        <textarea id="message" rows="4"
-                            class="w-full bg-secondary border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
-                            placeholder="Tell us about your project"></textarea>
-                    </div>
-                    <div class="md:col-span-2 flex justify-center mt-4">
-                        <button type="submit"
-                            class="bg-accent hover:bg-purple-700 text-white px-10 py-3 rounded-full font-medium transition-colors">
-                            Send Message
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-primary border-t border-secondary/50">
-        <div class="container mx-auto px-6 py-12">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <h3
-                        class="text-xl font-bold mb-4 bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent">
-                        BETTERWLPRS</h3>
-                    <p class="text-gray-400 text-sm">
-                        Crafting visual excellence for the gaming and film industries since 2015.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="text-gray-300 font-medium mb-4">Explore</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors text-sm">Home</a>
-                        </li>
-                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors text-sm">About</a>
-                        </li>
-                        <li><a href="#work" class="text-gray-400 hover:text-white transition-colors text-sm">Work</a>
-                        </li>
-                        <li><a href="#contact"
-                                class="text-gray-400 hover:text-white transition-colors text-sm">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-gray-300 font-medium mb-4">Services</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Game Art</a>
-                        </li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Environment
-                                Design</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Character
-                                Design</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">VFX & Film</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-gray-300 font-medium mb-4">Connect</h4>
-                    <div class="flex space-x-4 mb-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i
-                                class="fab fa-twitter text-xl"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i
-                                class="fab fa-instagram text-xl"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i
-                                class="fab fa-artstation text-xl"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i
-                                class="fab fa-linkedin text-xl"></i></a>
-                    </div>
-                    <p class="text-gray-400 text-sm">contact@betterwlprs.com</p>
-                </div>
-            </div>
-            <div class="border-t border-secondary/50 mt-12 pt-8">
-                <p class="text-gray-500 text-sm text-center">
-                    &copy; 2023 BetterWLPRS. All rights reserved.
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile menu toggle functionality
-        document.addEventListener('DOMContentLoaded', function () {
-            const mobileMenuBtn = document.querySelector('.md\\:hidden.text-gray-300');
-            // You would need to add the mobile menu element for this to work completely
-
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-
-            // Simple scroll animation
-            const observerOptions = {
-                threshold: 0.1
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-fadeIn');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('section').forEach(section => {
-                observer.observe(section);
-            });
-        });
-    </script>
 </body>
-
 </html>
