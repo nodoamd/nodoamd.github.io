@@ -390,6 +390,17 @@
         <button class="pill" id="openLogin" aria-haspopup="dialog" aria-controls="paywall">Entrar</button>
         <button class="pill cta" id="openPaywall" aria-haspopup="dialog" aria-controls="paywall">Suscribirse</button>
     </nav>
+    <!-- MODAL PREVIEW -->
+    <div class="modal" id="previewModal" role="dialog" aria-modal="true"
+        style="display:none; place-items:center; background:#000000a8; z-index:101;">
+        <div class="panel"
+            style="max-width:90vw; background:var(--card); border-radius:20px; padding:22px; position:relative;">
+            <button class="close" id="closePreviewModal" aria-label="Cerrar"
+                style="position:absolute;top:10px;right:10px;">✕</button>
+            <img id="previewImg" src="" alt="Preview"
+                style="max-width:100%; max-height:70vh; border-radius:16px; display:block; margin:0 auto;" />
+        </div>
+    </div>
 
     <!-- HERO -->
     <header class="hero" id="hero">
@@ -519,8 +530,8 @@
         const photos = [
             {
                 title: 'Golden Hour', tag: 'Retrato', premium: true,
-                thumb: './img/arkham.gif',
-                srcset: './img/arkham.gif 480w, ./img/arkham.gif 800w, ./img/arkham.gif 1200w'
+                thumb: './img/marcussittedahh.gif',
+                srcset: './img/marcussittedahh.gif 480w, ./img/marcussittedahh.gif 800w, ./img/marcussittedahh.gif 1200w'
             },
             {
                 title: 'City Nights', tag: 'Urbano', premium: false,
@@ -528,15 +539,15 @@
             },
             {
                 title: 'Studio Vibes', tag: 'Estudio', premium: true,
-                thumb: './img/discoelysium.webp'
+                thumb: 'img/videowlprs/discoelysiumstart.gif'
             },
             {
                 title: 'Ocean Walk', tag: 'Documental', premium: false,
-                thumb: './img/marcusittingfocused.jpg'
+                thumb: 'img/samsatori.gif'
             },
             {
                 title: 'Soft Neon', tag: 'Retrato', premium: true,
-                thumb: './img/samizquierdasentado.png'
+                thumb: 'img/samsittedahh.gif'
             },
             {
                 title: 'Analog Mood', tag: 'Editorial', premium: false,
@@ -559,6 +570,25 @@
             }
         ];
 
+        // ---------- Modal de preview ----------
+        const previewModal = document.getElementById('previewModal');
+        const previewImg = document.getElementById('previewImg');
+        const closePreviewModal = document.getElementById('closePreviewModal');
+        closePreviewModal.addEventListener('click', () => previewModal.style.display = 'none');
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && previewModal.style.display === 'grid') previewModal.style.display = 'none'; });
+
+        // Mostrar preview al hacer clic en 'Ver preview'
+        document.addEventListener('click', (e) => {
+            const previewBtn = e.target.closest('.btn:not(.accent)');
+            if (previewBtn && previewBtn.textContent.trim() === 'Ver preview') {
+                e.preventDefault();
+                const card = previewBtn.closest('.card');
+                const img = card.querySelector('.thumb');
+                previewImg.src = img.src;
+                previewModal.style.display = 'grid';
+                return;
+            }
+        });
         // ---------- Render de galería ----------
         const galleryGrid = document.getElementById('galleryGrid');
         photos.forEach((item) => {
