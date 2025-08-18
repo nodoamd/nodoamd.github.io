@@ -540,8 +540,8 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             backdrop-filter: blur(10px);
-            transform: translateY(20px);
-            opacity: 0;
+            transform: translateY(0);
+            opacity: 1;
         }
 
         .card:hover {
@@ -774,6 +774,15 @@
             .chip {
                 font-size: 12px;
                 padding: 6px 12px;
+            }
+
+            /* Forzar visibilidad en móvil */
+            .card,
+            .section,
+            .grid {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+                visibility: visible !important;
             }
         }
 
@@ -1095,7 +1104,72 @@
             <h2>Cómo <span class="highlight">Funciona</span></h2>
             <p>Publica tus sesiones y clips. El mundo ve un adelanto; lo premium se desbloquea con suscripción.</p>
         </div>
-        <div class="grid" id="howGrid"></div>
+        <div class="grid" id="howGrid">
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/sanfracampview.jpg" alt="Sube y etiqueta" loading="lazy">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            1</div>
+                        <div>
+                            <div class="card-title">Sube y etiqueta</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Transformamos a WebP/AVIF con srcset y marca de agua sutil.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/arkham.gif" alt="Previews que enamoran" loading="lazy">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            2</div>
+                        <div>
+                            <div class="card-title">Previews que enamoran</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Carga progresiva, blur inicial y micro‑interacciones en scroll.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/spidersky.gif" alt="Acceso completo" loading="lazy">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            3</div>
+                        <div>
+                            <div class="card-title">Acceso completo</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Originales y vídeowlprs completos tras la suscripción.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/thelongdarkwolfs.png" alt="Descargas seguras" loading="lazy">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            4</div>
+                        <div>
+                            <div class="card-title">Descargas seguras</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Enlaces firmados y límites anti‑abuso para proteger tu trabajo.</div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- BENEFICIOS -->
@@ -1104,7 +1178,76 @@
             <h2>Beneficios para <span class="highlight">Miembros</span></h2>
             <p>Acceso a originales en full-res y vídeowlprs completos, listos para tu setup.</p>
         </div>
-        <div class="grid" id="benefitsGrid"></div>
+        <div class="grid" id="benefitsGrid">
+            <div class="card">
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            🖼️</div>
+                        <div>
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Original</div>
+                            <div class="card-title">Sin marca de agua</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Descarga los archivos tal y como fueron creados.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            🎞️</div>
+                        <div>
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Vídeowlprs</div>
+                            <div class="card-title">Clips completos 1080p/4K</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Preparados para loop con calidad equilibrada.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            📱</div>
+                        <div>
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Por dispositivo</div>
+                            <div class="card-title">Formatos optimizados</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Móvil, desktop, tablet y Steam Deck.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            🔄</div>
+                        <div>
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Actualizaciones</div>
+                            <div class="card-title">Nuevos packs</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Contenido añadido de forma regular.</div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- CTA FINAL -->
