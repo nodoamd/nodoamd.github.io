@@ -8,11 +8,12 @@
 
     <!-- Tipografía -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <meta name="description"
         content="Explora sesiones exclusivas en previews abiertos. Suscríbete para descargar los originales en toda calidad y desbloquear vídeos completos.">
-    
+
     <style>
         :root {
             --bg: #0a0a0f;
@@ -57,7 +58,7 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             color: var(--text);
-            background: 
+            background:
                 radial-gradient(1400px 800px at 60% -20%, rgba(167, 135, 255, 0.12), transparent),
                 radial-gradient(1200px 600px at 20% 100%, rgba(167, 135, 255, 0.08), transparent),
                 var(--bg);
@@ -137,7 +138,8 @@
             gap: 2px;
             flex: 1;
             justify-content: center;
-            margin-left: -120px; /* Compensar el logo */
+            margin-left: -120px;
+            /* Compensar el logo */
         }
 
         .nav-item {
@@ -394,6 +396,9 @@
             justify-content: center;
             flex-wrap: wrap;
             margin-bottom: 3rem;
+            opacity: 1 !important;
+            visibility: visible !important;
+            z-index: 10;
         }
 
         .btn {
@@ -411,6 +416,9 @@
             outline: none;
             position: relative;
             overflow: hidden;
+            opacity: 1 !important;
+            visibility: visible !important;
+            z-index: 10;
         }
 
         .btn.primary {
@@ -511,7 +519,9 @@
         }
 
         @keyframes underlineReveal {
-            to { transform: scaleX(1); }
+            to {
+                transform: scaleX(1);
+            }
         }
 
         /* Grid */
@@ -769,13 +779,27 @@
 
         /* Animations */
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
         }
 
         @keyframes slideInUp {
@@ -783,6 +807,7 @@
                 transform: translateY(30px);
                 opacity: 0;
             }
+
             to {
                 transform: translateY(0);
                 opacity: 1;
@@ -823,8 +848,13 @@
         }
 
         @keyframes loading {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
         }
     </style>
 </head>
@@ -836,7 +866,7 @@
             <div class="nav-brand">
                 BetterWLPRS
             </div>
-            
+
             <div class="nav-menu" id="navMenu">
                 <a href="#gallery" class="nav-item active" data-section="gallery">Galería</a>
                 <a href="#videos" class="nav-item" data-section="videos">Vídeos</a>
@@ -872,7 +902,7 @@
         <a href="#videos" class="nav-item" data-section="videos">Vídeos</a>
         <a href="#how" class="nav-item" data-section="how">Cómo funciona</a>
         <a href="#benefits" class="nav-item" data-section="benefits">Beneficios</a>
-        
+
         <div class="nav-actions">
             <button class="nav-btn secondary">
                 <span>Entrar</span>
@@ -886,27 +916,24 @@
     <!-- HERO -->
     <section class="hero" id="hero">
         <div class="hero-content">
-            <div class="eyebrow">Fondos In-game exclusivos</div>
+            <div class="eyebrow">Fondos exclusivos</div>
             <h1>
-                Fondos in-game hechos a mano,<br>
-                <span class="gradient-text">adaptados para todos</span> tus dispositivos.
+                Wallpapers únicos<br>
+                <span class="gradient-text">para todos tus dispositivos</span>
             </h1>
-            <p>BetterWLPRS te ofrece wallpapers únicos, optimizados para cualquier dispositivo. Descarga y disfruta arte digital pensado para tu pantalla favorita.</p>
-            
+            <p>Descarga arte original y optimizado. Disfruta calidad BetterWLPRS.</p>
+
             <div class="hero-actions">
                 <button class="btn primary" id="exploreBtnHero">
-                    Explorar galería
-                    <span>→</span>
+                    Explorar galería <span>→</span>
                 </button>
-                <a href="#how" class="btn secondary">
-                    Cómo funciona
-                </a>
+                <a href="#how" class="btn secondary">¿Cómo funciona?</a>
             </div>
-            
+
             <div class="chips">
-                <span class="chip">Todo Original</span>
-                <span class="chip">Only in BetterWLPRS</span>
-                <span class="chip">iOS, Android, PC, Tablet</span>
+                <span class="chip">Original</span>
+                <span class="chip">Solo aquí</span>
+                <span class="chip">Multi-dispositivo</span>
                 <span class="chip">Descarga instantánea</span>
             </div>
         </div>
@@ -916,7 +943,8 @@
     <section class="section" id="gallery">
         <div class="section-header">
             <h2>Fondos De Pantalla <span class="highlight">Originales</span></h2>
-            <p>Cada imagen se muestra optimizada. ¿Quieres el archivo original, sin marca de agua? Hazte miembro y descárgalo al instante.</p>
+            <p>Cada imagen se muestra optimizada. ¿Quieres el archivo original, sin marca de agua? Hazte miembro y
+                descárgalo al instante.</p>
         </div>
         <div class="grid" id="galleryGrid"></div>
     </section>
@@ -925,7 +953,8 @@
     <section class="section" id="videos">
         <div class="section-header">
             <h2>Vídeos <span class="highlight">Exclusivos</span> BetterWLPRS</h2>
-            <p>Descubre previews únicos de nuestras mejores capturas. Los miembros disfrutan contenido completo en máxima calidad.</p>
+            <p>Descubre previews únicos de nuestras mejores capturas. Los miembros disfrutan contenido completo en
+                máxima calidad.</p>
         </div>
         <div class="grid" id="videoGrid"></div>
     </section>
@@ -973,19 +1002,24 @@
             <button class="modal-close" id="modalClose">×</button>
             <div style="text-align: center;">
                 <h3 style="font-size: 28px; margin-bottom: 1rem;">Tu acceso completo empieza aquí</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 2rem;">Descargas sin marca de agua, vídeos completos en 1080p/4K y sesiones completas.</p>
-                
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">Descargas sin marca de agua, vídeos
+                    completos en 1080p/4K y sesiones completas.</p>
+
                 <div style="display: grid; gap: 16px; margin-bottom: 2rem;">
-                    <div style="padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.02); display: flex; justify-content: space-between; align-items: center;">
+                    <div
+                        style="padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.02); display: flex; justify-content: space-between; align-items: center;">
                         <div style="text-align: left;">
                             <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;">Mensual</div>
                             <div style="color: var(--muted); font-size: 14px;">Cancela cuando quieras</div>
                         </div>
                         <button class="btn primary" id="monthlyPlan" style="min-width: 100px;">€7,99</button>
                     </div>
-                    
-                    <div style="padding: 20px; border: 2px solid var(--accent); border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.05); display: flex; justify-content: space-between; align-items: center; position: relative;">
-                        <div style="position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">Popular</div>
+
+                    <div
+                        style="padding: 20px; border: 2px solid var(--accent); border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.05); display: flex; justify-content: space-between; align-items: center; position: relative;">
+                        <div
+                            style="position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">
+                            Popular</div>
                         <div style="text-align: left;">
                             <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;">Anual</div>
                             <div style="color: var(--muted); font-size: 14px;">2 meses de regalo</div>
@@ -993,9 +1027,10 @@
                         <button class="btn primary" id="yearlyPlan" style="min-width: 100px;">€79</button>
                     </div>
                 </div>
-                
+
                 <p style="font-size: 12px; color: var(--muted);">
-                    Al suscribirte aceptas los <a href="#" style="color: var(--accent);">Términos</a> y la <a href="#" style="color: var(--accent);">Privacidad</a>.
+                    Al suscribirte aceptas los <a href="#" style="color: var(--accent);">Términos</a> y la <a href="#"
+                        style="color: var(--accent);">Privacidad</a>.
                 </p>
             </div>
         </div>
@@ -1008,7 +1043,8 @@
             <p>Previews que enamoran. Full-res al suscribirte.</p>
         </div>
         <div>
-            ¿Preguntas? <a href="mailto:hola@betterwlprs.example" style="color: var(--accent);">hola@betterwlprs.example</a>
+            ¿Preguntas? <a href="mailto:hola@betterwlprs.example"
+                style="color: var(--accent);">hola@betterwlprs.example</a>
         </div>
     </footer>
 
@@ -1166,7 +1202,7 @@
 
         // Active navigation tracking
         const sections = ['gallery', 'videos', 'how', 'benefits'];
-        
+
         sections.forEach(sectionId => {
             ScrollTrigger.create({
                 trigger: `#${sectionId}`,
@@ -1365,7 +1401,7 @@
         function initAnimations() {
             // Hero animations
             const heroTl = gsap.timeline();
-            
+
             heroTl
                 .from('.eyebrow', {
                     y: 30,
@@ -1403,7 +1439,7 @@
             // Card animations
             gsap.utils.toArray('.card').forEach((card, index) => {
                 gsap.set(card, { y: 60, opacity: 0 });
-                
+
                 ScrollTrigger.create({
                     trigger: card,
                     start: "top 85%",
@@ -1492,7 +1528,7 @@
             renderVideos();
             renderHowItWorks();
             renderBenefits();
-            
+
             // Wait for content to be rendered, then init animations
             requestAnimationFrame(() => {
                 initAnimations();
