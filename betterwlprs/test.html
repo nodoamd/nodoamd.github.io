@@ -479,8 +479,9 @@
     <section class="section" id="videos" aria-labelledby="videos-title">
         <div class="section-head">
             <div>
-                <h2 id="videos-title">Clips abiertos. Historias completas al suscribirte.</h2>
-                <p>Reproduce avances de 10–20 segundos. Los miembros acceden a los vídeos completos en 1080p/4K.</p>
+                <h2 id="videos-title">Vídeos <span class="jelly-text">Exclusivos</span> BetterWLPRS</h2>
+                <p>Descubre previews únicos de nuestras mejores capturas. Los miembros disfrutan contenido completo en
+                    máxima calidad.</p>
             </div>
         </div>
         <div class="grid" id="videoGrid" role="list"></div>
@@ -724,7 +725,7 @@
         if (jellyText) {
             // Timeline para el efecto jelly completo
             const jellyTl = gsap.timeline({ paused: true });
-            
+
             jellyTl
                 // Primer rebote: scale up y squash
                 .to(jellyText, {
@@ -821,12 +822,12 @@
             const jellyTextContent = galleryTitle.querySelector('.jelly-text');
             const jellyHTML = jellyTextContent.outerHTML;
             const wordsBeforeJelly = titleText.split(jellyHTML)[0].trim().split(' ');
-            
+
             // Reconstruir el HTML manteniendo el span jelly-text intacto
-            const wordsHTML = wordsBeforeJelly.map(word => 
+            const wordsHTML = wordsBeforeJelly.map(word =>
                 word ? `<span class="word">${word}</span>` : ''
             ).join(' ');
-            
+
             galleryTitle.innerHTML = wordsHTML + ' ' + jellyHTML;
 
             gallerySectionTl
