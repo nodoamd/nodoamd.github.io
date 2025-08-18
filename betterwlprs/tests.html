@@ -1797,16 +1797,53 @@
 
         // ========== INITIALIZATION ==========
         document.addEventListener('DOMContentLoaded', () => {
-            renderGallery();
-            renderVideos();
-            renderHowItWorks();
-            renderBenefits();
+            // No longer need to render content since it's static HTML
+            // renderGallery();
+            // renderVideos();
+            // renderHowItWorks();
+            // renderBenefits();
+
+            // Add click handlers for static cards
+            addStaticCardHandlers();
 
             // Wait for content to be rendered, then init animations
             requestAnimationFrame(() => {
                 initAnimations();
             });
         });
+
+        // Add handlers for static HTML cards
+        function addStaticCardHandlers() {
+            // Handle gallery cards
+            document.querySelectorAll('#galleryGrid .card').forEach(card => {
+                const button = card.querySelector('.card-action');
+                if (button) {
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        if (button.classList.contains('secondary')) {
+                            // Premium card - open modal
+                            openModal();
+                        } else {
+                            // Free card - simulate download
+                            alert('Descargando...');
+                        }
+                    });
+                }
+            });
+
+            // Handle video cards
+            document.querySelectorAll('#videoGrid .card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const isPremium = card.querySelector('.card-premium');
+                    if (isPremium) {
+                        openModal();
+                    } else {
+                        alert('Reproduciendo vídeo...');
+                    }
+                });
+            });
+        }
 
         // ========== PERFORMANCE ==========
         // Lazy loading for images
