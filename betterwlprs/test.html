@@ -78,7 +78,6 @@
         .pill {
             padding: 8px 12px;
             border-radius: 999px;
-            background: #ffffff10;
             border: 1px solid #ffffff12;
             font-size: 14px
         }
@@ -133,7 +132,6 @@
             padding: 12px 16px;
             border-radius: 12px;
             border: 1px solid #ffffff18;
-            background: #ffffff08;
             cursor: pointer;
             font-weight: 600
         }
@@ -364,6 +362,35 @@
             text-decoration: underline
         }
 
+        /* Jelly Effect */
+        .jelly-text {
+            display: inline-block;
+            transform-origin: center bottom;
+            color: var(--accent);
+            position: relative;
+            --line-scale: 0;
+        }
+
+        .jelly-text::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #b893ff, #7d5cff);
+            border-radius: 2px;
+            transform: scaleX(var(--line-scale));
+            transform-origin: left;
+            transition: transform 0.6s ease;
+        }
+
+        /* Palabras animadas del título */
+        .word {
+            display: inline-block;
+            margin-right: 0.3em;
+        }
+
         /* Watermark para previews (simulada) */
         .wm {
             position: absolute;
@@ -417,9 +444,9 @@
                 <a class="btn" href="#how">Cómo funciona</a>
             </div>
             <div class="chips" aria-hidden="true">
-                <span class="chip">Arte digital</span>
-                <span class="chip">Optimizado</span>
-                <span class="chip">Fondos</span>
+                <span class="chip">Todo Original</span>
+                <span class="chip">Only in BetterWLPRS</span>
+                <span class="chip">iOS, Android, PC, Tablet, Kindle (👀)</span>
                 <span class="chip">Descarga instantánea</span>
             </div>
         </div>
@@ -439,11 +466,11 @@
     <section class="section" id="gallery" aria-labelledby="galeria-title">
         <div class="section-head">
             <div>
-                <h2 id="galeria-title">Previews que inspiran</h2>
+                <h2 id="galeria-title">Fondos De Pantalla <span class="jelly-text">Originales</span></h2>
                 <p>Cada imagen se muestra optimizada. ¿Quieres el archivo original, sin marca de agua? Hazte miembro y
                     descárgalo al instante.</p>
             </div>
-            <button class="btn" id="filterBtn">Filtrar</button>
+            <button class="btn" id="filterBtn">Galería</button>
         </div>
         <div class="grid" id="galleryGrid" role="list"></div>
     </section>
@@ -598,7 +625,6 @@
             card.innerHTML = `
         <span class="badge">${item.tag}</span>
         ${item.premium ? '<div class="lock" aria-label="Contenido premium">🔒</div>' : ''}
-        <span class="wm">Preview</span>
     <img class="thumb" loading="lazy" alt="${item.title}"
          src="${item.thumb}"/>
         <div class="meta">
@@ -692,6 +718,179 @@
             });
             card.addEventListener('mouseleave', () => img.style.transform = 'scale(1.02)');
         });
+
+        // Jelly effect para "Originales"
+        const jellyText = document.querySelector('.jelly-text');
+        if (jellyText) {
+            // Timeline para el efecto jelly completo
+            const jellyTl = gsap.timeline({ paused: true });
+            
+            jellyTl
+                // Primer rebote: scale up y squash
+                .to(jellyText, {
+                    scaleY: 1.3,
+                    scaleX: 0.8,
+                    duration: 0.15,
+                    ease: "power2.out"
+                })
+                // Segundo rebote: overshoot y volver
+                .to(jellyText, {
+                    scaleY: 0.9,
+                    scaleX: 1.1,
+                    duration: 0.2,
+                    ease: "power2.inOut"
+                })
+                // Tercer rebote más suave
+                .to(jellyText, {
+                    scaleY: 1.05,
+                    scaleX: 0.98,
+                    duration: 0.15,
+                    ease: "power2.inOut"
+                })
+                // Volver al estado normal con bounce
+                .to(jellyText, {
+                    scaleY: 1,
+                    scaleX: 1,
+                    duration: 0.25,
+                    ease: "elastic.out(1, 0.5)"
+                });
+
+            // ScrollTrigger para activar el efecto
+            ScrollTrigger.create({
+                trigger: jellyText,
+                start: "top 80%",
+                end: "bottom 20%",
+                onEnter: () => {
+                    jellyTl.restart();
+                    gsap.to(jellyText, {
+                        "--line-scale": 1,
+                        duration: 0.6,
+                        ease: "power2.out"
+                    });
+                },
+                onLeave: () => {
+                    gsap.set(jellyText, { "--line-scale": 0 });
+                },
+                onEnterBack: () => {
+                    jellyTl.restart();
+                    gsap.to(jellyText, {
+                        "--line-scale": 1,
+                        duration: 0.6,
+                        ease: "power2.out"
+                    });
+                },
+                onLeaveBack: () => {
+                    gsap.set(jellyText, { "--line-scale": 0 });
+                }
+            });
+
+            // Efecto hover adicional
+            jellyText.addEventListener('mouseenter', () => {
+                if (!jellyTl.isActive()) {
+                    gsap.to(jellyText, {
+                        scaleY: 1.1,
+                        scaleX: 0.95,
+                        duration: 0.2,
+                        ease: "power2.out",
+                        yoyo: true,
+                        repeat: 1
+                    });
+                }
+            });
+        }
+
+        // Animaciones para toda la sección de galería
+        const gallerySection = document.getElementById('gallery');
+        if (gallerySection) {
+            const galleryTitle = gallerySection.querySelector('#galeria-title');
+            const galleryDescription = gallerySection.querySelector('.section-head p');
+            const galleryButton = gallerySection.querySelector('#filterBtn');
+
+            // Timeline maestro para la entrada de la sección
+            const gallerySectionTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: gallerySection,
+                    start: "top 75%",
+                    end: "bottom 25%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+
+            // Animar solo las palabras que NO están dentro del span jelly-text
+            const titleText = galleryTitle.innerHTML;
+            const jellyTextContent = galleryTitle.querySelector('.jelly-text');
+            const jellyHTML = jellyTextContent.outerHTML;
+            const wordsBeforeJelly = titleText.split(jellyHTML)[0].trim().split(' ');
+            
+            // Reconstruir el HTML manteniendo el span jelly-text intacto
+            const wordsHTML = wordsBeforeJelly.map(word => 
+                word ? `<span class="word">${word}</span>` : ''
+            ).join(' ');
+            
+            galleryTitle.innerHTML = wordsHTML + ' ' + jellyHTML;
+
+            gallerySectionTl
+                // Palabras del título aparecen con stagger
+                .from('.word', {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.6,
+                    ease: "back.out(1.2)",
+                    stagger: 0.1
+                }, 0)
+                // Descripción aparece con efecto de desvanecimiento y slide
+                .from(galleryDescription, {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                }, 0.3)
+                // Botón aparece con un bounce suave
+                .from(galleryButton, {
+                    scale: 0.8,
+                    opacity: 0,
+                    duration: 0.5,
+                    ease: "back.out(1.4)"
+                }, 0.5);
+
+            // Efecto de hover en el botón con micro-interacciones
+            galleryButton.addEventListener('mouseenter', () => {
+                gsap.to(galleryButton, {
+                    scale: 1.05,
+                    duration: 0.2,
+                    ease: "power2.out"
+                });
+            });
+
+            galleryButton.addEventListener('mouseleave', () => {
+                gsap.to(galleryButton, {
+                    scale: 1,
+                    duration: 0.2,
+                    ease: "power2.out"
+                });
+            });
+
+            // Efecto de "breathing" sutil en el título completo
+            gsap.to(galleryTitle, {
+                scale: 1.01,
+                duration: 3,
+                ease: "sine.inOut",
+                yoyo: true,
+                repeat: -1
+            });
+
+            // Parallax suave en la descripción (más sutil)
+            gsap.to(galleryDescription, {
+                y: -3,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: gallerySection,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 2
+                }
+            });
+        }
 
         // ---------- Accesibilidad: trap focus en modal ----------
         let focusableEls = [];
