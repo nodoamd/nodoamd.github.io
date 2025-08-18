@@ -439,6 +439,33 @@
         /* Tarjetas ilustradas para "Cómo funciona" */
         .step-media { aspect-ratio: 16/9; width: 100%; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 12px; filter: saturate(105%); }
         .step-num { width: 28px; height: 28px; border-radius: 999px; display: grid; place-items: center; background: #ffffff0d; border: 1px solid #ffffff18; font-weight: 800; font-size: 12px; }
+
+        /* --- Responsividad adicional (nav, hero, headers, Spline) --- */
+        @media (max-width: 1000px) {
+            .nav { flex-wrap: wrap; gap: 8px 8px; padding: 6px 10px; }
+            .pill { font-size: 13px; padding: 6px 10px; }
+
+            .section { padding: 48px 4vw 12px; }
+            .section-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .section-head .btn { align-self: stretch; justify-content: center; }
+
+            .actions { flex-direction: column; align-items: stretch; }
+            .actions .btn { justify-content: center; }
+
+            /* Spline: reducir altura y levantar menos para que no tape el hero */
+            .steamdeck-hero-absolute { margin-top: -140px !important; }
+            .steamdeck-viewer-main { height: 320px !important; max-width: 720px !important; }
+        }
+        @media (max-width: 640px) {
+            .hero { padding: 50px 5vw 30px; }
+            .hero p { font-size: clamp(15px, 4.5vw, 18px); }
+            .chips { gap: 6px; }
+
+            .steamdeck-hero-absolute { margin-top: -80px !important; }
+            .steamdeck-viewer-main { height: 240px !important; max-width: 480px !important; }
+
+            .sticky-cta { bottom: 14px; padding: 12px 16px; }
+        }
     </style>
 </head>
 
@@ -931,13 +958,68 @@
             scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.5 }
         });
 
-        // Stagger de tarjetas en todas las secciones
+        // Stagger de tarjetas en todas las secciones (excepto Beneficios: animación custom)
         gsap.utils.toArray('.card').forEach((card) => {
+            if (card.closest('#benefits')) return; // se maneja aparte abajo
             gsap.to(card, {
                 y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
                 scrollTrigger: { trigger: card, start: 'top 85%', toggleActions: 'play none none reverse' }
             });
         });
+
+        // Animación estilo dribbble para "Beneficios para miembros"
+        (function(){
+            if (prefersReduced) return;
+            const section = document.getElementById('benefits');
+            if (!section) return;
+            const cards = gsap.utils.toArray('#benefits .card');
+            if (!cards.length) return;
+
+            // Estado inicial: leve inclinación aleatoria, wipe y fade
+            cards.forEach((c) => {
+                gsap.set(c, { opacity: 0, y: 24, scale: 0.98, rotate: (Math.random() * 1.8 - 0.9) });
+                gsap.set(c, { clipPath: 'inset(0 100% 0 0)' }); // wipe de derecha a izquierda
+            });
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 75%',
+                    end: 'bottom 25%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+
+            // Wipe + lift con stagger suave
+            tl.to(cards, {
+                clipPath: 'inset(0 0% 0 0)',
+                duration: 0.6,
+                ease: 'power3.out',
+                stagger: 0.08
+            }, 0)
+            .to(cards, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                rotate: 0,
+                duration: 0.7,
+                ease: 'power3.out',
+                stagger: 0.08
+            }, 0.02);
+
+            // Pop de iconos dentro de cada card
+            const icons = cards.map(c => c.querySelector('.icon-badge')).filter(Boolean);
+            if (icons.length) {
+                tl.from(icons, {
+                    y: 6,
+                    scale: 0.8,
+                    autoAlpha: 0,
+                    duration: 0.35,
+                    ease: 'back.out(1.8)',
+                    stagger: 0.08
+                }, 0.15);
+            }
+        })();
 
         // CTA pegajoso aparece al 40% de scroll
         gsap.to('#sticky', {
