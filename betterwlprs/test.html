@@ -1,269 +1,566 @@
 <!doctype html>
 <html lang="es">
+
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>BetterWLPRS — Previews que enamoran. Full-res y vídeos completos al suscribirte.</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BetterWLPRS — Previews que enamoran. Full-res y vídeos completos al suscribirte.</title>
 
-  <!-- Tipografía -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Tipografía -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-  <meta name="description" content="Explora sesiones exclusivas en previews abiertos. Suscríbete para descargar los originales en toda calidad y desbloquear vídeos completos.">
-  <style>
-    :root{
-      --bg:#0b0b10; --card:#12121a; --text:#e9e9f0; --muted:#a7a7b3; --accent:#a787ff;
-      --radius:16px; --border:#ffffff14;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:Inter,system-ui,Arial,Helvetica,sans-serif; color:var(--text);
-      background:radial-gradient(1200px 700px at 80% -10%, #241a4d33, transparent), var(--bg);
-      -webkit-font-smoothing:antialiased; overflow-x:hidden;
-    }
-    a{color:inherit; text-decoration:none}
-    img{max-width:100%; display:block}
+    <meta name="description"
+        content="Explora sesiones exclusivas en previews abiertos. Suscríbete para descargar los originales en toda calidad y desbloquear vídeos completos.">
+    <style>
+        :root {
+            --bg: #0b0b10;
+            --card: #12121a;
+            --text: #e9e9f0;
+            --muted: #a7a7b3;
+            --accent: #a787ff;
+            --radius: 16px;
+            --border: #ffffff14;
+        }
 
-    /* Navbar */
-    .nav{
-      position:fixed; inset:14px 14px auto; display:flex; gap:10px; align-items:center; z-index:60;
-      background:rgba(18,18,26,.55); backdrop-filter:blur(10px); border:1px solid var(--border);
-      padding:8px 12px; border-radius:999px;
-    }
-    .nav .logo{font-weight:800; letter-spacing:.4px}
-    .nav .sp{flex:1}
-    .pill{padding:8px 12px; border-radius:999px; background:#ffffff10; border:1px solid #ffffff12; font-size:14px}
-    .cta{background:linear-gradient(135deg,#b893ff,#7d5cff); border:none; font-weight:700}
+        * {
+            box-sizing: border-box
+        }
 
-    /* Hero */
-    .hero{
-      min-height:96svh; display:grid; align-items:center; padding:120px 6vw 40px; position:relative; overflow:hidden;
-    }
-    .eyebrow{color:#cfcfe6; letter-spacing:.14em; text-transform:uppercase; font-size:12px; opacity:.9}
-    .hero h1{font-size:clamp(34px,6vw,76px); line-height:1.03; margin:.3rem 0 12px}
-    .hero p{color:var(--muted); font-size:clamp(16px,2.1vw,22px); max-width:65ch; margin:0}
-    .actions{display:flex; gap:12px; margin-top:22px}
-    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px; border:1px solid #ffffff18; background:#ffffff08; cursor:pointer; font-weight:600}
-    .btn.accent{background:linear-gradient(135deg,#b893ff,#7d5cff); border:none}
-    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px}
-    .chip{font-size:12px; padding:6px 10px; border-radius:999px; background:#ffffff10; border:1px solid #ffffff12; color:#cfcfe6}
+        html,
+        body {
+            height: 100%
+        }
 
-    /* Sections */
-    .section{padding:56px 4vw 16px}
-    .section-head{display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:12px}
-    .section-head h2{margin:0; font-size:clamp(22px,3.2vw,38px)}
-    .section-head p{color:#bdbde0; max-width:70ch; margin:8px 0 0}
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, Arial, Helvetica, sans-serif;
+            color: var(--text);
+            background: radial-gradient(1200px 700px at 80% -10%, #241a4d33, transparent), var(--bg);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
 
-    /* Grid */
-    .grid{
-      padding:24px 0 70px; display:grid; grid-template-columns:repeat(12,1fr); gap:16px; position:relative;
-    }
-    .card{
-      grid-column:span 4; border-radius:var(--radius); overflow:hidden; background:var(--card); border:1px solid var(--border); position:relative;
-      transform:translateY(24px); opacity:0; isolation:isolate;
-    }
-    @media (max-width:1000px){ .card{ grid-column:span 6 } }
-    @media (max-width:640px){ .card{ grid-column:span 12 } }
-    .thumb{
-      aspect-ratio:4/5; width:100%; object-fit:cover; filter:saturate(105%); transition:transform .5s ease;
-    }
-    .badge{
-      position:absolute; top:10px; left:10px; padding:6px 10px; border-radius:999px; background:#00000066; border:1px solid #ffffff22; font-size:12px; z-index:2;
-    }
-    .lock{position:absolute; top:10px; right:10px; width:28px; height:28px; display:grid; place-items:center; border-radius:999px; background:#00000066; border:1px solid #ffffff22; z-index:2}
-    .meta{padding:10px 12px 12px; display:flex; align-items:center; justify-content:space-between; gap:10px}
-    .title{font-weight:700}
-    .tag{font-size:12px; color:#bdbde0}
+        a {
+            color: inherit;
+            text-decoration: none
+        }
 
-    /* Vídeos */
-    .video-card .thumb{aspect-ratio:16/9}
-    .play{position:absolute; inset:auto 10px 10px auto; background:#00000088; border:1px solid #ffffff22; border-radius:999px; padding:8px 12px; font-size:12px}
+        img {
+            max-width: 100%;
+            display: block
+        }
 
-    /* Sticky CTA */
-    .sticky-cta{
-      position:fixed; left:50%; transform:translate(-50%,110%); bottom:20px; z-index:50;
-      background:linear-gradient(135deg,#b893ff,#7d5cff); color:#111; padding:14px 18px; border-radius:999px; font-weight:800; box-shadow:0 10px 30px #00000066; border:none; cursor:pointer;
-    }
+        /* Navbar */
+        .nav {
+            position: fixed;
+            inset: 14px 14px auto;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            z-index: 60;
+            background: rgba(18, 18, 26, .55);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            padding: 8px 12px;
+            border-radius: 999px;
+        }
 
-    /* Modal */
-    .modal{position:fixed; inset:0; display:none; place-items:center; background:#000000a8; z-index:100}
-    .panel{width:min(580px,92vw); background:var(--card); border:1px solid #ffffff22; border-radius:20px; padding:22px}
-    .panel h3{margin:0 0 8px}
-    .plans{display:grid; gap:10px; margin-top:12px}
-    .plan{padding:12px; border:1px solid #ffffff18; border-radius:14px; background:#ffffff06; display:flex; justify-content:space-between; align-items:center}
-    .plan strong{font-size:18px}
-    .close{float:right; opacity:.85; cursor:pointer}
-    .tiny{color:#bdbde0; font-size:12px; margin-top:8px}
+        .nav .logo {
+            font-weight: 800;
+            letter-spacing: .4px
+        }
 
-    /* Footer */
-    .footer{padding:60px 4vw 80px; color:#bdbde0}
-    .footer a{opacity:.9; text-decoration:underline}
+        .nav .sp {
+            flex: 1
+        }
 
-    /* Watermark para previews (simulada) */
-    .wm{
-      position:absolute; inset:auto 10px 10px auto; padding:4px 8px; font-size:11px; color:#fff; background:#00000066; border:1px solid #ffffff22; border-radius:8px; z-index:2
-    }
-  </style>
+        .pill {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: #ffffff10;
+            border: 1px solid #ffffff12;
+            font-size: 14px
+        }
+
+        .cta {
+            background: linear-gradient(135deg, #b893ff, #7d5cff);
+            border: none;
+            font-weight: 700
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 96svh;
+            display: grid;
+            align-items: center;
+            padding: 120px 6vw 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .eyebrow {
+            color: #cfcfe6;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            font-size: 12px;
+            opacity: .9
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 6vw, 76px);
+            line-height: 1.03;
+            margin: .3rem 0 12px
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: clamp(16px, 2.1vw, 22px);
+            max-width: 65ch;
+            margin: 0
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 22px
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid #ffffff18;
+            background: #ffffff08;
+            cursor: pointer;
+            font-weight: 600
+        }
+
+        .btn.accent {
+            background: linear-gradient(135deg, #b893ff, #7d5cff);
+            border: none
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px
+        }
+
+        .chip {
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: #ffffff10;
+            border: 1px solid #ffffff12;
+            color: #cfcfe6
+        }
+
+        /* Sections */
+        .section {
+            padding: 56px 4vw 16px
+        }
+
+        .section-head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 12px
+        }
+
+        .section-head h2 {
+            margin: 0;
+            font-size: clamp(22px, 3.2vw, 38px)
+        }
+
+        .section-head p {
+            color: #bdbde0;
+            max-width: 70ch;
+            margin: 8px 0 0
+        }
+
+        /* Grid */
+        .grid {
+            padding: 24px 0 70px;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 16px;
+            position: relative;
+        }
+
+        .card {
+            grid-column: span 4;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--card);
+            border: 1px solid var(--border);
+            position: relative;
+            transform: translateY(24px);
+            opacity: 0;
+            isolation: isolate;
+        }
+
+        @media (max-width:1000px) {
+            .card {
+                grid-column: span 6
+            }
+        }
+
+        @media (max-width:640px) {
+            .card {
+                grid-column: span 12
+            }
+        }
+
+        .thumb {
+            aspect-ratio: 4/5;
+            width: 100%;
+            object-fit: cover;
+            filter: saturate(105%);
+            transition: transform .5s ease;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: #00000066;
+            border: 1px solid #ffffff22;
+            font-size: 12px;
+            z-index: 2;
+        }
+
+        .lock {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 28px;
+            height: 28px;
+            display: grid;
+            place-items: center;
+            border-radius: 999px;
+            background: #00000066;
+            border: 1px solid #ffffff22;
+            z-index: 2
+        }
+
+        .meta {
+            padding: 10px 12px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px
+        }
+
+        .title {
+            font-weight: 700
+        }
+
+        .tag {
+            font-size: 12px;
+            color: #bdbde0
+        }
+
+        /* Vídeos */
+        .video-card .thumb {
+            aspect-ratio: 16/9
+        }
+
+        .play {
+            position: absolute;
+            inset: auto 10px 10px auto;
+            background: #00000088;
+            border: 1px solid #ffffff22;
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-size: 12px
+        }
+
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            left: 50%;
+            transform: translate(-50%, 110%);
+            bottom: 20px;
+            z-index: 50;
+            background: linear-gradient(135deg, #b893ff, #7d5cff);
+            color: #111;
+            padding: 14px 18px;
+            border-radius: 999px;
+            font-weight: 800;
+            box-shadow: 0 10px 30px #00000066;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            place-items: center;
+            background: #000000a8;
+            z-index: 100
+        }
+
+        .panel {
+            width: min(580px, 92vw);
+            background: var(--card);
+            border: 1px solid #ffffff22;
+            border-radius: 20px;
+            padding: 22px
+        }
+
+        .panel h3 {
+            margin: 0 0 8px
+        }
+
+        .plans {
+            display: grid;
+            gap: 10px;
+            margin-top: 12px
+        }
+
+        .plan {
+            padding: 12px;
+            border: 1px solid #ffffff18;
+            border-radius: 14px;
+            background: #ffffff06;
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .plan strong {
+            font-size: 18px
+        }
+
+        .close {
+            float: right;
+            opacity: .85;
+            cursor: pointer
+        }
+
+        .tiny {
+            color: #bdbde0;
+            font-size: 12px;
+            margin-top: 8px
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 4vw 80px;
+            color: #bdbde0
+        }
+
+        .footer a {
+            opacity: .9;
+            text-decoration: underline
+        }
+
+        /* Watermark para previews (simulada) */
+        .wm {
+            position: absolute;
+            inset: auto 10px 10px auto;
+            padding: 4px 8px;
+            font-size: 11px;
+            color: #fff;
+            background: #00000066;
+            border: 1px solid #ffffff22;
+            border-radius: 8px;
+            z-index: 2
+        }
+    </style>
 </head>
+
 <body>
-  <!-- NAV -->
-  <nav class="nav" aria-label="principal">
-    <div class="logo">BetterWLPRS</div>
-    <a class="pill" href="#gallery">Galería</a>
-    <a class="pill" href="#videos">Vídeos</a>
-    <a class="pill" href="#how">Cómo funciona</a>
-    <div class="sp"></div>
-    <button class="pill" id="openLogin" aria-haspopup="dialog" aria-controls="paywall">Entrar</button>
-    <button class="pill cta" id="openPaywall" aria-haspopup="dialog" aria-controls="paywall">Suscribirse</button>
-  </nav>
+    <!-- NAV -->
+    <nav class="nav" aria-label="principal">
+        <div class="logo">BetterWLPRS</div>
+        <a class="pill" href="#gallery">Galería</a>
+        <a class="pill" href="#videos">Vídeos</a>
+        <a class="pill" href="#how">Cómo funciona</a>
+        <div class="sp"></div>
+        <button class="pill" id="openLogin" aria-haspopup="dialog" aria-controls="paywall">Entrar</button>
+        <button class="pill cta" id="openPaywall" aria-haspopup="dialog" aria-controls="paywall">Suscribirse</button>
+    </nav>
 
-  <!-- HERO -->
-  <header class="hero" id="hero">
-    <div>
-      <div class="eyebrow">Galería premium con previews abiertos</div>
-      <h1>
-        <span class="line">Donde cada foto es un adelanto,</span><br>
-        <span class="line">y lo mejor está tras el click.</span>
-      </h1>
-      <p class="lead">Explora sesiones exclusivas en previews abiertos. Suscríbete para descargar los originales en toda calidad y desbloquear vídeos completos.</p>
-      <div class="actions">
-        <a class="btn accent" id="ctaPrimary">Explorar galería</a>
-        <a class="btn" href="#how">Cómo funciona</a>
-      </div>
-      <div class="chips" aria-hidden="true">
-        <span class="chip">LQIP + Watermark</span>
-        <span class="chip">Descargas originales</span>
-        <span class="chip">Trailers de vídeo</span>
-        <span class="chip">Stripe + Auth</span>
-      </div>
-    </div>
-  </header>
-
-  <!-- GALERÍA -->
-  <section class="section" id="gallery" aria-labelledby="galeria-title">
-    <div class="section-head">
-      <div>
-        <h2 id="galeria-title">Previews que inspiran</h2>
-        <p>Cada imagen se muestra optimizada. ¿Quieres el archivo original, sin marca de agua? Hazte miembro y descárgalo al instante.</p>
-      </div>
-      <button class="btn" id="filterBtn">Filtrar</button>
-    </div>
-    <div class="grid" id="galleryGrid" role="list"></div>
-  </section>
-
-  <!-- VÍDEOS -->
-  <section class="section" id="videos" aria-labelledby="videos-title">
-    <div class="section-head">
-      <div>
-        <h2 id="videos-title">Clips abiertos. Historias completas al suscribirte.</h2>
-        <p>Reproduce avances de 10–20 segundos. Los miembros acceden a los vídeos completos en 1080p/4K.</p>
-      </div>
-    </div>
-    <div class="grid" id="videoGrid" role="list"></div>
-  </section>
-
-  <!-- CÓMO FUNCIONA -->
-  <section class="section" id="how" aria-labelledby="how-title">
-    <div class="section-head">
-      <div>
-        <h2 id="how-title">Cómo funciona</h2>
-        <p>Publica tus sesiones y clips. El mundo ve un adelanto; lo premium se desbloquea con suscripción.</p>
-      </div>
-    </div>
-    <div class="grid">
-      <div class="card" style="grid-column:span 6; padding:18px">
-        <h3>1) Sube y etiqueta</h3>
-        <p class="tiny">Tus fotos se transforman a WebP/AVIF con `srcset` y marca de agua sutil en previews.</p>
-      </div>
-      <div class="card" style="grid-column:span 6; padding:18px">
-        <h3>2) Previews que enamoran</h3>
-        <p class="tiny">Carga progresiva, blur inicial y micro-interacciones con GSAP para un scroll suave.</p>
-      </div>
-      <div class="card" style="grid-column:span 6; padding:18px">
-        <h3>3) Suscripción simple</h3>
-        <p class="tiny">Stripe/Lemon Squeezy. Un clic, acceso completo a originales y vídeos largos.</p>
-      </div>
-      <div class="card" style="grid-column:span 6; padding:18px">
-        <h3>4) Descargas seguras</h3>
-        <p class="tiny">URLs firmadas y límites de descarga para proteger tu trabajo.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA pegajoso -->
-  <button class="sticky-cta" id="sticky">Suscríbete para full-res</button>
-
-  <!-- MODAL PAYWALL -->
-  <div class="modal" id="paywall" role="dialog" aria-modal="true" aria-labelledby="paywallTitle" aria-describedby="paywallDesc">
-    <div class="panel">
-      <button class="close" id="closeModal" aria-label="Cerrar">✕</button>
-      <h3 id="paywallTitle">Tu acceso completo empieza aquí</h3>
-      <p id="paywallDesc" class="tiny">Descargas sin marca de agua, vídeos completos en 1080p/4K y sesiones completas.</p>
-      <div class="plans">
-        <div class="plan">
-          <div><strong>Mensual</strong><div class="tiny">Cancela cuando quieras</div></div>
-          <a class="btn accent" href="#" id="buyMonthly">€7,99</a>
+    <!-- HERO -->
+    <header class="hero" id="hero">
+        <div>
+            <div class="eyebrow">Galería premium con previews abiertos</div>
+            <h1>
+                <span class="line">Donde cada foto es un adelanto,</span><br>
+                <span class="line">y lo mejor está tras el click.</span>
+            </h1>
+            <p class="lead">Explora sesiones exclusivas en previews abiertos. Suscríbete para descargar los originales
+                en toda calidad y desbloquear vídeos completos.</p>
+            <div class="actions">
+                <a class="btn accent" id="ctaPrimary">Explorar galería</a>
+                <a class="btn" href="#how">Cómo funciona</a>
+            </div>
+            <div class="chips" aria-hidden="true">
+                <span class="chip">LQIP + Watermark</span>
+                <span class="chip">Descargas originales</span>
+                <span class="chip">Trailers de vídeo</span>
+                <span class="chip">Stripe + Auth</span>
+            </div>
         </div>
-        <div class="plan">
-          <div><strong>Anual</strong><div class="tiny">2 meses de regalo</div></div>
-          <a class="btn" href="#" id="buyYearly">€79</a>
+    </header>
+
+    <!-- GALERÍA -->
+    <section class="section" id="gallery" aria-labelledby="galeria-title">
+        <div class="section-head">
+            <div>
+                <h2 id="galeria-title">Previews que inspiran</h2>
+                <p>Cada imagen se muestra optimizada. ¿Quieres el archivo original, sin marca de agua? Hazte miembro y
+                    descárgalo al instante.</p>
+            </div>
+            <button class="btn" id="filterBtn">Filtrar</button>
         </div>
-      </div>
-      <p class="tiny">Al suscribirte aceptas los <a href="#">Términos</a> y la <a href="#">Privacidad</a>.</p>
+        <div class="grid" id="galleryGrid" role="list"></div>
+    </section>
+
+    <!-- VÍDEOS -->
+    <section class="section" id="videos" aria-labelledby="videos-title">
+        <div class="section-head">
+            <div>
+                <h2 id="videos-title">Clips abiertos. Historias completas al suscribirte.</h2>
+                <p>Reproduce avances de 10–20 segundos. Los miembros acceden a los vídeos completos en 1080p/4K.</p>
+            </div>
+        </div>
+        <div class="grid" id="videoGrid" role="list"></div>
+    </section>
+
+    <!-- CÓMO FUNCIONA -->
+    <section class="section" id="how" aria-labelledby="how-title">
+        <div class="section-head">
+            <div>
+                <h2 id="how-title">Cómo funciona</h2>
+                <p>Publica tus sesiones y clips. El mundo ve un adelanto; lo premium se desbloquea con suscripción.</p>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="card" style="grid-column:span 6; padding:18px">
+                <h3>1) Sube y etiqueta</h3>
+                <p class="tiny">Tus fotos se transforman a WebP/AVIF con `srcset` y marca de agua sutil en previews.</p>
+            </div>
+            <div class="card" style="grid-column:span 6; padding:18px">
+                <h3>2) Previews que enamoran</h3>
+                <p class="tiny">Carga progresiva, blur inicial y micro-interacciones con GSAP para un scroll suave.</p>
+            </div>
+            <div class="card" style="grid-column:span 6; padding:18px">
+                <h3>3) Suscripción simple</h3>
+                <p class="tiny">Stripe/Lemon Squeezy. Un clic, acceso completo a originales y vídeos largos.</p>
+            </div>
+            <div class="card" style="grid-column:span 6; padding:18px">
+                <h3>4) Descargas seguras</h3>
+                <p class="tiny">URLs firmadas y límites de descarga para proteger tu trabajo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA pegajoso -->
+    <button class="sticky-cta" id="sticky">Suscríbete para full-res</button>
+
+    <!-- MODAL PAYWALL -->
+    <div class="modal" id="paywall" role="dialog" aria-modal="true" aria-labelledby="paywallTitle"
+        aria-describedby="paywallDesc">
+        <div class="panel">
+            <button class="close" id="closeModal" aria-label="Cerrar">✕</button>
+            <h3 id="paywallTitle">Tu acceso completo empieza aquí</h3>
+            <p id="paywallDesc" class="tiny">Descargas sin marca de agua, vídeos completos en 1080p/4K y sesiones
+                completas.</p>
+            <div class="plans">
+                <div class="plan">
+                    <div><strong>Mensual</strong>
+                        <div class="tiny">Cancela cuando quieras</div>
+                    </div>
+                    <a class="btn accent" href="#" id="buyMonthly">€7,99</a>
+                </div>
+                <div class="plan">
+                    <div><strong>Anual</strong>
+                        <div class="tiny">2 meses de regalo</div>
+                    </div>
+                    <a class="btn" href="#" id="buyYearly">€79</a>
+                </div>
+            </div>
+            <p class="tiny">Al suscribirte aceptas los <a href="#">Términos</a> y la <a href="#">Privacidad</a>.</p>
+        </div>
     </div>
-  </div>
 
-  <footer class="footer">
-    <div>© BetterWLPRS. “Previews que enamoran. Full-res al suscribirte.”</div>
-    <div>¿Preguntas? <a href="mailto:hola@betterwlprs.example">hola@betterwlprs.example</a></div>
-  </footer>
+    <footer class="footer">
+        <div>© BetterWLPRS. “Previews que enamoran. Full-res al suscribirte.”</div>
+        <div>¿Preguntas? <a href="mailto:hola@betterwlprs.example">hola@betterwlprs.example</a></div>
+    </footer>
 
-  <!-- GSAP -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
 
-  <script>
-    // ---------- Datos de muestra (sustituye por tu CMS) ----------
-    const photos = [
-      {title:'Golden Hour', tag:'Retrato', premium:true,
-       thumb:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=60',
-       srcset:'?w=480 480w, ?w=800 800w, ?w=1200 1200w'},
-      {title:'City Nights', tag:'Urbano', premium:false,
-       thumb:'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=60'},
-      {title:'Studio Vibes', tag:'Estudio', premium:true,
-       thumb:'https://images.unsplash.com/photo-1554134715-0c2d5d7a5d53?auto=format&fit=crop&w=1200&q=60'},
-      {title:'Ocean Walk', tag:'Documental', premium:false,
-       thumb:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=60'},
-      {title:'Soft Neon', tag:'Retrato', premium:true,
-       thumb:'https://images.unsplash.com/photo-1520975922284-7b6831a1d02d?auto=format&fit=crop&w=1200&q=60'},
-      {title:'Analog Mood', tag:'Editorial', premium:false,
-       thumb:'https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?auto=format&fit=crop&w=1200&q=60'}
-    ];
+    <script>
+        // ---------- Datos de muestra (sustituye por tu CMS) ----------
+        const photos = [
+            {
+                title: 'Golden Hour', tag: 'Retrato', premium: true,
+                thumb: './img/arkham.gif',
+                srcset: './img/arkham.gif 480w, ./img/arkham.gif 800w, ./img/arkham.gif 1200w'
+            },
+            {
+                title: 'City Nights', tag: 'Urbano', premium: false,
+                thumb: './img/barman.png'
+            },
+            {
+                title: 'Studio Vibes', tag: 'Estudio', premium: true,
+                thumb: './img/discoelysium.webp'
+            },
+            {
+                title: 'Ocean Walk', tag: 'Documental', premium: false,
+                thumb: './img/marcusittingfocused.jpg'
+            },
+            {
+                title: 'Soft Neon', tag: 'Retrato', premium: true,
+                thumb: './img/samizquierdasentado.png'
+            },
+            {
+                title: 'Analog Mood', tag: 'Editorial', premium: false,
+                thumb: './img/sanfracampview.jpg'
+            }
+        ];
 
-    const videos = [
-      {title:'Behind The Lens', tag:'Trailer 18s', premium:true,
-       thumb:'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1200&q=60'},
-      {title:'Street Cut', tag:'Trailer 12s', premium:true,
-       thumb:'https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=1200&q=60'},
-      {title:'Studio BTS', tag:'Trailer 15s', premium:false,
-       thumb:'https://images.unsplash.com/photo-1517263904808-5dc91e3e7044?auto=format&fit=crop&w=1200&q=60'}
-    ];
+        const videos = [
+            {
+                title: 'Behind The Lens', tag: 'Trailer 18s', premium: true,
+                thumb: './img/spidersky.gif'
+            },
+            {
+                title: 'Street Cut', tag: 'Trailer 12s', premium: true,
+                thumb: './img/thelongdarkwolfs.png'
+            },
+            {
+                title: 'Studio BTS', tag: 'Trailer 15s', premium: false,
+                thumb: './img/samsatori.gif'
+            }
+        ];
 
-    // ---------- Render de galería ----------
-    const galleryGrid = document.getElementById('galleryGrid');
-    photos.forEach((item)=>{
-      const card = document.createElement('article');
-      card.className = 'card';
-      card.setAttribute('role','listitem');
-      card.innerHTML = `
+        // ---------- Render de galería ----------
+        const galleryGrid = document.getElementById('galleryGrid');
+        photos.forEach((item) => {
+            const card = document.createElement('article');
+            card.className = 'card';
+            card.setAttribute('role', 'listitem');
+            card.innerHTML = `
         <span class="badge">${item.tag}</span>
         ${item.premium ? '<div class="lock" aria-label="Contenido premium">🔒</div>' : ''}
         <span class="wm">Preview</span>
-        <img class="thumb" loading="lazy" alt="${item.title}"
-             src="${item.thumb}"
-             srcset="${item.thumb}&w=480 480w, ${item.thumb}&w=800 800w, ${item.thumb}&w=1200 1200w"
-             sizes="(max-width:640px) 100vw, (max-width:1000px) 50vw, 33vw"/>
+    <img class="thumb" loading="lazy" alt="${item.title}"
+         src="${item.thumb}"/>
         <div class="meta">
           <div>
             <div class="title">${item.title}</div>
@@ -272,17 +569,17 @@
           <a class="btn ${item.premium ? '' : 'accent'}" href="#">${item.premium ? 'Ver preview' : 'Descargar'}</a>
         </div>
       `;
-      if(item.premium){ card.dataset.premium = "true"; }
-      galleryGrid.appendChild(card);
-    });
+            if (item.premium) { card.dataset.premium = "true"; }
+            galleryGrid.appendChild(card);
+        });
 
-    // ---------- Render de vídeos (teasers) ----------
-    const videoGrid = document.getElementById('videoGrid');
-    videos.forEach((v)=>{
-      const card = document.createElement('article');
-      card.className = 'card video-card';
-      card.setAttribute('role','listitem');
-      card.innerHTML = `
+        // ---------- Render de vídeos (teasers) ----------
+        const videoGrid = document.getElementById('videoGrid');
+        videos.forEach((v) => {
+            const card = document.createElement('article');
+            card.className = 'card video-card';
+            card.setAttribute('role', 'listitem');
+            card.innerHTML = `
         <span class="badge">${v.tag}</span>
         ${v.premium ? '<div class="lock" aria-label="Contenido premium">🔒</div>' : ''}
         <img class="thumb" loading="lazy" alt="${v.title}" src="${v.thumb}"/>
@@ -292,94 +589,95 @@
           <div class="tag">${v.premium ? 'Trailer — completo al suscribirte' : 'Clip abierto'}</div>
         </div>
       `;
-      if(v.premium){ card.dataset.premium = "true"; }
-      videoGrid.appendChild(card);
-    });
+            if (v.premium) { card.dataset.premium = "true"; }
+            videoGrid.appendChild(card);
+        });
 
-    // ---------- Modal de paywall (simulado) ----------
-    const modal = document.getElementById('paywall');
-    const openModal = ()=>{ modal.style.display='grid'; trapFocus(modal); }
-    const closeModal = ()=>{ modal.style.display='none'; releaseFocus(); }
-    document.getElementById('closeModal').addEventListener('click', closeModal);
-    document.getElementById('openPaywall').addEventListener('click', openModal);
-    document.getElementById('openLogin').addEventListener('click', openModal);
-    document.addEventListener('keydown', e=>{ if(e.key==='Escape' && modal.style.display==='grid') closeModal(); });
+        // ---------- Modal de paywall (simulado) ----------
+        const modal = document.getElementById('paywall');
+        const openModal = () => { modal.style.display = 'grid'; trapFocus(modal); }
+        const closeModal = () => { modal.style.display = 'none'; releaseFocus(); }
+        document.getElementById('closeModal').addEventListener('click', closeModal);
+        document.getElementById('openPaywall').addEventListener('click', openModal);
+        document.getElementById('openLogin').addEventListener('click', openModal);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.style.display === 'grid') closeModal(); });
 
-    // Abrir modal al intentar ver premium / comprar
-    document.addEventListener('click', (e)=>{
-      const premiumCard = e.target.closest('.card[data-premium="true"]');
-      if(premiumCard){ e.preventDefault(); openModal(); }
-      if(e.target.id==='ctaPrimary'){ e.preventDefault(); document.getElementById('gallery').scrollIntoView({behavior:'smooth'}) }
-      if(e.target.id==='sticky'){ e.preventDefault(); openModal(); }
-      if(e.target.id==='buyMonthly' || e.target.id==='buyYearly'){ e.preventDefault(); alert('Simulación: aquí iría Stripe/Lemon Squeezy Checkout.'); }
-      if(e.target===modal){ closeModal(); }
-    });
+        // Abrir modal al intentar ver premium / comprar
+        document.addEventListener('click', (e) => {
+            const premiumCard = e.target.closest('.card[data-premium="true"]');
+            if (premiumCard) { e.preventDefault(); openModal(); }
+            if (e.target.id === 'ctaPrimary') { e.preventDefault(); document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' }) }
+            if (e.target.id === 'sticky') { e.preventDefault(); openModal(); }
+            if (e.target.id === 'buyMonthly' || e.target.id === 'buyYearly') { e.preventDefault(); alert('Simulación: aquí iría Stripe/Lemon Squeezy Checkout.'); }
+            if (e.target === modal) { closeModal(); }
+        });
 
-    // ---------- GSAP ----------
-    gsap.registerPlugin(ScrollTrigger);
+        // ---------- GSAP ----------
+        gsap.registerPlugin(ScrollTrigger);
 
-    // Hero split lines + lead
-    gsap.from('.line', {yPercent:120, opacity:0, duration:0.8, ease:'power3.out', stagger:0.08, delay:0.1});
-    gsap.from('.lead', {y:8, opacity:0, duration:0.6, ease:'power2.out', delay:0.25});
+        // Hero split lines + lead
+        gsap.from('.line', { yPercent: 120, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.08, delay: 0.1 });
+        gsap.from('.lead', { y: 8, opacity: 0, duration: 0.6, ease: 'power2.out', delay: 0.25 });
 
-    // Parallax fondo hero
-    gsap.to('#hero', {
-      backgroundPositionY: '40%',
-      ease:'none',
-      scrollTrigger:{ trigger:'#hero', start:'top top', end:'bottom top', scrub:0.5 }
-    });
+        // Parallax fondo hero
+        gsap.to('#hero', {
+            backgroundPositionY: '40%',
+            ease: 'none',
+            scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.5 }
+        });
 
-    // Stagger de tarjetas en todas las secciones
-    gsap.utils.toArray('.card').forEach((card)=>{
-      gsap.to(card, {
-        y:0, opacity:1, duration:0.7, ease:'power3.out',
-        scrollTrigger:{ trigger:card, start:'top 85%', toggleActions:'play none none reverse' }
-      });
-    });
+        // Stagger de tarjetas en todas las secciones
+        gsap.utils.toArray('.card').forEach((card) => {
+            gsap.to(card, {
+                y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
+                scrollTrigger: { trigger: card, start: 'top 85%', toggleActions: 'play none none reverse' }
+            });
+        });
 
-    // CTA pegajoso aparece al 40% de scroll
-    gsap.to('#sticky', {
-      y:0, ease:'power2.out',
-      scrollTrigger:{ trigger:document.body, start:'top 40%', toggleActions:'play none none reverse' }
-    });
+        // CTA pegajoso aparece al 40% de scroll
+        gsap.to('#sticky', {
+            y: 0, ease: 'power2.out',
+            scrollTrigger: { trigger: document.body, start: 'top 40%', toggleActions: 'play none none reverse' }
+        });
 
-    // Hover tilt suave (accesible)
-    const tiltTargets = document.querySelectorAll('.card .thumb');
-    tiltTargets.forEach(img=>{
-      const card = img.closest('.card');
-      card.addEventListener('mousemove',(e)=>{
-        const r = card.getBoundingClientRect();
-        const dx = (e.clientX - (r.left + r.width/2)) / r.width;
-        const dy = (e.clientY - (r.top + r.height/2)) / r.height;
-        img.style.transform = `scale(1.06) translate(${dx*8}px, ${dy*8}px)`;
-      });
-      card.addEventListener('mouseleave',()=> img.style.transform='scale(1.02)');
-    });
+        // Hover tilt suave (accesible)
+        const tiltTargets = document.querySelectorAll('.card .thumb');
+        tiltTargets.forEach(img => {
+            const card = img.closest('.card');
+            card.addEventListener('mousemove', (e) => {
+                const r = card.getBoundingClientRect();
+                const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+                const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+                img.style.transform = `scale(1.06) translate(${dx * 8}px, ${dy * 8}px)`;
+            });
+            card.addEventListener('mouseleave', () => img.style.transform = 'scale(1.02)');
+        });
 
-    // ---------- Accesibilidad: trap focus en modal ----------
-    let focusableEls = [];
-    let lastFocused = null;
-    function trapFocus(container){
-      lastFocused = document.activeElement;
-      focusableEls = Array.from(container.querySelectorAll('a, button, input, [tabindex]:not([tabindex="-1"])')).filter(el=>!el.hasAttribute('disabled'));
-      const first = focusableEls[0], last = focusableEls[focusableEls.length-1];
-      (first || container).focus();
-      container.addEventListener('keydown', onKeyDown);
-      function onKeyDown(e){
-        if(e.key!=='Tab') return;
-        if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
-        else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
-      }
-    }
-    function releaseFocus(){
-      modal.removeEventListener('keydown', ()=>{});
-      if(lastFocused) lastFocused.focus();
-    }
+        // ---------- Accesibilidad: trap focus en modal ----------
+        let focusableEls = [];
+        let lastFocused = null;
+        function trapFocus(container) {
+            lastFocused = document.activeElement;
+            focusableEls = Array.from(container.querySelectorAll('a, button, input, [tabindex]:not([tabindex="-1"])')).filter(el => !el.hasAttribute('disabled'));
+            const first = focusableEls[0], last = focusableEls[focusableEls.length - 1];
+            (first || container).focus();
+            container.addEventListener('keydown', onKeyDown);
+            function onKeyDown(e) {
+                if (e.key !== 'Tab') return;
+                if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+                else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+            }
+        }
+        function releaseFocus() {
+            modal.removeEventListener('keydown', () => { });
+            if (lastFocused) lastFocused.focus();
+        }
 
-    // (Opcional) botón Filtrar: demo de animación sutil
-    document.getElementById('filterBtn').addEventListener('click',()=>{
-      gsap.to('#galleryGrid .card', {opacity:0.25, y:8, duration:0.25, stagger:0.03, yoyo:true, repeat:1});
-    });
-  </script>
+        // (Opcional) botón Filtrar: demo de animación sutil
+        document.getElementById('filterBtn').addEventListener('click', () => {
+            gsap.to('#galleryGrid .card', { opacity: 0.25, y: 8, duration: 0.25, stagger: 0.03, yoyo: true, repeat: 1 });
+        });
+    </script>
 </body>
+
 </html>
