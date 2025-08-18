@@ -93,7 +93,7 @@
             min-height: 96svh;
             display: grid;
             align-items: center;
-            padding: 55px 6vw 40px;
+            padding: 0 6vw 40px;
             position: relative;
             overflow: hidden;
         }
@@ -384,13 +384,14 @@
             transform-origin: left;
             transition: transform 0.6s ease;
         }
-        
+
 
         /* Palabras animadas del título */
         .word {
             display: inline-block;
             margin-right: 0.3em;
         }
+
         /* Nuevo: palabras reveladas con GSAP en h2 */
         .reveal-word {
             display: inline-block;
@@ -410,61 +411,192 @@
             z-index: 2
         }
 
-    /* Rediseño bloques informativos: cards limpias */
-    .card.pad { padding: 18px; }
-    .row { display: flex; gap: 12px; align-items: flex-start; }
-    .icon-badge { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: #ffffff0d; border: 1px solid #ffffff18; flex: 0 0 auto; }
-    .kicker { font-size: 12px; color: #cfcfe6; letter-spacing: .04em; text-transform: uppercase; }
-    .muted { color: #bdbde0; }
-    .faq { display: grid; gap: 12px; }
-    .faq-q { width: 100%; text-align: left; background: transparent; color: var(--text); padding: 14px 0; border: none; font-weight: 800; cursor: pointer; }
-    .faq-a { color: #bdbde0; padding-bottom: 8px; }
+        /* Rediseño bloques informativos: cards limpias */
+        .card.pad {
+            padding: 18px;
+        }
+
+        .row {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .icon-badge {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            background: #ffffff0d;
+            border: 1px solid #ffffff18;
+            flex: 0 0 auto;
+        }
+
+        .kicker {
+            font-size: 12px;
+            color: #cfcfe6;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+        }
+
+        .muted {
+            color: #bdbde0;
+        }
+
+        .faq {
+            display: grid;
+            gap: 12px;
+        }
+
+        .faq-q {
+            width: 100%;
+            text-align: left;
+            background: transparent;
+            color: var(--text);
+            padding: 14px 0;
+            border: none;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .faq-a {
+            color: #bdbde0;
+            padding-bottom: 8px;
+        }
 
         /* Utilidades de columnas responsivas para .grid */
-        .grid .col-12 { grid-column: span 12; }
-        .grid .col-6 { grid-column: span 6; }
-        .grid .col-4 { grid-column: span 4; }
-        .grid .col-3 { grid-column: span 3; }
-        @media (max-width:1000px) {
-            .grid .col-3,
-            .grid .col-4,
-            .grid .col-6 { grid-column: span 6; }
+        .grid .col-12 {
+            grid-column: span 12;
         }
-        @media (max-width:640px) {
+
+        .grid .col-6 {
+            grid-column: span 6;
+        }
+
+        .grid .col-4 {
+            grid-column: span 4;
+        }
+
+        .grid .col-3 {
+            grid-column: span 3;
+        }
+
+        @media (max-width:1000px) {
+
             .grid .col-3,
             .grid .col-4,
-            .grid .col-6 { grid-column: span 12; }
+            .grid .col-6 {
+                grid-column: span 6;
+            }
+        }
+
+        @media (max-width:640px) {
+
+            .grid .col-3,
+            .grid .col-4,
+            .grid .col-6 {
+                grid-column: span 12;
+            }
         }
 
         /* Tarjetas ilustradas para "Cómo funciona" */
-        .step-media { aspect-ratio: 16/9; width: 100%; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 12px; filter: saturate(105%); }
-        .step-num { width: 28px; height: 28px; border-radius: 999px; display: grid; place-items: center; background: #ffffff0d; border: 1px solid #ffffff18; font-weight: 800; font-size: 12px; }
+        .step-media {
+            aspect-ratio: 16/9;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-bottom: 12px;
+            filter: saturate(105%);
+        }
+
+        .step-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: #ffffff0d;
+            border: 1px solid #ffffff18;
+            font-weight: 800;
+            font-size: 12px;
+        }
 
         /* --- Responsividad adicional (nav, hero, headers, Spline) --- */
         @media (max-width: 1000px) {
-            .nav { flex-wrap: wrap; gap: 8px 8px; padding: 6px 10px; }
-            .pill { font-size: 13px; padding: 6px 10px; }
+            .nav {
+                flex-wrap: wrap;
+                gap: 8px 8px;
+                padding: 6px 10px;
+            }
 
-            .section { padding: 48px 4vw 12px; }
-            .section-head { flex-direction: column; align-items: flex-start; gap: 8px; }
-            .section-head .btn { align-self: stretch; justify-content: center; }
+            .pill {
+                font-size: 13px;
+                padding: 6px 10px;
+            }
 
-            .actions { flex-direction: column; align-items: stretch; }
-            .actions .btn { justify-content: center; }
+            .section {
+                padding: 48px 4vw 12px;
+            }
+
+            .section-head {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .section-head .btn {
+                align-self: stretch;
+                justify-content: center;
+            }
+
+            .actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .actions .btn {
+                justify-content: center;
+            }
 
             /* Spline: reducir altura y levantar menos para que no tape el hero */
-            .steamdeck-hero-absolute { margin-top: -140px !important; }
-            .steamdeck-viewer-main { height: 320px !important; max-width: 720px !important; }
+            .steamdeck-hero-absolute {
+                margin-top: -140px !important;
+            }
+
+            .steamdeck-viewer-main {
+                height: 320px !important;
+                max-width: 720px !important;
+            }
         }
+
         @media (max-width: 640px) {
-            .hero { padding: 50px 5vw 30px; }
-            .hero p { font-size: clamp(15px, 4.5vw, 18px); }
-            .chips { gap: 6px; }
+            .hero {
+                padding: 50px 5vw 30px;
+            }
 
-            .steamdeck-hero-absolute { margin-top: -80px !important; }
-            .steamdeck-viewer-main { height: 240px !important; max-width: 480px !important; }
+            .hero p {
+                font-size: clamp(15px, 4.5vw, 18px);
+            }
 
-            .sticky-cta { bottom: 14px; padding: 12px 16px; }
+            .chips {
+                gap: 6px;
+            }
+
+            .steamdeck-hero-absolute {
+                margin-top: -80px !important;
+            }
+
+            .steamdeck-viewer-main {
+                height: 240px !important;
+                max-width: 480px !important;
+            }
+
+            .sticky-cta {
+                bottom: 14px;
+                padding: 12px 16px;
+            }
         }
     </style>
 </head>
@@ -478,7 +610,7 @@
         <a class="pill" href="#how">Cómo funciona</a>
         <div class="sp"></div>
         <button class="pill" id="openLogin" aria-haspopup="dialog" aria-controls="paywall">Entrar</button>
-    <button class="pill cta" id="openPaywall" aria-haspopup="dialog" aria-controls="paywall">Suscribirse</button>
+        <button class="pill cta" id="openPaywall" aria-haspopup="dialog" aria-controls="paywall">Suscribirse</button>
     </nav>
     <!-- MODAL PREVIEW -->
     <div class="modal" id="previewModal" role="dialog" aria-modal="true"
@@ -727,10 +859,22 @@
             </div>
         </div>
         <div class="grid">
-            <article class="card pad col-6"><h3>@NeoSetup</h3><p class="tiny">“Los vídeowlprs se ven finos en 4K, loop perfecto.”</p></article>
-            <article class="card pad col-6"><h3>@MartaPixel</h3><p class="tiny">“Por fin packs listos para mi móvil y mi iPad.”</p></article>
-            <article class="card pad col-6"><h3>@DeckUser</h3><p class="tiny">“En Steam Deck lucen brutales. Peso y calidad clavados.”</p></article>
-            <article class="card pad col-6"><h3>@UrbanPhoto</h3><p class="tiny">“Los originales sin marca valen la suscripción.”</p></article>
+            <article class="card pad col-6">
+                <h3>@NeoSetup</h3>
+                <p class="tiny">“Los vídeowlprs se ven finos en 4K, loop perfecto.”</p>
+            </article>
+            <article class="card pad col-6">
+                <h3>@MartaPixel</h3>
+                <p class="tiny">“Por fin packs listos para mi móvil y mi iPad.”</p>
+            </article>
+            <article class="card pad col-6">
+                <h3>@DeckUser</h3>
+                <p class="tiny">“En Steam Deck lucen brutales. Peso y calidad clavados.”</p>
+            </article>
+            <article class="card pad col-6">
+                <h3>@UrbanPhoto</h3>
+                <p class="tiny">“Los originales sin marca valen la suscripción.”</p>
+            </article>
         </div>
     </section>
 
@@ -747,19 +891,23 @@
                 <div class="faq" role="list">
                     <div class="faq-item" role="listitem">
                         <button class="faq-q" aria-expanded="false">¿Qué incluye la suscripción?</button>
-                        <div class="faq-a" hidden>Acceso a originales sin marca de agua, vídeowlprs completos y nuevos packs periódicos.</div>
+                        <div class="faq-a" hidden>Acceso a originales sin marca de agua, vídeowlprs completos y nuevos
+                            packs periódicos.</div>
                     </div>
                     <div class="faq-item" role="listitem">
                         <button class="faq-q" aria-expanded="false">¿Puedo usar los wallpapers comercialmente?</button>
-                        <div class="faq-a" hidden>El uso es personal. Para usos comerciales o colaboraciones, contáctanos.</div>
+                        <div class="faq-a" hidden>El uso es personal. Para usos comerciales o colaboraciones,
+                            contáctanos.</div>
                     </div>
                     <div class="faq-item" role="listitem">
                         <button class="faq-q" aria-expanded="false">¿Cada cuánto se añade contenido?</button>
-                        <div class="faq-a" hidden>Publicamos lotes de forma regular. Consulta las novedades al inicio.</div>
+                        <div class="faq-a" hidden>Publicamos lotes de forma regular. Consulta las novedades al inicio.
+                        </div>
                     </div>
                     <div class="faq-item" role="listitem">
                         <button class="faq-q" aria-expanded="false">¿Cómo reporto un enlace caído?</button>
-                        <div class="faq-a" hidden>Escríbenos a hola@betterwlprs.example indicando el pack y el dispositivo.</div>
+                        <div class="faq-a" hidden>Escríbenos a hola@betterwlprs.example indicando el pack y el
+                            dispositivo.</div>
                     </div>
                 </div>
             </article>
@@ -904,7 +1052,7 @@
 
         // ---------- Render de vídeos (teasers) ----------
         const videoGrid = document.getElementById('videoGrid');
-                videos.forEach((v) => {
+        videos.forEach((v) => {
             const card = document.createElement('article');
             card.className = 'card video-card';
             card.setAttribute('role', 'listitem');
@@ -923,9 +1071,9 @@
         });
 
         // ---------- Modal de paywall (simulado) ----------
-    const modal = document.getElementById('paywall');
-    const openModal = () => { modal.style.display = 'grid'; trapFocus(modal); }
-    const closeModal = () => { modal.style.display = 'none'; releaseFocus(); }
+        const modal = document.getElementById('paywall');
+        const openModal = () => { modal.style.display = 'grid'; trapFocus(modal); }
+        const closeModal = () => { modal.style.display = 'none'; releaseFocus(); }
         document.getElementById('closeModal').addEventListener('click', closeModal);
         document.getElementById('openPaywall').addEventListener('click', openModal);
         document.getElementById('openLogin').addEventListener('click', openModal);
@@ -941,9 +1089,9 @@
             if (e.target === modal) { closeModal(); }
         });
 
-    // ---------- GSAP ----------
-    gsap.registerPlugin(ScrollTrigger);
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // ---------- GSAP ----------
+        gsap.registerPlugin(ScrollTrigger);
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         // Hero split lines + lead
         if (!prefersReduced) {
@@ -968,7 +1116,7 @@
         });
 
         // Animación estilo dribbble para "Beneficios para miembros"
-        (function(){
+        (function () {
             if (prefersReduced) return;
             const section = document.getElementById('benefits');
             if (!section) return;
@@ -997,15 +1145,15 @@
                 ease: 'power3.out',
                 stagger: 0.08
             }, 0)
-            .to(cards, {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                rotate: 0,
-                duration: 0.7,
-                ease: 'power3.out',
-                stagger: 0.08
-            }, 0.02);
+                .to(cards, {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    rotate: 0,
+                    duration: 0.7,
+                    ease: 'power3.out',
+                    stagger: 0.08
+                }, 0.02);
 
             // Pop de iconos dentro de cada card
             const icons = cards.map(c => c.querySelector('.icon-badge')).filter(Boolean);
@@ -1040,7 +1188,7 @@
             card.addEventListener('mouseleave', () => img.style.transform = 'scale(1.02)');
         });
 
-    // Jelly effect para "Originales"
+        // Jelly effect para "Originales"
         const jellyText = document.querySelector('.jelly-text');
         if (jellyText) {
             // Timeline para el efecto jelly completo
@@ -1170,28 +1318,28 @@
             });
         }
 
-                // Jelly effect para "Exclusivos" en la sección de vídeos (solo scroll + subrayado)
-                (function(){
-                        const jellyTextVideos = document.querySelector('#videos .jelly-text');
-                        if (!jellyTextVideos) return;
-                        const tl = gsap.timeline({ paused: true });
-                        tl.to(jellyTextVideos, { scaleY: 1.28, scaleX: 0.82, duration: 0.14, ease: 'power2.out' })
-                            .to(jellyTextVideos, { scaleY: 0.92, scaleX: 1.08, duration: 0.18, ease: 'power2.inOut' })
-                            .to(jellyTextVideos, { scaleY: 1.04, scaleX: 0.98, duration: 0.14, ease: 'power2.inOut' })
-                            .to(jellyTextVideos, { scaleY: 1, scaleX: 1, duration: 0.22, ease: 'elastic.out(1,0.5)' });
+        // Jelly effect para "Exclusivos" en la sección de vídeos (solo scroll + subrayado)
+        (function () {
+            const jellyTextVideos = document.querySelector('#videos .jelly-text');
+            if (!jellyTextVideos) return;
+            const tl = gsap.timeline({ paused: true });
+            tl.to(jellyTextVideos, { scaleY: 1.28, scaleX: 0.82, duration: 0.14, ease: 'power2.out' })
+                .to(jellyTextVideos, { scaleY: 0.92, scaleX: 1.08, duration: 0.18, ease: 'power2.inOut' })
+                .to(jellyTextVideos, { scaleY: 1.04, scaleX: 0.98, duration: 0.14, ease: 'power2.inOut' })
+                .to(jellyTextVideos, { scaleY: 1, scaleX: 1, duration: 0.22, ease: 'elastic.out(1,0.5)' });
 
-                        ScrollTrigger.create({
-                                trigger: jellyTextVideos,
-                                start: 'top 80%',
-                                end: 'bottom 20%',
-                                onEnter: () => { tl.restart(); gsap.to(jellyTextVideos, { "--line-scale": 1, duration: 0.6, ease: 'power2.out' }); },
-                                onLeave: () => { gsap.set(jellyTextVideos, { "--line-scale": 0 }); },
-                                onEnterBack: () => { tl.restart(); gsap.to(jellyTextVideos, { "--line-scale": 1, duration: 0.6, ease: 'power2.out' }); },
-                                onLeaveBack: () => { gsap.set(jellyTextVideos, { "--line-scale": 0 }); }
-                        });
-                })();
+            ScrollTrigger.create({
+                trigger: jellyTextVideos,
+                start: 'top 80%',
+                end: 'bottom 20%',
+                onEnter: () => { tl.restart(); gsap.to(jellyTextVideos, { "--line-scale": 1, duration: 0.6, ease: 'power2.out' }); },
+                onLeave: () => { gsap.set(jellyTextVideos, { "--line-scale": 0 }); },
+                onEnterBack: () => { tl.restart(); gsap.to(jellyTextVideos, { "--line-scale": 1, duration: 0.6, ease: 'power2.out' }); },
+                onLeaveBack: () => { gsap.set(jellyTextVideos, { "--line-scale": 0 }); }
+            });
+        })();
 
-    // Animaciones para toda la sección de galería
+        // Animaciones para toda la sección de galería
         const gallerySection = document.getElementById('gallery');
         if (gallerySection) {
             const galleryTitle = gallerySection.querySelector('#galeria-title');
