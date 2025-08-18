@@ -1,0 +1,1528 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BetterWLPRS — Previews que enamoran. Full-res y vídeos completos al suscribirte.</title>
+
+    <!-- Tipografía -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <meta name="description"
+        content="Explora sesiones exclusivas en previews abiertos. Suscríbete para descargar los originales en toda calidad y desbloquear vídeos completos.">
+    
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg-secondary: #0f0f17;
+            --card: #16161e;
+            --card-hover: #1a1a24;
+            --text: #f0f0f7;
+            --text-secondary: #c4c4d1;
+            --muted: #9494a6;
+            --accent: #a787ff;
+            --accent-light: #b999ff;
+            --accent-dark: #8f6fff;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #ef4444;
+            --radius: 20px;
+            --radius-sm: 12px;
+            --radius-lg: 28px;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.15);
+            --shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.4);
+            --blur: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text);
+            background: 
+                radial-gradient(1400px 800px at 60% -20%, rgba(167, 135, 255, 0.12), transparent),
+                radial-gradient(1200px 600px at 20% 100%, rgba(167, 135, 255, 0.08), transparent),
+                var(--bg);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        /* ===== NUEVA NAVEGACIÓN MEJORADA ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(var(--blur));
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: between;
+            gap: 2rem;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 900;
+            font-size: 22px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .nav-brand::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            flex: 1;
+            justify-content: center;
+            margin-left: -120px; /* Compensar el logo */
+        }
+
+        .nav-item {
+            position: relative;
+            padding: 10px 18px;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .nav-item:hover {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-1px);
+        }
+
+        .nav-item.active {
+            color: var(--accent);
+            background: rgba(167, 135, 255, 0.1);
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            border-radius: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item.active::after,
+        .nav-item:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn.secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .nav-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border-color: var(--border-hover);
+            transform: translateY(-1px);
+        }
+
+        .nav-btn.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(167, 135, 255, 0.3);
+        }
+
+        .nav-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(167, 135, 255, 0.4);
+        }
+
+        .nav-btn.primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-btn.primary:hover::before {
+            opacity: 1;
+        }
+
+        .nav-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Mobile Menu */
+        .nav-mobile {
+            display: none;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .hamburger {
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translateY(6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translateY(-6px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .mobile-menu .nav-item {
+            font-size: 28px;
+            font-weight: 600;
+            padding: 16px 32px;
+        }
+
+        .mobile-menu .nav-actions {
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 2rem;
+        }
+
+        .mobile-menu .nav-btn {
+            width: 200px;
+            padding: 16px 32px;
+            font-size: 16px;
+            justify-content: center;
+            display: flex;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 24px 60px;
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 8px 16px;
+            border: 1px solid rgba(167, 135, 255, 0.3);
+            border-radius: 50px;
+            background: rgba(167, 135, 255, 0.05);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 84px);
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .gradient-text {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 32px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            box-shadow: 0 6px 30px rgba(167, 135, 255, 0.3);
+        }
+
+        .btn.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(167, 135, 255, 0.4);
+        }
+
+        .btn.secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .chip {
+            font-size: 13px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .chip:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            transform: translateY(-1px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: underlineReveal 0.8s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes underlineReveal {
+            to { transform: scaleX(1); }
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+            padding: 40px 0;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            backdrop-filter: blur(10px);
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        .card:hover {
+            background: var(--card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-image {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            padding: 6px 12px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-premium {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-content {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .card-subtitle {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .card-action {
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .card-action.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+        }
+
+        .card-action.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(167, 135, 255, 0.4);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+        }
+
+        .sticky-cta.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .sticky-cta:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(167, 135, 255, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 60px 24px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-mobile {
+                display: flex;
+            }
+
+            .nav-brand {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding: 100px 20px 40px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .chips {
+                gap: 8px;
+            }
+
+            .chip {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Utilities */
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Smooth scroll offset for fixed navbar */
+        html {
+            scroll-padding-top: 100px;
+        }
+
+        /* Loading states */
+        .card.loading {
+            background: linear-gradient(90deg, var(--card) 0%, var(--card-hover) 50%, var(--card) 100%);
+            background-size: 200% 100%;
+            animation: loading 1.5s ease-in-out infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NUEVA NAVEGACIÓN -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                BetterWLPRS
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="#gallery" class="nav-item active" data-section="gallery">Galería</a>
+                <a href="#videos" class="nav-item" data-section="videos">Vídeos</a>
+                <a href="#how" class="nav-item" data-section="how">Cómo funciona</a>
+                <a href="#benefits" class="nav-item" data-section="benefits">Beneficios</a>
+            </div>
+
+            <div class="nav-actions">
+                <button class="nav-btn secondary" id="loginBtn">
+                    <span>Entrar</span>
+                </button>
+                <button class="nav-btn primary" id="subscribeBtn">
+                    <span>Suscribirse</span>
+                </button>
+            </div>
+
+            <div class="nav-mobile">
+                <button class="nav-btn primary" id="subscribeMobileBtn">
+                    <span>Suscribirse</span>
+                </button>
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#gallery" class="nav-item" data-section="gallery">Galería</a>
+        <a href="#videos" class="nav-item" data-section="videos">Vídeos</a>
+        <a href="#how" class="nav-item" data-section="how">Cómo funciona</a>
+        <a href="#benefits" class="nav-item" data-section="benefits">Beneficios</a>
+        
+        <div class="nav-actions">
+            <button class="nav-btn secondary">
+                <span>Entrar</span>
+            </button>
+            <button class="nav-btn primary">
+                <span>Suscribirse</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="eyebrow">Fondos In-game exclusivos</div>
+            <h1>
+                Fondos in-game hechos a mano,<br>
+                <span class="gradient-text">adaptados para todos</span> tus dispositivos.
+            </h1>
+            <p>BetterWLPRS te ofrece wallpapers únicos, optimizados para cualquier dispositivo. Descarga y disfruta arte digital pensado para tu pantalla favorita.</p>
+            
+            <div class="hero-actions">
+                <button class="btn primary" id="exploreBtnHero">
+                    Explorar galería
+                    <span>→</span>
+                </button>
+                <a href="#how" class="btn secondary">
+                    Cómo funciona
+                </a>
+            </div>
+            
+            <div class="chips">
+                <span class="chip">Todo Original</span>
+                <span class="chip">Only in BetterWLPRS</span>
+                <span class="chip">iOS, Android, PC, Tablet</span>
+                <span class="chip">Descarga instantánea</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section class="section" id="gallery">
+        <div class="section-header">
+            <h2>Fondos De Pantalla <span class="highlight">Originales</span></h2>
+            <p>Cada imagen se muestra optimizada. ¿Quieres el archivo original, sin marca de agua? Hazte miembro y descárgalo al instante.</p>
+        </div>
+        <div class="grid" id="galleryGrid"></div>
+    </section>
+
+    <!-- VÍDEOS -->
+    <section class="section" id="videos">
+        <div class="section-header">
+            <h2>Vídeos <span class="highlight">Exclusivos</span> BetterWLPRS</h2>
+            <p>Descubre previews únicos de nuestras mejores capturas. Los miembros disfrutan contenido completo en máxima calidad.</p>
+        </div>
+        <div class="grid" id="videoGrid"></div>
+    </section>
+
+    <!-- CÓMO FUNCIONA -->
+    <section class="section" id="how">
+        <div class="section-header">
+            <h2>Cómo <span class="highlight">Funciona</span></h2>
+            <p>Publica tus sesiones y clips. El mundo ve un adelanto; lo premium se desbloquea con suscripción.</p>
+        </div>
+        <div class="grid" id="howGrid"></div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section class="section" id="benefits">
+        <div class="section-header">
+            <h2>Beneficios para <span class="highlight">Miembros</span></h2>
+            <p>Acceso a originales en full-res y vídeowlprs completos, listos para tu setup.</p>
+        </div>
+        <div class="grid" id="benefitsGrid"></div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section" id="final-cta">
+        <div class="section-header">
+            <h2>Lleva tu setup al <span class="highlight">siguiente nivel</span></h2>
+            <p>Desbloquea originales y vídeowlprs. Cancela cuando quieras.</p>
+            <div style="margin-top: 3rem;">
+                <button class="btn primary" id="finalCtaBtn" style="font-size: 18px; padding: 20px 40px;">
+                    Empieza ahora
+                    <span>✨</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- STICKY CTA -->
+    <button class="sticky-cta" id="stickyCta">
+        Suscríbete para full-res ✨
+    </button>
+
+    <!-- MODAL -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">×</button>
+            <div style="text-align: center;">
+                <h3 style="font-size: 28px; margin-bottom: 1rem;">Tu acceso completo empieza aquí</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">Descargas sin marca de agua, vídeos completos en 1080p/4K y sesiones completas.</p>
+                
+                <div style="display: grid; gap: 16px; margin-bottom: 2rem;">
+                    <div style="padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.02); display: flex; justify-content: space-between; align-items: center;">
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;">Mensual</div>
+                            <div style="color: var(--muted); font-size: 14px;">Cancela cuando quieras</div>
+                        </div>
+                        <button class="btn primary" id="monthlyPlan" style="min-width: 100px;">€7,99</button>
+                    </div>
+                    
+                    <div style="padding: 20px; border: 2px solid var(--accent); border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.05); display: flex; justify-content: space-between; align-items: center; position: relative;">
+                        <div style="position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">Popular</div>
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;">Anual</div>
+                            <div style="color: var(--muted); font-size: 14px;">2 meses de regalo</div>
+                        </div>
+                        <button class="btn primary" id="yearlyPlan" style="min-width: 100px;">€79</button>
+                    </div>
+                </div>
+                
+                <p style="font-size: 12px; color: var(--muted);">
+                    Al suscribirte aceptas los <a href="#" style="color: var(--accent);">Términos</a> y la <a href="#" style="color: var(--accent);">Privacidad</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div style="margin-bottom: 1rem;">
+            <div class="nav-brand" style="justify-content: center; margin-bottom: 1rem;">BetterWLPRS</div>
+            <p>Previews que enamoran. Full-res al suscribirte.</p>
+        </div>
+        <div>
+            ¿Preguntas? <a href="mailto:hola@betterwlprs.example" style="color: var(--accent);">hola@betterwlprs.example</a>
+        </div>
+    </footer>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        // ========== DATOS DE MUESTRA ==========
+        const photos = [
+            {
+                title: 'Golden Hour',
+                tag: 'Retrato',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=800&fit=crop&crop=face'
+            },
+            {
+                title: 'City Nights',
+                tag: 'Urbano',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=600&h=800&fit=crop'
+            },
+            {
+                title: 'Studio Vibes',
+                tag: 'Estudio',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=800&fit=crop'
+            },
+            {
+                title: 'Ocean Walk',
+                tag: 'Documental',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop&crop=face'
+            },
+            {
+                title: 'Soft Neon',
+                tag: 'Retrato',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&h=800&fit=crop&crop=face'
+            },
+            {
+                title: 'Analog Mood',
+                tag: 'Editorial',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&h=800&fit=crop&crop=face'
+            }
+        ];
+
+        const videos = [
+            {
+                title: 'Behind The Lens',
+                tag: 'Trailer 18s',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&h=400&fit=crop'
+            },
+            {
+                title: 'Street Cut',
+                tag: 'Trailer 12s',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1551913902-c92207136625?w=600&h=400&fit=crop'
+            },
+            {
+                title: 'Studio BTS',
+                tag: 'Trailer 15s',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&h=400&fit=crop'
+            }
+        ];
+
+        const howSteps = [
+            {
+                title: 'Sube y etiqueta',
+                description: 'Transformamos a WebP/AVIF con srcset y marca de agua sutil.',
+                image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
+                step: '1'
+            },
+            {
+                title: 'Previews que enamoran',
+                description: 'Carga progresiva, blur inicial y micro-interacciones en scroll.',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                step: '2'
+            },
+            {
+                title: 'Acceso completo',
+                description: 'Originales y vídeowlprs completos tras la suscripción.',
+                image: 'https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=400&fit=crop',
+                step: '3'
+            },
+            {
+                title: 'Descargas seguras',
+                description: 'Enlaces firmados y límites anti-abuso para proteger tu trabajo.',
+                image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop',
+                step: '4'
+            }
+        ];
+
+        const benefits = [
+            {
+                title: 'Sin marca de agua',
+                description: 'Descarga los archivos tal y como fueron creados.',
+                icon: '🖼️',
+                category: 'Original'
+            },
+            {
+                title: 'Clips completos 1080p/4K',
+                description: 'Preparados para loop con calidad equilibrada.',
+                icon: '🎞️',
+                category: 'Vídeowlprs'
+            },
+            {
+                title: 'Formatos optimizados',
+                description: 'Móvil, desktop, tablet y Steam Deck.',
+                icon: '📱',
+                category: 'Por dispositivo'
+            },
+            {
+                title: 'Nuevos packs',
+                description: 'Contenido añadido de forma regular.',
+                icon: '🔄',
+                category: 'Actualizaciones'
+            }
+        ];
+
+        // ========== GSAP SETUP ==========
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ========== NAVIGATION ==========
+        const navbar = document.getElementById('navbar');
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navItems = document.querySelectorAll('.nav-item[data-section]');
+
+        // Navbar scroll effect
+        ScrollTrigger.create({
+            start: "top -80",
+            end: 99999,
+            toggleClass: { className: "scrolled", targets: navbar }
+        });
+
+        // Mobile menu toggle
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close mobile menu when clicking nav items
+        document.querySelectorAll('.mobile-menu .nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Active navigation tracking
+        const sections = ['gallery', 'videos', 'how', 'benefits'];
+        
+        sections.forEach(sectionId => {
+            ScrollTrigger.create({
+                trigger: `#${sectionId}`,
+                start: "top 50%",
+                end: "bottom 50%",
+                onEnter: () => updateActiveNav(sectionId),
+                onEnterBack: () => updateActiveNav(sectionId)
+            });
+        });
+
+        function updateActiveNav(activeSection) {
+            navItems.forEach(item => {
+                item.classList.toggle('active', item.dataset.section === activeSection);
+            });
+        }
+
+        // ========== MODAL ==========
+        const modal = document.getElementById('modal');
+        const modalClose = document.getElementById('modalClose');
+        const openModalBtns = ['subscribeBtn', 'subscribeMobileBtn', 'loginBtn', 'stickyCta', 'finalCtaBtn'];
+
+        function openModal() {
+            modal.style.display = 'flex';
+            gsap.to(modal, { opacity: 1, duration: 0.3 });
+            gsap.to(modal.querySelector('.modal-content'), {
+                scale: 1,
+                opacity: 1,
+                duration: 0.4,
+                ease: "back.out(1.2)"
+            });
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            gsap.to(modal, { opacity: 0, duration: 0.3 });
+            gsap.to(modal.querySelector('.modal-content'), {
+                scale: 0.9,
+                opacity: 0,
+                duration: 0.3,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+
+        openModalBtns.forEach(btnId => {
+            const btn = document.getElementById(btnId);
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal();
+                });
+            }
+        });
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Plan selection simulation
+        document.getElementById('monthlyPlan')?.addEventListener('click', () => {
+            alert('Simulación: aquí iría Stripe/Lemon Squeezy Checkout para plan mensual.');
+        });
+
+        document.getElementById('yearlyPlan')?.addEventListener('click', () => {
+            alert('Simulación: aquí iría Stripe/Lemon Squeezy Checkout para plan anual.');
+        });
+
+        // ========== STICKY CTA ==========
+        const stickyCta = document.getElementById('stickyCta');
+
+        ScrollTrigger.create({
+            start: "top -200",
+            end: 99999,
+            onUpdate: self => {
+                if (self.direction === 1 && self.progress > 0.1) {
+                    stickyCta.classList.add('visible');
+                } else if (self.direction === -1 && self.progress < 0.05) {
+                    stickyCta.classList.remove('visible');
+                }
+            }
+        });
+
+        // ========== RENDER CONTENT ==========
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            photos.forEach((photo, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-image">
+                        <img src="${photo.thumb}" alt="${photo.title}" loading="lazy">
+                        <div class="card-badge">${photo.tag}</div>
+                        ${photo.premium ? '<div class="card-premium">🔒</div>' : ''}
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">${photo.title}</div>
+                            <div class="card-subtitle">${photo.premium ? 'Preview — suscripción para full-res' : 'Descarga 1600px'}</div>
+                        </div>
+                        <button class="card-action ${photo.premium ? 'secondary' : 'primary'}" onclick="${photo.premium ? 'openModal()' : 'alert(\'Descargando...\')'}">
+                            ${photo.premium ? 'Ver preview' : 'Descargar'}
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderVideos() {
+            const grid = document.getElementById('videoGrid');
+            videos.forEach((video, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="${video.thumb}" alt="${video.title}" loading="lazy">
+                        <div class="card-badge">${video.tag}</div>
+                        ${video.premium ? '<div class="card-premium">🔒</div>' : ''}
+                        <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);">
+                            ${video.premium ? 'Ver trailer' : 'Reproducir'}
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">${video.title}</div>
+                            <div class="card-subtitle">${video.premium ? 'Trailer — completo al suscribirte' : 'Clip abierto'}</div>
+                        </div>
+                    </div>
+                `;
+                card.addEventListener('click', () => {
+                    if (video.premium) {
+                        openModal();
+                    } else {
+                        alert('Reproduciendo vídeo...');
+                    }
+                });
+                grid.appendChild(card);
+            });
+        }
+
+        function renderHowItWorks() {
+            const grid = document.getElementById('howGrid');
+            howSteps.forEach((step, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="${step.image}" alt="${step.title}" loading="lazy">
+                    </div>
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                                ${step.step}
+                            </div>
+                            <div>
+                                <div class="card-title">${step.title}</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">${step.description}</div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderBenefits() {
+            const grid = document.getElementById('benefitsGrid');
+            benefits.forEach((benefit, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                ${benefit.icon}
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                    ${benefit.category}
+                                </div>
+                                <div class="card-title">${benefit.title}</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">${benefit.description}</div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // ========== ANIMATIONS ==========
+        function initAnimations() {
+            // Hero animations
+            const heroTl = gsap.timeline();
+            
+            heroTl
+                .from('.eyebrow', {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power3.out"
+                })
+                .from('.hero h1', {
+                    y: 50,
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power3.out"
+                }, "-=0.5")
+                .from('.hero p', {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power3.out"
+                }, "-=0.3")
+                .from('.hero-actions .btn', {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    ease: "back.out(1.2)"
+                }, "-=0.3")
+                .from('.chip', {
+                    scale: 0,
+                    opacity: 0,
+                    duration: 0.4,
+                    stagger: 0.05,
+                    ease: "back.out(1.4)"
+                }, "-=0.2");
+
+            // Card animations
+            gsap.utils.toArray('.card').forEach((card, index) => {
+                gsap.set(card, { y: 60, opacity: 0 });
+                
+                ScrollTrigger.create({
+                    trigger: card,
+                    start: "top 85%",
+                    onEnter: () => {
+                        gsap.to(card, {
+                            y: 0,
+                            opacity: 1,
+                            duration: 0.8,
+                            ease: "power3.out",
+                            delay: index * 0.1
+                        });
+                    }
+                });
+            });
+
+            // Section headers
+            gsap.utils.toArray('.section-header').forEach(header => {
+                gsap.from(header.children, {
+                    y: 40,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: header,
+                        start: "top 80%"
+                    }
+                });
+            });
+
+            // Parallax effects
+            gsap.utils.toArray('.card-image img').forEach(img => {
+                gsap.to(img, {
+                    yPercent: -20,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: img,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1
+                    }
+                });
+            });
+
+            // Highlight underline animations
+            gsap.utils.toArray('.highlight').forEach(highlight => {
+                ScrollTrigger.create({
+                    trigger: highlight,
+                    start: "top 80%",
+                    onEnter: () => {
+                        gsap.to(highlight.querySelector('::after') || highlight, {
+                            scaleX: 1,
+                            duration: 0.8,
+                            ease: "power2.out"
+                        });
+                    }
+                });
+            });
+        }
+
+        // ========== SMOOTH SCROLLING ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Explore button scroll to gallery
+        document.getElementById('exploreBtnHero')?.addEventListener('click', () => {
+            document.getElementById('gallery').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', () => {
+            renderGallery();
+            renderVideos();
+            renderHowItWorks();
+            renderBenefits();
+            
+            // Wait for content to be rendered, then init animations
+            requestAnimationFrame(() => {
+                initAnimations();
+            });
+        });
+
+        // ========== PERFORMANCE ==========
+        // Lazy loading for images
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'flex') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+
+</html>
