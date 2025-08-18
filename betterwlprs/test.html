@@ -384,9 +384,15 @@
             transform-origin: left;
             transition: transform 0.6s ease;
         }
+        
 
         /* Palabras animadas del título */
         .word {
+            display: inline-block;
+            margin-right: 0.3em;
+        }
+        /* Nuevo: palabras reveladas con GSAP en h2 */
+        .reveal-word {
             display: inline-block;
             margin-right: 0.3em;
         }
@@ -403,6 +409,36 @@
             border-radius: 8px;
             z-index: 2
         }
+
+    /* Rediseño bloques informativos: cards limpias */
+    .card.pad { padding: 18px; }
+    .row { display: flex; gap: 12px; align-items: flex-start; }
+    .icon-badge { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: #ffffff0d; border: 1px solid #ffffff18; flex: 0 0 auto; }
+    .kicker { font-size: 12px; color: #cfcfe6; letter-spacing: .04em; text-transform: uppercase; }
+    .muted { color: #bdbde0; }
+    .faq { display: grid; gap: 12px; }
+    .faq-q { width: 100%; text-align: left; background: transparent; color: var(--text); padding: 14px 0; border: none; font-weight: 800; cursor: pointer; }
+    .faq-a { color: #bdbde0; padding-bottom: 8px; }
+
+        /* Utilidades de columnas responsivas para .grid */
+        .grid .col-12 { grid-column: span 12; }
+        .grid .col-6 { grid-column: span 6; }
+        .grid .col-4 { grid-column: span 4; }
+        .grid .col-3 { grid-column: span 3; }
+        @media (max-width:1000px) {
+            .grid .col-3,
+            .grid .col-4,
+            .grid .col-6 { grid-column: span 6; }
+        }
+        @media (max-width:640px) {
+            .grid .col-3,
+            .grid .col-4,
+            .grid .col-6 { grid-column: span 12; }
+        }
+
+        /* Tarjetas ilustradas para "Cómo funciona" */
+        .step-media { aspect-ratio: 16/9; width: 100%; object-fit: cover; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 12px; filter: saturate(105%); }
+        .step-num { width: 28px; height: 28px; border-radius: 999px; display: grid; place-items: center; background: #ffffff0d; border: 1px solid #ffffff18; font-weight: 800; font-size: 12px; }
     </style>
 </head>
 
@@ -415,7 +451,7 @@
         <a class="pill" href="#how">Cómo funciona</a>
         <div class="sp"></div>
         <button class="pill" id="openLogin" aria-haspopup="dialog" aria-controls="paywall">Entrar</button>
-        <button class="pill cta" id="openPaywall" aria-haspopup="dialog" aria-controls="paywall">Suscribirse</button>
+    <button class="pill cta" id="openPaywall" aria-haspopup="dialog" aria-controls="paywall">Suscribirse</button>
     </nav>
     <!-- MODAL PREVIEW -->
     <div class="modal" id="previewModal" role="dialog" aria-modal="true"
@@ -496,22 +532,221 @@
             </div>
         </div>
         <div class="grid">
-            <div class="card" style="grid-column:span 6; padding:18px">
-                <h3>1) Sube y etiqueta</h3>
-                <p class="tiny">Tus fotos se transforman a WebP/AVIF con `srcset` y marca de agua sutil en previews.</p>
+            <article class="card pad col-6">
+                <img class="step-media" src="./img/sanfracampview.jpg" alt="Sube y etiqueta" loading="lazy" />
+                <div class="row">
+                    <div class="step-num">1</div>
+                    <div>
+                        <h3 style="margin:6px 0 6px;">Sube y etiqueta</h3>
+                        <p class="tiny">Transformamos a WebP/AVIF con <code>srcset</code> y marca de agua sutil.</p>
+                    </div>
+                </div>
+            </article>
+            <article class="card pad col-6">
+                <img class="step-media" src="./img/arkham.gif" alt="Previews que enamoran" loading="lazy" />
+                <div class="row">
+                    <div class="step-num">2</div>
+                    <div>
+                        <h3 style="margin:6px 0 6px;">Previews que enamoran</h3>
+                        <p class="tiny">Carga progresiva, blur inicial y micro‑interacciones en scroll.</p>
+                    </div>
+                </div>
+            </article>
+            <article class="card pad col-6">
+                <img class="step-media" src="./img/spidersky.gif" alt="Suscripción simple" loading="lazy" />
+                <div class="row">
+                    <div class="step-num">3</div>
+                    <div>
+                        <h3 style="margin:6px 0 6px;">Acceso completo</h3>
+                        <p class="tiny">Originales y vídeowlprs completos tras la suscripción.</p>
+                    </div>
+                </div>
+            </article>
+            <article class="card pad col-6">
+                <img class="step-media" src="./img/thelongdarkwolfs.png" alt="Descargas seguras" loading="lazy" />
+                <div class="row">
+                    <div class="step-num">4</div>
+                    <div>
+                        <h3 style="margin:6px 0 6px;">Descargas seguras</h3>
+                        <p class="tiny">Enlaces firmados y límites anti‑abuso para proteger tu trabajo.</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- BENEFICIOS MIEMBROS -->
+    <section class="section" id="benefits" aria-labelledby="benefits-title">
+        <div class="section-head">
+            <div>
+                <h2 id="benefits-title">Beneficios para miembros</h2>
+                <p class="muted">Acceso a originales en full‑res y vídeowlprs completos, listos para tu setup.</p>
             </div>
-            <div class="card" style="grid-column:span 6; padding:18px">
-                <h3>2) Previews que enamoran</h3>
-                <p class="tiny">Carga progresiva, blur inicial y micro-interacciones con GSAP para un scroll suave.</p>
+        </div>
+        <div class="grid">
+            <article class="card pad col-6">
+                <div class="row">
+                    <div class="icon-badge">🖼️</div>
+                    <div>
+                        <div class="kicker">Original</div>
+                        <h3 style="margin:6px 0 6px;">Sin marca de agua</h3>
+                        <p class="tiny">Descarga los archivos tal y como fueron creados.</p>
+                    </div>
+                </div>
+            </article>
+            <article class="card pad col-6">
+                <div class="row">
+                    <div class="icon-badge">🎞️</div>
+                    <div>
+                        <div class="kicker">Vídeowlprs</div>
+                        <h3 style="margin:6px 0 6px;">Clips completos 1080p/4K</h3>
+                        <p class="tiny">Preparados para loop con calidad equilibrada.</p>
+                    </div>
+                </div>
+            </article>
+            <article class="card pad col-6">
+                <div class="row">
+                    <div class="icon-badge">📱</div>
+                    <div>
+                        <div class="kicker">Por dispositivo</div>
+                        <h3 style="margin:6px 0 6px;">Formatos optimizados</h3>
+                        <p class="tiny">Móvil, desktop, tablet y Steam Deck.</p>
+                    </div>
+                </div>
+            </article>
+            <article class="card pad col-6">
+                <div class="row">
+                    <div class="icon-badge">🔄</div>
+                    <div>
+                        <div class="kicker">Actualizaciones</div>
+                        <h3 style="margin:6px 0 6px;">Nuevos packs</h3>
+                        <p class="tiny">Contenido añadido de forma regular.</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- COMPATIBILIDAD / FORMATOS -->
+    <section class="section" id="compat" aria-labelledby="compat-title">
+        <div class="section-head">
+            <div>
+                <h2 id="compat-title">Formatos y compatibilidad</h2>
+                <p class="muted">Resoluciones recomendadas y compatibilidad para vídeowlprs por plataforma.</p>
             </div>
-            <div class="card" style="grid-column:span 6; padding:18px">
-                <h3>3) Suscripción simple</h3>
-                <p class="tiny">Stripe/Lemon Squeezy. Un clic, acceso completo a originales y vídeos largos.</p>
+        </div>
+        <div class="grid">
+            <article class="card pad col-3">
+                <div class="kicker">Móvil</div>
+                <h3 style="margin:6px 0 6px;">1080x1920</h3>
+                <p class="tiny">También 1440x2960</p>
+            </article>
+            <article class="card pad col-3">
+                <div class="kicker">Desktop</div>
+                <h3 style="margin:6px 0 6px;">1920 · 2560 · 3840</h3>
+                <p class="tiny">1080p, 1440p, 4K</p>
+            </article>
+            <article class="card pad col-3">
+                <div class="kicker">Tablet</div>
+                <h3 style="margin:6px 0 6px;">2048x2732</h3>
+                <p class="tiny">iPad Pro</p>
+            </article>
+            <article class="card pad col-3">
+                <div class="kicker">Vídeowlprs</div>
+                <h3 style="margin:6px 0 6px;">1080p / 4K</h3>
+                <p class="tiny">Loop-friendly, bitrate optimizado</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- GUÍA VÍDEOWLPRS -->
+    <section class="section" id="videowlpr-guide" aria-labelledby="videowlpr-title">
+        <div class="section-head">
+            <div>
+                <h2 id="videowlpr-title">Qué es un vídeowlpr</h2>
+                <p class="muted">Vídeo de fondo in‑game pensado como wallpaper animado.</p>
             </div>
-            <div class="card" style="grid-column:span 6; padding:18px">
-                <h3>4) Descargas seguras</h3>
-                <p class="tiny">URLs firmadas y límites de descarga para proteger tu trabajo.</p>
+        </div>
+        <div class="grid">
+            <article class="card pad col-3">
+                <div class="kicker">Windows</div>
+                <h3 style="margin:6px 0 6px;">Lively Wallpaper</h3>
+                <p class="tiny">Instala, importa el clip y activa el loop.</p>
+            </article>
+            <article class="card pad col-3">
+                <div class="kicker">macOS</div>
+                <h3 style="margin:6px 0 6px;">Apps de terceros</h3>
+                <p class="tiny">Por ejemplo, Plash + video en bucle.</p>
+            </article>
+            <article class="card pad col-3">
+                <div class="kicker">Android</div>
+                <h3 style="margin:6px 0 6px;">Fondos animados</h3>
+                <p class="tiny">Soporte nativo con formatos compatibles.</p>
+            </article>
+            <article class="card pad col-3">
+                <div class="kicker">iOS</div>
+                <h3 style="margin:6px 0 6px;">Bloqueo/Atajos</h3>
+                <p class="tiny">Live en bloqueo o flujo con Atajos.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section class="section" id="testimonials" aria-labelledby="testimonials-title">
+        <div class="section-head">
+            <div>
+                <h2 id="testimonials-title">Lo que dice la comunidad</h2>
+                <p class="muted">Una selección rápida de comentarios sobre calidad y compatibilidad.</p>
             </div>
+        </div>
+        <div class="grid">
+            <article class="card pad col-6"><h3>@NeoSetup</h3><p class="tiny">“Los vídeowlprs se ven finos en 4K, loop perfecto.”</p></article>
+            <article class="card pad col-6"><h3>@MartaPixel</h3><p class="tiny">“Por fin packs listos para mi móvil y mi iPad.”</p></article>
+            <article class="card pad col-6"><h3>@DeckUser</h3><p class="tiny">“En Steam Deck lucen brutales. Peso y calidad clavados.”</p></article>
+            <article class="card pad col-6"><h3>@UrbanPhoto</h3><p class="tiny">“Los originales sin marca valen la suscripción.”</p></article>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+        <div class="section-head">
+            <div>
+                <h2 id="faq-title">Preguntas frecuentes</h2>
+                <p class="muted">Dudas comunes sobre acceso, uso personal y actualizaciones.</p>
+            </div>
+        </div>
+        <div class="grid">
+            <article class="card pad col-12">
+                <div class="faq" role="list">
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-q" aria-expanded="false">¿Qué incluye la suscripción?</button>
+                        <div class="faq-a" hidden>Acceso a originales sin marca de agua, vídeowlprs completos y nuevos packs periódicos.</div>
+                    </div>
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-q" aria-expanded="false">¿Puedo usar los wallpapers comercialmente?</button>
+                        <div class="faq-a" hidden>El uso es personal. Para usos comerciales o colaboraciones, contáctanos.</div>
+                    </div>
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-q" aria-expanded="false">¿Cada cuánto se añade contenido?</button>
+                        <div class="faq-a" hidden>Publicamos lotes de forma regular. Consulta las novedades al inicio.</div>
+                    </div>
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-q" aria-expanded="false">¿Cómo reporto un enlace caído?</button>
+                        <div class="faq-a" hidden>Escríbenos a hola@betterwlprs.example indicando el pack y el dispositivo.</div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section" id="final-cta" aria-labelledby="final-cta-title">
+        <div class="section-head">
+            <div>
+                <h2 id="final-cta-title">Lleva tu setup al siguiente nivel</h2>
+                <p class="muted">Desbloquea originales y vídeowlprs. Cancela cuando quieras.</p>
+            </div>
+            <a class="btn accent" id="ctaFinal" href="#paywall">Empieza ahora</a>
         </div>
     </section>
 
@@ -642,7 +877,7 @@
 
         // ---------- Render de vídeos (teasers) ----------
         const videoGrid = document.getElementById('videoGrid');
-        videos.forEach((v) => {
+                videos.forEach((v) => {
             const card = document.createElement('article');
             card.className = 'card video-card';
             card.setAttribute('role', 'listitem');
@@ -650,10 +885,10 @@
         <span class="badge">${v.tag}</span>
         ${v.premium ? '<div class="lock" aria-label="Contenido premium">🔒</div>' : ''}
         <img class="thumb" loading="lazy" alt="${v.title}" src="${v.thumb}"/>
-        <button class="play btn">${v.premium ? 'Ver trailer' : 'Reproducir'}</button>
+            <button class="play btn">${v.premium ? 'Ver trailer' : 'Reproducir'}</button>
         <div class="meta">
           <div class="title">${v.title}</div>
-          <div class="tag">${v.premium ? 'Trailer — completo al suscribirte' : 'Clip abierto'}</div>
+                      <div class="tag">${v.premium ? 'Trailer — completo al suscribirte' : 'Clip abierto'}</div>
         </div>
       `;
             if (v.premium) { card.dataset.premium = "true"; }
@@ -661,9 +896,9 @@
         });
 
         // ---------- Modal de paywall (simulado) ----------
-        const modal = document.getElementById('paywall');
-        const openModal = () => { modal.style.display = 'grid'; trapFocus(modal); }
-        const closeModal = () => { modal.style.display = 'none'; releaseFocus(); }
+    const modal = document.getElementById('paywall');
+    const openModal = () => { modal.style.display = 'grid'; trapFocus(modal); }
+    const closeModal = () => { modal.style.display = 'none'; releaseFocus(); }
         document.getElementById('closeModal').addEventListener('click', closeModal);
         document.getElementById('openPaywall').addEventListener('click', openModal);
         document.getElementById('openLogin').addEventListener('click', openModal);
@@ -679,12 +914,15 @@
             if (e.target === modal) { closeModal(); }
         });
 
-        // ---------- GSAP ----------
-        gsap.registerPlugin(ScrollTrigger);
+    // ---------- GSAP ----------
+    gsap.registerPlugin(ScrollTrigger);
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         // Hero split lines + lead
-        gsap.from('.line', { yPercent: 120, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.08, delay: 0.1 });
-        gsap.from('.lead', { y: 8, opacity: 0, duration: 0.6, ease: 'power2.out', delay: 0.25 });
+        if (!prefersReduced) {
+            gsap.from('.line', { yPercent: 120, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.08, delay: 0.1 });
+            gsap.from('.lead', { y: 8, opacity: 0, duration: 0.6, ease: 'power2.out', delay: 0.25 });
+        }
 
         // Parallax fondo hero
         gsap.to('#hero', {
@@ -720,7 +958,7 @@
             card.addEventListener('mouseleave', () => img.style.transform = 'scale(1.02)');
         });
 
-        // Jelly effect para "Originales"
+    // Jelly effect para "Originales"
         const jellyText = document.querySelector('.jelly-text');
         if (jellyText) {
             // Timeline para el efecto jelly completo
@@ -800,7 +1038,78 @@
             });
         }
 
-        // Animaciones para toda la sección de galería
+        // --------- Preparación y animación moderna de títulos (h2) ---------
+        function prepareHeadings() {
+            document.querySelectorAll('.section-head h2').forEach(h2 => {
+                if (h2.dataset.split === 'true') return;
+                const newChildren = [];
+                h2.childNodes.forEach(node => {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        const parts = node.textContent.split(/(\s+)/);
+                        parts.forEach(part => {
+                            if (!part) return;
+                            if (/^\s+$/.test(part)) {
+                                newChildren.push(document.createTextNode(part));
+                            } else {
+                                const span = document.createElement('span');
+                                span.className = 'reveal-word';
+                                span.textContent = part;
+                                newChildren.push(span);
+                            }
+                        });
+                    } else {
+                        newChildren.push(node);
+                    }
+                });
+                h2.innerHTML = '';
+                newChildren.forEach(n => h2.appendChild(n));
+                h2.dataset.split = 'true';
+            });
+        }
+
+        // Preparar y animar todos los títulos de sección
+        prepareHeadings();
+        if (!prefersReduced) {
+            document.querySelectorAll('.section-head h2').forEach(h2 => {
+                const words = h2.querySelectorAll('.reveal-word');
+                if (!words.length) return;
+                gsap.from(words, {
+                    y: 30,
+                    autoAlpha: 0,
+                    duration: 0.6,
+                    ease: 'back.out(1.2)',
+                    stagger: 0.06,
+                    scrollTrigger: {
+                        trigger: h2,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            });
+        }
+
+                // Jelly effect para "Exclusivos" en la sección de vídeos (solo scroll + subrayado)
+                (function(){
+                        const jellyTextVideos = document.querySelector('#videos .jelly-text');
+                        if (!jellyTextVideos) return;
+                        const tl = gsap.timeline({ paused: true });
+                        tl.to(jellyTextVideos, { scaleY: 1.28, scaleX: 0.82, duration: 0.14, ease: 'power2.out' })
+                            .to(jellyTextVideos, { scaleY: 0.92, scaleX: 1.08, duration: 0.18, ease: 'power2.inOut' })
+                            .to(jellyTextVideos, { scaleY: 1.04, scaleX: 0.98, duration: 0.14, ease: 'power2.inOut' })
+                            .to(jellyTextVideos, { scaleY: 1, scaleX: 1, duration: 0.22, ease: 'elastic.out(1,0.5)' });
+
+                        ScrollTrigger.create({
+                                trigger: jellyTextVideos,
+                                start: 'top 80%',
+                                end: 'bottom 20%',
+                                onEnter: () => { tl.restart(); gsap.to(jellyTextVideos, { "--line-scale": 1, duration: 0.6, ease: 'power2.out' }); },
+                                onLeave: () => { gsap.set(jellyTextVideos, { "--line-scale": 0 }); },
+                                onEnterBack: () => { tl.restart(); gsap.to(jellyTextVideos, { "--line-scale": 1, duration: 0.6, ease: 'power2.out' }); },
+                                onLeaveBack: () => { gsap.set(jellyTextVideos, { "--line-scale": 0 }); }
+                        });
+                })();
+
+    // Animaciones para toda la sección de galería
         const gallerySection = document.getElementById('gallery');
         if (gallerySection) {
             const galleryTitle = gallerySection.querySelector('#galeria-title');
@@ -816,29 +1125,7 @@
                     toggleActions: "play none none reverse"
                 }
             });
-
-            // Animar solo las palabras que NO están dentro del span jelly-text
-            const titleText = galleryTitle.innerHTML;
-            const jellyTextContent = galleryTitle.querySelector('.jelly-text');
-            const jellyHTML = jellyTextContent.outerHTML;
-            const wordsBeforeJelly = titleText.split(jellyHTML)[0].trim().split(' ');
-
-            // Reconstruir el HTML manteniendo el span jelly-text intacto
-            const wordsHTML = wordsBeforeJelly.map(word =>
-                word ? `<span class="word">${word}</span>` : ''
-            ).join(' ');
-
-            galleryTitle.innerHTML = wordsHTML + ' ' + jellyHTML;
-
             gallerySectionTl
-                // Palabras del título aparecen con stagger
-                .from('.word', {
-                    y: 30,
-                    opacity: 0,
-                    duration: 0.6,
-                    ease: "back.out(1.2)",
-                    stagger: 0.1
-                }, 0)
                 // Descripción aparece con efecto de desvanecimiento y slide
                 .from(galleryDescription, {
                     y: 20,
@@ -917,6 +1204,26 @@
         document.getElementById('filterBtn').addEventListener('click', () => {
             gsap.to('#galleryGrid .card', { opacity: 0.25, y: 8, duration: 0.25, stagger: 0.03, yoyo: true, repeat: 1 });
         });
+
+        // ------- FAQ acordeón mínimo accesible -------
+        document.querySelectorAll('.faq-q').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const expanded = btn.getAttribute('aria-expanded') === 'true';
+                btn.setAttribute('aria-expanded', String(!expanded));
+                const a = btn.nextElementSibling;
+                if (!a) return;
+                a.hidden = expanded;
+                if (!expanded) { // animación de entrada
+                    gsap.fromTo(a, { height: 0, opacity: 0 }, { height: 'auto', opacity: 1, duration: 0.3, ease: 'power2.out' });
+                }
+            });
+        });
+
+        // CTA Final abre el paywall
+        const ctaFinal = document.getElementById('ctaFinal');
+        if (ctaFinal) {
+            ctaFinal.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+        }
     </script>
 </body>
 
