@@ -397,8 +397,7 @@
             <div class="eyebrow">Fondos In-game exclusivos</div>
             <h1>
                 <span class="line">Fondos in-game hechos a mano,</span><br>
-                <span class="line">creados en cada juego y adaptados para Kindle, Mac, iOS, Android y todas las
-                    pantallas.</span>
+                <span class="line"> adaptados para todos tus dispositivos.</span>
             </h1>
             <p class="lead">BetterWLPRS te ofrece wallpapers únicos, optimizados para cualquier dispositivo. Descarga y
                 disfruta arte digital pensado para tu pantalla favorita.</p>
@@ -414,6 +413,16 @@
             </div>
         </div>
     </header>
+    <!-- spline-viewer ABSOLUTE, fuera del flujo -->
+    <div class="steamdeck-hero-absolute absolute left-1/2 top-0 transform -translate-x-1/2 z-0 w-full flex justify-center pointer-events-none"
+        style="z-index:0; margin-top: -250px;">
+        <div class="relative w-full" style="z-index:0;">
+            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
+            <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
+                style="width: 100%; max-width: 900px; height: 400px; display: block; margin: 0 auto; border-radius: 0.75rem; background: transparent; z-index:0; position:relative; pointer-events:none;"
+                class="steamdeck-viewer-main"></spline-viewer>
+        </div>
+    </div>
 
     <!-- GALERÍA -->
     <section class="section" id="gallery" aria-labelledby="galeria-title">
