@@ -9,6 +9,12 @@
   <link rel="stylesheet" href="./css2.css">
   <link rel="stylesheet" href="./style.css">
   <style>
+    @media (min-width: 601px) {
+      .scroll-indicator {
+        bottom: 13%;
+      }
+    }
+
     .logo span.w {
       color: #FFD600;
     }
@@ -33,11 +39,70 @@
       letter-spacing: 0.05em;
     }
 
+    .wham-desc {
+      font-size: 2.2em;
+      font-weight: 700;
+      margin-top: 1.2em;
+      margin-bottom: 0.7em;
+      color: #222;
+      text-align: center;
+    }
+
+    .wham-desc-small {
+      font-size: 1.3em;
+      margin-top: 0.7em;
+      margin-bottom: 0.7em;
+      color: #333;
+      text-align: center;
+    }
+
+    .scroll-indicator {
+      position: fixed;
+      left: 50%;
+      bottom: 10%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.2rem;
+      color: #888;
+      opacity: 0.85;
+      z-index: 20;
+      pointer-events: none;
+      animation: fadein 1.2s;
+    }
+
+    .scroll-indicator .arrow {
+      margin-bottom: 2.2em;
+    }
+
+    @media (max-width: 600px) {
+      .wham-desc {
+        font-size: 1.1em;
+        margin-top: 1.2em;
+        margin-bottom: 0.7em;
+      }
+
+      .wham-desc-small {
+        font-size: 0.9em;
+        margin-top: 0.7em;
+        margin-bottom: 0.7em;
+      }
+
+      .scroll-indicator {
+        font-size: 1rem;
+        bottom: 5%;
+      }
+
+      .scroll-indicator .arrow {
+        margin-bottom: 1.2em;
+      }
+    }
+
     /* Indicador de scroll */
     .scroll-indicator {
       position: fixed;
       left: 50%;
-      bottom: 25%;
       transform: translateX(-50%);
       display: flex;
       flex-direction: column;
@@ -53,7 +118,7 @@
     .scroll-indicator .arrow {
       width: 24px;
       height: 24px;
-      margin-bottom: 25px;
+      margin-top: 195px;
       animation: bounce 1.2s infinite;
       stroke: #888;
       stroke-width: 2;
@@ -87,11 +152,38 @@
         font-size: 1rem;
         bottom: 25%;
       }
+    }
+
+    @media (min-width: 601px) {
+      .scroll-indicator {
+        bottom: 13%;
+      }
 
       .scroll-indicator .arrow {
         width: 18px;
         height: 18px;
       }
+    }
+
+
+    .logo.end .w {
+      color: #ffe600;
+    }
+
+    .logo.end .h {
+      color: #d90000;
+    }
+
+    .logo.end .a {
+      color: #7ed957;
+    }
+
+    .logo.end .m {
+      color: #ffe600;
+    }
+
+    .logo.end .ex {
+      color: #2a7fff;
     }
   </style>
 
@@ -101,16 +193,18 @@
   <!-- partial:index.partial.html -->
   <header>
     <div style="display:flex; flex-direction:column; align-items:center;">
-      <h1 class="logo end" aria-label="Wham! Tienda de coleccionismo retro y vintage en Barcelona">Wham!</h1>
-     
+      <h1 class="logo end" aria-label="Wham! Tienda de coleccionismo retro y vintage en Barcelona">
+        <span class="w">W</span><span class="h">H</span><span class="a">A</span><span class="m">M</span><span
+          class="ex">!</span>
+      </h1>
     </div>
-    
+
     <button class="menu">
       <span></span>
     </button>
   </header>
-  
-  <main id="wrapper" >
+
+  <main id="wrapper">
     <div id="content" class="o-wrapper">
       <ul class="gallery">
         <li class="image">
@@ -211,14 +305,15 @@
   </main>
 
   <div class="scroll-indicator">
-    
+
     <svg class="arrow" viewBox="0 0 24 24">
-      
+
       <path d="M12 5v14M12 19l-6-6M12 19l6-6" />
-      
+
     </svg>
-     <h2 class="wham-desc" style="font-weight:400; font-size:1.1em; margin-top:0.3em; color:#555; letter-spacing:0.01em; text-align:center;">Tienda de coleccionismo, retro y vintage en Barcelona</h2>
-      <p class="wham-desc-small" style="font-size:0.98em; color:#888; margin-top:0.2em; text-align:center;">Libros, cómics, discos, objetos vintage y más. Descubre tesoros únicos y curiosidades pop.</p>
+    <h2 class="wham-desc">Tienda de coleccionismo, retro y vintage en Badalona</h2>
+    <p class="wham-desc-small">Libros, cómics, discos, objetos vintage y más. Descubre tesoros únicos y curiosidades
+      pop.</p>
     <span>Desliza hacia abajo</span>
   </div>
 

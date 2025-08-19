@@ -13,10 +13,10 @@ gsap.fromTo('.logo', {
 
 /* Smooth content */
 let smoother = ScrollSmoother.create({
- wrapper: "#wrapper",
- content: "#content",
- smooth: 1,
- effects: true
+  wrapper: "#wrapper",
+  content: "#content",
+  smooth: 1,
+  effects: true
 });
 
 smoother.effects(".image", {
@@ -94,7 +94,10 @@ gsap.to('.end', {
 });
 let mySplitText = new SplitText(".end", { type: "words,chars" });
 let chars = mySplitText.chars;
-let endGradient = chroma.scale(['#F9D371', '#F47340', '#EF2F88', '#8843F2']);
+const comicColors = ['#ffe600', '#d90000', '#7ed957', '#ffe600', '#2a7fff'];
+function rotateColors(arr) {
+  return arr.slice(1).concat(arr[0]);
+}
 endTl.to(chars, {
   duration: 0.5,
   scaleY: 0.6,
@@ -115,12 +118,17 @@ endTl.to(chars, {
   duration: 1.5
 }, 0.5);
 endTl.to(chars, {
-  color: (i, el, arr) => {
-    return endGradient(i / arr.length).hex();
+  onStart: () => {
+    // Rotar colores y asignar a cada letra
+    for (let i = 0; i < chars.length; i++) {
+      gsap.to(chars[i], { color: comicColors[i % comicColors.length], duration: 0.8 });
+    }
+    // Rotar el array para el siguiente ciclo
+    comicColors.push(comicColors.shift());
   },
-  ease: "power2.out",
+  ease: "linear",
   stagger: 0.03,
-  duration: 0.3
+  duration: 1.2
 }, 0.5);
 endTl.to(chars, {
   yPercent: 0,
@@ -128,11 +136,6 @@ endTl.to(chars, {
   stagger: 0.03,
   duration: 0.8
 }, 0.7);
-endTl.to(chars, {
-  color: 'hsl(0,0,0)',
-  duration: 1.4,
-  stagger: 0.05
-});
 
 let menu = document.querySelector('.menu')
 
