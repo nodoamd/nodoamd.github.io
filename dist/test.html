@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen Home Logo to header + Gallery - ScrollSmoother (by Louis Hoebregts)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./reset-2.0.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css2.css">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    .logo span.w {
+      color: #FFD600;
+    }
+
+    .logo span.h {
+      color: #E53935;
+    }
+
+    .logo span.a {
+      color: #43A047;
+    }
+
+    .logo span.m {
+      color: #FFD600;
+    }
+
+    .logo span.ex {
+      color: #1E88E5;
+    }
+
+    .logo {
+      letter-spacing: 0.05em;
+    }
+
+    .wham-desc {
+      font-size: 2.2em;
+      font-weight: 700;
+      margin-top: 1.2em;
+      margin-bottom: 0.7em;
+      color: #222;
+      text-align: center;
+    }
+
+    .wham-desc-small {
+      font-size: 1.3em;
+      margin-top: 0.7em;
+      margin-bottom: 0.7em;
+      color: #333;
+      text-align: center;
+    }
+
+    .scroll-indicator {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.1rem;
+      color: #666;
+      opacity: 0.8;
+      z-index: 20;
+      pointer-events: none;
+      animation: fadein 1.5s ease-out;
+      bottom: 15%;
+      /* Default para desktop */
+      text-align: center;
+      max-width: 90%;
+    }
+
+    .scroll-indicator .arrow {
+      width: 28px;
+      height: 28px;
+      margin-bottom: 1.5em;
+      animation: bounce 2s infinite ease-in-out;
+      stroke: #666;
+      stroke-width: 2.5;
+      fill: none;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+        opacity: 0.8;
+      }
+
+      50% {
+        transform: translateY(12px);
+        opacity: 0.4;
+      }
+    }
+
+    @keyframes fadein {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 0.8;
+        transform: translateY(0);
+      }
+    }
+
+    /* Media queries - mobile primero */
+    @media (max-width: 600px) {
+      .wham-desc {
+        display: none;
+        /* Ocultamos el texto principal en mobile */
+      }
+
+      .wham-desc-small {
+        display: none;
+        /* Ocultamos el texto secundario en mobile */
+      }
+
+      .scroll-indicator {
+        font-size: 0.9rem;
+        bottom: 8% !important;
+        opacity: 0.7;
+      }
+
+      .scroll-indicator .arrow {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 0.8em;
+        stroke-width: 2.8;
+      }
+
+      .scroll-indicator span {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: #555;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+      }
+    }
+
+    /* Desktop */
+    @media (min-width: 601px) {
+      .scroll-indicator {
+        bottom: 12%;
+      }
+
+      .scroll-indicator .arrow {
+        width: 32px;
+        height: 32px;
+        margin-bottom: 2em;
+      }
+
+      .wham-desc {
+        font-size: 2.2em;
+        font-weight: 700;
+        margin-top: 1.2em;
+        margin-bottom: 0.7em;
+        color: #333;
+        text-align: center;
+      }
+
+      .wham-desc-small {
+        font-size: 1.25em;
+        margin-top: 0.7em;
+        margin-bottom: 0.9em;
+        color: #555;
+        text-align: center;
+        line-height: 1.4;
+      }
+
+      .scroll-indicator span {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #666;
+        margin-top: 0.5em;
+      }
+    }
+
+    .logo.end .w {
+      color: #ffe600;
+    }
+
+    .logo.end .h {
+      color: #d90000;
+    }
+
+    .logo.end .a {
+      color: #7ed957;
+    }
+
+    .logo.end .m {
+      color: #ffe600;
+    }
+
+    .logo.end .ex {
+      color: #2a7fff;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <header>
+    <div style="display:flex; flex-direction:column; align-items:center;">
+      <h1 class="logo end" aria-label="Wham! Tienda de coleccionismo retro y vintage en Barcelona">
+        <span class="w">W</span><span class="h">H</span><span class="a">A</span><span class="m">M</span><span
+          class="ex">!</span>
+      </h1>
+    </div>
+
+    <button class="menu">
+      <span></span>
+    </button>
+  </header>
+
+  <main id="wrapper">
+    <div id="content" class="o-wrapper">
+      <ul class="gallery">
+        <li class="image">
+          <img
+            src="https://images.unsplash.com/photo-1676919396230-b75e4ff56e45?q=80&w=1234&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        </li>
+        <li class="image">
+          <img
+            src="https://images.unsplash.com/photo-1678958169679-42e6ca5785e3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        </li>
+        <li class="image">
+          <img
+            src="https://images.unsplash.com/photo-1653473672408-5d2d68fa1278?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        </li>
+        <li class="image">
+          <img
+            src="https://images.unsplash.com/photo-1560746062-c5bdb4093a7b?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        </li>
+        <li class="image">
+          <img
+            src="https://images.unsplash.com/photo-1649594900763-bd4161461293?q=80&w=1227&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        </li>
+        <li class="image">
+          <img
+            src="https://images.unsplash.com/photo-1597424216485-52cb74d07288?q=80&w=1086&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        </li>
+        <li class="image">
+          <img
+            src="https://images.unsplash.com/photo-1486421728445-c460298b20b6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        </li>
+        <li class="image">
+          <img
+            src="https://images.unsplash.com/photo-1543622748-5ee7237e8565?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        </li>
+        <li class="image">
+          <img
+            src="https://images.unsplash.com/photo-1569701813229-33284b643e3c?q=80&w=1214&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        </li>
+        <li class="image">
+          <img
+            src="https://images.unsplash.com/photo-1569793667639-dae11573b34f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        </li>
+        <li class="image">
+          <img
+            src="https://plus.unsplash.com/premium_photo-1686308373386-1b7607755d90?q=80&w=1046&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        </li>
+        <li class="image">
+          <img
+            src="https://images.unsplash.com/photo-1662557569684-03a22e8a589c?q=80&w=1065&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        </li>
+        <li class="image">
+          <img
+            src="https://images.unsplash.com/photo-1557180295-76eee20ae8aa?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        </li>
+        <li class="image">
+          <img
+            src="https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?q=80&w=1296&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        </li>
+        <li class="image">
+          <img
+            src="https://images.unsplash.com/photo-1612547036242-77002603e5aa?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        </li>
+        <li class="image">
+          <img
+            src="https://plus.unsplash.com/premium_photo-1703150072647-a888b485a107?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        </li>
+        <li class="image">
+          <img
+            src="https://plus.unsplash.com/premium_photo-1722945721378-1c565f10859d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        </li>
+        <li class="image">
+          <img
+            src="https://plus.unsplash.com/premium_photo-1723924895713-8ff8441a5e44?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+        </li>
+      </ul>
+      <footer>
+        <h2 class="end">Bienvenido a WHAM!</h2>
+      </footer>
+    </div>
+  </main>
+
+  <div class="scroll-indicator">
+    <svg class="arrow" viewBox="0 0 24 24">
+      <path d="M12 5v14M12 19l-6-6M12 19l6-6" />
+    </svg>
+    <h2 class="wham-desc">Tienda de coleccionismo, retro y vintage en Badalona</h2>
+    <p class="wham-desc-small">Libros, cómics, discos, objetos vintage y más. Descubre tesoros únicos y curiosidades
+      pop.</p>
+    <span>Desliza hacia abajo</span>
+  </div>
+
+  <!-- partial -->
+  <script src="js/gsap.min.js"></script>
+  <script src="js/SplitText.min.js"></script>
+  <script src="js/ScrollTrigger.min.js"></script>
+  <script src="js/ScrollSmoother.min.js"></script>
+  <script src="js/chroma.min.js"></script>
+  <script src="./script.js"></script>
+  <script>
+    // Ocultar indicador al hacer scroll
+    window.addEventListener('scroll', function () {
+      const indicator = document.querySelector('.scroll-indicator');
+      if (window.scrollY > 30) {
+        indicator.style.opacity = '0';
+        indicator.style.transform = 'translateX(-50%) translateY(10px)';
+      } else {
+        indicator.style.opacity = window.innerWidth <= 600 ? '0.7' : '0.8';
+        indicator.style.transform = 'translateX(-50%) translateY(0)';
+      }
+    });
+  </script>
+
+</body>
+
+</html>
