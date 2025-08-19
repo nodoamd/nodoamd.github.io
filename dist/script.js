@@ -94,12 +94,12 @@ gsap.to('.end', {
 });
 let mySplitText = new SplitText(".end", { type: "words,chars" });
 let chars = mySplitText.chars;
-const comicColors = ['#ffe600', '#d90000', '#7ed957', '#ffe600', '#2a7fff'];
+const comicColors = ['#ffe600', '#d90000', '#2e9403ff', '#ffe600', '#2a7fff']; // colores originales
 function rotateColors(arr) {
   return arr.slice(1).concat(arr[0]);
 }
 endTl.to(chars, {
-  duration: 0.5,
+  duration: 0.7,
   scaleY: 0.6,
   ease: "power3.out",
   stagger: 0.04,
@@ -109,32 +109,32 @@ endTl.to(chars, {
   yPercent: -20,
   ease: "elastic",
   stagger: 0.03,
-  duration: 0.8
+  duration: 1.1
 }, 0.5);
 endTl.to(chars, {
   scaleY: 1,
   ease: "elastic.out(2.5, 0.2)",
   stagger: 0.03,
-  duration: 1.5
+  duration: 1.8
 }, 0.5);
 endTl.to(chars, {
   onStart: () => {
     // Rotar colores y asignar a cada letra
     for (let i = 0; i < chars.length; i++) {
-      gsap.to(chars[i], { color: comicColors[i % comicColors.length], duration: 0.8 });
+      gsap.to(chars[i], { color: comicColors[i % comicColors.length], duration: 1.2 });
     }
     // Rotar el array para el siguiente ciclo
     comicColors.push(comicColors.shift());
   },
   ease: "linear",
   stagger: 0.03,
-  duration: 1.2
+  duration: 1.6
 }, 0.5);
 endTl.to(chars, {
   yPercent: 0,
   ease: "back",
   stagger: 0.03,
-  duration: 0.8
+  duration: 1.2
 }, 0.7);
 
 let menu = document.querySelector('.menu')
