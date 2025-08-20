@@ -2,354 +2,590 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>CodePen Home Logo to header + Gallery - ScrollSmoother (by Louis Hoebregts)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./reset-2.0.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./css2.css">
-  <link rel="stylesheet" href="./style.css">
-  <style>
-    .logo span.w {
-      color: #FFD600;
-    }
-
-    .logo span.h {
-      color: #E53935;
-    }
-
-    .logo span.a {
-      color: #43A047;
-    }
-
-    .logo span.m {
-      color: #FFD600;
-    }
-
-    .logo span.ex {
-      color: #1E88E5;
-    }
-
-    .logo {
-      letter-spacing: 0.05em;
-    }
-
-    .wham-desc {
-      font-size: 2.2em;
-      font-weight: 700;
-      margin-top: 1.2em;
-      margin-bottom: 0.7em;
-      color: #222;
-      text-align: center;
-    }
-
-    .wham-desc-small {
-      font-size: 1.3em;
-      margin-top: 0.7em;
-      margin-bottom: 0.7em;
-      color: #333;
-      text-align: center;
-    }
-
-    .scroll-indicator {
-      position: fixed;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: 1.1rem;
-      color: #666;
-      opacity: 0;
-      z-index: 20;
-      pointer-events: none;
-      animation: fadein 1.5s ease-out forwards;
-      bottom: 15%; /* Default para desktop */
-      text-align: center;
-      max-width: 90%;
-      width: max-content;
-    }
-
-    .scroll-indicator .arrow {
-      width: 28px;
-      height: 28px;
-      margin-bottom: 2em;
-      animation: bounce 2s infinite ease-in-out;
-      stroke: #666;
-      stroke-width: 2.5;
-      fill: none;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-    }
-
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-        opacity: 0.8;
-      }
-      50% {
-        transform: translateY(8px);
-        opacity: 0.4;
-      }
-    }
-
-    @keyframes fadein {
-      0% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(10px);
-      }
-      100% {
-        opacity: 0.8;
-        transform: translateX(-50%) translateY(0);
-      }
-    }
-
-    /* Media queries - mobile primero */
-    @media (max-width: 600px) {
-      .wham-desc {
-        display: none; /* Ocultamos el texto principal en mobile */
-      }
-
-      .wham-desc-small {
-        display: none; /* Ocultamos el texto secundario en mobile */
-      }
-
-      .scroll-indicator {
-        font-size: 0.9rem;
-        bottom: 8% !important;
-      }
-
-      .scroll-indicator .arrow {
-        width: 24px;
-        height: 24px;
-        margin-bottom: 1.2em;
-        stroke-width: 2.8;
-      }
-
-      .scroll-indicator span {
-        font-size: 0.85rem;
-        font-weight: 500;
-        color: #555;
-        text-shadow: 0 1px 2px rgba(255,255,255,0.8);
-        white-space: nowrap;
-      }
-
-      @keyframes fadein {
-        0% {
-          opacity: 0;
-          transform: translateX(-50%) translateY(10px);
+    <meta charset="UTF-8">
+    <title>CodePen Home Logo to header + Gallery - ScrollSmoother (by Louis Hoebregts)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./reset-2.0.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css2.css">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        .scroll-indicator {
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        100% {
-          opacity: 0.7;
-          transform: translateX(-50%) translateY(0);
+
+        .logo span.w {
+            color: #FFD600;
         }
-      }
-    }
 
-    /* Desktop */
-    @media (min-width: 601px) {
-      .scroll-indicator {
-        bottom: 12%;
-      }
+        .logo span.h {
+            color: #E53935;
+        }
 
-      .scroll-indicator .arrow {
-        width: 32px;
-        height: 32px;
-        margin-bottom: 2em;
-      }
+        .logo span.a {
+            color: #43A047;
+        }
 
-      .wham-desc {
-        font-size: 2.2em;
-        font-weight: 700;
-        margin-top: 1.2em;
-        margin-bottom: 0.7em;
-        color: #333;
-        text-align: center;
-      }
+        .logo span.m {
+            color: #FFD600;
+        }
 
-      .wham-desc-small {
-        font-size: 1.25em;
-        margin-top: 0.7em;
-        margin-bottom: 0.9em;
-        color: #555;
-        text-align: center;
-        line-height: 1.4;
-      }
+        .logo span.ex {
+            color: #1E88E5;
+        }
 
-      .scroll-indicator span {
-        font-size: 1rem;
-        font-weight: 500;
-        color: #666;
-        margin-top: 0.5em;
-      }
-    }
+        .logo {
+            letter-spacing: 0.05em;
+        }
 
-    .logo.end .w {
-      color: #ffe600;
-    }
+        .wham-desc {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-top: 1.2em;
+            margin-bottom: 0.7em;
+            color: #222;
+            text-align: center;
+        }
 
-    .logo.end .h {
-      color: #d90000;
-    }
+        .wham-desc-small {
+            font-size: 1.3em;
+            margin-top: 0.7em;
+            margin-bottom: 0.7em;
+            color: #333;
+            text-align: center;
+        }
 
-    .logo.end .a {
-      color: #7ed957;
-    }
+        .scroll-indicator {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 1.1rem;
+            color: #666;
+            opacity: 0.8;
+            z-index: 20;
+            pointer-events: none;
+            bottom: 15%;
+            /* Default para desktop */
+            text-align: center;
+            max-width: 90%;
+            width: max-content;
+        }
 
-    .logo.end .m {
-      color: #ffe600;
-    }
+        .scroll-indicator .arrow {
+            width: 28px;
+            height: 28px;
+            margin-bottom: 2em;
+            animation: bounce 2s infinite ease-in-out;
+            stroke: #666;
+            stroke-width: 2.5;
+            fill: none;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
 
-    .logo.end .ex {
-      color: #2a7fff;
-    }
-  </style>
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: translateY(8px);
+                opacity: 0.4;
+            }
+        }
+
+        @keyframes fadein {
+            /* Eliminado: fadein, ahora solo transition */
+        }
+
+        /* Media queries - mobile primero */
+        @media (max-width: 600px) {
+            .wham-desc {
+                display: none;
+                /* Ocultamos el texto principal en mobile */
+            }
+
+            .wham-desc-small {
+                display: none;
+                /* Ocultamos el texto secundario en mobile */
+            }
+
+            .scroll-indicator {
+                font-size: 0.9rem;
+                bottom: 8% !important;
+                opacity: 0.7;
+            }
+
+            .scroll-indicator .arrow {
+                width: 24px;
+                height: 24px;
+                margin-bottom: 1.2em;
+                stroke-width: 2.8;
+            }
+
+            .scroll-indicator span {
+                font-size: 0.85rem;
+                font-weight: 500;
+                color: #555;
+                text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+                white-space: nowrap;
+            }
+
+            @keyframes fadein {
+                0% {
+                    opacity: 0;
+                    transform: translateX(-50%) translateY(10px);
+                }
+
+                100% {
+                    opacity: 0.7;
+                    transform: translateX(-50%) translateY(0);
+                }
+            }
+        }
+
+        /* Desktop */
+        @media (min-width: 601px) {
+            .scroll-indicator {
+                bottom: 12%;
+            }
+
+            .scroll-indicator .arrow {
+                width: 32px;
+                height: 32px;
+                margin-bottom: 2em;
+            }
+
+            .wham-desc {
+                font-size: 2.2em;
+                font-weight: 700;
+                margin-top: 1.2em;
+                margin-bottom: 0.7em;
+                color: #333;
+                text-align: center;
+            }
+
+            .wham-desc-small {
+                font-size: 1.25em;
+                margin-top: 0.7em;
+                margin-bottom: 0.9em;
+                color: #555;
+                text-align: center;
+                line-height: 1.4;
+            }
+
+            .scroll-indicator span {
+                font-size: 1rem;
+                font-weight: 500;
+                color: #666;
+                margin-top: 0.5em;
+            }
+        }
+
+        .logo.end .w {
+            color: #ffe600;
+        }
+
+        .logo.end .h {
+            color: #d90000;
+        }
+
+        .logo.end .a {
+            color: #7ed957;
+        }
+
+        .logo.end .m {
+            color: #ffe600;
+        }
+
+        .logo.end .ex {
+            color: #2a7fff;
+        }
+
+        /* Estilos para los productos vintage */
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.02);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7) 30%, rgba(0, 0, 0, 0.9));
+            color: white;
+            padding: 2.5rem 1.5rem 1.5rem;
+            transform: translateY(calc(100% - 60px));
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .product-card:hover .product-overlay {
+            transform: translateY(0);
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0 0 0.5rem 0;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin: 0 0 1rem 0;
+            color: #e0e0e0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+        }
+
+        .product-card:hover .product-description {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-btn {
+            background: linear-gradient(45deg, #FFD600, #FFA000);
+            color: #333;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0;
+            transform: translateY(10px);
+            box-shadow: 0 4px 15px rgba(255, 214, 0, 0.3);
+        }
+
+        .product-card:hover .product-btn {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+
+        .product-btn:hover {
+            background: linear-gradient(45deg, #FFA000, #FFD600);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 214, 0, 0.4);
+        }
+
+        /* Responsive para productos */
+        @media (max-width: 600px) {
+            .product-overlay {
+                padding: 1.5rem 1rem 1rem;
+                transform: translateY(calc(100% - 50px));
+            }
+
+            .product-title {
+                font-size: 1rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .product-description {
+                font-size: 0.8rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .product-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
 
 </head>
 
 <body>
-  <!-- partial:index.partial.html -->
-  <header>
-    <div style="display:flex; flex-direction:column; align-items:center;">
-      <h1 class="logo end" aria-label="Wham! Tienda de coleccionismo retro y vintage en Barcelona">
-        <span class="w">W</span><span class="h">H</span><span class="a">A</span><span class="m">M</span><span
-          class="ex">!</span>
-      </h1>
+    <!-- partial:index.partial.html -->
+    <header>
+        <div style="display:flex; flex-direction:column; align-items:center;">
+            <h1 class="logo end" aria-label="Wham! Tienda de coleccionismo retro y vintage en Barcelona">
+                <span class="w">W</span><span class="h">H</span><span class="a">A</span><span class="m">M</span><span
+                    class="ex">!</span>
+            </h1>
+        </div>
+
+        <button class="menu">
+            <span></span>
+        </button>
+    </header>
+
+    <main id="wrapper">
+        <div id="content" class="o-wrapper">
+            <ul class="gallery">
+                <li class="image">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1625000910270-81c3562056ba?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dmludGFnZSUyMGl0ZW1zfGVufDB8fDB8fHww"
+                            alt="Cámara vintage Polaroid">
+                        <div class="product-overlay">
+                            <h3 class="product-title">Cámara Polaroid Vintage</h3>
+                            <p class="product-description">Auténtica cámara instantánea de los 80s en perfecto estado
+                            </p>
+                            <button class="product-btn">Ver Artículo</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="image">
+                    <div class="product-card">
+                        <img src="https://plus.unsplash.com/premium_photo-1730049385882-63741e1b5c44?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dmludGFnZSUyMGl0ZW1zfGVufDB8fDB8fHww"
+                            alt="Teléfono rotatorio vintage">
+                        <div class="product-overlay">
+                            <h3 class="product-title">Teléfono Rotatorio</h3>
+                            <p class="product-description">Clásico teléfono de disco de los años 60s, completamente
+                                funcional</p>
+                            <button class="product-btn">Ver Artículo</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="image">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1743485753871-5a17c3330219?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDR8fHZpbnRhZ2UlMjBpdGVtc3xlbnwwfHwwfHx8MA%3D%3D"
+                            alt="Tocadiscos vintage">
+                        <div class="product-overlay">
+                            <h3 class="product-title">Tocadiscos Retro</h3>
+                            <p class="product-description">Giradiscos vintage en madera, perfecto para coleccionistas de
+                                vinilo</p>
+                            <button class="product-btn">Ver Artículo</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="image">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1739134472894-16f657cb1aff?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTE2fHx2aW50YWdlJTIwaXRlbXN8ZW58MHx8MHx8fDA%3D"
+                            alt="Consola de videojuegos retro">
+                        <div class="product-overlay">
+                            <h3 class="product-title">Consola Retro Gaming</h3>
+                            <p class="product-description">Sistema de juegos clásico de los 80s con cartuchos originales
+                            </p>
+                            <button class="product-btn">Ver Artículo</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="image">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1649594900763-bd4161461293?q=80&w=1227&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Radio transistor vintage">
+                        <div class="product-overlay">
+                            <h3 class="product-title">Radio Transistor</h3>
+                            <p class="product-description">Radio portátil vintage de los 70s, sonido cálido y auténtico
+                            </p>
+                            <button class="product-btn">Ver Artículo</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="image">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1637080708703-0ea8462e0d44?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTI3fHx2aW50YWdlJTIwaXRlbXN8ZW58MHx8MHx8fDA%3D"
+                            alt="Calculadora vintage">
+                        <div class="product-overlay">
+                            <h3 class="product-title">Calculadora Mecánica</h3>
+                            <p class="product-description">Antigua calculadora de oficina, pieza única de colección</p>
+                            <button class="product-btn">Ver Artículo</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="image">
+                    <div class="product-card">
+                        <img src="https://plus.unsplash.com/premium_photo-1674875073285-5eaa2c014f89?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTM3fHx2aW50YWdlJTIwaXRlbXN8ZW58MHx8MHx8fDA%3D"
+                            alt="Lámpara de escritorio retro">
+                        <div class="product-overlay">
+                            <h3 class="product-title">Lámpara Escritorio Retro</h3>
+                            <p class="product-description">Elegante lámpara de mesa estilo industrial de los años 50</p>
+                            <button class="product-btn">Ver Artículo</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="image">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1543622748-5ee7237e8565?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Maleta vintage">
+                        <div class="product-overlay">
+                            <h3 class="product-title">Maleta de Viaje Vintage</h3>
+                            <p class="product-description">Clásica maleta de cuero genuino, perfecta para decoración</p>
+                            <button class="product-btn">Ver Artículo</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="image">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1569701813229-33284b643e3c?q=80&w=1214&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Reloj despertador vintage">
+                        <div class="product-overlay">
+                            <h3 class="product-title">Despertador Mecánico</h3>
+                            <p class="product-description">Reloj despertador de cuerda, diseño atemporal de los 60s</p>
+                            <button class="product-btn">Ver Artículo</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="image">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1569793667639-dae11573b34f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Cafetera vintage">
+                        <div class="product-overlay">
+                            <h3 class="product-title">Cafetera Italiana</h3>
+                            <p class="product-description">Auténtica moka vintage, el sabor del café tradicional</p>
+                            <button class="product-btn">Ver Artículo</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="image">
+                    <div class="product-card">
+                        <img src="https://plus.unsplash.com/premium_photo-1686308373386-1b7607755d90?q=80&w=1046&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Máquina de escribir antigua">
+                        <div class="product-overlay">
+                            <h3 class="product-title">Máquina de Escribir</h3>
+                            <p class="product-description">Clásica typewriter de los años 40, perfectamente conservada
+                            </p>
+                            <button class="product-btn">Ver Artículo</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="image">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1662557569684-03a22e8a589c?q=80&w=1065&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Vinilo clásico">
+                        <div class="product-overlay">
+                            <h3 class="product-title">Discos de Vinilo</h3>
+                            <p class="product-description">Colección de vinilos clásicos, géneros variados de los
+                                70s-80s</p>
+                            <button class="product-btn">Ver Artículo</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="image">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1557180295-76eee20ae8aa?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Libros antiguos">
+                        <div class="product-overlay">
+                            <h3 class="product-title">Libros Antiguos</h3>
+                            <p class="product-description">Primeras ediciones y ejemplares raros, tesoros literarios</p>
+                            <button class="product-btn">Ver Artículo</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="image">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?q=80&w=1296&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Typewriter de colección">
+                        <div class="product-overlay">
+                            <h3 class="product-title">Typewriter de Colección</h3>
+                            <p class="product-description">Máquina de escribir premium, modelo exclusivo para
+                                coleccionistas</p>
+                            <button class="product-btn">Ver Artículo</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="image">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1612547036242-77002603e5aa?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Televisor retro">
+                        <div class="product-overlay">
+                            <h3 class="product-title">Televisor Retro</h3>
+                            <p class="product-description">TV vintage de tubo, nostalgia pura de los años 70</p>
+                            <button class="product-btn">Ver Artículo</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="image">
+                    <div class="product-card">
+                        <img src="https://plus.unsplash.com/premium_photo-1703150072647-a888b485a107?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Accesorios vintage">
+                        <div class="product-overlay">
+                            <h3 class="product-title">Accesorios Vintage</h3>
+                            <p class="product-description">Complementos únicos de época, piezas auténticas y raras</p>
+                            <button class="product-btn">Ver Artículo</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="image">
+                    <div class="product-card">
+                        <img src="https://plus.unsplash.com/premium_photo-1722945721378-1c565f10859d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Objetos decorativos vintage">
+                        <div class="product-overlay">
+                            <h3 class="product-title">Decoración Vintage</h3>
+                            <p class="product-description">Objetos decorativos únicos para dar carácter a tu hogar</p>
+                            <button class="product-btn">Ver Artículo</button>
+                        </div>
+                    </div>
+                </li>
+                <li class="image">
+                    <div class="product-card">
+                        <img src="https://plus.unsplash.com/premium_photo-1723924895713-8ff8441a5e44?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Colección retro">
+                        <div class="product-overlay">
+                            <h3 class="product-title">Colección Especial</h3>
+                            <p class="product-description">Piezas exclusivas y limitadas para verdaderos coleccionistas
+                            </p>
+                            <button class="product-btn">Ver Artículo</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <footer>
+                <h2 class="end">Bienvenido a WHAM!</h2>
+            </footer>
+        </div>
+    </main>
+
+    <div class="scroll-indicator">
+        <svg class="arrow" viewBox="0 0 24 24">
+            <path d="M12 5v14M12 19l-6-6M12 19l6-6" />
+        </svg>
+        <h2 class="wham-desc">Tienda de coleccionismo, retro y vintage en Badalona</h2>
+        <p class="wham-desc-small">Libros, cómics, discos, objetos vintage y más. Descubre tesoros únicos y curiosidades
+            pop.</p>
+        <span>Desliza hacia abajo</span>
     </div>
 
-    <button class="menu">
-      <span></span>
-    </button>
-  </header>
-
-  <main id="wrapper">
-    <div id="content" class="o-wrapper">
-      <ul class="gallery">
-        <li class="image">
-          <img
-            src="https://images.unsplash.com/photo-1676919396230-b75e4ff56e45?q=80&w=1234&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="">
-        </li>
-        <li class="image">
-          <img
-            src="https://images.unsplash.com/photo-1678958169679-42e6ca5785e3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="">
-        </li>
-        <li class="image">
-          <img
-            src="https://images.unsplash.com/photo-1653473672408-5d2d68fa1278?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="">
-        </li>
-        <li class="image">
-          <img
-            src="https://images.unsplash.com/photo-1560746062-c5bdb4093a7b?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="">
-        </li>
-        <li class="image">
-          <img
-            src="https://images.unsplash.com/photo-1649594900763-bd4161461293?q=80&w=1227&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="">
-        </li>
-        <li class="image">
-          <img
-            src="https://images.unsplash.com/photo-1597424216485-52cb74d07288?q=80&w=1086&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="">
-        </li>
-        <li class="image">
-          <img
-            src="https://images.unsplash.com/photo-1486421728445-c460298b20b6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="">
-        </li>
-        <li class="image">
-          <img
-            src="https://images.unsplash.com/photo-1543622748-5ee7237e8565?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="">
-        </li>
-        <li class="image">
-          <img
-            src="https://images.unsplash.com/photo-1569701813229-33284b643e3c?q=80&w=1214&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="">
-        </li>
-        <li class="image">
-          <img
-            src="https://images.unsplash.com/photo-1569793667639-dae11573b34f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="">
-        </li>
-        <li class="image">
-          <img
-            src="https://plus.unsplash.com/premium_photo-1686308373386-1b7607755d90?q=80&w=1046&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="">
-        </li>
-        <li class="image">
-          <img
-            src="https://images.unsplash.com/photo-1662557569684-03a22e8a589c?q=80&w=1065&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="">
-        </li>
-        <li class="image">
-          <img
-            src="https://images.unsplash.com/photo-1557180295-76eee20ae8aa?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="">
-        </li>
-        <li class="image">
-          <img
-            src="https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?q=80&w=1296&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="">
-        </li>
-        <li class="image">
-          <img
-            src="https://images.unsplash.com/photo-1612547036242-77002603e5aa?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="">
-        </li>
-        <li class="image">
-          <img
-            src="https://plus.unsplash.com/premium_photo-1703150072647-a888b485a107?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="">
-        </li>
-        <li class="image">
-          <img
-            src="https://plus.unsplash.com/premium_photo-1722945721378-1c565f10859d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="">
-        </li>
-        <li class="image">
-          <img
-            src="https://plus.unsplash.com/premium_photo-1723924895713-8ff8441a5e44?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="">
-        </li>
-      </ul>
-      <footer>
-        <h2 class="end">Bienvenido a WHAM!</h2>
-      </footer>
-    </div>
-  </main>
-
-  <div class="scroll-indicator">
-    <svg class="arrow" viewBox="0 0 24 24">
-      <path d="M12 5v14M12 19l-6-6M12 19l6-6" />
-    </svg>
-    <h2 class="wham-desc">Tienda de coleccionismo, retro y vintage en Badalona</h2>
-    <p class="wham-desc-small">Libros, cómics, discos, objetos vintage y más. Descubre tesoros únicos y curiosidades
-      pop.</p>
-    <span>Desliza hacia abajo</span>
-  </div>
-
-  <!-- partial -->
-  <script src="js/gsap.min.js"></script>
-  <script src="js/SplitText.min.js"></script>
-  <script src="js/ScrollTrigger.min.js"></script>
-  <script src="js/ScrollSmoother.min.js"></script>
-  <script src="js/chroma.min.js"></script>
-  <script src="./script.js"></script>
-  <script>
-    // Ocultar indicador al hacer scroll
-    window.addEventListener('scroll', function () {
-      const indicator = document.querySelector('.scroll-indicator');
-      if (window.scrollY > 30) {
-        indicator.style.opacity = '0';
-        indicator.style.transform = 'translateX(-50%) translateY(10px)';
-      } else {
-        indicator.style.opacity = window.innerWidth <= 600 ? '0.7' : '0.8';
-        indicator.style.transform = 'translateX(-50%) translateY(0)';
-      }
-    });
-  </script>
+    <!-- partial -->
+    <script src="js/gsap.min.js"></script>
+    <script src="js/SplitText.min.js"></script>
+    <script src="js/ScrollTrigger.min.js"></script>
+    <script src="js/ScrollSmoother.min.js"></script>
+    <script src="js/chroma.min.js"></script>
+    <script src="./script.js"></script>
+    <script>
+        // Ocultar indicador al hacer scroll
+        window.addEventListener('scroll', function () {
+            const indicator = document.querySelector('.scroll-indicator');
+            if (window.scrollY > 30) {
+                indicator.style.opacity = '0';
+                indicator.style.transform = 'translateX(-50%) translateY(10px)';
+            } else {
+                indicator.style.opacity = window.innerWidth <= 600 ? '0.7' : '0.8';
+                indicator.style.transform = 'translateX(-50%) translateY(0)';
+            }
+        });
+    </script>
 
 </body>
 
