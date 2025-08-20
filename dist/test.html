@@ -9,6 +9,128 @@
     <link rel="stylesheet" href="./css2.css">
     <link rel="stylesheet" href="./style.css">
     <style>
+        /* Showcase destacado */
+        .mid-showcase {
+            margin: 3em auto 2em auto;
+            padding: 2em 0 1em 0;
+            background: linear-gradient(120deg, #fffde4 60%, #ffe600 100%);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(255, 214, 0, 0.13);
+            max-width: 900px;
+        }
+
+        .mid-title {
+            text-align: center;
+            font-size: 2.1em;
+            font-weight: 800;
+            color: #e53935;
+            letter-spacing: 0.04em;
+            margin-bottom: 1.5em;
+            text-shadow: 0 2px 12px #ffd60044;
+        }
+
+        .mid-gallery {
+            display: flex;
+            gap: 2em;
+            justify-content: center;
+            align-items: stretch;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mid-image {
+            list-style: none;
+            position: relative;
+            flex: 1 1 220px;
+            max-width: 260px;
+            min-width: 180px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
+            background: #fffbe6;
+            transition: transform 0.35s cubic-bezier(.4, 1.4, .6, 1), box-shadow 0.3s;
+        }
+
+        .mid-image img {
+            display: block;
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+            border-radius: 16px;
+            transition: filter 0.3s, transform 0.35s cubic-bezier(.4, 1.4, .6, 1);
+        }
+
+        .mid-image::after {
+            content: attr(data-category);
+            position: absolute;
+            left: 16px;
+            top: 16px;
+            background: linear-gradient(90deg, #ffd600 70%, #fffde4 100%);
+            color: #222;
+            font-size: 1.05em;
+            font-weight: 700;
+            padding: 0.35em 1.1em;
+            border-radius: 18px;
+            box-shadow: 0 2px 8px rgba(255, 214, 0, 0.13);
+            opacity: 0.92;
+            letter-spacing: 0.03em;
+            pointer-events: none;
+        }
+
+        .mid-image:hover {
+            transform: scale(1.045) translateY(-6px);
+            box-shadow: 0 12px 32px rgba(255, 214, 0, 0.18);
+        }
+
+        .mid-image:hover img {
+            filter: brightness(1.08) saturate(1.15) blur(1px);
+            transform: scale(1.04);
+        }
+
+        @media (max-width: 900px) {
+            .mid-gallery {
+                gap: 1em;
+            }
+
+            .mid-image img {
+                height: 260px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .mid-showcase {
+                margin: 2em 0 1em 0;
+                padding: 1em 0 0.5em 0;
+                border-radius: 12px;
+            }
+
+            .mid-title {
+                font-size: 1.3em;
+                margin-bottom: 1em;
+            }
+
+            .mid-gallery {
+                flex-direction: column;
+                gap: 1.2em;
+            }
+
+            .mid-image {
+                max-width: 100%;
+                min-width: 0;
+            }
+
+            .mid-image img {
+                height: 180px;
+            }
+
+            .mid-image::after {
+                font-size: 0.95em;
+                left: 10px;
+                top: 10px;
+                padding: 0.25em 0.8em;
+            }
+        }
+
         .scroll-indicator {
             transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -550,6 +672,26 @@
                     </div>
                 </li>
             </ul>
+
+
+            <div class="mid-showcase">
+                <h2 class="mid-title">Artículos Destacados</h2>
+                <ul class="mid-gallery">
+                    <li class="mid-image" data-category="Accesorios">
+                        <img src="https://plus.unsplash.com/premium_photo-1703150072647-a888b485a107?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Accesorios vintage">
+                    </li>
+                    <li class="mid-image" data-category="Decoración">
+                        <img src="https://plus.unsplash.com/premium_photo-1722945721378-1c565f10859d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Objetos decorativos vintage">
+                    </li>
+                    <li class="mid-image" data-category="Colección">
+                        <img src="https://plus.unsplash.com/premium_photo-1723924895713-8ff8441a5e44?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Colección retro">
+                    </li>
+                </ul>
+            </div>
+
             <footer>
                 <h2 class="end">Bienvenido a WHAM!</h2>
             </footer>
