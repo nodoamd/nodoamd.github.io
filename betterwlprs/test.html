@@ -4,1456 +4,2081 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>BetterWLPRS — Previews que enamoran. Full-res y vídeos completos al suscribirte.</title>
+    <title>BetterWLPRS — Wallpapers únicos que transforman tu setup</title>
 
-    <!-- Tipografía -->
+    <!-- Preload critical resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <meta name="description"
-        content="Explora sesiones exclusivas en previews abiertos. Suscríbete para descargar los originales en toda calidad y desbloquear vídeos completos.">
+        content="Descubre wallpapers únicos y videos exclusivos. Previews gratuitos, contenido completo para miembros. Optimizados para todos tus dispositivos.">
+    <meta name="keywords" content="wallpapers, fondos de pantalla, gaming, exclusivos, 4K, Steam Deck">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="BetterWLPRS - Wallpapers únicos">
+    <meta property="og:description" content="Wallpapers únicos que transforman tu setup">
+    <meta property="og:type" content="website">
+
     <style>
+        /* Theme Variables */
         :root {
-            --bg: #0b0b10;
-            --card: #12121a;
-            --text: #e9e9f0;
-            --muted: #a7a7b3;
+            --bg: #0a0a0f;
+            --bg-secondary: #0f0f17;
+            --card: #16161e;
+            --card-hover: #1a1a24;
+            --text: #f0f0f7;
+            --text-secondary: #c4c4d1;
+            --muted: #9494a6;
             --accent: #a787ff;
-            --radius: 16px;
-            --border: #ffffff14;
+            --accent-light: #b999ff;
+            --accent-dark: #8f6fff;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #ef4444;
+            --radius: 20px;
+            --radius-sm: 12px;
+            --radius-lg: 28px;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.15);
+            --shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.4);
+            --blur: 16px;
+        }
+
+        :root[data-theme="light"] {
+            --bg: #f8f9fb;
+            --bg-secondary: #ffffff;
+            --text: #0f1222;
+            --text-secondary: #2d3350;
+            --muted: #5b6280;
+            --card: #ffffff;
+            --card-hover: #f4f6fb;
+            --border: rgba(15, 18, 34, 0.08);
+            --border-hover: rgba(15, 18, 34, 0.16);
+            --accent: #8f6dfb;
+            --accent-dark: #6a46f2;
+            --shadow: 0 4px 32px rgba(15, 18, 34, 0.1);
+            --shadow-lg: 0 20px 60px rgba(15, 18, 34, 0.15);
         }
 
         * {
-            box-sizing: border-box
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
         }
 
         html,
         body {
-            height: 100%
-        }
-
-        body {
-            margin: 0;
-            font-family: Inter, system-ui, Arial, Helvetica, sans-serif;
-            color: var(--text);
-            background: radial-gradient(1200px 700px at 80% -10%, #241a4d33, transparent), var(--bg);
-            -webkit-font-smoothing: antialiased;
+            height: 100%;
             overflow-x: hidden;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(1400px 800px at 60% -20%, rgba(167, 135, 255, 0.12), transparent),
+                radial-gradient(1200px 600px at 20% 100%, rgba(167, 135, 255, 0.08), transparent),
+                var(--bg);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
 
-        img {
-            max-width: 100%;
-            display: block
+        body.loaded {
+            opacity: 1;
         }
 
-        /* Navbar */
-        .nav {
+        /* ===== LOADER ===== */
+        .loader {
             position: fixed;
-            inset: 14px 14px auto;
+            inset: 0;
+            background: var(--bg);
             display: flex;
-            gap: 10px;
             align-items: center;
-            z-index: 60;
-            background: rgba(18, 18, 26, .55);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border);
-            padding: 8px 12px;
-            border-radius: 999px;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
         }
 
-        .nav .logo {
-            font-weight: 800;
-            letter-spacing: .4px
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
         }
 
-        .nav .sp {
-            flex: 1
-        }
-
-        .pill {
-            padding: 8px 12px;
-            border-radius: 999px;
-            border: 1px solid #ffffff12;
-            font-size: 14px
-        }
-
-        .cta {
-            background: linear-gradient(135deg, #b893ff, #7d5cff);
-            border: none;
-            font-weight: 700
-        }
-
-        /* Hero */
-        .hero {
-            min-height: 96svh;
-            display: grid;
+        .loader-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            padding: 0 6vw 40px;
+            gap: 2rem;
+        }
+
+        .loader-logo {
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loader-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            opacity: 0;
+            animation: fadeIn 0.5s ease 0.5s forwards;
+        }
+
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
             position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            width: 0%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* ===== IMPROVED NAVIGATION ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(0px);
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(var(--blur));
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 900;
+            font-size: 22px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-brand:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-brand::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex: 1;
+            justify-content: center;
+            margin-left: -120px;
+        }
+
+        .nav-item {
+            position: relative;
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .nav-item:hover {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .nav-item.active {
+            color: var(--accent);
+            background: rgba(167, 135, 255, 0.15);
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 6px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 24px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            border-radius: 2px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-item.active::after,
+        .nav-item:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .icon-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn.secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-btn.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(167, 135, 255, 0.3);
+        }
+
+        .nav-btn.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(167, 135, 255, 0.4);
+        }
+
+        .nav-btn.primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-btn.primary:hover::before {
+            opacity: 1;
+        }
+
+        .nav-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Mobile Navigation */
+        .nav-mobile {
+            display: none;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .hamburger {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translateY(6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translateY(-6px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .mobile-menu .nav-item {
+            font-size: 32px;
+            font-weight: 700;
+            padding: 20px 40px;
+            text-align: center;
+        }
+
+        .mobile-menu .nav-actions {
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 2rem;
+        }
+
+        .mobile-menu .nav-btn {
+            width: 240px;
+            padding: 18px 36px;
+            font-size: 18px;
+            justify-content: center;
+        }
+
+        /* ===== ENHANCED HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 140px 24px 80px;
+            position: relative;
+            text-align: center;
             overflow: hidden;
         }
 
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 30% 20%, rgba(167, 135, 255, 0.15), transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(167, 135, 255, 0.1), transparent 50%);
+            animation: heroGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroGlow {
+            0% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 10;
+        }
+
         .eyebrow {
-            color: #cfcfe6;
-            letter-spacing: .14em;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 600;
             text-transform: uppercase;
-            font-size: 12px;
-            opacity: .9
+            letter-spacing: 0.1em;
+            padding: 10px 20px;
+            border: 1px solid rgba(167, 135, 255, 0.3);
+            border-radius: 50px;
+            background: rgba(167, 135, 255, 0.05);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .eyebrow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(167, 135, 255, 0.2);
+        }
+
+        .eyebrow::before {
+            content: '✨';
+            font-size: 16px;
         }
 
         .hero h1 {
-            font-size: clamp(34px, 6vw, 76px);
-            line-height: 1.03;
-            margin: .3rem 0 12px
+            font-size: clamp(42px, 8vw, 88px);
+            font-weight: 900;
+            line-height: 1.02;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero .title-line {
+            display: block;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .gradient-text {
+            display: block;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
         }
 
         .hero p {
-            color: var(--muted);
-            font-size: clamp(16px, 2.1vw, 22px);
-            max-width: 65ch;
-            margin: 0
+            font-size: clamp(18px, 2.5vw, 26px);
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+            line-height: 1.5;
         }
 
-        .actions {
+        .hero-actions {
             display: flex;
-            gap: 12px;
-            margin-top: 22px
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            border-radius: 12px;
-            border: 1px solid #ffffff18;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px 36px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 16px;
             cursor: pointer;
-            font-weight: 600
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            white-space: nowrap;
         }
 
-        .btn.accent {
-            background: linear-gradient(135deg, #b893ff, #7d5cff);
-            border: none
+        .btn.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            box-shadow: 0 8px 32px rgba(167, 135, 255, 0.3);
+            font-weight: 700;
+        }
+
+        .btn.primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(167, 135, 255, 0.4);
+        }
+
+        .btn.primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn.primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn.secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .spline-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            width: 100%;
+            max-width: 900px;
+            height: 400px;
+            pointer-events: none;
+            opacity: 0.8;
         }
 
         .chips {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 18px
+            gap: 16px;
+            justify-content: center;
+            margin-top: 2rem;
         }
 
         .chip {
-            font-size: 12px;
-            padding: 6px 10px;
-            border-radius: 999px;
-            background: #ffffff10;
-            border: 1px solid #ffffff12;
-            color: #cfcfe6
+            font-size: 13px;
+            padding: 10px 18px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
         }
 
-        /* Sections */
+        .chip:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* ===== SECTIONS ===== */
         .section {
-            padding: 56px 4vw 16px
-        }
-
-        .section-head {
-            display: flex;
-            align-items: end;
-            justify-content: space-between;
-            gap: 16px;
-            margin-bottom: 12px
-        }
-
-        .section-head h2 {
-            margin: 0;
-            font-size: clamp(22px, 3.2vw, 38px)
-        }
-
-        .section-head p {
-            color: #bdbde0;
-            max-width: 70ch;
-            margin: 8px 0 0
-        }
-
-        /* Grid */
-        .grid {
-            padding: 24px 0 70px;
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 16px;
+            padding: 100px 24px;
+            max-width: 1400px;
+            margin: 0 auto;
             position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .section-header p {
+            font-size: clamp(18px, 2vw, 22px);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .highlight.animated::after {
+            transform: scaleX(1);
+        }
+
+        /* ===== ENHANCED GRID ===== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 32px;
+            padding: 40px 0;
         }
 
         .card {
-            grid-column: span 4;
-            border-radius: var(--radius);
-            overflow: hidden;
             background: var(--card);
             border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            transform: translateY(24px);
+            backdrop-filter: blur(10px);
+            transform: translateY(0);
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            background: var(--card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(167, 135, 255, 0.05), transparent);
             opacity: 0;
-            isolation: isolate;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
         }
 
-        @media (max-width:1000px) {
-            .card {
-                grid-column: span 6
-            }
+        .card:hover::before {
+            opacity: 1;
         }
 
-        @media (max-width:640px) {
-            .card {
-                grid-column: span 12
-            }
-        }
-
-        .thumb {
+        .card-image {
+            position: relative;
+            overflow: hidden;
             aspect-ratio: 4/5;
+            background: linear-gradient(45deg, var(--border), var(--card));
+        }
+
+        .card-image img {
             width: 100%;
+            height: 100%;
             object-fit: cover;
-            filter: saturate(105%);
-            transition: transform .5s ease;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: brightness(0.9);
         }
 
-        .badge {
+        .card:hover .card-image img {
+            transform: scale(1.08);
+            filter: brightness(1);
+        }
+
+        .card-image img[src*="arkham.gif"] {
+            object-position: 25% center;
+        }
+
+        .card-badge {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            padding: 6px 10px;
-            border-radius: 999px;
-            background: #00000066;
-            border: 1px solid #ffffff22;
+            top: 16px;
+            left: 16px;
+            padding: 8px 14px;
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
             font-size: 12px;
-            z-index: 2;
+            font-weight: 600;
+            backdrop-filter: blur(15px);
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .lock {
+        .card-premium {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 28px;
-            height: 28px;
-            display: grid;
-            place-items: center;
-            border-radius: 999px;
-            background: #00000066;
-            border: 1px solid #ffffff22;
-            z-index: 2
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(15px);
+            font-size: 18px;
+            transition: all 0.3s ease;
         }
 
-        .meta {
-            padding: 10px 12px 12px;
+        .card-premium:hover {
+            transform: scale(1.1);
+            background: rgba(167, 135, 255, 0.9);
+        }
+
+        .card-content {
+            padding: 28px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px
+            gap: 20px;
         }
 
-        .title {
-            font-weight: 700
+        .card-title {
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 6px;
+            color: var(--text);
         }
 
-        .tag {
-            font-size: 12px;
-            color: #bdbde0
+        .card-subtitle {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.4;
         }
 
-        /* Vídeos */
-        .video-card .thumb {
-            aspect-ratio: 16/9
-        }
-
-        .play {
-            position: absolute;
-            inset: auto 10px 10px auto;
-            background: #00000088;
-            border: 1px solid #ffffff22;
-            border-radius: 999px;
-            padding: 8px 12px;
-            font-size: 12px
-        }
-
-        /* Sticky CTA */
-        .sticky-cta {
-            position: fixed;
-            left: 50%;
-            transform: translate(-50%, 110%);
-            bottom: 20px;
-            z-index: 50;
-            background: linear-gradient(135deg, #b893ff, #7d5cff);
-            color: #111;
-            padding: 14px 18px;
-            border-radius: 999px;
-            font-weight: 800;
-            box-shadow: 0 10px 30px #00000066;
-            border: none;
+        .card-action {
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 14px;
             cursor: pointer;
+            border: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Modal */
+        .card-action.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            box-shadow: 0 4px 15px rgba(167, 135, 255, 0.3);
+        }
+
+        .card-action.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(167, 135, 255, 0.4);
+        }
+
+        .card-action.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .card-action.secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        /* ===== MODAL IMPROVEMENTS ===== */
         .modal {
             position: fixed;
             inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
             display: none;
-            place-items: center;
-            background: #000000a8;
-            z-index: 100
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 20px;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .panel {
-            width: min(580px, 92vw);
+        .modal.active {
+            opacity: 1;
+        }
+
+        .modal-content {
             background: var(--card);
-            border: 1px solid #ffffff22;
-            border-radius: 20px;
-            padding: 22px
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            max-width: 520px;
+            width: 100%;
+            position: relative;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-lg);
         }
 
-        .panel h3 {
-            margin: 0 0 8px
+        .modal.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
         }
 
-        .plans {
-            display: grid;
-            gap: 10px;
-            margin-top: 12px
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
         }
 
-        .plan {
-            padding: 12px;
-            border: 1px solid #ffffff18;
-            border-radius: 14px;
-            background: #ffffff06;
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .plan-card {
+            padding: 24px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.02);
             display: flex;
             justify-content: space-between;
-            align-items: center
-        }
-
-        .plan strong {
-            font-size: 18px
-        }
-
-        .close {
-            float: right;
-            opacity: .85;
-            cursor: pointer
-        }
-
-        .tiny {
-            color: #bdbde0;
-            font-size: 12px;
-            margin-top: 8px
-        }
-
-        /* Footer */
-        .footer {
-            padding: 60px 4vw 80px;
-            color: #bdbde0
-        }
-
-        .footer a {
-            opacity: .9;
-            text-decoration: underline
-        }
-
-        /* Jelly Effect */
-        .jelly-text {
-            display: inline-block;
-            transform-origin: center bottom;
-            color: var(--accent);
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
             position: relative;
-            --line-scale: 0;
         }
 
-        .jelly-text::after {
+        .plan-card:hover {
+            border-color: var(--border-hover);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .plan-card.popular {
+            border: 2px solid var(--accent);
+            background: rgba(167, 135, 255, 0.08);
+        }
+
+        .plan-card.popular::before {
+            content: 'Popular';
+            position: absolute;
+            top: -12px;
+            left: 24px;
+            background: var(--accent);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .plan-info h4 {
+            font-weight: 700;
+            font-size: 22px;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .plan-info p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .plan-price {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        /* ===== STICKY CTA ===== */
+        .sticky-cta {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            border: none;
+            padding: 18px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(167, 135, 255, 0.4);
+            transform: translateY(100px) scale(0.8);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .sticky-cta.visible {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .sticky-cta:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 16px 45px rgba(167, 135, 255, 0.5);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 80px 24px 40px;
+            text-align: center;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .footer::before {
             content: '';
             position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, #b893ff, #7d5cff);
-            border-radius: 2px;
-            transform: scaleX(var(--line-scale));
-            transform-origin: left;
-            transition: transform 0.6s ease;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
         }
 
-
-        /* Palabras animadas del título */
-        .word {
-            display: inline-block;
-            margin-right: 0.3em;
+        .footer-brand {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
         }
 
-        /* Nuevo: palabras reveladas con GSAP en h2 */
-        .reveal-word {
-            display: inline-block;
-            margin-right: 0.3em;
+        .footer-tagline {
+            font-size: 18px;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
         }
 
-        /* Watermark para previews (simulada) */
-        .wm {
-            position: absolute;
-            inset: auto 10px 10px auto;
-            padding: 4px 8px;
-            font-size: 11px;
-            color: #fff;
-            background: #00000066;
-            border: 1px solid #ffffff22;
-            border-radius: 8px;
-            z-index: 2
+        .footer-contact {
+            font-size: 16px;
         }
 
-        /* Rediseño bloques informativos: cards limpias */
-        .card.pad {
-            padding: 18px;
+        .footer-contact a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
 
-        .row {
-            display: flex;
-            gap: 12px;
-            align-items: flex-start;
+        .footer-contact a:hover {
+            color: var(--accent-light);
         }
 
-        .icon-badge {
-            width: 34px;
-            height: 34px;
-            border-radius: 10px;
-            display: grid;
-            place-items: center;
-            background: #ffffff0d;
-            border: 1px solid #ffffff18;
-            flex: 0 0 auto;
-        }
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none;
+            }
 
-        .kicker {
-            font-size: 12px;
-            color: #cfcfe6;
-            letter-spacing: .04em;
-            text-transform: uppercase;
-        }
+            .nav-mobile {
+                display: flex;
+            }
 
-        .muted {
-            color: #bdbde0;
-        }
+            .nav-brand {
+                font-size: 20px;
+            }
 
-        .faq {
-            display: grid;
-            gap: 12px;
-        }
-
-        .faq-q {
-            width: 100%;
-            text-align: left;
-            background: transparent;
-            color: var(--text);
-            padding: 14px 0;
-            border: none;
-            font-weight: 800;
-            cursor: pointer;
-        }
-
-        .faq-a {
-            color: #bdbde0;
-            padding-bottom: 8px;
-        }
-
-        /* Utilidades de columnas responsivas para .grid */
-        .grid .col-12 {
-            grid-column: span 12;
-        }
-
-        .grid .col-6 {
-            grid-column: span 6;
-        }
-
-        .grid .col-4 {
-            grid-column: span 4;
-        }
-
-        .grid .col-3 {
-            grid-column: span 3;
-        }
-
-        @media (max-width:1000px) {
-
-            .grid .col-3,
-            .grid .col-4,
-            .grid .col-6 {
-                grid-column: span 6;
+            .grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 24px;
             }
         }
 
-        @media (max-width:640px) {
-
-            .grid .col-3,
-            .grid .col-4,
-            .grid .col-6 {
-                grid-column: span 12;
-            }
-        }
-
-        /* Tarjetas ilustradas para "Cómo funciona" */
-        .step-media {
-            aspect-ratio: 16/9;
-            width: 100%;
-            object-fit: cover;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            margin-bottom: 12px;
-            filter: saturate(105%);
-        }
-
-        .step-num {
-            width: 28px;
-            height: 28px;
-            border-radius: 999px;
-            display: grid;
-            place-items: center;
-            background: #ffffff0d;
-            border: 1px solid #ffffff18;
-            font-weight: 800;
-            font-size: 12px;
-        }
-
-        /* --- Responsividad adicional (nav, hero, headers, Spline) --- */
-        @media (max-width: 1000px) {
-            .nav {
-                flex-wrap: wrap;
-                gap: 8px 8px;
-                padding: 6px 10px;
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 20px;
             }
 
-            .pill {
-                font-size: 13px;
-                padding: 6px 10px;
+            .hero {
+                padding: 120px 20px 60px;
+                min-height: 90vh;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 320px;
+                padding: 16px 32px;
             }
 
             .section {
-                padding: 48px 4vw 12px;
+                padding: 80px 20px;
             }
 
-            .section-head {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
+            .section-header {
+                margin-bottom: 60px;
             }
 
-            .section-head .btn {
-                align-self: stretch;
-                justify-content: center;
-            }
-
-            .actions {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .actions .btn {
-                justify-content: center;
-            }
-
-            /* Spline: reducir altura y levantar menos para que no tape el hero */
-            .steamdeck-hero-absolute {
-                margin-top: -140px !important;
-            }
-
-            .steamdeck-viewer-main {
-                height: 320px !important;
-                max-width: 720px !important;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .hero {
-                padding: 50px 5vw 30px;
-            }
-
-            .hero p {
-                font-size: clamp(15px, 4.5vw, 18px);
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
 
             .chips {
-                gap: 6px;
+                gap: 12px;
             }
 
-            .steamdeck-hero-absolute {
-                margin-top: -80px !important;
+            .chip {
+                font-size: 12px;
+                padding: 8px 14px;
             }
 
-            .steamdeck-viewer-main {
-                height: 240px !important;
-                max-width: 480px !important;
+            .card-content {
+                padding: 24px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .card-action {
+                width: 100%;
+                text-align: center;
+            }
+
+            .modal-content {
+                padding: 32px 24px;
+                margin: 20px;
             }
 
             .sticky-cta {
-                bottom: 14px;
-                padding: 12px 16px;
+                bottom: 20px;
+                right: 20px;
+                padding: 16px 24px;
+                font-size: 14px;
             }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 100px 16px 40px;
+            }
+
+            .section {
+                padding: 60px 16px;
+            }
+
+            .nav-container {
+                padding: 0 16px;
+            }
+
+            .card-image {
+                aspect-ratio: 16/10;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(60px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* ===== UTILITIES ===== */
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* ===== LOADING STATES ===== */
+        .skeleton {
+            background: linear-gradient(90deg, var(--card) 0%, var(--card-hover) 50%, var(--card) 100%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s ease-in-out infinite;
+        }
+
+        @keyframes skeleton-loading {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        /* ===== FOCUS STATES ===== */
+        .btn:focus,
+        .nav-btn:focus,
+        .icon-btn:focus,
+        .card-action:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* ===== DARK/LIGHT THEME TRANSITIONS ===== */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
     </style>
 </head>
 
 <body>
-    <!-- NAV -->
-    <nav class="nav" aria-label="principal">
-        <div class="logo">BetterWLPRS</div>
-        <a class="pill" href="#gallery">Galería</a>
-        <a class="pill" href="#videos">Vídeos</a>
-        <a class="pill" href="#how">Cómo funciona</a>
-        <div class="sp"></div>
-        <button class="pill" id="openLogin" aria-haspopup="dialog" aria-controls="paywall">Entrar</button>
-        <button class="pill cta" id="openPaywall" aria-haspopup="dialog" aria-controls="paywall">Suscribirse</button>
+    <!-- ===== LOADER ===== -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">BetterWLPRS</div>
+            <div class="loader-spinner"></div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="loader-text" id="loaderText">Cargando experiencia única...</div>
+        </div>
+    </div>
+    <script>
+        // Oculta el loader y muestra el body siempre, aunque falle el JS
+        window.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                document.body.classList.add('loaded');
+                var loader = document.getElementById('loader');
+                if (loader) loader.classList.add('hidden');
+            }, 3000);
+        });
+    </script>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">
+                BetterWLPRS
+            </a>
+
+            <div class="nav-menu" id="navMenu">
+                <a href="#gallery" class="nav-item active" data-section="gallery" data-i18n="nav.gallery">Galería</a>
+                <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Vídeos</a>
+                <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">Cómo funciona</a>
+                <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Beneficios</a>
+            </div>
+
+            <div class="nav-actions">
+                <button class="icon-btn" id="langToggle" aria-label="Toggle language">EN</button>
+                <button class="icon-btn" id="themeToggle" aria-label="Toggle theme"><span>☀️</span></button>
+                <button class="nav-btn secondary" id="loginBtn">
+                    <span data-i18n="nav.login">Entrar</span>
+                </button>
+                <button class="nav-btn primary" id="subscribeBtn">
+                    <span data-i18n="nav.subscribe">Suscribirse</span>
+                </button>
+            </div>
+
+            <div class="nav-mobile">
+                <button class="nav-btn primary" id="subscribeMobileBtn">
+                    <span>Suscribirse</span>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
     </nav>
-    <!-- MODAL PREVIEW -->
-    <div class="modal" id="previewModal" role="dialog" aria-modal="true"
-        style="display:none; place-items:center; background:#000000a8; z-index:101;">
-        <div class="panel"
-            style="max-width:90vw; background:var(--card); border-radius:20px; padding:22px; position:relative;">
-            <button class="close" id="closePreviewModal" aria-label="Cerrar"
-                style="position:absolute;top:10px;right:10px;">✕</button>
-            <img id="previewImg" src="" alt="Preview"
-                style="max-width:100%; max-height:70vh; border-radius:16px; display:block; margin:0 auto;" />
+
+    <!-- ===== MOBILE MENU ===== -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#gallery" class="nav-item" data-section="gallery" data-i18n="nav.gallery">Galería</a>
+        <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Vídeos</a>
+        <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">Cómo funciona</a>
+        <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Beneficios</a>
+
+        <div class="nav-actions">
+            <div style="display:flex; gap:12px; margin-bottom:20px;">
+                <button class="icon-btn" id="langToggleMobile" aria-label="Toggle language">EN</button>
+                <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme"><span>☀️</span></button>
+            </div>
+            <button class="nav-btn secondary"><span data-i18n="nav.login">Entrar</span></button>
+            <button class="nav-btn primary"><span data-i18n="nav.subscribe">Suscribirse</span></button>
         </div>
     </div>
 
-    <!-- HERO -->
-    <header class="hero" id="hero">
-        <div>
-            <div class="eyebrow">Fondos In-game exclusivos</div>
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="eyebrow" data-i18n="hero.eyebrow">Fondos exclusivos</div>
             <h1>
-                <span class="line">Fondos in-game hechos a mano,</span><br>
-                <span class="line"> adaptados para todos tus dispositivos.</span>
+                <span class="title-line" data-i18n="hero.title1">Wallpapers únicos</span>
+                <span class="gradient-text" data-i18n="hero.title2">para todos tus dispositivos</span>
             </h1>
-            <p class="lead">BetterWLPRS te ofrece wallpapers únicos, optimizados para cualquier dispositivo. Descarga y
-                disfruta arte digital pensado para tu pantalla favorita.</p>
-            <div class="actions">
-                <a class="btn accent" id="ctaPrimary">Explorar galería</a>
-                <a class="btn" href="#how">Cómo funciona</a>
-            </div>
-            <div class="chips" aria-hidden="true">
-                <span class="chip">Todo Original</span>
-                <span class="chip">Only in BetterWLPRS</span>
-                <span class="chip">iOS, Android, PC, Tablet, Kindle (👀)</span>
-                <span class="chip">Descarga instantánea</span>
-            </div>
-        </div>
-    </header>
-    <!-- spline-viewer ABSOLUTE, fuera del flujo -->
-    <div class="steamdeck-hero-absolute absolute left-1/2 top-0 transform -translate-x-1/2 z-0 w-full flex justify-center pointer-events-none"
-        style="z-index:0; margin-top: -250px;">
-        <div class="relative w-full" style="z-index:0;">
-            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
-            <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
-                style="width: 100%; max-width: 900px; height: 400px; display: block; margin: 0 auto; border-radius: 0.75rem; background: transparent; z-index:0; position:relative; pointer-events:none;"
-                class="steamdeck-viewer-main"></spline-viewer>
-        </div>
-    </div>
+            <p data-i18n="hero.desc">Descarga arte original y optimizado. Disfruta calidad BetterWLPRS.</p>
 
-    <!-- GALERÍA -->
-    <section class="section" id="gallery" aria-labelledby="galeria-title">
-        <div class="section-head">
-            <div>
-                <h2 id="galeria-title">Fondos De Pantalla <span class="jelly-text">Originales</span></h2>
-                <p>Cada imagen se muestra optimizada. ¿Quieres el archivo original, sin marca de agua? Hazte miembro y
-                    descárgalo al instante.</p>
+            <div class="hero-actions">
+                <button class="btn primary" id="exploreBtnHero">
+                    <span data-i18n="hero.explore">Explorar galería</span>
+                    <span>→</span>
+                </button>
+                <a href="#how" class="btn secondary" data-i18n="hero.how">¿Cómo funciona?</a>
             </div>
-            <button class="btn" id="filterBtn">Galería</button>
-        </div>
-        <div class="grid" id="galleryGrid" role="list"></div>
-    </section>
 
-    <!-- VÍDEOS -->
-    <section class="section" id="videos" aria-labelledby="videos-title">
-        <div class="section-head">
-            <div>
-                <h2 id="videos-title">Vídeos <span class="jelly-text">Exclusivos</span> BetterWLPRS</h2>
-                <p>Descubre previews únicos de nuestras mejores capturas. Los miembros disfrutan contenido completo en
-                    máxima calidad.</p>
+            <!-- Spline 3D Model Container -->
+            <div class="spline-container">
+                <script type="module"
+                    src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
+                <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
+                    style="width: 100%; height: 100%; border-radius: 16px; background: transparent;" loading="eager">
+                </spline-viewer>
             </div>
-        </div>
-        <div class="grid" id="videoGrid" role="list"></div>
-    </section>
 
-    <!-- CÓMO FUNCIONA -->
-    <section class="section" id="how" aria-labelledby="how-title">
-        <div class="section-head">
-            <div>
-                <h2 id="how-title">Cómo funciona</h2>
-                <p>Publica tus sesiones y clips. El mundo ve un adelanto; lo premium se desbloquea con suscripción.</p>
+            <div class="chips">
+                <span class="chip" data-i18n="chips.original">Original</span>
+                <span class="chip" data-i18n="chips.onlyHere">Solo aquí</span>
+                <span class="chip" data-i18n="chips.multi">Multi-dispositivo</span>
+                <span class="chip" data-i18n="chips.instant">Descarga instantánea</span>
             </div>
-        </div>
-        <div class="grid">
-            <article class="card pad col-6">
-                <img class="step-media" src="./img/sanfracampview.jpg" alt="Sube y etiqueta" loading="lazy" />
-                <div class="row">
-                    <div class="step-num">1</div>
-                    <div>
-                        <h3 style="margin:6px 0 6px;">Sube y etiqueta</h3>
-                        <p class="tiny">Transformamos a WebP/AVIF con <code>srcset</code> y marca de agua sutil.</p>
-                    </div>
-                </div>
-            </article>
-            <article class="card pad col-6">
-                <img class="step-media" src="./img/arkham.gif" alt="Previews que enamoran" loading="lazy" />
-                <div class="row">
-                    <div class="step-num">2</div>
-                    <div>
-                        <h3 style="margin:6px 0 6px;">Previews que enamoran</h3>
-                        <p class="tiny">Carga progresiva, blur inicial y micro‑interacciones en scroll.</p>
-                    </div>
-                </div>
-            </article>
-            <article class="card pad col-6">
-                <img class="step-media" src="./img/spidersky.gif" alt="Suscripción simple" loading="lazy" />
-                <div class="row">
-                    <div class="step-num">3</div>
-                    <div>
-                        <h3 style="margin:6px 0 6px;">Acceso completo</h3>
-                        <p class="tiny">Originales y vídeowlprs completos tras la suscripción.</p>
-                    </div>
-                </div>
-            </article>
-            <article class="card pad col-6">
-                <img class="step-media" src="./img/thelongdarkwolfs.png" alt="Descargas seguras" loading="lazy" />
-                <div class="row">
-                    <div class="step-num">4</div>
-                    <div>
-                        <h3 style="margin:6px 0 6px;">Descargas seguras</h3>
-                        <p class="tiny">Enlaces firmados y límites anti‑abuso para proteger tu trabajo.</p>
-                    </div>
-                </div>
-            </article>
         </div>
     </section>
 
-    <!-- BENEFICIOS MIEMBROS -->
-    <section class="section" id="benefits" aria-labelledby="benefits-title">
-        <div class="section-head">
-            <div>
-                <h2 id="benefits-title">Beneficios para miembros</h2>
-                <p class="muted">Acceso a originales en full‑res y vídeowlprs completos, listos para tu setup.</p>
-            </div>
+    <!-- ===== HOW IT WORKS ===== -->
+    <section class="section" id="how">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="how.titlePrefix">Cómo</span>
+                <span class="highlight" data-i18n="how.highlight">Funciona</span>
+            </h2>
+            <p data-i18n="how.desc">Publica tus sesiones y clips. El mundo ve un adelanto; lo premium se desbloquea con
+                suscripción.</p>
         </div>
-        <div class="grid">
-            <article class="card pad col-6">
-                <div class="row">
-                    <div class="icon-badge">🖼️</div>
-                    <div>
-                        <div class="kicker">Original</div>
-                        <h3 style="margin:6px 0 6px;">Sin marca de agua</h3>
-                        <p class="tiny">Descarga los archivos tal y como fueron creados.</p>
-                    </div>
+        <div class="grid" id="howGrid">
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/sanfracampview.jpg" alt="Sube y etiqueta" loading="lazy">
                 </div>
-            </article>
-            <article class="card pad col-6">
-                <div class="row">
-                    <div class="icon-badge">🎞️</div>
-                    <div>
-                        <div class="kicker">Vídeowlprs</div>
-                        <h3 style="margin:6px 0 6px;">Clips completos 1080p/4K</h3>
-                        <p class="tiny">Preparados para loop con calidad equilibrada.</p>
-                    </div>
-                </div>
-            </article>
-            <article class="card pad col-6">
-                <div class="row">
-                    <div class="icon-badge">📱</div>
-                    <div>
-                        <div class="kicker">Por dispositivo</div>
-                        <h3 style="margin:6px 0 6px;">Formatos optimizados</h3>
-                        <p class="tiny">Móvil, desktop, tablet y Steam Deck.</p>
-                    </div>
-                </div>
-            </article>
-            <article class="card pad col-6">
-                <div class="row">
-                    <div class="icon-badge">🔄</div>
-                    <div>
-                        <div class="kicker">Actualizaciones</div>
-                        <h3 style="margin:6px 0 6px;">Nuevos packs</h3>
-                        <p class="tiny">Contenido añadido de forma regular.</p>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <!-- COMPATIBILIDAD / FORMATOS -->
-    <section class="section" id="compat" aria-labelledby="compat-title">
-        <div class="section-head">
-            <div>
-                <h2 id="compat-title">Formatos y compatibilidad</h2>
-                <p class="muted">Resoluciones recomendadas y compatibilidad para vídeowlprs por plataforma.</p>
-            </div>
-        </div>
-        <div class="grid">
-            <article class="card pad col-3">
-                <div class="kicker">Móvil</div>
-                <h3 style="margin:6px 0 6px;">1080x1920</h3>
-                <p class="tiny">También 1440x2960</p>
-            </article>
-            <article class="card pad col-3">
-                <div class="kicker">Desktop</div>
-                <h3 style="margin:6px 0 6px;">1920 · 2560 · 3840</h3>
-                <p class="tiny">1080p, 1440p, 4K</p>
-            </article>
-            <article class="card pad col-3">
-                <div class="kicker">Tablet</div>
-                <h3 style="margin:6px 0 6px;">2048x2732</h3>
-                <p class="tiny">iPad Pro</p>
-            </article>
-            <article class="card pad col-3">
-                <div class="kicker">Vídeowlprs</div>
-                <h3 style="margin:6px 0 6px;">1080p / 4K</h3>
-                <p class="tiny">Loop-friendly, bitrate optimizado</p>
-            </article>
-        </div>
-    </section>
-
-    <!-- GUÍA VÍDEOWLPRS -->
-    <section class="section" id="videowlpr-guide" aria-labelledby="videowlpr-title">
-        <div class="section-head">
-            <div>
-                <h2 id="videowlpr-title">Qué es un vídeowlpr</h2>
-                <p class="muted">Vídeo de fondo in‑game pensado como wallpaper animado.</p>
-            </div>
-        </div>
-        <div class="grid">
-            <article class="card pad col-3">
-                <div class="kicker">Windows</div>
-                <h3 style="margin:6px 0 6px;">Lively Wallpaper</h3>
-                <p class="tiny">Instala, importa el clip y activa el loop.</p>
-            </article>
-            <article class="card pad col-3">
-                <div class="kicker">macOS</div>
-                <h3 style="margin:6px 0 6px;">Apps de terceros</h3>
-                <p class="tiny">Por ejemplo, Plash + video en bucle.</p>
-            </article>
-            <article class="card pad col-3">
-                <div class="kicker">Android</div>
-                <h3 style="margin:6px 0 6px;">Fondos animados</h3>
-                <p class="tiny">Soporte nativo con formatos compatibles.</p>
-            </article>
-            <article class="card pad col-3">
-                <div class="kicker">iOS</div>
-                <h3 style="margin:6px 0 6px;">Bloqueo/Atajos</h3>
-                <p class="tiny">Live en bloqueo o flujo con Atajos.</p>
-            </article>
-        </div>
-    </section>
-
-    <!-- TESTIMONIOS -->
-    <section class="section" id="testimonials" aria-labelledby="testimonials-title">
-        <div class="section-head">
-            <div>
-                <h2 id="testimonials-title">Lo que dice la comunidad</h2>
-                <p class="muted">Una selección rápida de comentarios sobre calidad y compatibilidad.</p>
-            </div>
-        </div>
-        <div class="grid">
-            <article class="card pad col-6">
-                <h3>@NeoSetup</h3>
-                <p class="tiny">“Los vídeowlprs se ven finos en 4K, loop perfecto.”</p>
-            </article>
-            <article class="card pad col-6">
-                <h3>@MartaPixel</h3>
-                <p class="tiny">“Por fin packs listos para mi móvil y mi iPad.”</p>
-            </article>
-            <article class="card pad col-6">
-                <h3>@DeckUser</h3>
-                <p class="tiny">“En Steam Deck lucen brutales. Peso y calidad clavados.”</p>
-            </article>
-            <article class="card pad col-6">
-                <h3>@UrbanPhoto</h3>
-                <p class="tiny">“Los originales sin marca valen la suscripción.”</p>
-            </article>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section" id="faq" aria-labelledby="faq-title">
-        <div class="section-head">
-            <div>
-                <h2 id="faq-title">Preguntas frecuentes</h2>
-                <p class="muted">Dudas comunes sobre acceso, uso personal y actualizaciones.</p>
-            </div>
-        </div>
-        <div class="grid">
-            <article class="card pad col-12">
-                <div class="faq" role="list">
-                    <div class="faq-item" role="listitem">
-                        <button class="faq-q" aria-expanded="false">¿Qué incluye la suscripción?</button>
-                        <div class="faq-a" hidden>Acceso a originales sin marca de agua, vídeowlprs completos y nuevos
-                            packs periódicos.</div>
-                    </div>
-                    <div class="faq-item" role="listitem">
-                        <button class="faq-q" aria-expanded="false">¿Puedo usar los wallpapers comercialmente?</button>
-                        <div class="faq-a" hidden>El uso es personal. Para usos comerciales o colaboraciones,
-                            contáctanos.</div>
-                    </div>
-                    <div class="faq-item" role="listitem">
-                        <button class="faq-q" aria-expanded="false">¿Cada cuánto se añade contenido?</button>
-                        <div class="faq-a" hidden>Publicamos lotes de forma regular. Consulta las novedades al inicio.
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px;">
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div
+                            style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; box-shadow: 0 4px 15px rgba(167, 135, 255, 0.3);">
+                            1</div>
+                        <div>
+                            <div class="card-title" style="font-size: 22px;">Sube y etiqueta</div>
                         </div>
                     </div>
-                    <div class="faq-item" role="listitem">
-                        <button class="faq-q" aria-expanded="false">¿Cómo reporto un enlace caído?</button>
-                        <div class="faq-a" hidden>Escríbenos a hola@betterwlprs.example indicando el pack y el
-                            dispositivo.</div>
-                    </div>
+                    <div class="card-subtitle" style="font-size: 15px; line-height: 1.5;">Transformamos a WebP/AVIF con
+                        srcset y marca de agua sutil.</div>
                 </div>
-            </article>
+            </div>
+
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/arkham.gif" alt="Previews que enamoran" loading="lazy">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px;">
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div
+                            style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; box-shadow: 0 4px 15px rgba(167, 135, 255, 0.3);">
+                            2</div>
+                        <div>
+                            <div class="card-title" style="font-size: 22px;">Previews que enamoran</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle" style="font-size: 15px; line-height: 1.5;">Carga progresiva, blur inicial
+                        y micro‑interacciones en scroll.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/spidersky.gif" alt="Acceso completo" loading="lazy">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px;">
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div
+                            style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; box-shadow: 0 4px 15px rgba(167, 135, 255, 0.3);">
+                            3</div>
+                        <div>
+                            <div class="card-title" style="font-size: 22px;">Acceso completo</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle" style="font-size: 15px; line-height: 1.5;">Originales y videowlprs
+                        completos tras la suscripción.</div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- CTA FINAL -->
-    <section class="section" id="final-cta" aria-labelledby="final-cta-title">
-        <div class="section-head">
-            <div>
-                <h2 id="final-cta-title">Lleva tu setup al siguiente nivel</h2>
-                <p class="muted">Desbloquea originales y vídeowlprs. Cancela cuando quieras.</p>
+    <!-- ===== GALLERY ===== -->
+    <section class="section" id="gallery">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="gallery.titlePrefix">Fondos de pantalla</span>
+                <span class="highlight" data-i18n="gallery.highlight">Originales</span>
+            </h2>
+            <p data-i18n="gallery.desc">Cada imagen se muestra optimizada. ¿Quieres el archivo original,
+                sin marca de agua? Hazte miembro y descárgalo al instante.</p>
+        </div>
+        <div class="grid" id="galleryGrid">
+            <div class="card">
+                <div class="card-image">
+                    <img src="./img/marcussittedahh.gif" alt="Cyberpunk Marcus" loading="lazy">
+                    <div class="card-badge" data-i18n="badge.portrait">Retrato</div>
+                    <div class="card-premium">🔒</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Cyberpunk Marcus</div>
+                        <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para
+                            miembros — suscripción para full-res</div>
+                    </div>
+                    <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
+                </div>
             </div>
-            <a class="btn accent" id="ctaFinal" href="#paywall">Empieza ahora</a>
+
+            <div class="card">
+                <div class="card-image">
+                    <img src="./img/arkham.gif" alt="Batman Arkham" loading="lazy">
+                    <div class="card-badge" data-i18n="badge.urban">Urbano</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Batman Arkham</div>
+                        <div class="card-subtitle" data-i18n="card.download1600">Descarga 1600px</div>
+                    </div>
+                    <button class="card-action primary" data-i18n="card.download">Descargar</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image">
+                    <img src="img/videowlprs/discoelysiumstart.gif" alt="Disco Elysium" loading="lazy">
+                    <div class="card-badge" data-i18n="badge.studio">Estudio</div>
+                    <div class="card-premium">🔒</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Disco Elysium</div>
+                        <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para
+                            miembros — suscripción para full-res</div>
+                    </div>
+                    <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image">
+                    <img src="img/samsatori.gif" alt="Samurai Satori" loading="lazy">
+                    <div class="card-badge" data-i18n="badge.documentary">Documental</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Samurai Satori</div>
+                        <div class="card-subtitle" data-i18n="card.download1600">Descarga 1600px</div>
+                    </div>
+                    <button class="card-action primary" data-i18n="card.download">Descargar</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image">
+                    <img src="img/samsittedahh.gif" alt="Samurai Sitted" loading="lazy">
+                    <div class="card-badge" data-i18n="badge.portrait">Retrato</div>
+                    <div class="card-premium">🔒</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Samurai Sitted</div>
+                        <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para
+                            miembros — suscripción para full-res</div>
+                    </div>
+                    <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image">
+                    <img src="./img/sanfracampview.jpg" alt="San Francisco" loading="lazy">
+                    <div class="card-badge" data-i18n="badge.editorial">Editorial</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">San Francisco</div>
+                        <div class="card-subtitle">Vista de San Francisco — descarga 1600px</div>
+                    </div>
+                    <button class="card-action primary" data-i18n="card.download">Descargar</button>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- CTA pegajoso -->
-    <button class="sticky-cta" id="sticky">Suscríbete para full-res</button>
-
-    <!-- MODAL PAYWALL -->
-    <div class="modal" id="paywall" role="dialog" aria-modal="true" aria-labelledby="paywallTitle"
-        aria-describedby="paywallDesc">
-        <div class="panel">
-            <button class="close" id="closeModal" aria-label="Cerrar">✕</button>
-            <h3 id="paywallTitle">Tu acceso completo empieza aquí</h3>
-            <p id="paywallDesc" class="tiny">Descargas sin marca de agua, vídeos completos en 1080p/4K y sesiones
-                completas.</p>
-            <div class="plans">
-                <div class="plan">
-                    <div><strong>Mensual</strong>
-                        <div class="tiny">Cancela cuando quieras</div>
-                    </div>
-                    <a class="btn accent" href="#" id="buyMonthly">€7,99</a>
+    <!-- ===== VIDEOS ===== -->
+    <section class="section" id="videos">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="videos.title">Vídeos</span>
+                <span class="highlight" data-i18n="videos.highlight">Exclusivos</span>
+            </h2>
+            <p data-i18n="videos.desc">Descubre clips únicos de nuestras mejores capturas. Los miembros
+                disfrutan contenido completo en máxima calidad.</p>
+        </div>
+        <div class="grid" id="videoGrid">
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/spidersky.gif" alt="Spider Sky" loading="lazy">
+                    <div class="card-badge">Trailer 18s</div>
+                    <div class="card-premium">🔒</div>
+                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.85); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 14px; font-size: 12px; backdrop-filter: blur(15px); font-weight: 600;"
+                        data-i18n="video.overlay">Ver vídeo</div>
                 </div>
-                <div class="plan">
-                    <div><strong>Anual</strong>
-                        <div class="tiny">2 meses de regalo</div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Spider Sky</div>
+                        <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al
+                            suscribirte</div>
                     </div>
-                    <a class="btn" href="#" id="buyYearly">€79</a>
                 </div>
             </div>
-            <p class="tiny">Al suscribirte aceptas los <a href="#">Términos</a> y la <a href="#">Privacidad</a>.</p>
+
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/thelongdarkwolfs.png" alt="The Long Dark" loading="lazy">
+                    <div class="card-badge">Trailer 12s</div>
+                    <div class="card-premium">🔒</div>
+                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.85); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 14px; font-size: 12px; backdrop-filter: blur(15px); font-weight: 600;"
+                        data-i18n="video.overlay">Ver vídeo</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">The Long Dark</div>
+                        <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al
+                            suscribirte</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/samsatori.gif" alt="Samurai Satori Video" loading="lazy">
+                    <div class="card-badge">Trailer 15s</div>
+                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.85); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 14px; font-size: 12px; backdrop-filter: blur(15px); font-weight: 600;"
+                        data-i18n="video.overlay">Ver vídeo</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Samurai Satori</div>
+                        <div class="card-subtitle" data-i18n="videos.card.open">Vídeo — abierto</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BENEFITS ===== -->
+    <section class="section" id="benefits">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="benefits.titlePrefix">Beneficios</span>
+                <span class="highlight" data-i18n="benefits.highlight">Exclusivos</span>
+            </h2>
+            <p data-i18n="benefits.desc">Descubre todo lo que incluye tu suscripción premium.</p>
+        </div>
+        <div class="grid" id="benefitsGrid">
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/sanfracampview.jpg" alt="Resolución original" loading="lazy">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px;">
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div
+                            style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--success), #22c55e); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">
+                            ✓</div>
+                        <div>
+                            <div class="card-title" style="font-size: 22px;">Resolución original</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle" style="font-size: 15px; line-height: 1.5;">Descarga los archivos tal y
+                        como fueron creados.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/arkham.gif" alt="Videos optimizados" loading="lazy">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px;">
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div
+                            style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--success), #22c55e); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">
+                            ✓</div>
+                        <div>
+                            <div class="card-title" style="font-size: 22px;">Videos optimizados</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle" style="font-size: 15px; line-height: 1.5;">Preparados para loop con
+                        calidad equilibrada.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/spidersky.gif" alt="Multi-dispositivo" loading="lazy">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px;">
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div
+                            style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--success), #22c55e); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">
+                            ✓</div>
+                        <div>
+                            <div class="card-title" style="font-size: 22px;">Multi-dispositivo</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle" style="font-size: 15px; line-height: 1.5;">Móvil, desktop, tablet y Steam
+                        Deck.</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/thelongdarkwolfs.png" alt="Contenido regular" loading="lazy">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px;">
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div
+                            style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--success), #22c55e); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">
+                            ✓</div>
+                        <div>
+                            <div class="card-title" style="font-size: 22px;">Contenido regular</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle" style="font-size: 15px; line-height: 1.5;">Contenido añadido de forma
+                        regular.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FINAL CTA ===== -->
+    <section class="section" id="final-cta">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="final.titlePrefix">Lleva tu setup al</span>
+                <span class="highlight" data-i18n="final.highlight">siguiente nivel</span>
+            </h2>
+            <p data-i18n="final.desc">Desbloquea originales y videowlprs. Cancela cuando quieras.</p>
+            <div style="margin-top: 3rem;">
+                <button class="btn primary" id="finalCtaBtn" style="font-size: 18px; padding: 20px 40px;">
+                    <span data-i18n="final.btn">Empieza ahora</span>
+                    <span>✨</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STICKY CTA ===== -->
+    <button class="sticky-cta" id="stickyCta">
+        <span data-i18n="sticky.text">Suscríbete para full-res ✨</span>
+    </button>
+
+    <!-- ===== MODAL ===== -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">×</button>
+            <div style="text-align: center;">
+                <h3 style="font-size: 28px; margin-bottom: 1rem;" data-i18n="modal.title">Tu acceso completo empieza
+                    aquí</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;" data-i18n="modal.desc">Descargas sin marca
+                    de agua, vídeos completos en 1080p/4K y sesiones completas.</p>
+
+                <div style="display: grid; gap: 16px; margin-bottom: 2rem;">
+                    <div class="plan-card" id="monthlyPlan">
+                        <div class="plan-info">
+                            <h4 data-i18n="modal.monthly">Mensual</h4>
+                            <p data-i18n="modal.cancelAnytime">Cancela cuando quieras</p>
+                        </div>
+                        <div class="plan-price">€7,99</div>
+                    </div>
+
+                    <div class="plan-card popular" id="yearlyPlan">
+                        <div class="plan-info">
+                            <h4 data-i18n="modal.annual">Anual</h4>
+                            <p data-i18n="modal.twoMonthsFree">2 meses de regalo</p>
+                        </div>
+                        <div class="plan-price">€79</div>
+                    </div>
+                </div>
+
+                <p style="font-size: 12px; color: var(--muted);">
+                    <span data-i18n="modal.legalPrefix">Al suscribirte aceptas los</span>
+                    <a href="#" style="color: var(--accent);" data-i18n="modal.terms">Términos</a>
+                    <span>&nbsp;</span><span data-i18n="modal.and">y la</span>
+                    <a href="#" style="color: var(--accent);" data-i18n="modal.privacy">Privacidad</a>.
+                </p>
+            </div>
         </div>
     </div>
 
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
-        <div>© BetterWLPRS. “Previews que enamoran. Full-res al suscribirte.”</div>
-        <div>¿Preguntas? <a href="mailto:hola@betterwlprs.example">hola@betterwlprs.example</a></div>
+        <div class="footer-brand">BetterWLPRS</div>
+        <div class="footer-tagline" data-i18n="footer.tagline">Previews que enamoran. Full-res al suscribirte.</div>
+        <div class="footer-contact">
+            <span data-i18n="footer.questions">¿Preguntas?</span>
+            <a href="mailto:hola@betterwlprs.example" style="color: var(--accent);">hola@betterwlprs.example</a>
+        </div>
     </footer>
 
-    <!-- GSAP -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <!-- ===== SCRIPTS ===== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <script>
-        // ---------- Datos de muestra (sustituye por tu CMS) ----------
-        const photos = [
-            {
-                title: 'Golden Hour', tag: 'Retrato', premium: true,
-                thumb: './img/marcussittedahh.gif',
-                srcset: './img/marcussittedahh.gif 480w, ./img/marcussittedahh.gif 800w, ./img/marcussittedahh.gif 1200w'
-            },
-            {
-                title: 'City Nights', tag: 'Urbano', premium: false,
-                thumb: './img/barman.png'
-            },
-            {
-                title: 'Studio Vibes', tag: 'Estudio', premium: true,
-                thumb: 'img/videowlprs/discoelysiumstart.gif'
-            },
-            {
-                title: 'Ocean Walk', tag: 'Documental', premium: false,
-                thumb: 'img/samsatori.gif'
-            },
-            {
-                title: 'Soft Neon', tag: 'Retrato', premium: true,
-                thumb: 'img/samsittedahh.gif'
-            },
-            {
-                title: 'Analog Mood', tag: 'Editorial', premium: false,
-                thumb: './img/sanfracampview.jpg'
+        // ===== LOADER & INITIALIZATION =====
+        let progress = 0;
+        const progressFill = document.getElementById('progressFill');
+        const loaderText = document.getElementById('loaderText');
+        const loader = document.getElementById('loader');
+
+        function updateProgress() {
+            progress += Math.random() * 15;
+            if (progress > 100) progress = 100;
+            progressFill.style.width = progress + '%';
+
+            if (progress < 30) {
+                loaderText.textContent = 'Cargando recursos...';
+            } else if (progress < 70) {
+                loaderText.textContent = 'Preparando experiencia...';
+            } else if (progress < 95) {
+                loaderText.textContent = 'Casi listo...';
             }
-        ];
 
-        const videos = [
-            {
-                title: 'Behind The Lens', tag: 'Trailer 18s', premium: true,
-                thumb: './img/spidersky.gif'
-            },
-            {
-                title: 'Street Cut', tag: 'Trailer 12s', premium: true,
-                thumb: './img/thelongdarkwolfs.png'
-            },
-            {
-                title: 'Studio BTS', tag: 'Trailer 15s', premium: false,
-                thumb: './img/samsatori.gif'
+            if (progress < 100) {
+                setTimeout(updateProgress, 100 + Math.random() * 200);
+            } else {
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                    document.body.classList.add('loaded');
+                }, 500);
             }
-        ];
+        }
 
-        // ---------- Modal de preview ----------
-        const previewModal = document.getElementById('previewModal');
-        const previewImg = document.getElementById('previewImg');
-        const closePreviewModal = document.getElementById('closePreviewModal');
-        closePreviewModal.addEventListener('click', () => previewModal.style.display = 'none');
-        document.addEventListener('keydown', e => { if (e.key === 'Escape' && previewModal.style.display === 'grid') previewModal.style.display = 'none'; });
+        // ===== NAVIGATION =====
+        const navbar = document.getElementById('navbar');
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
 
-        // Mostrar preview al hacer clic en 'Ver preview'
-        document.addEventListener('click', (e) => {
-            const previewBtn = e.target.closest('.btn:not(.accent)');
-            if (previewBtn && previewBtn.textContent.trim() === 'Ver preview') {
+        // Scroll behavior
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.mobile-menu .nav-item').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // ===== MODAL FUNCTIONALITY =====
+        const modal = document.getElementById('modal');
+        const modalClose = document.getElementById('modalClose');
+        const subscribeButtons = document.querySelectorAll('#subscribeBtn, #subscribeMobileBtn, #finalCtaBtn');
+
+        function openModal() {
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('active'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }, 400);
+        }
+
+        subscribeButtons.forEach(btn => {
+            btn.addEventListener('click', openModal);
+        });
+
+        modalClose.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Plan selection
+        document.getElementById('monthlyPlan').addEventListener('click', () => {
+            alert('Redirigiendo a checkout mensual...');
+            closeModal();
+        });
+
+        document.getElementById('yearlyPlan').addEventListener('click', () => {
+            alert('Redirigiendo a checkout anual...');
+            closeModal();
+        });
+
+        // ===== STICKY CTA =====
+        const stickyCta = document.getElementById('stickyCta');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > window.innerHeight) {
+                stickyCta.classList.add('visible');
+            } else {
+                stickyCta.classList.remove('visible');
+            }
+        });
+
+        stickyCta.addEventListener('click', openModal);
+
+        // ===== THEME TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeToggleMobile = document.getElementById('themeToggleMobile');
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+
+            const icon = newTheme === 'light' ? '🌙' : '☀️';
+            themeToggle.innerHTML = `<span>${icon}</span>`;
+            themeToggleMobile.innerHTML = `<span>${icon}</span>`;
+
+            localStorage.setItem('theme', newTheme);
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        themeToggleMobile.addEventListener('click', toggleTheme);
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        const icon = savedTheme === 'light' ? '🌙' : '☀️';
+        themeToggle.innerHTML = `<span>${icon}</span>`;
+        themeToggleMobile.innerHTML = `<span>${icon}</span>`;
+
+        // ===== LANGUAGE TOGGLE =====
+        const langToggle = document.getElementById('langToggle');
+        const langToggleMobile = document.getElementById('langToggleMobile');
+
+        function toggleLanguage() {
+            const currentLang = langToggle.textContent;
+            const newLang = currentLang === 'EN' ? 'ES' : 'EN';
+            langToggle.textContent = newLang;
+            langToggleMobile.textContent = newLang;
+            // Aquí irían las traducciones
+        }
+
+        langToggle.addEventListener('click', toggleLanguage);
+        langToggleMobile.addEventListener('click', toggleLanguage);
+
+        // ===== SMOOTH SCROLL =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const card = previewBtn.closest('.card');
-                const img = card.querySelector('.thumb');
-                previewImg.src = img.src;
-                previewModal.style.display = 'grid';
-                return;
-            }
-        });
-        // ---------- Render de galería ----------
-        const galleryGrid = document.getElementById('galleryGrid');
-        photos.forEach((item) => {
-            const card = document.createElement('article');
-            card.className = 'card';
-            card.setAttribute('role', 'listitem');
-            card.innerHTML = `
-        <span class="badge">${item.tag}</span>
-        ${item.premium ? '<div class="lock" aria-label="Contenido premium">🔒</div>' : ''}
-    <img class="thumb" loading="lazy" alt="${item.title}"
-         src="${item.thumb}"/>
-        <div class="meta">
-          <div>
-            <div class="title">${item.title}</div>
-            <div class="tag">${item.premium ? 'Preview — suscripción para full-res' : 'Descarga 1600px'}</div>
-          </div>
-          <a class="btn ${item.premium ? '' : 'accent'}" href="#">${item.premium ? 'Ver preview' : 'Descargar'}</a>
-        </div>
-      `;
-            if (item.premium) { card.dataset.premium = "true"; }
-            galleryGrid.appendChild(card);
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
 
-        // ---------- Render de vídeos (teasers) ----------
-        const videoGrid = document.getElementById('videoGrid');
-        videos.forEach((v) => {
-            const card = document.createElement('article');
-            card.className = 'card video-card';
-            card.setAttribute('role', 'listitem');
-            card.innerHTML = `
-        <span class="badge">${v.tag}</span>
-        ${v.premium ? '<div class="lock" aria-label="Contenido premium">🔒</div>' : ''}
-        <img class="thumb" loading="lazy" alt="${v.title}" src="${v.thumb}"/>
-            <button class="play btn">${v.premium ? 'Ver trailer' : 'Reproducir'}</button>
-        <div class="meta">
-          <div class="title">${v.title}</div>
-                      <div class="tag">${v.premium ? 'Trailer — completo al suscribirte' : 'Clip abierto'}</div>
-        </div>
-      `;
-            if (v.premium) { card.dataset.premium = "true"; }
-            videoGrid.appendChild(card);
-        });
-
-        // ---------- Modal de paywall (simulado) ----------
-        const modal = document.getElementById('paywall');
-        const openModal = () => { modal.style.display = 'grid'; trapFocus(modal); }
-        const closeModal = () => { modal.style.display = 'none'; releaseFocus(); }
-        document.getElementById('closeModal').addEventListener('click', closeModal);
-        document.getElementById('openPaywall').addEventListener('click', openModal);
-        document.getElementById('openLogin').addEventListener('click', openModal);
-        document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.style.display === 'grid') closeModal(); });
-
-        // Abrir modal al intentar ver premium / comprar
-        document.addEventListener('click', (e) => {
-            const premiumCard = e.target.closest('.card[data-premium="true"]');
-            if (premiumCard) { e.preventDefault(); openModal(); }
-            if (e.target.id === 'ctaPrimary') { e.preventDefault(); document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' }) }
-            if (e.target.id === 'sticky') { e.preventDefault(); openModal(); }
-            if (e.target.id === 'buyMonthly' || e.target.id === 'buyYearly') { e.preventDefault(); alert('Simulación: aquí iría Stripe/Lemon Squeezy Checkout.'); }
-            if (e.target === modal) { closeModal(); }
-        });
-
-        // ---------- GSAP ----------
+        // ===== ANIMATIONS =====
         gsap.registerPlugin(ScrollTrigger);
-        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // Hero split lines + lead
-        if (!prefersReduced) {
-            gsap.from('.line', { yPercent: 120, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.08, delay: 0.1 });
-            gsap.from('.lead', { y: 8, opacity: 0, duration: 0.6, ease: 'power2.out', delay: 0.25 });
-        }
-
-        // Parallax fondo hero
-        gsap.to('#hero', {
-            backgroundPositionY: '40%',
-            ease: 'none',
-            scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.5 }
+        // Hero animations
+        gsap.fromTo('.hero h1', {
+            y: 60,
+            opacity: 0
+        }, {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: 'power3.out',
+            delay: 0.3
         });
 
-        // Stagger de tarjetas en todas las secciones (excepto Beneficios: animación custom)
-        gsap.utils.toArray('.card').forEach((card) => {
-            if (card.closest('#benefits')) return; // se maneja aparte abajo
-            gsap.to(card, {
-                y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
-                scrollTrigger: { trigger: card, start: 'top 85%', toggleActions: 'play none none reverse' }
-            });
+        gsap.fromTo('.hero p', {
+            y: 40,
+            opacity: 0
+        }, {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: 'power3.out',
+            delay: 0.6
         });
 
-        // Animación estilo dribbble para "Beneficios para miembros"
-        (function () {
-            if (prefersReduced) return;
-            const section = document.getElementById('benefits');
-            if (!section) return;
-            const cards = gsap.utils.toArray('#benefits .card');
-            if (!cards.length) return;
+        gsap.fromTo('.hero-actions', {
+            y: 40,
+            opacity: 0
+        }, {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: 'power3.out',
+            delay: 0.9
+        });
 
-            // Estado inicial: leve inclinación aleatoria, wipe y fade
-            cards.forEach((c) => {
-                gsap.set(c, { opacity: 0, y: 24, scale: 0.98, rotate: (Math.random() * 1.8 - 0.9) });
-                gsap.set(c, { clipPath: 'inset(0 100% 0 0)' }); // wipe de derecha a izquierda
-            });
-
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 75%',
-                    end: 'bottom 25%',
-                    toggleActions: 'play none none reverse'
-                }
-            });
-
-            // Wipe + lift con stagger suave
-            tl.to(cards, {
-                clipPath: 'inset(0 0% 0 0)',
-                duration: 0.6,
+        // Card animations
+        gsap.utils.toArray('.card').forEach((card, i) => {
+            gsap.fromTo(card, {
+                y: 60,
+                opacity: 0
+            }, {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
                 ease: 'power3.out',
-                stagger: 0.08
-            }, 0)
-                .to(cards, {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    rotate: 0,
-                    duration: 0.7,
-                    ease: 'power3.out',
-                    stagger: 0.08
-                }, 0.02);
-
-            // Pop de iconos dentro de cada card
-            const icons = cards.map(c => c.querySelector('.icon-badge')).filter(Boolean);
-            if (icons.length) {
-                tl.from(icons, {
-                    y: 6,
-                    scale: 0.8,
-                    autoAlpha: 0,
-                    duration: 0.35,
-                    ease: 'back.out(1.8)',
-                    stagger: 0.08
-                }, 0.15);
-            }
-        })();
-
-        // CTA pegajoso aparece al 40% de scroll
-        gsap.to('#sticky', {
-            y: 0, ease: 'power2.out',
-            scrollTrigger: { trigger: document.body, start: 'top 40%', toggleActions: 'play none none reverse' }
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none reverse'
+                },
+                delay: i * 0.1
+            });
         });
 
-        // Hover tilt suave (accesible)
-        const tiltTargets = document.querySelectorAll('.card .thumb');
-        tiltTargets.forEach(img => {
-            const card = img.closest('.card');
-            card.addEventListener('mousemove', (e) => {
-                const r = card.getBoundingClientRect();
-                const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
-                const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
-                img.style.transform = `scale(1.06) translate(${dx * 8}px, ${dy * 8}px)`;
-            });
-            card.addEventListener('mouseleave', () => img.style.transform = 'scale(1.02)');
-        });
-
-        // Jelly effect para "Originales"
-        const jellyText = document.querySelector('.jelly-text');
-        if (jellyText) {
-            // Timeline para el efecto jelly completo
-            const jellyTl = gsap.timeline({ paused: true });
-
-            jellyTl
-                // Primer rebote: scale up y squash
-                .to(jellyText, {
-                    scaleY: 1.3,
-                    scaleX: 0.8,
-                    duration: 0.15,
-                    ease: "power2.out"
-                })
-                // Segundo rebote: overshoot y volver
-                .to(jellyText, {
-                    scaleY: 0.9,
-                    scaleX: 1.1,
-                    duration: 0.2,
-                    ease: "power2.inOut"
-                })
-                // Tercer rebote más suave
-                .to(jellyText, {
-                    scaleY: 1.05,
-                    scaleX: 0.98,
-                    duration: 0.15,
-                    ease: "power2.inOut"
-                })
-                // Volver al estado normal con bounce
-                .to(jellyText, {
-                    scaleY: 1,
-                    scaleX: 1,
-                    duration: 0.25,
-                    ease: "elastic.out(1, 0.5)"
-                });
-
-            // ScrollTrigger para activar el efecto
+        // Highlight animations
+        gsap.utils.toArray('.highlight').forEach(highlight => {
             ScrollTrigger.create({
-                trigger: jellyText,
-                start: "top 80%",
-                end: "bottom 20%",
-                onEnter: () => {
-                    jellyTl.restart();
-                    gsap.to(jellyText, {
-                        "--line-scale": 1,
-                        duration: 0.6,
-                        ease: "power2.out"
-                    });
-                },
-                onLeave: () => {
-                    gsap.set(jellyText, { "--line-scale": 0 });
-                },
-                onEnterBack: () => {
-                    jellyTl.restart();
-                    gsap.to(jellyText, {
-                        "--line-scale": 1,
-                        duration: 0.6,
-                        ease: "power2.out"
-                    });
-                },
-                onLeaveBack: () => {
-                    gsap.set(jellyText, { "--line-scale": 0 });
-                }
-            });
-
-            // Efecto hover adicional
-            jellyText.addEventListener('mouseenter', () => {
-                if (!jellyTl.isActive()) {
-                    gsap.to(jellyText, {
-                        scaleY: 1.1,
-                        scaleX: 0.95,
-                        duration: 0.2,
-                        ease: "power2.out",
-                        yoyo: true,
-                        repeat: 1
-                    });
-                }
-            });
-        }
-
-        // --------- Preparación y animación moderna de títulos (h2) ---------
-        function prepareHeadings() {
-            document.querySelectorAll('.section-head h2').forEach(h2 => {
-                if (h2.dataset.split === 'true') return;
-                const newChildren = [];
-                h2.childNodes.forEach(node => {
-                    if (node.nodeType === Node.TEXT_NODE) {
-                        const parts = node.textContent.split(/(\s+)/);
-                        parts.forEach(part => {
-                            if (!part) return;
-                            if (/^\s+$/.test(part)) {
-                                newChildren.push(document.createTextNode(part));
-                            } else {
-                                const span = document.createElement('span');
-                                span.className = 'reveal-word';
-                                span.textContent = part;
-                                newChildren.push(span);
-                            }
-                        });
-                    } else {
-                        newChildren.push(node);
-                    }
-                });
-                h2.innerHTML = '';
-                newChildren.forEach(n => h2.appendChild(n));
-                h2.dataset.split = 'true';
-            });
-        }
-
-        // Preparar y animar todos los títulos de sección
-        prepareHeadings();
-        if (!prefersReduced) {
-            document.querySelectorAll('.section-head h2').forEach(h2 => {
-                const words = h2.querySelectorAll('.reveal-word');
-                if (!words.length) return;
-                gsap.from(words, {
-                    y: 30,
-                    autoAlpha: 0,
-                    duration: 0.6,
-                    ease: 'back.out(1.2)',
-                    stagger: 0.06,
-                    scrollTrigger: {
-                        trigger: h2,
-                        start: 'top 80%',
-                        toggleActions: 'play none none reverse'
-                    }
-                });
-            });
-        }
-
-        // Jelly effect para "Exclusivos" en la sección de vídeos (solo scroll + subrayado)
-        (function () {
-            const jellyTextVideos = document.querySelector('#videos .jelly-text');
-            if (!jellyTextVideos) return;
-            const tl = gsap.timeline({ paused: true });
-            tl.to(jellyTextVideos, { scaleY: 1.28, scaleX: 0.82, duration: 0.14, ease: 'power2.out' })
-                .to(jellyTextVideos, { scaleY: 0.92, scaleX: 1.08, duration: 0.18, ease: 'power2.inOut' })
-                .to(jellyTextVideos, { scaleY: 1.04, scaleX: 0.98, duration: 0.14, ease: 'power2.inOut' })
-                .to(jellyTextVideos, { scaleY: 1, scaleX: 1, duration: 0.22, ease: 'elastic.out(1,0.5)' });
-
-            ScrollTrigger.create({
-                trigger: jellyTextVideos,
+                trigger: highlight,
                 start: 'top 80%',
-                end: 'bottom 20%',
-                onEnter: () => { tl.restart(); gsap.to(jellyTextVideos, { "--line-scale": 1, duration: 0.6, ease: 'power2.out' }); },
-                onLeave: () => { gsap.set(jellyTextVideos, { "--line-scale": 0 }); },
-                onEnterBack: () => { tl.restart(); gsap.to(jellyTextVideos, { "--line-scale": 1, duration: 0.6, ease: 'power2.out' }); },
-                onLeaveBack: () => { gsap.set(jellyTextVideos, { "--line-scale": 0 }); }
-            });
-        })();
-
-        // Animaciones para toda la sección de galería
-        const gallerySection = document.getElementById('gallery');
-        if (gallerySection) {
-            const galleryTitle = gallerySection.querySelector('#galeria-title');
-            const galleryDescription = gallerySection.querySelector('.section-head p');
-            const galleryButton = gallerySection.querySelector('#filterBtn');
-
-            // Timeline maestro para la entrada de la sección
-            const gallerySectionTl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: gallerySection,
-                    start: "top 75%",
-                    end: "bottom 25%",
-                    toggleActions: "play none none reverse"
-                }
-            });
-            gallerySectionTl
-                // Descripción aparece con efecto de desvanecimiento y slide
-                .from(galleryDescription, {
-                    y: 20,
-                    opacity: 0,
-                    duration: 0.8,
-                    ease: "power2.out"
-                }, 0.3)
-                // Botón aparece con un bounce suave
-                .from(galleryButton, {
-                    scale: 0.8,
-                    opacity: 0,
-                    duration: 0.5,
-                    ease: "back.out(1.4)"
-                }, 0.5);
-
-            // Efecto de hover en el botón con micro-interacciones
-            galleryButton.addEventListener('mouseenter', () => {
-                gsap.to(galleryButton, {
-                    scale: 1.05,
-                    duration: 0.2,
-                    ease: "power2.out"
-                });
-            });
-
-            galleryButton.addEventListener('mouseleave', () => {
-                gsap.to(galleryButton, {
-                    scale: 1,
-                    duration: 0.2,
-                    ease: "power2.out"
-                });
-            });
-
-            // Efecto de "breathing" sutil en el título completo
-            gsap.to(galleryTitle, {
-                scale: 1.01,
-                duration: 3,
-                ease: "sine.inOut",
-                yoyo: true,
-                repeat: -1
-            });
-
-            // Parallax suave en la descripción (más sutil)
-            gsap.to(galleryDescription, {
-                y: -3,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: gallerySection,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: 2
-                }
-            });
-        }
-
-        // ---------- Accesibilidad: trap focus en modal ----------
-        let focusableEls = [];
-        let lastFocused = null;
-        function trapFocus(container) {
-            lastFocused = document.activeElement;
-            focusableEls = Array.from(container.querySelectorAll('a, button, input, [tabindex]:not([tabindex="-1"])')).filter(el => !el.hasAttribute('disabled'));
-            const first = focusableEls[0], last = focusableEls[focusableEls.length - 1];
-            (first || container).focus();
-            container.addEventListener('keydown', onKeyDown);
-            function onKeyDown(e) {
-                if (e.key !== 'Tab') return;
-                if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-                else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-            }
-        }
-        function releaseFocus() {
-            modal.removeEventListener('keydown', () => { });
-            if (lastFocused) lastFocused.focus();
-        }
-
-        // (Opcional) botón Filtrar: demo de animación sutil
-        document.getElementById('filterBtn').addEventListener('click', () => {
-            gsap.to('#galleryGrid .card', { opacity: 0.25, y: 8, duration: 0.25, stagger: 0.03, yoyo: true, repeat: 1 });
-        });
-
-        // ------- FAQ acordeón mínimo accesible -------
-        document.querySelectorAll('.faq-q').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const expanded = btn.getAttribute('aria-expanded') === 'true';
-                btn.setAttribute('aria-expanded', String(!expanded));
-                const a = btn.nextElementSibling;
-                if (!a) return;
-                a.hidden = expanded;
-                if (!expanded) { // animación de entrada
-                    gsap.fromTo(a, { height: 0, opacity: 0 }, { height: 'auto', opacity: 1, duration: 0.3, ease: 'power2.out' });
-                }
+                onEnter: () => highlight.classList.add('animated')
             });
         });
 
-        // CTA Final abre el paywall
-        const ctaFinal = document.getElementById('ctaFinal');
-        if (ctaFinal) {
-            ctaFinal.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+        // Initialize progress bar animation
+        updateProgress();
+
+        // ===== SPLINE LOADER =====
+        const splineViewer = document.querySelector('spline-viewer');
+        if (splineViewer) {
+            splineViewer.addEventListener('load', () => {
+                console.log('Spline scene loaded');
+            });
         }
+
+        console.log('BetterWLPRS initialized successfully!');
     </script>
 </body>
 
