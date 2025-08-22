@@ -1,61 +1,839 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BetterWLPRS - Wallpapers Premium para Steam Deck</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary': '#6366f1',
-                        'primary-dark': '#4f46e5',
-                        'accent': '#ec4899',
-                        'dark': '#0f172a',
-                        'dark-light': '#1e293b'
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BetterWLPRS — Previews que enamoran. Full-res y vídeos completos al suscribirte.</title>
+
+    <!-- Tipografía -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+
+    <meta name="description"
+        content="Explora sesiones exclusivas en previews abiertos. Suscríbete para descargar los originales en toda calidad y desbloquear vídeos completos.">
+
     <style>
-        .gradient-bg {
-        /* Botones del hero con z-index alto solo en hover */
-        .hero-btn {
+        /* Theme: Light overrides using CSS variables */
+        :root[data-theme="light"] {
+            --bg: #f8f9fb;
+            --bg-secondary: #ffffff;
+            --text: #0f1222;
+            --text-secondary: #2d3350;
+            --muted: #5b6280;
+            --card: #ffffff;
+            --card-hover: #f4f6fb;
+            --border: rgba(15, 18, 34, 0.08);
+            --border-hover: rgba(15, 18, 34, 0.16);
+            /* Keep brand accent but brighten slightly in light */
+            --accent: #8f6dfb;
+            --accent-dark: #6a46f2;
+        }
+
+        /* Minimal icon buttons for toggles */
+        .icon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text);
+            margin-right: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .icon-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .icon-btn span {
+            font-size: 14px;
+        }
+
+        :root {
+            --bg: #0a0a0f;
+            --bg-secondary: #0f0f17;
+            --card: #16161e;
+            --card-hover: #1a1a24;
+            --text: #f0f0f7;
+            --text-secondary: #c4c4d1;
+            --muted: #9494a6;
+            --accent: #a787ff;
+            --accent-light: #b999ff;
+            --accent-dark: #8f6fff;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #ef4444;
+            --radius: 20px;
+            --radius-sm: 12px;
+            --radius-lg: 28px;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.15);
+            --shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.4);
+            --blur: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(1400px 800px at 60% -20%, rgba(167, 135, 255, 0.12), transparent),
+                radial-gradient(1200px 600px at 20% 100%, rgba(167, 135, 255, 0.08), transparent),
+                var(--bg);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        /* ===== NUEVA NAVEGACIÓN MEJORADA ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(var(--blur));
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: between;
+            gap: 2rem;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 900;
+            font-size: 22px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .nav-brand::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            flex: 1;
+            justify-content: center;
+            margin-left: -120px;
+            /* Compensar el logo */
+        }
+
+        .nav-item {
+            position: relative;
+            padding: 10px 18px;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .nav-item:hover {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-1px);
+        }
+
+        .nav-item.active {
+            color: var(--accent);
+            background: rgba(167, 135, 255, 0.1);
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            border-radius: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item.active::after,
+        .nav-item:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn.secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .nav-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border-color: var(--border-hover);
+            transform: translateY(-1px);
+        }
+
+        .nav-btn.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(167, 135, 255, 0.3);
+        }
+
+        .nav-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(167, 135, 255, 0.4);
+        }
+
+        .nav-btn.primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-btn.primary:hover::before {
+            opacity: 1;
+        }
+
+        .nav-btn span {
             position: relative;
             z-index: 1;
         }
-        .hero-btn:hover {
-            z-index: 100;
-        }
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+        /* Mobile Menu */
+        .nav-mobile {
+            display: none;
+            align-items: center;
+            gap: 16px;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .hamburger {
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translateY(6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translateY(-6px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .mobile-menu .nav-item {
+            font-size: 28px;
+            font-weight: 600;
+            padding: 16px 32px;
+        }
+
+        .mobile-menu .nav-actions {
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 2rem;
+        }
+
+        .mobile-menu .nav-btn {
+            width: 200px;
+            padding: 16px 32px;
+            font-size: 16px;
+            justify-content: center;
+            display: flex;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 24px 60px;
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 8px 16px;
+            border: 1px solid rgba(167, 135, 255, 0.3);
+            border-radius: 50px;
+            background: rgba(167, 135, 255, 0.05);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 84px);
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.1);
+        .hero .gradient-text {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            opacity: 1 !important;
+            visibility: visible !important;
+            z-index: 10;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 32px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+            opacity: 1 !important;
+            visibility: visible !important;
+            z-index: 10;
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            box-shadow: 0 6px 30px rgba(167, 135, 255, 0.3);
+        }
+
+        .btn.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(167, 135, 255, 0.4);
+        }
+
+        .btn.secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text);
+            border: 1px solid var(--border);
             backdrop-filter: blur(10px);
+        }
+
+        .btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .chip {
+            font-size: 13px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .chip:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            transform: translateY(-1px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: underlineReveal 0.8s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes underlineReveal {
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+            padding: 40px 0;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            backdrop-filter: blur(10px);
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .card:hover {
+            background: var(--card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-image {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        /* Posicionamiento específico para el GIF de Batman */
+        .card-image img[src="./img/arkham.gif"] {
+            object-position: 25% center;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            padding: 6px 12px;
+            background: rgba(0, 0, 0, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
         }
 
-        .float-animation {
-            animation: float 6s ease-in-out infinite;
+        .card-premium {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
         }
 
+        .card-content {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .card-subtitle {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .card-action {
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .card-action.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+        }
+
+        .card-action.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(167, 135, 255, 0.4);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+        }
+
+        .sticky-cta.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .sticky-cta:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(167, 135, 255, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 60px 24px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-mobile {
+                display: flex;
+            }
+
+            .nav-brand {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding: 100px 20px 40px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .section {
+                padding: 0px 20px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .chips {
+                gap: 8px;
+            }
+
+            .chip {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+
+            /* Forzar visibilidad en móvil */
+            .card,
+            .section,
+            .grid {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+                visibility: visible !important;
+            }
+        }
+
+        /* Animations */
         @keyframes float {
 
             0%,
@@ -64,398 +842,1014 @@
             }
 
             50% {
-                transform: translateY(-20px);
+                transform: translateY(-10px);
             }
         }
 
-        .fade-in {
-            animation: fadeIn 0.8s ease-out;
-        }
+        @keyframes pulse {
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
+            0%,
+            100% {
                 opacity: 1;
-                transform: translateY(0);
+            }
+
+            50% {
+                opacity: 0.5;
             }
         }
 
-        .pulse-glow {
-            animation: pulseGlow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes pulseGlow {
+        @keyframes slideInUp {
             from {
-                box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+                transform: translateY(30px);
+                opacity: 0;
             }
 
             to {
-                box-shadow: 0 0 40px rgba(99, 102, 241, 0.6);
+                transform: translateY(0);
+                opacity: 1;
             }
         }
 
-        * {
-            margin: 0;
+        /* Utilities */
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-            overflow-x: hidden;
-            /* Fondo oscuro si prefieres */
-        }
-
-        .aifreim {
-            width: 100vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem 0;
-        }
-
-        .iframe-container {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            border-radius: 20px;
+            margin: -1px;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
-        @media (min-width: 768px) {
-            .iframe-container {
-                height: 500px;
+        /* Smooth scroll offset for fixed navbar */
+        html {
+            scroll-padding-top: 100px;
+        }
+
+        /* Loading states */
+        .card.loading {
+            background: linear-gradient(90deg, var(--card) 0%, var(--card-hover) 50%, var(--card) 100%);
+            background-size: 200% 100%;
+            animation: loading 1.5s ease-in-out infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: -200% 0;
             }
-        }
 
-        .steamdeck-viewer {
-            width: 100%;
-            max-width: 800px;
-            /* Controlas el ancho máximo */
-            max-height: 100vh;
-        }
-
-        .steamdeck-viewer-main {
-            width: 100%;
-            height: 600px;
-            display: block;
-            border-radius: 1.5rem;
-        }
-
-        @media (max-width: 768px) {
-            .steamdeck-viewer-main {
-                height: 20px;
+            100% {
+                background-position: 200% 0;
             }
         }
     </style>
 </head>
 
-<body class="bg-dark text-white font-sans overflow-x-hidden">
-
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-effect">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <h1 class="text-xl font-bold gradient-text">BetterWLPRS</h1>
-                    </div>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#inicio"
-                            class="text-white hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Inicio</a>
-                        <a href="#características"
-                            class="text-white hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Características</a>
-                        <a href="#contacto"
-                            class="text-white hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Contacto</a>
-                    </div>
-                </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-white hover:text-primary focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
+<body>
+    <!-- NUEVA NAVEGACIÓN -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                BetterWLPRS
             </div>
-        </div>
-        <div id="mobile-menu" class="md:hidden hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-dark-light">
-                <a href="#inicio"
-                    class="text-white hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Inicio</a>
-                <a href="#características"
-                    class="text-white hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Características</a>
-                <a href="#contacto"
-                    class="text-white hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Contacto</a>
+
+            <div class="nav-menu" id="navMenu">
+                <a href="#gallery" class="nav-item active" data-section="gallery" data-i18n="nav.gallery">Galería</a>
+                <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Vídeos</a>
+                <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">Cómo funciona</a>
+                <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Beneficios</a>
+            </div>
+
+            <div class="nav-actions">
+                <!-- Minimal toggles -->
+                <button class="icon-btn" id="langToggle" aria-label="Toggle language">EN</button>
+                <button class="icon-btn" id="themeToggle" aria-label="Toggle theme"><span>☀️</span></button>
+                <button class="nav-btn secondary" id="loginBtn">
+                    <span data-i18n="nav.login">Entrar</span>
+                </button>
+                <button class="nav-btn primary" id="subscribeBtn">
+                    <span data-i18n="nav.subscribe">Suscribirse</span>
+                </button>
+            </div>
+
+            <div class="nav-mobile">
+                <button class="nav-btn primary" id="subscribeMobileBtn">
+                    <span>Suscribirse</span>
+                </button>
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16">
-        <div class="container mx-auto px-6 py-20 flex flex-col items-center justify-center aifreim relative z-10">
-            <div class="flex flex-col items-center justify-center w-full" style="z-index:50; position:relative;">
-                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 text-center">
-                    <span class="bg-gradient-to-r from-accent to-purple-500 bg-clip-text text-transparent">Better
-                        WallPapers</span><br>
-                    <span>para Todos los Dispositivos</span>
-                </h1>
-                <p class="text-lg text-gray-300 mb-8 max-w-lg text-center">
-                    Capturamos experiencias visuales impresionantes para que las disfrutes en todos tus Dispositivos.
-                </p>
-                <!-- Botones alineados y centrados debajo del texto -->
-                <div
-                    class="flex flex-col items-center justify-center gap-4 md:flex-row md:justify-center md:gap-6 mb-8">
-                    <button href="./galeria.html"
-                        class="hero-btn bg-accent hover:bg-purple-700 text-white px-8 py-3 rounded-full font-medium transition-colors">
-                        Ver Galería
-                    </button>
-                    <button
-                        class="hero-btn border border-gray-600 hover:border-white text-white px-8 py-3 rounded-full font-medium transition-colors hover:bg-white/5">
-                        Saber más
-                    </button>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#gallery" class="nav-item" data-section="gallery" data-i18n="nav.gallery">Galería</a>
+        <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Vídeos</a>
+        <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">Cómo funciona</a>
+        <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Beneficios</a>
+
+        <div class="nav-actions">
+            <div style="display:flex; gap:8px; margin-bottom:12px;">
+                <button class="icon-btn" id="langToggleMobile" aria-label="Toggle language">EN</button>
+                <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme"><span>☀️</span></button>
+            </div>
+            <button class="nav-btn secondary"><span data-i18n="nav.login">Entrar</span></button>
+            <button class="nav-btn primary"><span data-i18n="nav.subscribe">Suscribirse</span></button>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="eyebrow" data-i18n="hero.eyebrow">Fondos exclusivos</div>
+            <h1>
+                <span class="title-line" data-i18n="hero.title1">Wallpapers únicos</span><br>
+                <span class="gradient-text" data-i18n="hero.title2">para todos tus dispositivos</span>
+            </h1>
+            <p data-i18n="hero.desc">Descarga arte original y optimizado. Disfruta calidad BetterWLPRS.</p>
+
+            <div class="hero-actions">
+                <button class="btn primary" id="exploreBtnHero">
+                    <span data-i18n="hero.explore">Explorar galería</span> <span>→</span>
+                </button>
+                <a href="#how" class="btn secondary" data-i18n="hero.how">¿Cómo funciona?</a>
+            </div>
+
+
+            <!-- spline-viewer ABSOLUTE, fuera del flujo -->
+            <div class="steamdeck-hero-absolute absolute left-1/2 top-0 transform -translate-x-1/2 z-0 w-full flex justify-center pointer-events-none"
+                style="z-index:0; margin-top: 0px;">
+                <div class="relative w-full" style="z-index:0;">
+                    <script type="module"
+                        src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
+                    <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
+                        style="width: 100%; max-width: 900px; height: 400px; display: block; margin: 0 auto; border-radius: 0.75rem; background: transparent; z-index:0; position:relative; pointer-events:none;"
+                        class="steamdeck-viewer-main"></spline-viewer>
                 </div>
             </div>
-        </div>
-        <!-- spline-viewer ABSOLUTE, fuera del flujo -->
-        <div
-            class="steamdeck-hero-absolute absolute left-1/2 top-[calc(100px+40rem)] transform -translate-x-1/2 z-0 w-full flex justify-center pointer-events-none" style="z-index:0;">
-            <div class="relative w-full" style="z-index:0;">
-                <script type="module"
-                    src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
-                <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
-                    style="width: 100%; max-width: 900px; height: 400px; display: block; margin: 0 auto; border-radius: 0.75rem; background: transparent; z-index:0; position:relative; pointer-events:none;"
-                    class="steamdeck-viewer-main"></spline-viewer>
-            </div>
-        </div>
 
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <a href="#about" class="text-gray-400 hover:text-white">
-                <i class="fas fa-chevron-down text-2xl"></i>
-            </a>
-        </div>
-    </section>
-
-
-    <section id="destacados" class="py-20">
-        <div class="max-w-7xl mx-auto px-4 bg-dark-light rounded-2xl shadow-lg py-12">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-8 text-center gradient-text">Wallpapers Destacados</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <img src="./img/arkham.gif" class="rounded-xl shadow-lg hover:scale-105 transition-all duration-300"
-                    alt="Wallpaper 3" />
-                <img src="./img/samsittedahh.gif"
-                    class="rounded-xl shadow-lg hover:scale-105 transition-all duration-300" alt="Wallpaper Animado" />
-                <img src="./img/marcussittedahh.gif"
-                    class="rounded-xl shadow-lg hover:scale-105 transition-all duration-300" alt="Wallpaper 1" />
-                <img src="./img/spidersky.gif" class="rounded-xl shadow-lg hover:scale-105 transition-all duration-300"
-                    alt="Wallpaper 2" />
+            <div class="chips">
+                <span class="chip" data-i18n="chips.original">Original</span>
+                <span class="chip" data-i18n="chips.onlyHere">Solo aquí</span>
+                <span class="chip" data-i18n="chips.multi">Multi-dispositivo</span>
+                <span class="chip" data-i18n="chips.instant">Descarga instantánea</span>
             </div>
         </div>
     </section>
 
-
-    <!-- Features Section -->
-    <section id="características"
-        class="py-24 px-4 sm:px-8 lg:px-16 bg-gradient-to-br from-dark via-dark-light to-primary/30">
-        <div class="max-w-7xl mx-auto relative overflow-visible">
-            <!-- Badge destacado -->
-            <div class="flex justify-center mb-8">
-                <span
-                    class="inline-block bg-accent/30 text-accent font-bold px-6 py-2 rounded-full text-base tracking-widest shadow-lg animate-pulse border border-accent/40">¿Por
-                    qué elegirnos?</span>
-            </div>
-            <div class="text-center mb-16">
-                <h2 class="text-4xl sm:text-5xl font-extrabold mb-6 gradient-text drop-shadow-lg">Características
-                    Premium</h2>
-                <p class="text-xl text-primary font-semibold mb-4 animate-fade-in-up">Haz que tu PC, Tablet o móvil
-                    destaque con lo mejor en wallpapers.</p>
-                <p class="text-lg text-gray-300 max-w-2xl mx-auto">Miles de usuarios confían en BetterWLPRS para
-                    personalizar su experiencia visual. Descubre por qué somos líderes en calidad y diseño.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Card 1 -->
-                <div
-                    class="bg-white/5 backdrop-blur-lg border border-primary/20 rounded-3xl p-10 shadow-2xl flex flex-col items-center transition-all duration-300 hover:scale-105 hover:shadow-primary/40 group">
-                    <div
-                        class="w-20 h-20 flex items-center justify-center rounded-full bg-primary/20 mb-8 shadow-lg group-hover:bg-primary/40 transition-colors duration-300">
-                        <svg class="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                        </svg>
+    <!-- GALERÍA -->
+    <section class="section" id="gallery">
+        <div class="section-header">
+            <h2><span data-i18n="gallery.titlePrefix">Fondos de pantalla</span> <span class="highlight"
+                    data-i18n="gallery.highlight">Originales</span></h2>
+            <p data-i18n="gallery.desc">Cada imagen se muestra optimizada. ¿Quieres el archivo original, sin marca de
+                agua? Hazte miembro y descárgalo al instante.</p>
+        </div>
+        <div class="grid" id="galleryGrid">
+            <div class="card">
+                <div class="card-image">
+                    <img src="./img/marcussittedahh.gif" alt="Golden Hour" loading="lazy">
+                    <div class="card-badge" data-i18n="badge.portrait">Retrato</div>
+                    <div class="card-premium">🔒</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Cyberpunk Marcus</div>
+                        <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para miembros — suscripción
+                            para full-res</div>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 text-accent drop-shadow">Calidad 4K</h3>
-                    <p class="text-gray-200 text-center text-lg">Optimizada. Sin complicaciones.</p>
-                </div>
-                <!-- Card 2 -->
-                <div
-                    class="bg-white/5 backdrop-blur-lg border border-primary/20 rounded-3xl p-10 shadow-2xl flex flex-col items-center transition-all duration-300 hover:scale-105 hover:shadow-primary/40 group delay-100">
-                    <div
-                        class="w-20 h-20 flex items-center justify-center rounded-full bg-primary/20 mb-8 shadow-lg group-hover:bg-primary/40 transition-colors duration-300">
-                        <svg class="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3 text-accent drop-shadow">Instalación Rápida</h3>
-                    <p class="text-gray-200 text-center text-lg">1 click. Listo.</p>
-                </div>
-                <!-- Card 3 -->
-                <div
-                    class="bg-white/5 backdrop-blur-lg border border-primary/20 rounded-3xl p-10 shadow-2xl flex flex-col items-center transition-all duration-300 hover:scale-105 hover:shadow-primary/40 group delay-200">
-                    <div
-                        class="w-20 h-20 flex items-center justify-center rounded-full bg-primary/20 mb-8 shadow-lg group-hover:bg-primary/40 transition-colors duration-300">
-                        <svg class="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3 text-accent drop-shadow">Biblioteca Extensa</h3>
-                    <p class="text-gray-200 text-center text-lg">+500 diseños. Exclusivos.</p>
+                    <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
                 </div>
             </div>
-            <!-- Botón de llamada a la acción -->
-            <div class="flex justify-center mt-16">
-                <a href="./galeria.html"
-                    class="bg-gradient-to-r from-primary via-accent to-purple-500 text-white px-12 py-5 rounded-full font-extrabold text-xl shadow-xl hover:scale-105 transition-transform duration-300 animate-bounce border-2 border-primary/40">Ver
-                    Galería Completa</a>
+            <div class="card">
+                <div class="card-image">
+                    <img src="./img/arkham.gif" alt="City Nights" loading="lazy">
+                    <div class="card-badge" data-i18n="badge.urban">Urbano</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Batman Arkham</div>
+                        <div class="card-subtitle" data-i18n="card.download1600">Descarga 1600px</div>
+                    </div>
+                    <button class="card-action primary" data-i18n="card.download">Descargar</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="img/videowlprs/discoelysiumstart.gif" alt="Studio Vibes" loading="lazy">
+                    <div class="card-badge" data-i18n="badge.studio">Estudio</div>
+                    <div class="card-premium">🔒</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Disco Elysium</div>
+                        <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para miembros — suscripción
+                            para full-res</div>
+                    </div>
+                    <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="img/samsatori.gif" alt="Ocean Walk" loading="lazy">
+                    <div class="card-badge" data-i18n="badge.documentary">Documental</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Samurai Satori</div>
+                        <div class="card-subtitle" data-i18n="card.download1600">Descarga 1600px</div>
+                    </div>
+                    <button class="card-action primary" data-i18n="card.download">Descargar</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="img/samsittedahh.gif" alt="Soft Neon" loading="lazy">
+                    <div class="card-badge" data-i18n="badge.portrait">Retrato</div>
+                    <div class="card-premium">🔒</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Samurai Sitted</div>
+                        <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para miembros — suscripción
+                            para full-res</div>
+                    </div>
+                    <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="./img/sanfracampview.jpg" alt="Analog Mood" loading="lazy">
+                    <div class="card-badge" data-i18n="badge.editorial">Editorial</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">San Francisco</div>
+                        <div class="card-subtitle">Vista de San Francisco — descarga 1600px</div>
+                    </div>
+                    <button class="card-action primary" data-i18n="card.download">Descargar</button>
+                </div>
             </div>
         </div>
     </section>
 
-
-
-
-    <section id="galeria" class="py-20 bg-dark-light">
-        <div
-            class="max-w-7xl mx-auto px-4 relative overflow-hidden rounded-2xl shadow-xl bg-dark-light py-16 border border-gray-700">
-            <h2 class="text-4xl sm:text-5xl font-extrabold mb-6 text-center text-white tracking-tight">Nuestra Colección
-            </h2>
-            <p class="text-center text-gray-400 mb-10 text-lg font-normal">Fondos seleccionados con detalle para quienes
-                buscan una experiencia visual superior en su dispositivo.</p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-12">
-                <img src="./img/sanfracampview.jpg"
-                    class="rounded-xl shadow-lg hover:scale-102 transition-all duration-200 border border-gray-700 bg-dark" />
-                <img src="./img/samizquierdasentado.png"
-                    class="rounded-xl shadow-lg hover:scale-102 transition-all duration-200 border border-gray-700 bg-dark" />
-                <img src="./img/barman.png"
-                    class="rounded-xl shadow-lg hover:scale-102 transition-all duration-200 border border-gray-700 bg-dark" />
-                <img src="./img/marcusittingfocused.jpg"
-                    class="rounded-xl shadow-lg hover:scale-102 transition-all duration-200 border border-gray-700 bg-dark" />
-            </div>
-            <div class="flex justify-center">
-                <a href="./galeria.html"
-                    class="bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-full font-semibold text-lg shadow-md transition-colors duration-200">Ver
-                    colección completa</a>
-            </div>
+    <!-- VÍDEOS -->
+    <section class="section" id="videos">
+        <div class="section-header">
+            <h2><span data-i18n="videos.title">Vídeos</span> <span class="highlight"
+                    data-i18n="videos.highlight">Exclusivos</span> BetterWLPRS</h2>
+            <p data-i18n="videos.desc">Descubre clips únicos de nuestras mejores capturas. Los miembros disfrutan
+                contenido completo en máxima calidad.</p>
         </div>
+        <div class="grid" id="videoGrid">
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/spidersky.gif" alt="Behind The Lens" loading="lazy">
+                    <div class="card-badge">Trailer 18s</div>
+                    <div class="card-premium">🔒</div>
+                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);"
+                        data-i18n="video.overlay">Ver vídeo</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Spider Sky</div>
+                        <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al suscribirte</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/thelongdarkwolfs.png" alt="Street Cut" loading="lazy">
+                    <div class="card-badge">Trailer 12s</div>
+                    <div class="card-premium">🔒</div>
+                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);"
+                        data-i18n="video.overlay">Ver vídeo</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">The Long Dark</div>
+                        <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al suscribirte</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/samsatori.gif" alt="Studio BTS" loading="lazy">
+                    <div class="card-badge">Trailer 15s</div>
+                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);"
+                        data-i18n="video.overlay">Ver vídeo</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Samurai Satori</div>
+                        <div class="card-subtitle" data-i18n="videos.card.open">Vídeo — abierto</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- CÓMO FUNCIONA -->
+    <section class="section" id="how">
+        <div class="section-header">
+            <h2><span data-i18n="how.titlePrefix">Cómo</span> <span class="highlight"
+                    data-i18n="how.highlight">Funciona</span></h2>
+            <p data-i18n="how.desc">Publica tus sesiones y clips. El mundo ve un adelanto; lo premium se desbloquea con
+                suscripción.</p>
+        </div>
+        <div class="grid" id="howGrid">
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/sanfracampview.jpg" alt="Sube y etiqueta" loading="lazy">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            1</div>
+                        <div>
+                            <div class="card-title">Sube y etiqueta</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Transformamos a WebP/AVIF con srcset y marca de agua sutil.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/arkham.gif" alt="Previews que enamoran" loading="lazy">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            2</div>
+                        <div>
+                            <div class="card-title">Previews que enamoran</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Carga progresiva, blur inicial y micro‑interacciones en scroll.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/spidersky.gif" alt="Acceso completo" loading="lazy">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            3</div>
+                        <div>
+                            <div class="card-title">Acceso completo</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Originales y vídeowlprs completos tras la suscripción.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/thelongdarkwolfs.png" alt="Descargas seguras" loading="lazy">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            4</div>
+                        <div>
+                            <div class="card-title">Descargas seguras</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Enlaces firmados y límites anti‑abuso para proteger tu trabajo.</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Contact Section -->
-    <section id="contacto" class="py-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-8">
-                <span class="gradient-text">¿Listo para transformar tu Steam Deck?</span>
-            </h2>
-            <p class="text-xl text-gray-300 mb-12">
-                Únete a miles de usuarios que ya disfrutan de la mejor experiencia visual en Steam Deck
+    <!-- BENEFICIOS -->
+    <section class="section" id="benefits">
+        <div class="section-header">
+            <h2><span data-i18n="benefits.titlePrefix">Beneficios para</span> <span class="highlight"
+                    data-i18n="benefits.highlight">Miembros</span></h2>
+            <p data-i18n="benefits.desc">Acceso a originales en full-res y vídeowlprs completos, listos para tu setup.
             </p>
-
-            <div class="bg-gradient-to-r from-primary to-accent p-8 rounded-2xl mb-12">
-                <h3 class="text-2xl font-bold mb-4">Oferta Especial de Lanzamiento</h3>
-                <p class="text-lg mb-6">50% de descuento en tu primera compra</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button
-                        class="bg-white text-primary hover:bg-gray-100 font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
-                        Comenzar Ahora
-                    </button>
-                    <button
-                        class="border-2 border-white text-white hover:bg-white hover:text-primary font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
-                        Contactar
-                    </button>
+        </div>
+        <div class="grid" id="benefitsGrid">
+            <div class="card">
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            🖼️</div>
+                        <div>
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Original</div>
+                            <div class="card-title">Sin marca de agua</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Descarga los archivos tal y como fueron creados.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            🎞️</div>
+                        <div>
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Vídeowlprs</div>
+                            <div class="card-title">Clips completos 1080p/4K</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Preparados para loop con calidad equilibrada.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            📱</div>
+                        <div>
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Por dispositivo</div>
+                            <div class="card-title">Formatos optimizados</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Móvil, desktop, tablet y Steam Deck.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            🔄</div>
+                        <div>
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Actualizaciones</div>
+                            <div class="card-title">Nuevos packs</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Contenido añadido de forma regular.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-dark-light py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="col-span-1 md:col-span-2">
-                    <h3 class="text-2xl font-bold gradient-text mb-4">BetterWLPRS</h3>
-                    <p class="text-gray-400 mb-4">
-                        La mejor colección de wallpapers premium para Steam Deck.
-                        Personaliza tu experiencia de juego como nunca antes.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-                            </svg>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" />
-                            </svg>
-                        </a>
+    <!-- CTA FINAL -->
+    <section class="section" id="final-cta">
+        <div class="section-header">
+            <h2><span data-i18n="final.titlePrefix">Lleva tu setup al</span> <span class="highlight"
+                    data-i18n="final.highlight">siguiente nivel</span></h2>
+            <p data-i18n="final.desc">Desbloquea originales y vídeowlprs. Cancela cuando quieras.</p>
+            <div style="margin-top: 3rem;">
+                <button class="btn primary" id="finalCtaBtn" style="font-size: 18px; padding: 20px 40px;">
+                    <span data-i18n="final.btn">Empieza ahora</span>
+                    <span>✨</span>
+                </button>
+            </div>
+        </div>
+    </section>
 
+    <!-- STICKY CTA -->
+    <button class="sticky-cta" id="stickyCta">
+        <span data-i18n="sticky.text">Suscríbete para full-res ✨</span>
+    </button>
+
+    <!-- MODAL -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">×</button>
+            <div style="text-align: center;">
+                <h3 style="font-size: 28px; margin-bottom: 1rem;" data-i18n="modal.title">Tu acceso completo empieza
+                    aquí</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;" data-i18n="modal.desc">Descargas sin marca
+                    de agua, vídeos completos en 1080p/4K y sesiones completas.</p>
+
+                <div style="display: grid; gap: 16px; margin-bottom: 2rem;">
+                    <div
+                        style="padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.02); display: flex; justify-content: space-between; align-items: center;">
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;"
+                                data-i18n="modal.monthly">Mensual</div>
+                            <div style="color: var(--muted); font-size: 14px;" data-i18n="modal.cancelAnytime">Cancela
+                                cuando quieras</div>
+                        </div>
+                        <button class="btn primary" id="monthlyPlan" style="min-width: 100px;">€7,99</button>
+                    </div>
+
+                    <div
+                        style="padding: 20px; border: 2px solid var(--accent); border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.05); display: flex; justify-content: space-between; align-items: center; position: relative;">
+                        <div style="position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;"
+                            data-i18n="modal.popular">Popular</div>
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;"
+                                data-i18n="modal.annual">Anual</div>
+                            <div style="color: var(--muted); font-size: 14px;" data-i18n="modal.twoMonthsFree">2 meses
+                                de regalo</div>
+                        </div>
+                        <button class="btn primary" id="yearlyPlan" style="min-width: 100px;">€79</button>
                     </div>
                 </div>
 
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Producto</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Wallpapers</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Precios</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Novedades</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">FAQ</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Soporte</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Contacto</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Documentación</a>
-                        </li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Guías</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Estado del
-                                Servicio</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-                <p class="text-gray-400">
-                    © 2024 BetterWLPRS. Todos los derechos reservados.
+                <p style="font-size: 12px; color: var(--muted);">
+                    <span data-i18n="modal.legalPrefix">Al suscribirte aceptas los</span> <a href="#"
+                        style="color: var(--accent);" data-i18n="modal.terms">Términos</a> <span>&nbsp;</span><span
+                        data-i18n="modal.and">y la</span> <a href="#" style="color: var(--accent);"
+                        data-i18n="modal.privacy">Privacidad</a>.
                 </p>
             </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div style="margin-bottom: 1rem;">
+            <div class="nav-brand" style="justify-content: center; margin-bottom: 1rem;">BetterWLPRS</div>
+            <p data-i18n="footer.tagline">Previews que enamoran. Full-res al suscribirte.</p>
+        </div>
+        <div>
+            <span data-i18n="footer.questions">¿Preguntas?</span> <a href="mailto:hola@betterwlprs.example"
+                style="color: var(--accent);">hola@betterwlprs.example</a>
         </div>
     </footer>
 
-    <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+    <script>
+        // ========== DATOS DE MUESTRA ==========
+        const photos = [
+            {
+                title: 'Golden Hour',
+                tag: 'Retrato',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=800&fit=crop&crop=face'
+            },
+            {
+                title: 'City Nights',
+                tag: 'Urbano',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=600&h=800&fit=crop'
+            },
+            {
+                title: 'Studio Vibes',
+                tag: 'Estudio',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=800&fit=crop'
+            },
+            {
+                title: 'Ocean Walk',
+                tag: 'Documental',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop&crop=face'
+            },
+            {
+                title: 'Soft Neon',
+                tag: 'Retrato',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&h=800&fit=crop&crop=face'
+            },
+            {
+                title: 'Analog Mood',
+                tag: 'Editorial',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&h=800&fit=crop&crop=face'
+            }
+        ];
+
+        const videos = [
+            {
+                title: 'Behind The Lens',
+                tag: 'Trailer 18s',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&h=400&fit=crop'
+            },
+            {
+                title: 'Street Cut',
+                tag: 'Trailer 12s',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1551913902-c92207136625?w=600&h=400&fit=crop'
+            },
+            {
+                title: 'Studio BTS',
+                tag: 'Trailer 15s',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&h=400&fit=crop'
+            }
+        ];
+
+        const howSteps = [
+            {
+                title: 'Sube y etiqueta',
+                description: 'Transformamos a WebP/AVIF con srcset y marca de agua sutil.',
+                image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
+                step: '1'
+            },
+            {
+                title: 'Previews que enamoran',
+                description: 'Carga progresiva, blur inicial y micro-interacciones en scroll.',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                step: '2'
+            },
+            {
+                title: 'Acceso completo',
+                description: 'Originales y vídeowlprs completos tras la suscripción.',
+                image: 'https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=400&fit=crop',
+                step: '3'
+            },
+            {
+                title: 'Descargas seguras',
+                description: 'Enlaces firmados y límites anti-abuso para proteger tu trabajo.',
+                image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop',
+                step: '4'
+            }
+        ];
+
+        const benefits = [
+            {
+                title: 'Sin marca de agua',
+                description: 'Descarga los archivos tal y como fueron creados.',
+                icon: '🖼️',
+                category: 'Original'
+            },
+            {
+                title: 'Clips completos 1080p/4K',
+                description: 'Preparados para loop con calidad equilibrada.',
+                icon: '🎞️',
+                category: 'Vídeowlprs'
+            },
+            {
+                title: 'Formatos optimizados',
+                description: 'Móvil, desktop, tablet y Steam Deck.',
+                icon: '📱',
+                category: 'Por dispositivo'
+            },
+            {
+                title: 'Nuevos packs',
+                description: 'Contenido añadido de forma regular.',
+                icon: '🔄',
+                category: 'Actualizaciones'
+            }
+        ];
+
+        // ========== GSAP SETUP ==========
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ========== NAVIGATION ==========
+        const navbar = document.getElementById('navbar');
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navItems = document.querySelectorAll('.nav-item[data-section]');
+
+        // Navbar scroll effect
+        ScrollTrigger.create({
+            start: "top -80",
+            end: 99999,
+            toggleClass: { className: "scrolled", targets: navbar }
         });
 
-        // Smooth scrolling for navigation links
+        // Mobile menu toggle
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close mobile menu when clicking nav items
+        document.querySelectorAll('.mobile-menu .nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Active navigation tracking
+        const sections = ['gallery', 'videos', 'how', 'benefits'];
+
+        sections.forEach(sectionId => {
+            ScrollTrigger.create({
+                trigger: `#${sectionId}`,
+                start: "top 50%",
+                end: "bottom 50%",
+                onEnter: () => updateActiveNav(sectionId),
+                onEnterBack: () => updateActiveNav(sectionId)
+            });
+        });
+
+        function updateActiveNav(activeSection) {
+            navItems.forEach(item => {
+                item.classList.toggle('active', item.dataset.section === activeSection);
+            });
+        }
+
+        // ========== MODAL ==========
+        const modal = document.getElementById('modal');
+        const modalClose = document.getElementById('modalClose');
+        const openModalBtns = ['subscribeBtn', 'subscribeMobileBtn', 'loginBtn', 'stickyCta', 'finalCtaBtn'];
+
+        function openModal() {
+            modal.style.display = 'flex';
+            gsap.to(modal, { opacity: 1, duration: 0.3 });
+            gsap.to(modal.querySelector('.modal-content'), {
+                scale: 1,
+                opacity: 1,
+                duration: 0.4,
+                ease: "back.out(1.2)"
+            });
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            gsap.to(modal, { opacity: 0, duration: 0.3 });
+            gsap.to(modal.querySelector('.modal-content'), {
+                scale: 0.9,
+                opacity: 0,
+                duration: 0.3,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+
+        openModalBtns.forEach(btnId => {
+            const btn = document.getElementById(btnId);
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal();
+                });
+            }
+        });
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Plan selection simulation
+        document.getElementById('monthlyPlan')?.addEventListener('click', () => {
+            alert('Simulación: aquí iría Stripe/Lemon Squeezy Checkout para plan mensual.');
+        });
+
+        document.getElementById('yearlyPlan')?.addEventListener('click', () => {
+            alert('Simulación: aquí iría Stripe/Lemon Squeezy Checkout para plan anual.');
+        });
+
+        // ========== STICKY CTA ==========
+        const stickyCta = document.getElementById('stickyCta');
+
+        ScrollTrigger.create({
+            start: "top -200",
+            end: 99999,
+            onUpdate: self => {
+                if (self.direction === 1 && self.progress > 0.1) {
+                    stickyCta.classList.add('visible');
+                } else if (self.direction === -1 && self.progress < 0.05) {
+                    stickyCta.classList.remove('visible');
+                }
+            }
+        });
+
+        // ========== RENDER CONTENT ==========
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            photos.forEach((photo, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-image">
+                        <img src="${photo.thumb}" alt="${photo.title}" loading="lazy">
+                        <div class="card-badge">${photo.tag}</div>
+                        ${photo.premium ? '<div class="card-premium">🔒</div>' : ''}
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">${photo.title}</div>
+                            <div class="card-subtitle">${photo.premium ? 'Preview — suscripción para full-res' : 'Descarga 1600px'}</div>
+                        </div>
+                        <button class="card-action ${photo.premium ? 'secondary' : 'primary'}" onclick="${photo.premium ? 'openModal()' : 'alert(\'Descargando...\')'}">
+                            ${photo.premium ? 'Ver preview' : 'Descargar'}
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderVideos() {
+            const grid = document.getElementById('videoGrid');
+            videos.forEach((video, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="${video.thumb}" alt="${video.title}" loading="lazy">
+                        <div class="card-badge">${video.tag}</div>
+                        ${video.premium ? '<div class="card-premium">🔒</div>' : ''}
+                        <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);">
+                            ${video.premium ? 'Ver trailer' : 'Reproducir'}
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">${video.title}</div>
+                            <div class="card-subtitle">${video.premium ? 'Trailer — completo al suscribirte' : 'Clip abierto'}</div>
+                        </div>
+                    </div>
+                `;
+                card.addEventListener('click', () => {
+                    if (video.premium) {
+                        openModal();
+                    } else {
+                        alert('Reproduciendo vídeo...');
+                    }
+                });
+                grid.appendChild(card);
+            });
+        }
+
+        function renderHowItWorks() {
+            const grid = document.getElementById('howGrid');
+            howSteps.forEach((step, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="${step.image}" alt="${step.title}" loading="lazy">
+                    </div>
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                                ${step.step}
+                            </div>
+                            <div>
+                                <div class="card-title">${step.title}</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">${step.description}</div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderBenefits() {
+            const grid = document.getElementById('benefitsGrid');
+            benefits.forEach((benefit, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                ${benefit.icon}
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                    ${benefit.category}
+                                </div>
+                                <div class="card-title">${benefit.title}</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">${benefit.description}</div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // ========== ANIMATIONS ==========
+        function initAnimations() {
+            // Hero animations
+            const heroTl = gsap.timeline();
+
+            heroTl
+                .from('.eyebrow', {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power3.out"
+                })
+                .from('.hero h1', {
+                    y: 50,
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power3.out"
+                }, "-=0.5")
+                .from('.hero p', {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power3.out"
+                }, "-=0.3")
+                .from('.hero-actions .btn', {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    ease: "back.out(1.2)"
+                }, "-=0.3")
+                .from('.chip', {
+                    scale: 0,
+                    opacity: 0,
+                    duration: 0.4,
+                    stagger: 0.05,
+                    ease: "back.out(1.4)"
+                }, "-=0.2");
+
+            // Card animations
+            gsap.utils.toArray('.card').forEach((card, index) => {
+                gsap.set(card, { y: 60, opacity: 0 });
+
+                ScrollTrigger.create({
+                    trigger: card,
+                    start: "top 85%",
+                    onEnter: () => {
+                        gsap.to(card, {
+                            y: 0,
+                            opacity: 1,
+                            duration: 0.8,
+                            ease: "power3.out",
+                            delay: index * 0.1
+                        });
+                    }
+                });
+            });
+
+            // Section headers
+            gsap.utils.toArray('.section-header').forEach(header => {
+                gsap.from(header.children, {
+                    y: 40,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: header,
+                        start: "top 80%"
+                    }
+                });
+            });
+
+            // Parallax effects
+            gsap.utils.toArray('.card-image img').forEach(img => {
+                gsap.to(img, {
+                    yPercent: -20,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: img,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1
+                    }
+                });
+            });
+
+            // Highlight underline animations
+            gsap.utils.toArray('.highlight').forEach(highlight => {
+                ScrollTrigger.create({
+                    trigger: highlight,
+                    start: "top 80%",
+                    onEnter: () => {
+                        gsap.to(highlight.querySelector('::after') || highlight, {
+                            scaleX: 1,
+                            duration: 0.8,
+                            ease: "power2.out"
+                        });
+                    }
+                });
+            });
+        }
+
+        // ========== SMOOTH SCROLLING ==========
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -465,247 +1859,271 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
-                    // Close mobile menu if open
-                    mobileMenu.classList.add('hidden');
                 }
             });
         });
 
-        // Add scroll effect to navigation
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('bg-dark-light/95');
-            } else {
-                nav.classList.remove('bg-dark-light/95');
+        // Explore button scroll to gallery
+        document.getElementById('exploreBtnHero')?.addEventListener('click', () => {
+            document.getElementById('gallery').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', () => {
+            // No longer need to render content since it's static HTML
+            // renderGallery();
+            // renderVideos();
+            // renderHowItWorks();
+            // renderBenefits();
+
+            // Add click handlers for static cards
+            addStaticCardHandlers();
+
+            // Wait for content to be rendered, then init animations
+            requestAnimationFrame(() => {
+                initAnimations();
+            });
+        });
+
+        // Add handlers for static HTML cards
+        function addStaticCardHandlers() {
+            // Handle gallery cards
+            document.querySelectorAll('#galleryGrid .card').forEach(card => {
+                const button = card.querySelector('.card-action');
+                if (button) {
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        if (button.classList.contains('secondary')) {
+                            // Premium card - open modal
+                            openModal();
+                        } else {
+                            // Free card - simulate download
+                            alert('Descargando...');
+                        }
+                    });
+                }
+            });
+
+            // Handle video cards
+            document.querySelectorAll('#videoGrid .card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const isPremium = card.querySelector('.card-premium');
+                    if (isPremium) {
+                        openModal();
+                    } else {
+                        alert('Reproduciendo vídeo...');
+                    }
+                });
+            });
+        }
+
+        // ========== PERFORMANCE ==========
+        // Lazy loading for images
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'flex') {
+                closeModal();
             }
         });
 
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+        // ========== THEME & I18N ==========
+        // Minimal i18n dictionary
+        const i18n = {
+            es: {
+                'nav.gallery': 'Galería',
+                'nav.videos': 'Vídeos',
+                'nav.how': 'Cómo funciona',
+                'nav.benefits': 'Beneficios',
+                'nav.login': 'Entrar',
+                'nav.subscribe': 'Suscribirse',
+                'hero.eyebrow': 'Fondos exclusivos',
+                'hero.title1': 'Wallpapers únicos',
+                'hero.title2': 'para todos tus dispositivos',
+                'hero.desc': 'Descarga arte original y optimizado. Disfruta calidad BetterWLPRS.',
+                'hero.explore': 'Explorar galería',
+                'hero.how': '¿Cómo funciona?',
+                'chips.original': 'Original',
+                'chips.onlyHere': 'Solo aquí',
+                'chips.multi': 'Multi-dispositivo',
+                'chips.instant': 'Descarga instantánea',
+                'gallery.titlePrefix': 'Fondos de pantalla',
+                'gallery.highlight': 'Originales',
+                'gallery.desc': 'Cada imagen se muestra optimizada. ¿Quieres el archivo original, sin marca de agua? Hazte miembro y descárgalo al instante.',
+                'badge.portrait': 'Retrato',
+                'badge.urban': 'Urbano',
+                'badge.studio': 'Estudio',
+                'badge.documentary': 'Documental',
+                'badge.editorial': 'Editorial',
+                'card.membersOnly': 'Acceso solo para miembros — suscripción para full-res',
+                'card.viewImage': 'Ver imagen',
+                'card.download': 'Descargar',
+                'card.download1600': 'Descarga 1600px',
+                'videos.title': 'Vídeos',
+                'videos.highlight': 'Exclusivos',
+                'videos.desc': 'Descubre clips únicos de nuestras mejores capturas. Los miembros disfrutan contenido completo en máxima calidad.',
+                'videos.card.premium': 'Vídeo — completo al suscribirte',
+                'videos.card.open': 'Vídeo — abierto',
+                'video.overlay': 'Ver vídeo',
+                'how.titlePrefix': 'Cómo',
+                'how.highlight': 'Funciona',
+                'how.desc': 'Publica tus sesiones y clips. El mundo ve un adelanto; lo premium se desbloquea con suscripción.',
+                'benefits.titlePrefix': 'Beneficios para',
+                'benefits.highlight': 'Miembros',
+                'benefits.desc': 'Acceso a originales en full-res y vídeowlprs completos, listos para tu setup.',
+                'final.titlePrefix': 'Lleva tu setup al',
+                'final.highlight': 'siguiente nivel',
+                'final.desc': 'Desbloquea originales y vídeowlprs. Cancela cuando quieras.',
+                'final.btn': 'Empieza ahora',
+                'sticky.text': 'Suscríbete para full-res ✨',
+                'modal.title': 'Tu acceso completo empieza aquí',
+                'modal.desc': 'Descargas sin marca de agua, vídeos completos en 1080p/4K y sesiones completas.',
+                'modal.monthly': 'Mensual',
+                'modal.cancelAnytime': 'Cancela cuando quieras',
+                'modal.popular': 'Popular',
+                'modal.annual': 'Anual',
+                'modal.twoMonthsFree': '2 meses de regalo',
+                'modal.legalPrefix': 'Al suscribirte aceptas los',
+                'modal.terms': 'Términos',
+                'modal.and': 'y la',
+                'modal.privacy': 'Privacidad',
+                'footer.tagline': 'Previews que enamoran. Full-res al suscribirte.',
+                'footer.questions': '¿Preguntas?'
+            },
+            en: {
+                'nav.gallery': 'Gallery',
+                'nav.videos': 'Videos',
+                'nav.how': 'How it works',
+                'nav.benefits': 'Benefits',
+                'nav.login': 'Sign in',
+                'nav.subscribe': 'Subscribe',
+                'hero.eyebrow': 'Exclusive wallpapers',
+                'hero.title1': 'Unique wallpapers',
+                'hero.title2': 'for all your devices',
+                'hero.desc': 'Download original, optimized art. Enjoy BetterWLPRS quality.',
+                'hero.explore': 'Explore gallery',
+                'hero.how': 'How it works',
+                'chips.original': 'Original',
+                'chips.onlyHere': 'Only here',
+                'chips.multi': 'Multi‑device',
+                'chips.instant': 'Instant download',
+                'gallery.titlePrefix': 'Wallpapers',
+                'gallery.highlight': 'Originals',
+                'gallery.desc': 'Each image is optimized. Want the original file without watermark? Become a member and download instantly.',
+                'badge.portrait': 'Portrait',
+                'badge.urban': 'Urban',
+                'badge.studio': 'Studio',
+                'badge.documentary': 'Documentary',
+                'badge.editorial': 'Editorial',
+                'card.membersOnly': 'Members only — subscribe for full‑res',
+                'card.viewImage': 'View image',
+                'card.download': 'Download',
+                'card.download1600': 'Download 1600px',
+                'videos.title': 'Videos',
+                'videos.highlight': 'Exclusive',
+                'videos.desc': 'Discover unique clips from our best shots. Members enjoy complete content in top quality.',
+                'videos.card.premium': 'Video — full version for members',
+                'videos.card.open': 'Video — open',
+                'video.overlay': 'Watch video',
+                'how.titlePrefix': 'How',
+                'how.highlight': 'It Works',
+                'how.desc': 'Publish your sessions and clips. The world sees a teaser; full content unlocks with a subscription.',
+                'benefits.titlePrefix': 'Benefits for',
+                'benefits.highlight': 'Members',
+                'benefits.desc': 'Access to full‑res originals and complete video wallpapers, ready for your setup.',
+                'final.titlePrefix': 'Take your setup to the',
+                'final.highlight': 'next level',
+                'final.desc': 'Unlock originals and video wallpapers. Cancel anytime.',
+                'final.btn': 'Start now',
+                'sticky.text': 'Subscribe for full‑res ✨',
+                'modal.title': 'Your full access starts here',
+                'modal.desc': 'Watermark‑free downloads, full 1080p/4K videos and complete sessions.',
+                'modal.monthly': 'Monthly',
+                'modal.cancelAnytime': 'Cancel anytime',
+                'modal.popular': 'Popular',
+                'modal.annual': 'Yearly',
+                'modal.twoMonthsFree': '2 months free',
+                'modal.legalPrefix': 'By subscribing you agree to the',
+                'modal.terms': 'Terms',
+                'modal.and': 'and',
+                'modal.privacy': 'Privacy',
+                'footer.tagline': 'Teasers you’ll love. Full‑res when you subscribe.',
+                'footer.questions': 'Questions?'
+            }
         };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                    observer.unobserve(entry.target);
-                }
+        function applyTranslations(lang) {
+            const dict = i18n[lang] || i18n.es;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) el.textContent = dict[key];
             });
-        }, observerOptions);
+            // Update lang toggle label
+            const btns = [document.getElementById('langToggle'), document.getElementById('langToggleMobile')];
+            btns.forEach(b => { if (b) b.textContent = lang === 'es' ? 'EN' : 'ES'; });
+            document.documentElement.setAttribute('lang', lang);
+        }
 
-        // Observe elements for animation
-        document.querySelectorAll('.glass-effect, .iframe-container').forEach(el => {
-            observer.observe(el);
+        function setTheme(theme) {
+            const root = document.documentElement;
+            root.setAttribute('data-theme', theme);
+            const isLight = theme === 'light';
+            const icons = [document.getElementById('themeToggle'), document.getElementById('themeToggleMobile')];
+            icons.forEach(i => { if (i) i.innerHTML = isLight ? '<span>🌙</span>' : '<span>☀️</span>'; });
+        }
+
+        // Detect preferred language and theme on first load
+        (function initLangTheme() {
+            const storedLang = localStorage.getItem('lang');
+            const storedTheme = localStorage.getItem('theme');
+            const browserLang = (navigator.language || 'es').slice(0, 2);
+            const initialLang = storedLang || (browserLang === 'en' ? 'en' : 'es');
+            const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+            const initialTheme = storedTheme || (prefersLight ? 'light' : 'dark');
+            setTheme(initialTheme);
+            applyTranslations(initialLang);
+        })();
+
+        // Wire toggle buttons
+        function toggleLanguage() {
+            const current = document.documentElement.getAttribute('lang') || 'es';
+            const next = current === 'es' ? 'en' : 'es';
+            localStorage.setItem('lang', next);
+            applyTranslations(next);
+        }
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme') || 'dark';
+            const next = current === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', next);
+            setTheme(next);
+        }
+
+        ['langToggle', 'langToggleMobile'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener('click', toggleLanguage);
         });
-
-        // Add hover effects for buttons
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('mouseenter', function () {
-                this.style.transform = 'translateY(-2px)';
-            });
-
-            button.addEventListener('mouseleave', function () {
-                this.style.transform = 'translateY(0)';
-            });
+        ['themeToggle', 'themeToggleMobile'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener('click', toggleTheme);
         });
-
-        // Particle background effect (optional)
-        function createParticles() {
-            const particleContainer = document.createElement('div');
-            particleContainer.className = 'fixed inset-0 pointer-events-none z-0';
-            document.body.appendChild(particleContainer);
-
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'absolute w-1 h-1 bg-primary/20 rounded-full';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 20) + 's';
-
-                const keyframes = `
-                    @keyframes float-particle-${i} {
-                        0%, 100% { transform: translateY(0px) translateX(0px); }
-                        25% { transform: translateY(-20px) translateX(10px); }
-                        50% { transform: translateY(-10px) translateX(-5px); }
-                        75% { transform: translateY(-30px) translateX(15px); }
-                    }
-                `;
-
-                const style = document.createElement('style');
-                style.textContent = keyframes;
-                document.head.appendChild(style);
-
-                particle.style.animation = `float-particle-${i} ${Math.random() * 10 + 20}s ease-in-out infinite`;
-                particleContainer.appendChild(particle);
-            }
-        }
-
-        // Initialize particles on load
-        window.addEventListener('load', createParticles);
-
-        // Add typing effect to main title
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.innerHTML = '';
-
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-
-            type();
-        }
-
-        // Counter animation for stats
-        function animateCounters() {
-            const counters = document.querySelectorAll('.text-3xl');
-
-            counters.forEach(counter => {
-                const text = counter.textContent;
-                let target = parseFloat(text.replace(/[^0-9.]/g, ''));
-
-                // Si no hay un número válido, salir
-                if (isNaN(target)) return;
-
-                const increment = target / 50;
-                let current = 0;
-
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-
-                    let displayValue;
-                    if (text.includes('★')) {
-                        displayValue = current.toFixed(1) + '★';
-                    } else {
-                        displayValue = Math.floor(current) + '+';
-                    }
-
-                    counter.textContent = displayValue;
-                }, 40);
-            });
-        }
-
-        // Trigger counter animation when stats section is visible
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        const statsSection = document.querySelector('.grid.grid-cols-2.md\\:grid-cols-4');
-        if (statsSection) {
-            statsObserver.observe(statsSection);
-        }
-
-        // Eliminar efecto parallax para que el scroll no afecte el Steam Deck
-
-        // Asegurar que el contenedor del modelo tenga posición relativa
-        document.querySelector('.iframe-container').style.position = 'relative';
-        document.querySelector('.iframe-container').style.zIndex = '1';
-
-        // Añadir estilos para suavizar el movimiento
-        const smoothStyle = document.createElement('style');
-        smoothStyle.textContent = `
-            spline-viewer {
-                will-change: transform;
-                transition: transform 0.1s ease-out;
-            }
-            
-            section {
-                will-change: transform;
-                position: relative;
-                z-index: 2;
-                background: var(--tw-bg-opacity);
-            }
-        `;
-        document.head.appendChild(smoothStyle);
-
-        // Add click ripple effect to buttons
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('click', function (e) {
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-
-                ripple.style.cssText = `
-                    position: absolute;
-                    width: ${size}px;
-                    height: ${size}px;
-                    left: ${x}px;
-                    top: ${y}px;
-                    background: rgba(255, 255, 255, 0.3);
-                    border-radius: 50%;
-                    transform: scale(0);
-                    animation: ripple 0.6s ease-out;
-                    pointer-events: none;
-                `;
-
-                this.style.position = 'relative';
-                this.style.overflow = 'hidden';
-                this.appendChild(ripple);
-
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
-        });
-
-        // Add ripple animation CSS
-        const rippleStyle = document.createElement('style');
-        rippleStyle.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(rippleStyle);
-
-        // Loading animation for iframe
-        const iframeContainer = document.querySelector('.iframe-container');
-        const iframe = iframeContainer.querySelector('iframe');
-
-        if (iframe) {
-            const loader = document.createElement('div');
-            loader.className = 'absolute inset-0 flex items-center justify-center bg-dark-light/80 z-10';
-            loader.innerHTML = `
-                <div class="text-center">
-                    <div class="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                    <p class="text-primary font-semibold">Cargando modelo 3D...</p>
-                </div>
-            `;
-
-            iframeContainer.appendChild(loader);
-
-            iframe.addEventListener('load', () => {
-                setTimeout(() => {
-                    loader.style.opacity = '0';
-                    setTimeout(() => {
-                        loader.remove();
-                    }, 300);
-                }, 1000);
-            });
-        }
-
-
-
     </script>
 </body>
 
