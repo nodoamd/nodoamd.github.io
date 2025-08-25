@@ -4,25 +4,59 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>BetterWLPRS — Wallpapers únicos que transforman tu setup</title>
+    <title>BetterWLPRS — Previews que enamoran. Full-res y vídeos completos al suscribirte.</title>
 
-    <!-- Preload critical resources -->
+    <!-- Tipografía -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
     <meta name="description"
-        content="Descubre wallpapers únicos y videos exclusivos. Previews gratuitos, contenido completo para miembros. Optimizados para todos tus dispositivos.">
-    <meta name="keywords" content="wallpapers, fondos de pantalla, gaming, exclusivos, 4K, Steam Deck">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="BetterWLPRS - Wallpapers únicos">
-    <meta property="og:description" content="Wallpapers únicos que transforman tu setup">
-    <meta property="og:type" content="website">
+        content="Explora sesiones exclusivas en previews abiertos. Suscríbete para descargar los originales en toda calidad y desbloquear vídeos completos.">
 
     <style>
-        /* Theme Variables */
+        /* Theme: Light overrides using CSS variables */
+        :root[data-theme="light"] {
+            --bg: #f8f9fb;
+            --bg-secondary: #ffffff;
+            --text: #0f1222;
+            --text-secondary: #2d3350;
+            --muted: #5b6280;
+            --card: #ffffff;
+            --card-hover: #f4f6fb;
+            --border: rgba(15, 18, 34, 0.08);
+            --border-hover: rgba(15, 18, 34, 0.16);
+            /* Keep brand accent but brighten slightly in light */
+            --accent: #8f6dfb;
+            --accent-dark: #6a46f2;
+        }
+
+        /* Minimal icon buttons for toggles */
+        .icon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text);
+            margin-right: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .icon-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .icon-btn span {
+            font-size: 14px;
+        }
+
         :root {
             --bg: #0a0a0f;
             --bg-secondary: #0f0f17;
@@ -47,22 +81,6 @@
             --blur: 16px;
         }
 
-        :root[data-theme="light"] {
-            --bg: #f8f9fb;
-            --bg-secondary: #ffffff;
-            --text: #0f1222;
-            --text-secondary: #2d3350;
-            --muted: #5b6280;
-            --card: #ffffff;
-            --card-hover: #f4f6fb;
-            --border: rgba(15, 18, 34, 0.08);
-            --border-hover: rgba(15, 18, 34, 0.16);
-            --accent: #8f6dfb;
-            --accent-dark: #6a46f2;
-            --shadow: 0 4px 32px rgba(15, 18, 34, 0.1);
-            --shadow-lg: 0 20px 60px rgba(15, 18, 34, 0.15);
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -71,7 +89,6 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 100px;
         }
 
         html,
@@ -90,134 +107,20 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             line-height: 1.6;
-            opacity: 0;
-            transition: opacity 0.5s ease;
         }
 
-        body.loaded {
-            opacity: 1;
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
-        /* ===== LOADER ===== */
-        .loader {
-            position: fixed;
-            inset: 0;
-            background: var(--bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
+        img {
+            max-width: 100%;
+            display: block;
+            height: auto;
         }
 
-        .loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-content {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .loader-logo {
-            font-size: 32px;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--accent), var(--accent-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .loader-spinner {
-            width: 60px;
-            height: 60px;
-            border: 3px solid var(--border);
-            border-top: 3px solid var(--accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        .loader-text {
-            font-size: 14px;
-            color: var(--text-secondary);
-            font-weight: 500;
-            opacity: 0;
-            animation: fadeIn 0.5s ease 0.5s forwards;
-        }
-
-        .progress-bar {
-            width: 200px;
-            height: 4px;
-            background: var(--border);
-            border-radius: 2px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--accent-light));
-            width: 0%;
-            border-radius: 2px;
-            transition: width 0.3s ease;
-            position: relative;
-        }
-
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shimmer 1.5s infinite;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes shimmer {
-            0% {
-                transform: translateX(-100%);
-            }
-
-            100% {
-                transform: translateX(100%);
-            }
-        }
-
-        /* ===== IMPROVED NAVIGATION ===== */
+        /* ===== NUEVA NAVEGACIÓN MEJORADA ===== */
         .navbar {
             position: fixed;
             top: 0;
@@ -225,16 +128,14 @@
             right: 0;
             z-index: 1000;
             padding: 20px 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(0px);
+            transition: all 0.3s ease;
         }
 
         .navbar.scrolled {
-            background: rgba(10, 10, 15, 0.9);
+            background: rgba(10, 10, 15, 0.85);
             backdrop-filter: blur(var(--blur));
             border-bottom: 1px solid var(--border);
             padding: 12px 0;
-            box-shadow: var(--shadow);
         }
 
         .nav-container {
@@ -243,7 +144,7 @@
             padding: 0 24px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: between;
             gap: 2rem;
         }
 
@@ -259,11 +160,6 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             position: relative;
-            transition: transform 0.3s ease;
-        }
-
-        .nav-brand:hover {
-            transform: scale(1.05);
         }
 
         .nav-brand::before {
@@ -281,46 +177,46 @@
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 2px;
             flex: 1;
             justify-content: center;
             margin-left: -120px;
+            /* Compensar el logo */
         }
 
         .nav-item {
             position: relative;
-            padding: 12px 20px;
+            padding: 10px 18px;
             border-radius: var(--radius-sm);
             font-weight: 500;
             font-size: 15px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             color: var(--text-secondary);
-            text-decoration: none;
         }
 
         .nav-item:hover {
             color: var(--text);
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
             transform: translateY(-1px);
         }
 
         .nav-item.active {
             color: var(--accent);
-            background: rgba(167, 135, 255, 0.15);
+            background: rgba(167, 135, 255, 0.1);
         }
 
         .nav-item::after {
             content: '';
             position: absolute;
-            bottom: 6px;
+            bottom: -4px;
             left: 50%;
             transform: translateX(-50%) scaleX(0);
-            width: 24px;
+            width: 20px;
             height: 2px;
             background: linear-gradient(90deg, var(--accent), var(--accent-light));
             border-radius: 2px;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s ease;
         }
 
         .nav-item.active::after,
@@ -334,60 +230,30 @@
             gap: 12px;
         }
 
-        .icon-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            background: rgba(255, 255, 255, 0.06);
-            color: var(--text);
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
-        }
-
-        .icon-btn:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: var(--border-hover);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-
         .nav-btn {
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: var(--radius-sm);
             font-weight: 600;
             font-size: 14px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             cursor: pointer;
             border: none;
             outline: none;
             position: relative;
             overflow: hidden;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .nav-btn.secondary {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.06);
             color: var(--text-secondary);
             border: 1px solid var(--border);
-            backdrop-filter: blur(10px);
         }
 
         .nav-btn.secondary:hover {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.1);
             color: var(--text);
             border-color: var(--border-hover);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
+            transform: translateY(-1px);
         }
 
         .nav-btn.primary {
@@ -398,7 +264,7 @@
         }
 
         .nav-btn.primary:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: 0 8px 30px rgba(167, 135, 255, 0.4);
         }
 
@@ -420,7 +286,7 @@
             z-index: 1;
         }
 
-        /* Mobile Navigation */
+        /* Mobile Menu */
         .nav-mobile {
             display: none;
             align-items: center;
@@ -428,8 +294,8 @@
         }
 
         .hamburger {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             border: none;
             background: none;
             cursor: pointer;
@@ -445,7 +311,7 @@
             height: 2px;
             background: var(--text);
             border-radius: 2px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             transform-origin: center;
         }
 
@@ -455,7 +321,6 @@
 
         .hamburger.active span:nth-child(2) {
             opacity: 0;
-            transform: scaleX(0);
         }
 
         .hamburger.active span:nth-child(3) {
@@ -487,57 +352,34 @@
         }
 
         .mobile-menu .nav-item {
-            font-size: 32px;
-            font-weight: 700;
-            padding: 20px 40px;
-            text-align: center;
+            font-size: 28px;
+            font-weight: 600;
+            padding: 16px 32px;
         }
 
         .mobile-menu .nav-actions {
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
             margin-top: 2rem;
         }
 
         .mobile-menu .nav-btn {
-            width: 240px;
-            padding: 18px 36px;
-            font-size: 18px;
+            width: 200px;
+            padding: 16px 32px;
+            font-size: 16px;
             justify-content: center;
+            display: flex;
         }
 
-        /* ===== ENHANCED HERO ===== */
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 140px 24px 80px;
+            padding: 120px 24px 60px;
             position: relative;
             text-align: center;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(circle at 30% 20%, rgba(167, 135, 255, 0.15), transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(167, 135, 255, 0.1), transparent 50%);
-            animation: heroGlow 8s ease-in-out infinite alternate;
-        }
-
-        @keyframes heroGlow {
-            0% {
-                opacity: 0.5;
-                transform: scale(1);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1.05);
-            }
         }
 
         .hero-content {
@@ -547,43 +389,26 @@
         }
 
         .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            display: inline-block;
             color: var(--accent);
             font-size: 14px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border: 1px solid rgba(167, 135, 255, 0.3);
             border-radius: 50px;
             background: rgba(167, 135, 255, 0.05);
             margin-bottom: 2rem;
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .eyebrow:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(167, 135, 255, 0.2);
-        }
-
-        .eyebrow::before {
-            content: '✨';
-            font-size: 16px;
         }
 
         .hero h1 {
-            font-size: clamp(42px, 8vw, 88px);
+            font-size: clamp(40px, 8vw, 84px);
             font-weight: 900;
-            line-height: 1.02;
+            line-height: 1.05;
             margin-bottom: 1.5rem;
-            letter-spacing: -0.03em;
-        }
-
-        .hero .title-line {
-            display: block;
+            letter-spacing: -0.02em;
             background: linear-gradient(135deg, var(--text) 0%, var(--text-secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -591,31 +416,31 @@
         }
 
         .hero .gradient-text {
-            display: block;
             background: linear-gradient(135deg, var(--accent), var(--accent-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            position: relative;
         }
 
         .hero p {
-            font-size: clamp(18px, 2.5vw, 26px);
+            font-size: clamp(18px, 2.5vw, 24px);
             color: var(--text-secondary);
             margin-bottom: 3rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
             font-weight: 400;
-            line-height: 1.5;
         }
 
         .hero-actions {
             display: flex;
-            gap: 24px;
+            gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
+            opacity: 1 !important;
+            visibility: visible !important;
+            z-index: 10;
         }
 
         .btn {
@@ -623,7 +448,7 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            padding: 18px 36px;
+            padding: 16px 32px;
             border-radius: var(--radius-sm);
             font-weight: 600;
             font-size: 16px;
@@ -633,121 +458,83 @@
             outline: none;
             position: relative;
             overflow: hidden;
-            text-decoration: none;
-            white-space: nowrap;
+            opacity: 1 !important;
+            visibility: visible !important;
+            z-index: 10;
         }
 
         .btn.primary {
             background: linear-gradient(135deg, var(--accent), var(--accent-dark));
             color: white;
-            box-shadow: 0 8px 32px rgba(167, 135, 255, 0.3);
-            font-weight: 700;
+            box-shadow: 0 6px 30px rgba(167, 135, 255, 0.3);
         }
 
         .btn.primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 48px rgba(167, 135, 255, 0.4);
-        }
-
-        .btn.primary::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--accent-light), var(--accent));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .btn.primary:hover::before {
-            opacity: 1;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(167, 135, 255, 0.4);
         }
 
         .btn.secondary {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.06);
             color: var(--text);
             border: 1px solid var(--border);
             backdrop-filter: blur(10px);
         }
 
         .btn.secondary:hover {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.1);
             border-color: var(--border-hover);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-        }
-
-        .btn span {
-            position: relative;
-            z-index: 1;
-        }
-
-        .spline-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 0;
-            width: 100%;
-            max-width: 900px;
-            height: 400px;
-            pointer-events: none;
-            opacity: 0.8;
+            transform: translateY(-2px);
         }
 
         .chips {
             display: flex;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 12px;
             justify-content: center;
-            margin-top: 2rem;
         }
 
         .chip {
             font-size: 13px;
-            padding: 10px 18px;
+            padding: 8px 16px;
             border-radius: 50px;
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.06);
             border: 1px solid var(--border);
             color: var(--text-secondary);
             backdrop-filter: blur(10px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
         .chip:hover {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.1);
             color: var(--text);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
+            transform: translateY(-1px);
         }
 
-        /* ===== SECTIONS ===== */
+        /* Sections */
         .section {
-            padding: 100px 24px;
+            padding: 80px 24px;
             max-width: 1400px;
             margin: 0 auto;
-            position: relative;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
         }
 
         .section-header h2 {
-            font-size: clamp(36px, 5vw, 64px);
+            font-size: clamp(32px, 5vw, 56px);
             font-weight: 800;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             letter-spacing: -0.02em;
-            line-height: 1.1;
         }
 
         .section-header p {
-            font-size: clamp(18px, 2vw, 22px);
+            font-size: 20px;
             color: var(--text-secondary);
-            max-width: 700px;
+            max-width: 600px;
             margin: 0 auto;
-            line-height: 1.6;
         }
 
         .highlight {
@@ -761,25 +548,28 @@
         .highlight::after {
             content: '';
             position: absolute;
-            bottom: -6px;
+            bottom: -4px;
             left: 0;
             right: 0;
-            height: 4px;
+            height: 3px;
             background: linear-gradient(90deg, var(--accent), var(--accent-light));
             border-radius: 2px;
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: underlineReveal 0.8s ease forwards;
+            animation-delay: 0.5s;
         }
 
-        .highlight.animated::after {
-            transform: scaleX(1);
+        @keyframes underlineReveal {
+            to {
+                transform: scaleX(1);
+            }
         }
 
-        /* ===== ENHANCED GRID ===== */
+        /* Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 32px;
             padding: 40px 0;
         }
@@ -794,182 +584,129 @@
             backdrop-filter: blur(10px);
             transform: translateY(0);
             opacity: 1;
-            cursor: pointer;
         }
 
         .card:hover {
             background: var(--card-hover);
             border-color: var(--border-hover);
-            transform: translateY(-12px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-lg);
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(167, 135, 255, 0.05), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .card:hover::before {
-            opacity: 1;
         }
 
         .card-image {
             position: relative;
             overflow: hidden;
             aspect-ratio: 4/5;
-            background: linear-gradient(45deg, var(--border), var(--card));
         }
 
         .card-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            filter: brightness(0.9);
+            transition: transform 0.6s ease;
+        }
+
+        /* Posicionamiento específico para el GIF de Batman */
+        .card-image img[src="./img/arkham.gif"] {
+            object-position: 25% center;
         }
 
         .card:hover .card-image img {
-            transform: scale(1.08);
-            filter: brightness(1);
-        }
-
-        .card-image img[src*="arkham.gif"] {
-            object-position: 25% center;
+            transform: scale(1.05);
         }
 
         .card-badge {
             position: absolute;
             top: 16px;
             left: 16px;
-            padding: 8px 14px;
-            background: rgba(0, 0, 0, 0.85);
+            padding: 6px 12px;
+            background: rgba(0, 0, 0, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
+            border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
-            backdrop-filter: blur(15px);
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
         }
 
         .card-premium {
             position: absolute;
             top: 16px;
             right: 16px;
-            width: 40px;
-            height: 40px;
-            background: rgba(0, 0, 0, 0.85);
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 0, 0, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(15px);
-            font-size: 18px;
-            transition: all 0.3s ease;
-        }
-
-        .card-premium:hover {
-            transform: scale(1.1);
-            background: rgba(167, 135, 255, 0.9);
+            backdrop-filter: blur(10px);
         }
 
         .card-content {
-            padding: 28px;
+            padding: 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 20px;
+            gap: 16px;
         }
 
         .card-title {
             font-weight: 700;
-            font-size: 20px;
-            margin-bottom: 6px;
-            color: var(--text);
+            font-size: 18px;
+            margin-bottom: 4px;
         }
 
         .card-subtitle {
             font-size: 14px;
             color: var(--muted);
-            line-height: 1.4;
         }
 
         .card-action {
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: var(--radius-sm);
             font-weight: 600;
             font-size: 14px;
             cursor: pointer;
             border: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            white-space: nowrap;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
         .card-action.primary {
             background: linear-gradient(135deg, var(--accent), var(--accent-dark));
             color: white;
-            box-shadow: 0 4px 15px rgba(167, 135, 255, 0.3);
-        }
-
-        .card-action.primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(167, 135, 255, 0.4);
         }
 
         .card-action.secondary {
             background: rgba(255, 255, 255, 0.1);
             color: var(--text);
             border: 1px solid var(--border);
-            backdrop-filter: blur(10px);
         }
 
-        .card-action.secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: var(--border-hover);
-            transform: translateY(-2px);
-        }
-
-        /* ===== MODAL IMPROVEMENTS ===== */
+        /* Modal */
         .modal {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(12px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
             display: none;
             align-items: center;
             justify-content: center;
             z-index: 2000;
             padding: 20px;
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .modal.active {
-            opacity: 1;
         }
 
         .modal-content {
             background: var(--card);
             border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 48px;
-            max-width: 520px;
+            border-radius: var(--radius);
+            padding: 40px;
+            max-width: 500px;
             width: 100%;
             position: relative;
             transform: scale(0.9);
             opacity: 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(20px);
-            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
         }
 
         .modal.active .modal-content {
@@ -979,83 +716,23 @@
 
         .modal-close {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 36px;
-            height: 36px;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
             border: none;
             background: rgba(255, 255, 255, 0.1);
             color: var(--text);
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
         }
 
         .modal-close:hover {
             background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.1);
         }
 
-        .plan-card {
-            padding: 24px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            background: rgba(255, 255, 255, 0.02);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .plan-card:hover {
-            border-color: var(--border-hover);
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-2px);
-        }
-
-        .plan-card.popular {
-            border: 2px solid var(--accent);
-            background: rgba(167, 135, 255, 0.08);
-        }
-
-        .plan-card.popular::before {
-            content: 'Popular';
-            position: absolute;
-            top: -12px;
-            left: 24px;
-            background: var(--accent);
-            color: white;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .plan-info h4 {
-            font-weight: 700;
-            font-size: 22px;
-            margin-bottom: 6px;
-            color: var(--text);
-        }
-
-        .plan-info p {
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        .plan-price {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--accent);
-        }
-
-        /* ===== STICKY CTA ===== */
+        /* Sticky CTA */
         .sticky-cta {
             position: fixed;
             bottom: 30px;
@@ -1063,81 +740,38 @@
             background: linear-gradient(135deg, var(--accent), var(--accent-dark));
             color: white;
             border: none;
-            padding: 18px 28px;
+            padding: 16px 24px;
             border-radius: 50px;
             font-weight: 700;
             font-size: 16px;
             cursor: pointer;
             box-shadow: 0 8px 30px rgba(167, 135, 255, 0.4);
-            transform: translateY(100px) scale(0.8);
+            transform: translateY(100px);
             opacity: 0;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 100;
-            backdrop-filter: blur(10px);
         }
 
         .sticky-cta.visible {
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
             opacity: 1;
         }
 
         .sticky-cta:hover {
-            transform: translateY(-6px) scale(1.05);
-            box-shadow: 0 16px 45px rgba(167, 135, 255, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(167, 135, 255, 0.5);
         }
 
-        /* ===== FOOTER ===== */
+        /* Footer */
         .footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border);
-            padding: 80px 24px 40px;
+            padding: 60px 24px;
             text-align: center;
             color: var(--text-secondary);
-            position: relative;
         }
 
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        }
-
-        .footer-brand {
-            font-size: 28px;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--accent), var(--accent-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-
-        .footer-tagline {
-            font-size: 18px;
-            margin-bottom: 2rem;
-            color: var(--text-secondary);
-        }
-
-        .footer-contact {
-            font-size: 16px;
-        }
-
-        .footer-contact a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-contact a:hover {
-            color: var(--accent-light);
-        }
-
-        /* ===== RESPONSIVE DESIGN ===== */
+        /* Responsive */
         @media (max-width: 1024px) {
             .nav-menu {
                 display: none;
@@ -1150,11 +784,6 @@
             .nav-brand {
                 font-size: 20px;
             }
-
-            .grid {
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-                gap: 24px;
-            }
         }
 
         @media (max-width: 768px) {
@@ -1163,88 +792,54 @@
             }
 
             .hero {
-                padding: 120px 20px 60px;
-                min-height: 90vh;
+                padding: 100px 20px 40px;
             }
 
             .hero-actions {
                 flex-direction: column;
                 align-items: center;
-                gap: 16px;
             }
 
             .btn {
                 width: 100%;
-                max-width: 320px;
-                padding: 16px 32px;
+                max-width: 300px;
             }
 
             .section {
-                padding: 80px 20px;
-            }
-
-            .section-header {
-                margin-bottom: 60px;
+                padding: 0px 20px;
             }
 
             .grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 24px;
             }
 
             .chips {
-                gap: 12px;
+                gap: 8px;
             }
 
             .chip {
                 font-size: 12px;
-                padding: 8px 14px;
+                padding: 6px 12px;
             }
 
-            .card-content {
-                padding: 24px;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 16px;
-            }
-
-            .card-action {
-                width: 100%;
-                text-align: center;
-            }
-
-            .modal-content {
-                padding: 32px 24px;
-                margin: 20px;
-            }
-
-            .sticky-cta {
-                bottom: 20px;
-                right: 20px;
-                padding: 16px 24px;
-                font-size: 14px;
+            /* Forzar visibilidad en móvil */
+            .card,
+            .section,
+            .grid,
+            .eyebrow,
+            .hero h1,
+            .hero p,
+            .hero-actions .btn,
+            .chip,
+            .section-header {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+                visibility: visible !important;
             }
         }
 
-        @media (max-width: 480px) {
-            .hero {
-                padding: 100px 16px 40px;
-            }
-
-            .section {
-                padding: 60px 16px;
-            }
-
-            .nav-container {
-                padding: 0 16px;
-            }
-
-            .card-image {
-                aspect-ratio: 16/10;
-            }
-        }
-
-        /* ===== ANIMATIONS ===== */
+        /* Animations */
         @keyframes float {
 
             0%,
@@ -1257,9 +852,21 @@
             }
         }
 
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
         @keyframes slideInUp {
             from {
-                transform: translateY(60px);
+                transform: translateY(30px);
                 opacity: 0;
             }
 
@@ -1269,21 +876,13 @@
             }
         }
 
-        @keyframes fadeInScale {
-            from {
-                transform: scale(0.95);
-                opacity: 0;
-            }
-
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        /* ===== UTILITIES ===== */
+        /* Utilities */
         .animate-float {
             animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s ease-in-out infinite;
         }
 
         .sr-only {
@@ -1298,14 +897,19 @@
             border: 0;
         }
 
-        /* ===== LOADING STATES ===== */
-        .skeleton {
-            background: linear-gradient(90deg, var(--card) 0%, var(--card-hover) 50%, var(--card) 100%);
-            background-size: 200% 100%;
-            animation: skeleton-loading 1.5s ease-in-out infinite;
+        /* Smooth scroll offset for fixed navbar */
+        html {
+            scroll-padding-top: 100px;
         }
 
-        @keyframes skeleton-loading {
+        /* Loading states */
+        .card.loading {
+            background: linear-gradient(90deg, var(--card) 0%, var(--card-hover) 50%, var(--card) 100%);
+            background-size: 200% 100%;
+            animation: loading 1.5s ease-in-out infinite;
+        }
+
+        @keyframes loading {
             0% {
                 background-position: -200% 0;
             }
@@ -1314,52 +918,16 @@
                 background-position: 200% 0;
             }
         }
-
-        /* ===== FOCUS STATES ===== */
-        .btn:focus,
-        .nav-btn:focus,
-        .icon-btn:focus,
-        .card-action:focus {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-        }
-
-        /* ===== DARK/LIGHT THEME TRANSITIONS ===== */
-        * {
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-        }
     </style>
 </head>
 
 <body>
-    <!-- ===== LOADER ===== -->
-    <div class="loader" id="loader">
-        <div class="loader-content">
-            <div class="loader-logo">BetterWLPRS</div>
-            <div class="loader-spinner"></div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-            <div class="loader-text" id="loaderText">Cargando experiencia única...</div>
-        </div>
-    </div>
-    <script>
-        // Oculta el loader y muestra el body siempre, aunque falle el JS
-        window.addEventListener('DOMContentLoaded', function () {
-            setTimeout(function () {
-                document.body.classList.add('loaded');
-                var loader = document.getElementById('loader');
-                if (loader) loader.classList.add('hidden');
-            }, 3000);
-        });
-    </script>
-
-    <!-- ===== NAVIGATION ===== -->
+    <!-- NUEVA NAVEGACIÓN -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-brand">
+            <div class="nav-brand">
                 BetterWLPRS
-            </a>
+            </div>
 
             <div class="nav-menu" id="navMenu">
                 <a href="#gallery" class="nav-item active" data-section="gallery" data-i18n="nav.gallery">Galería</a>
@@ -1369,6 +937,7 @@
             </div>
 
             <div class="nav-actions">
+                <!-- Minimal toggles -->
                 <button class="icon-btn" id="langToggle" aria-label="Toggle language">EN</button>
                 <button class="icon-btn" id="themeToggle" aria-label="Toggle theme"><span>☀️</span></button>
                 <button class="nav-btn secondary" id="loginBtn">
@@ -1383,7 +952,7 @@
                 <button class="nav-btn primary" id="subscribeMobileBtn">
                     <span>Suscribirse</span>
                 </button>
-                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <button class="hamburger" id="hamburger">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -1392,7 +961,7 @@
         </div>
     </nav>
 
-    <!-- ===== MOBILE MENU ===== -->
+    <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="#gallery" class="nav-item" data-section="gallery" data-i18n="nav.gallery">Galería</a>
         <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Vídeos</a>
@@ -1400,7 +969,7 @@
         <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Beneficios</a>
 
         <div class="nav-actions">
-            <div style="display:flex; gap:12px; margin-bottom:20px;">
+            <div style="display:flex; gap:8px; margin-bottom:12px;">
                 <button class="icon-btn" id="langToggleMobile" aria-label="Toggle language">EN</button>
                 <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme"><span>☀️</span></button>
             </div>
@@ -1409,31 +978,34 @@
         </div>
     </div>
 
-    <!-- ===== HERO ===== -->
+    <!-- HERO -->
     <section class="hero" id="hero">
         <div class="hero-content">
             <div class="eyebrow" data-i18n="hero.eyebrow">Fondos exclusivos</div>
             <h1>
-                <span class="title-line" data-i18n="hero.title1">Wallpapers únicos</span>
+                <span class="title-line" data-i18n="hero.title1">Wallpapers únicos</span><br>
                 <span class="gradient-text" data-i18n="hero.title2">para todos tus dispositivos</span>
             </h1>
             <p data-i18n="hero.desc">Descarga arte original y optimizado. Disfruta calidad BetterWLPRS.</p>
 
             <div class="hero-actions">
                 <button class="btn primary" id="exploreBtnHero">
-                    <span data-i18n="hero.explore">Explorar galería</span>
-                    <span>→</span>
+                    <span data-i18n="hero.explore">Explorar galería</span> <span>→</span>
                 </button>
                 <a href="#how" class="btn secondary" data-i18n="hero.how">¿Cómo funciona?</a>
             </div>
 
-            <!-- Spline 3D Model Container -->
-            <div class="spline-container">
-                <script type="module"
-                    src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
-                <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
-                    style="width: 100%; height: 100%; border-radius: 16px; background: transparent;" loading="eager">
-                </spline-viewer>
+
+            <!-- spline-viewer ABSOLUTE, fuera del flujo -->
+            <div class="steamdeck-hero-absolute absolute left-1/2 top-0 transform -translate-x-1/2 z-0 w-full flex justify-center pointer-events-none"
+                style="z-index:0; margin-top: 0px;">
+                <div class="relative w-full" style="z-index:0;">
+                    <script type="module"
+                        src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
+                    <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
+                        style="width: 100%; max-width: 900px; height: 400px; display: block; margin: 0 auto; border-radius: 0.75rem; background: transparent; z-index:0; position:relative; pointer-events:none;"
+                        class="steamdeck-viewer-main"></spline-viewer>
+                </div>
             </div>
 
             <div class="chips">
@@ -1445,103 +1017,33 @@
         </div>
     </section>
 
-    <!-- ===== HOW IT WORKS ===== -->
-    <section class="section" id="how">
-        <div class="section-header">
-            <h2>
-                <span data-i18n="how.titlePrefix">Cómo</span>
-                <span class="highlight" data-i18n="how.highlight">Funciona</span>
-            </h2>
-            <p data-i18n="how.desc">Publica tus sesiones y clips. El mundo ve un adelanto; lo premium se desbloquea con
-                suscripción.</p>
-        </div>
-        <div class="grid" id="howGrid">
-            <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/sanfracampview.jpg" alt="Sube y etiqueta" loading="lazy">
-                </div>
-                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px;">
-                    <div style="display: flex; align-items: center; gap: 20px;">
-                        <div
-                            style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; box-shadow: 0 4px 15px rgba(167, 135, 255, 0.3);">
-                            1</div>
-                        <div>
-                            <div class="card-title" style="font-size: 22px;">Sube y etiqueta</div>
-                        </div>
-                    </div>
-                    <div class="card-subtitle" style="font-size: 15px; line-height: 1.5;">Transformamos a WebP/AVIF con
-                        srcset y marca de agua sutil.</div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/arkham.gif" alt="Previews que enamoran" loading="lazy">
-                </div>
-                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px;">
-                    <div style="display: flex; align-items: center; gap: 20px;">
-                        <div
-                            style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; box-shadow: 0 4px 15px rgba(167, 135, 255, 0.3);">
-                            2</div>
-                        <div>
-                            <div class="card-title" style="font-size: 22px;">Previews que enamoran</div>
-                        </div>
-                    </div>
-                    <div class="card-subtitle" style="font-size: 15px; line-height: 1.5;">Carga progresiva, blur inicial
-                        y micro‑interacciones en scroll.</div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/spidersky.gif" alt="Acceso completo" loading="lazy">
-                </div>
-                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px;">
-                    <div style="display: flex; align-items: center; gap: 20px;">
-                        <div
-                            style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; box-shadow: 0 4px 15px rgba(167, 135, 255, 0.3);">
-                            3</div>
-                        <div>
-                            <div class="card-title" style="font-size: 22px;">Acceso completo</div>
-                        </div>
-                    </div>
-                    <div class="card-subtitle" style="font-size: 15px; line-height: 1.5;">Originales y videowlprs
-                        completos tras la suscripción.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== GALLERY ===== -->
+    <!-- GALERÍA -->
     <section class="section" id="gallery">
         <div class="section-header">
-            <h2>
-                <span data-i18n="gallery.titlePrefix">Fondos de pantalla</span>
-                <span class="highlight" data-i18n="gallery.highlight">Originales</span>
-            </h2>
-            <p data-i18n="gallery.desc">Cada imagen se muestra optimizada. ¿Quieres el archivo original,
-                sin marca de agua? Hazte miembro y descárgalo al instante.</p>
+            <h2><span data-i18n="gallery.titlePrefix">Fondos de pantalla</span> <span class="highlight"
+                    data-i18n="gallery.highlight">Originales</span></h2>
+            <p data-i18n="gallery.desc">Cada imagen se muestra optimizada. ¿Quieres el archivo original, sin marca de
+                agua? Hazte miembro y descárgalo al instante.</p>
         </div>
         <div class="grid" id="galleryGrid">
             <div class="card">
                 <div class="card-image">
-                    <img src="./img/marcussittedahh.gif" alt="Cyberpunk Marcus" loading="lazy">
+                    <img src="./img/marcussittedahh.gif" alt="Golden Hour">
                     <div class="card-badge" data-i18n="badge.portrait">Retrato</div>
                     <div class="card-premium">🔒</div>
                 </div>
                 <div class="card-content">
                     <div>
                         <div class="card-title">Cyberpunk Marcus</div>
-                        <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para
-                            miembros — suscripción para full-res</div>
+                        <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para miembros — suscripción
+                            para full-res</div>
                     </div>
                     <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
                 </div>
             </div>
-
             <div class="card">
                 <div class="card-image">
-                    <img src="./img/arkham.gif" alt="Batman Arkham" loading="lazy">
+                    <img src="./img/arkham.gif" alt="City Nights">
                     <div class="card-badge" data-i18n="badge.urban">Urbano</div>
                 </div>
                 <div class="card-content">
@@ -1552,26 +1054,24 @@
                     <button class="card-action primary" data-i18n="card.download">Descargar</button>
                 </div>
             </div>
-
             <div class="card">
                 <div class="card-image">
-                    <img src="img/videowlprs/discoelysiumstart.gif" alt="Disco Elysium" loading="lazy">
+                    <img src="img/videowlprs/discoelysiumstart.gif" alt="Studio Vibes">
                     <div class="card-badge" data-i18n="badge.studio">Estudio</div>
                     <div class="card-premium">🔒</div>
                 </div>
                 <div class="card-content">
                     <div>
                         <div class="card-title">Disco Elysium</div>
-                        <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para
-                            miembros — suscripción para full-res</div>
+                        <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para miembros — suscripción
+                            para full-res</div>
                     </div>
                     <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
                 </div>
             </div>
-
             <div class="card">
                 <div class="card-image">
-                    <img src="img/samsatori.gif" alt="Samurai Satori" loading="lazy">
+                    <img src="img/samsatori.gif" alt="Ocean Walk">
                     <div class="card-badge" data-i18n="badge.documentary">Documental</div>
                 </div>
                 <div class="card-content">
@@ -1582,26 +1082,24 @@
                     <button class="card-action primary" data-i18n="card.download">Descargar</button>
                 </div>
             </div>
-
             <div class="card">
                 <div class="card-image">
-                    <img src="img/samsittedahh.gif" alt="Samurai Sitted" loading="lazy">
+                    <img src="img/samsittedahh.gif" alt="Soft Neon">
                     <div class="card-badge" data-i18n="badge.portrait">Retrato</div>
                     <div class="card-premium">🔒</div>
                 </div>
                 <div class="card-content">
                     <div>
                         <div class="card-title">Samurai Sitted</div>
-                        <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para
-                            miembros — suscripción para full-res</div>
+                        <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para miembros — suscripción
+                            para full-res</div>
                     </div>
                     <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
                 </div>
             </div>
-
             <div class="card">
                 <div class="card-image">
-                    <img src="./img/sanfracampview.jpg" alt="San Francisco" loading="lazy">
+                    <img src="./img/sanfracampview.jpg" alt="Analog Mood">
                     <div class="card-badge" data-i18n="badge.editorial">Editorial</div>
                 </div>
                 <div class="card-content">
@@ -1615,56 +1113,50 @@
         </div>
     </section>
 
-    <!-- ===== VIDEOS ===== -->
+    <!-- VÍDEOS -->
     <section class="section" id="videos">
         <div class="section-header">
-            <h2>
-                <span data-i18n="videos.title">Vídeos</span>
-                <span class="highlight" data-i18n="videos.highlight">Exclusivos</span>
-            </h2>
-            <p data-i18n="videos.desc">Descubre clips únicos de nuestras mejores capturas. Los miembros
-                disfrutan contenido completo en máxima calidad.</p>
+            <h2><span data-i18n="videos.title">Vídeos</span> <span class="highlight"
+                    data-i18n="videos.highlight">Exclusivos</span> BetterWLPRS</h2>
+            <p data-i18n="videos.desc">Descubre clips únicos de nuestras mejores capturas. Los miembros disfrutan
+                contenido completo en máxima calidad.</p>
         </div>
         <div class="grid" id="videoGrid">
             <div class="card">
                 <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/spidersky.gif" alt="Spider Sky" loading="lazy">
+                    <img src="./img/spidersky.gif" alt="Behind The Lens">
                     <div class="card-badge">Trailer 18s</div>
                     <div class="card-premium">🔒</div>
-                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.85); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 14px; font-size: 12px; backdrop-filter: blur(15px); font-weight: 600;"
+                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);"
                         data-i18n="video.overlay">Ver vídeo</div>
                 </div>
                 <div class="card-content">
                     <div>
                         <div class="card-title">Spider Sky</div>
-                        <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al
-                            suscribirte</div>
+                        <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al suscribirte</div>
                     </div>
                 </div>
             </div>
-
             <div class="card">
                 <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/thelongdarkwolfs.png" alt="The Long Dark" loading="lazy">
+                    <img src="./img/thelongdarkwolfs.png" alt="Street Cut">
                     <div class="card-badge">Trailer 12s</div>
                     <div class="card-premium">🔒</div>
-                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.85); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 14px; font-size: 12px; backdrop-filter: blur(15px); font-weight: 600;"
+                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);"
                         data-i18n="video.overlay">Ver vídeo</div>
                 </div>
                 <div class="card-content">
                     <div>
                         <div class="card-title">The Long Dark</div>
-                        <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al
-                            suscribirte</div>
+                        <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al suscribirte</div>
                     </div>
                 </div>
             </div>
-
             <div class="card">
                 <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/samsatori.gif" alt="Samurai Satori Video" loading="lazy">
+                    <img src="./img/samsatori.gif" alt="Studio BTS">
                     <div class="card-badge">Trailer 15s</div>
-                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.85); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 14px; font-size: 12px; backdrop-filter: blur(15px); font-weight: 600;"
+                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);"
                         data-i18n="video.overlay">Ver vídeo</div>
                 </div>
                 <div class="card-content">
@@ -1677,98 +1169,168 @@
         </div>
     </section>
 
-    <!-- ===== BENEFITS ===== -->
-    <section class="section" id="benefits">
+    <!-- CÓMO FUNCIONA -->
+    <section class="section" id="how">
         <div class="section-header">
-            <h2>
-                <span data-i18n="benefits.titlePrefix">Beneficios</span>
-                <span class="highlight" data-i18n="benefits.highlight">Exclusivos</span>
-            </h2>
-            <p data-i18n="benefits.desc">Descubre todo lo que incluye tu suscripción premium.</p>
+            <h2><span data-i18n="how.titlePrefix">Cómo</span> <span class="highlight"
+                    data-i18n="how.highlight">Funciona</span></h2>
+            <p data-i18n="how.desc">Publica tus sesiones y clips. El mundo ve un adelanto; lo premium se desbloquea con
+                suscripción.</p>
         </div>
-        <div class="grid" id="benefitsGrid">
+        <div class="grid" id="howGrid">
             <div class="card">
                 <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/sanfracampview.jpg" alt="Resolución original" loading="lazy">
+                    <img src="./img/sanfracampview.jpg" alt="Sube y etiqueta">
                 </div>
-                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px;">
-                    <div style="display: flex; align-items: center; gap: 20px;">
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
                         <div
-                            style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--success), #22c55e); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">
-                            ✓</div>
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            1</div>
                         <div>
-                            <div class="card-title" style="font-size: 22px;">Resolución original</div>
+                            <div class="card-title">Sube y etiqueta</div>
                         </div>
                     </div>
-                    <div class="card-subtitle" style="font-size: 15px; line-height: 1.5;">Descarga los archivos tal y
-                        como fueron creados.</div>
+                    <div class="card-subtitle">Transformamos a WebP/AVIF con srcset y marca de agua sutil.</div>
                 </div>
             </div>
-
             <div class="card">
                 <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/arkham.gif" alt="Videos optimizados" loading="lazy">
+                    <img src="./img/arkham.gif" alt="Previews que enamoran">
                 </div>
-                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px;">
-                    <div style="display: flex; align-items: center; gap: 20px;">
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
                         <div
-                            style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--success), #22c55e); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">
-                            ✓</div>
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            2</div>
                         <div>
-                            <div class="card-title" style="font-size: 22px;">Videos optimizados</div>
+                            <div class="card-title">Previews que enamoran</div>
                         </div>
                     </div>
-                    <div class="card-subtitle" style="font-size: 15px; line-height: 1.5;">Preparados para loop con
-                        calidad equilibrada.</div>
+                    <div class="card-subtitle">Carga progresiva, blur inicial y micro‑interacciones en scroll.</div>
                 </div>
             </div>
-
             <div class="card">
                 <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/spidersky.gif" alt="Multi-dispositivo" loading="lazy">
+                    <img src="./img/spidersky.gif" alt="Acceso completo">
                 </div>
-                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px;">
-                    <div style="display: flex; align-items: center; gap: 20px;">
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
                         <div
-                            style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--success), #22c55e); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">
-                            ✓</div>
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            3</div>
                         <div>
-                            <div class="card-title" style="font-size: 22px;">Multi-dispositivo</div>
+                            <div class="card-title">Acceso completo</div>
                         </div>
                     </div>
-                    <div class="card-subtitle" style="font-size: 15px; line-height: 1.5;">Móvil, desktop, tablet y Steam
-                        Deck.</div>
+                    <div class="card-subtitle">Originales y vídeowlprs completos tras la suscripción.</div>
                 </div>
             </div>
-
             <div class="card">
                 <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/thelongdarkwolfs.png" alt="Contenido regular" loading="lazy">
+                    <img src="./img/thelongdarkwolfs.png" alt="Descargas seguras">
                 </div>
-                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px;">
-                    <div style="display: flex; align-items: center; gap: 20px;">
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
                         <div
-                            style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--success), #22c55e); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">
-                            ✓</div>
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            4</div>
                         <div>
-                            <div class="card-title" style="font-size: 22px;">Contenido regular</div>
+                            <div class="card-title">Descargas seguras</div>
                         </div>
                     </div>
-                    <div class="card-subtitle" style="font-size: 15px; line-height: 1.5;">Contenido añadido de forma
-                        regular.</div>
+                    <div class="card-subtitle">Enlaces firmados y límites anti‑abuso para proteger tu trabajo.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== FINAL CTA ===== -->
+    <!-- BENEFICIOS -->
+    <section class="section" id="benefits">
+        <div class="section-header">
+            <h2><span data-i18n="benefits.titlePrefix">Beneficios para</span> <span class="highlight"
+                    data-i18n="benefits.highlight">Miembros</span></h2>
+            <p data-i18n="benefits.desc">Acceso a originales en full-res y vídeowlprs completos, listos para tu setup.
+            </p>
+        </div>
+        <div class="grid" id="benefitsGrid">
+            <div class="card">
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            🖼️</div>
+                        <div>
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Original</div>
+                            <div class="card-title">Sin marca de agua</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Descarga los archivos tal y como fueron creados.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            🎞️</div>
+                        <div>
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Vídeowlprs</div>
+                            <div class="card-title">Clips completos 1080p/4K</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Preparados para loop con calidad equilibrada.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            📱</div>
+                        <div>
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Por dispositivo</div>
+                            <div class="card-title">Formatos optimizados</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Móvil, desktop, tablet y Steam Deck.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            🔄</div>
+                        <div>
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Actualizaciones</div>
+                            <div class="card-title">Nuevos packs</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Contenido añadido de forma regular.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
     <section class="section" id="final-cta">
         <div class="section-header">
-            <h2>
-                <span data-i18n="final.titlePrefix">Lleva tu setup al</span>
-                <span class="highlight" data-i18n="final.highlight">siguiente nivel</span>
-            </h2>
-            <p data-i18n="final.desc">Desbloquea originales y videowlprs. Cancela cuando quieras.</p>
+            <h2><span data-i18n="final.titlePrefix">Lleva tu setup al</span> <span class="highlight"
+                    data-i18n="final.highlight">siguiente nivel</span></h2>
+            <p data-i18n="final.desc">Desbloquea originales y vídeowlprs. Cancela cuando quieras.</p>
             <div style="margin-top: 3rem;">
                 <button class="btn primary" id="finalCtaBtn" style="font-size: 18px; padding: 20px 40px;">
                     <span data-i18n="final.btn">Empieza ahora</span>
@@ -1778,12 +1340,12 @@
         </div>
     </section>
 
-    <!-- ===== STICKY CTA ===== -->
+    <!-- STICKY CTA -->
     <button class="sticky-cta" id="stickyCta">
         <span data-i18n="sticky.text">Suscríbete para full-res ✨</span>
     </button>
 
-    <!-- ===== MODAL ===== -->
+    <!-- MODAL -->
     <div class="modal" id="modal">
         <div class="modal-content">
             <button class="modal-close" id="modalClose">×</button>
@@ -1794,200 +1356,511 @@
                     de agua, vídeos completos en 1080p/4K y sesiones completas.</p>
 
                 <div style="display: grid; gap: 16px; margin-bottom: 2rem;">
-                    <div class="plan-card" id="monthlyPlan">
-                        <div class="plan-info">
-                            <h4 data-i18n="modal.monthly">Mensual</h4>
-                            <p data-i18n="modal.cancelAnytime">Cancela cuando quieras</p>
+                    <div
+                        style="padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.02); display: flex; justify-content: space-between; align-items: center;">
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;"
+                                data-i18n="modal.monthly">Mensual</div>
+                            <div style="color: var(--muted); font-size: 14px;" data-i18n="modal.cancelAnytime">Cancela
+                                cuando quieras</div>
                         </div>
-                        <div class="plan-price">€7,99</div>
+                        <button class="btn primary" id="monthlyPlan" style="min-width: 100px;">€7,99</button>
                     </div>
 
-                    <div class="plan-card popular" id="yearlyPlan">
-                        <div class="plan-info">
-                            <h4 data-i18n="modal.annual">Anual</h4>
-                            <p data-i18n="modal.twoMonthsFree">2 meses de regalo</p>
+                    <div
+                        style="padding: 20px; border: 2px solid var(--accent); border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.05); display: flex; justify-content: space-between; align-items: center; position: relative;">
+                        <div style="position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;"
+                            data-i18n="modal.popular">Popular</div>
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;"
+                                data-i18n="modal.annual">Anual</div>
+                            <div style="color: var(--muted); font-size: 14px;" data-i18n="modal.twoMonthsFree">2 meses
+                                de regalo</div>
                         </div>
-                        <div class="plan-price">€79</div>
+                        <button class="btn primary" id="yearlyPlan" style="min-width: 100px;">€79</button>
                     </div>
                 </div>
 
                 <p style="font-size: 12px; color: var(--muted);">
-                    <span data-i18n="modal.legalPrefix">Al suscribirte aceptas los</span>
-                    <a href="#" style="color: var(--accent);" data-i18n="modal.terms">Términos</a>
-                    <span>&nbsp;</span><span data-i18n="modal.and">y la</span>
-                    <a href="#" style="color: var(--accent);" data-i18n="modal.privacy">Privacidad</a>.
+                    <span data-i18n="modal.legalPrefix">Al suscribirte aceptas los</span> <a href="#"
+                        style="color: var(--accent);" data-i18n="modal.terms">Términos</a> <span>&nbsp;</span><span
+                        data-i18n="modal.and">y la</span> <a href="#" style="color: var(--accent);"
+                        data-i18n="modal.privacy">Privacidad</a>.
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- FOOTER -->
     <footer class="footer">
-        <div class="footer-brand">BetterWLPRS</div>
-        <div class="footer-tagline" data-i18n="footer.tagline">Previews que enamoran. Full-res al suscribirte.</div>
-        <div class="footer-contact">
-            <span data-i18n="footer.questions">¿Preguntas?</span>
-            <a href="mailto:hola@betterwlprs.example" style="color: var(--accent);">hola@betterwlprs.example</a>
+        <div style="margin-bottom: 1rem;">
+            <div class="nav-brand" style="justify-content: center; margin-bottom: 1rem;">BetterWLPRS</div>
+            <p data-i18n="footer.tagline">Previews que enamoran. Full-res al suscribirte.</p>
+        </div>
+        <div>
+            <span data-i18n="footer.questions">¿Preguntas?</span> <a href="mailto:hola@betterwlprs.example"
+                style="color: var(--accent);">hola@betterwlprs.example</a>
         </div>
     </footer>
 
-    <!-- ===== SCRIPTS ===== -->
+    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <script>
-        // ===== LOADER & INITIALIZATION =====
-        let progress = 0;
-        const progressFill = document.getElementById('progressFill');
-        const loaderText = document.getElementById('loaderText');
-        const loader = document.getElementById('loader');
-
-        function updateProgress() {
-            progress += Math.random() * 15;
-            if (progress > 100) progress = 100;
-            progressFill.style.width = progress + '%';
-
-            if (progress < 30) {
-                loaderText.textContent = 'Cargando recursos...';
-            } else if (progress < 70) {
-                loaderText.textContent = 'Preparando experiencia...';
-            } else if (progress < 95) {
-                loaderText.textContent = 'Casi listo...';
+        // ========== DATOS DE MUESTRA ==========
+        const photos = [
+            {
+                title: 'Golden Hour',
+                tag: 'Retrato',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=800&fit=crop&crop=face'
+            },
+            {
+                title: 'City Nights',
+                tag: 'Urbano',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=600&h=800&fit=crop'
+            },
+            {
+                title: 'Studio Vibes',
+                tag: 'Estudio',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=800&fit=crop'
+            },
+            {
+                title: 'Ocean Walk',
+                tag: 'Documental',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop&crop=face'
+            },
+            {
+                title: 'Soft Neon',
+                tag: 'Retrato',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&h=800&fit=crop&crop=face'
+            },
+            {
+                title: 'Analog Mood',
+                tag: 'Editorial',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&h=800&fit=crop&crop=face'
             }
+        ];
 
-            if (progress < 100) {
-                setTimeout(updateProgress, 100 + Math.random() * 200);
-            } else {
-                setTimeout(() => {
-                    loader.classList.add('hidden');
-                    document.body.classList.add('loaded');
-                }, 500);
+        const videos = [
+            {
+                title: 'Behind The Lens',
+                tag: 'Trailer 18s',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&h=400&fit=crop'
+            },
+            {
+                title: 'Street Cut',
+                tag: 'Trailer 12s',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1551913902-c92207136625?w=600&h=400&fit=crop'
+            },
+            {
+                title: 'Studio BTS',
+                tag: 'Trailer 15s',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&h=400&fit=crop'
             }
-        }
+        ];
 
-        // ===== NAVIGATION =====
+        const howSteps = [
+            {
+                title: 'Sube y etiqueta',
+                description: 'Transformamos a WebP/AVIF con srcset y marca de agua sutil.',
+                image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
+                step: '1'
+            },
+            {
+                title: 'Previews que enamoran',
+                description: 'Carga progresiva, blur inicial y micro-interacciones en scroll.',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                step: '2'
+            },
+            {
+                title: 'Acceso completo',
+                description: 'Originales y vídeowlprs completos tras la suscripción.',
+                image: 'https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=400&fit=crop',
+                step: '3'
+            },
+            {
+                title: 'Descargas seguras',
+                description: 'Enlaces firmados y límites anti-abuso para proteger tu trabajo.',
+                image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop',
+                step: '4'
+            }
+        ];
+
+        const benefits = [
+            {
+                title: 'Sin marca de agua',
+                description: 'Descarga los archivos tal y como fueron creados.',
+                icon: '🖼️',
+                category: 'Original'
+            },
+            {
+                title: 'Clips completos 1080p/4K',
+                description: 'Preparados para loop con calidad equilibrada.',
+                icon: '🎞️',
+                category: 'Vídeowlprs'
+            },
+            {
+                title: 'Formatos optimizados',
+                description: 'Móvil, desktop, tablet y Steam Deck.',
+                icon: '📱',
+                category: 'Por dispositivo'
+            },
+            {
+                title: 'Nuevos packs',
+                description: 'Contenido añadido de forma regular.',
+                icon: '🔄',
+                category: 'Actualizaciones'
+            }
+        ];
+
+        // ========== GSAP SETUP ==========
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ========== NAVIGATION ==========
         const navbar = document.getElementById('navbar');
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
+        const navItems = document.querySelectorAll('.nav-item[data-section]');
 
-        // Scroll behavior
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+        // Navbar scroll effect
+        ScrollTrigger.create({
+            start: "top -80",
+            end: 99999,
+            toggleClass: { className: "scrolled", targets: navbar }
         });
 
         // Mobile menu toggle
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
 
-        // Close mobile menu when clicking on links
-        document.querySelectorAll('.mobile-menu .nav-item').forEach(link => {
-            link.addEventListener('click', () => {
+        // Close mobile menu when clicking nav items
+        document.querySelectorAll('.mobile-menu .nav-item').forEach(item => {
+            item.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
             });
         });
 
-        // ===== MODAL FUNCTIONALITY =====
+        // Active navigation tracking
+        const sections = ['gallery', 'videos', 'how', 'benefits'];
+
+        sections.forEach(sectionId => {
+            ScrollTrigger.create({
+                trigger: `#${sectionId}`,
+                start: "top 50%",
+                end: "bottom 50%",
+                onEnter: () => updateActiveNav(sectionId),
+                onEnterBack: () => updateActiveNav(sectionId)
+            });
+        });
+
+        function updateActiveNav(activeSection) {
+            navItems.forEach(item => {
+                item.classList.toggle('active', item.dataset.section === activeSection);
+            });
+        }
+
+        // ========== MODAL ==========
         const modal = document.getElementById('modal');
         const modalClose = document.getElementById('modalClose');
-        const subscribeButtons = document.querySelectorAll('#subscribeBtn, #subscribeMobileBtn, #finalCtaBtn');
+        const openModalBtns = ['subscribeBtn', 'subscribeMobileBtn', 'loginBtn', 'stickyCta', 'finalCtaBtn'];
 
         function openModal() {
             modal.style.display = 'flex';
-            setTimeout(() => modal.classList.add('active'), 10);
+            gsap.to(modal, { opacity: 1, duration: 0.3 });
+            gsap.to(modal.querySelector('.modal-content'), {
+                scale: 1,
+                opacity: 1,
+                duration: 0.4,
+                ease: "back.out(1.2)"
+            });
             document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
-            modal.classList.remove('active');
-            setTimeout(() => {
-                modal.style.display = 'none';
-                document.body.style.overflow = '';
-            }, 400);
+            gsap.to(modal, { opacity: 0, duration: 0.3 });
+            gsap.to(modal.querySelector('.modal-content'), {
+                scale: 0.9,
+                opacity: 0,
+                duration: 0.3,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            });
         }
 
-        subscribeButtons.forEach(btn => {
-            btn.addEventListener('click', openModal);
+        openModalBtns.forEach(btnId => {
+            const btn = document.getElementById(btnId);
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal();
+                });
+            }
         });
 
         modalClose.addEventListener('click', closeModal);
-
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeModal();
         });
 
-        // Plan selection
-        document.getElementById('monthlyPlan').addEventListener('click', () => {
-            alert('Redirigiendo a checkout mensual...');
-            closeModal();
+        // Plan selection simulation
+        document.getElementById('monthlyPlan')?.addEventListener('click', () => {
+            alert('Simulación: aquí iría Stripe/Lemon Squeezy Checkout para plan mensual.');
         });
 
-        document.getElementById('yearlyPlan').addEventListener('click', () => {
-            alert('Redirigiendo a checkout anual...');
-            closeModal();
+        document.getElementById('yearlyPlan')?.addEventListener('click', () => {
+            alert('Simulación: aquí iría Stripe/Lemon Squeezy Checkout para plan anual.');
         });
 
-        // ===== STICKY CTA =====
+        // ========== STICKY CTA ==========
         const stickyCta = document.getElementById('stickyCta');
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > window.innerHeight) {
-                stickyCta.classList.add('visible');
-            } else {
-                stickyCta.classList.remove('visible');
+        ScrollTrigger.create({
+            start: "top -200",
+            end: 99999,
+            onUpdate: self => {
+                if (self.direction === 1 && self.progress > 0.1) {
+                    stickyCta.classList.add('visible');
+                } else if (self.direction === -1 && self.progress < 0.05) {
+                    stickyCta.classList.remove('visible');
+                }
             }
         });
 
-        stickyCta.addEventListener('click', openModal);
-
-        // ===== THEME TOGGLE =====
-        const themeToggle = document.getElementById('themeToggle');
-        const themeToggleMobile = document.getElementById('themeToggleMobile');
-
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', newTheme);
-
-            const icon = newTheme === 'light' ? '🌙' : '☀️';
-            themeToggle.innerHTML = `<span>${icon}</span>`;
-            themeToggleMobile.innerHTML = `<span>${icon}</span>`;
-
-            localStorage.setItem('theme', newTheme);
+        // ========== RENDER CONTENT ==========
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            photos.forEach((photo, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-image">
+                        <img src="${photo.thumb}" alt="${photo.title}" loading="lazy">
+                        <div class="card-badge">${photo.tag}</div>
+                        ${photo.premium ? '<div class="card-premium">🔒</div>' : ''}
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">${photo.title}</div>
+                            <div class="card-subtitle">${photo.premium ? 'Preview — suscripción para full-res' : 'Descarga 1600px'}</div>
+                        </div>
+                        <button class="card-action ${photo.premium ? 'secondary' : 'primary'}" onclick="${photo.premium ? 'openModal()' : 'alert(\'Descargando...\')'}">
+                            ${photo.premium ? 'Ver preview' : 'Descargar'}
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
         }
 
-        themeToggle.addEventListener('click', toggleTheme);
-        themeToggleMobile.addEventListener('click', toggleTheme);
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        const icon = savedTheme === 'light' ? '🌙' : '☀️';
-        themeToggle.innerHTML = `<span>${icon}</span>`;
-        themeToggleMobile.innerHTML = `<span>${icon}</span>`;
-
-        // ===== LANGUAGE TOGGLE =====
-        const langToggle = document.getElementById('langToggle');
-        const langToggleMobile = document.getElementById('langToggleMobile');
-
-        function toggleLanguage() {
-            const currentLang = langToggle.textContent;
-            const newLang = currentLang === 'EN' ? 'ES' : 'EN';
-            langToggle.textContent = newLang;
-            langToggleMobile.textContent = newLang;
-            // Aquí irían las traducciones
+        function renderVideos() {
+            const grid = document.getElementById('videoGrid');
+            videos.forEach((video, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="${video.thumb}" alt="${video.title}" loading="lazy">
+                        <div class="card-badge">${video.tag}</div>
+                        ${video.premium ? '<div class="card-premium">🔒</div>' : ''}
+                        <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);">
+                            ${video.premium ? 'Ver trailer' : 'Reproducir'}
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">${video.title}</div>
+                            <div class="card-subtitle">${video.premium ? 'Trailer — completo al suscribirte' : 'Clip abierto'}</div>
+                        </div>
+                    </div>
+                `;
+                card.addEventListener('click', () => {
+                    if (video.premium) {
+                        openModal();
+                    } else {
+                        alert('Reproduciendo vídeo...');
+                    }
+                });
+                grid.appendChild(card);
+            });
         }
 
-        langToggle.addEventListener('click', toggleLanguage);
-        langToggleMobile.addEventListener('click', toggleLanguage);
+        function renderHowItWorks() {
+            const grid = document.getElementById('howGrid');
+            howSteps.forEach((step, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="${step.image}" alt="${step.title}" loading="lazy">
+                    </div>
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                                ${step.step}
+                            </div>
+                            <div>
+                                <div class="card-title">${step.title}</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">${step.description}</div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
 
-        // ===== SMOOTH SCROLL =====
+        function renderBenefits() {
+            const grid = document.getElementById('benefitsGrid');
+            benefits.forEach((benefit, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                ${benefit.icon}
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                    ${benefit.category}
+                                </div>
+                                <div class="card-title">${benefit.title}</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">${benefit.description}</div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // ========== ANIMATIONS ==========
+        function initAnimations() {
+            // Deshabilitar animaciones en móvil para evitar problemas de visibilidad
+            if (window.innerWidth <= 768) {
+                return;
+            }
+
+            // Hero animations
+            const heroTl = gsap.timeline();
+
+            heroTl
+                .from('.eyebrow', {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power3.out"
+                })
+                .from('.hero h1', {
+                    y: 50,
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power3.out"
+                }, "-=0.5")
+                .from('.hero p', {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power3.out"
+                }, "-=0.3")
+                .from('.hero-actions .btn', {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    ease: "back.out(1.2)"
+                }, "-=0.3")
+                .from('.chip', {
+                    scale: 0,
+                    opacity: 0,
+                    duration: 0.4,
+                    stagger: 0.05,
+                    ease: "back.out(1.4)"
+                }, "-=0.2");
+
+            // Card animations
+            gsap.utils.toArray('.card').forEach((card, index) => {
+                gsap.set(card, { y: 60, opacity: 0 });
+
+                ScrollTrigger.create({
+                    trigger: card,
+                    start: "top 85%",
+                    onEnter: () => {
+                        gsap.to(card, {
+                            y: 0,
+                            opacity: 1,
+                            duration: 0.8,
+                            ease: "power3.out",
+                            delay: index * 0.1
+                        });
+                    }
+                });
+            });
+
+            // Section headers
+            gsap.utils.toArray('.section-header').forEach(header => {
+                gsap.from(header.children, {
+                    y: 40,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: header,
+                        start: "top 80%"
+                    }
+                });
+            });
+
+            // Parallax effects
+            gsap.utils.toArray('.card-image img').forEach(img => {
+                gsap.to(img, {
+                    yPercent: -20,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: img,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1
+                    }
+                });
+            });
+
+            // Highlight underline animations
+            gsap.utils.toArray('.highlight').forEach(highlight => {
+                ScrollTrigger.create({
+                    trigger: highlight,
+                    start: "top 80%",
+                    onEnter: () => {
+                        gsap.to(highlight.querySelector('::after') || highlight, {
+                            scaleX: 1,
+                            duration: 0.8,
+                            ease: "power2.out"
+                        });
+                    }
+                });
+            });
+        }
+
+        // ========== SMOOTH SCROLLING ==========
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -2001,84 +1874,267 @@
             });
         });
 
-        // ===== ANIMATIONS =====
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Hero animations
-        gsap.fromTo('.hero h1', {
-            y: 60,
-            opacity: 0
-        }, {
-            y: 0,
-            opacity: 1,
-            duration: 1.2,
-            ease: 'power3.out',
-            delay: 0.3
-        });
-
-        gsap.fromTo('.hero p', {
-            y: 40,
-            opacity: 0
-        }, {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            ease: 'power3.out',
-            delay: 0.6
-        });
-
-        gsap.fromTo('.hero-actions', {
-            y: 40,
-            opacity: 0
-        }, {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            ease: 'power3.out',
-            delay: 0.9
-        });
-
-        // Card animations
-        gsap.utils.toArray('.card').forEach((card, i) => {
-            gsap.fromTo(card, {
-                y: 60,
-                opacity: 0
-            }, {
-                y: 0,
-                opacity: 1,
-                duration: 0.8,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 80%',
-                    end: 'bottom 20%',
-                    toggleActions: 'play none none reverse'
-                },
-                delay: i * 0.1
+        // Explore button scroll to gallery
+        document.getElementById('exploreBtnHero')?.addEventListener('click', () => {
+            document.getElementById('gallery').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
         });
 
-        // Highlight animations
-        gsap.utils.toArray('.highlight').forEach(highlight => {
-            ScrollTrigger.create({
-                trigger: highlight,
-                start: 'top 80%',
-                onEnter: () => highlight.classList.add('animated')
+        // ========== INITIALIZATION ==========
+        document.addEventListener('DOMContentLoaded', () => {
+            // No longer need to render content since it's static HTML
+            // renderGallery();
+            // renderVideos();
+            // renderHowItWorks();
+            // renderBenefits();
+
+            // Add click handlers for static cards
+            addStaticCardHandlers();
+
+            // Wait for content to be rendered, then init animations
+            requestAnimationFrame(() => {
+                initAnimations();
             });
         });
 
-        // Initialize progress bar animation
-        updateProgress();
+        // Add handlers for static HTML cards
+        function addStaticCardHandlers() {
+            // Handle gallery cards
+            document.querySelectorAll('#galleryGrid .card').forEach(card => {
+                const button = card.querySelector('.card-action');
+                if (button) {
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        if (button.classList.contains('secondary')) {
+                            // Premium card - open modal
+                            openModal();
+                        } else {
+                            // Free card - simulate download
+                            alert('Descargando...');
+                        }
+                    });
+                }
+            });
 
-        // ===== SPLINE LOADER =====
-        const splineViewer = document.querySelector('spline-viewer');
-        if (splineViewer) {
-            splineViewer.addEventListener('load', () => {
-                console.log('Spline scene loaded');
+            // Handle video cards
+            document.querySelectorAll('#videoGrid .card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const isPremium = card.querySelector('.card-premium');
+                    if (isPremium) {
+                        openModal();
+                    } else {
+                        alert('Reproduciendo vídeo...');
+                    }
+                });
             });
         }
 
-        console.log('BetterWLPRS initialized successfully!');
+        // ========== PERFORMANCE ==========
+        // Lazy loading for images
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'flex') {
+                closeModal();
+            }
+        });
+
+        // ========== THEME & I18N ==========
+        // Minimal i18n dictionary
+        const i18n = {
+            es: {
+                'nav.gallery': 'Galería',
+                'nav.videos': 'Vídeos',
+                'nav.how': 'Cómo funciona',
+                'nav.benefits': 'Beneficios',
+                'nav.login': 'Entrar',
+                'nav.subscribe': 'Suscribirse',
+                'hero.eyebrow': 'Fondos exclusivos',
+                'hero.title1': 'Wallpapers únicos',
+                'hero.title2': 'para todos tus dispositivos',
+                'hero.desc': 'Descarga arte original y optimizado. Disfruta calidad BetterWLPRS.',
+                'hero.explore': 'Explorar galería',
+                'hero.how': '¿Cómo funciona?',
+                'chips.original': 'Original',
+                'chips.onlyHere': 'Solo aquí',
+                'chips.multi': 'Multi-dispositivo',
+                'chips.instant': 'Descarga instantánea',
+                'gallery.titlePrefix': 'Fondos de pantalla',
+                'gallery.highlight': 'Originales',
+                'gallery.desc': 'Cada imagen se muestra optimizada. ¿Quieres el archivo original, sin marca de agua? Hazte miembro y descárgalo al instante.',
+                'badge.portrait': 'Retrato',
+                'badge.urban': 'Urbano',
+                'badge.studio': 'Estudio',
+                'badge.documentary': 'Documental',
+                'badge.editorial': 'Editorial',
+                'card.membersOnly': 'Acceso solo para miembros — suscripción para full-res',
+                'card.viewImage': 'Ver imagen',
+                'card.download': 'Descargar',
+                'card.download1600': 'Descarga 1600px',
+                'videos.title': 'Vídeos',
+                'videos.highlight': 'Exclusivos',
+                'videos.desc': 'Descubre clips únicos de nuestras mejores capturas. Los miembros disfrutan contenido completo en máxima calidad.',
+                'videos.card.premium': 'Vídeo — completo al suscribirte',
+                'videos.card.open': 'Vídeo — abierto',
+                'video.overlay': 'Ver vídeo',
+                'how.titlePrefix': 'Cómo',
+                'how.highlight': 'Funciona',
+                'how.desc': 'Publica tus sesiones y clips. El mundo ve un adelanto; lo premium se desbloquea con suscripción.',
+                'benefits.titlePrefix': 'Beneficios para',
+                'benefits.highlight': 'Miembros',
+                'benefits.desc': 'Acceso a originales en full-res y vídeowlprs completos, listos para tu setup.',
+                'final.titlePrefix': 'Lleva tu setup al',
+                'final.highlight': 'siguiente nivel',
+                'final.desc': 'Desbloquea originales y vídeowlprs. Cancela cuando quieras.',
+                'final.btn': 'Empieza ahora',
+                'sticky.text': 'Suscríbete para full-res ✨',
+                'modal.title': 'Tu acceso completo empieza aquí',
+                'modal.desc': 'Descargas sin marca de agua, vídeos completos en 1080p/4K y sesiones completas.',
+                'modal.monthly': 'Mensual',
+                'modal.cancelAnytime': 'Cancela cuando quieras',
+                'modal.popular': 'Popular',
+                'modal.annual': 'Anual',
+                'modal.twoMonthsFree': '2 meses de regalo',
+                'modal.legalPrefix': 'Al suscribirte aceptas los',
+                'modal.terms': 'Términos',
+                'modal.and': 'y la',
+                'modal.privacy': 'Privacidad',
+                'footer.tagline': 'Previews que enamoran. Full-res al suscribirte.',
+                'footer.questions': '¿Preguntas?'
+            },
+            en: {
+                'nav.gallery': 'Gallery',
+                'nav.videos': 'Videos',
+                'nav.how': 'How it works',
+                'nav.benefits': 'Benefits',
+                'nav.login': 'Sign in',
+                'nav.subscribe': 'Subscribe',
+                'hero.eyebrow': 'Exclusive wallpapers',
+                'hero.title1': 'Unique wallpapers',
+                'hero.title2': 'for all your devices',
+                'hero.desc': 'Download original, optimized art. Enjoy BetterWLPRS quality.',
+                'hero.explore': 'Explore gallery',
+                'hero.how': 'How it works',
+                'chips.original': 'Original',
+                'chips.onlyHere': 'Only here',
+                'chips.multi': 'Multi‑device',
+                'chips.instant': 'Instant download',
+                'gallery.titlePrefix': 'Wallpapers',
+                'gallery.highlight': 'Originals',
+                'gallery.desc': 'Each image is optimized. Want the original file without watermark? Become a member and download instantly.',
+                'badge.portrait': 'Portrait',
+                'badge.urban': 'Urban',
+                'badge.studio': 'Studio',
+                'badge.documentary': 'Documentary',
+                'badge.editorial': 'Editorial',
+                'card.membersOnly': 'Members only — subscribe for full‑res',
+                'card.viewImage': 'View image',
+                'card.download': 'Download',
+                'card.download1600': 'Download 1600px',
+                'videos.title': 'Videos',
+                'videos.highlight': 'Exclusive',
+                'videos.desc': 'Discover unique clips from our best shots. Members enjoy complete content in top quality.',
+                'videos.card.premium': 'Video — full version for members',
+                'videos.card.open': 'Video — open',
+                'video.overlay': 'Watch video',
+                'how.titlePrefix': 'How',
+                'how.highlight': 'It Works',
+                'how.desc': 'Publish your sessions and clips. The world sees a teaser; full content unlocks with a subscription.',
+                'benefits.titlePrefix': 'Benefits for',
+                'benefits.highlight': 'Members',
+                'benefits.desc': 'Access to full‑res originals and complete video wallpapers, ready for your setup.',
+                'final.titlePrefix': 'Take your setup to the',
+                'final.highlight': 'next level',
+                'final.desc': 'Unlock originals and video wallpapers. Cancel anytime.',
+                'final.btn': 'Start now',
+                'sticky.text': 'Subscribe for full‑res ✨',
+                'modal.title': 'Your full access starts here',
+                'modal.desc': 'Watermark‑free downloads, full 1080p/4K videos and complete sessions.',
+                'modal.monthly': 'Monthly',
+                'modal.cancelAnytime': 'Cancel anytime',
+                'modal.popular': 'Popular',
+                'modal.annual': 'Yearly',
+                'modal.twoMonthsFree': '2 months free',
+                'modal.legalPrefix': 'By subscribing you agree to the',
+                'modal.terms': 'Terms',
+                'modal.and': 'and',
+                'modal.privacy': 'Privacy',
+                'footer.tagline': 'Teasers you’ll love. Full‑res when you subscribe.',
+                'footer.questions': 'Questions?'
+            }
+        };
+
+        function applyTranslations(lang) {
+            const dict = i18n[lang] || i18n.es;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) el.textContent = dict[key];
+            });
+            // Update lang toggle label
+            const btns = [document.getElementById('langToggle'), document.getElementById('langToggleMobile')];
+            btns.forEach(b => { if (b) b.textContent = lang === 'es' ? 'EN' : 'ES'; });
+            document.documentElement.setAttribute('lang', lang);
+        }
+
+        function setTheme(theme) {
+            const root = document.documentElement;
+            root.setAttribute('data-theme', theme);
+            const isLight = theme === 'light';
+            const icons = [document.getElementById('themeToggle'), document.getElementById('themeToggleMobile')];
+            icons.forEach(i => { if (i) i.innerHTML = isLight ? '<span>🌙</span>' : '<span>☀️</span>'; });
+        }
+
+        // Detect preferred language and theme on first load
+        (function initLangTheme() {
+            const storedLang = localStorage.getItem('lang');
+            const storedTheme = localStorage.getItem('theme');
+            const browserLang = (navigator.language || 'es').slice(0, 2);
+            const initialLang = storedLang || (browserLang === 'en' ? 'en' : 'es');
+            const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+            const initialTheme = storedTheme || (prefersLight ? 'light' : 'dark');
+            setTheme(initialTheme);
+            applyTranslations(initialLang);
+        })();
+
+        // Wire toggle buttons
+        function toggleLanguage() {
+            const current = document.documentElement.getAttribute('lang') || 'es';
+            const next = current === 'es' ? 'en' : 'es';
+            localStorage.setItem('lang', next);
+            applyTranslations(next);
+        }
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme') || 'dark';
+            const next = current === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', next);
+            setTheme(next);
+        }
+
+        ['langToggle', 'langToggleMobile'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener('click', toggleLanguage);
+        });
+        ['themeToggle', 'themeToggleMobile'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener('click', toggleTheme);
+        });
     </script>
 </body>
 
