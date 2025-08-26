@@ -992,12 +992,12 @@
 
             <!-- spline-viewer ABSOLUTE, fuera del flujo -->
             <div class="steamdeck-hero-absolute absolute left-1/2 top-0 transform -translate-x-1/2 z-0 w-full flex justify-center pointer-events-none"
-                style="z-index:0; margin-top: 0px;">
-                <div class="relative w-full" style="z-index:0;">
+                style="z-index:0; margin-top: 0px; width:100vw; left:0; right:0; transform:none;">
+                <div class="relative" style="z-index:0; width:100vw;">
                     <script type="module"
                         src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
                     <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
-                        style="width: 100%; max-width: 900px; height: 400px; display: block; margin: 0 auto; border-radius: 0.75rem; background: transparent; z-index:0; position:relative; pointer-events:none;"
+                        style="width:100vw; height:400px; display:block; margin:0; border-radius:0.75rem; background:transparent; z-index:0; position:relative; pointer-events:none;"
                         class="steamdeck-viewer-main"></spline-viewer>
                 </div>
             </div>
@@ -1748,90 +1748,98 @@
 
         // ========== ANIMATIONS ==========
         function initAnimations() {
-            // Hero animations
-            const heroTl = gsap.timeline();
+            // Detectar si es móvil
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
+            // Hero animations optimizadas
+            const heroTl = gsap.timeline();
             heroTl
                 .from('.eyebrow', {
-                    y: 30,
+                    y: 20,
                     opacity: 0,
-                    duration: 0.8,
+                    duration: isMobile ? 0.4 : 0.8,
                     ease: "power3.out"
                 })
                 .from('.hero h1', {
-                    y: 50,
+                    y: 30,
                     opacity: 0,
-                    duration: 1,
+                    duration: isMobile ? 0.5 : 1,
                     ease: "power3.out"
-                }, "-=0.5")
+                }, "-=0.3")
                 .from('.hero p', {
-                    y: 30,
+                    y: 20,
                     opacity: 0,
-                    duration: 0.8,
+                    duration: isMobile ? 0.4 : 0.8,
                     ease: "power3.out"
-                }, "-=0.3")
+                }, "-=0.2")
                 .from('.hero-actions .btn', {
-                    y: 30,
+                    y: 20,
                     opacity: 0,
-                    duration: 0.6,
-                    stagger: 0.1,
+                    duration: isMobile ? 0.3 : 0.6,
+                    stagger: isMobile ? 0.05 : 0.1,
                     ease: "back.out(1.2)"
-                }, "-=0.3")
+                }, "-=0.2")
                 .from('.chip', {
                     scale: 0,
                     opacity: 0,
-                    duration: 0.4,
-                    stagger: 0.05,
+                    duration: isMobile ? 0.2 : 0.4,
+                    stagger: isMobile ? 0.03 : 0.05,
                     ease: "back.out(1.4)"
-                }, "-=0.2");
+                }, "-=0.1");
 
-            // Card animations
+            // Card animations optimizadas
             gsap.utils.toArray('.card').forEach((card, index) => {
-                gsap.set(card, { y: 60, opacity: 0 });
-
-                ScrollTrigger.create({
-                    trigger: card,
-                    start: "top 85%",
-                    onEnter: () => {
-                        gsap.to(card, {
-                            y: 0,
-                            opacity: 1,
-                            duration: 0.8,
-                            ease: "power3.out",
-                            delay: index * 0.1
-                        });
-                    }
-                });
+                if (isMobile) {
+                    // En móvil, mostrar inmediatamente
+                    gsap.set(card, { y: 0, opacity: 1 });
+                } else {
+                    gsap.set(card, { y: 60, opacity: 0 });
+                    ScrollTrigger.create({
+                        trigger: card,
+                        start: "top 85%",
+                        onEnter: () => {
+                            gsap.to(card, {
+                                y: 0,
+                                opacity: 1,
+                                duration: 0.8,
+                                ease: "power3.out",
+                                delay: index * 0.1
+                            });
+                        }
+                    });
+                }
             });
 
             // Section headers
             gsap.utils.toArray('.section-header').forEach(header => {
                 gsap.from(header.children, {
-                    y: 40,
+                    y: 30,
                     opacity: 0,
-                    duration: 0.8,
-                    stagger: 0.2,
+                    duration: isMobile ? 0.4 : 0.8,
+                    stagger: isMobile ? 0.1 : 0.2,
                     ease: "power3.out",
                     scrollTrigger: {
                         trigger: header,
-                        start: "top 80%"
+                        start: "top 98%" // Aparecen antes al hacer scroll
                     }
                 });
             });
 
-            // Parallax effects
-            gsap.utils.toArray('.card-image img').forEach(img => {
-                gsap.to(img, {
-                    yPercent: -20,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: img,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: 1
-                    }
+            // Parallax effects solo en desktop
+            if (!isMobile) {
+                gsap.utils.toArray('.card-image img').forEach(img => {
+                    gsap.to(img, {
+                        yPercent: -20,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: img,
+                            start: "top bottom",
+                            end: "bottom top",
+                            scrub: 1
+                        }
+                    });
                 });
-            });
+            }
 
             // Highlight underline animations
             gsap.utils.toArray('.highlight').forEach(highlight => {
@@ -1841,7 +1849,7 @@
                     onEnter: () => {
                         gsap.to(highlight.querySelector('::after') || highlight, {
                             scaleX: 1,
-                            duration: 0.8,
+                            duration: isMobile ? 0.4 : 0.8,
                             ease: "power2.out"
                         });
                     }
@@ -1922,19 +1930,26 @@
         }
 
         // ========== PERFORMANCE ==========
-        // Lazy loading for images
+        // Lazy loading para imágenes + blur inicial para GIFs pesados
         const images = document.querySelectorAll('img[loading="lazy"]');
         if ('IntersectionObserver' in window) {
             const imageObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const img = entry.target;
+                        // Si es GIF, poner blur inicial y quitarlo al cargar
+                        if (img.src.endsWith('.gif')) {
+                            img.style.filter = 'blur(12px)';
+                            img.onload = () => {
+                                img.style.transition = 'filter 0.4s';
+                                img.style.filter = 'none';
+                            };
+                        }
                         img.classList.add('loaded');
                         observer.unobserve(img);
                     }
                 });
             });
-
             images.forEach(img => imageObserver.observe(img));
         }
 
@@ -1959,7 +1974,7 @@
                 'hero.title1': 'Wallpapers únicos',
                 'hero.title2': 'para todos tus dispositivos',
                 'hero.desc': 'Descarga arte original y optimizado. Disfruta calidad BetterWLPRS.',
-                'hero.explore': 'Explorar galería',
+                'hero.explore': 'Descarga Gratis',
                 'hero.how': '¿Cómo funciona?',
                 'chips.original': 'Original',
                 'chips.onlyHere': 'Solo aquí',
