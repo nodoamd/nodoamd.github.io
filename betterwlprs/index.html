@@ -966,6 +966,8 @@
 
             <div class="nav-menu" id="navMenu">
                 <a href="#gallery" class="nav-item active" data-section="gallery" data-i18n="nav.gallery">Galería</a>
+                <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">🎨 Galería
+                    completa</a>
                 <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Vídeos</a>
                 <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">Cómo funciona</a>
                 <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Beneficios</a>
@@ -999,6 +1001,7 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="#gallery" class="nav-item" data-section="gallery" data-i18n="nav.gallery">Galería</a>
+        <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">🎨 Galería completa</a>
         <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Vídeos</a>
         <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">Cómo funciona</a>
         <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Beneficios</a>
@@ -1024,13 +1027,13 @@
             <p data-i18n="hero.desc">Descarga arte original y optimizado. Disfruta calidad BetterWLPRS.</p>
 
             <div class="hero-actions">
-                <button class="btn primary" id="exploreBtnHero">
-                    <span data-i18n="hero.explore">Explorar galería</span> <span>→</span>
-                </button>
+                <a href="galeria.html" class="btn primary">
+                    <span data-i18n="hero.explore">Explorar galería completa</span> <span>→</span>
+                </a>
                 <a href="#how" class="btn secondary" data-i18n="hero.how">¿Cómo funciona?</a>
             </div>
 
-            
+
 
 
             <!-- spline-viewer ABSOLUTE, fuera del flujo -->
@@ -1061,6 +1064,8 @@
                     data-i18n="gallery.highlight">Originales</span></h2>
             <p data-i18n="gallery.desc">Cada imagen se muestra optimizada. ¿Quieres el archivo original, sin marca de
                 agua? Hazte miembro y descárgalo al instante.</p>
+
+
         </div>
         <div class="grid" id="galleryGrid">
             <div class="card">
@@ -1106,19 +1111,7 @@
                     <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-image">
-                    <img src="img/samsatori.gif" alt="Ocean Walk">
-                    <div class="card-badge" data-i18n="badge.documentary">Documental</div>
-                </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">Samurai Satori</div>
-                        <div class="card-subtitle" data-i18n="card.download1600">Descarga 1600px</div>
-                    </div>
-                    <button class="card-action primary" data-i18n="card.download">Descargar</button>
-                </div>
-            </div>
+
             <div class="card">
                 <div class="card-image">
                     <img src="img/samsittedahh.gif" alt="Soft Neon">
@@ -1127,7 +1120,7 @@
                 </div>
                 <div class="card-content">
                     <div>
-                        <div class="card-title">Samurai Sitted</div>
+                        <div class="card-title">Sam chilling on a mountain</div>
                         <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para miembros — suscripción
                             para full-res</div>
                     </div>
@@ -1147,11 +1140,19 @@
                     <button class="card-action primary" data-i18n="card.download">Descargar</button>
                 </div>
             </div>
+
+            <!-- Botón a galería completa -->
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="galeria.html" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px;">
+                    <span>🖼️ Ver galería completa</span>
+                    <span>→</span>
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- VÍDEOS -->
-    <section class="section" id="videos">
+    <!-- GALERÍA -->
+    <section class="section" id="galeria">
         <div class="section-header">
             <h2><span data-i18n="videos.title">Vídeos</span> <span class="highlight"
                     data-i18n="videos.highlight">Exclusivos</span> BetterWLPRS</h2>
@@ -1199,6 +1200,13 @@
                         <div class="card-subtitle" data-i18n="videos.card.open">Vídeo — abierto</div>
                     </div>
                 </div>
+            </div>
+            <!-- Botón a galería completa -->
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="galeria.html" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px;">
+                    <span>🖼️ Ver galería completa</span>
+                    <span>→</span>
+                </a>
             </div>
         </div>
     </section>
@@ -1256,7 +1264,8 @@
                             <div class="card-title">Disfruta de BetterWLPRS</div>
                         </div>
                     </div>
-                    <div class="card-subtitle">Accede a wallpapers ilimitados y personaliza todos tus dispositivos.</div>
+                    <div class="card-subtitle">Accede a wallpapers ilimitados y personaliza todos tus dispositivos.
+                    </div>
                 </div>
             </div>
         </div>
@@ -1267,7 +1276,8 @@
         <div class="section-header">
             <h2><span data-i18n="benefits.titlePrefix">Beneficios para</span> <span class="highlight"
                     data-i18n="benefits.highlight">Miembros</span></h2>
-            <p data-i18n="benefits.desc">Únete y obtén wallpapers de cada año, optimizados para todos tus dispositivos: móvil, portátil, Kindle, ASUS ROG Ally, Steam Deck y más.
+            <p data-i18n="benefits.desc">Únete y obtén wallpapers de cada año, optimizados para todos tus dispositivos:
+                móvil, portátil, Kindle, ASUS ROG Ally, Steam Deck y más.
             </p>
         </div>
         <div class="grid" id="benefitsGrid">
@@ -1285,7 +1295,8 @@
                             <div class="card-title">Wallpapers de cada año</div>
                         </div>
                     </div>
-                    <div class="card-subtitle">Acceso a toda nuestra biblioteca histórica y futuras colecciones anuales.</div>
+                    <div class="card-subtitle">Acceso a toda nuestra biblioteca histórica y futuras colecciones anuales.
+                    </div>
                 </div>
             </div>
             <div class="card">
@@ -1355,42 +1366,70 @@
                 </button>
             </div>
         </div>
-        
+
         <!-- Galería de setups de usuarios -->
         <div style="margin-top: 4rem;">
-            <h3 style="text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; color: var(--text);">Setups reales de nuestra comunidad</h3>
-            <div class="setup-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto;">
+            <h3
+                style="text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; color: var(--text);">
+                Setups reales de nuestra comunidad</h3>
+
+            <!-- Botón a galería completa destacado -->
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <a href="galeria.html" class="btn primary"
+                    style="font-size: 16px; padding: 16px 32px; display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); box-shadow: 0 8px 24px rgba(167, 135, 255, 0.3);">
+                    <span>🎨 Explorar galería completa</span>
+                    <span>✨</span>
+                </a>
+                <p style="color: var(--text-secondary); font-size: 14px; margin-top: 1rem;">
+                    Más de 500+ wallpapers únicos esperándote
+                </p>
+            </div>
+
+            <div class="setup-gallery"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto;">
                 <!-- Setup 1 -->
-                <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                    <video src="./img/setupkindle.mp4" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"></video>
-                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                <div class="setup-card"
+                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                    <video src="./img/setupkindle.mp4" autoplay muted loop playsinline
+                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"></video>
+                    <div
+                        style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
                         <p style="font-size: 0.9rem; font-weight: 600;">Setup Kindle BetterWLPRS</p>
                         <p style="font-size: 0.8rem; opacity: 0.8;">@betterwlprs</p>
                     </div>
                 </div>
-                
+
                 <!-- Setup 2 -->
-                <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                    <video src="./img/setupmarkus.mp4" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"></video>
-                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                <div class="setup-card"
+                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                    <video src="./img/setupmarkus.mp4" autoplay muted loop playsinline
+                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"></video>
+                    <div
+                        style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
                         <p style="font-size: 0.9rem; font-weight: 600;">Setup Marcus BetterWLPRS</p>
                         <p style="font-size: 0.8rem; opacity: 0.8;">@betterwlprs</p>
                     </div>
                 </div>
-                
+
                 <!-- Setup 3 -->
-                <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                    <video src="./img/setupmarkus2.mp4" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"></video>
-                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                <div class="setup-card"
+                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                    <video src="./img/setupmarkus2.mp4" autoplay muted loop playsinline
+                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"></video>
+                    <div
+                        style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
                         <p style="font-size: 0.9rem; font-weight: 600;">Setup RGB Vibes</p>
                         <p style="font-size: 0.8rem; opacity: 0.8;">@rgb_setups</p>
                     </div>
                 </div>
-                
+
                 <!-- Setup 4 -->
-                <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                    <img src="./img/setupmarkus.webp" alt="Setup Streamer con BetterWLPRS" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
-                    <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                <div class="setup-card"
+                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                    <img src="./img/setupmarkus.webp" alt="Setup Streamer con BetterWLPRS"
+                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                    <div
+                        style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
                         <p style="font-size: 0.9rem; font-weight: 600;">Setup Streamer Pro</p>
                         <p style="font-size: 0.8rem; opacity: 0.8;">@streamer_pro</p>
                     </div>
@@ -1452,25 +1491,31 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem;">
+        <div
+            style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem;">
             <!-- Logo y descripción -->
             <div>
                 <div class="nav-brand" style="justify-content: flex-start; margin-bottom: 1rem;">BetterWLPRS</div>
                 <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 1.5rem;">
-                    Wallpapers únicos y videowallpapers premium para todos tus dispositivos. Calidad profesional, diseños exclusivos.
+                    Wallpapers únicos y videowallpapers premium para todos tus dispositivos. Calidad profesional,
+                    diseños exclusivos.
                 </p>
                 <!-- Redes sociales -->
                 <div style="display: flex; gap: 12px;">
-                    <a href="https://www.tiktok.com/@betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                    <a href="https://www.tiktok.com/@betterwlprs" target="_blank"
+                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
                         <span style="font-size: 18px;">📱</span>
                     </a>
-                    <a href="https://instagram.com/betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                    <a href="https://instagram.com/betterwlprs" target="_blank"
+                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
                         <span style="font-size: 18px;">📷</span>
                     </a>
-                    <a href="https://twitter.com/betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                    <a href="https://twitter.com/betterwlprs" target="_blank"
+                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
                         <span style="font-size: 18px;">🐦</span>
                     </a>
-                    <a href="https://youtube.com/@betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                    <a href="https://youtube.com/@betterwlprs" target="_blank"
+                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
                         <span style="font-size: 18px;">📺</span>
                     </a>
                 </div>
@@ -1478,12 +1523,18 @@
 
             <!-- Enlaces rápidos -->
             <div>
-                <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">Enlaces rápidos</h4>
+                <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">Enlaces rápidos
+                </h4>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <a href="#gallery" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Galería</a>
-                    <a href="#videos" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Vídeos</a>
-                    <a href="#how" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Cómo funciona</a>
-                    <a href="#benefits" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Beneficios</a>
+                    <a href="#gallery"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Galería</a>
+                    <a href="#videos"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Vídeos</a>
+                    <a href="#how"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Cómo
+                        funciona</a>
+                    <a href="#benefits"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Beneficios</a>
                 </div>
             </div>
 
@@ -1491,15 +1542,22 @@
             <div>
                 <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">Contacto</h4>
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <a href="mailto:hola@betterwlprs.com" style="color: var(--accent); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">📧 hola@betterwlprs.com</a>
-                    <a href="mailto:soporte@betterwlprs.com" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">🛠️ Soporte técnico</a>
-                    <a href="#" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">📋 FAQ</a>
+                    <a href="mailto:hola@betterwlprs.com"
+                        style="color: var(--accent); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">📧
+                        hola@betterwlprs.com</a>
+                    <a href="mailto:soporte@betterwlprs.com"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">🛠️
+                        Soporte técnico</a>
+                    <a href="#"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">📋
+                        FAQ</a>
                 </div>
             </div>
         </div>
 
         <!-- Copyright y legal -->
-        <div style="border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div
+            style="border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
             <p style="color: var(--muted); font-size: 12px; margin: 0;">
                 © 2025 BetterWLPRS. Todos los derechos reservados.
             </p>
@@ -1728,13 +1786,13 @@
             if (e.target === modal) closeModal();
         });
 
-        // Plan selection simulation
+        // Plan selection with Gumroad
         document.getElementById('monthlyPlan')?.addEventListener('click', () => {
-            alert('Simulación: aquí iría Stripe/Lemon Squeezy Checkout para plan mensual.');
+            window.open('https://betterwlprsx.gumroad.com/l/betterwlprs1ano', '_blank');
         });
 
         document.getElementById('yearlyPlan')?.addEventListener('click', () => {
-            alert('Simulación: aquí iría Stripe/Lemon Squeezy Checkout para plan anual.');
+            window.open('https://betterwlprsx.gumroad.com/l/betterwlprs1ano', '_blank');
         });
 
         // ========== STICKY CTA ==========
@@ -1991,6 +2049,18 @@
                 behavior: 'smooth',
                 block: 'start'
             });
+        });
+
+        // All subscription buttons now go to Gumroad
+        const subscriptionButtons = ['subscribeBtn', 'subscribeMobileBtn', 'stickyCta', 'finalCtaBtn'];
+        subscriptionButtons.forEach(btnId => {
+            const btn = document.getElementById(btnId);
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.open('https://betterwlprsx.gumroad.com/l/betterwlprs1ano', '_blank');
+                });
+            }
         });
 
         // ========== INITIALIZATION ==========
