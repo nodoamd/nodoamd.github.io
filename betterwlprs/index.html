@@ -1,20 +1,14 @@
 <!doctype html>
 <html lang="es">
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>BetterWLPRS — Previews que enamoran. Full-res y vídeos completos al suscribirte.</title>
-
-    <!-- Tipografía -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-
-    <meta name="description"
-        content="Explora sesiones exclusivas en previews abiertos. Suscríbete para descargar los originales en toda calidad y desbloquear vídeos completos.">
-
-    <style>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>BetterWLPRS — Previews que enamoran. Full-res y vídeos completos al suscribirte.</title>
+        <!-- Tipografía -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <meta name="description" content="Explora sesiones exclusivas en previews abiertos. Suscríbete para descargar los originales en toda calidad y desbloquear vídeos completos.">
+        <style>
         /* Theme: Light overrides using CSS variables */
         :root[data-theme="light"] {
             --bg: #f8f9fb;
@@ -947,633 +941,701 @@
             transform: scale(1.05);
         }
 
+        /* Spline Viewer Fixes */
+        .steamdeck-hero-absolute {
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        spline-viewer {
+            width: 100%;
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .steamdeck-viewer-main {
+            width: 100%;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            left: auto;
+            right: auto;
+            transform: none;
+        }
+
         @media (max-width: 768px) {
             .setup-gallery {
                 grid-template-columns: 1fr !important;
                 gap: 16px !important;
             }
         }
-    </style>
-</head>
-
-<body>
-    <!-- NUEVA NAVEGACIÓN -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                BetterWLPRS
+        </style>
+    </head>
+    <body>
+        <!-- NUEVA NAVEGACIÓN -->
+        <nav class="navbar" id="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    BetterWLPRS
+                </div>
+                <div class="nav-menu" id="navMenu">
+                    <a
+                        href="#gallery"
+                        class="nav-item active"
+                        data-section="gallery"
+                        data-i18n="nav.gallery"
+                    >Galería</a>
+                    <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">
+                        🎨 Galería
+                    completa
+                    </a>
+                    <a
+                        href="#videos"
+                        class="nav-item"
+                        data-section="videos"
+                        data-i18n="nav.videos"
+                    >Vídeos</a>
+                    <a
+                        href="#how"
+                        class="nav-item"
+                        data-section="how"
+                        data-i18n="nav.how"
+                    >Cómo funciona</a>
+                    <a
+                        href="#benefits"
+                        class="nav-item"
+                        data-section="benefits"
+                        data-i18n="nav.benefits"
+                    >Beneficios</a>
+                </div>
+                <div class="nav-actions">
+                    <!-- Minimal toggles -->
+                    <button class="icon-btn" id="langToggle" aria-label="Toggle language">EN</button>
+                    <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+                        <span>☀️</span>
+                    </button>
+                    <button class="nav-btn secondary" id="loginBtn">
+                        <span data-i18n="nav.login">Entrar</span>
+                    </button>
+                    <button class="nav-btn primary" id="subscribeBtn">
+                        <span data-i18n="nav.subscribe">Suscribirse</span>
+                    </button>
+                </div>
+                <div class="nav-mobile">
+                    <button class="nav-btn primary" id="subscribeMobileBtn">
+                        <span>Suscribirse</span>
+                    </button>
+                    <button class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
-
-            <div class="nav-menu" id="navMenu">
-                <a href="#gallery" class="nav-item active" data-section="gallery" data-i18n="nav.gallery">Galería</a>
-                <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">🎨 Galería
-                    completa</a>
-                <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Vídeos</a>
-                <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">Cómo funciona</a>
-                <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Beneficios</a>
-            </div>
-
+        </nav>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a
+                href="#gallery"
+                class="nav-item"
+                data-section="gallery"
+                data-i18n="nav.gallery"
+            >Galería</a>
+            <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">🎨 Galería completa</a>
+            <a
+                href="#videos"
+                class="nav-item"
+                data-section="videos"
+                data-i18n="nav.videos"
+            >Vídeos</a>
+            <a
+                href="#how"
+                class="nav-item"
+                data-section="how"
+                data-i18n="nav.how"
+            >Cómo funciona</a>
+            <a
+                href="#benefits"
+                class="nav-item"
+                data-section="benefits"
+                data-i18n="nav.benefits"
+            >Beneficios</a>
             <div class="nav-actions">
-                <!-- Minimal toggles -->
-                <button class="icon-btn" id="langToggle" aria-label="Toggle language">EN</button>
-                <button class="icon-btn" id="themeToggle" aria-label="Toggle theme"><span>☀️</span></button>
-                <button class="nav-btn secondary" id="loginBtn">
+                <div style="display:flex; gap:8px; margin-bottom:12px;">
+                    <button class="icon-btn" id="langToggleMobile" aria-label="Toggle language">EN</button>
+                    <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme">
+                        <span>☀️</span>
+                    </button>
+                </div>
+                <button class="nav-btn secondary">
                     <span data-i18n="nav.login">Entrar</span>
                 </button>
-                <button class="nav-btn primary" id="subscribeBtn">
+                <button class="nav-btn primary">
                     <span data-i18n="nav.subscribe">Suscribirse</span>
                 </button>
             </div>
-
-            <div class="nav-mobile">
-                <button class="nav-btn primary" id="subscribeMobileBtn">
-                    <span>Suscribirse</span>
-                </button>
-                <button class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
         </div>
-    </nav>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#gallery" class="nav-item" data-section="gallery" data-i18n="nav.gallery">Galería</a>
-        <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">🎨 Galería completa</a>
-        <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Vídeos</a>
-        <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">Cómo funciona</a>
-        <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Beneficios</a>
-
-        <div class="nav-actions">
-            <div style="display:flex; gap:8px; margin-bottom:12px;">
-                <button class="icon-btn" id="langToggleMobile" aria-label="Toggle language">EN</button>
-                <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme"><span>☀️</span></button>
-            </div>
-            <button class="nav-btn secondary"><span data-i18n="nav.login">Entrar</span></button>
-            <button class="nav-btn primary"><span data-i18n="nav.subscribe">Suscribirse</span></button>
-        </div>
-    </div>
-
-    <!-- HERO -->
-    <section class="hero" id="hero">
-        <div class="hero-content">
-            <div class="eyebrow" data-i18n="hero.eyebrow">Fondos exclusivos</div>
-            <h1>
-                <span class="title-line" data-i18n="hero.title1">Wallpapers únicos</span><br>
-                <span class="gradient-text" data-i18n="hero.title2">para todos tus dispositivos</span>
-            </h1>
-            <p data-i18n="hero.desc">Descarga arte original y optimizado. Disfruta calidad BetterWLPRS.</p>
-
-            <div class="hero-actions">
-                <a href="galeria.html" class="btn primary">
-                    <span data-i18n="hero.explore">Explorar galería completa</span> <span>→</span>
-                </a>
-                <a href="#how" class="btn secondary" data-i18n="hero.how">¿Cómo funciona?</a>
-            </div>
-
-
-
-
-            <!-- spline-viewer ABSOLUTE, fuera del flujo -->
-            <div class="steamdeck-hero-absolute absolute left-1/2 top-0 transform -translate-x-1/2 z-0 w-full flex justify-center pointer-events-none"
-                style="z-index:0; margin-top: 0px; width:100vw; left:0; right:0; transform:none;">
-                <div class="relative" style="z-index:0; width:100vw;">
-                    <script type="module"
-                        src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
-                    <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
-                        style="width:100vw; height:400px; display:block; margin:0; border-radius:0.75rem; background:transparent; z-index:0; position:relative; pointer-events:none;"
-                        class="steamdeck-viewer-main"></spline-viewer>
+        <!-- HERO -->
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <div class="eyebrow" data-i18n="hero.eyebrow">Fondos exclusivos</div>
+                <h1>
+                    <span class="title-line" data-i18n="hero.title1">Wallpapers únicos</span>
+                    <br>
+                    <span class="gradient-text" data-i18n="hero.title2">para todos tus dispositivos</span>
+                </h1>
+                <p data-i18n="hero.desc">Descarga arte original y optimizado. Disfruta calidad BetterWLPRS.</p>
+                <div class="hero-actions">
+                    <a href="galeria.html" class="btn primary">
+                        <span data-i18n="hero.explore">Explorar galería completa</span>
+                        <span>→</span>
+                    </a>
+                    <a href="#how" class="btn secondary" data-i18n="hero.how">¿Cómo funciona?</a>
                 </div>
-            </div>
-
-            <div class="chips">
-                <span class="chip" data-i18n="chips.original">Original</span>
-                <span class="chip" data-i18n="chips.onlyHere">Solo aquí</span>
-                <span class="chip" data-i18n="chips.multi">Multi-dispositivo</span>
-                <span class="chip" data-i18n="chips.instant">Descarga instantánea</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- GALERÍA -->
-    <section class="section" id="gallery">
-        <div class="section-header">
-            <h2><span data-i18n="gallery.titlePrefix">Fondos de pantalla</span> <span class="highlight"
-                    data-i18n="gallery.highlight">Originales</span></h2>
-            <p data-i18n="gallery.desc">Cada imagen se muestra optimizada. ¿Quieres el archivo original, sin marca de
-                agua? Hazte miembro y descárgalo al instante.</p>
-
-
-        </div>
-        <div class="grid" id="galleryGrid">
-            <div class="card">
-                <div class="card-image">
-                    <img src="./img/marcussittedahh.gif" alt="Golden Hour">
-                    <div class="card-badge" data-i18n="badge.portrait">Retrato</div>
-                    <div class="card-premium">🔒</div>
-                </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">Cyberpunk Marcus</div>
-                        <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para miembros — suscripción
-                            para full-res</div>
-                    </div>
-                    <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image">
-                    <img src="./img/arkham.gif" alt="City Nights">
-                    <div class="card-badge" data-i18n="badge.urban">Urbano</div>
-                </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">Batman Arkham</div>
-                        <div class="card-subtitle" data-i18n="card.download1600">Descarga 1600px</div>
-                    </div>
-                    <button class="card-action primary" data-i18n="card.download">Descargar</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image">
-                    <img src="img/videowlprs/discoelysiumstart.gif" alt="Studio Vibes">
-                    <div class="card-badge" data-i18n="badge.studio">Estudio</div>
-                    <div class="card-premium">🔒</div>
-                </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">Disco Elysium</div>
-                        <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para miembros — suscripción
-                            para full-res</div>
-                    </div>
-                    <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-image">
-                    <img src="img/samsittedahh.gif" alt="Soft Neon">
-                    <div class="card-badge" data-i18n="badge.portrait">Retrato</div>
-                    <div class="card-premium">🔒</div>
-                </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">Sam chilling on a mountain</div>
-                        <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para miembros — suscripción
-                            para full-res</div>
-                    </div>
-                    <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image">
-                    <img src="./img/sanfracampview.jpg" alt="Analog Mood">
-                    <div class="card-badge" data-i18n="badge.editorial">Editorial</div>
-                </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">San Francisco</div>
-                        <div class="card-subtitle">Vista de San Francisco — descarga 1600px</div>
-                    </div>
-                    <button class="card-action primary" data-i18n="card.download">Descargar</button>
-                </div>
-            </div>
-
-            <!-- Botón a galería completa -->
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="galeria.html" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px;">
-                    <span>🖼️ Ver galería completa</span>
-                    <span>→</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- GALERÍA -->
-    <section class="section" id="galeria">
-        <div class="section-header">
-            <h2><span data-i18n="videos.title">Vídeos</span> <span class="highlight"
-                    data-i18n="videos.highlight">Exclusivos</span> BetterWLPRS</h2>
-            <p data-i18n="videos.desc">Descubre clips únicos de nuestras mejores capturas. Los miembros disfrutan
-                contenido completo en máxima calidad.</p>
-        </div>
-        <div class="grid" id="videoGrid">
-            <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/spidersky.gif" alt="Behind The Lens">
-                    <div class="card-premium">🔒</div>
-                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);"
-                        data-i18n="video.overlay">Ver vídeo</div>
-                </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">Spider Sky</div>
-                        <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al suscribirte</div>
+                <!-- spline-viewer ABSOLUTE, fuera del flujo -->
+                <div class="steamdeck-hero-absolute" style="width:100%; display:flex; justify-content:center; margin:0 auto; pointer-events:none; z-index:0; margin-top:0; overflow:hidden;">
+                    <div style="width:100%; max-width:1200px; position:relative; z-index:0; display:flex; justify-content:center;">
+                        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
+                        <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode" style="height:400px; border-radius:0.75rem; background:transparent; pointer-events:none;" class="steamdeck-viewer-main"></spline-viewer>
                     </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/thelongdarkwolfs.png" alt="Street Cut">
-                    <div class="card-premium">🔒</div>
-                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);"
-                        data-i18n="video.overlay">Ver vídeo</div>
+                <div class="chips">
+                    <span class="chip" data-i18n="chips.original">Original</span>
+                    <span class="chip" data-i18n="chips.onlyHere">Solo aquí</span>
+                    <span class="chip" data-i18n="chips.multi">Multi-dispositivo</span>
+                    <span class="chip" data-i18n="chips.instant">Descarga instantánea</span>
                 </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">The Long Dark</div>
-                        <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al suscribirte</div>
+            </div>
+        </section>
+        <!-- GALERÍA -->
+        <section class="section" id="gallery">
+            <div class="section-header">
+                <h2>
+                    <span data-i18n="gallery.titlePrefix">Fondos de pantalla</span>
+                    <span class="highlight" data-i18n="gallery.highlight">Originales</span>
+                </h2>
+                <p data-i18n="gallery.desc">
+                    Cada imagen se muestra optimizada. ¿Quieres el archivo original, sin marca de
+                agua? Hazte miembro y descárgalo al instante.
+                </p>
+            </div>
+            <div class="grid" id="galleryGrid">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="./img/marcussittedahh.gif" alt="Golden Hour">
+                        <div class="card-badge" data-i18n="badge.portrait">Retrato</div>
+                        <div class="card-premium">🔒</div>
                     </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/samsatori.gif" alt="Studio BTS">
-                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);"
-                        data-i18n="video.overlay">Ver vídeo</div>
-                </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">Samurai Satori</div>
-                        <div class="card-subtitle" data-i18n="videos.card.open">Vídeo — abierto</div>
-                    </div>
-                </div>
-            </div>
-            <!-- Botón a galería completa -->
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="galeria.html" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px;">
-                    <span>🖼️ Ver galería completa</span>
-                    <span>→</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- CÓMO FUNCIONA -->
-    <section class="section" id="how">
-        <div class="section-header">
-            <h2><span data-i18n="how.titlePrefix">Cómo</span> <span class="highlight"
-                    data-i18n="how.highlight">Funciona</span></h2>
-            <p data-i18n="how.desc">Hazlo en 3 pasos simples:</p>
-        </div>
-        <div class="grid" id="howGrid">
-            <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/sanfracampview.jpg" alt="Sube y etiqueta">
-                </div>
-                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
-                    <div style="display: flex; align-items: center; gap: 16px;">
-                        <div
-                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
-                            1</div>
+                    <div class="card-content">
                         <div>
-                            <div class="card-title">Descarga el Starter Pack</div>
+                            <div class="card-title">Cyberpunk Marcus</div>
+                            <div class="card-subtitle" data-i18n="card.membersOnly">
+                                Acceso solo para miembros — suscripción
+                            para full-res
+                            </div>
+                        </div>
+                        <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="./img/arkham.gif" alt="City Nights">
+                        <div class="card-badge" data-i18n="badge.urban">Urbano</div>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">Batman Arkham</div>
+                            <div class="card-subtitle" data-i18n="card.download1600">Descarga 1600px</div>
+                        </div>
+                        <button class="card-action primary" data-i18n="card.download">Descargar</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="img/videowlprs/discoelysiumstart.gif" alt="Studio Vibes">
+                        <div class="card-badge" data-i18n="badge.studio">Estudio</div>
+                        <div class="card-premium">🔒</div>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">Disco Elysium</div>
+                            <div class="card-subtitle" data-i18n="card.membersOnly">
+                                Acceso solo para miembros — suscripción
+                            para full-res
+                            </div>
+                        </div>
+                        <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="img/samsittedahh.gif" alt="Soft Neon">
+                        <div class="card-badge" data-i18n="badge.portrait">Retrato</div>
+                        <div class="card-premium">🔒</div>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">Sam chilling on a mountain</div>
+                            <div class="card-subtitle" data-i18n="card.membersOnly">
+                                Acceso solo para miembros — suscripción
+                            para full-res
+                            </div>
+                        </div>
+                        <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="./img/sanfracampview.jpg" alt="Analog Mood">
+                        <div class="card-badge" data-i18n="badge.editorial">Editorial</div>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">San Francisco</div>
+                            <div class="card-subtitle">Vista de San Francisco — descarga 1600px</div>
+                        </div>
+                        <button class="card-action primary" data-i18n="card.download">Descargar</button>
+                    </div>
+                </div>
+                <!-- Botón a galería completa -->
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="galeria.html" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px;">
+                        <span>🖼️ Ver galería completa</span>
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- GALERÍA -->
+        <section class="section" id="galeria">
+            <div class="section-header">
+                <h2>
+                    <span data-i18n="videos.title">Vídeos</span>
+                    <span class="highlight" data-i18n="videos.highlight">Exclusivos</span>
+                    BetterWLPRS
+                </h2>
+                <p data-i18n="videos.desc">
+                    Descubre clips únicos de nuestras mejores capturas. Los miembros disfrutan
+                contenido completo en máxima calidad.
+                </p>
+            </div>
+            <div class="grid" id="videoGrid">
+                <div class="card">
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="./img/spidersky.gif" alt="Behind The Lens">
+                        <div class="card-premium">🔒</div>
+                        <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);" data-i18n="video.overlay">Ver vídeo</div>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">Spider Sky</div>
+                            <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al suscribirte</div>
                         </div>
                     </div>
-                    <div class="card-subtitle">Empieza gratis y prueba nuestros mejores wallpapers premium.</div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/arkham.gif" alt="Previews que enamoran">
-                </div>
-                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
-                    <div style="display: flex; align-items: center; gap: 16px;">
-                        <div
-                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
-                            2</div>
+                <div class="card">
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="./img/thelongdarkwolfs.png" alt="Street Cut">
+                        <div class="card-premium">🔒</div>
+                        <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);" data-i18n="video.overlay">Ver vídeo</div>
+                    </div>
+                    <div class="card-content">
                         <div>
-                            <div class="card-title">Elige tu Plan</div>
+                            <div class="card-title">The Long Dark</div>
+                            <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al suscribirte</div>
                         </div>
                     </div>
-                    <div class="card-subtitle">Selecciona el plan que mejor se adapte a tus necesidades.</div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/spidersky.gif" alt="Acceso completo">
-                </div>
-                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
-                    <div style="display: flex; align-items: center; gap: 16px;">
-                        <div
-                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
-                            3</div>
+                <div class="card">
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="./img/samsatori.gif" alt="Studio BTS">
+                        <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);" data-i18n="video.overlay">Ver vídeo</div>
+                    </div>
+                    <div class="card-content">
                         <div>
-                            <div class="card-title">Disfruta de BetterWLPRS</div>
+                            <div class="card-title">Samurai Satori</div>
+                            <div class="card-subtitle" data-i18n="videos.card.open">Vídeo — abierto</div>
                         </div>
                     </div>
-                    <div class="card-subtitle">Accede a wallpapers ilimitados y personaliza todos tus dispositivos.
+                </div>
+                <!-- Botón a galería completa -->
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="galeria.html" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px;">
+                        <span>🖼️ Ver galería completa</span>
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- CÓMO FUNCIONA -->
+        <section class="section" id="how">
+            <div class="section-header">
+                <h2>
+                    <span data-i18n="how.titlePrefix">Cómo</span>
+                    <span class="highlight" data-i18n="how.highlight">Funciona</span>
+                </h2>
+                <p data-i18n="how.desc">Hazlo en 3 pasos simples:</p>
+            </div>
+            <div class="grid" id="howGrid">
+                <div class="card">
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="./img/sanfracampview.jpg" alt="Sube y etiqueta">
+                    </div>
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                                1
+                            </div>
+                            <div>
+                                <div class="card-title">Descarga el Starter Pack</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">Empieza gratis y prueba nuestros mejores wallpapers premium.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="./img/arkham.gif" alt="Previews que enamoran">
+                    </div>
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                                2
+                            </div>
+                            <div>
+                                <div class="card-title">Elige tu Plan</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">Selecciona el plan que mejor se adapte a tus necesidades.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="./img/spidersky.gif" alt="Acceso completo">
+                    </div>
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                                3
+                            </div>
+                            <div>
+                                <div class="card-title">Disfruta de BetterWLPRS</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">
+                            Accede a wallpapers ilimitados y personaliza todos tus dispositivos.
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- BENEFICIOS -->
-    <section class="section" id="benefits">
-        <div class="section-header">
-            <h2><span data-i18n="benefits.titlePrefix">Beneficios para</span> <span class="highlight"
-                    data-i18n="benefits.highlight">Miembros</span></h2>
-            <p data-i18n="benefits.desc">Únete y obtén wallpapers de cada año, optimizados para todos tus dispositivos:
+        </section>
+        <!-- BENEFICIOS -->
+        <section class="section" id="benefits">
+            <div class="section-header">
+                <h2>
+                    <span data-i18n="benefits.titlePrefix">Beneficios para</span>
+                    <span class="highlight" data-i18n="benefits.highlight">Miembros</span>
+                </h2>
+                <p data-i18n="benefits.desc">
+                    Únete y obtén wallpapers de cada año, optimizados para todos tus dispositivos:
                 móvil, portátil, Kindle, ASUS ROG Ally, Steam Deck y más.
-            </p>
-        </div>
-        <div class="grid" id="benefitsGrid">
-            <div class="card">
-                <div class="card-content"
-                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
-                    <div style="display: flex; align-items: center; gap: 16px;">
-                        <div
-                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
-                            🖼️</div>
-                        <div>
-                            <div
-                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
-                                Colección completa</div>
-                            <div class="card-title">Wallpapers de cada año</div>
-                        </div>
-                    </div>
-                    <div class="card-subtitle">Acceso a toda nuestra biblioteca histórica y futuras colecciones anuales.
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-content"
-                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
-                    <div style="display: flex; align-items: center; gap: 16px;">
-                        <div
-                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
-                            🎞️</div>
-                        <div>
-                            <div
-                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
-                                Vídeowlprs</div>
-                            <div class="card-title">Clips completos 1080p/4K</div>
-                        </div>
-                    </div>
-                    <div class="card-subtitle">Preparados para loop con calidad equilibrada.</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-content"
-                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
-                    <div style="display: flex; align-items: center; gap: 16px;">
-                        <div
-                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
-                            📱</div>
-                        <div>
-                            <div
-                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
-                                Multi-dispositivo</div>
-                            <div class="card-title">Para todos tus dispositivos</div>
-                        </div>
-                    </div>
-                    <div class="card-subtitle">Móvil, portátil, tablet, Kindle, ASUS ROG Ally, Steam Deck y más.</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-content"
-                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
-                    <div style="display: flex; align-items: center; gap: 16px;">
-                        <div
-                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
-                            🔄</div>
-                        <div>
-                            <div
-                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
-                                Actualizaciones</div>
-                            <div class="card-title">Nuevos packs</div>
-                        </div>
-                    </div>
-                    <div class="card-subtitle">Contenido añadido de forma regular.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA FINAL -->
-    <section class="section" id="final-cta">
-        <div class="section-header">
-            <h2><span data-i18n="final.titlePrefix">Lleva tu setup al</span> <span class="highlight"
-                    data-i18n="final.highlight">siguiente nivel</span></h2>
-            <p data-i18n="final.desc">Desbloquea originales y vídeowlprs. Cancela cuando quieras.</p>
-            <div style="margin-top: 3rem;">
-                <button class="btn primary" id="finalCtaBtn" style="font-size: 18px; padding: 20px 40px;">
-                    <span data-i18n="final.btn">Empieza ahora</span>
-                    <span>✨</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Galería de setups de usuarios -->
-        <div style="margin-top: 4rem;">
-            <h3
-                style="text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; color: var(--text);">
-                Setups reales de nuestra comunidad</h3>
-
-            <!-- Botón a galería completa destacado -->
-            <div style="text-align: center; margin-bottom: 3rem;">
-                <a href="galeria.html" class="btn primary"
-                    style="font-size: 16px; padding: 16px 32px; display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); box-shadow: 0 8px 24px rgba(167, 135, 255, 0.3);">
-                    <span>🎨 Explorar galería completa</span>
-                    <span>✨</span>
-                </a>
-                <p style="color: var(--text-secondary); font-size: 14px; margin-top: 1rem;">
-                    Más de 500+ wallpapers únicos esperándote
                 </p>
             </div>
-
-            <div class="setup-gallery"
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto;">
-                <!-- Setup 1 -->
-                <div class="setup-card"
-                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                    <video src="./img/setupkindle.mp4" autoplay muted loop playsinline
-                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"></video>
-                    <div
-                        style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
-                        <p style="font-size: 0.9rem; font-weight: 600;">Setup Kindle BetterWLPRS</p>
-                        <p style="font-size: 0.8rem; opacity: 0.8;">@betterwlprs</p>
+            <div class="grid" id="benefitsGrid">
+                <div class="card">
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                🖼️
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                    Colección completa
+                                </div>
+                                <div class="card-title">Wallpapers de cada año</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">
+                            Acceso a toda nuestra biblioteca histórica y futuras colecciones anuales.
+                        </div>
                     </div>
                 </div>
-
-                <!-- Setup 2 -->
-                <div class="setup-card"
-                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                    <video src="./img/setupmarkus.mp4" autoplay muted loop playsinline
-                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"></video>
-                    <div
-                        style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
-                        <p style="font-size: 0.9rem; font-weight: 600;">Setup Marcus BetterWLPRS</p>
-                        <p style="font-size: 0.8rem; opacity: 0.8;">@betterwlprs</p>
+                <div class="card">
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                🎞️
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                    Vídeowlprs
+                                </div>
+                                <div class="card-title">Clips completos 1080p/4K</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">Preparados para loop con calidad equilibrada.</div>
                     </div>
                 </div>
-
-                <!-- Setup 3 -->
-                <div class="setup-card"
-                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                    <video src="./img/setupmarkus2.mp4" autoplay muted loop playsinline
-                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"></video>
-                    <div
-                        style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
-                        <p style="font-size: 0.9rem; font-weight: 600;">Setup RGB Vibes</p>
-                        <p style="font-size: 0.8rem; opacity: 0.8;">@rgb_setups</p>
+                <div class="card">
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                📱
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                    Multi-dispositivo
+                                </div>
+                                <div class="card-title">Para todos tus dispositivos</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">Móvil, portátil, tablet, Kindle, ASUS ROG Ally, Steam Deck y más.</div>
                     </div>
                 </div>
-
-                <!-- Setup 4 -->
-                <div class="setup-card"
-                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                    <img src="./img/setupmarkus.webp" alt="Setup Streamer con BetterWLPRS"
-                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
-                    <div
-                        style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
-                        <p style="font-size: 0.9rem; font-weight: 600;">Setup Streamer Pro</p>
-                        <p style="font-size: 0.8rem; opacity: 0.8;">@streamer_pro</p>
+                <div class="card">
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                🔄
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                    Actualizaciones
+                                </div>
+                                <div class="card-title">Nuevos packs</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">Contenido añadido de forma regular.</div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- STICKY CTA -->
-    <button class="sticky-cta" id="stickyCta">
-        <span data-i18n="sticky.text">Suscríbete para full-res ✨</span>
-    </button>
-
-    <!-- MODAL -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose">×</button>
-            <div style="text-align: center;">
-                <h3 style="font-size: 28px; margin-bottom: 1rem;" data-i18n="modal.title">Tu acceso completo empieza
-                    aquí</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 2rem;" data-i18n="modal.desc">Descargas sin marca
-                    de agua, vídeos completos en 1080p/4K y sesiones completas.</p>
-
-                <div style="display: grid; gap: 16px; margin-bottom: 2rem;">
-                    <div
-                        style="padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.02); display: flex; justify-content: space-between; align-items: center;">
-                        <div style="text-align: left;">
-                            <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;"
-                                data-i18n="modal.monthly">Mensual</div>
-                            <div style="color: var(--muted); font-size: 14px;" data-i18n="modal.cancelAnytime">Cancela
-                                cuando quieras</div>
+        </section>
+        <!-- CTA FINAL -->
+        <section class="section" id="final-cta">
+            <div class="section-header">
+                <h2>
+                    <span data-i18n="final.titlePrefix">Lleva tu setup al</span>
+                    <span class="highlight" data-i18n="final.highlight">siguiente nivel</span>
+                </h2>
+                <p data-i18n="final.desc">Desbloquea originales y vídeowlprs. Cancela cuando quieras.</p>
+                <div style="margin-top: 3rem;">
+                    <button class="btn primary" id="finalCtaBtn" style="font-size: 18px; padding: 20px 40px;">
+                        <span data-i18n="final.btn">Empieza ahora</span>
+                        <span>✨</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Galería de setups de usuarios -->
+            <div style="margin-top: 4rem;">
+                <h3 style="text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; color: var(--text);">
+                    Setups reales de nuestra comunidad
+                </h3>
+                <!-- Botón a galería completa destacado -->
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <a href="galeria.html" class="btn primary" style="font-size: 16px; padding: 16px 32px; display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); box-shadow: 0 8px 24px rgba(167, 135, 255, 0.3);">
+                        <span>🎨 Explorar galería completa</span>
+                        <span>✨</span>
+                    </a>
+                    <p style="color: var(--text-secondary); font-size: 14px; margin-top: 1rem;">
+                        Más de 500+ wallpapers únicos esperándote
+                    </p>
+                </div>
+                <div class="setup-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto;">
+                    <!-- Setup 1 -->
+                    <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                        <video
+                            src="./img/setupkindle.mp4"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            style="width: 100%; height: 100%; object-fit: cover;"
+                            loading="lazy"
+                        ></video>
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                            <p style="font-size: 0.9rem; font-weight: 600;">Setup Kindle BetterWLPRS</p>
+                            <p style="font-size: 0.8rem; opacity: 0.8;">@betterwlprs</p>
                         </div>
-                        <button class="btn primary" id="monthlyPlan" style="min-width: 100px;">€7,99</button>
                     </div>
-
-                    <div
-                        style="padding: 20px; border: 2px solid var(--accent); border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.05); display: flex; justify-content: space-between; align-items: center; position: relative;">
-                        <div style="position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;"
-                            data-i18n="modal.popular">Popular</div>
-                        <div style="text-align: left;">
-                            <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;"
-                                data-i18n="modal.annual">Anual</div>
-                            <div style="color: var(--muted); font-size: 14px;" data-i18n="modal.twoMonthsFree">2 meses
-                                de regalo</div>
+                    <!-- Setup 2 -->
+                    <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                        <video
+                            src="./img/setupmarkus.mp4"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            style="width: 100%; height: 100%; object-fit: cover;"
+                            loading="lazy"
+                        ></video>
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                            <p style="font-size: 0.9rem; font-weight: 600;">Setup Marcus BetterWLPRS</p>
+                            <p style="font-size: 0.8rem; opacity: 0.8;">@betterwlprs</p>
                         </div>
-                        <button class="btn primary" id="yearlyPlan" style="min-width: 100px;">€79</button>
+                    </div>
+                    <!-- Setup 3 -->
+                    <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                        <video
+                            src="./img/setupmarkus2.mp4"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            style="width: 100%; height: 100%; object-fit: cover;"
+                            loading="lazy"
+                        ></video>
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                            <p style="font-size: 0.9rem; font-weight: 600;">Setup RGB Vibes</p>
+                            <p style="font-size: 0.8rem; opacity: 0.8;">@rgb_setups</p>
+                        </div>
+                    </div>
+                    <!-- Setup 4 -->
+                    <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                        <img
+                            src="./img/setupmarkus.webp"
+                            alt="Setup Streamer con BetterWLPRS"
+                            style="width: 100%; height: 100%; object-fit: cover;"
+                            loading="lazy"
+                        >
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                            <p style="font-size: 0.9rem; font-weight: 600;">Setup Streamer Pro</p>
+                            <p style="font-size: 0.8rem; opacity: 0.8;">@streamer_pro</p>
+                        </div>
                     </div>
                 </div>
-
-                <p style="font-size: 12px; color: var(--muted);">
-                    <span data-i18n="modal.legalPrefix">Al suscribirte aceptas los</span> <a href="#"
-                        style="color: var(--accent);" data-i18n="modal.terms">Términos</a> <span>&nbsp;</span><span
-                        data-i18n="modal.and">y la</span> <a href="#" style="color: var(--accent);"
-                        data-i18n="modal.privacy">Privacidad</a>.
-                </p>
+            </div>
+        </section>
+        <!-- STICKY CTA -->
+        <button class="sticky-cta" id="stickyCta">
+            <span data-i18n="sticky.text">Suscríbete para full-res ✨</span>
+        </button>
+        <!-- MODAL -->
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <button class="modal-close" id="modalClose">×</button>
+                <div style="text-align: center;">
+                    <h3 style="font-size: 28px; margin-bottom: 1rem;" data-i18n="modal.title">
+                        Tu acceso completo empieza
+                    aquí
+                    </h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem;" data-i18n="modal.desc">
+                        Descargas sin marca
+                    de agua, vídeos completos en 1080p/4K y sesiones completas.
+                    </p>
+                    <div style="display: grid; gap: 16px; margin-bottom: 2rem;">
+                        <div style="padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.02); display: flex; justify-content: space-between; align-items: center;">
+                            <div style="text-align: left;">
+                                <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;" data-i18n="modal.monthly">Mensual</div>
+                                <div style="color: var(--muted); font-size: 14px;" data-i18n="modal.cancelAnytime">
+                                    Cancela
+                                cuando quieras
+                                </div>
+                            </div>
+                            <button class="btn primary" id="monthlyPlan" style="min-width: 100px;">€7,99</button>
+                        </div>
+                        <div style="padding: 20px; border: 2px solid var(--accent); border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.05); display: flex; justify-content: space-between; align-items: center; position: relative;">
+                            <div style="position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;" data-i18n="modal.popular">Popular</div>
+                            <div style="text-align: left;">
+                                <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;" data-i18n="modal.annual">Anual</div>
+                                <div style="color: var(--muted); font-size: 14px;" data-i18n="modal.twoMonthsFree">
+                                    2 meses
+                                de regalo
+                                </div>
+                            </div>
+                            <button class="btn primary" id="yearlyPlan" style="min-width: 100px;">€79</button>
+                        </div>
+                    </div>
+                    <p style="font-size: 12px; color: var(--muted);">
+                        <span data-i18n="modal.legalPrefix">Al suscribirte aceptas los</span>
+                        <a href="#" style="color: var(--accent);" data-i18n="modal.terms">Términos</a>
+                        <span>&nbsp;</span>
+                        <span data-i18n="modal.and">y la</span>
+                        <a href="#" style="color: var(--accent);" data-i18n="modal.privacy">Privacidad</a>
+                        .
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div
-            style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem;">
-            <!-- Logo y descripción -->
-            <div>
-                <div class="nav-brand" style="justify-content: flex-start; margin-bottom: 1rem;">BetterWLPRS</div>
-                <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 1.5rem;">
-                    Wallpapers únicos y videowallpapers premium para todos tus dispositivos. Calidad profesional,
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem;">
+                <!-- Logo y descripción -->
+                <div>
+                    <div class="nav-brand" style="justify-content: flex-start; margin-bottom: 1rem;">BetterWLPRS</div>
+                    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 1.5rem;">
+                        Wallpapers únicos y videowallpapers premium para todos tus dispositivos. Calidad profesional,
                     diseños exclusivos.
+                    </p>
+                    <!-- Redes sociales -->
+                    <div style="display: flex; gap: 12px;">
+                        <a href="https://www.tiktok.com/@betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                            <span style="font-size: 18px;">📱</span>
+                        </a>
+                        <a href="https://instagram.com/betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                            <span style="font-size: 18px;">📷</span>
+                        </a>
+                        <a href="https://twitter.com/betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                            <span style="font-size: 18px;">🐦</span>
+                        </a>
+                        <a href="https://youtube.com/@betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                            <span style="font-size: 18px;">📺</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Enlaces rápidos -->
+                <div>
+                    <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">
+                        Enlaces rápidos
+                    </h4>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <a href="#gallery" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Galería</a>
+                        <a href="#videos" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Vídeos</a>
+                        <a href="#how" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                            Cómo
+                        funciona
+                        </a>
+                        <a href="#benefits" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Beneficios</a>
+                    </div>
+                </div>
+                <!-- Contacto y soporte -->
+                <div>
+                    <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">Contacto</h4>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <a href="mailto:hola@betterwlprs.com" style="color: var(--accent); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                            📧
+                        hola@betterwlprs.com
+                        </a>
+                        <a href="mailto:soporte@betterwlprs.com" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                            🛠️
+                        Soporte técnico
+                        </a>
+                        <a href="#" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                            📋
+                        FAQ
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Copyright y legal -->
+            <div style="border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <p style="color: var(--muted); font-size: 12px; margin: 0;">
+                    © 2025 BetterWLPRS. Todos los derechos reservados.
                 </p>
-                <!-- Redes sociales -->
-                <div style="display: flex; gap: 12px;">
-                    <a href="https://www.tiktok.com/@betterwlprs" target="_blank"
-                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                        <span style="font-size: 18px;">📱</span>
-                    </a>
-                    <a href="https://instagram.com/betterwlprs" target="_blank"
-                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                        <span style="font-size: 18px;">📷</span>
-                    </a>
-                    <a href="https://twitter.com/betterwlprs" target="_blank"
-                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                        <span style="font-size: 18px;">🐦</span>
-                    </a>
-                    <a href="https://youtube.com/@betterwlprs" target="_blank"
-                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                        <span style="font-size: 18px;">📺</span>
-                    </a>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                    <a href="#" style="color: var(--muted); font-size: 12px; text-decoration: none;">Términos de uso</a>
+                    <a href="#" style="color: var(--muted); font-size: 12px; text-decoration: none;">Privacidad</a>
+                    <a href="#" style="color: var(--muted); font-size: 12px; text-decoration: none;">Cookies</a>
                 </div>
             </div>
-
-            <!-- Enlaces rápidos -->
-            <div>
-                <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">Enlaces rápidos
-                </h4>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <a href="#gallery"
-                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Galería</a>
-                    <a href="#videos"
-                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Vídeos</a>
-                    <a href="#how"
-                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Cómo
-                        funciona</a>
-                    <a href="#benefits"
-                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Beneficios</a>
-                </div>
-            </div>
-
-            <!-- Contacto y soporte -->
-            <div>
-                <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">Contacto</h4>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <a href="mailto:hola@betterwlprs.com"
-                        style="color: var(--accent); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">📧
-                        hola@betterwlprs.com</a>
-                    <a href="mailto:soporte@betterwlprs.com"
-                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">🛠️
-                        Soporte técnico</a>
-                    <a href="#"
-                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">📋
-                        FAQ</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Copyright y legal -->
-        <div
-            style="border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-            <p style="color: var(--muted); font-size: 12px; margin: 0;">
-                © 2025 BetterWLPRS. Todos los derechos reservados.
-            </p>
-            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-                <a href="#" style="color: var(--muted); font-size: 12px; text-decoration: none;">Términos de uso</a>
-                <a href="#" style="color: var(--muted); font-size: 12px; text-decoration: none;">Privacidad</a>
-                <a href="#" style="color: var(--muted); font-size: 12px; text-decoration: none;">Cookies</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <script>
+        </footer>
+        <!-- GSAP -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        <script>
         // ========== DATOS DE MUESTRA ==========
         const photos = [
             {
@@ -2323,7 +2385,6 @@
             const el = document.getElementById(id);
             if (el) el.addEventListener('click', toggleTheme);
         });
-    </script>
-</body>
-
+        </script>
+    </body>
 </html>
