@@ -1,20 +1,14 @@
 <!doctype html>
 <html lang="es">
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>BetterWLPRS — Previews que enamoran. Full-res y vídeos completos al suscribirte.</title>
-
-    <!-- Tipografía -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-
-    <meta name="description"
-        content="Explora sesiones exclusivas en previews abiertos. Suscríbete para descargar los originales en toda calidad y desbloquear vídeos completos.">
-
-    <style>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>BetterWLPRS — Previews que enamoran. Full-res y vídeos completos al suscribirte.</title>
+        <!-- Tipografía -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <meta name="description" content="Explora sesiones exclusivas en previews abiertos. Suscríbete para descargar los originales en toda calidad y desbloquear vídeos completos.">
+        <style>
         /* Theme: Light overrides using CSS variables */
         :root[data-theme="light"] {
             --bg: #f8f9fb;
@@ -732,6 +726,197 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
+        /* ========== ACTION MODAL ========== */
+        .action-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2001;
+            padding: 24px;
+        }
+
+        .action-modal-content {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .action-modal.active .action-modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .action-modal-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .action-modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .action-modal-subtitle {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .action-modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .action-btn {
+            padding: 16px 24px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background: var(--card-hover);
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: left;
+        }
+
+        .action-btn:hover {
+            background: var(--border-hover);
+            transform: translateY(-1px);
+        }
+
+        .action-btn-primary {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .action-btn-primary:hover {
+            background: var(--accent-dark);
+            transform: translateY(-1px);
+        }
+
+        .action-btn-icon {
+            opacity: 0.7;
+            font-size: 16px;
+        }
+
+        .action-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: none;
+            color: var(--muted);
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.2s ease;
+        }
+
+        .action-modal-close:hover {
+            background: var(--border);
+            color: var(--text);
+        }
+
+        /* ========== IMAGE VIEWER ========== */
+        .image-viewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1999;
+            padding: 24px;
+        }
+
+        .image-viewer-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-viewer img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: var(--radius-sm);
+            position: relative;
+        }
+
+        .image-watermark {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .image-viewer-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .image-viewer-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
         /* Sticky CTA */
         .sticky-cta {
             position: fixed;
@@ -766,9 +951,28 @@
         .footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border);
-            padding: 60px 24px;
-            text-align: center;
+            padding: 60px 24px 24px;
             color: var(--text-secondary);
+        }
+
+        .footer a:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .footer h4 {
+            position: relative;
+        }
+
+        .footer h4::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
         }
 
         /* Responsive */
@@ -826,13 +1030,7 @@
             /* Forzar visibilidad en móvil */
             .card,
             .section,
-            .grid,
-            .eyebrow,
-            .hero h1,
-            .hero p,
-            .hero-actions .btn,
-            .chip,
-            .section-header {
+            .grid {
                 opacity: 1 !important;
                 transform: translateY(0) !important;
                 visibility: visible !important;
@@ -918,496 +1116,852 @@
                 background-position: 200% 0;
             }
         }
-    </style>
-</head>
 
-<body>
-    <!-- NUEVA NAVEGACIÓN -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                BetterWLPRS
+        /* Setup Gallery Styles */
+        .setup-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--border-hover);
+        }
+
+        .setup-card img {
+            transition: transform 0.6s ease;
+        }
+
+        .setup-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Spline Viewer Fixes */
+        .steamdeck-hero-absolute {
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        spline-viewer {
+            width: 100%;
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .steamdeck-viewer-main {
+            width: 100%;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            left: auto;
+            right: auto;
+            transform: none;
+        }
+
+        @media (max-width: 768px) {
+            .setup-gallery {
+                grid-template-columns: 1fr !important;
+                gap: 16px !important;
+            }
+        }
+        </style>
+    </head>
+    <body>
+        <!-- NUEVA NAVEGACIÓN -->
+        <nav class="navbar" id="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    BetterWLPRS
+                </div>
+                <div class="nav-menu" id="navMenu">
+                    <a
+                        href="#gallery"
+                        class="nav-item active"
+                        data-section="gallery"
+                        data-i18n="nav.gallery"
+                    >Galería</a>
+                    <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">
+                        🎨 Galería
+                    completa
+                    </a>
+                    <a
+                        href="#videos"
+                        class="nav-item"
+                        data-section="videos"
+                        data-i18n="nav.videos"
+                    >Vídeos</a>
+                    <a
+                        href="#how"
+                        class="nav-item"
+                        data-section="how"
+                        data-i18n="nav.how"
+                    >Cómo funciona</a>
+                    <a
+                        href="#benefits"
+                        class="nav-item"
+                        data-section="benefits"
+                        data-i18n="nav.benefits"
+                    >Beneficios</a>
+                </div>
+                <div class="nav-actions">
+                    <!-- Minimal toggles -->
+                    <button class="icon-btn" id="langToggle" aria-label="Toggle language">EN</button>
+                    <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+                        <span>☀️</span>
+                    </button>
+                    <button class="nav-btn secondary" id="loginBtn">
+                        <span data-i18n="nav.login">Entrar</span>
+                    </button>
+                    <button class="nav-btn primary" id="subscribeBtn">
+                        <span data-i18n="nav.subscribe">Suscribirse</span>
+                    </button>
+                </div>
+                <div class="nav-mobile">
+                    <button class="nav-btn primary" id="subscribeMobileBtn">
+                        <span>Suscribirse</span>
+                    </button>
+                    <button class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
             </div>
-
-            <div class="nav-menu" id="navMenu">
-                <a href="#gallery" class="nav-item active" data-section="gallery" data-i18n="nav.gallery">Galería</a>
-                <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Vídeos</a>
-                <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">Cómo funciona</a>
-                <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Beneficios</a>
-            </div>
-
+        </nav>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a
+                href="#gallery"
+                class="nav-item"
+                data-section="gallery"
+                data-i18n="nav.gallery"
+            >Galería</a>
+            <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">🎨 Galería completa</a>
+            <a
+                href="#videos"
+                class="nav-item"
+                data-section="videos"
+                data-i18n="nav.videos"
+            >Vídeos</a>
+            <a
+                href="#how"
+                class="nav-item"
+                data-section="how"
+                data-i18n="nav.how"
+            >Cómo funciona</a>
+            <a
+                href="#benefits"
+                class="nav-item"
+                data-section="benefits"
+                data-i18n="nav.benefits"
+            >Beneficios</a>
             <div class="nav-actions">
-                <!-- Minimal toggles -->
-                <button class="icon-btn" id="langToggle" aria-label="Toggle language">EN</button>
-                <button class="icon-btn" id="themeToggle" aria-label="Toggle theme"><span>☀️</span></button>
-                <button class="nav-btn secondary" id="loginBtn">
+                <div style="display:flex; gap:8px; margin-bottom:12px;">
+                    <button class="icon-btn" id="langToggleMobile" aria-label="Toggle language">EN</button>
+                    <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme">
+                        <span>☀️</span>
+                    </button>
+                </div>
+                <button class="nav-btn secondary">
                     <span data-i18n="nav.login">Entrar</span>
                 </button>
-                <button class="nav-btn primary" id="subscribeBtn">
+                <button class="nav-btn primary">
                     <span data-i18n="nav.subscribe">Suscribirse</span>
                 </button>
             </div>
-
-            <div class="nav-mobile">
-                <button class="nav-btn primary" id="subscribeMobileBtn">
-                    <span>Suscribirse</span>
-                </button>
-                <button class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
         </div>
-    </nav>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#gallery" class="nav-item" data-section="gallery" data-i18n="nav.gallery">Galería</a>
-        <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Vídeos</a>
-        <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">Cómo funciona</a>
-        <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Beneficios</a>
-
-        <div class="nav-actions">
-            <div style="display:flex; gap:8px; margin-bottom:12px;">
-                <button class="icon-btn" id="langToggleMobile" aria-label="Toggle language">EN</button>
-                <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme"><span>☀️</span></button>
-            </div>
-            <button class="nav-btn secondary"><span data-i18n="nav.login">Entrar</span></button>
-            <button class="nav-btn primary"><span data-i18n="nav.subscribe">Suscribirse</span></button>
-        </div>
-    </div>
-
-    <!-- HERO -->
-    <section class="hero" id="hero">
-        <div class="hero-content">
-            <div class="eyebrow" data-i18n="hero.eyebrow">Fondos exclusivos</div>
-            <h1>
-                <span class="title-line" data-i18n="hero.title1">Wallpapers únicos</span><br>
-                <span class="gradient-text" data-i18n="hero.title2">para todos tus dispositivos</span>
-            </h1>
-            <p data-i18n="hero.desc">Descarga arte original y optimizado. Disfruta calidad BetterWLPRS.</p>
-
-            <div class="hero-actions">
-                <button class="btn primary" id="exploreBtnHero">
-                    <span data-i18n="hero.explore">Explorar galería</span> <span>→</span>
-                </button>
-                <a href="#how" class="btn secondary" data-i18n="hero.how">¿Cómo funciona?</a>
-            </div>
-
-
-            <!-- spline-viewer ABSOLUTE, fuera del flujo -->
-            <div class="steamdeck-hero-absolute absolute left-1/2 top-0 transform -translate-x-1/2 z-0 w-full flex justify-center pointer-events-none"
-                style="z-index:0; margin-top: 0px;">
-                <div class="relative w-full" style="z-index:0;">
-                    <script type="module"
-                        src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
-                    <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
-                        style="width: 100%; max-width: 900px; height: 400px; display: block; margin: 0 auto; border-radius: 0.75rem; background: transparent; z-index:0; position:relative; pointer-events:none;"
-                        class="steamdeck-viewer-main"></spline-viewer>
+        <!-- HERO -->
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <div class="eyebrow" data-i18n="hero.eyebrow">Fondos exclusivos</div>
+                <h1>
+                    <span class="title-line" data-i18n="hero.title1">Wallpapers únicos</span>
+                    <br>
+                    <span class="gradient-text" data-i18n="hero.title2">para todos tus dispositivos</span>
+                </h1>
+                <p data-i18n="hero.desc">Descarga arte original y optimizado. Disfruta calidad BetterWLPRS.</p>
+                <div class="hero-actions">
+                    <a href="galeria.html" class="btn primary">
+                        <span data-i18n="hero.explore">Explorar galería completa</span>
+                        <span>→</span>
+                    </a>
+                    <a href="#how" class="btn secondary" data-i18n="hero.how">¿Cómo funciona?</a>
                 </div>
-            </div>
-
-            <div class="chips">
-                <span class="chip" data-i18n="chips.original">Original</span>
-                <span class="chip" data-i18n="chips.onlyHere">Solo aquí</span>
-                <span class="chip" data-i18n="chips.multi">Multi-dispositivo</span>
-                <span class="chip" data-i18n="chips.instant">Descarga instantánea</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- GALERÍA -->
-    <section class="section" id="gallery">
-        <div class="section-header">
-            <h2><span data-i18n="gallery.titlePrefix">Fondos de pantalla</span> <span class="highlight"
-                    data-i18n="gallery.highlight">Originales</span></h2>
-            <p data-i18n="gallery.desc">Cada imagen se muestra optimizada. ¿Quieres el archivo original, sin marca de
-                agua? Hazte miembro y descárgalo al instante.</p>
-        </div>
-        <div class="grid" id="galleryGrid">
-            <div class="card">
-                <div class="card-image">
-                    <img src="./img/marcussittedahh.gif" alt="Golden Hour">
-                    <div class="card-badge" data-i18n="badge.portrait">Retrato</div>
-                    <div class="card-premium">🔒</div>
-                </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">Cyberpunk Marcus</div>
-                        <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para miembros — suscripción
-                            para full-res</div>
-                    </div>
-                    <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image">
-                    <img src="./img/arkham.gif" alt="City Nights">
-                    <div class="card-badge" data-i18n="badge.urban">Urbano</div>
-                </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">Batman Arkham</div>
-                        <div class="card-subtitle" data-i18n="card.download1600">Descarga 1600px</div>
-                    </div>
-                    <button class="card-action primary" data-i18n="card.download">Descargar</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image">
-                    <img src="img/videowlprs/discoelysiumstart.gif" alt="Studio Vibes">
-                    <div class="card-badge" data-i18n="badge.studio">Estudio</div>
-                    <div class="card-premium">🔒</div>
-                </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">Disco Elysium</div>
-                        <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para miembros — suscripción
-                            para full-res</div>
-                    </div>
-                    <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image">
-                    <img src="img/samsatori.gif" alt="Ocean Walk">
-                    <div class="card-badge" data-i18n="badge.documentary">Documental</div>
-                </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">Samurai Satori</div>
-                        <div class="card-subtitle" data-i18n="card.download1600">Descarga 1600px</div>
-                    </div>
-                    <button class="card-action primary" data-i18n="card.download">Descargar</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image">
-                    <img src="img/samsittedahh.gif" alt="Soft Neon">
-                    <div class="card-badge" data-i18n="badge.portrait">Retrato</div>
-                    <div class="card-premium">🔒</div>
-                </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">Samurai Sitted</div>
-                        <div class="card-subtitle" data-i18n="card.membersOnly">Acceso solo para miembros — suscripción
-                            para full-res</div>
-                    </div>
-                    <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image">
-                    <img src="./img/sanfracampview.jpg" alt="Analog Mood">
-                    <div class="card-badge" data-i18n="badge.editorial">Editorial</div>
-                </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">San Francisco</div>
-                        <div class="card-subtitle">Vista de San Francisco — descarga 1600px</div>
-                    </div>
-                    <button class="card-action primary" data-i18n="card.download">Descargar</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- VÍDEOS -->
-    <section class="section" id="videos">
-        <div class="section-header">
-            <h2><span data-i18n="videos.title">Vídeos</span> <span class="highlight"
-                    data-i18n="videos.highlight">Exclusivos</span> BetterWLPRS</h2>
-            <p data-i18n="videos.desc">Descubre clips únicos de nuestras mejores capturas. Los miembros disfrutan
-                contenido completo en máxima calidad.</p>
-        </div>
-        <div class="grid" id="videoGrid">
-            <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/spidersky.gif" alt="Behind The Lens">
-                    <div class="card-badge">Trailer 18s</div>
-                    <div class="card-premium">🔒</div>
-                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);"
-                        data-i18n="video.overlay">Ver vídeo</div>
-                </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">Spider Sky</div>
-                        <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al suscribirte</div>
+                <!-- spline-viewer ABSOLUTE, fuera del flujo -->
+                <div class="steamdeck-hero-absolute" style="width:100%; display:flex; justify-content:center; margin:0 auto; pointer-events:none; z-index:0; margin-top:0; overflow:hidden;">
+                    <div style="width:100%; max-width:1200px; position:relative; z-index:0; display:flex; justify-content:center;">
+                        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
+                        <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode" style="height:400px; border-radius:0.75rem; background:transparent; pointer-events:none;" class="steamdeck-viewer-main"></spline-viewer>
                     </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/thelongdarkwolfs.png" alt="Street Cut">
-                    <div class="card-badge">Trailer 12s</div>
-                    <div class="card-premium">🔒</div>
-                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);"
-                        data-i18n="video.overlay">Ver vídeo</div>
-                </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">The Long Dark</div>
-                        <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al suscribirte</div>
-                    </div>
+                <div class="chips">
+                    <span class="chip" data-i18n="chips.original">Original</span>
+                    <span class="chip" data-i18n="chips.onlyHere">Solo aquí</span>
+                    <span class="chip" data-i18n="chips.multi">Multi-dispositivo</span>
+                    <span class="chip" data-i18n="chips.instant">Descarga instantánea</span>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/samsatori.gif" alt="Studio BTS">
-                    <div class="card-badge">Trailer 15s</div>
-                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);"
-                        data-i18n="video.overlay">Ver vídeo</div>
-                </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">Samurai Satori</div>
-                        <div class="card-subtitle" data-i18n="videos.card.open">Vídeo — abierto</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CÓMO FUNCIONA -->
-    <section class="section" id="how">
-        <div class="section-header">
-            <h2><span data-i18n="how.titlePrefix">Cómo</span> <span class="highlight"
-                    data-i18n="how.highlight">Funciona</span></h2>
-            <p data-i18n="how.desc">Publica tus sesiones y clips. El mundo ve un adelanto; lo premium se desbloquea con
-                suscripción.</p>
-        </div>
-        <div class="grid" id="howGrid">
-            <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/sanfracampview.jpg" alt="Sube y etiqueta">
-                </div>
-                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
-                    <div style="display: flex; align-items: center; gap: 16px;">
-                        <div
-                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
-                            1</div>
-                        <div>
-                            <div class="card-title">Sube y etiqueta</div>
-                        </div>
-                    </div>
-                    <div class="card-subtitle">Transformamos a WebP/AVIF con srcset y marca de agua sutil.</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/arkham.gif" alt="Previews que enamoran">
-                </div>
-                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
-                    <div style="display: flex; align-items: center; gap: 16px;">
-                        <div
-                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
-                            2</div>
-                        <div>
-                            <div class="card-title">Previews que enamoran</div>
-                        </div>
-                    </div>
-                    <div class="card-subtitle">Carga progresiva, blur inicial y micro‑interacciones en scroll.</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/spidersky.gif" alt="Acceso completo">
-                </div>
-                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
-                    <div style="display: flex; align-items: center; gap: 16px;">
-                        <div
-                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
-                            3</div>
-                        <div>
-                            <div class="card-title">Acceso completo</div>
-                        </div>
-                    </div>
-                    <div class="card-subtitle">Originales y vídeowlprs completos tras la suscripción.</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/thelongdarkwolfs.png" alt="Descargas seguras">
-                </div>
-                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
-                    <div style="display: flex; align-items: center; gap: 16px;">
-                        <div
-                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
-                            4</div>
-                        <div>
-                            <div class="card-title">Descargas seguras</div>
-                        </div>
-                    </div>
-                    <div class="card-subtitle">Enlaces firmados y límites anti‑abuso para proteger tu trabajo.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- BENEFICIOS -->
-    <section class="section" id="benefits">
-        <div class="section-header">
-            <h2><span data-i18n="benefits.titlePrefix">Beneficios para</span> <span class="highlight"
-                    data-i18n="benefits.highlight">Miembros</span></h2>
-            <p data-i18n="benefits.desc">Acceso a originales en full-res y vídeowlprs completos, listos para tu setup.
-            </p>
-        </div>
-        <div class="grid" id="benefitsGrid">
-            <div class="card">
-                <div class="card-content"
-                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
-                    <div style="display: flex; align-items: center; gap: 16px;">
-                        <div
-                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
-                            🖼️</div>
-                        <div>
-                            <div
-                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
-                                Original</div>
-                            <div class="card-title">Sin marca de agua</div>
-                        </div>
-                    </div>
-                    <div class="card-subtitle">Descarga los archivos tal y como fueron creados.</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-content"
-                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
-                    <div style="display: flex; align-items: center; gap: 16px;">
-                        <div
-                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
-                            🎞️</div>
-                        <div>
-                            <div
-                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
-                                Vídeowlprs</div>
-                            <div class="card-title">Clips completos 1080p/4K</div>
-                        </div>
-                    </div>
-                    <div class="card-subtitle">Preparados para loop con calidad equilibrada.</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-content"
-                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
-                    <div style="display: flex; align-items: center; gap: 16px;">
-                        <div
-                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
-                            📱</div>
-                        <div>
-                            <div
-                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
-                                Por dispositivo</div>
-                            <div class="card-title">Formatos optimizados</div>
-                        </div>
-                    </div>
-                    <div class="card-subtitle">Móvil, desktop, tablet y Steam Deck.</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-content"
-                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
-                    <div style="display: flex; align-items: center; gap: 16px;">
-                        <div
-                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
-                            🔄</div>
-                        <div>
-                            <div
-                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
-                                Actualizaciones</div>
-                            <div class="card-title">Nuevos packs</div>
-                        </div>
-                    </div>
-                    <div class="card-subtitle">Contenido añadido de forma regular.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA FINAL -->
-    <section class="section" id="final-cta">
-        <div class="section-header">
-            <h2><span data-i18n="final.titlePrefix">Lleva tu setup al</span> <span class="highlight"
-                    data-i18n="final.highlight">siguiente nivel</span></h2>
-            <p data-i18n="final.desc">Desbloquea originales y vídeowlprs. Cancela cuando quieras.</p>
-            <div style="margin-top: 3rem;">
-                <button class="btn primary" id="finalCtaBtn" style="font-size: 18px; padding: 20px 40px;">
-                    <span data-i18n="final.btn">Empieza ahora</span>
-                    <span>✨</span>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- STICKY CTA -->
-    <button class="sticky-cta" id="stickyCta">
-        <span data-i18n="sticky.text">Suscríbete para full-res ✨</span>
-    </button>
-
-    <!-- MODAL -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose">×</button>
-            <div style="text-align: center;">
-                <h3 style="font-size: 28px; margin-bottom: 1rem;" data-i18n="modal.title">Tu acceso completo empieza
-                    aquí</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 2rem;" data-i18n="modal.desc">Descargas sin marca
-                    de agua, vídeos completos en 1080p/4K y sesiones completas.</p>
-
-                <div style="display: grid; gap: 16px; margin-bottom: 2rem;">
-                    <div
-                        style="padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.02); display: flex; justify-content: space-between; align-items: center;">
-                        <div style="text-align: left;">
-                            <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;"
-                                data-i18n="modal.monthly">Mensual</div>
-                            <div style="color: var(--muted); font-size: 14px;" data-i18n="modal.cancelAnytime">Cancela
-                                cuando quieras</div>
-                        </div>
-                        <button class="btn primary" id="monthlyPlan" style="min-width: 100px;">€7,99</button>
-                    </div>
-
-                    <div
-                        style="padding: 20px; border: 2px solid var(--accent); border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.05); display: flex; justify-content: space-between; align-items: center; position: relative;">
-                        <div style="position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;"
-                            data-i18n="modal.popular">Popular</div>
-                        <div style="text-align: left;">
-                            <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;"
-                                data-i18n="modal.annual">Anual</div>
-                            <div style="color: var(--muted); font-size: 14px;" data-i18n="modal.twoMonthsFree">2 meses
-                                de regalo</div>
-                        </div>
-                        <button class="btn primary" id="yearlyPlan" style="min-width: 100px;">€79</button>
-                    </div>
-                </div>
-
-                <p style="font-size: 12px; color: var(--muted);">
-                    <span data-i18n="modal.legalPrefix">Al suscribirte aceptas los</span> <a href="#"
-                        style="color: var(--accent);" data-i18n="modal.terms">Términos</a> <span>&nbsp;</span><span
-                        data-i18n="modal.and">y la</span> <a href="#" style="color: var(--accent);"
-                        data-i18n="modal.privacy">Privacidad</a>.
+        </section>
+        <!-- GALERÍA -->
+        <section class="section" id="gallery">
+            <div class="section-header">
+                <h2>
+                    <span data-i18n="gallery.titlePrefix">Fondos de pantalla</span>
+                    <span class="highlight" data-i18n="gallery.highlight">Originales</span>
+                </h2>
+                <p data-i18n="gallery.desc">
+                    Cada imagen se muestra optimizada. ¿Quieres el archivo original, sin marca de
+                agua? Hazte miembro y descárgalo al instante.
                 </p>
             </div>
+            <div class="grid" id="galleryGrid">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://raw.githubusercontent.com/nodoamd/nodoamd.github.io/refs/heads/main/betterwlprs/img/marcussittedahh.gif" alt="Golden Hour">
+                        <div class="card-badge" data-i18n="badge.portrait">Retrato</div>
+                        <div class="card-premium">🔒</div>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">Cyberpunk Marcus</div>
+                            <div class="card-subtitle" data-i18n="card.membersOnly">
+                                Acceso solo para miembros — suscripción
+                            para full-res
+                            </div>
+                        </div>
+                        <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://raw.githubusercontent.com/nodoamd/nodoamd.github.io/refs/heads/main/betterwlprs/img/webp%20Arkham/webp%20Arkham-akl.webp" alt="City Nights">
+                        <div class="card-badge" data-i18n="badge.urban">Urbano</div>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">Batman Arkham</div>
+                            <div class="card-subtitle" data-i18n="card.download1600">Descarga 1600px</div>
+                        </div>
+                        <button class="card-action primary" data-i18n="card.download">Descargar</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://raw.githubusercontent.com/nodoamd/nodoamd.github.io/refs/heads/main/betterwlprs/img/videowlprs/discoelysiumstart.gif" alt="Studio Vibes">
+                        <div class="card-badge" data-i18n="badge.studio">Estudio</div>
+                        <div class="card-premium">🔒</div>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">Disco Elysium</div>
+                            <div class="card-subtitle" data-i18n="card.membersOnly">
+                                Acceso solo para miembros — suscripción
+                            para full-res
+                            </div>
+                        </div>
+                        <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://raw.githubusercontent.com/nodoamd/nodoamd.github.io/refs/heads/main/betterwlprs/img/samsittedahh.gif" alt="Soft Neon">
+                        <div class="card-badge" data-i18n="badge.portrait">Retrato</div>
+                        <div class="card-premium">🔒</div>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">Sam chilling on a mountain</div>
+                            <div class="card-subtitle" data-i18n="card.membersOnly">
+                                Acceso solo para miembros — suscripción
+                            para full-res
+                            </div>
+                        </div>
+                        <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://raw.githubusercontent.com/nodoamd/nodoamd.github.io/refs/heads/main/betterwlprs/img/sanfracampview.jpg" alt="Analog Mood">
+                        <div class="card-badge" data-i18n="badge.editorial">Editorial</div>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">San Francisco</div>
+                            <div class="card-subtitle">Vista de San Francisco — descarga 1600px</div>
+                        </div>
+                        <button class="card-action primary" data-i18n="card.download">Descargar</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Botón a galería completa -->
+            <div style="text-align: center; margin-top: 2rem; margin-bottom: 5rem;">
+                <a href="galeria.html" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px;">
+                    <span>🖼️ Ver galería completa</span>
+                    <span>→</span>
+                </a>
+            </div>
+        </section>
+        <!-- GALERÍA -->
+        <section class="section" id="galeria">
+            <div class="section-header">
+                <h2>
+                    <span data-i18n="videos.title">Vídeos</span>
+                    <span class="highlight" data-i18n="videos.highlight">Exclusivos</span>
+                    BetterWLPRS
+                </h2>
+                <p data-i18n="videos.desc">
+                    Descubre clips únicos de nuestras mejores capturas. Los miembros disfrutan
+                contenido completo en máxima calidad.
+                </p>
+            </div>
+            <div class="grid" id="videoGrid">
+                <div class="card">
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="./img/spidersky.gif" alt="Behind The Lens">
+                        <div class="card-premium">🔒</div>
+                        <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);" data-i18n="video.overlay">Ver vídeo</div>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">Spider Sky</div>
+                            <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al suscribirte</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="./img/thelongdarkwolfs.png" alt="Street Cut">
+                        <div class="card-premium">🔒</div>
+                        <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);" data-i18n="video.overlay">Ver vídeo</div>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">The Long Dark</div>
+                            <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al suscribirte</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="./img/samsatori.gif" alt="Studio BTS">
+                        <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);" data-i18n="video.overlay">Ver vídeo</div>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">Samurai Satori</div>
+                            <div class="card-subtitle" data-i18n="videos.card.open">Vídeo — abierto</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Botón a galería completa -->
+            <div style="text-align: center; margin-top: 2rem; margin-bottom: 5rem;">
+                <a href="galeria.html" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px;">
+                    <span>🖼️ Ver galería completa</span>
+                    <span>→</span>
+                </a>
+            </div>
+        </section>
+        <!-- CÓMO FUNCIONA -->
+        <section class="section" id="how">
+            <div class="section-header">
+                <h2>
+                    <span data-i18n="how.titlePrefix">Cómo</span>
+                    <span class="highlight" data-i18n="how.highlight">Funciona</span>
+                </h2>
+                <p data-i18n="how.desc">Hazlo en 3 pasos simples:</p>
+            </div>
+            <div class="grid" id="howGrid">
+                <div class="card">
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="https://raw.githubusercontent.com/nodoamd/nodoamd.github.io/refs/heads/main/betterwlprs/img/sanfracampview.jpg" alt="Sube y etiqueta">
+                    </div>
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                                1
+                            </div>
+                            <div>
+                                <div class="card-title">Descarga el Starter Pack</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">Empieza gratis y prueba nuestros mejores wallpapers premium.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="https://raw.githubusercontent.com/nodoamd/nodoamd.github.io/refs/heads/main/betterwlprs/img/webp%20Arkham/webp%20Arkham-akl.webp" alt="Previews que enamoran">
+                    </div>
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                                2
+                            </div>
+                            <div>
+                                <div class="card-title">Elige tu Plan</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">Selecciona el plan que mejor se adapte a tus necesidades.</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="./img/spidersky.gif" alt="Acceso completo">
+                    </div>
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                                3
+                            </div>
+                            <div>
+                                <div class="card-title">Disfruta de BetterWLPRS</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">
+                            Accede a wallpapers ilimitados y personaliza todos tus dispositivos.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- BENEFICIOS -->
+        <section class="section" id="benefits">
+            <div class="section-header">
+                <h2>
+                    <span data-i18n="benefits.titlePrefix">Beneficios para</span>
+                    <span class="highlight" data-i18n="benefits.highlight">Miembros</span>
+                </h2>
+                <p data-i18n="benefits.desc">
+                    Únete a más de 2,500+ usuarios que ya disfrutan de wallpapers premium para todos sus dispositivos.
+                </p>
+            </div>
+            <!-- Estadísticas destacadas -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <div style="text-align: center; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius);">
+                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">500+</div>
+                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Wallpapers únicos</div>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius);">
+                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">50+</div>
+                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Vídeowallpapers 4K</div>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius);">
+                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">10+</div>
+                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Dispositivos soportados</div>
+                </div>
+            </div>
+            <div class="grid" id="benefitsGrid">
+                <!-- Beneficio Premium con imagen de fondo -->
+                <div class="card" style="position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(167, 135, 255, 0.1), rgba(167, 135, 255, 0.05)); border: 2px solid rgba(167, 135, 255, 0.3);">
+                    <div style="position: absolute; top: 0; right: 0; background: var(--accent); color: white; padding: 6px 12px; border-radius: 0 var(--radius) 0 12px; font-size: 11px; font-weight: 700; text-transform: uppercase;">Premium</div>
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px; position: relative; z-index: 2;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: linear-gradient(135deg, var(--accent), var(--accent-dark)); display: flex; align-items: center; justify-content: center; font-size: 24px; color: white; box-shadow: 0 8px 20px rgba(167, 135, 255, 0.3);">
+                                🖼️
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                    Sin limitaciones
+                                </div>
+                                <div class="card-title">Acceso completo sin marca de agua</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">Descarga archivos originales en máxima calidad, tal como fueron creados. Sin restricciones, sin compromisos.</div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;">
+                            <span style="background: rgba(167, 135, 255, 0.2); color: var(--accent); padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;">4K/8K</span>
+                            <span style="background: rgba(167, 135, 255, 0.2); color: var(--accent); padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;">PNG/JPG</span>
+                            <span style="background: rgba(167, 135, 255, 0.2); color: var(--accent); padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;">Sin límites</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Vídeowallpapers -->
+                <div class="card">
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px; position: relative;">
+                                🎞️
+                                <div style="position: absolute; top: -6px; right: -6px; width: 20px; height: 20px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; color: white;">✨</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                    Vídeowallpapers
+                                </div>
+                                <div class="card-title">Clips completos 1080p/4K</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">Videos optimizados para loop perfecto. Desde ambientes relajantes hasta escenas épicas de videojuegos.</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; margin-top: 12px;">
+                            <div style="background: var(--card-hover); padding: 8px; border-radius: 8px; text-align: center; font-size: 11px;">
+                                <div style="font-weight: 600; color: var(--text);">Duration</div>
+                                <div style="color: var(--muted);">10-30s loops</div>
+                            </div>
+                            <div style="background: var(--card-hover); padding: 8px; border-radius: 8px; text-align: center; font-size: 11px;">
+                                <div style="font-weight: 600; color: var(--text);">Quality</div>
+                                <div style="color: var(--muted);">4K ready</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Multi-dispositivo con iconos -->
+                <div class="card">
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                📱
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                    Multi-dispositivo
+                                </div>
+                                <div class="card-title">Para todos tus dispositivos</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">Resoluciones optimizadas para cada pantalla. Desde tu móvil hasta tu gaming setup.</div>
+                        <!-- Grid de dispositivos -->
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%; margin-top: 12px;">
+                            <div style="text-align: center; padding: 8px; background: var(--card-hover); border-radius: 8px;">
+                                <div style="font-size: 16px; margin-bottom: 4px;">📱</div>
+                                <div style="font-size: 10px; color: var(--muted);">Mobile</div>
+                            </div>
+                            <div style="text-align: center; padding: 8px; background: var(--card-hover); border-radius: 8px;">
+                                <div style="font-size: 16px; margin-bottom: 4px;">💻</div>
+                                <div style="font-size: 10px; color: var(--muted);">Desktop</div>
+                            </div>
+                            <div style="text-align: center; padding: 8px; background: var(--card-hover); border-radius: 8px;">
+                                <div style="font-size: 16px; margin-bottom: 4px;">📖</div>
+                                <div style="font-size: 10px; color: var(--muted);">Kindle</div>
+                            </div>
+                            <div style="text-align: center; padding: 8px; background: var(--card-hover); border-radius: 8px;">
+                                <div style="font-size: 16px; margin-bottom: 4px;">🎮</div>
+                                <div style="font-size: 10px; color: var(--muted);">Steam Deck</div>
+                            </div>
+                            <div style="text-align: center; padding: 8px; background: var(--card-hover); border-radius: 8px;">
+                                <div style="font-size: 16px; margin-bottom: 4px;">⚡</div>
+                                <div style="font-size: 10px; color: var(--muted);">ROG Ally</div>
+                            </div>
+                            <div style="text-align: center; padding: 8px; background: var(--card-hover); border-radius: 8px;">
+                                <div style="font-size: 16px; margin-bottom: 4px;">📺</div>
+                                <div style="font-size: 10px; color: var(--muted);">TV/Monitor</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Actualizaciones con timeline -->
+                <div class="card">
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                🔄
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                    Siempre fresco
+                                </div>
+                                <div class="card-title">Contenido nuevo cada semana</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">Nuevos wallpapers y vídeowallpapers añadidos regularmente. Nunca te quedarás sin opciones.</div>
+                        <!-- Timeline de actualizaciones -->
+                        <div style="margin-top: 16px; width: 100%;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                                <div style="width: 8px; height: 8px; background: var(--accent); border-radius: 50%;"></div>
+                                <div style="font-size: 12px; color: var(--text);">Esta semana: 5 nuevos wallpapers</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                                <div style="width: 8px; height: 8px; background: var(--muted); border-radius: 50%;"></div>
+                                <div style="font-size: 12px; color: var(--muted);">Próximamente: Pack gaming épico</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="width: 8px; height: 8px; background: var(--muted); border-radius: 50%;"></div>
+                                <div style="font-size: 12px; color: var(--muted);">Febrero: Colección naturaleza 4K</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- CTA de prueba gratuita -->
+            <div style="text-align: center; margin-top: 4rem; padding: 3rem 2rem; background: linear-gradient(135deg, rgba(167, 135, 255, 0.1), rgba(167, 135, 255, 0.05)); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius); position: relative; overflow: hidden;">
+                <div style="position: absolute; top: -50%; right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(167, 135, 255, 0.1) 0%, transparent 70%); pointer-events: none;"></div>
+                <div style="position: relative; z-index: 2;">
+                    <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">
+                        ¿Listo para transformar tu setup?
+                    </h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Únete a miles de usuarios que ya disfrutan de wallpapers premium. Cancela cuando quieras.
+                    </p>
+                    <button class="btn primary" style="font-size: 16px; padding: 16px 32px; margin-bottom: 1rem;" onclick="openModal()">
+                        <span>🚀 Empieza tu prueba</span>
+                        <span>→</span>
+                    </button>
+                    <div style="font-size: 12px; color: var(--muted);">
+                        ✓ Sin permanencia  •  ✓ Cancela cuando quieras  •  ✓ Acceso inmediato
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CTA FINAL -->
+        <section class="section" id="final-cta">
+            <div class="section-header">
+                <h2>
+                    <span data-i18n="final.titlePrefix">Lleva tu setup al</span>
+                    <span class="highlight" data-i18n="final.highlight">siguiente nivel</span>
+                </h2>
+                <p data-i18n="final.desc">Desbloquea originales y vídeowlprs. Cancela cuando quieras.</p>
+                <div style="margin-top: 3rem;">
+                    <button class="btn primary" id="finalCtaBtn" style="font-size: 18px; padding: 20px 40px;">
+                        <span data-i18n="final.btn">Empieza ahora</span>
+                        <span>✨</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Galería de setups de usuarios -->
+            <div style="margin-top: 4rem;">
+                <h3 style="text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; color: var(--text);">
+                    Setups reales de nuestra comunidad
+                </h3>
+                <!-- Botón a galería completa destacado -->
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <a href="galeria.html" class="btn primary" style="font-size: 16px; padding: 16px 32px; display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); box-shadow: 0 8px 24px rgba(167, 135, 255, 0.3);">
+                        <span>🎨 Explorar galería completa</span>
+                        <span>✨</span>
+                    </a>
+                    <p style="color: var(--text-secondary); font-size: 14px; margin-top: 1rem;">
+                        Más de 500+ wallpapers únicos esperándote
+                    </p>
+                </div>
+                <div class="setup-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto;">
+                    <!-- Setup 1 -->
+                    <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                        <video
+                            src="./img/setupkindle.mp4"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            style="width: 100%; height: 100%; object-fit: cover;"
+                            loading="lazy"
+                        ></video>
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                            <p style="font-size: 0.9rem; font-weight: 600;">Setup Kindle BetterWLPRS</p>
+                            <p style="font-size: 0.8rem; opacity: 0.8;">@betterwlprs</p>
+                        </div>
+                    </div>
+                    <!-- Setup 2 -->
+                    <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                        <video
+                            src="./img/setupmarkus.mp4"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            style="width: 100%; height: 100%; object-fit: cover;"
+                            loading="lazy"
+                        ></video>
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                            <p style="font-size: 0.9rem; font-weight: 600;">Setup Marcus BetterWLPRS</p>
+                            <p style="font-size: 0.8rem; opacity: 0.8;">@betterwlprs</p>
+                        </div>
+                    </div>
+                    <!-- Setup 3 -->
+                    <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                        <video
+                            src="./img/setupmarkus2.mp4"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            style="width: 100%; height: 100%; object-fit: cover;"
+                            loading="lazy"
+                        ></video>
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                            <p style="font-size: 0.9rem; font-weight: 600;">Setup RGB Vibes</p>
+                            <p style="font-size: 0.8rem; opacity: 0.8;">@rgb_setups</p>
+                        </div>
+                    </div>
+                    <!-- Setup 4 -->
+                    <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                        <img
+                            src="./img/setupmarkus.webp"
+                            alt="Setup Streamer con BetterWLPRS"
+                            style="width: 100%; height: 100%; object-fit: cover;"
+                            loading="lazy"
+                        >
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                            <p style="font-size: 0.9rem; font-weight: 600;">Setup Streamer Pro</p>
+                            <p style="font-size: 0.8rem; opacity: 0.8;">@streamer_pro</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- STICKY CTA -->
+        <button class="sticky-cta" id="stickyCta">
+            <span data-i18n="sticky.text">Suscríbete para full-res ✨</span>
+        </button>
+        <!-- ACTION MODAL -->
+        <div class="action-modal" id="actionModal">
+            <div class="action-modal-content">
+                <button class="action-modal-close" id="actionModalClose">×</button>
+                <div class="action-modal-header">
+                    <div class="action-modal-title" data-i18n="actionModal.title">¿Qué te gustaría hacer?</div>
+                    <div class="action-modal-subtitle" data-i18n="actionModal.subtitle">Puedes ver la imagen con marca de agua o explorar la galería completa</div>
+                </div>
+                <div class="action-modal-actions">
+                    <button class="action-btn" id="expandImageBtn">
+                        <div>
+                            <div style="font-weight: 600;" data-i18n="actionModal.expandImage">🔍 Expandir imagen</div>
+                            <div style="font-size: 12px; color: var(--muted);" data-i18n="actionModal.expandDesc">Ver en tamaño completo con marca de agua</div>
+                        </div>
+                        <span class="action-btn-icon">→</span>
+                    </button>
+                    <button class="action-btn" id="viewGalleryBtn">
+                        <div>
+                            <div style="font-weight: 600;" data-i18n="actionModal.viewGallery">🖼️ Ver galería completa</div>
+                            <div style="font-size: 12px; color: var(--muted);" data-i18n="actionModal.galleryDesc">Explorar todas las imágenes disponibles</div>
+                        </div>
+                        <span class="action-btn-icon">→</span>
+                    </button>
+                    <button class="action-btn action-btn-primary" id="upgradeBtn">
+                        <div>
+                            <div style="font-weight: 600;" data-i18n="actionModal.upgrade">✨ Obtener sin marca de agua</div>
+                            <div style="font-size: 12px; color: rgba(255,255,255,0.8);" data-i18n="actionModal.upgradeDesc">Suscríbete para acceso completo</div>
+                        </div>
+                        <span class="action-btn-icon">→</span>
+                    </button>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div style="margin-bottom: 1rem;">
-            <div class="nav-brand" style="justify-content: center; margin-bottom: 1rem;">BetterWLPRS</div>
-            <p data-i18n="footer.tagline">Previews que enamoran. Full-res al suscribirte.</p>
+        <!-- IMAGE VIEWER -->
+        <div class="image-viewer" id="imageViewer">
+            <div class="image-viewer-content">
+                <button class="image-viewer-close" id="imageViewerClose">×</button>
+                <img id="viewerImage" src="" alt="">
+                <div class="image-watermark">betterwlprs</div>
+            </div>
         </div>
-        <div>
-            <span data-i18n="footer.questions">¿Preguntas?</span> <a href="mailto:hola@betterwlprs.example"
-                style="color: var(--accent);">hola@betterwlprs.example</a>
+        <!-- MODAL -->
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <button class="modal-close" id="modalClose">×</button>
+                <div style="text-align: center;">
+                    <h3 style="font-size: 28px; margin-bottom: 1rem;" data-i18n="modal.title">
+                        Tu acceso completo empieza
+                    aquí
+                    </h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem;" data-i18n="modal.desc">
+                        Descargas sin marca
+                    de agua, vídeos completos en 1080p/4K y sesiones completas.
+                    </p>
+                    <div style="display: grid; gap: 16px; margin-bottom: 2rem;">
+                        <div style="padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.02); display: flex; justify-content: space-between; align-items: center;">
+                            <div style="text-align: left;">
+                                <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;" data-i18n="modal.monthly">Mensual</div>
+                                <div style="color: var(--muted); font-size: 14px;" data-i18n="modal.cancelAnytime">
+                                    Cancela
+                                cuando quieras
+                                </div>
+                            </div>
+                            <button class="btn primary" id="monthlyPlan" style="min-width: 100px;">€7,99</button>
+                        </div>
+                        <div style="padding: 20px; border: 2px solid var(--accent); border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.05); display: flex; justify-content: space-between; align-items: center; position: relative;">
+                            <div style="position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;" data-i18n="modal.popular">Popular</div>
+                            <div style="text-align: left;">
+                                <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;" data-i18n="modal.annual">Anual</div>
+                                <div style="color: var(--muted); font-size: 14px;" data-i18n="modal.twoMonthsFree">
+                                    2 meses
+                                de regalo
+                                </div>
+                            </div>
+                            <button class="btn primary" id="yearlyPlan" style="min-width: 100px;">€79</button>
+                        </div>
+                    </div>
+                    <p style="font-size: 12px; color: var(--muted);">
+                        <span data-i18n="modal.legalPrefix">Al suscribirte aceptas los</span>
+                        <a href="#" style="color: var(--accent);" data-i18n="modal.terms">Términos</a>
+                        <span>&nbsp;</span>
+                        <span data-i18n="modal.and">y la</span>
+                        <a href="#" style="color: var(--accent);" data-i18n="modal.privacy">Privacidad</a>
+                        .
+                    </p>
+                </div>
+            </div>
         </div>
-    </footer>
-
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <script>
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem;">
+                <!-- Logo y descripción -->
+                <div>
+                    <div class="nav-brand" style="justify-content: flex-start; margin-bottom: 1rem;">BetterWLPRS</div>
+                    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 1.5rem;">
+                        Wallpapers únicos y videowallpapers premium para todos tus dispositivos. Calidad profesional,
+                    diseños exclusivos.
+                    </p>
+                    <!-- Redes sociales -->
+                    <div style="display: flex; gap: 12px;">
+                        <a href="https://www.tiktok.com/@betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                            <span style="font-size: 18px;">📱</span>
+                        </a>
+                        <a href="https://instagram.com/betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                            <span style="font-size: 18px;">📷</span>
+                        </a>
+                        <a href="https://twitter.com/betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                            <span style="font-size: 18px;">🐦</span>
+                        </a>
+                        <a href="https://youtube.com/@betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                            <span style="font-size: 18px;">📺</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Enlaces rápidos -->
+                <div>
+                    <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">
+                        Enlaces rápidos
+                    </h4>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <a href="#gallery" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Galería</a>
+                        <a href="#videos" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Vídeos</a>
+                        <a href="#how" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                            Cómo
+                        funciona
+                        </a>
+                        <a href="#benefits" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Beneficios</a>
+                    </div>
+                </div>
+                <!-- Contacto y soporte -->
+                <div>
+                    <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">Contacto</h4>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <a href="mailto:hola@betterwlprs.com" style="color: var(--accent); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                            📧
+                        hola@betterwlprs.com
+                        </a>
+                        <a href="mailto:soporte@betterwlprs.com" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                            🛠️
+                        Soporte técnico
+                        </a>
+                        <a href="#" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                            📋
+                        FAQ
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Copyright y legal -->
+            <div style="border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <p style="color: var(--muted); font-size: 12px; margin: 0;">
+                    © 2025 BetterWLPRS. Todos los derechos reservados.
+                </p>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                    <a href="#" style="color: var(--muted); font-size: 12px; text-decoration: none;">Términos de uso</a>
+                    <a href="#" style="color: var(--muted); font-size: 12px; text-decoration: none;">Privacidad</a>
+                    <a href="#" style="color: var(--muted); font-size: 12px; text-decoration: none;">Cookies</a>
+                </div>
+            </div>
+        </footer>
+        <!-- GSAP -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        <script>
         // ========== DATOS DE MUESTRA ==========
         const photos = [
             {
@@ -1620,13 +2174,13 @@
             if (e.target === modal) closeModal();
         });
 
-        // Plan selection simulation
+        // Plan selection with Gumroad
         document.getElementById('monthlyPlan')?.addEventListener('click', () => {
-            alert('Simulación: aquí iría Stripe/Lemon Squeezy Checkout para plan mensual.');
+            window.open('https://betterwlprsx.gumroad.com/l/betterwlprs1ano', '_blank');
         });
 
         document.getElementById('yearlyPlan')?.addEventListener('click', () => {
-            alert('Simulación: aquí iría Stripe/Lemon Squeezy Checkout para plan anual.');
+            window.open('https://betterwlprsx.gumroad.com/l/betterwlprs1ano', '_blank');
         });
 
         // ========== STICKY CTA ==========
@@ -1754,95 +2308,118 @@
 
         // ========== ANIMATIONS ==========
         function initAnimations() {
-            // Deshabilitar animaciones en móvil para evitar problemas de visibilidad
-            if (window.innerWidth <= 768) {
-                return;
-            }
+            // Detectar si es móvil
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-            // Hero animations
+            // Hero animations optimizadas
             const heroTl = gsap.timeline();
-
             heroTl
                 .from('.eyebrow', {
-                    y: 30,
+                    y: 20,
                     opacity: 0,
-                    duration: 0.8,
+                    duration: isMobile ? 0.4 : 0.8,
                     ease: "power3.out"
                 })
                 .from('.hero h1', {
-                    y: 50,
+                    y: 30,
                     opacity: 0,
-                    duration: 1,
+                    duration: isMobile ? 0.5 : 1,
                     ease: "power3.out"
-                }, "-=0.5")
+                }, "-=0.3")
                 .from('.hero p', {
-                    y: 30,
+                    y: 20,
                     opacity: 0,
-                    duration: 0.8,
+                    duration: isMobile ? 0.4 : 0.8,
                     ease: "power3.out"
-                }, "-=0.3")
+                }, "-=0.2")
                 .from('.hero-actions .btn', {
-                    y: 30,
+                    y: 20,
                     opacity: 0,
-                    duration: 0.6,
-                    stagger: 0.1,
+                    duration: isMobile ? 0.3 : 0.6,
+                    stagger: isMobile ? 0.05 : 0.1,
                     ease: "back.out(1.2)"
-                }, "-=0.3")
+                }, "-=0.2")
                 .from('.chip', {
                     scale: 0,
                     opacity: 0,
-                    duration: 0.4,
-                    stagger: 0.05,
+                    duration: isMobile ? 0.2 : 0.4,
+                    stagger: isMobile ? 0.03 : 0.05,
                     ease: "back.out(1.4)"
-                }, "-=0.2");
+                }, "-=0.1");
 
-            // Card animations
+            // Card animations optimizadas
             gsap.utils.toArray('.card').forEach((card, index) => {
-                gsap.set(card, { y: 60, opacity: 0 });
+                if (isMobile) {
+                    // En móvil, mostrar inmediatamente
+                    gsap.set(card, { y: 0, opacity: 1 });
+                } else {
+                    // Verificar si el elemento ya está visible (navegación directa)
+                    const rect = card.getBoundingClientRect();
+                    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
 
-                ScrollTrigger.create({
-                    trigger: card,
-                    start: "top 85%",
-                    onEnter: () => {
-                        gsap.to(card, {
-                            y: 0,
-                            opacity: 1,
-                            duration: 0.8,
-                            ease: "power3.out",
-                            delay: index * 0.1
+                    if (isVisible) {
+                        // Si ya está visible, mostrarlo inmediatamente
+                        gsap.set(card, { y: 0, opacity: 1 });
+                    } else {
+                        // Si no está visible, preparar para animación
+                        gsap.set(card, { y: 60, opacity: 0 });
+                        ScrollTrigger.create({
+                            trigger: card,
+                            start: "top 85%",
+                            onEnter: () => {
+                                gsap.to(card, {
+                                    y: 0,
+                                    opacity: 1,
+                                    duration: 0.8,
+                                    ease: "power3.out",
+                                    delay: index * 0.1
+                                });
+                            }
                         });
                     }
-                });
+                }
             });
 
             // Section headers
             gsap.utils.toArray('.section-header').forEach(header => {
-                gsap.from(header.children, {
-                    y: 40,
-                    opacity: 0,
-                    duration: 0.8,
-                    stagger: 0.2,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: header,
-                        start: "top 80%"
-                    }
-                });
+                // Verificar si el header ya está visible
+                const rect = header.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+                if (isVisible || isMobile) {
+                    // Si ya está visible o es móvil, mostrar inmediatamente
+                    gsap.set(header.children, { y: 0, opacity: 1 });
+                } else {
+                    // Si no está visible, preparar para animación
+                    gsap.from(header.children, {
+                        y: 30,
+                        opacity: 0,
+                        duration: isMobile ? 0.4 : 0.8,
+                        stagger: isMobile ? 0.1 : 0.2,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: header,
+                            start: "top 98%" // Aparecen antes al hacer scroll
+                        }
+                    });
+                }
             });
 
-            // Parallax effects
-            gsap.utils.toArray('.card-image img').forEach(img => {
-                gsap.to(img, {
-                    yPercent: -20,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: img,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: 1
-                    }
+            // Parallax effects solo en desktop
+            if (!isMobile) {
+                gsap.utils.toArray('.card-image img').forEach(img => {
+                    gsap.to(img, {
+                        yPercent: -20,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: img,
+                            start: "top bottom",
+                            end: "bottom top",
+                            scrub: 1
+                        }
+                    });
                 });
-            });
+            }
 
             // Highlight underline animations
             gsap.utils.toArray('.highlight').forEach(highlight => {
@@ -1852,7 +2429,7 @@
                     onEnter: () => {
                         gsap.to(highlight.querySelector('::after') || highlight, {
                             scaleX: 1,
-                            duration: 0.8,
+                            duration: isMobile ? 0.4 : 0.8,
                             ease: "power2.out"
                         });
                     }
@@ -1870,16 +2447,58 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
+
+                    // Hacer visible el contenido inmediatamente después del scroll
+                    setTimeout(() => {
+                        makeVisible(target);
+                    }, 100);
                 }
             });
         });
 
+        // Función para hacer visible el contenido de una sección
+        function makeVisible(section) {
+            const cards = section.querySelectorAll('.card');
+            const headers = section.querySelectorAll('.section-header');
+
+            cards.forEach(card => {
+                gsap.set(card, { y: 0, opacity: 1 });
+            });
+
+            headers.forEach(header => {
+                gsap.set(header.children, { y: 0, opacity: 1 });
+            });
+
+            // Refrescar ScrollTriggers
+            ScrollTrigger.refresh();
+        }
+
         // Explore button scroll to gallery
         document.getElementById('exploreBtnHero')?.addEventListener('click', () => {
-            document.getElementById('gallery').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            const gallerySection = document.getElementById('gallery');
+            if (gallerySection) {
+                gallerySection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+                // Hacer visible el contenido inmediatamente después del scroll
+                setTimeout(() => {
+                    makeVisible(gallerySection);
+                }, 100);
+            }
+        });
+
+        // All subscription buttons now go to Gumroad
+        const subscriptionButtons = ['subscribeBtn', 'subscribeMobileBtn', 'stickyCta', 'finalCtaBtn'];
+        subscriptionButtons.forEach(btnId => {
+            const btn = document.getElementById(btnId);
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.open('https://betterwlprsx.gumroad.com/l/betterwlprs1ano', '_blank');
+                });
+            }
         });
 
         // ========== INITIALIZATION ==========
@@ -1896,6 +2515,16 @@
             // Wait for content to be rendered, then init animations
             requestAnimationFrame(() => {
                 initAnimations();
+
+                // Si hay un hash en la URL, hacer visible esa sección
+                if (window.location.hash) {
+                    const targetSection = document.querySelector(window.location.hash);
+                    if (targetSection) {
+                        setTimeout(() => {
+                            makeVisible(targetSection);
+                        }, 500);
+                    }
+                }
             });
         });
 
@@ -1908,8 +2537,8 @@
                     button.addEventListener('click', (e) => {
                         e.preventDefault();
                         if (button.classList.contains('secondary')) {
-                            // Premium card - open modal
-                            openModal();
+                            // Premium card - show action modal
+                            showActionModal(card);
                         } else {
                             // Free card - simulate download
                             alert('Descargando...');
@@ -1924,7 +2553,7 @@
                     e.preventDefault();
                     const isPremium = card.querySelector('.card-premium');
                     if (isPremium) {
-                        openModal();
+                        showActionModal(card);
                     } else {
                         alert('Reproduciendo vídeo...');
                     }
@@ -1932,27 +2561,122 @@
             });
         }
 
+        // ========== ACTION MODAL FUNCTIONS ==========
+        let currentCard = null;
+
+        function showActionModal(card) {
+            currentCard = card;
+            const actionModal = document.getElementById('actionModal');
+            actionModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            // Add animation
+            setTimeout(() => {
+                actionModal.classList.add('active');
+            }, 10);
+        }
+
+        function closeActionModal() {
+            const actionModal = document.getElementById('actionModal');
+            actionModal.classList.remove('active');
+            setTimeout(() => {
+                actionModal.style.display = 'none';
+                document.body.style.overflow = '';
+                currentCard = null;
+            }, 300);
+        }
+
+        function expandImage() {
+            if (!currentCard) return;
+
+            const img = currentCard.querySelector('img');
+            if (!img) return;
+
+            const imageViewer = document.getElementById('imageViewer');
+            const viewerImage = document.getElementById('viewerImage');
+
+            viewerImage.src = img.src;
+            viewerImage.alt = img.alt;
+
+            closeActionModal();
+
+            imageViewer.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageViewer() {
+            const imageViewer = document.getElementById('imageViewer');
+            imageViewer.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        function viewGallery() {
+            closeActionModal();
+            window.location.href = 'galeria.html';
+        }
+
+        function upgradeToSubscription() {
+            closeActionModal();
+            openModal();
+        }
+
+        // Event listeners for action modal
+        document.addEventListener('DOMContentLoaded', () => {
+            // Action modal close
+            document.getElementById('actionModalClose')?.addEventListener('click', closeActionModal);
+            document.getElementById('actionModal')?.addEventListener('click', (e) => {
+                if (e.target.id === 'actionModal') closeActionModal();
+            });
+
+            // Action modal buttons
+            document.getElementById('expandImageBtn')?.addEventListener('click', expandImage);
+            document.getElementById('viewGalleryBtn')?.addEventListener('click', viewGallery);
+            document.getElementById('upgradeBtn')?.addEventListener('click', upgradeToSubscription);
+
+            // Image viewer close
+            document.getElementById('imageViewerClose')?.addEventListener('click', closeImageViewer);
+            document.getElementById('imageViewer')?.addEventListener('click', (e) => {
+                if (e.target.id === 'imageViewer') closeImageViewer();
+            });
+        });
+
         // ========== PERFORMANCE ==========
-        // Lazy loading for images
+        // Lazy loading para imágenes + blur inicial para GIFs pesados
         const images = document.querySelectorAll('img[loading="lazy"]');
         if ('IntersectionObserver' in window) {
             const imageObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const img = entry.target;
+                        // Si es GIF, poner blur inicial y quitarlo al cargar
+                        if (img.src.endsWith('.gif')) {
+                            img.style.filter = 'blur(12px)';
+                            img.onload = () => {
+                                img.style.transition = 'filter 0.4s';
+                                img.style.filter = 'none';
+                            };
+                        }
                         img.classList.add('loaded');
                         observer.unobserve(img);
                     }
                 });
             });
-
             images.forEach(img => imageObserver.observe(img));
         }
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.style.display === 'flex') {
-                closeModal();
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('modal');
+                const actionModal = document.getElementById('actionModal');
+                const imageViewer = document.getElementById('imageViewer');
+
+                if (modal && modal.style.display === 'flex') {
+                    closeModal();
+                } else if (actionModal && actionModal.style.display === 'flex') {
+                    closeActionModal();
+                } else if (imageViewer && imageViewer.style.display === 'flex') {
+                    closeImageViewer();
+                }
             }
         });
 
@@ -1970,7 +2694,7 @@
                 'hero.title1': 'Wallpapers únicos',
                 'hero.title2': 'para todos tus dispositivos',
                 'hero.desc': 'Descarga arte original y optimizado. Disfruta calidad BetterWLPRS.',
-                'hero.explore': 'Explorar galería',
+                'hero.explore': 'Descarga Gratis',
                 'hero.how': '¿Cómo funciona?',
                 'chips.original': 'Original',
                 'chips.onlyHere': 'Solo aquí',
@@ -2016,6 +2740,14 @@
                 'modal.terms': 'Términos',
                 'modal.and': 'y la',
                 'modal.privacy': 'Privacidad',
+                'actionModal.title': '¿Qué te gustaría hacer?',
+                'actionModal.subtitle': 'Puedes ver la imagen con marca de agua o explorar la galería completa',
+                'actionModal.expandImage': '🔍 Expandir imagen',
+                'actionModal.expandDesc': 'Ver en tamaño completo con marca de agua',
+                'actionModal.viewGallery': '🖼️ Ver galería completa',
+                'actionModal.galleryDesc': 'Explorar todas las imágenes disponibles',
+                'actionModal.upgrade': '✨ Obtener sin marca de agua',
+                'actionModal.upgradeDesc': 'Suscríbete para acceso completo',
                 'footer.tagline': 'Previews que enamoran. Full-res al suscribirte.',
                 'footer.questions': '¿Preguntas?'
             },
@@ -2077,7 +2809,15 @@
                 'modal.and': 'and',
                 'modal.privacy': 'Privacy',
                 'footer.tagline': 'Teasers you’ll love. Full‑res when you subscribe.',
-                'footer.questions': 'Questions?'
+                'footer.questions': 'Questions?',
+                'actionModal.title': 'What would you like to do?',
+                'actionModal.subtitle': 'You can view the image with watermark or explore the complete gallery',
+                'actionModal.expandImage': '🔍 Expand image',
+                'actionModal.expandDesc': 'View in full size with watermark',
+                'actionModal.viewGallery': '🖼️ View complete gallery',
+                'actionModal.galleryDesc': 'Explore all available images',
+                'actionModal.upgrade': '✨ Get without watermark',
+                'actionModal.upgradeDesc': 'Subscribe for full access'
             }
         };
 
@@ -2135,7 +2875,6 @@
             const el = document.getElementById(id);
             if (el) el.addEventListener('click', toggleTheme);
         });
-    </script>
-</body>
-
+        </script>
+    </body>
 </html>
