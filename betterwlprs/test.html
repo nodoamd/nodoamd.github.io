@@ -1010,7 +1010,7 @@
             }
 
             .section {
-                padding: 0px 20px;
+                padding: 60px 20px;
             }
 
             .grid {
@@ -1027,13 +1027,25 @@
                 padding: 6px 12px;
             }
 
-            /* Forzar visibilidad en móvil */
+            /* Forzar visibilidad inmediata en móvil para evitar problemas de carga */
             .card,
             .section,
-            .grid {
+            .grid,
+            .hero h1,
+            .hero p,
+            .hero-actions,
+            .section-header h2,
+            .section-header p,
+            .highlight {
                 opacity: 1 !important;
                 transform: translateY(0) !important;
                 visibility: visible !important;
+                will-change: auto !important; /* Optimizar rendimiento */
+            }
+
+            /* Desactivar animaciones pesadas en móvil */
+            .card:hover {
+                transform: translateY(-4px) !important; /* Reducir movimiento */
             }
         }
 
@@ -2308,120 +2320,119 @@
 
         // ========== ANIMATIONS ==========
         function initAnimations() {
-            // Detectar si es móvil
+            // Detectar si es móvil/tablet
             const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-            // Hero animations optimizadas
-            const heroTl = gsap.timeline();
+            if (isMobile) {
+                // En móvil, mostrar todo inmediatamente sin animaciones pesadas
+                gsap.set(['.eyebrow', '.hero h1', '.hero p', '.hero-actions', '.hero-3d', '.chips', '.card', '.section-header'], {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    willChange: 'auto' // Liberar recursos
+                });
+
+                // Solo animaciones ligeras para elementos clave
+                gsap.from('.hero-actions .btn', {
+                    y: 10,
+                    opacity: 0,
+                    duration: 0.3,
+                    stagger: 0.1,
+                    ease: "power2.out",
+                    delay: 0.2
+                });
+
+                // Desactivar ScrollTrigger en móvil para mejor rendimiento
+                ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+                return; // Salir temprano para evitar animaciones pesadas
+            }
+
+            // Animaciones optimizadas para desktop
+            const heroTl = gsap.timeline({ delay: 0.1 }); // Reducir delay inicial
             heroTl
                 .from('.eyebrow', {
                     y: 20,
                     opacity: 0,
-                    duration: isMobile ? 0.4 : 0.8,
+                    duration: 0.6, // Reducir duración
                     ease: "power3.out"
                 })
                 .from('.hero h1', {
                     y: 30,
                     opacity: 0,
-                    duration: isMobile ? 0.5 : 1,
+                    duration: 0.8,
                     ease: "power3.out"
                 }, "-=0.3")
                 .from('.hero p', {
                     y: 20,
                     opacity: 0,
-                    duration: isMobile ? 0.4 : 0.8,
+                    duration: 0.6,
                     ease: "power3.out"
                 }, "-=0.2")
                 .from('.hero-actions .btn', {
                     y: 20,
                     opacity: 0,
-                    duration: isMobile ? 0.3 : 0.6,
-                    stagger: isMobile ? 0.05 : 0.1,
+                    duration: 0.5,
+                    stagger: 0.1,
                     ease: "back.out(1.2)"
                 }, "-=0.2")
                 .from('.chip', {
                     scale: 0,
                     opacity: 0,
-                    duration: isMobile ? 0.2 : 0.4,
-                    stagger: isMobile ? 0.03 : 0.05,
+                    duration: 0.3,
+                    stagger: 0.05,
                     ease: "back.out(1.4)"
                 }, "-=0.1");
 
-            // Card animations optimizadas
+            // Card animations optimizadas - reducir stagger y duración
             gsap.utils.toArray('.card').forEach((card, index) => {
-                if (isMobile) {
-                    // En móvil, mostrar inmediatamente
-                    gsap.set(card, { y: 0, opacity: 1 });
-                } else {
-                    // Verificar si el elemento ya está visible (navegación directa)
-                    const rect = card.getBoundingClientRect();
-                    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-
-                    if (isVisible) {
-                        // Si ya está visible, mostrarlo inmediatamente
-                        gsap.set(card, { y: 0, opacity: 1 });
-                    } else {
-                        // Si no está visible, preparar para animación
-                        gsap.set(card, { y: 60, opacity: 0 });
-                        ScrollTrigger.create({
-                            trigger: card,
-                            start: "top 85%",
-                            onEnter: () => {
-                                gsap.to(card, {
-                                    y: 0,
-                                    opacity: 1,
-                                    duration: 0.8,
-                                    ease: "power3.out",
-                                    delay: index * 0.1
-                                });
-                            }
+                gsap.set(card, { y: 60, opacity: 0 });
+                ScrollTrigger.create({
+                    trigger: card,
+                    start: "top 85%",
+                    onEnter: () => {
+                        gsap.to(card, {
+                            y: 0,
+                            opacity: 1,
+                            duration: 0.6, // Reducir duración
+                            ease: "power3.out",
+                            delay: index * 0.05 // Reducir delay entre cards
                         });
-                    }
-                }
-            });
-
-            // Section headers
-            gsap.utils.toArray('.section-header').forEach(header => {
-                // Verificar si el header ya está visible
-                const rect = header.getBoundingClientRect();
-                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-
-                if (isVisible || isMobile) {
-                    // Si ya está visible o es móvil, mostrar inmediatamente
-                    gsap.set(header.children, { y: 0, opacity: 1 });
-                } else {
-                    // Si no está visible, preparar para animación
-                    gsap.from(header.children, {
-                        y: 30,
-                        opacity: 0,
-                        duration: isMobile ? 0.4 : 0.8,
-                        stagger: isMobile ? 0.1 : 0.2,
-                        ease: "power3.out",
-                        scrollTrigger: {
-                            trigger: header,
-                            start: "top 98%" // Aparecen antes al hacer scroll
-                        }
-                    });
-                }
-            });
-
-            // Parallax effects solo en desktop
-            if (!isMobile) {
-                gsap.utils.toArray('.card-image img').forEach(img => {
-                    gsap.to(img, {
-                        yPercent: -20,
-                        ease: "none",
-                        scrollTrigger: {
-                            trigger: img,
-                            start: "top bottom",
-                            end: "bottom top",
-                            scrub: 1
-                        }
-                    });
+                    },
+                    once: true // Ejecutar solo una vez
                 });
-            }
+            });
 
-            // Highlight underline animations
+            // Section headers optimizadas
+            gsap.utils.toArray('.section-header').forEach(header => {
+                gsap.from(header.children, {
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: header,
+                        start: "top 90%",
+                        once: true
+                    }
+                });
+            });
+
+            // Parallax effects solo en desktop con menos intensidad
+            gsap.utils.toArray('.card-image img').forEach(img => {
+                gsap.to(img, {
+                    yPercent: -10, // Reducir intensidad
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: img,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 0.5 // Menos scrubbing
+                    }
+                });
+            });
+
+            // Highlight underline animations optimizadas
             gsap.utils.toArray('.highlight').forEach(highlight => {
                 ScrollTrigger.create({
                     trigger: highlight,
@@ -2429,10 +2440,11 @@
                     onEnter: () => {
                         gsap.to(highlight.querySelector('::after') || highlight, {
                             scaleX: 1,
-                            duration: isMobile ? 0.4 : 0.8,
+                            duration: 0.6,
                             ease: "power2.out"
                         });
-                    }
+                    },
+                    once: true
                 });
             });
         }
