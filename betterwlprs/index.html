@@ -9,6 +9,8 @@
         <!-- Tipografía -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <meta name="description" content="Explore exclusive sessions in open previews. Subscribe to download originals in full quality and unlock complete videos.">
         <style>
         /* Theme: Light overrides using CSS variables */
@@ -140,7 +142,7 @@
             padding: 0 24px;
             display: flex;
             align-items: center;
-            justify-content: between;
+            justify-content: space-between;
             gap: 2rem;
         }
 
@@ -176,8 +178,6 @@
             gap: 2px;
             flex: 1;
             justify-content: center;
-            margin-left: -120px;
-            /* Compensar el logo */
         }
 
         .nav-item {
@@ -336,10 +336,10 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 2rem;
             transform: translateY(-100%);
             opacity: 0;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 2rem;
         }
 
         .mobile-menu.active {
@@ -347,24 +347,98 @@
             opacity: 1;
         }
 
-        .mobile-menu .nav-item {
-            font-size: 28px;
-            font-weight: 600;
-            padding: 16px 32px;
-        }
-
-        .mobile-menu .nav-actions {
+        .mobile-menu-content {
+            display: flex;
             flex-direction: column;
-            gap: 16px;
-            margin-top: 2rem;
+            align-items: center;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 300px;
         }
 
-        .mobile-menu .nav-btn {
-            width: 200px;
+        .mobile-menu .nav-item {
+            font-size: 24px;
+            font-weight: 600;
+            padding: 12px 24px;
+            text-align: center;
+            width: 100%;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu .nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-nav-actions {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .mobile-toggles {
+            display: flex;
+            gap: 12px;
+        }
+
+        .mobile-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .mobile-buttons .nav-btn {
+            width: 100%;
             padding: 16px 32px;
             font-size: 16px;
             justify-content: center;
             display: flex;
+        }
+
+        .mobile-social {
+            display: flex;
+            gap: 16px;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .social-link img {
+            width: 18px;
+            height: 18px;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        /* Desktop social links hover effects */
+        .nav-actions a[title="Gumroad"]:hover {
+            background: rgba(167, 135, 255, 0.1) !important;
+            border-color: rgba(167, 135, 255, 0.3) !important;
+            transform: translateY(-1px);
+        }
+
+        .nav-actions a[title="Patreon"]:hover {
+            background: rgba(249, 104, 84, 0.1) !important;
+            border-color: rgba(249, 104, 84, 0.3) !important;
+            transform: translateY(-1px);
         }
 
         /* Hero Section */
@@ -983,6 +1057,10 @@
                 display: none;
             }
 
+            .nav-actions {
+                display: none;
+            }
+
             .nav-mobile {
                 display: flex;
             }
@@ -1012,7 +1090,7 @@
             }
 
             .section {
-                padding: 0px 20px;
+                padding: 60px 20px;
             }
 
             .grid {
@@ -1175,52 +1253,34 @@
                 <div class="nav-brand">
                     BetterWLPRS
                 </div>
+                
+                <!-- Desktop Menu -->
                 <div class="nav-menu" id="navMenu">
-                    <a
-                        href="#gallery"
-                        class="nav-item active"
-                        data-section="gallery"
-                        data-i18n="nav.gallery"
-                    >Gallery</a>
-                    <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">
-                        🎨 Full gallery
-                    </a>
-                    <a
-                        href="#videos"
-                        class="nav-item"
-                        data-section="videos"
-                        data-i18n="nav.videos"
-                    >Videos</a>
-                    <a
-                        href="#how"
-                        class="nav-item"
-                        data-section="how"
-                        data-i18n="nav.how"
-                    >How it works</a>
-                    <a
-                        href="#benefits"
-                        class="nav-item"
-                        data-section="benefits"
-                        data-i18n="nav.benefits"
-                    >Benefits</a>
+                    <a href="#gallery" class="nav-item active" data-section="gallery" data-i18n="nav.gallery">Gallery</a>
+                    <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">🎨 Full gallery</a>
+                    <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Videos</a>
+                    <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">How it works</a>
+                    <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Benefits</a>
                 </div>
+
+                <!-- Desktop Actions -->
                 <div class="nav-actions">
-                    <!-- Minimal toggles -->
                     <button class="icon-btn" id="langToggle" aria-label="Toggle language">EN</button>
                     <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
                         <span>☀️</span>
                     </button>
-                    <button class="nav-btn secondary" id="loginBtn">
-                        <span data-i18n="nav.login">Login</span>
-                    </button>
-                    <button class="nav-btn primary" id="subscribeBtn">
-                        <span data-i18n="nav.subscribe">Subscribe</span>
-                    </button>
+                    <a href="https://www.patreon.com/betterwlprs" target="_blank" title="Patreon" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
+                        <i class="fa-brands fa-patreon" style="color: #fc6354; font-size:18px;"></i>
+                        <span style="font-weight:600;color:#f96854;font-size:14px;">Patreon</span>
+                    </a>
+                    <a href="https://ko-fi.com/betterwlprs" target="_blank" title="Ko-fi" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
+                        <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png" alt="Ko-fi" style="width:18px;height:18px;">
+                        <span style="font-weight:600;color:#29abe0;font-size:14px;">Ko-fi</span>
+                    </a>
                 </div>
+
+                <!-- Mobile Actions -->
                 <div class="nav-mobile">
-                    <button class="nav-btn primary" id="subscribeMobileBtn">
-                        <span>Subscribe</span>
-                    </button>
                     <button class="hamburger" id="hamburger">
                         <span></span>
                         <span></span>
@@ -1231,44 +1291,39 @@
         </nav>
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
-            <a
-                href="#gallery"
-                class="nav-item"
-                data-section="gallery"
-                data-i18n="nav.gallery"
-            >Gallery</a>
-            <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">🎨 Full gallery</a>
-            <a
-                href="#videos"
-                class="nav-item"
-                data-section="videos"
-                data-i18n="nav.videos"
-            >Videos</a>
-            <a
-                href="#how"
-                class="nav-item"
-                data-section="how"
-                data-i18n="nav.how"
-            >How it works</a>
-            <a
-                href="#benefits"
-                class="nav-item"
-                data-section="benefits"
-                data-i18n="nav.benefits"
-            >Benefits</a>
-            <div class="nav-actions">
-                <div style="display:flex; gap:8px; margin-bottom:12px;">
-                    <button class="icon-btn" id="langToggleMobile" aria-label="Toggle language">EN</button>
-                    <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme">
-                        <span>☀️</span>
-                    </button>
+            <div class="mobile-menu-content">
+                <a href="#gallery" class="nav-item" data-section="gallery" data-i18n="nav.gallery">Gallery</a>
+                <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">🎨 Full gallery</a>
+                <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Videos</a>
+                <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">How it works</a>
+                <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Benefits</a>
+                
+                <div class="mobile-nav-actions">
+                    <div class="mobile-toggles">
+                        <button class="icon-btn" id="langToggleMobile" aria-label="Toggle language">EN</button>
+                        <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme">
+                            <span>☀️</span>
+                        </button>
+                    </div>
+                    <div class="mobile-buttons">
+                        <button class="nav-btn secondary" id="loginMobileBtn">
+                            <span data-i18n="nav.login">Login</span>
+                        </button>
+                        <button class="nav-btn primary" id="subscribeMobileBtn">
+                            <span data-i18n="nav.subscribe">Subscribe</span>
+                        </button>
+                    </div>
+                    <div class="mobile-social">
+                        <a href="https://www.patreon.com/betterwlprs" target="_blank" class="social-link">
+                            <i class="fa-brands fa-patreon" style="color: #fc6354; font-size:18px;"></i>
+                            <span>Patreon</span>
+                        </a>
+                        <a href="https://ko-fi.com/betterwlprs" target="_blank" class="social-link">
+                            <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png" alt="Ko-fi" style="width:18px;height:18px;">
+                            <span>Ko-fi</span>
+                        </a>
+                    </div>
                 </div>
-                <button class="nav-btn secondary">
-                    <span data-i18n="nav.login">Login</span>
-                </button>
-                <button class="nav-btn primary">
-                    <span data-i18n="nav.subscribe">Subscribe</span>
-                </button>
             </div>
         </div>
         <!-- HERO -->
@@ -1310,9 +1365,13 @@
                     <span data-i18n="gallery.titlePrefix">Original</span>
                     <span class="highlight" data-i18n="gallery.highlight">Wallpapers</span>
                 </h2>
-                <p data-i18n="gallery.desc">
-                    Each image is shown optimized. Want the original file, without watermark?
-                    Become a member and download it instantly.
+                <p>
+                    <span data-i18n="gallery.desc.part1">Each image is captured individually with love and care. We have a</span>
+                    <a href="https://betterwlprsx.gumroad.com/l/starter-pack-free" target="_blank" 
+                       style="color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 2px;" href="https://ko-fi.com/betterwlprs">
+                        <span data-i18n="gallery.desc.link">Free BetterWLPRS Pack</span>
+                    </a>
+                    <span data-i18n="gallery.desc.part2">so you can enjoy them in every device, always 😊</span>
                 </p>
             </div>
             <div class="grid" id="galleryGrid">
@@ -1739,6 +1798,7 @@
                             loading="lazy"
                         ></video>
                         <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+
                             <p style="font-size: 0.9rem; font-weight: 600;">Setup Kindle BetterWLPRS</p>
                             <p style="font-size: 0.8rem; opacity: 0.8;">@betterwlprs</p>
                         </div>
@@ -1852,24 +1912,18 @@
                     <div style="display: grid; gap: 16px; margin-bottom: 2rem;">
                         <div style="padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.02); display: flex; justify-content: space-between; align-items: center;">
                             <div style="text-align: left;">
-                                <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;" data-i18n="modal.monthly">Mensual</div>
-                                <div style="color: var(--muted); font-size: 14px;" data-i18n="modal.cancelAnytime">
-                                    Cancela
-                                cuando quieras
-                                </div>
+                                <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;">Yearly</div>
+                                <div style="color: var(--muted); font-size: 14px;">Billed yearly</div>
                             </div>
-                            <button class="btn primary" id="monthlyPlan" style="min-width: 100px;">€7,99</button>
+                            <button class="btn primary" id="yearlyPlan" style="min-width: 100px;">€3,99</button>
                         </div>
                         <div style="padding: 20px; border: 2px solid var(--accent); border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.05); display: flex; justify-content: space-between; align-items: center; position: relative;">
-                            <div style="position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;" data-i18n="modal.popular">Popular</div>
+                            <div style="position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">Limited</div>
                             <div style="text-align: left;">
-                                <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;" data-i18n="modal.annual">Anual</div>
-                                <div style="color: var(--muted); font-size: 14px;" data-i18n="modal.twoMonthsFree">
-                                    2 meses
-                                de regalo
-                                </div>
+                                <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;">Lifetime</div>
+                                <div style="color: var(--muted); font-size: 14px;">One-time payment<br>Limited to 100 users</div>
                             </div>
-                            <button class="btn primary" id="yearlyPlan" style="min-width: 100px;">€79</button>
+                            <button class="btn primary" id="lifetimePlan" style="min-width: 100px;">€45</button>
                         </div>
                     </div>
                     <p style="font-size: 12px; color: var(--muted);">
@@ -1896,16 +1950,21 @@
                     <!-- Redes sociales -->
                     <div style="display: flex; gap: 12px;">
                         <a href="https://www.tiktok.com/@betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                            <span style="font-size: 18px;">📱</span>
+                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok" style="width:22px;height:22px;">
                         </a>
                         <a href="https://instagram.com/betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                            <span style="font-size: 18px;">📷</span>
+                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style="width:22px;height:22px;">
                         </a>
                         <a href="https://twitter.com/betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                            <span style="font-size: 18px;">🐦</span>
+                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter" style="width:22px;height:22px;">
                         </a>
-                        <a href="https://youtube.com/@betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                            <span style="font-size: 18px;">📺</span>
+                        <a href="https://gumroad.com/betterwlprsx" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                        <!-- Gumroad eliminado -->
+                        <a href="https://www.patreon.com/betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                            <i class="fa-brands fa-patreon" style="color: #fc6354; font-size:22px;"></i>
+                        </a>
+                        <a href="https://ko-fi.com/betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                            <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png" alt="Ko-fi" style="width:22px;height:22px;">
                         </a>
                     </div>
                 </div>
@@ -2056,7 +2115,7 @@
             },
             {
                 title: 'Clips completos 1080p/4K',
-                description: 'Preparados para loop con calidad equilibrada.',
+                description: 'Preparados para loop perfecto. Desde ambientes relajantes hasta escenas épicas de videojuegos.',
                 icon: '🎞️',
                 category: 'Vídeowlprs'
             },
@@ -2091,7 +2150,7 @@
         });
 
         // Mobile menu toggle
-        hamburger.addEventListener('click', () => {
+        hamburger?.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             mobileMenu.classList.toggle('active');
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
@@ -2104,6 +2163,21 @@
                 mobileMenu.classList.remove('active');
                 document.body.style.overflow = '';
             });
+        });
+
+        // Mobile buttons
+        document.getElementById('loginMobileBtn')?.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+            openModal();
+        });
+
+        document.getElementById('subscribeMobileBtn')?.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+            openModal();
         });
 
         // Active navigation tracking
@@ -2171,14 +2245,7 @@
             if (e.target === modal) closeModal();
         });
 
-        // Plan selection with Gumroad
-        document.getElementById('monthlyPlan')?.addEventListener('click', () => {
-            window.open('https://betterwlprsx.gumroad.com/l/betterwlprs1ano', '_blank');
-        });
-
-        document.getElementById('yearlyPlan')?.addEventListener('click', () => {
-            window.open('https://betterwlprsx.gumroad.com/l/betterwlprs1ano', '_blank');
-        });
+    // Eliminar lógica de Gumroad
 
         // ========== STICKY CTA ==========
         const stickyCta = document.getElementById('stickyCta');
@@ -2486,14 +2553,14 @@
             }
         });
 
-        // All subscription buttons now go to Gumroad
+        // All subscription buttons now go to Patreon
         const subscriptionButtons = ['subscribeBtn', 'subscribeMobileBtn', 'stickyCta', 'finalCtaBtn'];
         subscriptionButtons.forEach(btnId => {
             const btn = document.getElementById(btnId);
             if (btn) {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    window.open('https://betterwlprsx.gumroad.com/l/betterwlprs1ano', '_blank');
+                    window.open('https://www.patreon.com/betterwlprs', '_blank');
                 });
             }
         });
@@ -2699,7 +2766,9 @@
                 'chips.instant': 'Descarga instantánea',
                 'gallery.titlePrefix': 'Fondos de pantalla',
                 'gallery.highlight': 'Originales',
-                'gallery.desc': 'Cada imagen se muestra optimizada. ¿Quieres el archivo original, sin marca de agua? Hazte miembro y descárgalo al instante.',
+                'gallery.desc.part1': 'Cada imagen está capturada individualmente con amor y cuidado. Tenemos un',
+                'gallery.desc.link': 'Pack BetterWLPRS Gratis',
+                'gallery.desc.part2': 'para que puedas disfrutarlas en cada dispositivo, siempre 😊',
                 'badge.portrait': 'Retrato',
                 'badge.urban': 'Urbano',
                 'badge.studio': 'Estudio',
@@ -2765,9 +2834,11 @@
                 'chips.onlyHere': 'Only here',
                 'chips.multi': 'Multi‑device',
                 'chips.instant': 'Instant download',
-                'gallery.titlePrefix': 'Wallpapers',
-                'gallery.highlight': 'Originals',
-                'gallery.desc': 'Each image is optimized. Want the original file without watermark? Become a member and download instantly.',
+                'gallery.titlePrefix': 'This is Better',
+                'gallery.highlight': 'WLPRS',
+                'gallery.desc.part1': 'Each image is captured individually with love and care. We have a',
+                'gallery.desc.link': 'Free BetterWLPRS Pack',
+                'gallery.desc.part2': 'so you can enjoy them in every device, always 😊',
                 'badge.portrait': 'Portrait',
                 'badge.urban': 'Urban',
                 'badge.studio': 'Studio',
@@ -2821,8 +2892,13 @@
         function applyTranslations(lang) {
             const dict = i18n[lang] || i18n.en;
             document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (dict[key]) el.textContent = dict[key];
+                // Si el elemento está en el nav, siempre usar inglés
+                if (el.closest('.nav-menu') || el.closest('.nav-actions')) {
+                    el.textContent = i18n['en'][el.getAttribute('data-i18n')] || el.textContent;
+                } else {
+                    const key = el.getAttribute('data-i18n');
+                    if (dict[key]) el.textContent = dict[key];
+                }
             });
             // Update lang toggle label
             const btns = [document.getElementById('langToggle'), document.getElementById('langToggleMobile')];
