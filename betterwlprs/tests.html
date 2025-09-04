@@ -1254,16 +1254,17 @@
 
             <!-- Desktop Menu -->
             <div class="nav-menu" id="navMenu">
-                <a href="#gallery" class="nav-item active" data-section="gallery">Gallery</a>
+                <a href="#gallery" class="nav-item active" data-section="gallery" data-i18n="nav.gallery">Gallery</a>
                 <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">🎨 Full
                     gallery</a>
-                <a href="#videos" class="nav-item" data-section="videos">Videos</a>
-                <a href="#how" class="nav-item" data-section="how">How it works</a>
-                <a href="#benefits" class="nav-item" data-section="benefits">Benefits</a>
+                <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Videos</a>
+                <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">How it works</a>
+                <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Benefits</a>
             </div>
 
             <!-- Desktop Actions -->
             <div class="nav-actions">
+                <button class="icon-btn" id="langToggle" aria-label="Toggle language">EN</button>
                 <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
                     <span>☀️</span>
                 </button>
@@ -1293,24 +1294,25 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-content">
-            <a href="#gallery" class="nav-item" data-section="gallery">Gallery</a>
+            <a href="#gallery" class="nav-item" data-section="gallery" data-i18n="nav.gallery">Gallery</a>
             <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">🎨 Full gallery</a>
-            <a href="#videos" class="nav-item" data-section="videos">Videos</a>
-            <a href="#how" class="nav-item" data-section="how">How it works</a>
-            <a href="#benefits" class="nav-item" data-section="benefits">Benefits</a>
+            <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Videos</a>
+            <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">How it works</a>
+            <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Benefits</a>
 
             <div class="mobile-nav-actions">
                 <div class="mobile-toggles">
+                    <button class="icon-btn" id="langToggleMobile" aria-label="Toggle language">EN</button>
                     <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme">
                         <span>☀️</span>
                     </button>
                 </div>
                 <div class="mobile-buttons">
                     <button class="nav-btn secondary" id="loginMobileBtn">
-                        <span>Login</span>
+                        <span data-i18n="nav.login">Login</span>
                     </button>
                     <button class="nav-btn primary" id="subscribeMobileBtn">
-                        <span>Subscribe</span>
+                        <span data-i18n="nav.subscribe">Subscribe</span>
                     </button>
                 </div>
                 <div class="mobile-social">
@@ -1330,19 +1332,19 @@
     <!-- HERO -->
     <section class="hero" id="hero">
         <div class="hero-content">
-            <div class="eyebrow">BetterWLPRS</div>
+            <div class="eyebrow" data-i18n="hero.eyebrow">BetterWLPRS</div>
             <h1>
-                <span class="title-line">BetterWLPRS</span>
+                <span class="title-line" data-i18n="hero.title1">BetterWLPRS</span>
                 <br>
-                <span class="gradient-text">for all your devices</span>
+                <span class="gradient-text" data-i18n="hero.title2">for all your devices</span>
             </h1>
-            <p>Download original and optimized art. Enjoy BetterWLPRS quality.</p>
+            <p data-i18n="hero.desc">Download original and optimized art. Enjoy BetterWLPRS quality.</p>
             <div class="hero-actions">
                 <a href="galeria.html" class="btn primary">
-                    <span>Explore full gallery</span>
+                    <span data-i18n="hero.explore">Explore full gallery</span>
                     <span>→</span>
                 </a>
-                <a href="#how" class="btn secondary">How does it work?</a>
+                <a href="#how" class="btn secondary" data-i18n="hero.how">How does it work?</a>
             </div>
             <!-- spline-viewer ABSOLUTE, fuera del flujo -->
             <div class="steamdeck-hero-absolute"
@@ -1357,10 +1359,10 @@
                 </div>
             </div>
             <div class="chips">
-                <span class="chip">Original</span>
-                <span class="chip">Only here</span>
-                <span class="chip">Multi-device</span>
-                <span class="chip">Instant download</span>
+                <span class="chip" data-i18n="chips.original">Original</span>
+                <span class="chip" data-i18n="chips.onlyHere">Only here</span>
+                <span class="chip" data-i18n="chips.multi">Multi-device</span>
+                <span class="chip" data-i18n="chips.instant">Instant download</span>
             </div>
         </div>
     </section>
@@ -1368,18 +1370,18 @@
     <section class="section" id="gallery">
         <div class="section-header">
             <h2>
-                <span>Original</span>
-                <span class="highlight">Wallpapers</span>
+                <span data-i18n="gallery.titlePrefix">Original</span>
+                <span class="highlight" data-i18n="gallery.highlight">Wallpapers</span>
             </h2>
             <p>
-                <span>Each image is captured individually with love and care. We have
+                <span data-i18n="gallery.desc.part1">Each image is captured individually with love and care. We have
                     a</span>
                 <a href="https://betterwlprsx.gumroad.com/l/starter-pack-free" target="_blank"
                     style="color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 2px;"
                     href="https://ko-fi.com/betterwlprs">
-                    <span>Free BetterWLPRS Pack</span>
+                    <span data-i18n="gallery.desc.link">Free BetterWLPRS Pack</span>
                 </a>
-                <span>so you can enjoy them in every device, always 😊</span>
+                <span data-i18n="gallery.desc.part2">so you can enjoy them in every device, always 😊</span>
             </p>
         </div>
         <div class="grid" id="galleryGrid">
@@ -1392,11 +1394,11 @@
                 <div class="card-content">
                     <div>
                         <div class="card-title">Marcus in San Francisco</div>
-                        <div class="card-subtitle">
+                        <div class="card-subtitle" data-i18n="card.membersOnly">
                             Members only access — subscription for full-res
                         </div>
                     </div>
-                    <button class="card-action primary">View image</button>
+                    <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
                 </div>
             </div>
             <div class="card">
@@ -1407,9 +1409,9 @@
                 <div class="card-content">
                     <div>
                         <div class="card-title">Batman Arkham</div>
-                        <div class="card-subtitle">Download 1600px</div>
+                        <div class="card-subtitle" data-i18n="card.download1600">Download 1600px</div>
                     </div>
-                    <button class="card-action primary">View image</button>
+                    <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
 
                 </div>
             </div>
@@ -1422,11 +1424,11 @@
                 <div class="card-content">
                     <div>
                         <div class="card-title">Disco Elysium</div>
-                        <div class="card-subtitle">
+                        <div class="card-subtitle" data-i18n="card.membersOnly">
                             Members only access — subscription for full-res
                         </div>
                     </div>
-                    <button class="card-action primary">View image</button>
+                    <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
                 </div>
             </div>
             <div class="card">
@@ -1437,11 +1439,11 @@
                 <div class="card-content">
                     <div>
                         <div class="card-title">Sam chilling on a mountain</div>
-                        <div class="card-subtitle">
+                        <div class="card-subtitle" data-i18n="card.membersOnly">
                             Members only access — subscription for full-res
                         </div>
                     </div>
-                    <button class="card-action primary">View image</button>
+                    <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
                 </div>
             </div>
             <div class="card">
@@ -1454,7 +1456,7 @@
                         <div class="card-title">San Francisco</div>
                         <div class="card-subtitle">San Francisco view — download 1600px</div>
                     </div>
-                    <button class="card-action primary">View image</button>
+                    <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
 
                 </div>
             </div>
@@ -1471,11 +1473,11 @@
     <section class="section" id="galeria">
         <div class="section-header">
             <h2>
-                <span>Exclusive</span>
-                <span class="highlight">Video</span>
-                WLPRS
+                <span data-i18n="videos.title">Videos</span>
+                <span class="highlight" data-i18n="videos.highlight">Exclusive</span>
+                BetterWLPRS
             </h2>
-            <p>
+            <p data-i18n="videos.desc">
                 Discover unique clips from our best shots. Members enjoy full content in maximum quality.
             </p>
         </div>
@@ -1484,12 +1486,13 @@
                 <div class="card-image" style="aspect-ratio: 16/9;">
                     <img src="./img/spidersky.gif" alt="Behind The Lens">
                     
-                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);">Watch video</div>
+                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);"
+                        data-i18n="video.overlay">Ver vídeo</div>
                 </div>
                 <div class="card-content">
                     <div>
                         <div class="card-title">Spider Sky</div>
-                        <div class="card-subtitle">Video — full access with subscription</div>
+                        <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al suscribirte</div>
                     </div>
                 </div>
             </div>
@@ -1497,24 +1500,26 @@
                 <div class="card-image" style="aspect-ratio: 16/9;">
                     <img src="./img/thelongdarkwolfs.png" alt="Street Cut">
                   
-                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);">Watch video</div>
+                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);"
+                        data-i18n="video.overlay">Ver vídeo</div>
                 </div>
                 <div class="card-content">
                     <div>
                         <div class="card-title">The Long Dark</div>
-                        <div class="card-subtitle">Video — full access with subscription</div>
+                        <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al suscribirte</div>
                     </div>
                 </div>
             </div>
             <div class="card">
                 <div class="card-image" style="aspect-ratio: 16/9;">
                     <img src="./img/samsatori.gif" alt="Death Stranding Main Character sitting on a mountain">
-                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);">Watch video</div>
+                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);"
+                        data-i18n="video.overlay">Ver vídeo</div>
                 </div>
                 <div class="card-content">
                     <div>
                         <div class="card-title">Samurai Satori</div>
-                        <div class="card-subtitle">Video — open access</div>
+                        <div class="card-subtitle" data-i18n="videos.card.open">Vídeo — abierto</div>
                     </div>
                 </div>
             </div>
@@ -1531,10 +1536,10 @@
     <section class="section" id="how">
         <div class="section-header">
             <h2>
-                <span>How it</span>
-                <span class="highlight">Works</span>
+                <span data-i18n="how.titlePrefix">Cómo</span>
+                <span class="highlight" data-i18n="how.highlight">Funciona</span>
             </h2>
-            <p>Get started in 3 simple steps:</p>
+            <p data-i18n="how.desc">Hazlo en 3 pasos simples:</p>
         </div>
         <div class="grid" id="howGrid">
             <div class="card">
@@ -1596,11 +1601,11 @@
     <section class="section" id="benefits">
         <div class="section-header">
             <h2>
-                <span>Benefits for</span>
-                <span class="highlight">Members</span>
+                <span data-i18n="benefits.titlePrefix">Beneficios para</span>
+                <span class="highlight" data-i18n="benefits.highlight">Miembros</span>
             </h2>
-            <p>
-                Join over 2,500+ users already enjoying premium wallpapers for all their devices.
+            <p data-i18n="benefits.desc">
+                Únete a más de 2,500+ usuarios que ya disfrutan de wallpapers premium para todos sus dispositivos.
             </p>
         </div>
         <!-- Estadísticas destacadas -->
@@ -1816,13 +1821,13 @@
     <section class="section" id="final-cta">
         <div class="section-header">
             <h2>
-                <span>Take your setup to the</span>
-                <span class="highlight">next level</span>
+                <span data-i18n="final.titlePrefix">Lleva tu setup al</span>
+                <span class="highlight" data-i18n="final.highlight">siguiente nivel</span>
             </h2>
-            <p>Unlock originals and video wallpapers. Cancel anytime.</p>
+            <p data-i18n="final.desc">Desbloquea originales y vídeowlprs. Cancela cuando quieras.</p>
             <div style="margin-top: 3rem;">
                 <button class="btn primary" id="finalCtaBtn" style="font-size: 18px; padding: 20px 40px;">
-                    <span>Start now</span>
+                    <span data-i18n="final.btn">Empieza ahora</span>
                     <span>✨</span>
                 </button>
             </div>
@@ -1896,35 +1901,40 @@
     </section>
     <!-- STICKY CTA -->
     <button class="sticky-cta" id="stickyCta">
-        <span>Subscribe for full-res ✨</span>
+        <span data-i18n="sticky.text">Suscríbete para full-res ✨</span>
     </button>
     <!-- ACTION MODAL -->
     <div class="action-modal" id="actionModal">
         <div class="action-modal-content">
             <button class="action-modal-close" id="actionModalClose">×</button>
             <div class="action-modal-header">
-                <div class="action-modal-title">What would you like to do?</div>
-                <div class="action-modal-subtitle">You can view the image with watermark or explore the full gallery</div>
+                <div class="action-modal-title" data-i18n="actionModal.title">¿Qué te gustaría hacer?</div>
+                <div class="action-modal-subtitle" data-i18n="actionModal.subtitle">Puedes ver la imagen con marca de
+                    agua o explorar la galería completa</div>
             </div>
             <div class="action-modal-actions">
                 <button class="action-btn" id="expandImageBtn">
                     <div>
-                        <div style="font-weight: 600;">🔍 Expand image</div>
-                        <div style="font-size: 12px; color: var(--muted);">View in full size with watermark</div>
+                        <div style="font-weight: 600;" data-i18n="actionModal.expandImage">🔍 Expandir imagen</div>
+                        <div style="font-size: 12px; color: var(--muted);" data-i18n="actionModal.expandDesc">Ver en
+                            tamaño completo con marca de agua</div>
                     </div>
                     <span class="action-btn-icon">→</span>
                 </button>
                 <button class="action-btn" id="viewGalleryBtn">
                     <div>
-                        <div style="font-weight: 600;">🖼️ View full gallery</div>
-                        <div style="font-size: 12px; color: var(--muted);">Explore all available images</div>
+                        <div style="font-weight: 600;" data-i18n="actionModal.viewGallery">🖼️ Ver galería completa
+                        </div>
+                        <div style="font-size: 12px; color: var(--muted);" data-i18n="actionModal.galleryDesc">Explorar
+                            todas las imágenes disponibles</div>
                     </div>
                     <span class="action-btn-icon">→</span>
                 </button>
                 <button class="action-btn action-btn-primary" id="upgradeBtn">
                     <div>
-                        <div style="font-weight: 600;">✨ Get without watermark</div>
-                        <div style="font-size: 12px; color: rgba(255,255,255,0.8);">Subscribe for full access</div>
+                        <div style="font-weight: 600;" data-i18n="actionModal.upgrade">✨ Obtener sin marca de agua</div>
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.8);" data-i18n="actionModal.upgradeDesc">
+                            Suscríbete para acceso completo</div>
                     </div>
                     <span class="action-btn-icon">→</span>
                 </button>
@@ -1944,12 +1954,13 @@
         <div class="modal-content">
             <button class="modal-close" id="modalClose">×</button>
             <div style="text-align: center;">
-                <h3 style="font-size: 28px; margin-bottom: 1rem;">
-                    Your full access starts
-                    here
+                <h3 style="font-size: 28px; margin-bottom: 1rem;" data-i18n="modal.title">
+                    Tu acceso completo empieza
+                    aquí
                 </h3>
-                <p style="color: var(--text-secondary); margin-bottom: 2rem;">
-                    Downloads without watermark, full videos in 1080p/4K and complete sessions.
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;" data-i18n="modal.desc">
+                    Descargas sin marca
+                    de agua, vídeos completos en 1080p/4K y sesiones completas.
                 </p>
                 <div style="display: grid; gap: 16px; margin-bottom: 2rem;">
                     <div
@@ -1974,11 +1985,11 @@
                     </div>
                 </div>
                 <p style="font-size: 12px; color: var(--muted);">
-                    <span>By subscribing you accept the</span>
-                    <a href="#" style="color: var(--accent);">Terms</a>
+                    <span data-i18n="modal.legalPrefix">Al suscribirte aceptas los</span>
+                    <a href="#" style="color: var(--accent);" data-i18n="modal.terms">Términos</a>
                     <span>&nbsp;</span>
-                    <span>and</span>
-                    <a href="#" style="color: var(--accent);">Privacy</a>
+                    <span data-i18n="modal.and">y la</span>
+                    <a href="#" style="color: var(--accent);" data-i18n="modal.privacy">Privacidad</a>
                     .
                 </p>
             </div>
@@ -2084,7 +2095,67 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
-      
+        // ========== DATOS DE MUESTRA ==========
+        const photos = [
+            {
+                title: 'Golden Hour',
+                tag: 'Retrato',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=800&fit=crop&crop=face'
+            },
+            {
+                title: 'City Nights',
+                tag: 'Urbano',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=600&h=800&fit=crop'
+            },
+            {
+                title: 'Studio Vibes',
+                tag: 'Estudio',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=800&fit=crop'
+            },
+            {
+                title: 'Ocean Walk',
+                tag: 'Documental',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop&crop=face'
+            },
+            {
+                title: 'Soft Neon',
+                tag: 'Retrato',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&h=800&fit=crop&crop=face'
+            },
+            {
+                title: 'Analog Mood',
+                tag: 'Editorial',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&h=800&fit=crop&crop=face'
+            }
+        ];
+
+        const videos = [
+            {
+                title: 'Behind The Lens',
+                tag: 'Trailer 18s',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&h=400&fit=crop'
+            },
+            {
+                title: 'Street Cut',
+                tag: 'Trailer 12s',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1551913902-c92207136625?w=600&h=400&fit=crop'
+            },
+            {
+                title: 'Studio BTS',
+                tag: 'Trailer 15s',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&h=400&fit=crop'
+            }
+        ];
+
         const howSteps = [
             {
                 title: 'Sube y etiqueta',
@@ -2750,7 +2821,97 @@
             }
         });
 
-        // ========== THEME ==========
+        // ========== THEME & I18N ==========
+        // Minimal i18n dictionary
+        const i18n = {
+            es: {
+                'nav.gallery': 'Galería',
+                'nav.videos': 'Vídeos',
+                'nav.how': 'Cómo funciona',
+                'nav.benefits': 'Beneficios',
+                'nav.login': 'Entrar',
+                'nav.subscribe': 'Suscribirse',
+                'hero.eyebrow': 'Fondos exclusivos',
+                'hero.title1': 'Wallpapers únicos',
+                'hero.title2': 'para todos tus dispositivos',
+                'hero.desc': 'Descarga arte original y optimizado. Disfruta calidad BetterWLPRS.',
+                'hero.explore': 'Descarga Gratis',
+                'hero.how': '¿Cómo funciona?',
+                'chips.original': 'Original',
+                'chips.onlyHere': 'Solo aquí',
+                'chips.multi': 'Multi-dispositivo',
+                'chips.instant': 'Descarga instantánea',
+                'gallery.titlePrefix': 'Fondos de pantalla',
+                'gallery.highlight': 'Originales',
+                'gallery.desc.part1': 'Cada imagen está capturada individualmente con amor y cuidado. Tenemos un',
+                'gallery.desc.link': 'Pack BetterWLPRS Gratis',
+                'gallery.desc.part2': 'para que puedas disfrutarlas en cada dispositivo, siempre 😊',
+                'badge.portrait': 'Retrato',
+                'badge.urban': 'Urbano',
+                'badge.studio': 'Estudio',
+                'badge.documentary': 'Documental',
+                'badge.editorial': 'Editorial',
+                'card.membersOnly': 'Acceso solo para miembros — suscripción para full-res',
+                'card.viewImage': 'Ver imagen',
+                'card.download': 'Descargar',
+                'card.download1600': 'Descarga 1600px',
+                'videos.title': 'Vídeos',
+                'videos.highlight': 'Exclusivos',
+                'videos.desc': 'Descubre clips únicos de nuestras mejores capturas. Los miembros disfrutan contenido completo en máxima calidad.',
+                'videos.card.premium': 'Vídeo — completo al suscribirte',
+                'videos.card.open': 'Vídeo — abierto',
+                'video.overlay': 'Ver vídeo',
+                'how.titlePrefix': 'Cómo',
+                'how.highlight': 'Funciona',
+                'how.desc': 'Publica tus sesiones y clips. El mundo ve un adelanto; lo premium se desbloquea con suscripción.',
+                'benefits.titlePrefix': 'Beneficios para',
+                'benefits.highlight': 'Miembros',
+                'benefits.desc': 'Acceso a originales en full-res y vídeowlprs completos, listos para tu setup.',
+                'final.titlePrefix': 'Lleva tu setup al',
+                'final.highlight': 'siguiente nivel',
+                'final.desc': 'Desbloquea originales y vídeowlprs. Cancela cuando quieras.',
+                'final.btn': 'Empieza ahora',
+                'sticky.text': 'Suscríbete para full-res ✨',
+                'modal.title': 'Tu acceso completo empieza aquí',
+                'modal.desc': 'Descargas sin marca de agua, vídeos completos en 1080p/4K y sesiones completas.',
+                'modal.monthly': 'Mensual',
+                'modal.cancelAnytime': 'Cancela cuando quieras',
+                'modal.popular': 'Popular',
+                'modal.annual': 'Anual',
+                'modal.twoMonthsFree': '2 meses de regalo',
+                'modal.legalPrefix': 'Al suscribirte aceptas los',
+                'modal.terms': 'Términos',
+                'modal.and': 'y la',
+                'modal.privacy': 'Privacidad',
+                'actionModal.title': '¿Qué te gustaría hacer?',
+                'actionModal.subtitle': 'Puedes ver la imagen con marca de agua o explorar la galería completa',
+                'actionModal.expandImage': '🔍 Expandir imagen',
+                'actionModal.expandDesc': 'Ver en tamaño completo con marca de agua',
+                'actionModal.viewGallery': '🖼️ Ver galería completa',
+                'actionModal.galleryDesc': 'Explorar todas las imágenes disponibles',
+                'actionModal.upgrade': '✨ Obtener sin marca de agua',
+                'actionModal.upgradeDesc': 'Suscríbete para acceso completo',
+                'footer.tagline': 'Previews que enamoran. Full-res al suscribirte.',
+                'footer.questions': '¿Preguntas?'
+            },
+        };
+
+        function applyTranslations(lang) {
+            const dict = i18n[lang] || i18n.en;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                // Si el elemento está en el nav, siempre usar inglés
+                if (el.closest('.nav-menu') || el.closest('.nav-actions')) {
+                    el.textContent = i18n['en'][el.getAttribute('data-i18n')] || el.textContent;
+                } else {
+                    const key = el.getAttribute('data-i18n');
+                    if (dict[key]) el.textContent = dict[key];
+                }
+            });
+            // Update lang toggle label
+            const btns = [document.getElementById('langToggle'), document.getElementById('langToggleMobile')];
+            btns.forEach(b => { if (b) b.textContent = lang === 'es' ? 'EN' : 'ES'; });
+            document.documentElement.setAttribute('lang', lang);
+        }
 
         function setTheme(theme) {
             const root = document.documentElement;
@@ -2760,15 +2921,28 @@
             icons.forEach(i => { if (i) i.innerHTML = isLight ? '<span>🌙</span>' : '<span>☀️</span>'; });
         }
 
-        // Detect preferred theme on first load
-        (function initTheme() {
+        // Detect preferred language and theme on first load
+        (function initLangTheme() {
+            // Clear any previous language setting to ensure fresh start
+            // localStorage.removeItem('lang'); // Force reset - only enable temporarily
+
+            const storedLang = localStorage.getItem('lang');
             const storedTheme = localStorage.getItem('theme');
+            // Default to English unless user has specifically saved Spanish
+            const initialLang = storedLang || 'en';
             const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
             const initialTheme = storedTheme || (prefersLight ? 'light' : 'dark');
             setTheme(initialTheme);
+            applyTranslations(initialLang);
         })();
 
         // Wire toggle buttons
+        function toggleLanguage() {
+            const current = document.documentElement.getAttribute('lang') || 'en';
+            const next = current === 'en' ? 'es' : 'en';
+            localStorage.setItem('lang', next);
+            applyTranslations(next);
+        }
         function toggleTheme() {
             const current = document.documentElement.getAttribute('data-theme') || 'dark';
             const next = current === 'dark' ? 'light' : 'dark';
@@ -2776,6 +2950,10 @@
             setTheme(next);
         }
 
+        ['langToggle', 'langToggleMobile'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener('click', toggleLanguage);
+        });
         ['themeToggle', 'themeToggleMobile'].forEach(id => {
             const el = document.getElementById(id);
             if (el) el.addEventListener('click', toggleTheme);
