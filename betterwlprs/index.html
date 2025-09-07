@@ -1341,10 +1341,14 @@
             <p data-i18n="hero.desc">Download original and optimized art. Enjoy BetterWLPRS quality.</p>
             <div class="hero-actions">
                 <a href="galeria.html" class="btn primary">
-                    <span data-i18n="hero.explore">Explore full gallery</span>
-                    <span>→</span>
+                    <span data-i18n="hero.explore">🎁 Free Starter Pack
+                        <span>→</span>
                 </a>
-                <a href="#how" class="btn secondary" data-i18n="hero.how">How does it work?</a>
+
+                <a href="#how" class="btn secondary" data-i18n="hero.how"><img
+                        src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png"
+                        alt="Ko-fi" style="width:18px;height:18px;">
+                    <span style="font-weight:600;color:#29abe0;font-size:14px;">Ko-fi</span>Thank you</a>
             </div>
             <!-- spline-viewer ABSOLUTE, fuera del flujo -->
             <div class="steamdeck-hero-absolute"
@@ -1388,14 +1392,15 @@
             <div class="card">
                 <div class="card-image">
                     <img src="./img/marcussittedahh.gif" alt="Golden Hour">
-                    <div class="card-badge">Watch Dogs 2</div>
+                    <div class="card-badge">FREE</div>
 
                 </div>
                 <div class="card-content">
                     <div>
-                        <div class="card-title">Marcus in San Francisco</div>
+                        <div class="card-title">🎁 Free Starter Pack</div>
                         <div class="card-subtitle" data-i18n="card.membersOnly">
-                            Members only access — subscription for full-res
+                            +2GB premium wallpapers • No signup required
+
                         </div>
                     </div>
                     <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
@@ -1409,28 +1414,14 @@
                 <div class="card-content">
                     <div>
                         <div class="card-title">Batman Arkham</div>
-                        <div class="card-subtitle" data-i18n="card.download1600">Download 1600px</div>
+                        <div class="card-subtitle" data-i18n="card.download1600">Live WLPRS like the good ol' PS3 live
+                            themes!</div>
                     </div>
                     <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
 
                 </div>
             </div>
-            <div class="card">
-                <div class="card-image">
-                    <img src="img/videowlprs/discoelysiumstart.gif" alt="Studio Vibes">
-
-                    <!-- <div class="card-premium">🔒</div> -->
-                </div>
-                <div class="card-content">
-                    <div>
-                        <div class="card-title">Disco Elysium</div>
-                        <div class="card-subtitle" data-i18n="card.membersOnly">
-                            Members only access — subscription for full-res
-                        </div>
-                    </div>
-                    <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
-                </div>
-            </div>
+           
             <div class="card">
                 <div class="card-image">
                     <img src="img/samsittedahh.gif" alt="Soft Neon">
@@ -1448,7 +1439,7 @@
             </div>
             <div class="card">
                 <div class="card-image">
-                    <img src="./img/sanfracampview.jpg" alt="Analog Mood">
+                    <img src="./img/videowlprs/madmaxlivewlpr.gif" alt="Analog Mood">
                     <div class="card-badge">Watch Dogs 2 Landscape</div>
                 </div>
                 <div class="card-content">
@@ -1485,7 +1476,10 @@
 
             <div class="card">
                 <div class="card-image" style="aspect-ratio: 16/9;">
-                    <iframe src="https://player.vimeo.com/video/1115762867?background=1&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="width:100%;height:100%;aspect-ratio:16/9;display:block;border-radius:20px;"></iframe>
+                    <iframe
+                        src=""
+                        frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen
+                        style="width:100%;height:100%;aspect-ratio:16/9;display:block;border-radius:20px;"></iframe>
                 </div>
                 <div class="card-content">
                     <div>
@@ -2093,66 +2087,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script>
-        // ========== DATOS DE MUESTRA ==========
-        const photos = [
-            {
-                title: 'Golden Hour',
-                tag: 'Retrato',
-                premium: true,
-                thumb: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=800&fit=crop&crop=face'
-            },
-            {
-                title: 'City Nights',
-                tag: 'Urbano',
-                premium: false,
-                thumb: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=600&h=800&fit=crop'
-            },
-            {
-                title: 'Studio Vibes',
-                tag: 'Estudio',
-                premium: true,
-                thumb: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=800&fit=crop'
-            },
-            {
-                title: 'Ocean Walk',
-                tag: 'Documental',
-                premium: false,
-                thumb: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop&crop=face'
-            },
-            {
-                title: 'Soft Neon',
-                tag: 'Retrato',
-                premium: true,
-                thumb: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&h=800&fit=crop&crop=face'
-            },
-            {
-                title: 'Analog Mood',
-                tag: 'Editorial',
-                premium: false,
-                thumb: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&h=800&fit=crop&crop=face'
-            }
-        ];
 
-        const videos = [
-            {
-                title: 'Behind The Lens',
-                tag: 'Trailer 18s',
-                premium: true,
-                thumb: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&h=400&fit=crop'
-            },
-            {
-                title: 'Street Cut',
-                tag: 'Trailer 12s',
-                premium: true,
-                thumb: 'https://images.unsplash.com/photo-1551913902-c92207136625?w=600&h=400&fit=crop'
-            },
-            {
-                title: 'Studio BTS',
-                tag: 'Trailer 15s',
-                premium: false,
-                thumb: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&h=400&fit=crop'
-            }
-        ];
 
         const howSteps = [
             {
@@ -2892,74 +2827,6 @@
                 'footer.tagline': 'Previews que enamoran. Full-res al suscribirte.',
                 'footer.questions': '¿Preguntas?'
             },
-            en: {
-                'nav.gallery': 'Gallery',
-                'nav.videos': 'Videos',
-                'nav.how': 'How it works',
-                'nav.benefits': 'Benefits',
-                'nav.login': 'Sign in',
-                'nav.subscribe': 'Subscribe',
-                'hero.eyebrow': 'BetterWLPRS',
-                'hero.title1': 'Unique wallpapers',
-                'hero.title2': 'for all your devices',
-                'hero.desc': 'Download original, optimized art. Enjoy BetterWLPRS quality.',
-                'hero.explore': 'Explore gallery',
-                'hero.how': 'How it works',
-                'chips.original': 'Original',
-                'chips.onlyHere': 'Only here',
-                'chips.multi': 'Multi‑device',
-                'chips.instant': 'Instant download',
-                'gallery.titlePrefix': 'This is Better',
-                'gallery.highlight': 'WLPRS',
-                'gallery.desc.part1': 'Each image is captured individually with love and care. We have a',
-                'gallery.desc.link': 'Free BetterWLPRS Pack',
-                'gallery.desc.part2': 'so you can enjoy them in every device, always 😊',
-                'badge.portrait': 'Portrait',
-                'badge.urban': 'Urban',
-                'badge.studio': 'Studio',
-                'badge.documentary': 'Documentary',
-                'badge.editorial': 'Editorial',
-                'card.membersOnly': 'Members only — subscribe for full‑res',
-                'card.viewImage': 'View image',
-                'card.download': 'Download',
-                'card.download1600': 'Download 1600px',
-                'videos.title': 'Videos',
-                'videos.highlight': 'Exclusive',
-                'videos.desc': 'Discover unique clips from our best shots. Members enjoy complete content in top quality.',
-                'videos.card.premium': 'Video — full version for members',
-                'videos.card.open': 'Video — open',
-                'video.overlay': 'Watch video',
-                'how.titlePrefix': 'How',
-                'how.highlight': 'It Works',
-                'how.desc': 'Publish your sessions and clips. The world sees a teaser; full content unlocks with a subscription.',
-                'benefits.titlePrefix': 'Benefits for',
-                'benefits.highlight': 'Members',
-                'benefits.desc': 'Access to full‑res originals and complete video wallpapers, ready for your setup.',
-                'final.titlePrefix': 'Take your setup to the',
-                'final.highlight': 'next level',
-                'final.desc': 'Unlock originals and video wallpapers. Cancel anytime.',
-                'final.btn': 'Start now',
-                'sticky.text': 'Subscribe for full‑res ✨',
-                'modal.title': 'Your full access starts here',
-                'modal.desc': 'Watermark‑free downloads, full 1080p/4K videos and complete sessions.',
-                'modal.monthly': 'Monthly',
-                'modal.cancelAnytime': 'Cancel anytime',
-                'modal.popular': 'Popular',
-                'modal.annual': 'Yearly',
-                'modal.twoMonthsFree': '2 months free',
-                'modal.legalPrefix': 'By subscribing you agree to the',
-                'modal.terms': 'Terms',
-                'modal.and': 'and',
-                'modal.privacy': 'Privacy',
-                'actionModal.title': 'What would you like to do?',
-                'actionModal.subtitle': 'You can view the image with watermark or explore the complete gallery',
-                'actionModal.expandImage': '🔍 Expand image',
-                'actionModal.expandDesc': 'View in full size with watermark',
-                'actionModal.viewGallery': '🖼️ View complete gallery',
-                'actionModal.galleryDesc': 'Explore all available images',
-                'actionModal.upgrade': '✨ Get all BetterWLPRS',
-                'actionModal.upgradeDesc': 'Only 3.99 a year'
-            }
         };
 
         function applyTranslations(lang) {
