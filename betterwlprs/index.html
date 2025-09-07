@@ -1079,38 +1079,7 @@
                 }, "-=0.1");
 
             // Card animations optimizadas
-            gsap.utils.toArray('.card').forEach((card, index) => {
-                if (isMobile) {
-                    // En móvil, mostrar inmediatamente
-                    gsap.set(card, { y: 0, opacity: 1 });
-                } else {
-                    // Verificar si el elemento ya está visible (navegación directa)
-                    const rect = card.getBoundingClientRect();
-                    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-
-                    if (isVisible) {
-                        // Si ya está visible, mostrarlo inmediatamente
-                        gsap.set(card, { y: 0, opacity: 1 });
-                    } else {
-                        // Si no está visible, preparar para animación
-                        gsap.set(card, { y: 60, opacity: 0 });
-                        ScrollTrigger.create({
-                            trigger: card,
-                            start: "top 85%",
-                            onEnter: () => {
-                                gsap.to(card, {
-                                    y: 0,
-                                    opacity: 1,
-                                    duration: 0.8,
-                                    ease: "power3.out",
-                                    delay: index * 0.1
-                                });
-                            }
-                        });
-                    }
-                }
-            });
-
+         
             // Section headers
             gsap.utils.toArray('.section-header').forEach(header => {
                 // Verificar si el header ya está visible
