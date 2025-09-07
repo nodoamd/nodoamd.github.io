@@ -1,0 +1,1406 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BetterWLPRS — Descarga, Comparte, ¡DISFRUTA!. Videos completos y en alta resolución con suscripción.</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./logobetterwlprs.png">
+    <!-- Tipografía -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description"
+        content="Explora sesiones exclusivas en vistas previas abiertas. Suscríbete para descargar originales en calidad completa y desbloquear videos completos.">
+
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                BetterWLPRS
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="nav-menu" id="navMenu">
+                <a href="#hero" class="nav-item active" data-section="gallery" data-i18n="nav.gallery">Inicio</a>
+                <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">🎨
+                    Galería</a>
+                <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Videos</a>
+                <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">Cómo funciona</a>
+                <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Beneficios</a>
+            </div>
+
+            <!-- Desktop Actions -->
+            <div class="nav-actions">
+                <button class="icon-btn" id="langToggle" aria-label="Cambiar idioma">ES</button>
+                <button class="icon-btn" id="themeToggle" aria-label="Cambiar tema">
+                    <span>☀️</span>
+                </button>
+                <a href="https://www.patreon.com/betterwlprs" target="_blank" title="Patreon"
+                    style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
+                    <i class="fa-brands fa-patreon" style="color: #fc6354; font-size:18px;"></i>
+                    <span style="font-weight:600;color:#f96854;font-size:14px;">Patreon</span>
+                </a>
+                <a href="https://ko-fi.com/betterwlprs" target="_blank" title="Ko-fi"
+                    style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
+                    <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png"
+                        alt="Ko-fi" style="width:18px;height:18px;">
+                    <span style="font-weight:600;color:#29abe0;font-size:14px;">Ko-fi</span>
+                </a>
+            </div>
+
+            <!-- Mobile Actions -->
+            <div class="nav-mobile">
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <a href="#hero" class="nav-item" data-section="gallery" data-i18n="nav.gallery">Inicio</a>
+            <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">Galería</a>
+            <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Videos</a>
+            <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">Cómo funciona</a>
+            <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Beneficios</a>
+            <a href="#gallery" class="nav-item" data-section="gallery" data-i18n="nav.gallery">🎁 Paquete de inicio
+                gratis</a>
+
+
+            <div class="mobile-nav-actions">
+                <div class="mobile-toggles">
+                    <button class="icon-btn" id="langToggleMobile" aria-label="Cambiar idioma">ES</button>
+                    <button class="icon-btn" id="themeToggleMobile" aria-label="Cambiar tema">
+                        <span>☀️</span>
+                    </button>
+                </div>
+
+                <div class="mobile-social">
+                    <a href="https://www.patreon.com/betterwlprs" target="_blank" class="social-link">
+                        <i class="fa-brands fa-patreon" style="color: #fc6354; font-size:18px;"></i>
+                        <span>Patreon</span>
+                    </a>
+                    <a href="https://ko-fi.com/betterwlprs" target="_blank" class="social-link">
+                        <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png"
+                            alt="Ko-fi" style="width:18px;height:18px;">
+                        <span>Ko-fi</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="eyebrow" data-i18n="hero.eyebrow">BetterWLPRS</div>
+            <h1>
+                <span class="title-line" data-i18n="hero.title1">BetterWLPRS</span>
+                <br>
+                <span class="gradient-text" data-i18n="hero.title2">para todos tus dispositivos</span>
+            </h1>
+            <p data-i18n="hero.desc">Descarga arte original y optimizado. Disfruta la calidad BetterWLPRS.</p>
+            <div class="hero-actions">
+                <a href="galeria.html" class="btn primary">
+                    <span data-i18n="hero.explore">🎁 Paquete de inicio gratis
+                        <span>→</span>
+                </a>
+
+                <a href="#how" class="btn secondary" data-i18n="hero.how"><img
+                        src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png"
+                        alt="Ko-fi" style="width:18px;height:18px;">
+                    <span style="font-weight:600;color:#29abe0;font-size:14px;">Ko-fi</span>Gracias</a>
+            </div>
+            <!-- spline-viewer ABSOLUTE, fuera del flujo -->
+            <div class="steamdeck-hero-absolute"
+                style="width:100%; display:flex; justify-content:center; margin:0 auto; pointer-events:none; z-index:0; margin-top:0; overflow:hidden;">
+                <div
+                    style="width:100%; max-width:1200px; position:relative; z-index:0; display:flex; justify-content:center;">
+                    <script type="module"
+                        src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
+                    <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
+                        style="height:400px; border-radius:0.75rem; background:transparent; pointer-events:none;"
+                        class="steamdeck-viewer-main"></spline-viewer>
+                </div>
+            </div>
+            <div class="chips">
+                <span class="chip" data-i18n="chips.original">Original</span>
+                <span class="chip" data-i18n="chips.onlyHere">Solo aquí</span>
+                <span class="chip" data-i18n="chips.multi">Multi-dispositivo</span>
+                <span class="chip" data-i18n="chips.instant">Descarga instantánea</span>
+            </div>
+        </div>
+    </section>
+    <!-- GALERÍA -->
+    <section class="section" id="gallery">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="gallery.titlePrefix">Fondos de pantalla</span>
+                <span class="highlight" data-i18n="gallery.highlight">Originales</span>
+            </h2>
+            <p>
+                <span data-i18n="gallery.desc.part1">Cada imagen es capturada individualmente con amor y cuidado.
+                    Tenemos
+                    un</span>
+                <a href="https://betterwlprsx.gumroad.com/l/starter-pack-free" target="_blank"
+                    style="color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 2px;"
+                    href="https://ko-fi.com/betterwlprs">
+                    <span data-i18n="gallery.desc.link">Paquete BetterWLPRS Gratis</span>
+                </a>
+                <span data-i18n="gallery.desc.part2">para que los disfrutes en todos tus dispositivos, siempre 😊</span>
+            </p>
+        </div>
+        <div class="grid" id="galleryGrid">
+            <div class="card">
+                <div class="card-image">
+                    <img src="./img/marcussittedahh.gif" alt="Hora Dorada">
+                    <div class="card-badge">GRATIS</div>
+
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">🎁 Paquete de inicio gratis</div>
+                        <div class="card-subtitle" data-i18n="card.membersOnly">
+                            +2GB de fondos premium • No requiere registro
+
+                        </div>
+                    </div>
+                    <button class="card-action secondary" data-i18n="card.viewImage">¡Vamos!</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="./img/arkham.gif" alt="Noches en la ciudad">
+                    <div class="card-badge">Arkham Knight</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Modo Foto</div>
+                        <div class="card-subtitle" data-i18n="card.download1600">Usamos la configuración más alta
+                            disponible
+                            en cada juego y escena para asegurar la mejor calidad para nuestros fondos.</div>
+                    </div>
+                    <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
+
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image">
+                    <img src="img/samsittedahh.gif" alt="Neón suave">
+                    <div class="card-badge">Death Stranding</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Sam relajándose en una cima ventosa</div>
+                        <div class="card-subtitle" data-i18n="card.membersOnly">Fondos en vivo como los buenos temas de
+                            PS3!
+                            Pero en todos los escenarios de nuestras franquicias favoritas de juegos! 🧐
+                        </div>
+                    </div>
+                    <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="./img/videowlprs/madmaxlivewlprsany.gif" alt="Estado de ánimo analógico">
+                    <div class="card-badge">Mad Max</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Fondos en vivo con sonido del juego</div>
+                        <div class="card-subtitle">Los fondos capturados tienen la máxima calidad y audio activado para
+                            que vivas la experiencia completa</div>
+                    </div>
+                    <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
+
+                </div>
+            </div>
+        </div>
+        <!-- Botón a galería completa -->
+        <div style="text-align: center; margin-top: 2rem; margin-bottom: 5rem;">
+            <a href="galeria.html" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px;">
+                <span>🖼️ Ver galería</span>
+                <span>→</span>
+            </a>
+        </div>
+    </section>
+    <!-- GALERÍA -->
+    <section class="section" id="galeria">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="videos.title">Videos</span>
+                <span class="highlight" data-i18n="videos.highlight">WLPRS</span>
+                hechos con amor y pasión
+            </h2>
+            <p data-i18n="videos.desc">
+                Desde fondos en vivo con sonido del juego hasta videos detrás de cámaras de nuestro proceso de creación.
+            </p>
+        </div>
+        <div class="grid" id="videoGrid">
+
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/mgsdelta.png" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen
+                        style="width:100%;height:100%;aspect-ratio:16/9;display:block;border-radius:20px;"></img>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Fondos cinematográficos</div>
+                        <div class="card-subtitle" data-i18n="videos.card.premium">Fotos dentro del juego tomadas en
+                            escenas cinematográficas</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/ACOdissey-Vertical-Village-WLPR-08.png" alt="Detrás de la cámara">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Fondos verticales / horizontales</div>
+                        <div class="card-subtitle" data-i18n="videos.card.premium">Compatible con todos los dispositivos
+                            y pantallas
+                            "(Kindle, Steam Deck, etc)" </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/samsatori.gif" alt="Personaje principal de Death Stranding sentado en una montaña">
+
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Fondos en video</div>
+                        <div class="card-subtitle" data-i18n="videos.card.open">Úsalos en tus plataformas favoritas como
+                            Wallpaper Engine o Lively "(Opción gratuita que uso y recomiendo)"</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Botón a galería completa -->
+        <div style="text-align: center; margin-top: 2rem; margin-bottom: 5rem;">
+            <a href="galeria.html" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px;">
+                <span>🖼️ Ver galería</span>
+                <span>→</span>
+            </a>
+        </div>
+    </section>
+    <!-- CÓMO FUNCIONA -->
+    <section class="section" id="how">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="how.titlePrefix">Cómo</span>
+                <span class="highlight" data-i18n="how.highlight">funciona</span>
+            </h2>
+            <p data-i18n="how.desc">Hazlo en tres simples pasos:</p>
+        </div>
+        <div class="grid" id="howGrid">
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/sanfracampview.jpg" alt="Descarga el paquete de inicio">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            1</div>
+                        <div>
+                            <div class="card-title">Descarga el paquete de inicio</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Comienza y disfruta acceso a fondos premium para todos. Incluye
+                        VideoWLPRS, formatos horizontal y vertical para todos tus dispositivos.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/spidersky.gif" alt="Fondos ilimitados">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            2</div>
+                        <div>
+                            <div class="card-title">Disfruta BetterWLPRS</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle"><a href="https://nodoamd.github.io/">Creé</a> BetterWLPRS para compartir
+                        mi pasión por la fotografía y los videojuegos, y para ofrecer una plataforma donde otros puedan
+                        disfrutar fondos de alta calidad que no encontraba.</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/arkham.gif" alt="Mejora BetterWLPRS">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            3</div>
+                        <div>
+                            <div class="card-title">Mejora BetterWLPRS</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Obtén acceso a todos los fondos con el plan anual (€3.99/año), o elige
+                        acceso de por vida si amas BetterWLPRS y quieres apoyar el proyecto (limitado a los primeros 100
+                        suscriptores).</div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- BENEFICIOS -->
+    <section class="section" id="benefits">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="benefits.titlePrefix">Beneficios para</span>
+                <span class="highlight" data-i18n="benefits.highlight">Miembros</span>
+            </h2>
+            <p data-i18n="benefits.desc">
+                Descubre todos los beneficios de BetterWLPRS: fondos premium, fondos de video exclusivos y acceso
+                completo para todos tus dispositivos.
+            </p>
+        </div>
+        <!-- Estadísticas destacadas -->
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <div
+                style="text-align: center; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">1000+
+                </div>
+                <div style="font-size: 0.9rem; color: var(--text-secondary);">Fondos únicos</div>
+            </div>
+            <div
+                style="text-align: center; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">200+
+                </div>
+                <div style="font-size: 0.9rem; color: var(--text-secondary);">VideoWLPRS 4K</div>
+            </div>
+            <div
+                style="text-align: center; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">10+</div>
+                <div style="font-size: 0.9rem; color: var(--text-secondary);">Dispositivos compatibles</div>
+            </div>
+        </div>
+        <div class="grid" id="benefitsGrid">
+            <!-- Beneficio Premium con imagen de fondo -->
+            <div class="card"
+                style="position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(167, 135, 255, 0.1), rgba(167, 135, 255, 0.05)); border: 2px solid rgba(167, 135, 255, 0.3);">
+                <div
+                    style="position: absolute; top: 0; right: 0; background: var(--accent); color: white; padding: 6px 12px; border-radius: 0 var(--radius) 0 12px; font-size: 11px; font-weight: 700; text-transform: uppercase;">
+                    Premium</div>
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px; position: relative; z-index: 2;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: linear-gradient(135deg, var(--accent), var(--accent-dark)); display: flex; align-items: center; justify-content: center; font-size: 24px; color: white; box-shadow: 0 8px 20px rgba(167, 135, 255, 0.3);">
+                            🖼️
+                        </div>
+                        <div>
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Sin límites
+                            </div>
+                            <div class="card-title">Acceso completo, sin marcas de agua</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Descarga archivos originales en máxima calidad, tal como fueron creados.
+                        Sin restricciones ni compromisos.</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;">
+                        <span
+                            style="background: rgba(167, 135, 255, 0.2); color: var(--accent); padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;">4K/8K</span>
+                        <span
+                            style="background: rgba(167, 135, 255, 0.2); color: var(--accent); padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;">PNG/JPG</span>
+                        <span
+                            style="background: rgba(167, 135, 255, 0.2); color: var(--accent); padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;">Ilimitado</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Vídeowallpapers -->
+            <div class="card">
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px; position: relative;">
+                            🎞️
+                            <div
+                                style="position: absolute; top: -6px; right: -6px; width: 20px; height: 20px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; color: white;">
+                                ✨</div>
+                        </div>
+                        <div>
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Fondos en video
+                            </div>
+                            <div class="card-title">Clips completos en 1080p/4K</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Videos optimizados para loops perfectos. Desde ambientes relajantes hasta
+                        escenas épicas de juegos.</div>
+                    <div
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; margin-top: 12px;">
+                        <div
+                            style="background: var(--card-hover); padding: 8px; border-radius: 8px; text-align: center; font-size: 11px;">
+                            <div style="font-weight: 600; color: var(--text);">Duración</div>
+                            <div style="color: var(--muted);">Loops de 10-30s</div>
+                        </div>
+                        <div
+                            style="background: var(--card-hover); padding: 8px; border-radius: 8px; text-align: center; font-size: 11px;">
+                            <div style="font-weight: 600; color: var(--text);">Calidad</div>
+                            <div style="color: var(--muted);">Listo para 4K</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Multi-dispositivo con iconos -->
+            <div class="card">
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            📱
+                        </div>
+                        <div>
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Multi-dispositivo
+                            </div>
+                            <div class="card-title">Para todos tus dispositivos</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Resoluciones optimizadas para cada pantalla. Desde tu móvil hasta tu
+                        setup de juegos.</div>
+                    <!-- Grid de dispositivos -->
+                    <div
+                        style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%; margin-top: 12px;">
+                        <div
+                            style="text-align: center; padding: 8px; background: var(--card-hover); border-radius: 8px;">
+                            <div style="font-size: 16px; margin-bottom: 4px;">📱</div>
+                            <div style="font-size: 10px; color: var(--muted);">Móvil</div>
+                        </div>
+                        <div
+                            style="text-align: center; padding: 8px; background: var(--card-hover); border-radius: 8px;">
+                            <div style="font-size: 16px; margin-bottom: 4px;">💻</div>
+                            <div style="font-size: 10px; color: var(--muted);">Escritorio</div>
+                        </div>
+                        <div
+                            style="text-align: center; padding: 8px; background: var(--card-hover); border-radius: 8px;">
+                            <div style="font-size: 16px; margin-bottom: 4px;">📖</div>
+                            <div style="font-size: 10px; color: var(--muted);">Kindle</div>
+                        </div>
+                        <div
+                            style="text-align: center; padding: 8px; background: var(--card-hover); border-radius: 8px;">
+                            <div style="font-size: 16px; margin-bottom: 4px;">🎮</div>
+                            <div style="font-size: 10px; color: var(--muted);">Steam Deck</div>
+                        </div>
+                        <div
+                            style="text-align: center; padding: 8px; background: var(--card-hover); border-radius: 8px;">
+                            <div style="font-size: 16px; margin-bottom: 4px;">⚡</div>
+                            <div style="font-size: 10px; color: var(--muted);">ROG Ally</div>
+                        </div>
+                        <div
+                            style="text-align: center; padding: 8px; background: var(--card-hover); border-radius: 8px;">
+                            <div style="font-size: 16px; margin-bottom: 4px;">📺</div>
+                            <div style="font-size: 10px; color: var(--muted);">TV/Monitor</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Actualizaciones con timeline -->
+            <div class="card">
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            🔄
+                        </div>
+                        <div>
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Siempre fresco
+                            </div>
+                            <div class="card-title">Nuevo contenido cada semana</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Nuevos fondos y fondos en video añadidos regularmente. Nunca te quedarás
+                        sin opciones.</div>
+                    <!-- Timeline de actualizaciones -->
+                    <div style="margin-top: 16px; width: 100%;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                            <div style="width: 8px; height: 8px; background: var(--accent); border-radius: 50%;"></div>
+                            <div style="font-size: 12px; color: var(--text);">Esta semana: 5 fondos nuevos</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                            <div style="width: 8px; height: 8px; background: var(--muted); border-radius: 50%;"></div>
+                            <div style="font-size: 12px; color: var(--muted);">Próximamente: Paquete épico de juegos
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 8px; height: 8px; background: var(--muted); border-radius: 50%;"></div>
+                            <div style="font-size: 12px; color: var(--muted);">Febrero: Colección naturaleza 4K</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- CTA de prueba gratuita -->
+        <div
+            style="text-align: center; margin-top: 4rem; padding: 3rem 2rem; background: linear-gradient(135deg, rgba(167, 135, 255, 0.1), rgba(167, 135, 255, 0.05)); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius); position: relative; overflow: hidden;">
+            <div
+                style="position: absolute; top: -50%;                right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(167, 135, 255, 0.1) 0%, transparent 70%); pointer-events: none;">
+            </div>
+            <div style="position: relative; z-index: 2;">
+                <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">
+                    ¿Listo para transformar tu setup?
+                </h3>
+                <p
+                    style="color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Comienza a disfrutar fondos premium hoy. Cancela cuando quieras.
+                </p>
+                <button class="btn primary" style="font-size: 16px; padding: 16px 32px; margin-bottom: 1rem;"
+                    onclick="openModal()">
+                    <span>🚀 Comienza tu prueba gratuita</span>
+                    <span>→</span>
+                </button>
+                <div style="font-size: 12px; color: var(--muted);">
+                    ✓ Sin compromiso • ✓ Cancela cuando quieras • ✓ Acceso instantáneo
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STICKY CTA -->
+    <button class="sticky-cta" id="stickyCta">
+        <span data-i18n="sticky.text">Suscríbete para full-res ✨</span>
+        <span data-i18n="sticky.text">Suscríbete para full-res ✨</span>
+    </button>
+    <!-- ACTION MODAL -->
+    <div class="action-modal" id="actionModal">
+        <div class="action-modal-content">
+            <button class="action-modal-close" id="actionModalClose">×</button>
+            <div class="action-modal-header">
+                <div class="action-modal-title">¿Qué te gustaría hacer?</div>
+                <div class="action-modal-subtitle">Puedes ver la imagen con marca de agua o explorar la galería completa
+                </div>
+            </div>
+            <div class="action-modal-actions">
+                <button class="action-btn" id="expandImageBtn">
+                    <div>
+                        <div style="font-weight: 600;">🔍 Ampliar imagen</div>
+                        <div style="font-size: 12px; color: var(--muted);">Ver tamaño completo con marca de agua</div>
+                    </div>
+                    <span class="action-btn-icon">→</span>
+                </button>
+                <button class="action-btn" id="viewGalleryBtn">
+                    <div>
+                        <div style="font-weight: 600;">🖼️ Ver galería</div>
+                        <div style="font-size: 12px; color: var(--muted);">Explorar todas las imágenes disponibles</div>
+                    </div>
+                    <span class="action-btn-icon">→</span>
+                </button>
+                <button class="action-btn action-btn-primary" id="upgradeBtn">
+                    <div>
+                        <div style="font-weight: 600;">✨ Obtener sin marca de agua</div>
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.8);">Suscríbete para acceso completo
+                        </div>
+                    </div>
+                    <span class="action-btn-icon">→</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- IMAGE VIEWER -->
+    <div class="image-viewer" id="imageViewer">
+        <div class="image-viewer-content">
+            <button class="image-viewer-close" id="imageViewerClose">×</button>
+            <img id="viewerImage" src="" alt="">
+            <div class="image-watermark">betterwlprs</div>
+        </div>
+    </div>
+    <!-- MODAL -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">×</button>
+            <div style="text-align: center;">
+                <h3 style="font-size: 28px; margin-bottom: 1rem;">
+                    Tu acceso completo comienza aquí
+                </h3>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                    Descarga videos completos en 1080p/4K sin marca de agua y sesiones completas.
+                </p>
+                <div style="display: grid; gap: 16px; margin-bottom: 2rem;">
+                    <div
+                        style="padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.02); display: flex; justify-content: space-between; align-items: center;">
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;">Anual</div>
+                            <div style="color: var(--muted); font-size: 14px;">Facturado anualmente</div>
+                        </div>
+                        <button class="btn primary" id="yearlyPlan" style="min-width: 100px;">€3.99</button>
+                    </div>
+                    <div
+                        style="padding: 20px; border: 2px solid var(--accent); border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.05); display: flex; justify-content: space-between; align-items: center; position: relative;">
+                        <div
+                            style="position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">
+                            Limitado</div>
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;">De por vida</div>
+                            <div style="color: var(--muted); font-size: 14px;">Pago único<br>Limitado a 100 usuarios
+                            </div>
+                        </div>
+                        <button class="btn primary" id="lifetimePlan" style="min-width: 100px;">€45</button>
+                    </div>
+                </div>
+                <p style="font-size: 12px; color: var(--muted);">
+                    <span>Al suscribirte aceptas los</span>
+                    <a href="#" style="color: var(--accent);">Términos</a>
+                    <span>&nbsp;y&nbsp;</span>
+                    <a href="#" style="color: var(--accent);">Política de privacidad</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div
+            style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem;">
+            <!-- Logo y descripción -->
+            <div>
+                <div class="nav-brand" style="justify-content: flex-start; margin-bottom: 1rem;">BetterWLPRS</div>
+                <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Fondos únicos y fondos de video premium para todos tus dispositivos. Calidad profesional, diseños
+                    exclusivos.
+                </p>
+                <!-- Redes sociales -->
+                <div style="display: flex; gap: 12px;">
+                    <a href="https://www.tiktok.com/@betterwlprs" target="_blank"
+                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok"
+                            style="width:22px;height:22px;">
+                    </a>
+                    <a href="https://instagram.com/betterwlprs" target="_blank"
+                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg"
+                            alt="Instagram" style="width:22px;height:22px;">
+                    </a>
+                    <a href="https://twitter.com/betterwlprs" target="_blank"
+                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter"
+                            style="width:22px;height:22px;">
+                    </a>
+                    <a href="https://gumroad.com/betterwlprsx" target="_blank"
+                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                        <!-- Gumroad eliminado -->
+                        <a href="https://www.patreon.com/betterwlprs" target="_blank"
+                            style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                            <i class="fa-brands fa-patreon" style="color: #fc6354; font-size:22px;"></i>
+                        </a>
+                        <a href="https://ko-fi.com/betterwlprs" target="_blank"
+                            style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                            <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png"
+                                alt="Ko-fi" style="width:22px;height:22px;">
+                        </a>
+                </div>
+            </div>
+            <!-- Enlaces rápidos -->
+            <div>
+                <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">
+                    Enlaces rápidos
+                </h4>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <a href="#gallery"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Galería</a>
+                    <a href="#videos"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Videos</a>
+                    <a href="#how"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                        Cómo funciona
+                    </a>
+                    <a href="#benefits"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Beneficios</a>
+                </div>
+            </div>
+            <!-- Contacto y soporte -->
+            <div>
+                <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">Contacto</h4>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <a href="mailto:hola@betterwlprs.com"
+                        style="color: var(--accent); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                        📧
+                        hola@betterwlprs.com
+                    </a>
+                    <a href="mailto:soporte@betterwlprs.com"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                        🛠️
+                        Soporte técnico
+                    </a>
+                    <a href="#"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                        📋
+                        Preguntas frecuentes
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright y legal -->
+        <div
+            style="border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <p style="color: var(--muted); font-size: 12px; margin: 0;">
+                © 2025 BetterWLPRS. Todos los derechos reservados.
+            </p>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                <a href="#" style="color: var(--muted); font-size: 12px; text-decoration: none;">Términos de uso</a>
+                <a href="#" style="color: var(--muted); font-size: 12px; text-decoration: none;">Privacidad</a>
+                <a href="#" style="color: var(--muted); font-size: 12px; text-decoration: none;">Cookies</a>
+            </div>
+        </div>
+    </footer>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        // El script permanece igual, no requiere traducción
+    </script>
+</body>
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+
+    // ========== NAVIGATION ========== 
+    const navbar = document.getElementById('navbar');
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navItems = document.querySelectorAll('.nav-menu .nav-item[data-section]');
+    const mobileNavItems = document.querySelectorAll('.mobile-menu .nav-item[data-section]');
+
+    // Navbar scroll effect (puedes reemplazar GSAP por CSS sticky si lo deseas)
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 80) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Mobile menu toggle
+    hamburger?.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    });
+
+    // Close mobile menu when clicking nav items
+    document.querySelectorAll('.mobile-menu .nav-item').forEach(item => {
+        item.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // Mobile buttons
+    document.getElementById('loginMobileBtn')?.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+        openModal();
+    });
+
+    document.getElementById('subscribeMobileBtn')?.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+        openModal();
+    });
+
+    // ========== ACTIVE NAVIGATION TRACKING (Desktop y Mobile) ========== 
+    // Sincroniza el resaltado de la sección activa en ambos menús
+    const sectionIds = ['hero', 'gallery', 'videos', 'how', 'benefits'];
+    const sectionElements = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+    function clearActiveNavs() {
+        navItems.forEach(item => item.classList.remove('active'));
+        mobileNavItems.forEach(item => item.classList.remove('active'));
+    }
+
+    function setActiveNav(sectionId) {
+        clearActiveNavs();
+        navItems.forEach(item => {
+            if (item.getAttribute('href') === `#${sectionId}`) {
+                item.classList.add('active');
+            }
+        });
+        mobileNavItems.forEach(item => {
+            if (item.getAttribute('href') === `#${sectionId}`) {
+                item.classList.add('active');
+            }
+        });
+    }
+
+    // IntersectionObserver para detectar la sección visible
+    const observer = new window.IntersectionObserver(
+        (entries) => {
+            let visibleSection = null;
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    visibleSection = entry.target.id;
+                }
+            });
+            if (visibleSection) {
+                setActiveNav(visibleSection);
+            }
+        },
+        {
+            root: null,
+            rootMargin: '0px 0px -60% 0px', // Ajusta para que cambie antes
+            threshold: 0.2
+        }
+    );
+    sectionElements.forEach(section => {
+        if (section) observer.observe(section);
+    });
+
+    // ========== MODAL ========== 
+    const modal = document.getElementById('modal');
+    const modalClose = document.getElementById('modalClose');
+    const openModalBtns = ['subscribeBtn', 'subscribeMobileBtn', 'loginBtn', 'stickyCta', 'finalCtaBtn'];
+
+    function openModal() {
+        modal.style.display = 'flex';
+        gsap.to(modal, { opacity: 1, duration: 0.3 });
+        gsap.to(modal.querySelector('.modal-content'), {
+            scale: 1,
+            opacity: 1,
+            duration: 0.4,
+            ease: "back.out(1.2)"
+        });
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        gsap.to(modal, { opacity: 0, duration: 0.3 });
+        gsap.to(modal.querySelector('.modal-content'), {
+            scale: 0.9,
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.inOut",
+            onComplete: () => {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
+    openModalBtns.forEach(btnId => {
+        const btn = document.getElementById(btnId);
+        if (btn) {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal();
+            });
+        }
+    });
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    // Eliminar lógica de Gumroad
+
+    // ========== STICKY CTA ==========
+    const stickyCta = document.getElementById('stickyCta');
+
+    ScrollTrigger.create({
+        start: "top -200",
+        end: 99999,
+        onUpdate: self => {
+            if (self.direction === 1 && self.progress > 0.1) {
+                stickyCta.classList.add('visible');
+            } else if (self.direction === -1 && self.progress < 0.05) {
+                stickyCta.classList.remove('visible');
+            }
+        }
+    });
+
+    // ========== RENDER CONTENT ==========
+    function renderGallery() {
+        const grid = document.getElementById('galleryGrid');
+        photos.forEach((photo, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                    <div class="card-image">
+                        <img src="${photo.thumb}" alt="${photo.title}" loading="lazy">
+                        <div class="card-badge">${photo.tag}</div>
+                        ${photo.premium ? '<div class="card-premium">🔒</div>' : ''}
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">${photo.title}</div>
+                            <div class="card-subtitle">${photo.premium ? 'Preview — suscripción para full-res' : 'Descarga 1600px'}</div>
+                        </div>
+                        <button class="card-action ${photo.premium ? 'secondary' : 'primary'}" onclick="${photo.premium ? 'openModal()' : 'alert(\'Descargando...\')'}">
+                            ${photo.premium ? 'Ver preview' : 'Descargar'}
+                        </button>
+                    </div>
+                `;
+            grid.appendChild(card);
+        });
+    }
+
+    function renderVideos() {
+        const grid = document.getElementById('videoGrid');
+        videos.forEach((video, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="${video.thumb}" alt="${video.title}" loading="lazy">
+                        <div class="card-badge">${video.tag}</div>
+                        ${video.premium ? '<div class="card-premium">🔒</div>' : ''}
+                        <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);">
+                            Ver vídeo
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">${video.title}</div>
+                            <div class="card-subtitle">${video.premium ? 'Trailer — completo al suscribirte' : 'Clip abierto'}</div>
+                        </div>
+                    </div>
+                `;
+            card.addEventListener('click', () => {
+                if (video.premium) {
+                    openModal();
+                } else {
+                    alert('Reproduciendo vídeo...');
+                }
+            });
+            grid.appendChild(card);
+        });
+    }
+
+    function renderHowItWorks() {
+        const grid = document.getElementById('howGrid');
+        howSteps.forEach((step, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="${step.image}" alt="${step.title}" loading="lazy">
+                    </div>
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                                ${step.step}
+                            </div>
+                            <div>
+                                <div class="card-title">${step.title}</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">${step.description}</div>
+                    </div>
+                `;
+            grid.appendChild(card);
+        });
+    }
+
+    function renderBenefits() {
+        const grid = document.getElementById('benefitsGrid');
+        benefits.forEach((benefit, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                ${benefit.icon}
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                    ${benefit.category}
+                                </div>
+                                <div class="card-title">${benefit.title}</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">${benefit.description}</div>
+                    </div>
+                `;
+            grid.appendChild(card);
+        });
+    }
+
+    // ========== ANIMATIONS ==========
+    function initAnimations() {
+        // Detectar si es móvil
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+        // Hero animations optimizadas
+        const heroTl = gsap.timeline();
+        heroTl
+            .from('.eyebrow', {
+                y: 20,
+                opacity: 0,
+                duration: isMobile ? 0.4 : 0.8,
+                ease: "power3.out"
+            })
+            .from('.hero h1', {
+                y: 30,
+                opacity: 0,
+                duration: isMobile ? 0.5 : 1,
+                ease: "power3.out"
+            }, "-=0.3")
+            .from('.hero p', {
+                y: 20,
+                opacity: 0,
+                duration: isMobile ? 0.4 : 0.8,
+                ease: "power3.out"
+            }, "-=0.2")
+            .from('.hero-actions .btn', {
+                y: 20,
+                opacity: 0,
+                duration: isMobile ? 0.3 : 0.6,
+                stagger: isMobile ? 0.05 : 0.1,
+                ease: "back.out(1.2)"
+            }, "-=0.2")
+
+
+        // Card animations optimizadas
+        gsap.utils.toArray('.card').forEach((card, index) => {
+            if (isMobile) {
+                // En móvil, mostrar inmediatamente
+                gsap.set(card, { y: 0, opacity: 1 });
+            } else {
+                // Verificar si el elemento ya está visible (navegación directa)
+                const rect = card.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+                if (isVisible) {
+                    // Si ya está visible, mostrarlo inmediatamente
+                    gsap.set(card, { y: 0, opacity: 1 });
+                } else {
+                    // Si no está visible, preparar para animación
+                    gsap.set(card, { y: 60, opacity: 0 });
+                    ScrollTrigger.create({
+                        trigger: card,
+                        start: "top 85%",
+                        onEnter: () => {
+                            gsap.to(card, {
+                                y: 0,
+                                opacity: 1,
+                                duration: 0.8,
+                                ease: "power3.out",
+                                delay: index * 0.1
+                            });
+                        }
+                    });
+                }
+            }
+        });
+
+        // Section headers
+        gsap.utils.toArray('.section-header').forEach(header => {
+            // Verificar si el header ya está visible
+            const rect = header.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+            if (isVisible || isMobile) {
+                // Si ya está visible o es móvil, mostrar inmediatamente
+                gsap.set(header.children, { y: 0, opacity: 1 });
+            } else {
+                // Si no está visible, preparar para animación
+                gsap.from(header.children, {
+                    y: 30,
+                    opacity: 0,
+                    duration: isMobile ? 0.4 : 0.8,
+                    stagger: isMobile ? 0.1 : 0.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: header,
+                        start: "top 98%" // Aparecen antes al hacer scroll
+                    }
+                });
+            }
+        });
+
+        // Parallax effects solo en desktop
+        if (!isMobile) {
+            gsap.utils.toArray('.card-image img').forEach(img => {
+                gsap.to(img, {
+                    yPercent: -20,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: img,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1
+                    }
+                });
+            });
+        }
+
+        // Highlight underline animations
+        gsap.utils.toArray('.highlight').forEach(highlight => {
+            ScrollTrigger.create({
+                trigger: highlight,
+                start: "top 80%",
+                onEnter: () => {
+                    gsap.to(highlight.querySelector('::after') || highlight, {
+                        scaleX: 1,
+                        duration: isMobile ? 0.4 : 0.8,
+                        ease: "power2.out"
+                    });
+                }
+            });
+        });
+    }
+
+    // ========== SMOOTH SCROLLING ==========
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+                // Hacer visible el contenido inmediatamente después del scroll
+                setTimeout(() => {
+                    makeVisible(target);
+                }, 100);
+            }
+        });
+    });
+
+    // Función para hacer visible el contenido de una sección
+    function makeVisible(section) {
+        const cards = section.querySelectorAll('.card');
+        const headers = section.querySelectorAll('.section-header');
+
+        cards.forEach(card => {
+            gsap.set(card, { y: 0, opacity: 1 });
+        });
+
+        headers.forEach(header => {
+            gsap.set(header.children, { y: 0, opacity: 1 });
+        });
+
+        // Refrescar ScrollTriggers
+        ScrollTrigger.refresh();
+    }
+
+    // Explore button scroll to gallery
+    document.getElementById('exploreBtnHero')?.addEventListener('click', () => {
+        const gallerySection = document.getElementById('gallery');
+        if (gallerySection) {
+            gallerySection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+
+            // Hacer visible el contenido inmediatamente después del scroll
+            setTimeout(() => {
+                makeVisible(gallerySection);
+            }, 100);
+        }
+    });
+
+    // All subscription buttons now go to Patreon
+    const subscriptionButtons = ['subscribeBtn', 'subscribeMobileBtn', 'stickyCta', 'finalCtaBtn'];
+    subscriptionButtons.forEach(btnId => {
+        const btn = document.getElementById(btnId);
+        if (btn) {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.open('https://www.patreon.com/betterwlprs', '_blank');
+            });
+        }
+    });
+
+    // ========== INITIALIZATION ==========
+    document.addEventListener('DOMContentLoaded', () => {
+        // No longer need to render content since it's static HTML
+        // renderGallery();
+        // renderVideos();
+        // renderHowItWorks();
+        // renderBenefits();
+
+        // Add click handlers for static cards
+        addStaticCardHandlers();
+
+        // Wait for content to be rendered, then init animations
+        requestAnimationFrame(() => {
+            initAnimations();
+
+            // Si hay un hash en la URL, hacer visible esa sección
+            if (window.location.hash) {
+                const targetSection = document.querySelector(window.location.hash);
+                if (targetSection) {
+                    setTimeout(() => {
+                        makeVisible(targetSection);
+                    }, 500);
+                }
+            }
+        });
+    });
+
+    // Add handlers for static HTML cards
+    function addStaticCardHandlers() {
+        // Handle gallery cards
+        document.querySelectorAll('#galleryGrid .card').forEach(card => {
+            const button = card.querySelector('.card-action');
+            if (button) {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (button.classList.contains('secondary')) {
+                        // Premium card - show action modal
+                        showActionModal(card);
+                    } else {
+                        // Free card - simulate download
+                        alert('Descargando...');
+                    }
+                });
+            }
+        });
+
+        // Handle video cards
+        document.querySelectorAll('#videoGrid .card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.preventDefault();
+                const isPremium = card.querySelector('.card-premium');
+                if (isPremium) {
+                    showActionModal(card);
+                } else {
+                    alert('Reproduciendo vídeo...');
+                }
+            });
+        });
+    }
+
+    // ========== ACTION MODAL FUNCTIONS ==========
+    let currentCard = null;
+
+    function showActionModal(card) {
+        currentCard = card;
+        const actionModal = document.getElementById('actionModal');
+        actionModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        // Add animation
+        setTimeout(() => {
+            actionModal.classList.add('active');
+        }, 10);
+    }
+
+    function closeActionModal() {
+        const actionModal = document.getElementById('actionModal');
+        actionModal.classList.remove('active');
+        setTimeout(() => {
+            actionModal.style.display = 'none';
+            document.body.style.overflow = '';
+            currentCard = null;
+        }, 300);
+    }
+
+    function expandImage() {
+        if (!currentCard) return;
+
+        const img = currentCard.querySelector('img');
+        if (!img) return;
+
+        const imageViewer = document.getElementById('imageViewer');
+        const viewerImage = document.getElementById('viewerImage');
+
+        viewerImage.src = img.src;
+        viewerImage.alt = img.alt;
+
+        closeActionModal();
+
+        imageViewer.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeImageViewer() {
+        const imageViewer = document.getElementById('imageViewer');
+        imageViewer.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
+    function viewGallery() {
+        closeActionModal();
+        window.location.href = 'galeria.html';
+    }
+
+    function upgradeToSubscription() {
+        closeActionModal();
+        openModal();
+    }
+
+    // Event listeners for action modal
+    document.addEventListener('DOMContentLoaded', () => {
+        // Action modal close
+        document.getElementById('actionModalClose')?.addEventListener('click', closeActionModal);
+        document.getElementById('actionModal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'actionModal') closeActionModal();
+        });
+
+        // Action modal buttons
+        document.getElementById('expandImageBtn')?.addEventListener('click', expandImage);
+        document.getElementById('viewGalleryBtn')?.addEventListener('click', viewGallery);
+        document.getElementById('upgradeBtn')?.addEventListener('click', upgradeToSubscription);
+
+        // Image viewer close
+        document.getElementById('imageViewerClose')?.addEventListener('click', closeImageViewer);
+        document.getElementById('imageViewer')?.addEventListener('click', (e) => {
+            if (e.target.id === 'imageViewer') closeImageViewer();
+        });
+    });
+
+
+    function setTheme(theme) {
+        const root = document.documentElement;
+        root.setAttribute('data-theme', theme);
+        const isLight = theme === 'light';
+        const icons = [document.getElementById('themeToggle'), document.getElementById('themeToggleMobile')];
+        icons.forEach(i => { if (i) i.innerHTML = isLight ? '<span>🌙</span>' : '<span>☀️</span>'; });
+    }
+
+
+    // Wire toggle buttons
+    function toggleLanguage() {
+        const current = document.documentElement.getAttribute('lang') || 'en';
+        const next = current === 'en' ? 'es' : 'en';
+        localStorage.setItem('lang', next);
+        applyTranslations(next);
+    }
+    function toggleTheme() {
+        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        const next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', next);
+        setTheme(next);
+    }
+
+
+</script>
+</body>
+
+</html>
