@@ -20,6 +20,15 @@
 </head>
 
 <body>
+    <script>
+    // Aplica el tema guardado o el del sistema al cargar
+    (function() {
+        const userTheme = localStorage.getItem('theme');
+        const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        const theme = userTheme || systemTheme;
+        document.documentElement.setAttribute('data-theme', theme);
+    })();
+    </script>
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-brand">
@@ -38,7 +47,7 @@
 
             <!-- Desktop Actions -->
             <div class="nav-actions">
-                <button class="icon-btn" id="langToggle" aria-label="Cambiar idioma">ES</button>
+                <a class="icon-btn" id="langToggle" aria-label="Toggle language" href="./index.html">EN</a>
                 <button class="icon-btn" id="themeToggle" aria-label="Cambiar tema">
                     <span>☀️</span>
                 </button>
@@ -79,7 +88,7 @@
 
             <div class="mobile-nav-actions">
                 <div class="mobile-toggles">
-                    <button class="icon-btn" id="langToggleMobile" aria-label="Cambiar idioma">ES</button>
+                    <button class="icon-btn" id="langToggleMobile" aria-label="Cambiar idioma">EN</button>
                     <button class="icon-btn" id="themeToggleMobile" aria-label="Cambiar tema">
                         <span>☀️</span>
                     </button>
@@ -1382,6 +1391,7 @@
         const isLight = theme === 'light';
         const icons = [document.getElementById('themeToggle'), document.getElementById('themeToggleMobile')];
         icons.forEach(i => { if (i) i.innerHTML = isLight ? '<span>🌙</span>' : '<span>☀️</span>'; });
+        localStorage.setItem('theme', theme);
     }
 
 
@@ -1395,9 +1405,17 @@
     function toggleTheme() {
         const current = document.documentElement.getAttribute('data-theme') || 'dark';
         const next = current === 'dark' ? 'light' : 'dark';
-        localStorage.setItem('theme', next);
         setTheme(next);
     }
+    // Conectar los botones de tema
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeBtn = document.getElementById('themeToggle');
+        const themeBtnMobile = document.getElementById('themeToggleMobile');
+        if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
+        if (themeBtnMobile) themeBtnMobile.addEventListener('click', toggleTheme);
+        // Al cargar, actualiza el icono según el tema
+        setTheme(document.documentElement.getAttribute('data-theme') || 'dark');
+    });
 
 
 </script>

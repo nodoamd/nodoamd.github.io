@@ -15,6 +15,15 @@
         <meta name="description" content="Explore exclusive sessions in open previews. Subscribe to download originals in full quality and unlock complete videos.">
     </head>
     <body>
+        <script>
+        // Aplica el tema guardado o el del sistema al cargar
+        (function() {
+            const userTheme = localStorage.getItem('theme');
+            const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            const theme = userTheme || systemTheme;
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+        </script>
         <!-- NUEVA NAVEGACIÓN -->
         <nav class="navbar" id="navbar">
             <div class="nav-container">
@@ -55,7 +64,7 @@
                 </div>
                 <!-- Desktop Actions -->
                 <div class="nav-actions">
-                    <button class="icon-btn" id="langToggle" aria-label="Toggle language">EN</button>
+                    <a class="icon-btn" id="langToggle" aria-label="Toggle language" href="./index-es.html">ES</a>
                     <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
                         <span>☀️</span>
                     </button>
@@ -124,7 +133,7 @@
                 >🎁 Free Starter Pack</a>
                 <div class="mobile-nav-actions">
                     <div class="mobile-toggles">
-                        <button class="icon-btn" id="langToggleMobile" aria-label="Toggle language">EN</button>
+                        <button class="icon-btn" id="langToggleMobile" aria-label="Toggle language">ES</button>
                         <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme">
                             <span>☀️</span>
                         </button>
@@ -1303,6 +1312,7 @@
             const isLight = theme === 'light';
             const icons = [document.getElementById('themeToggle'), document.getElementById('themeToggleMobile')];
             icons.forEach(i => { if (i) i.innerHTML = isLight ? '<span>🌙</span>' : '<span>☀️</span>'; });
+            localStorage.setItem('theme', theme);
         }
 
 
@@ -1316,9 +1326,17 @@
         function toggleTheme() {
             const current = document.documentElement.getAttribute('data-theme') || 'dark';
             const next = current === 'dark' ? 'light' : 'dark';
-            localStorage.setItem('theme', next);
             setTheme(next);
         }
+    // Conectar los botones de tema
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeBtn = document.getElementById('themeToggle');
+        const themeBtnMobile = document.getElementById('themeToggleMobile');
+        if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
+        if (themeBtnMobile) themeBtnMobile.addEventListener('click', toggleTheme);
+        // Al cargar, actualiza el icono según el tema
+        setTheme(document.documentElement.getAttribute('data-theme') || 'dark');
+    });
                 </script>
             </body>
         </html>
