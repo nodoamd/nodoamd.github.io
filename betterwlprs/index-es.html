@@ -996,13 +996,7 @@
                         </div>
                     </div>
                 `;
-            card.addEventListener('click', () => {
-                if (video.premium) {
-                    openModal();
-                } else {
-                    alert('Reproduciendo vídeo...');
-                }
-            });
+            
             grid.appendChild(card);
         });
     }
@@ -1290,19 +1284,6 @@
                     }
                 });
             }
-        });
-
-        // Handle video cards
-        document.querySelectorAll('#videoGrid .card').forEach(card => {
-            card.addEventListener('click', (e) => {
-                e.preventDefault();
-                const isPremium = card.querySelector('.card-premium');
-                if (isPremium) {
-                    showActionModal(card);
-                } else {
-                    alert('Reproduciendo vídeo...');
-                }
-            });
         });
     }
 

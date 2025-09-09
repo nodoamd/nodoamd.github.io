@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BetterWLPRS - Premium Gallery</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BetterWLPRS - Premium Gallery</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
         tailwind.config = {
             theme: {
                 extend: {
@@ -23,10 +22,9 @@
                 }
             }
         }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <style>
+        </script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <style>
         .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
@@ -266,545 +264,609 @@
             break-inside: avoid;
             margin-bottom: 1.5rem;
         }
-    </style>
-</head>
-
-<body class="bg-dark text-white font-sans overflow-x-hidden">
-
-    <div class="parallax-bg"></div>
-
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-effect">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <h1 class="text-xl font-bold gradient-text">BetterWLPRS</h1>
+        </style>
+    </head>
+    <body class="bg-dark text-white font-sans overflow-x-hidden">
+        <div class="parallax-bg"></div>
+        <!-- Navigation -->
+        <nav class="fixed w-full z-50 glass-effect">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <h1 class="text-xl font-bold gradient-text">BetterWLPRS</h1>
+                        </div>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="#" class="text-white hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Inicio</a>
+                            <a href="#" class="text-primary px-3 py-2 rounded-md text-sm font-medium">Galería</a>
+                            <a href="#" class="text-white hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Contacto</a>
+                        </div>
+                    </div>
+                    <div class="md:hidden">
+                        <button id="mobile-menu-button" class="text-white hover:text-primary focus:outline-none">
+                            <svg
+                                class="h-6 w-6"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16"
+                                />
+                            </svg>
+                        </button>
                     </div>
                 </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#"
-                            class="text-white hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Inicio</a>
-                        <a href="#" class="text-primary px-3 py-2 rounded-md text-sm font-medium">Galería</a>
-                        <a href="#"
-                            class="text-white hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Contacto</a>
-                    </div>
+            </div>
+        </nav>
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 hero-pattern">
+            <div class="max-w-7xl mx-auto text-center">
+                <div class="premium-badge inline-flex items-center px-4 py-2 rounded-full text-sm font-bold text-dark mb-6">
+                    <span class="mr-2">⭐</span>
+                    Free Online Gallery
                 </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-white hover:text-primary focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
+                <h1 class="text-6xl md:text-8xl font-extrabold mb-6 leading-tight">
+                    <span class="gradient-text">Gallery</span>
+                    <br>
+                    <span class="text-white">BetterWLPRS</span>
+                </h1>
+                <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                    Discover and download premium wallpapers and videos to elevate your desktop experience.
+                    <br>
+                    <div class="text-xs text-gray-400 mt-2">Instant access. No commitment.</div>
+                </p>
+                <div class="flex justify-center mb-12">
+                    <div class="relative">
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Search wallpapers..."
+                            class="search-bar w-80 px-6 py-4 rounded-full text-white placeholder-gray-400 focus:outline-none"
+                        >
+                        <svg
+                            class="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                            />
                         </svg>
-                    </button>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 hero-pattern">
-        <div class="max-w-7xl mx-auto text-center">
-            <div class="premium-badge inline-flex items-center px-4 py-2 rounded-full text-sm font-bold text-dark mb-6">
-                <span class="mr-2">⭐</span>
-                Premium Collection
-            </div>
-            <h1 class="text-6xl md:text-8xl font-extrabold mb-6 leading-tight">
-                <span class="gradient-text">Gallery</span><br>
-                <span class="text-white">BetterWLPRS</span>
-            </h1>
-            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Discover our curated collection of premium wallpapers designed to elevate your visual experience
-            </p>
-            <div class="flex justify-center mb-12">
-                <div class="relative">
-                    <input type="text" id="searchInput" placeholder="Search wallpapers..."
-                        class="search-bar w-80 px-6 py-4 rounded-full text-white placeholder-gray-400 focus:outline-none">
-                    <svg class="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                <a
+                    href="https://www.patreon.com/betterwlprs"
+                    target="_blank"
+                    rel="noopener"
+                    class="group inline-flex items-center gap-3 px-6 py-3 mt-6 rounded-full border-2 border-primary bg-dark-light/80 hover:bg-primary hover:text-white transition-all duration-200 shadow-xl focus:outline-none focus:ring-2 focus:ring-primary/40"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-6 h-6 text-[#fc6354] group-hover:text-white transition-colors duration-200">
+                        <circle
+                            cx="16"
+                            cy="16"
+                            r="16"
+                            fill="#fc6354"
+                        />
+                        <rect
+                            x="10"
+                            y="8"
+                            width="4"
+                            height="16"
+                            rx="2"
+                            fill="#fff"
+                        />
                     </svg>
-                </div>
+                    <span class="font-semibold text-lg tracking-tight">
+                        Get every new BetterWLPRS drop this year
+                        <span class="font-bold">on Patreon</span>
+                    </span>
+                </a>
             </div>
-        </div>
-    </section>
-
-    <!-- Filter Section -->
-    <section class="py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button
-                    class="filter-button active px-8 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-primary to-accent"
-                    data-filter="all">
-                    All
-                </button>
-                <button
-                    class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20"
-                    data-filter="minimalist">
-                    Random WLPRS
-                </button>
-                <button
-                    class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20"
-                    data-filter="videos">
-                    Videos
-                </button>
-                <button
-                    class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20"
-                    data-filter="gaming">
-                    Death Stranding
-                </button>
-                <button
-                    class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20"
-                    data-filter="nature">
-                    Arkham Knight
-                </button>
-                <button
-                    class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20"
-                    data-filter="abstract">
-                    Spider-Man 2
-                </button>
-                <button
-                    class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20"
-                    data-filter="anime">
-                    Watch Dogs 2
-                </button>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-
-            <div id="galleryGrid" class="masonry-grid">
-
-                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
-                    data-category="nature" data-title="Arkham Knight Ake" data-premium="true">
-                    <img src="img/videowlprs/discoelysiumstart.gif" alt="Arkham Knight Ake"
-                        class="w-full h-64 object-cover">
-                    <div class="gallery-overlay"></div>
-                    <div class="gallery-content">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">Arkham Knight Ake</h3>
-                            <span
-                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-3">Arkham Knight</p>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Preview</button>
-                            <button
-                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Download</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
-                    data-category="minimalist" data-title="Arkham" data-premium="true">
-                    <img src="img/arkham.gif" alt="Arkham" class="w-full h-64 object-cover">
-                    <div class="gallery-overlay"></div>
-                    <div class="gallery-content">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">Arkham</h3>
-                            <span
-                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
-                                Previa</button>
-                            <button
-                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
-                    data-category="gaming" data-title="Battlefront 2 Pinky" data-premium="true">
-                    <img src="img/webp Battlefront 2/bf2pinky.webp" alt="Battlefront 2 Pinky"
-                        class="w-full h-64 object-cover">
-                    <div class="gallery-overlay"></div>
-                    <div class="gallery-content">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">Battlefront 2 Pinky</h3>
-                            <span
-                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-3">Battlefront 2</p>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
-                                Previa</button>
-                            <button
-                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
-                    data-category="gaming" data-title="Death Stranding 1 (1)" data-premium="true">
-                    <img src="img/webp Death Stranding/1 (1).webp" alt="Death Stranding 1 (1)"
-                        class="w-full h-64 object-cover">
-                    <div class="gallery-overlay"></div>
-                    <div class="gallery-content">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">Death Stranding 1 (1)</h3>
-                            <span
-                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-3">Death Stranding</p>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
-                                Previa</button>
-                            <button
-                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
-                    data-category="anime" data-title="Watch Dogs 2 1img_0702122152462_12" data-premium="true">
-                    <img src="img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122152462_12.webp"
-                        alt="Watch Dogs 2 1img_0702122152462_12" class="w-full h-64 object-cover">
-                    <div class="gallery-overlay"></div>
-                    <div class="gallery-content">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">Watch Dogs 2 1img_0702122152462_12</h3>
-                            <span
-                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-3">Watch Dogs 2</p>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
-                                Previa</button>
-                            <button
-                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
-                    data-category="minimalist" data-title="Barman" data-premium="true">
-                    <img src="img/barman.png" alt="Barman" class="w-full h-64 object-cover">
-                    <div class="gallery-overlay"></div>
-                    <div class="gallery-content">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">Barman</h3>
-                            <span
-                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
-                                Previa</button>
-                            <button
-                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
-                    data-category="minimalist" data-title="Marcus Sitting Focused" data-premium="true">
-                    <img src="img/marcusittingfocused.jpg" alt="Marcus Sitting Focused"
-                        class="w-full h-64 object-cover">
-                    <div class="gallery-overlay"></div>
-                    <div class="gallery-content">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">Marcus Sitting Focused</h3>
-                            <span
-                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
-                                Previa</button>
-                            <button
-                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
-                    data-category="minimalist" data-title="Marcus Sitted Ahh" data-premium="true">
-                    <img src="img/marcussittedahh.gif" alt="Marcus Sitted Ahh" class="w-full h-64 object-cover">
-                    <div class="gallery-overlay"></div>
-                    <div class="gallery-content">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">Marcus Sitted Ahh</h3>
-                            <span
-                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
-                                Previa</button>
-                            <button
-                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
-                    data-category="minimalist" data-title="Sam Izquierda Sentado" data-premium="true">
-                    <img src="img/samizquierdasentado.png" alt="Sam Izquierda Sentado" class="w-full h-64 object-cover">
-                    <div class="gallery-overlay"></div>
-                    <div class="gallery-content">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">Sam Izquierda Sentado</h3>
-                            <span
-                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
-                                Previa</button>
-                            <button
-                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
-                    data-category="minimalist" data-title="Sam Satori" data-premium="true">
-                    <img src="img/samsatori.gif" alt="Sam Satori" class="w-full h-64 object-cover">
-                    <div class="gallery-overlay"></div>
-                    <div class="gallery-content">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">Sam Satori</h3>
-                            <span
-                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
-                                Previa</button>
-                            <button
-                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
-                    data-category="minimalist" data-title="Sam Sitted Ahh" data-premium="true">
-                    <img src="img/samsittedahh.gif" alt="Sam Sitted Ahh" class="w-full h-64 object-cover">
-                    <div class="gallery-overlay"></div>
-                    <div class="gallery-content">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">Sam Sitted Ahh</h3>
-                            <span
-                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
-                                Previa</button>
-                            <button
-                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
-                    data-category="minimalist" data-title="San Fra Camp View" data-premium="true">
-                    <img src="img/sanfracampview.jpg" alt="San Fra Camp View" class="w-full h-64 object-cover">
-                    <div class="gallery-overlay"></div>
-                    <div class="gallery-content">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">San Fra Camp View</h3>
-                            <span
-                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
-                                Previa</button>
-                            <button
-                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
-                    data-category="minimalist" data-title="Spider Sky" data-premium="true">
-                    <img src="img/spidersky.gif" alt="Spider Sky" class="w-full h-64 object-cover">
-                    <div class="gallery-overlay"></div>
-                    <div class="gallery-content">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">Spider Sky</h3>
-                            <span
-                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
-                                Previa</button>
-                            <button
-                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
-                    data-category="minimalist" data-title="The Long Dark Wolfs" data-premium="true">
-                    <img src="img/thelongdarkwolfs.png" alt="The Long Dark Wolfs" class="w-full h-64 object-cover">
-                    <div class="gallery-overlay"></div>
-                    <div class="gallery-content">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">The Long Dark Wolfs</h3>
-                            <span
-                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
-                                Previa</button>
-                            <button
-                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
-                    data-category="nature" data-title="Ocean Waves" data-premium="false">
-                    <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=500&h=300&fit=crop"
-                        alt="Nature Wallpaper" class="w-full h-64 object-cover">
-                    <div class="gallery-overlay"></div>
-                    <div class="gallery-content">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">Ocean Waves</h3>
-                            <span class="bg-green-500 px-2 py-1 rounded-full text-xs font-bold text-dark">FREE</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-3">4K Resolution • Nature</p>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-                                Preview
-                            </button>
-                            <button
-                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-                                Download
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- More items... -->
-                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
-                    data-category="gaming" data-title="Retro Gaming" data-premium="true">
-                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&h=450&fit=crop"
-                        alt="Gaming Wallpaper" class="w-full h-96 object-cover">
-                    <div class="gallery-overlay"></div>
-                    <div class="gallery-content">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">Retro Gaming</h3>
-                            <span
-                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-3">4K Resolution • Gaming</p>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-                                Vista Previa
-                            </button>
-                            <button
-                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-                                Descargar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
-                    data-category="abstract" data-title="Digital Art" data-premium="true">
-                    <img src="https://images.unsplash.com/photo-1614543158492-b2c7c1735d6b?w=500&h=320&fit=crop"
-                        alt="Abstract Wallpaper" class="w-full h-72 object-cover">
-                    <div class="gallery-overlay"></div>
-                    <div class="gallery-content">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-bold text-white">Digital Art</h3>
-                            <span
-                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
-                        </div>
-                        <p class="text-gray-300 text-sm mb-3">4K Resolution • Abstract</p>
-                        <div class="flex space-x-2">
-                            <button
-                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-                                Vista Previa
-                            </button>
-                            <button
-                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
-                                Descargar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Load More Button -->
-            <div class="text-center mt-16">
-                <button id="loadMore"
-                    class="bg-gradient-to-r from-primary to-accent text-white px-12 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform duration-300">
-                    Load More Wallpapers
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="py-20 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="text-4xl font-bold gradient-text mb-2">500+</div>
-                    <div class="text-gray-400">Wallpapers</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold gradient-text mb-2">50K+</div>
-                    <div class="text-gray-400">Downloads</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold gradient-text mb-2">4.9★</div>
-                    <div class="text-gray-400">Rating</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold gradient-text mb-2">24/7</div>
-                    <div class="text-gray-400">Support</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Modal -->
-    <div id="previewModal" class="fixed inset-0 z-50 hidden modal">
-        <div class="flex items-center justify-center min-h-screen px-4">
-            <div class="modal-content bg-dark-light rounded-2xl p-8 max-w-4xl w-full mx-4">
-                <div class="flex items-center justify-between mb-6">
-                    <h3 id="modalTitle" class="text-2xl font-bold text-white">Wallpaper Preview</h3>
-                    <button id="closeModal" class="text-gray-400 hover:text-white transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
+        </section>
+        <!-- Filter Section -->
+        <section class="py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button class="filter-button active px-8 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-primary to-accent" data-filter="all">
+                        All
+                    </button>
+                    <button class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20" data-filter="minimalist">
+                        Random WLPRS
+                    </button>
+                    <button class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20" data-filter="videos">
+                        Videos
+                    </button>
+                    <button class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20" data-filter="gaming">
+                        Death Stranding
+                    </button>
+                    <button class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20" data-filter="nature">
+                        Arkham Knight
+                    </button>
+                    <button class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20" data-filter="abstract">
+                        Spider-Man 2
+                    </button>
+                    <button class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20" data-filter="anime">
+                        Watch Dogs 2
                     </button>
                 </div>
-                <div class="mb-6">
-                    <img id="modalImage" src="" alt="Preview" class="w-full h-96 object-cover rounded-xl">
+            </div>
+        </section>
+        <!-- Gallery Section -->
+        <section class="py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div id="galleryGrid" class="masonry-grid">
+                    <div
+                        class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                        data-category="nature"
+                        data-title="Arkham Knight Ake"
+                        data-premium="true"
+                    >
+                        <img src="img/videowlprs/discoelysiumstart.gif" alt="Arkham Knight Ake" class="w-full h-64 object-cover">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Arkham Knight Ake</h3>
+                                <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-3">Arkham Knight</p>
+                            <div class="flex space-x-2">
+                                <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Preview</button>
+                                <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Download</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                        data-category="minimalist"
+                        data-title="Arkham"
+                        data-premium="true"
+                    >
+                        <img src="img/arkham.gif" alt="Arkham" class="w-full h-64 object-cover">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Arkham</h3>
+                                <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                            <div class="flex space-x-2">
+                                <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Vista
+                                Previa
+                                </button>
+                                <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                        data-category="gaming"
+                        data-title="Battlefront 2 Pinky"
+                        data-premium="true"
+                    >
+                        <img src="img/webp Battlefront 2/bf2pinky.webp" alt="Battlefront 2 Pinky" class="w-full h-64 object-cover">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Battlefront 2 Pinky</h3>
+                                <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-3">Battlefront 2</p>
+                            <div class="flex space-x-2">
+                                <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Vista
+                                Previa
+                                </button>
+                                <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                        data-category="gaming"
+                        data-title="Death Stranding 1 (1)"
+                        data-premium="true"
+                    >
+                        <img src="img/webp Death Stranding/1 (1).webp" alt="Death Stranding 1 (1)" class="w-full h-64 object-cover">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Death Stranding 1 (1)</h3>
+                                <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-3">Death Stranding</p>
+                            <div class="flex space-x-2">
+                                <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Vista
+                                Previa
+                                </button>
+                                <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                        data-category="anime"
+                        data-title="Watch Dogs 2 1img_0702122152462_12"
+                        data-premium="true"
+                    >
+                        <img src="img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122152462_12.webp" alt="Watch Dogs 2 1img_0702122152462_12" class="w-full h-64 object-cover">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Watch Dogs 2 1img_0702122152462_12</h3>
+                                <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-3">Watch Dogs 2</p>
+                            <div class="flex space-x-2">
+                                <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Vista
+                                Previa
+                                </button>
+                                <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                        data-category="minimalist"
+                        data-title="Barman"
+                        data-premium="true"
+                    >
+                        <img src="img/barman.png" alt="Barman" class="w-full h-64 object-cover">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Barman</h3>
+                                <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                            <div class="flex space-x-2">
+                                <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Vista
+                                Previa
+                                </button>
+                                <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                        data-category="minimalist"
+                        data-title="Marcus Sitting Focused"
+                        data-premium="true"
+                    >
+                        <img src="img/marcusittingfocused.jpg" alt="Marcus Sitting Focused" class="w-full h-64 object-cover">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Marcus Sitting Focused</h3>
+                                <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                            <div class="flex space-x-2">
+                                <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Vista
+                                Previa
+                                </button>
+                                <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                        data-category="minimalist"
+                        data-title="Marcus Sitted Ahh"
+                        data-premium="true"
+                    >
+                        <img src="img/marcussittedahh.gif" alt="Marcus Sitted Ahh" class="w-full h-64 object-cover">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Marcus Sitted Ahh</h3>
+                                <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                            <div class="flex space-x-2">
+                                <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Vista
+                                Previa
+                                </button>
+                                <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                        data-category="minimalist"
+                        data-title="Sam Izquierda Sentado"
+                        data-premium="true"
+                    >
+                        <img src="img/samizquierdasentado.png" alt="Sam Izquierda Sentado" class="w-full h-64 object-cover">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Sam Izquierda Sentado</h3>
+                                <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                            <div class="flex space-x-2">
+                                <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Vista
+                                Previa
+                                </button>
+                                <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                        data-category="minimalist"
+                        data-title="Sam Satori"
+                        data-premium="true"
+                    >
+                        <img src="img/samsatori.gif" alt="Sam Satori" class="w-full h-64 object-cover">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Sam Satori</h3>
+                                <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                            <div class="flex space-x-2">
+                                <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Vista
+                                Previa
+                                </button>
+                                <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                        data-category="minimalist"
+                        data-title="Sam Sitted Ahh"
+                        data-premium="true"
+                    >
+                        <img src="img/samsittedahh.gif" alt="Sam Sitted Ahh" class="w-full h-64 object-cover">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Sam Sitted Ahh</h3>
+                                <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                            <div class="flex space-x-2">
+                                <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Vista
+                                Previa
+                                </button>
+                                <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                        data-category="minimalist"
+                        data-title="San Fra Camp View"
+                        data-premium="true"
+                    >
+                        <img src="img/sanfracampview.jpg" alt="San Fra Camp View" class="w-full h-64 object-cover">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">San Fra Camp View</h3>
+                                <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                            <div class="flex space-x-2">
+                                <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Vista
+                                Previa
+                                </button>
+                                <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                        data-category="minimalist"
+                        data-title="Spider Sky"
+                        data-premium="true"
+                    >
+                        <img src="img/spidersky.gif" alt="Spider Sky" class="w-full h-64 object-cover">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Spider Sky</h3>
+                                <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                            <div class="flex space-x-2">
+                                <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Vista
+                                Previa
+                                </button>
+                                <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                        data-category="minimalist"
+                        data-title="The Long Dark Wolfs"
+                        data-premium="true"
+                    >
+                        <img src="img/thelongdarkwolfs.png" alt="The Long Dark Wolfs" class="w-full h-64 object-cover">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">The Long Dark Wolfs</h3>
+                                <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                            <div class="flex space-x-2">
+                                <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Vista
+                                Previa
+                                </button>
+                                <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                        data-category="nature"
+                        data-title="Ocean Waves"
+                        data-premium="false"
+                    >
+                        <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=500&h=300&fit=crop" alt="Nature Wallpaper" class="w-full h-64 object-cover">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Ocean Waves</h3>
+                                <span class="bg-green-500 px-2 py-1 rounded-full text-xs font-bold text-dark">FREE</span>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-3">4K Resolution • Nature</p>
+                            <div class="flex space-x-2">
+                                <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Preview
+                                </button>
+                                <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- More items... -->
+                    <div
+                        class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                        data-category="gaming"
+                        data-title="Retro Gaming"
+                        data-premium="true"
+                    >
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&h=450&fit=crop" alt="Gaming Wallpaper" class="w-full h-96 object-cover">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Retro Gaming</h3>
+                                <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-3">4K Resolution • Gaming</p>
+                            <div class="flex space-x-2">
+                                <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Vista Previa
+                                </button>
+                                <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Descargar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                        data-category="abstract"
+                        data-title="Digital Art"
+                        data-premium="true"
+                    >
+                        <img src="https://images.unsplash.com/photo-1614543158492-b2c7c1735d6b?w=500&h=320&fit=crop" alt="Abstract Wallpaper" class="w-full h-72 object-cover">
+                        <div class="gallery-overlay"></div>
+                        <div class="gallery-content">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Digital Art</h3>
+                                <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-3">4K Resolution • Abstract</p>
+                            <div class="flex space-x-2">
+                                <button class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Vista Previa
+                                </button>
+                                <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    Descargar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex justify-end gap-4">
-                    <button id="downloadModal"
-                        class="bg-primary hover:bg-primary-dark px-6 py-2 rounded-lg text-white font-semibold transition-colors">Download</button>
-                    <button id="closeModalBottom"
-                        class="bg-white/10 hover:bg-white/20 px-6 py-2 rounded-lg text-white font-semibold transition-colors">Close</button>
+                <!-- Load More Button -->
+                <div class="text-center mt-16">
+                    <button id="loadMore" class="bg-gradient-to-r from-primary to-accent text-white px-12 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform duration-300">
+                        Load More Wallpapers
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Stats Section -->
+        <section class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold gradient-text mb-2">500+</div>
+                        <div class="text-gray-400">Wallpapers</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold gradient-text mb-2">50K+</div>
+                        <div class="text-gray-400">Downloads</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold gradient-text mb-2">4.9★</div>
+                        <div class="text-gray-400">Rating</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold gradient-text mb-2">24/7</div>
+                        <div class="text-gray-400">Support</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Modal -->
+        <div id="previewModal" class="fixed inset-0 z-50 hidden modal">
+            <div class="flex items-center justify-center min-h-screen px-4">
+                <div class="modal-content bg-dark-light rounded-2xl p-8 max-w-4xl w-full mx-4">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 id="modalTitle" class="text-2xl font-bold text-white">Wallpaper Preview</h3>
+                        <button id="closeModal" class="text-gray-400 hover:text-white transition-colors">
+                            <svg
+                                class="w-6 h-6"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="mb-6">
+                        <img
+                            id="modalImage"
+                            src=""
+                            alt="Preview"
+                            class="w-full h-96 object-cover rounded-xl"
+                        >
+                    </div>
+                    <div class="flex justify-end gap-4">
+                        <button id="downloadModal" class="bg-primary hover:bg-primary-dark px-6 py-2 rounded-lg text-white font-semibold transition-colors">Download</button>
+                        <button id="closeModalBottom" class="bg-white/10 hover:bg-white/20 px-6 py-2 rounded-lg text-white font-semibold transition-colors">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <script>
+        <script>
         // Modal logic
         const previewModal = document.getElementById('previewModal');
         const closeModal = document.getElementById('closeModal');
@@ -844,7 +906,6 @@
         document.getElementById('loadMore').addEventListener('click', () => {
             alert('More exclusive wallpapers coming soon.');
         });
-    </script>
-</body>
-
+        </script>
+    </body>
 </html>
