@@ -5,12 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pablo Uchida – Visual Artist</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
     <script src="minified/gsap.min.js"></script>
     <script src="minified/ScrollTrigger.min.js"></script>
     <script src="minified/ScrollSmoother.min.js"></script>
 </head>
 <style>
+    .heading-l {
+        font-size: 3.2rem !important;
+        letter-spacing: 0.02em;
+    }
+    .bajal {
+        font-size: 1.7rem !important;
+        letter-spacing: 0.01em;
+    }
+    button.button {
+        font-size: 1.5rem;
+        padding: 1rem 2.2rem;
+    }
+    /* Responsividad de tipografía y espaciados generales, sin tocar .cube */
+    @media (max-width: 900px) {
+        .heading-l {
+            font-size: 2.2rem !important;
+        }
+        .bajal {
+            font-size: 1.2rem !important;
+        }
+        .header {
+            padding-top: 1.5rem;
+        }
+        button.button {
+            font-size: 1.1rem;
+            padding: 0.7rem 1.5rem;
+        }
+    }
+    @media (max-width: 600px) {
+        .heading-l {
+            font-size: 1.5rem !important;
+        }
+        .bajal {
+            font-size: 1rem !important;
+        }
+        .header {
+            padding-top: 0.7rem;
+        }
+        button.button {
+            font-size: 1rem;
+            padding: 0.5rem 1.1rem;
+        }
+    }
+    @media (max-width: 400px) {
+        .heading-l {
+            font-size: 1.1rem !important;
+        }
+        .bajal {
+            font-size: 0.8rem !important;
+        }
+        button.button {
+            font-size: 0.9rem;
+            padding: 0.4rem 0.7rem;
+        }
+    }
     body {
         background-color: var(--color-just-black);
         background-color: black;
@@ -19,6 +74,7 @@
         margin: 0;
         padding: 0;
         overflow-x: hidden;
+        font-family: 'Archivo Black', Arial, sans-serif;
     }
 
     .header {
