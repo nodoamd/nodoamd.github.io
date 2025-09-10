@@ -15,57 +15,71 @@
         font-size: 3.2rem !important;
         letter-spacing: 0.02em;
     }
+
     .bajal {
         font-size: 1.7rem !important;
         letter-spacing: 0.01em;
     }
+
     button.button {
         font-size: 1.5rem;
         padding: 1rem 2.2rem;
     }
+
     /* Responsividad de tipografía y espaciados generales, sin tocar .cube */
     @media (max-width: 900px) {
         .heading-l {
             font-size: 2.2rem !important;
         }
+
         .bajal {
             font-size: 1.2rem !important;
         }
+
         .header {
             padding-top: 1.5rem;
         }
+
         button.button {
             font-size: 1.1rem;
             padding: 0.7rem 1.5rem;
         }
     }
+
     @media (max-width: 600px) {
         .heading-l {
             font-size: 1.5rem !important;
         }
+
         .bajal {
             font-size: 1rem !important;
         }
+
         .header {
             padding-top: 0.7rem;
         }
+
         button.button {
             font-size: 1rem;
             padding: 0.5rem 1.1rem;
         }
     }
+
     @media (max-width: 400px) {
         .heading-l {
             font-size: 1.1rem !important;
         }
+
         .bajal {
             font-size: 0.8rem !important;
         }
+
         button.button {
             font-size: 0.9rem;
             padding: 0.4rem 0.7rem;
         }
     }
+
     body {
         background-color: var(--color-just-black);
         background-color: black;
@@ -186,9 +200,16 @@
 
     .cube img {
         width: 100%;
-        height: 100%;
+        height: 140px;
         object-fit: cover;
-        border-radius: 16px;
+        border-radius: 40px;
+        /* Para mantener el efecto redondo en esquinas, pero más alto */
+        display: block;
+    }
+
+    .cube {
+        height: 140px;
+        /* Asegura que el div acompañe la altura de la imagen */
     }
 </style>
 
@@ -200,18 +221,18 @@
             <h2 class="bajal">Ilustrator, Designer, Autor</h2>
             <button class="button">Ilustrations</button>
         </header>
-        <div style="display: flex; gap: 1rem; justify-content: center; margin: 45rem 0;">
+        <div style="display: flex; gap: 1rem; justify-content: center; margin: 25rem 0;">
             <div class="cube">
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=80&q=80"
+                <img src="https://i0.wp.com/halcyonrealms.com/blogpics/deathstrandingposter02.jpg?resize=750%2C1060&ssl=1"
                     alt="Imagen A" style="width:100%;height:100%;object-fit:cover;border-radius:16px;">
             </div>
             <div class="cube">
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=80&q=80"
-                    alt="Imagen A" style="width:100%;height:100%;object-fit:cover;border-radius:16px;">
+                <img src="https://i.redd.it/q1ux47q1mjix.png" alt="Imagen A"
+                    style="width:100%;height:100%;object-fit:cover;border-radius:16px;">
             </div>
             <div class="cube">
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=80&q=80"
-                    alt="Imagen A" style="width:100%;height:100%;object-fit:cover;border-radius:16px;">
+                <img src="https://i.pinimg.com/736x/c7/81/57/c7815731af08d0dd369b5340001b785e.jpg" alt="Imagen A"
+                    style="width:100%;height:100%;object-fit:cover;border-radius:16px;">
             </div>
         </div>
         <div class="line"></div>
@@ -244,6 +265,34 @@
         </div>
     </section> -->
     <script>
+        // Cambiar el texto del h1 y h2 de forma suave antes de llegar al end, evitando repeticiones
+        (function() {
+            let modoObras = false;
+            const h1 = document.querySelector('.heading-l');
+            const h2 = document.querySelector('.header h2');
+            ScrollTrigger.create({
+                trigger: '.heading-l',
+                start: 'top top',
+                end: '+=300',
+                scrub: false,
+                onUpdate: self => {
+                    const debeSerObras = self.progress > 0.2;
+                    if (debeSerObras !== modoObras) {
+                        modoObras = debeSerObras;
+                        // Cambia ambos textos solo si hay cambio de modo
+                        gsap.to([h1, h2], {
+                            opacity: 0,
+                            duration: 0.25,
+                            onComplete: () => {
+                                h1.textContent = modoObras ? 'Recent works:' : 'Pablo Uchida';
+                                h2.textContent = modoObras ? 'Death Stranding, Metal Gear, Etc...' : 'Ilustrator, Designer, Autor';
+                                gsap.to([h1, h2], { opacity: 1, duration: 0.25 });
+                            }
+                        });
+                    }
+                }
+            });
+        })();
 
         gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -273,6 +322,7 @@
         // Animar el h1 solo al hacer scroll
         gsap.to('.heading-l', {
             y: 420,
+            scale: 1.7,
             scrollTrigger: {
                 trigger: '.heading-l',
                 start: 'top top',
@@ -283,7 +333,7 @@
 
         gsap.to('.header h2', {
             y: 430,
-            scale: 0.7,
+            scale: 1.7,
             delay: 0.5,
             transformOrigin: "top center",
             scrollTrigger: {
@@ -294,6 +344,20 @@
             }
         });
 
+        // Escalar los cubos igual que h1 y h2 al hacer scroll
+        gsap.to('.cube', {
+            scale: 1.7,
+            delay: 0.5,
+            transformOrigin: "top center",
+            scrollTrigger: {
+                trigger: '.heading-l',
+                start: 'top top',
+                end: '+=300',
+                scrub: true
+            }
+        });
+
+       
     </script>
 </body>
 
