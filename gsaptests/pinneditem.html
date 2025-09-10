@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pablo Uchida – Visual Artist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="minified/gsap.min.js"></script>
+    <script src="minified/ScrollTrigger.min.js"></script>
+    <script src="minified/ScrollSmoother.min.js"></script>
+</head>
+
+<body>
+
+    <div id="smooth-wrapper">
+        <div id="smooth-content">
+            <header class="header">
+                <h1 class="heading-l heading-scroll">Pablo Uchida</h1>
+                <button class="button">Ilustrations</button>
+            </header>
+            <div style="display: flex; gap: 1rem; justify-content: center; margin: 45rem 0;">
+                <div class="cube"
+                    style="width:80px;height:80px;background:#e53935;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;font-weight:bold;box-shadow:0 4px 16px #0004;">
+                    A</div>
+                <div class="cube"
+                    style="width:80px;height:80px;background:#e53935;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;font-weight:bold;box-shadow:0 4px 16px #0004;">
+                    B</div>
+                <div class="cube"
+                    style="width:80px;height:80px;background:#e53935;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;font-weight:bold;box-shadow:0 4px 16px #0004;">
+                    C</div>
+            </div>
+            <div class="line"></div>
+        </div>
+    </div>
+
+    <!-- <section class="hero">
+        <div class="hero-bg">
+            <img src="https://pbs.twimg.com/media/EEOcE1DUcAA534z?format=jpg&name=large" alt="Pablo Uchida Art Hero">
+        </div>
+        <div class="hero-content">
+            <div class="hero-title">PABLO UCHIDA</div>
+            <div class="hero-desc">Visual Artist & Illustrator<br>Official Death Stranding Poster Artist</div>
+            <a href="#intro" class="cta">Discover More</a>
+        </div>
+    </section>
+    <section class="intro-section" id="intro">
+        <h2>Welcome</h2>
+        <p>
+            Pablo Uchida is a multidisciplinary artist known for his cinematic posters and evocative digital
+            illustrations. His work blends realism, atmosphere, and storytelling, capturing the essence of each
+            project.<br><br>
+            This is a personal portfolio to share with friends and collaborators. Enjoy a curated selection of his most
+            iconic works.
+        </p>
+        <div class="social-links">
+            <a href="https://twitter.com/uchidapablo" target="_blank" title="Twitter"><span>Twitter</span></a>
+            <a href="https://instagram.com/uchidapablo" target="_blank" title="Instagram"><span>Instagram</span></a>
+            <a href="mailto:contact@pablouchida.com" title="Email"><span>Email</span></a>
+        </div>
+    </section> -->
+    <script>
+        gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+        let smoother = ScrollSmoother.create({
+            wrapper: '#smooth-wrapper',
+            content: '#smooth-content',
+            smooth: 2,
+            smoothTouch: 0.1,
+            effects: true
+        });
+
+        const button = document.querySelector("button");
+        button.addEventListener('click', (e) => {
+            smoother.scrollTo(".box-c", true, "center center");
+        });
+
+        // Efecto parallax y lag progresivo en los cubos
+        smoother.effects('.cube', {
+            speed: 0.5,
+            lag: (i) => i * 1
+        });
+
+        // Pin del cubo A con ScrollTrigger
+        ScrollTrigger.create({
+            pin: '.cube:first-child',
+            start: 'top center',
+            end: '+=300px',
+            markers: true
+        });
+        
+    </script>
+</body>
+
+</html>
