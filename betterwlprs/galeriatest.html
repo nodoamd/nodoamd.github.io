@@ -274,17 +274,40 @@
 
         .tiktok-container {
             height: 100vh;
-            overflow-y: auto;
-            scroll-snap-type: y mandatory;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .tiktok-wrapper {
+            height: 500vh; /* 5 items × 100vh */
             position: relative;
         }
 
         .tiktok-item {
             height: 100vh;
             width: 100vw;
-            position: relative;
-            scroll-snap-align: start;
+            position: fixed;
+            top: 0;
+            left: 0;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(100vh);
+            transition: opacity 0.3s ease;
+        }
+
+        .tiktok-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tiktok-item.prev {
+            opacity: 0;
+            transform: translateY(-100vh);
+        }
+
+        .tiktok-item.next {
+            opacity: 0;
+            transform: translateY(100vh);
         }
 
         .tiktok-background {
@@ -504,6 +527,54 @@
             
             .desktop-gallery {
                 display: none;
+            }
+        }
+
+        .tiktok-progress {
+            position: fixed;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        .tiktok-scroll-hint {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 15;
+            color: white;
+            text-align: center;
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
             }
         }
 
@@ -1010,8 +1081,24 @@
 
         <!-- TikTok Container -->
         <div class="tiktok-container" id="tiktokContainer">
-            <!-- Wallpaper 1 -->
-            <div class="tiktok-item">
+            <div class="tiktok-wrapper" id="tiktokWrapper">
+                <!-- Progress Indicators -->
+                <div class="tiktok-progress" id="tiktokProgress">
+                    <div class="progress-dot active" data-index="0"></div>
+                    <div class="progress-dot" data-index="1"></div>
+                    <div class="progress-dot" data-index="2"></div>
+                    <div class="progress-dot" data-index="3"></div>
+                    <div class="progress-dot" data-index="4"></div>
+                </div>
+
+                <!-- Scroll Hint -->
+                <div class="tiktok-scroll-hint" id="scrollHint">
+                    <div style="font-size: 0.9rem; margin-bottom: 5px;">Desliza para ver más</div>
+                    <div style="font-size: 1.2rem;">↓</div>
+                </div>
+
+                <!-- Wallpaper 1 -->
+                <div class="tiktok-item active" data-index="0">
                 <img src="img/videowlprs/discoelysiumstart.gif" alt="Disco Elysium" class="tiktok-background">
                 <div class="tiktok-overlay"></div>
                 
@@ -1058,7 +1145,7 @@
             </div>
 
             <!-- Wallpaper 2 -->
-            <div class="tiktok-item">
+            <div class="tiktok-item" data-index="1">
                 <img src="img/arkham.gif" alt="Arkham" class="tiktok-background">
                 <div class="tiktok-overlay"></div>
                 
@@ -1105,7 +1192,7 @@
             </div>
 
             <!-- Wallpaper 3 -->
-            <div class="tiktok-item">
+            <div class="tiktok-item" data-index="2">
                 <img src="img/webp Death Stranding/1 (1).webp" alt="Death Stranding" class="tiktok-background">
                 <div class="tiktok-overlay"></div>
                 
@@ -1152,7 +1239,7 @@
             </div>
 
             <!-- Wallpaper 4 -->
-            <div class="tiktok-item">
+            <div class="tiktok-item" data-index="3">
                 <img src="img/spidersky.gif" alt="Spider Sky" class="tiktok-background">
                 <div class="tiktok-overlay"></div>
                 
@@ -1199,7 +1286,7 @@
             </div>
 
             <!-- Wallpaper 5 -->
-            <div class="tiktok-item">
+            <div class="tiktok-item" data-index="4">
                 <img src="img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122152462_12.webp" alt="Watch Dogs 2" class="tiktok-background">
                 <div class="tiktok-overlay"></div>
                 
@@ -1244,6 +1331,7 @@
                     </button>
                 </div>
             </div>
+        </div>
         </div>
 
         <!-- Side Menu -->
@@ -1335,8 +1423,106 @@
         </div>
     </div>
 
+    <script src="gsap/gsap.min.js"></script>
+    <script src="gsap/ScrollTrigger.min.js"></script>
     <script>
+        // Register GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
         // TikTok Style Gallery Functions
+        let currentIndex = 0;
+        const totalItems = 5;
+        let isAnimating = false;
+        let tiktokScrollTrigger = null;
+
+        function initTikTokGallery() {
+            if (window.innerWidth <= 768) {
+                const tiktokWrapper = document.getElementById('tiktokWrapper');
+                const tiktokItems = document.querySelectorAll('.tiktok-item');
+                const progressDots = document.querySelectorAll('.progress-dot');
+                const scrollHint = document.getElementById('scrollHint');
+
+                // Kill existing ScrollTrigger if it exists
+                if (tiktokScrollTrigger) {
+                    tiktokScrollTrigger.kill();
+                }
+
+                // Create ScrollTrigger for TikTok gallery
+                tiktokScrollTrigger = ScrollTrigger.create({
+                    trigger: tiktokWrapper,
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 1,
+                    pin: true,
+                    snap: {
+                        snapTo: 1 / (totalItems - 1),
+                        duration: { min: 0.2, max: 0.5 },
+                        delay: 0.1
+                    },
+                    onUpdate: (self) => {
+                        const progress = self.progress;
+                        const newIndex = Math.round(progress * (totalItems - 1));
+                        
+                        if (newIndex !== currentIndex && !isAnimating) {
+                            updateTikTokItem(newIndex);
+                        }
+                    }
+                });
+
+                // Hide scroll hint after first interaction
+                setTimeout(() => {
+                    if (scrollHint) {
+                        gsap.to(scrollHint, { opacity: 0, duration: 0.5 });
+                    }
+                }, 3000);
+
+                console.log('TikTok Gallery initialized with GSAP ScrollTrigger');
+            }
+        }
+
+        function updateTikTokItem(newIndex) {
+            if (newIndex === currentIndex || isAnimating) return;
+            
+            isAnimating = true;
+            const tiktokItems = document.querySelectorAll('.tiktok-item');
+            const progressDots = document.querySelectorAll('.progress-dot');
+            
+            // Update items
+            tiktokItems.forEach((item, index) => {
+                item.classList.remove('active', 'prev', 'next');
+                
+                if (index === newIndex) {
+                    item.classList.add('active');
+                } else if (index < newIndex) {
+                    item.classList.add('prev');
+                } else {
+                    item.classList.add('next');
+                }
+            });
+            
+            // Update progress dots
+            progressDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === newIndex);
+            });
+            
+            // Add some visual feedback
+            gsap.fromTo(tiktokItems[newIndex].querySelector('.tiktok-content'), 
+                { y: 50, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }
+            );
+            
+            gsap.fromTo(tiktokItems[newIndex].querySelector('.tiktok-actions'), 
+                { x: 50, opacity: 0 },
+                { x: 0, opacity: 1, duration: 0.5, delay: 0.1, ease: "power2.out" }
+            );
+            
+            currentIndex = newIndex;
+            
+            setTimeout(() => {
+                isAnimating = false;
+            }, 500);
+        }
+
         function toggleGalleryView() {
             const desktop = document.querySelector('.desktop-gallery');
             const tiktok = document.querySelector('.tiktok-gallery');
@@ -1350,12 +1536,23 @@
                     hero.style.display = 'none';
                     nav.style.display = 'none';
                     tiktok.style.display = 'block';
+                    
+                    // Initialize GSAP ScrollTrigger for TikTok gallery
+                    setTimeout(() => {
+                        initTikTokGallery();
+                    }, 100);
                 } else {
                     // Switch to desktop view
                     desktop.style.display = 'block';
                     hero.style.display = 'block';
                     nav.style.display = 'block';
                     tiktok.style.display = 'none';
+                    
+                    // Kill ScrollTrigger when switching back
+                    if (tiktokScrollTrigger) {
+                        tiktokScrollTrigger.kill();
+                        tiktokScrollTrigger = null;
+                    }
                 }
             }
         }
@@ -1470,8 +1667,24 @@
         }
 
         // Initialize
-        window.addEventListener('load', checkMobileView);
-        window.addEventListener('resize', checkMobileView);
+        window.addEventListener('load', () => {
+            checkMobileView();
+            // Initialize ScrollTrigger refresh
+            ScrollTrigger.refresh();
+        });
+        
+        window.addEventListener('resize', () => {
+            checkMobileView();
+            // Kill and reinitialize on resize
+            if (tiktokScrollTrigger) {
+                tiktokScrollTrigger.kill();
+                tiktokScrollTrigger = null;
+            }
+            if (window.innerWidth <= 768 && document.querySelector('.tiktok-gallery').style.display === 'block') {
+                setTimeout(initTikTokGallery, 100);
+            }
+            ScrollTrigger.refresh();
+        });
 
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
