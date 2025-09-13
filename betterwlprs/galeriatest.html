@@ -1,52 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BetterWLPRS - Fixed TikTok Gallery</title>
+    <title>BetterWLPRS - Premium Gallery</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Reset y configuración base */
-        * {
-            box-sizing: border-box;
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#6366f1',
+                        'primary-dark': '#4f46e5',
+                        'accent': '#ec4899',
+                        'dark': '#0f172a',
+                        'dark-light': '#1e293b'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
         }
-        
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', system-ui, sans-serif;
-            background: #0f172a;
-            color: white;
-            overflow-x: hidden;
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
-        /* TikTok Gallery Styles - Simplificado */
-        .tiktok-gallery {
-            display: block;
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gallery-item {
             position: relative;
-            height: 100vh;
             overflow: hidden;
-            background: #000;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateY(0);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(99, 102, 241, 0.3);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+            z-index: 1;
+        }
+
+        .gallery-item:hover::before {
+            transform: translateX(100%);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(15, 23, 42, 0.8) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            z-index: 3;
+        }
+
+        .gallery-item:hover .gallery-content {
+            transform: translateY(0);
+        }
+
+        .filter-button {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-button.active {
+            background: linear-gradient(135deg, #6366f1, #ec4899);
+            transform: translateY(-2px);
+        }
+
+        .filter-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .filter-button:hover::before {
+            left: 100%;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scale-in {
+            animation: scaleIn 0.5s ease-out forwards;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal {
+            backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .modal-content {
+            animation: modalSlide 0.3s ease-out forwards;
+        }
+
+        @keyframes modalSlide {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .search-bar {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+        }
+
+        .parallax-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .hero-pattern {
+            background-image:
+                radial-gradient(circle at 1px 1px, rgba(99, 102, 241, 0.3) 1px, transparent 0);
+            background-size: 20px 20px;
+            animation: patternMove 20s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 20px 20px;
+            }
+        }
+
+        .premium-badge {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .masonry-grid {
+            columns: 1;
+            column-gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .masonry-grid {
+                columns: 2;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                columns: 3;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .masonry-grid {
+                columns: 4;
+            }
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+
+        /* TikTok Style Gallery for Mobile */
+        .tiktok-gallery {
+            display: none;
         }
 
         .tiktok-container {
-            position: relative;
             height: 100vh;
-            overflow-y: auto;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            scroll-snap-type: y mandatory;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .tiktok-wrapper {
+            height: 500vh; /* 5 items × 100vh */
+            position: relative;
         }
 
         .tiktok-item {
-            position: relative;
-            width: 100vw;
             height: 100vh;
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            width: 100vw;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(100vh);
+            transition: opacity 0.3s ease;
+        }
+
+        .tiktok-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tiktok-item.prev {
+            opacity: 0;
+            transform: translateY(-100vh);
+        }
+
+        .tiktok-item.next {
+            opacity: 0;
+            transform: translateY(100vh);
         }
 
         .tiktok-background {
@@ -67,69 +328,34 @@
             height: 100%;
             background: linear-gradient(
                 transparent 0%, 
-                transparent 50%, 
+                transparent 60%, 
                 rgba(0,0,0,0.3) 70%, 
                 rgba(0,0,0,0.8) 100%
             );
             z-index: 2;
         }
 
-        .tiktok-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 20;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(10px);
-            padding: 16px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-        }
-
-        .back-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.8rem;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .gallery-toggle {
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.3);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
         .tiktok-content {
-            position: relative;
-            z-index: 10;
-            padding: 0 20px 140px 20px;
-            margin-top: auto;
+            position: absolute;
+            bottom: 120px;
+            left: 20px;
+            right: 80px;
+            z-index: 3;
+            color: white;
         }
 
         .tiktok-title {
             font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 8px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.7);
-            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         .tiktok-description {
             font-size: 0.9rem;
             line-height: 1.4;
             margin-bottom: 12px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.7);
-            color: rgba(255,255,255,0.9);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
 
         .tiktok-tags {
@@ -149,10 +375,10 @@
         }
 
         .tiktok-actions {
-            position: fixed;
+            position: absolute;
             right: 20px;
-            bottom: 140px;
-            z-index: 15;
+            bottom: 120px;
+            z-index: 3;
             display: flex;
             flex-direction: column;
             gap: 16px;
@@ -173,75 +399,16 @@
             cursor: pointer;
         }
 
-        .tiktok-action-btn:active {
-            transform: scale(0.95);
+        .tiktok-action-btn:hover {
+            background: rgba(255,255,255,0.25);
+            transform: scale(1.05);
         }
 
         .tiktok-action-btn.liked {
             background: rgba(236, 72, 153, 0.8);
-        }
-
-        .tiktok-download-info {
-            position: relative;
-            z-index: 10;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin: 0 20px 20px 20px;
             color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
-        .download-count {
-            font-size: 0.8rem;
-            color: #94a3b8;
-        }
-
-        .download-btn {
-            background: linear-gradient(135deg, #6366f1, #ec4899);
-            border: none;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .download-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* Progress indicator */
-        .tiktok-progress {
-            position: fixed;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 25;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .progress-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.3);
-            transition: all 0.3s ease;
-        }
-
-        .progress-dot.active {
-            background: white;
-            transform: scale(1.3);
-        }
-
-        /* Menu lateral */
         .tiktok-menu {
             position: fixed;
             top: 0;
@@ -267,8 +434,8 @@
             transition: opacity 0.2s ease;
         }
 
-        .tiktok-menu-item:active {
-            opacity: 0.7;
+        .tiktok-menu-item:hover {
+            opacity: 0.8;
         }
 
         .tiktok-menu-title {
@@ -282,13 +449,112 @@
             color: #94a3b8;
         }
 
-        /* Desktop gallery hidden por defecto en mobile */
-        .desktop-gallery {
-            display: none;
+        .tiktok-download-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            z-index: 3;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 16px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Scroll hint */
-        .scroll-hint {
+        .download-count {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #6366f1, #ec4899);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .tiktok-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .gallery-toggle {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .tiktok-gallery {
+                display: block;
+            }
+            
+            .desktop-gallery {
+                display: none;
+            }
+        }
+
+        .tiktok-progress {
+            position: fixed;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        .tiktok-scroll-hint {
             position: fixed;
             bottom: 100px;
             left: 50%;
@@ -296,9 +562,8 @@
             z-index: 15;
             color: white;
             text-align: center;
-            opacity: 0.8;
+            opacity: 0.7;
             animation: bounce 2s infinite;
-            font-size: 0.9rem;
         }
 
         @keyframes bounce {
@@ -306,198 +571,767 @@
                 transform: translateX(-50%) translateY(0);
             }
             40% {
-                transform: translateX(-50%) translateY(-8px);
+                transform: translateX(-50%) translateY(-10px);
             }
             60% {
-                transform: translateX(-50%) translateY(-4px);
+                transform: translateX(-50%) translateY(-5px);
             }
         }
 
-        /* Mejoras para iOS */
+        /* Smooth scrolling for iOS */
         .tiktok-container {
             -webkit-overflow-scrolling: touch;
         }
-
-        @media (max-width: 480px) {
-            .tiktok-header {
-                padding: 12px 16px;
-            }
-            
-            .tiktok-content {
-                padding: 0 16px 120px 16px;
-            }
-            
-            .tiktok-actions {
-                right: 16px;
-                bottom: 120px;
-            }
-            
-            .tiktok-download-info {
-                margin: 0 16px 16px 16px;
-            }
-        }
     </style>
 </head>
-<body>
-    <!-- TikTok Style Gallery -->
-    <div class="tiktok-gallery">
-        <!-- Header fijo -->
+
+<body class="bg-dark text-white font-sans overflow-x-hidden">
+
+    <div class="parallax-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-effect">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-xl font-bold gradient-text">BetterWLPRS</h1>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#"
+                            class="text-white hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Inicio</a>
+                        <a href="#" class="text-primary px-3 py-2 rounded-md text-sm font-medium">Galería</a>
+                        <a href="#"
+                            class="text-white hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium">Contacto</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white hover:text-primary focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <!-- Hero Section con botón para deslizar a galería TikTok-like -->
+    <section id="hero" class="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 hero-pattern">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="premium-badge inline-flex items-center px-4 py-2 rounded-full text-sm font-bold text-dark mb-6">
+                <span class="mr-2">⭐</span>
+                Premium Collection
+            </div>
+            <h1 class="text-6xl md:text-8xl font-extrabold mb-6 leading-tight">
+                <span class="gradient-text">Gallery</span><br>
+                <span class="text-white">BetterWLPRS</span>
+            </h1>
+            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                Descubre nuestra colección premium de wallpapers para elevar tu experiencia visual.
+            </p>
+            <button onclick="scrollToTikTok()" class="mt-10 bg-gradient-to-r from-indigo-500 to-pink-500 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:scale-105 transition-transform duration-300">
+                Explora la galería premium
+            </button>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button
+                    class="filter-button active px-8 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-primary to-accent"
+                    data-filter="all">
+                    All
+                </button>
+                <button
+                    class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20"
+                    data-filter="minimalist">
+                    Random WLPRS
+                </button>
+                <button
+                    class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20"
+                    data-filter="videos">
+                    Videos
+                </button>
+                <button
+                    class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20"
+                    data-filter="gaming">
+                    Death Stranding
+                </button>
+                <button
+                    class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20"
+                    data-filter="nature">
+                    Arkham Knight
+                </button>
+                <button
+                    class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20"
+                    data-filter="abstract">
+                    Spider-Man 2
+                </button>
+                <button
+                    class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20"
+                    data-filter="anime">
+                    Watch Dogs 2
+                </button>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 desktop-gallery">
+        <div class="max-w-7xl mx-auto">
+
+            <div id="galleryGrid" class="masonry-grid">
+
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="nature" data-title="Arkham Knight Ake" data-premium="true">
+                    <img src="img/videowlprs/discoelysiumstart.gif" alt="Arkham Knight Ake"
+                        class="w-full h-64 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Arkham Knight Ake</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Arkham Knight</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Preview</button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Download</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="minimalist" data-title="Arkham" data-premium="true">
+                    <img src="img/arkham.gif" alt="Arkham" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Arkham</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
+                                Previa</button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="gaming" data-title="Battlefront 2 Pinky" data-premium="true">
+                    <img src="img/webp Battlefront 2/bf2pinky.webp" alt="Battlefront 2 Pinky"
+                        class="w-full h-64 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Battlefront 2 Pinky</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Battlefront 2</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
+                                Previa</button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="gaming" data-title="Death Stranding 1 (1)" data-premium="true">
+                    <img src="img/webp Death Stranding/1 (1).webp" alt="Death Stranding 1 (1)"
+                        class="w-full h-64 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Death Stranding 1 (1)</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Death Stranding</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
+                                Previa</button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="anime" data-title="Watch Dogs 2 1img_0702122152462_12" data-premium="true">
+                    <img src="img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122152462_12.webp"
+                        alt="Watch Dogs 2 1img_0702122152462_12" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Watch Dogs 2 1img_0702122152462_12</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Watch Dogs 2</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
+                                Previa</button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="minimalist" data-title="Barman" data-premium="true">
+                    <img src="img/barman.png" alt="Barman" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Barman</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
+                                Previa</button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="minimalist" data-title="Marcus Sitting Focused" data-premium="true">
+                    <img src="img/marcusittingfocused.jpg" alt="Marcus Sitting Focused"
+                        class="w-full h-64 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Marcus Sitting Focused</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
+                                Previa</button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="minimalist" data-title="Marcus Sitted Ahh" data-premium="true">
+                    <img src="img/marcussittedahh.gif" alt="Marcus Sitted Ahh" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Marcus Sitted Ahh</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
+                                Previa</button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="minimalist" data-title="Sam Izquierda Sentado" data-premium="true">
+                    <img src="img/samizquierdasentado.png" alt="Sam Izquierda Sentado" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Sam Izquierda Sentado</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
+                                Previa</button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="minimalist" data-title="Sam Satori" data-premium="true">
+                    <img src="img/samsatori.gif" alt="Sam Satori" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Sam Satori</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
+                                Previa</button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="minimalist" data-title="Sam Sitted Ahh" data-premium="true">
+                    <img src="img/samsittedahh.gif" alt="Sam Sitted Ahh" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Sam Sitted Ahh</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
+                                Previa</button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="minimalist" data-title="San Fra Camp View" data-premium="true">
+                    <img src="img/sanfracampview.jpg" alt="San Fra Camp View" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">San Fra Camp View</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
+                                Previa</button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="minimalist" data-title="Spider Sky" data-premium="true">
+                    <img src="img/spidersky.gif" alt="Spider Sky" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Spider Sky</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
+                                Previa</button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="minimalist" data-title="The Long Dark Wolfs" data-premium="true">
+                    <img src="img/thelongdarkwolfs.png" alt="The Long Dark Wolfs" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">The Long Dark Wolfs</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">Minimalista</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Vista
+                                Previa</button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Descargar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="nature" data-title="Ocean Waves" data-premium="false">
+                    <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=500&h=300&fit=crop"
+                        alt="Nature Wallpaper" class="w-full h-64 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Ocean Waves</h3>
+                            <span class="bg-green-500 px-2 py-1 rounded-full text-xs font-bold text-dark">FREE</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">4K Resolution • Nature</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Preview
+                            </button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- More items... -->
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="gaming" data-title="Retro Gaming" data-premium="true">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&h=450&fit=crop"
+                        alt="Gaming Wallpaper" class="w-full h-96 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Retro Gaming</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">4K Resolution • Gaming</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Vista Previa
+                            </button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Descargar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
+                    data-category="abstract" data-title="Digital Art" data-premium="true">
+                    <img src="https://images.unsplash.com/photo-1614543158492-b2c7c1735d6b?w=500&h=320&fit=crop"
+                        alt="Abstract Wallpaper" class="w-full h-72 object-cover">
+                    <div class="gallery-overlay"></div>
+                    <div class="gallery-content">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-xl font-bold text-white">Digital Art</h3>
+                            <span
+                                class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        </div>
+                        <p class="text-gray-300 text-sm mb-3">4K Resolution • Abstract</p>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Vista Previa
+                            </button>
+                            <button
+                                class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                Descargar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-16">
+                <button id="loadMore"
+                    class="bg-gradient-to-r from-primary to-accent text-white px-12 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform duration-300">
+                    Load More Wallpapers
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TikTok Style Gallery para todos los dispositivos (ancla para scroll) -->
+    <div id="tiktokSection" class="tiktok-gallery" style="margin-top: 0;">
+        <!-- Header -->
         <div class="tiktok-header">
-            <button class="back-btn" onclick="showDesktopGallery()">←</button>
+            <button class="back-btn" onclick="toggleGalleryView()">←</button>
             <h1 class="text-lg font-bold">BetterWLPRS</h1>
-            <button class="gallery-toggle" onclick="showDesktopGallery()">Grid</button>
+            <button class="gallery-toggle" onclick="toggleGalleryView()">Grid</button>
         </div>
 
-        <!-- Progress indicators -->
-        <div class="tiktok-progress" id="tiktokProgress">
-            <div class="progress-dot active" data-index="0"></div>
-            <div class="progress-dot" data-index="1"></div>
-            <div class="progress-dot" data-index="2"></div>
-            <div class="progress-dot" data-index="3"></div>
-            <div class="progress-dot" data-index="4"></div>
-        </div>
-
-        <!-- Scroll hint -->
-        <div class="scroll-hint" id="scrollHint">
-            <div>Desliza para ver más</div>
-            <div style="font-size: 1.2rem; margin-top: 4px;">↓</div>
-        </div>
-
-        <!-- Container principal -->
+        <!-- TikTok Container -->
         <div class="tiktok-container" id="tiktokContainer">
-            <!-- Wallpaper 1: Disco Elysium -->
-            <div class="tiktok-item">
-                <img src="img/discoelysium.webp" alt="Disco Elysium" class="tiktok-background">
+            <div class="tiktok-wrapper" id="tiktokWrapper">
+                <!-- Progress Indicators -->
+                <div class="tiktok-progress" id="tiktokProgress">
+                    <div class="progress-dot active" data-index="0"></div>
+                    <div class="progress-dot" data-index="1"></div>
+                    <div class="progress-dot" data-index="2"></div>
+                    <div class="progress-dot" data-index="3"></div>
+                    <div class="progress-dot" data-index="4"></div>
+                </div>
+
+                <!-- Scroll Hint -->
+                <div class="tiktok-scroll-hint" id="scrollHint">
+                    <div style="font-size: 0.9rem; margin-bottom: 5px;">Desliza para ver más</div>
+                    <div style="font-size: 1.2rem;">↓</div>
+                </div>
+
+                <!-- Wallpaper 1 -->
+                <div class="tiktok-item active" data-index="0">
+                <img src="img/videowlprs/discoelysiumstart.gif" alt="Disco Elysium" class="tiktok-background">
                 <div class="tiktok-overlay"></div>
+                
                 <div class="tiktok-content">
-                    <h3 class="tiktok-title">Disco Elysium</h3>
-                    <p class="tiktok-description">Wallpaper original de Disco Elysium, exclusivo de BetterWLPRS.</p>
+                    <h3 class="tiktok-title">Disco Elysium Start</h3>
+                    <p class="tiktok-description">Una increíble escena de inicio del aclamado juego Disco Elysium. Perfecto para pantallas de escritorio con su estética única y atmosférica.</p>
                     <div class="tiktok-tags">
+                        <span class="tiktok-tag">#Gaming</span>
                         <span class="tiktok-tag">#DiscoElysium</span>
                         <span class="tiktok-tag">#Premium</span>
                     </div>
                 </div>
+
+                <div class="tiktok-actions">
+                    <div class="tiktok-action-btn" onclick="toggleLike(this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </div>
+                    <div class="tiktok-action-btn" onclick="shareWallpaper('Disco Elysium Start')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                            <polyline points="16,6 12,2 8,6"/>
+                            <line x1="12" y1="2" x2="12" y2="15"/>
+                        </svg>
+                    </div>
+                    <div class="tiktok-action-btn" onclick="openTikTokMenu()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="1"/>
+                            <circle cx="12" cy="5" r="1"/>
+                            <circle cx="12" cy="19" r="1"/>
+                        </svg>
+                    </div>
+                </div>
+
                 <div class="tiktok-download-info">
                     <div>
                         <div class="download-count">2.3K descargas</div>
                     </div>
-                    <button class="download-btn" onclick="downloadWallpaper('disco-elysium')">Descargar</button>
+                    <button class="download-btn" onclick="downloadWallpaper('img/videowlprs/discoelysiumstart.gif', 'disco-elysium-start')">
+                        Descargar
+                    </button>
                 </div>
             </div>
 
-            <!-- Wallpaper 2: Arkham Knight -->
-            <div class="tiktok-item">
-                <img src="img/arkham.gif" alt="Arkham Knight" class="tiktok-background">
+            <!-- Wallpaper 2 -->
+            <div class="tiktok-item" data-index="1">
+                <img src="img/arkham.gif" alt="Arkham" class="tiktok-background">
                 <div class="tiktok-overlay"></div>
+                
                 <div class="tiktok-content">
                     <h3 class="tiktok-title">Arkham Knight</h3>
-                    <p class="tiktok-description">Batman Arkham Knight en acción. Imagen dinámica exclusiva.</p>
+                    <p class="tiktok-description">Batman Arkham Knight en acción. Una imagen dinámica que captura la esencia del Caballero Oscuro en Gotham City.</p>
                     <div class="tiktok-tags">
                         <span class="tiktok-tag">#Batman</span>
                         <span class="tiktok-tag">#ArkhamKnight</span>
                         <span class="tiktok-tag">#Action</span>
                     </div>
                 </div>
+
+                <div class="tiktok-actions">
+                    <div class="tiktok-action-btn" onclick="toggleLike(this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </div>
+                    <div class="tiktok-action-btn" onclick="shareWallpaper('Arkham Knight')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                            <polyline points="16,6 12,2 8,6"/>
+                            <line x1="12" y1="2" x2="12" y2="15"/>
+                        </svg>
+                    </div>
+                    <div class="tiktok-action-btn" onclick="openTikTokMenu()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="1"/>
+                            <circle cx="12" cy="5" r="1"/>
+                            <circle cx="12" cy="19" r="1"/>
+                        </svg>
+                    </div>
+                </div>
+
                 <div class="tiktok-download-info">
                     <div>
                         <div class="download-count">4.7K descargas</div>
                     </div>
-                    <button class="download-btn" onclick="downloadWallpaper('arkham-knight')">Descargar</button>
+                    <button class="download-btn" onclick="downloadWallpaper('img/arkham.gif', 'arkham-knight')">
+                        Descargar
+                    </button>
                 </div>
             </div>
 
-            <!-- Wallpaper 3: Death Stranding -->
-            <div class="tiktok-item">
-                <img src="img/samsittedahh.gif" alt="Death Stranding" class="tiktok-background">
+            <!-- Wallpaper 3 -->
+            <div class="tiktok-item" data-index="2">
+                <img src="img/webp Death Stranding/1 (1).webp" alt="Death Stranding" class="tiktok-background">
                 <div class="tiktok-overlay"></div>
+                
                 <div class="tiktok-content">
                     <h3 class="tiktok-title">Death Stranding</h3>
-                    <p class="tiktok-description">Sam descansando en la cima, desde Death Stranding.</p>
+                    <p class="tiktok-description">Paisajes únicos de Death Stranding. La obra maestra de Hideo Kojima capturada en alta definición para tu escritorio.</p>
                     <div class="tiktok-tags">
                         <span class="tiktok-tag">#DeathStranding</span>
                         <span class="tiktok-tag">#Kojima</span>
                         <span class="tiktok-tag">#SciFi</span>
                     </div>
                 </div>
+
+                <div class="tiktok-actions">
+                    <div class="tiktok-action-btn" onclick="toggleLike(this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </div>
+                    <div class="tiktok-action-btn" onclick="shareWallpaper('Death Stranding')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                            <polyline points="16,6 12,2 8,6"/>
+                            <line x1="12" y1="2" x2="12" y2="15"/>
+                        </svg>
+                    </div>
+                    <div class="tiktok-action-btn" onclick="openTikTokMenu()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="1"/>
+                            <circle cx="12" cy="5" r="1"/>
+                            <circle cx="12" cy="19" r="1"/>
+                        </svg>
+                    </div>
+                </div>
+
                 <div class="tiktok-download-info">
                     <div>
                         <div class="download-count">8.1K descargas</div>
                     </div>
-                    <button class="download-btn" onclick="downloadWallpaper('death-stranding')">Descargar</button>
+                    <button class="download-btn" onclick="downloadWallpaper('img/webp Death Stranding/1 (1).webp', 'death-stranding-1')">
+                        Descargar
+                    </button>
                 </div>
             </div>
 
-            <!-- Wallpaper 4: Spider Sky -->
-            <div class="tiktok-item">
+            <!-- Wallpaper 4 -->
+            <div class="tiktok-item" data-index="3">
                 <img src="img/spidersky.gif" alt="Spider Sky" class="tiktok-background">
                 <div class="tiktok-overlay"></div>
+                
                 <div class="tiktok-content">
                     <h3 class="tiktok-title">Spider Sky</h3>
-                    <p class="tiktok-description">Spider-Man balanceándose por los cielos de Nueva York.</p>
+                    <p class="tiktok-description">Spider-Man balanceándose por los cielos de Nueva York. La sensación de libertad capturada en una imagen dinámica.</p>
                     <div class="tiktok-tags">
                         <span class="tiktok-tag">#SpiderMan</span>
                         <span class="tiktok-tag">#Marvel</span>
                         <span class="tiktok-tag">#NYC</span>
                     </div>
                 </div>
+
+                <div class="tiktok-actions">
+                    <div class="tiktok-action-btn" onclick="toggleLike(this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </div>
+                    <div class="tiktok-action-btn" onclick="shareWallpaper('Spider Sky')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                            <polyline points="16,6 12,2 8,6"/>
+                            <line x1="12" y1="2" x2="12" y2="15"/>
+                        </svg>
+                    </div>
+                    <div class="tiktok-action-btn" onclick="openTikTokMenu()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="1"/>
+                            <circle cx="12" cy="5" r="1"/>
+                            <circle cx="12" cy="19" r="1"/>
+                        </svg>
+                    </div>
+                </div>
+
                 <div class="tiktok-download-info">
                     <div>
                         <div class="download-count">5.2K descargas</div>
                     </div>
-                    <button class="download-btn" onclick="downloadWallpaper('spider-sky')">Descargar</button>
+                    <button class="download-btn" onclick="downloadWallpaper('img/spidersky.gif', 'spider-sky')">
+                        Descargar
+                    </button>
                 </div>
             </div>
 
-            <!-- Wallpaper 5: Watch Dogs 2 -->
-            <div class="tiktok-item">
-                <img src="img/sanfracampview.jpg" alt="Watch Dogs 2" class="tiktok-background">
+            <!-- Wallpaper 5 -->
+            <div class="tiktok-item" data-index="4">
+                <img src="img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122152462_12.webp" alt="Watch Dogs 2" class="tiktok-background">
                 <div class="tiktok-overlay"></div>
+                
                 <div class="tiktok-content">
                     <h3 class="tiktok-title">Watch Dogs 2</h3>
-                    <p class="tiktok-description">San Francisco futurista en Watch Dogs 2. Hacking y tecnología.</p>
+                    <p class="tiktok-description">San Francisco futurista en Watch Dogs 2. Hacking, tecnología y una estética cyberpunk que define el futuro digital.</p>
                     <div class="tiktok-tags">
                         <span class="tiktok-tag">#WatchDogs2</span>
                         <span class="tiktok-tag">#Cyberpunk</span>
                         <span class="tiktok-tag">#Tech</span>
                     </div>
                 </div>
+
+                <div class="tiktok-actions">
+                    <div class="tiktok-action-btn" onclick="toggleLike(this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </div>
+                    <div class="tiktok-action-btn" onclick="shareWallpaper('Watch Dogs 2')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                            <polyline points="16,6 12,2 8,6"/>
+                            <line x1="12" y1="2" x2="12" y2="15"/>
+                        </svg>
+                    </div>
+                    <div class="tiktok-action-btn" onclick="openTikTokMenu()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="1"/>
+                            <circle cx="12" cy="5" r="1"/>
+                            <circle cx="12" cy="19" r="1"/>
+                        </svg>
+                    </div>
+                </div>
+
                 <div class="tiktok-download-info">
                     <div>
                         <div class="download-count">3.8K descargas</div>
                     </div>
-                    <button class="download-btn" onclick="downloadWallpaper('watch-dogs-2')">Descargar</button>
+                    <button class="download-btn" onclick="downloadWallpaper('img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122152462_12.webp', 'watch-dogs-2')">
+                        Descargar
+                    </button>
                 </div>
             </div>
         </div>
-
-        <!-- Actions flotantes -->
-        <div class="tiktok-actions">
-            <div class="tiktok-action-btn" onclick="toggleLike(this)">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                </svg>
-            </div>
-            <div class="tiktok-action-btn" onclick="shareWallpaper()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
-                    <polyline points="16,6 12,2 8,6"/>
-                    <line x1="12" y1="2" x2="12" y2="15"/>
-                </svg>
-            </div>
-            <div class="tiktok-action-btn" onclick="openMenu()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="1"/>
-                    <circle cx="12" cy="5" r="1"/>
-                    <circle cx="12" cy="19" r="1"/>
-                </svg>
-            </div>
         </div>
 
-        <!-- Menu lateral -->
+        <!-- Side Menu -->
         <div class="tiktok-menu" id="tiktokMenu">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
                 <h2 class="text-xl font-bold">Opciones</h2>
-                <button onclick="closeMenu()" class="text-white text-2xl">×</button>
+                <button onclick="closeTikTokMenu()" class="text-white text-2xl">×</button>
             </div>
 
             <div class="tiktok-menu-item" onclick="setWallpaper()">
@@ -510,6 +1344,21 @@
                 <div class="tiktok-menu-subtitle">Guardar en tu colección personal</div>
             </div>
 
+            <div class="tiktok-menu-item" onclick="downloadHighRes()">
+                <div class="tiktok-menu-title">Descargar HD</div>
+                <div class="tiktok-menu-subtitle">Obtener versión de alta resolución</div>
+            </div>
+
+            <div class="tiktok-menu-item" onclick="viewInfo()">
+                <div class="tiktok-menu-title">Información del wallpaper</div>
+                <div class="tiktok-menu-subtitle">Ver detalles y metadatos</div>
+            </div>
+
+            <div class="tiktok-menu-item" onclick="reportContent()">
+                <div class="tiktok-menu-title">Reportar contenido</div>
+                <div class="tiktok-menu-subtitle">Informar sobre problemas</div>
+            </div>
+
             <div class="tiktok-menu-item" onclick="shareCollection()">
                 <div class="tiktok-menu-title">Compartir colección</div>
                 <div class="tiktok-menu-subtitle">Enviar link de BetterWLPRS</div>
@@ -517,180 +1366,398 @@
         </div>
     </div>
 
-    <!-- Vista de escritorio (oculta por defecto en mobile) -->
-    <div class="desktop-gallery" style="padding: 80px 20px 40px; text-align: center; background: #1e293b;">
-        <h2 class="text-2xl font-bold mb-4" style="color: white;">Vista de Escritorio</h2>
-        <p style="color: #94a3b8; margin-bottom: 30px;">En dispositivos móviles recomendamos la experiencia TikTok</p>
-        <button onclick="showTikTokGallery()" class="download-btn" style="padding: 12px 24px; font-size: 1rem;">
-            Ver Galería TikTok
-        </button>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px;">
-            <div style="background: rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; text-align: center;">
-                <div style="width: 100%; height: 200px; background: #334155; border-radius: 8px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: #64748b;">
-                    Preview Imagen 1
+    <!-- Stats Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold gradient-text mb-2">500+</div>
+                    <div class="text-gray-400">Wallpapers</div>
                 </div>
-                <h3 style="color: white; margin-bottom: 8px;">Disco Elysium</h3>
-                <button class="download-btn">Descargar</button>
+                <div class="text-center">
+                    <div class="text-4xl font-bold gradient-text mb-2">50K+</div>
+                    <div class="text-gray-400">Downloads</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold gradient-text mb-2">4.9★</div>
+                    <div class="text-gray-400">Rating</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold gradient-text mb-2">24/7</div>
+                    <div class="text-gray-400">Support</div>
+                </div>
             </div>
-            
-            <div style="background: rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; text-align: center;">
-                <div style="width: 100%; height: 200px; background: #334155; border-radius: 8px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: #64748b;">
-                    Preview Imagen 2
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="previewModal" class="fixed inset-0 z-50 hidden modal">
+        <div class="flex items-center justify-center min-h-screen px-4">
+            <div class="modal-content bg-dark-light rounded-2xl p-8 max-w-4xl w-full mx-4">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 id="modalTitle" class="text-2xl font-bold text-white">Wallpaper Preview</h3>
+                    <button id="closeModal" class="text-gray-400 hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
                 </div>
-                <h3 style="color: white; margin-bottom: 8px;">Arkham Knight</h3>
-                <button class="download-btn">Descargar</button>
+                <div class="mb-6">
+                    <img id="modalImage" src="" alt="Preview" class="w-full h-96 object-cover rounded-xl">
+                </div>
+                <div class="flex justify-end gap-4">
+                    <button id="downloadModal"
+                        class="bg-primary hover:bg-primary-dark px-6 py-2 rounded-lg text-white font-semibold transition-colors">Download</button>
+                    <button id="closeModalBottom"
+                        class="bg-white/10 hover:bg-white/20 px-6 py-2 rounded-lg text-white font-semibold transition-colors">Close</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <script>
-        let currentIndex = 0;
-        let isScrolling = false;
+    <!-- Sección final: Patreon y Starterpack -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-dark-light text-center">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-4xl font-extrabold gradient-text mb-4">¿Quieres aún más wallpapers exclusivos?</h2>
+            <p class="text-lg text-gray-300 mb-8">
+                Apóyanos en <span class="font-bold text-pink-400">Patreon</span> para acceder a la colección completa y recibir actualizaciones mensuales.<br>
+                ¡O descarga gratis nuestro <span class="font-bold text-indigo-400">BetterWLPRS Starterpack</span> para comenzar!
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="https://patreon.com/tuusuario" target="_blank"
+                    class="bg-gradient-to-r from-pink-500 to-indigo-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform duration-300">
+                    Ir a Patreon
+                </a>
+                <a href="starterpacks/BetterWLPRS_Starterpack.zip" download
+                    class="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-full font-bold text-lg transition">
+                    Descargar Starterpack Gratis
+                </a>
+            </div>
+        </div>
+    </section>
 
-        // Actualizar progress dots basado en scroll
-        function updateProgress() {
-            const container = document.getElementById('tiktokContainer');
-            const scrollTop = container.scrollTop;
-            const itemHeight = window.innerHeight;
-            const newIndex = Math.round(scrollTop / itemHeight);
-            
-            if (newIndex !== currentIndex) {
-                currentIndex = Math.min(Math.max(newIndex, 0), 4);
-                
-                // Actualizar dots
-                document.querySelectorAll('.progress-dot').forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentIndex);
+    <script src="gsap/gsap.min.js"></script>
+    <script src="gsap/ScrollTrigger.min.js"></script>
+    <script>
+        // Scroll suave al hacer clic en el botón del hero
+        function scrollToTikTok() {
+            const tiktokSection = document.getElementById('tiktokSection');
+            window.scrollTo({
+                top: tiktokSection.offsetTop - 60,
+                behavior: 'smooth'
+            });
+        }
+        // Register GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // TikTok Style Gallery Functions
+        let currentIndex = 0;
+        const totalItems = 5;
+        let isAnimating = false;
+        let tiktokScrollTrigger = null;
+
+        function initTikTokGallery() {
+            if (window.innerWidth <= 768) {
+                const tiktokWrapper = document.getElementById('tiktokWrapper');
+                const tiktokItems = document.querySelectorAll('.tiktok-item');
+                const progressDots = document.querySelectorAll('.progress-dot');
+                const scrollHint = document.getElementById('scrollHint');
+
+                // Kill existing ScrollTrigger if it exists
+                if (tiktokScrollTrigger) {
+                    tiktokScrollTrigger.kill();
+                }
+
+                // Create ScrollTrigger for TikTok gallery
+                tiktokScrollTrigger = ScrollTrigger.create({
+                    trigger: tiktokWrapper,
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: 1,
+                    pin: true,
+                    snap: {
+                        snapTo: 1 / (totalItems - 1),
+                        duration: { min: 0.2, max: 0.5 },
+                        delay: 0.1
+                    },
+                    onUpdate: (self) => {
+                        const progress = self.progress;
+                        const newIndex = Math.round(progress * (totalItems - 1));
+                        
+                        if (newIndex !== currentIndex && !isAnimating) {
+                            updateTikTokItem(newIndex);
+                        }
+                    }
                 });
+
+                // Hide scroll hint after first interaction
+                setTimeout(() => {
+                    if (scrollHint) {
+                        gsap.to(scrollHint, { opacity: 0, duration: 0.5 });
+                    }
+                }, 3000);
+
+                console.log('TikTok Gallery initialized with GSAP ScrollTrigger');
             }
         }
 
-        // Event listener para scroll
-        document.getElementById('tiktokContainer').addEventListener('scroll', () => {
-            if (!isScrolling) {
-                requestAnimationFrame(() => {
-                    updateProgress();
-                    isScrolling = false;
-                });
-                isScrolling = true;
-            }
-        });
-
-        // Ocultar scroll hint después de primer scroll
-        let hasScrolled = false;
-        document.getElementById('tiktokContainer').addEventListener('scroll', () => {
-            if (!hasScrolled) {
-                const hint = document.getElementById('scrollHint');
-                if (hint) {
-                    hint.style.transition = 'opacity 0.5s ease';
-                    hint.style.opacity = '0';
-                    setTimeout(() => hint.style.display = 'none', 500);
+        function updateTikTokItem(newIndex) {
+            if (newIndex === currentIndex || isAnimating) return;
+            
+            isAnimating = true;
+            const tiktokItems = document.querySelectorAll('.tiktok-item');
+            const progressDots = document.querySelectorAll('.progress-dot');
+            
+            // Update items
+            tiktokItems.forEach((item, index) => {
+                item.classList.remove('active', 'prev', 'next');
+                
+                if (index === newIndex) {
+                    item.classList.add('active');
+                } else if (index < newIndex) {
+                    item.classList.add('prev');
+                } else {
+                    item.classList.add('next');
                 }
-                hasScrolled = true;
-            }
-        }, { once: true });
+            });
+            
+            // Update progress dots
+            progressDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === newIndex);
+            });
+            
+            // Add some visual feedback
+            gsap.fromTo(tiktokItems[newIndex].querySelector('.tiktok-content'), 
+                { y: 50, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }
+            );
+            
+            gsap.fromTo(tiktokItems[newIndex].querySelector('.tiktok-actions'), 
+                { x: 50, opacity: 0 },
+                { x: 0, opacity: 1, duration: 0.5, delay: 0.1, ease: "power2.out" }
+            );
+            
+            currentIndex = newIndex;
+            
+            setTimeout(() => {
+                isAnimating = false;
+            }, 500);
+        }
 
-        // Funciones de la UI
+        function toggleGalleryView() {
+            const desktop = document.querySelector('.desktop-gallery');
+            const tiktok = document.querySelector('.tiktok-gallery');
+            const hero = document.querySelector('section');
+            const nav = document.querySelector('nav');
+            
+            if (window.innerWidth <= 768) {
+                if (tiktok.style.display === 'none' || !tiktok.style.display) {
+                    // Switch to TikTok view
+                    desktop.style.display = 'none';
+                    hero.style.display = 'none';
+                    nav.style.display = 'none';
+                    tiktok.style.display = 'block';
+                    
+                    // Initialize GSAP ScrollTrigger for TikTok gallery
+                    setTimeout(() => {
+                        initTikTokGallery();
+                    }, 100);
+                } else {
+                    // Switch to desktop view
+                    desktop.style.display = 'block';
+                    hero.style.display = 'block';
+                    nav.style.display = 'block';
+                    tiktok.style.display = 'none';
+                    
+                    // Kill ScrollTrigger when switching back
+                    if (tiktokScrollTrigger) {
+                        tiktokScrollTrigger.kill();
+                        tiktokScrollTrigger = null;
+                    }
+                }
+            }
+        }
+
         function toggleLike(btn) {
             btn.classList.toggle('liked');
             if (btn.classList.contains('liked')) {
-                btn.style.transform = 'scale(1.1)';
-                setTimeout(() => btn.style.transform = '', 200);
+                btn.style.animation = 'pulse 0.3s ease';
+                setTimeout(() => btn.style.animation = '', 300);
             }
         }
 
-        function shareWallpaper() {
+        function shareWallpaper(title) {
             if (navigator.share) {
                 navigator.share({
-                    title: 'BetterWLPRS - Wallpapers Premium',
-                    text: '¡Descubre increíbles wallpapers!',
+                    title: `BetterWLPRS - ${title}`,
+                    text: `Mira este increíble wallpaper: ${title}`,
                     url: window.location.href
                 });
             } else {
-                navigator.clipboard.writeText(window.location.href).then(() => {
+                // Fallback
+                const url = window.location.href;
+                navigator.clipboard.writeText(url).then(() => {
                     alert('¡Link copiado al portapapeles!');
                 });
             }
         }
 
-        function downloadWallpaper(name) {
+        function downloadWallpaper(src, filename) {
+            const link = document.createElement('a');
+            link.href = src;
+            link.download = filename + '.webp';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show download success
             const btn = event.target;
             const originalText = btn.textContent;
-            btn.textContent = '¡Descargando!';
+            btn.textContent = '¡Descargado!';
             btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-            
             setTimeout(() => {
-                btn.textContent = '¡Descargado!';
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.background = 'linear-gradient(135deg, #6366f1, #ec4899)';
-                }, 1500);
-            }, 1000);
+                btn.textContent = originalText;
+                btn.style.background = 'linear-gradient(135deg, #6366f1, #ec4899)';
+            }, 2000);
         }
 
-        function openMenu() {
+        function openTikTokMenu() {
             document.getElementById('tiktokMenu').classList.add('open');
         }
 
-        function closeMenu() {
+        function closeTikTokMenu() {
             document.getElementById('tiktokMenu').classList.remove('open');
         }
 
-        // Funciones del menú
+        // Menu Functions
         function setWallpaper() {
-            alert('Funcionalidad disponible próximamente');
-            closeMenu();
+            alert('Funcionalidad próximamente disponible: Establecer como fondo de pantalla');
+            closeTikTokMenu();
         }
 
         function addToFavorites() {
-            alert('¡Añadido a favoritos!');
-            closeMenu();
+            alert('¡Añadido a favoritos! (Demo)');
+            closeTikTokMenu();
+        }
+
+        function downloadHighRes() {
+            alert('Descargando versión HD... (Demo)');
+            closeTikTokMenu();
+        }
+
+        function viewInfo() {
+            alert('Mostrando información del wallpaper... (Demo)');
+            closeTikTokMenu();
+        }
+
+        function reportContent() {
+            alert('Reporte enviado. Gracias por tu feedback. (Demo)');
+            closeTikTokMenu();
         }
 
         function shareCollection() {
-            shareWallpaper();
-            closeMenu();
+            if (navigator.share) {
+                navigator.share({
+                    title: 'BetterWLPRS - Wallpapers Premium',
+                    text: '¡Descubre los mejores wallpapers en BetterWLPRS!',
+                    url: window.location.origin
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.origin).then(() => {
+                    alert('¡Link de BetterWLPRS copiado al portapapeles!');
+                });
+            }
+            closeTikTokMenu();
         }
 
-        // Alternancia entre vistas
-        function showTikTokGallery() {
-            document.querySelector('.tiktok-gallery').style.display = 'block';
-            document.querySelector('.desktop-gallery').style.display = 'none';
+        // Auto-switch to TikTok view on mobile
+        function checkMobileView() {
+            if (window.innerWidth <= 768) {
+                // Auto enable TikTok view on mobile
+                setTimeout(() => {
+                    const hero = document.querySelector('section');
+                    if (hero) {
+                        const toggleBtn = document.createElement('button');
+                        toggleBtn.innerHTML = '📱 Vista TikTok';
+                        toggleBtn.className = 'fixed bottom-4 right-4 z-50 bg-gradient-to-r from-primary to-accent text-white px-4 py-2 rounded-full font-bold shadow-lg';
+                        toggleBtn.onclick = toggleGalleryView;
+                        document.body.appendChild(toggleBtn);
+                    }
+                }, 2000);
+            }
         }
 
-        function showDesktopGallery() {
-            document.querySelector('.tiktok-gallery').style.display = 'none';
-            document.querySelector('.desktop-gallery').style.display = 'block';
-        }
+        // Initialize
+        window.addEventListener('load', () => {
+            checkMobileView();
+            // Initialize ScrollTrigger refresh
+            ScrollTrigger.refresh();
+        });
+        
+        window.addEventListener('resize', () => {
+            checkMobileView();
+            // Kill and reinitialize on resize
+            if (tiktokScrollTrigger) {
+                tiktokScrollTrigger.kill();
+                tiktokScrollTrigger = null;
+            }
+            if (window.innerWidth <= 768 && document.querySelector('.tiktok-gallery').style.display === 'block') {
+                setTimeout(initTikTokGallery, 100);
+            }
+            ScrollTrigger.refresh();
+        });
 
-        // Cerrar menú al tocar fuera
+        // Close menu when clicking outside
         document.addEventListener('click', (e) => {
             const menu = document.getElementById('tiktokMenu');
-            if (menu.classList.contains('open') && !menu.contains(e.target) && !e.target.closest('.tiktok-action-btn')) {
-                closeMenu();
-            }
-        });
-
-        // Inicialización
-        window.addEventListener('load', () => {
-            // Auto-mostrar TikTok en mobile
-            if (window.innerWidth <= 768) {
-                showTikTokGallery();
-            } else {
-                showDesktopGallery();
-            }
+            const menuBtn = e.target.closest('.tiktok-action-btn');
             
-            console.log('Galería TikTok iniciada correctamente');
+            if (menu.classList.contains('open') && !menu.contains(e.target) && !menuBtn) {
+                closeTikTokMenu();
+            }
         });
 
-        // Handle resize
-        window.addEventListener('resize', () => {
-            if (window.innerWidth <= 768) {
-                showTikTokGallery();
-            } else {
-                showDesktopGallery();
-            }
+        // Modal logic
+        const previewModal = document.getElementById('previewModal');
+        const closeModal = document.getElementById('closeModal');
+        const closeModalBottom = document.getElementById('closeModalBottom');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const downloadModal = document.getElementById('downloadModal');
+
+        document.querySelectorAll('.gallery-item .bg-primary').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const item = btn.closest('.gallery-item');
+                const img = item.querySelector('img');
+                const title = item.getAttribute('data-title');
+                modalImage.src = img.src;
+                modalTitle.textContent = title;
+                previewModal.classList.remove('hidden');
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            previewModal.classList.add('hidden');
+        });
+        closeModalBottom.addEventListener('click', () => {
+            previewModal.classList.add('hidden');
+        });
+
+        downloadModal.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.href = modalImage.src;
+            link.download = modalTitle.textContent + '.jpg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+        // Load More logic (demo)
+        document.getElementById('loadMore').addEventListener('click', () => {
+            alert('More exclusive wallpapers coming soon.');
         });
     </script>
 </body>
+
 </html>
