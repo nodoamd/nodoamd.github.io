@@ -267,9 +267,9 @@
             margin-bottom: 1.5rem;
         }
 
-        /* TikTok Style Gallery for Mobile */
+        /* TikTok Style Gallery for All Devices */
         .tiktok-gallery {
-            display: none;
+            display: block;
         }
 
         .tiktok-container {
@@ -520,13 +520,30 @@
             transition: all 0.3s ease;
         }
 
-        @media (max-width: 768px) {
-            .tiktok-gallery {
-                display: block;
+        /* Responsive adjustments for larger screens */
+        @media (min-width: 768px) {
+            .tiktok-content {
+                bottom: 140px;
+                left: 40px;
+                right: 120px;
             }
-            
-            .desktop-gallery {
-                display: none;
+
+            .tiktok-title {
+                font-size: 2rem;
+            }
+
+            .tiktok-description {
+                font-size: 1rem;
+            }
+
+            .tiktok-actions {
+                right: 40px;
+                bottom: 140px;
+            }
+
+            .tiktok-action-btn {
+                width: 56px;
+                height: 56px;
             }
         }
 
@@ -620,8 +637,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <!-- Hero Section con botón para deslizar a galería TikTok-like -->
-    <section id="hero" class="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 hero-pattern">
+    <section class="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 hero-pattern">
         <div class="max-w-7xl mx-auto text-center">
             <div class="premium-badge inline-flex items-center px-4 py-2 rounded-full text-sm font-bold text-dark mb-6">
                 <span class="mr-2">⭐</span>
@@ -632,16 +648,67 @@
                 <span class="text-white">BetterWLPRS</span>
             </h1>
             <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Descubre nuestra colección premium de wallpapers para elevar tu experiencia visual.
+                Discover our curated collection of premium wallpapers designed to elevate your visual experience
             </p>
-            <button onclick="scrollToTikTok()" class="mt-10 bg-gradient-to-r from-indigo-500 to-pink-500 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:scale-105 transition-transform duration-300">
-                Explora la galería premium
-            </button>
+            <div class="flex justify-center mb-12">
+                <div class="relative">
+                    <input type="text" id="searchInput" placeholder="Search wallpapers..."
+                        class="search-bar w-80 px-6 py-4 rounded-full text-white placeholder-gray-400 focus:outline-none">
+                    <svg class="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Filter Section -->
-    <section class="py-12 px-4 sm:px-6 lg:px-8">
+    <!-- Introduction Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-dark to-dark-light">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-8">
+                <h2 class="text-4xl md:text-6xl font-bold gradient-text mb-6">
+                    Explora Nuestra Colección
+                </h2>
+                <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                    Sumérgete en una experiencia visual única. Desliza hacia abajo para explorar nuestros wallpapers premium en un formato inmersivo diseñado especialmente para ti.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10">
+                    <div class="text-3xl mb-4">🎮</div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Gaming Premium</h3>
+                    <p class="text-gray-400">Wallpapers de los mejores videojuegos en resolución 4K</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10">
+                    <div class="text-3xl mb-4">✨</div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Experiencia Inmersiva</h3>
+                    <p class="text-gray-400">Interfaz tipo TikTok para una navegación fluida</p>
+                </div>
+                <div class="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10">
+                    <div class="text-3xl mb-4">⚡</div>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Descarga Instantánea</h3>
+                    <p class="text-gray-400">Un clic y tienes tu wallpaper favorito</p>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <div class="inline-flex flex-col items-center">
+                    <p class="text-lg text-gray-300 mb-4">Desliza para comenzar</p>
+                    <div class="animate-bounce">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section (Hidden in new flow) -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8" style="display: none;">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-wrap justify-center gap-4 mb-12">
                 <button
@@ -684,8 +751,8 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="py-12 px-4 sm:px-6 lg:px-8 desktop-gallery">
+    <!-- Gallery Section (Hidden by default) -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 desktop-gallery" style="display: none;">
         <div class="max-w-7xl mx-auto">
 
             <div id="galleryGrid" class="masonry-grid">
@@ -1063,15 +1130,8 @@
         </div>
     </section>
 
-    <!-- TikTok Style Gallery para todos los dispositivos (ancla para scroll) -->
-    <div id="tiktokSection" class="tiktok-gallery" style="margin-top: 0;">
-        <!-- Header -->
-        <div class="tiktok-header">
-            <button class="back-btn" onclick="toggleGalleryView()">←</button>
-            <h1 class="text-lg font-bold">BetterWLPRS</h1>
-            <button class="gallery-toggle" onclick="toggleGalleryView()">Grid</button>
-        </div>
-
+    <!-- TikTok Style Gallery - Main Gallery Experience -->
+    <div class="tiktok-gallery" style="display: block;">
         <!-- TikTok Container -->
         <div class="tiktok-container" id="tiktokContainer">
             <div class="tiktok-wrapper" id="tiktokWrapper">
@@ -1366,6 +1426,122 @@
         </div>
     </div>
 
+    <!-- Call to Action Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-dark-light to-dark">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6">
+                    <span class="gradient-text">¿Te gustó lo que viste?</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Accede a toda nuestra colección premium o comienza con nuestro pack gratuito de bienvenida
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Free Starter Pack -->
+                <div class="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 relative overflow-hidden">
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-green-500 text-white text-sm font-bold px-3 py-1 rounded-full">GRATIS</span>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold text-white mb-3">BetterWLPRS Starter Pack</h3>
+                        <p class="text-gray-300">Comienza tu experiencia con 20 wallpapers premium seleccionados especialmente para ti</p>
+                    </div>
+
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center text-gray-300">
+                            <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            20 wallpapers 4K premium
+                        </div>
+                        <div class="flex items-center text-gray-300">
+                            <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Diferentes categorías gaming
+                        </div>
+                        <div class="flex items-center text-gray-300">
+                            <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Descarga instantánea
+                        </div>
+                        <div class="flex items-center text-gray-300">
+                            <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Sin marca de agua
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 rounded-2xl font-bold text-lg hover:scale-105 transition-transform duration-300 shadow-lg shadow-green-500/25">
+                        🎁 Descargar Pack Gratuito
+                    </button>
+                </div>
+
+                <!-- Premium Patreon -->
+                <div class="bg-gradient-to-br from-primary/20 to-accent/20 backdrop-blur-md rounded-3xl p-8 border border-primary/30 relative overflow-hidden">
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-gradient-to-r from-primary to-accent text-white text-sm font-bold px-3 py-1 rounded-full">PREMIUM</span>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold text-white mb-3">Patreon Premium</h3>
+                        <p class="text-gray-300">Acceso completo a toda nuestra colección y contenido exclusivo mensual</p>
+                    </div>
+
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center text-gray-300">
+                            <svg class="w-5 h-5 text-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            +500 wallpapers 4K
+                        </div>
+                        <div class="flex items-center text-gray-300">
+                            <svg class="w-5 h-5 text-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Contenido exclusivo mensual
+                        </div>
+                        <div class="flex items-center text-gray-300">
+                            <svg class="w-5 h-5 text-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Acceso prioritario a novedades
+                        </div>
+                        <div class="flex items-center text-gray-300">
+                            <svg class="w-5 h-5 text-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Solicitudes personalizadas
+                        </div>
+                        <div class="flex items-center text-gray-300">
+                            <svg class="w-5 h-5 text-primary mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            Discord exclusivo
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-gradient-to-r from-primary to-accent text-white py-4 rounded-2xl font-bold text-lg hover:scale-105 transition-transform duration-300 shadow-lg shadow-primary/25">
+                        🚀 Unirse a Patreon
+                    </button>
+
+                    <p class="text-center text-sm text-gray-400 mt-3">Desde $5/mes • Cancela cuando quieras</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <p class="text-gray-400 text-lg">
+                    ¿Tienes preguntas? <a href="#" class="text-primary hover:text-accent transition-colors">Contáctanos</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- Stats Section -->
     <section class="py-20 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
@@ -1416,38 +1592,9 @@
         </div>
     </div>
 
-    <!-- Sección final: Patreon y Starterpack -->
-    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-dark-light text-center">
-        <div class="max-w-2xl mx-auto">
-            <h2 class="text-4xl font-extrabold gradient-text mb-4">¿Quieres aún más wallpapers exclusivos?</h2>
-            <p class="text-lg text-gray-300 mb-8">
-                Apóyanos en <span class="font-bold text-pink-400">Patreon</span> para acceder a la colección completa y recibir actualizaciones mensuales.<br>
-                ¡O descarga gratis nuestro <span class="font-bold text-indigo-400">BetterWLPRS Starterpack</span> para comenzar!
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <a href="https://patreon.com/tuusuario" target="_blank"
-                    class="bg-gradient-to-r from-pink-500 to-indigo-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform duration-300">
-                    Ir a Patreon
-                </a>
-                <a href="starterpacks/BetterWLPRS_Starterpack.zip" download
-                    class="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-full font-bold text-lg transition">
-                    Descargar Starterpack Gratis
-                </a>
-            </div>
-        </div>
-    </section>
-
     <script src="gsap/gsap.min.js"></script>
     <script src="gsap/ScrollTrigger.min.js"></script>
     <script>
-        // Scroll suave al hacer clic en el botón del hero
-        function scrollToTikTok() {
-            const tiktokSection = document.getElementById('tiktokSection');
-            window.scrollTo({
-                top: tiktokSection.offsetTop - 60,
-                behavior: 'smooth'
-            });
-        }
         // Register GSAP ScrollTrigger
         gsap.registerPlugin(ScrollTrigger);
 
@@ -1458,48 +1605,47 @@
         let tiktokScrollTrigger = null;
 
         function initTikTokGallery() {
-            if (window.innerWidth <= 768) {
-                const tiktokWrapper = document.getElementById('tiktokWrapper');
-                const tiktokItems = document.querySelectorAll('.tiktok-item');
-                const progressDots = document.querySelectorAll('.progress-dot');
-                const scrollHint = document.getElementById('scrollHint');
+            const tiktokWrapper = document.getElementById('tiktokWrapper');
+            const tiktokItems = document.querySelectorAll('.tiktok-item');
+            const progressDots = document.querySelectorAll('.progress-dot');
+            const scrollHint = document.getElementById('scrollHint');
 
-                // Kill existing ScrollTrigger if it exists
-                if (tiktokScrollTrigger) {
-                    tiktokScrollTrigger.kill();
-                }
-
-                // Create ScrollTrigger for TikTok gallery
-                tiktokScrollTrigger = ScrollTrigger.create({
-                    trigger: tiktokWrapper,
-                    start: "top top",
-                    end: "bottom bottom",
-                    scrub: 1,
-                    pin: true,
-                    snap: {
-                        snapTo: 1 / (totalItems - 1),
-                        duration: { min: 0.2, max: 0.5 },
-                        delay: 0.1
-                    },
-                    onUpdate: (self) => {
-                        const progress = self.progress;
-                        const newIndex = Math.round(progress * (totalItems - 1));
-                        
-                        if (newIndex !== currentIndex && !isAnimating) {
-                            updateTikTokItem(newIndex);
-                        }
-                    }
-                });
-
-                // Hide scroll hint after first interaction
-                setTimeout(() => {
-                    if (scrollHint) {
-                        gsap.to(scrollHint, { opacity: 0, duration: 0.5 });
-                    }
-                }, 3000);
-
-                console.log('TikTok Gallery initialized with GSAP ScrollTrigger');
+            // Kill existing ScrollTrigger if it exists
+            if (tiktokScrollTrigger) {
+                tiktokScrollTrigger.kill();
             }
+
+            // Create ScrollTrigger for TikTok gallery
+            tiktokScrollTrigger = ScrollTrigger.create({
+                trigger: tiktokWrapper,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1,
+                pin: true,
+                snap: {
+                    snapTo: 1 / (totalItems - 1),
+                    duration: { min: 0.2, max: 0.5 },
+                    delay: 0.1
+                },
+                onUpdate: (self) => {
+                    const progress = self.progress;
+                    const newIndex = Math.round(progress * (totalItems - 1));
+                    
+                    if (newIndex !== currentIndex && !isAnimating) {
+                        updateTikTokItem(newIndex);
+                    }
+                }
+            });
+
+            // Hide scroll hint after first interaction
+            setTimeout(() => {
+                if (scrollHint) {
+                    gsap.to(scrollHint, { opacity: 0, duration: 0.5 });
+                }
+            }, 3000);
+
+            console.log('TikTok Gallery initialized with GSAP ScrollTrigger');
+        }
         }
 
         function updateTikTokItem(newIndex) {
@@ -1546,37 +1692,9 @@
         }
 
         function toggleGalleryView() {
-            const desktop = document.querySelector('.desktop-gallery');
-            const tiktok = document.querySelector('.tiktok-gallery');
-            const hero = document.querySelector('section');
-            const nav = document.querySelector('nav');
-            
-            if (window.innerWidth <= 768) {
-                if (tiktok.style.display === 'none' || !tiktok.style.display) {
-                    // Switch to TikTok view
-                    desktop.style.display = 'none';
-                    hero.style.display = 'none';
-                    nav.style.display = 'none';
-                    tiktok.style.display = 'block';
-                    
-                    // Initialize GSAP ScrollTrigger for TikTok gallery
-                    setTimeout(() => {
-                        initTikTokGallery();
-                    }, 100);
-                } else {
-                    // Switch to desktop view
-                    desktop.style.display = 'block';
-                    hero.style.display = 'block';
-                    nav.style.display = 'block';
-                    tiktok.style.display = 'none';
-                    
-                    // Kill ScrollTrigger when switching back
-                    if (tiktokScrollTrigger) {
-                        tiktokScrollTrigger.kill();
-                        tiktokScrollTrigger = null;
-                    }
-                }
-            }
+            // Function kept for compatibility but no longer needed
+            // Gallery flow is now: Hero → Introduction → TikTok → CTA
+            console.log('Gallery view toggle - using new flow');
         }
 
         function toggleLike(btn) {
@@ -1671,40 +1789,28 @@
             closeTikTokMenu();
         }
 
-        // Auto-switch to TikTok view on mobile
-        function checkMobileView() {
-            if (window.innerWidth <= 768) {
-                // Auto enable TikTok view on mobile
-                setTimeout(() => {
-                    const hero = document.querySelector('section');
-                    if (hero) {
-                        const toggleBtn = document.createElement('button');
-                        toggleBtn.innerHTML = '📱 Vista TikTok';
-                        toggleBtn.className = 'fixed bottom-4 right-4 z-50 bg-gradient-to-r from-primary to-accent text-white px-4 py-2 rounded-full font-bold shadow-lg';
-                        toggleBtn.onclick = toggleGalleryView;
-                        document.body.appendChild(toggleBtn);
-                    }
-                }, 2000);
-            }
+        // Initialize TikTok Gallery automatically
+        function initializeGallery() {
+            // Initialize TikTok gallery for all devices
+            setTimeout(() => {
+                initTikTokGallery();
+            }, 500);
         }
 
         // Initialize
         window.addEventListener('load', () => {
-            checkMobileView();
+            initializeGallery();
             // Initialize ScrollTrigger refresh
             ScrollTrigger.refresh();
         });
         
         window.addEventListener('resize', () => {
-            checkMobileView();
             // Kill and reinitialize on resize
             if (tiktokScrollTrigger) {
                 tiktokScrollTrigger.kill();
                 tiktokScrollTrigger = null;
             }
-            if (window.innerWidth <= 768 && document.querySelector('.tiktok-gallery').style.display === 'block') {
-                setTimeout(initTikTokGallery, 100);
-            }
+            setTimeout(initTikTokGallery, 100);
             ScrollTrigger.refresh();
         });
 
