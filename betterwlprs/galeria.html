@@ -25,7 +25,7 @@
         </script>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <style>
-        .gradient-bg {
+    .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
@@ -48,6 +48,35 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transform: translateY(0);
         }
+
+/* Mejora de responsivo para padding en móvil */
+@media (max-width: 640px) {
+    body {
+        padding: 0;
+    }
+    .max-w-7xl, .max-w-4xl, .max-w-6xl {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        max-width: 100vw;
+        box-sizing: border-box;
+    }
+    .search-bar, .w-80, .w-64, input[type="text"], input[type="search"] {
+        width: 100% !important;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+    .premium-badge, .group, .rounded-full, .rounded-2xl, .rounded-lg, .rounded-xl {
+        max-width: 100vw;
+        box-sizing: border-box;
+    }
+    .gallery-content, .gallery-overlay {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+    .masonry-grid {
+        column-gap: 0.5rem;
+    }
+}
 
         .gallery-item:hover {
             transform: translateY(-8px);
@@ -306,7 +335,7 @@
         </nav>
         <!-- Hero Section -->
         <section class="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 hero-pattern">
-            <div class="max-w-7xl mx-auto text-center">
+            <div class="max-w-7xl mx-auto text-center px-2">
                 <div class="premium-badge inline-flex items-center px-4 py-2 rounded-full text-sm font-bold text-dark mb-6">
                     <span class="mr-2">⭐</span>
                     Free Online Gallery
@@ -375,7 +404,7 @@
         </section>
         <!-- Filter Section -->
         <section class="py-12 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-7xl mx-auto">
+            <div class="max-w-7xl mx-auto px-2">
                 <div class="flex flex-wrap justify-center gap-4 mb-12">
                     <button class="filter-button active px-8 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-primary to-accent" data-filter="all">
                         All
@@ -403,7 +432,7 @@
         </section>
         <!-- Gallery Section -->
         <section class="py-12 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-7xl mx-auto">
+            <div class="max-w-7xl mx-auto px-2">
                 <div id="galleryGrid" class="masonry-grid">
                     <div
                         class="masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in"
@@ -411,7 +440,7 @@
                         data-title="Arkham Knight Ake"
                         data-premium="true"
                     >
-                        <img src="img/videowlprs/discoelysiumstart.gif" alt="Arkham Knight Ake" class="w-full h-64 object-cover">
+                        <img src="img/videowlprs/discoelysiumstart.gif" alt="Arkham Knight Ake" class="w-full h-64 object-cover" loading="lazy">
                         <div class="gallery-overlay"></div>
                         <div class="gallery-content">
                             <div class="flex items-center justify-between mb-2">
@@ -431,7 +460,7 @@
                         data-title="Arkham"
                         data-premium="true"
                     >
-                        <img src="img/arkham.gif" alt="Arkham" class="w-full h-64 object-cover">
+                        <img src="img/arkham.gif" alt="Arkham" class="w-full h-64 object-cover" loading="lazy">
                         <div class="gallery-overlay"></div>
                         <div class="gallery-content">
                             <div class="flex items-center justify-between mb-2">
@@ -454,7 +483,7 @@
                         data-title="Battlefront 2 Pinky"
                         data-premium="true"
                     >
-                        <img src="img/webp Battlefront 2/bf2pinky.webp" alt="Battlefront 2 Pinky" class="w-full h-64 object-cover">
+                        <img src="img/webp Battlefront 2/bf2pinky.webp" alt="Battlefront 2 Pinky" class="w-full h-64 object-cover" loading="lazy">
                         <div class="gallery-overlay"></div>
                         <div class="gallery-content">
                             <div class="flex items-center justify-between mb-2">
@@ -477,7 +506,7 @@
                         data-title="Death Stranding 1 (1)"
                         data-premium="true"
                     >
-                        <img src="img/webp Death Stranding/1 (1).webp" alt="Death Stranding 1 (1)" class="w-full h-64 object-cover">
+                        <img src="img/webp Death Stranding/1 (1).webp" alt="Death Stranding 1 (1)" class="w-full h-64 object-cover" loading="lazy">
                         <div class="gallery-overlay"></div>
                         <div class="gallery-content">
                             <div class="flex items-center justify-between mb-2">
@@ -500,7 +529,7 @@
                         data-title="Watch Dogs 2 1img_0702122152462_12"
                         data-premium="true"
                     >
-                        <img src="img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122152462_12.webp" alt="Watch Dogs 2 1img_0702122152462_12" class="w-full h-64 object-cover">
+                        <img src="img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122152462_12.webp" alt="Watch Dogs 2 1img_0702122152462_12" class="w-full h-64 object-cover" loading="lazy">
                         <div class="gallery-overlay"></div>
                         <div class="gallery-content">
                             <div class="flex items-center justify-between mb-2">
@@ -523,7 +552,7 @@
                         data-title="Barman"
                         data-premium="true"
                     >
-                        <img src="img/barman.png" alt="Barman" class="w-full h-64 object-cover">
+                        <img src="img/barman.png" alt="Barman" class="w-full h-64 object-cover" loading="lazy">
                         <div class="gallery-overlay"></div>
                         <div class="gallery-content">
                             <div class="flex items-center justify-between mb-2">
@@ -546,7 +575,7 @@
                         data-title="Marcus Sitting Focused"
                         data-premium="true"
                     >
-                        <img src="img/marcusittingfocused.jpg" alt="Marcus Sitting Focused" class="w-full h-64 object-cover">
+                        <img src="img/marcusittingfocused.jpg" alt="Marcus Sitting Focused" class="w-full h-64 object-cover" loading="lazy">
                         <div class="gallery-overlay"></div>
                         <div class="gallery-content">
                             <div class="flex items-center justify-between mb-2">
@@ -569,7 +598,7 @@
                         data-title="Marcus Sitted Ahh"
                         data-premium="true"
                     >
-                        <img src="img/marcussittedahh.gif" alt="Marcus Sitted Ahh" class="w-full h-64 object-cover">
+                        <img src="img/marcussittedahh.gif" alt="Marcus Sitted Ahh" class="w-full h-64 object-cover" loading="lazy">
                         <div class="gallery-overlay"></div>
                         <div class="gallery-content">
                             <div class="flex items-center justify-between mb-2">
@@ -592,7 +621,7 @@
                         data-title="Sam Izquierda Sentado"
                         data-premium="true"
                     >
-                        <img src="img/samizquierdasentado.png" alt="Sam Izquierda Sentado" class="w-full h-64 object-cover">
+                        <img src="img/samizquierdasentado.png" alt="Sam Izquierda Sentado" class="w-full h-64 object-cover" loading="lazy">
                         <div class="gallery-overlay"></div>
                         <div class="gallery-content">
                             <div class="flex items-center justify-between mb-2">
@@ -615,7 +644,7 @@
                         data-title="Sam Satori"
                         data-premium="true"
                     >
-                        <img src="img/samsatori.gif" alt="Sam Satori" class="w-full h-64 object-cover">
+                        <img src="img/samsatori.gif" alt="Sam Satori" class="w-full h-64 object-cover" loading="lazy">
                         <div class="gallery-overlay"></div>
                         <div class="gallery-content">
                             <div class="flex items-center justify-between mb-2">
@@ -638,7 +667,7 @@
                         data-title="Sam Sitted Ahh"
                         data-premium="true"
                     >
-                        <img src="img/samsittedahh.gif" alt="Sam Sitted Ahh" class="w-full h-64 object-cover">
+                        <img src="img/samsittedahh.gif" alt="Sam Sitted Ahh" class="w-full h-64 object-cover" loading="lazy">
                         <div class="gallery-overlay"></div>
                         <div class="gallery-content">
                             <div class="flex items-center justify-between mb-2">
@@ -661,7 +690,7 @@
                         data-title="San Fra Camp View"
                         data-premium="true"
                     >
-                        <img src="img/sanfracampview.jpg" alt="San Fra Camp View" class="w-full h-64 object-cover">
+                        <img src="img/sanfracampview.jpg" alt="San Fra Camp View" class="w-full h-64 object-cover" loading="lazy">
                         <div class="gallery-overlay"></div>
                         <div class="gallery-content">
                             <div class="flex items-center justify-between mb-2">
@@ -684,7 +713,7 @@
                         data-title="Spider Sky"
                         data-premium="true"
                     >
-                        <img src="img/spidersky.gif" alt="Spider Sky" class="w-full h-64 object-cover">
+                        <img src="img/spidersky.gif" alt="Spider Sky" class="w-full h-64 object-cover" loading="lazy">
                         <div class="gallery-overlay"></div>
                         <div class="gallery-content">
                             <div class="flex items-center justify-between mb-2">
@@ -707,7 +736,7 @@
                         data-title="The Long Dark Wolfs"
                         data-premium="true"
                     >
-                        <img src="img/thelongdarkwolfs.png" alt="The Long Dark Wolfs" class="w-full h-64 object-cover">
+                        <img src="img/thelongdarkwolfs.png" alt="The Long Dark Wolfs" class="w-full h-64 object-cover" loading="lazy">
                         <div class="gallery-overlay"></div>
                         <div class="gallery-content">
                             <div class="flex items-center justify-between mb-2">
@@ -730,7 +759,7 @@
                         data-title="Ocean Waves"
                         data-premium="false"
                     >
-                        <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=500&h=300&fit=crop" alt="Nature Wallpaper" class="w-full h-64 object-cover">
+                        <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=500&h=300&fit=crop" alt="Nature Wallpaper" class="w-full h-64 object-cover" loading="lazy">
                         <div class="gallery-overlay"></div>
                         <div class="gallery-content">
                             <div class="flex items-center justify-between mb-2">
@@ -755,7 +784,7 @@
                         data-title="Retro Gaming"
                         data-premium="true"
                     >
-                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&h=450&fit=crop" alt="Gaming Wallpaper" class="w-full h-96 object-cover">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&h=450&fit=crop" alt="Gaming Wallpaper" class="w-full h-96 object-cover" loading="lazy">
                         <div class="gallery-overlay"></div>
                         <div class="gallery-content">
                             <div class="flex items-center justify-between mb-2">
@@ -779,7 +808,7 @@
                         data-title="Digital Art"
                         data-premium="true"
                     >
-                        <img src="https://images.unsplash.com/photo-1614543158492-b2c7c1735d6b?w=500&h=320&fit=crop" alt="Abstract Wallpaper" class="w-full h-72 object-cover">
+                        <img src="https://images.unsplash.com/photo-1614543158492-b2c7c1735d6b?w=500&h=320&fit=crop" alt="Abstract Wallpaper" class="w-full h-72 object-cover" loading="lazy">
                         <div class="gallery-overlay"></div>
                         <div class="gallery-content">
                             <div class="flex items-center justify-between mb-2">
@@ -808,7 +837,7 @@
         </section>
         <!-- Stats Section -->
         <section class="py-20 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-7xl mx-auto">
+            <div class="max-w-7xl mx-auto px-2">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                     <div class="text-center">
                         <div class="text-4xl font-bold gradient-text mb-2">500+</div>
