@@ -25,6 +25,12 @@
         </script>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <style>
+        /* Fix: margen superior solo en md+ para CTAs hero */
+        @media (min-width: 768px) {
+            .hero-cta-sep {
+                margin-top: 4rem !important;
+            }
+        }
     .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
@@ -465,7 +471,7 @@
             <div class="max-w-7xl mx-auto text-center px-2">
                 <!-- Free Pack Banner -->
                 <div class="mb-8">
-                    <div class="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full text-white shadow-2xl animate-pulse">
+                    <div class="hidden sm:inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full text-white shadow-2xl animate-pulse">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
                         </svg>
@@ -513,8 +519,8 @@
                 </div>
 
                 <!-- Main CTAs -->
-                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                    <a href="#free-pack" class="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white rounded-full font-bold text-lg shadow-2xl transform hover:scale-105 transition-all duration-200">
+                <div class="hidden sm:flex flex-col sm:flex-row gap-4 justify-center mb-8 mt-4 hero-cta-sep">
+                    <a href="#free-pack" class="group hidden md:inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white rounded-full font-bold text-lg shadow-2xl transform hover:scale-105 transition-all duration-200">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
                         </svg>
