@@ -116,6 +116,8 @@ body {
     margin: 0 auto;
 }
 
+.nodolink {color: white}
+
 .loader-progress {
     height: 100%;
     background: linear-gradient(90deg, var(--accent) 0%, #ffffff 50%, var(--accent) 100%);
@@ -170,7 +172,7 @@ body {
     transition: transform 0.3s;
 }
 
-/* Header Navigation */
+/* 📏 HEADER NAVIGATION - ESPACIADO MEJORADO */
 .header {
     position: fixed;
     top: 0;
@@ -192,16 +194,20 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 40px; /* 🎯 AÑADIDO GAP PARA SEPARACIÓN */
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .heading-l {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.8rem, 4vw, 3rem);
     letter-spacing: 3px;
     background: linear-gradient(90deg, var(--white) 0%, var(--accent) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    flex-shrink: 0; /* 🎯 EVITA QUE SE ENCOJA */
 }
 
 .button {
@@ -217,6 +223,8 @@ body {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    flex-shrink: 0; /* 🎯 EVITA QUE SE ENCOJA */
+    white-space: nowrap; /* 🎯 EVITA SALTO DE LÍNEA */
 }
 
 .button:before {
@@ -374,7 +382,7 @@ body {
     animation: floatB 8s ease-in-out infinite;
 }
 
-/* 🌊 DEPTH INDICATOR MEJORADO - COMPORTAMIENTO DINÁMICO */
+/* Depth Indicator */
 .depth-indicator {
     position: fixed;
     right: 20px;
@@ -418,7 +426,7 @@ body {
     text-align: center;
 }
 
-/* About Section - PARALLAX MODERNO */
+/* 🎨 ABOUT SECTION - PARALLAX SEAMLESS SIN GAPS */
 .about-section {
     position: relative;
     padding: 0;
@@ -443,6 +451,7 @@ body {
     justify-content: center;
     z-index: 2;
     position: relative;
+    background: linear-gradient(180deg, var(--dark) 0%, #001f3f 100%);
 }
 
 .about-content h2 {
@@ -490,20 +499,20 @@ body {
     opacity: 0.7;
 }
 
-/* 🎨 IMAGEN PARALLAX MODERNA */
+/* 🖼️ IMAGEN PARALLAX SEAMLESS - SIN GAPS NEGROS */
 .about-image-container {
     position: relative;
     height: 100vh;
     overflow: hidden;
-    background: #000;
+    background: linear-gradient(180deg, var(--dark) 0%, #001f3f 100%); /* 🎯 MISMO FONDO QUE CONTENT */
 }
 
 .about-image {
     position: absolute;
-    top: 0;
+    top: -10%; /* 🎯 EMPIEZA ARRIBA PARA CUBRIR GAPS */
     left: 0;
     width: 100%;
-    height: 120%; /* Más grande para el efecto parallax */
+    height: 120%; /* 🎯 MÁS GRANDE PARA PARALLAX SIN GAPS */
     background: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=2070') center/cover;
     background-attachment: fixed;
     will-change: transform;
@@ -556,16 +565,19 @@ body {
     opacity: 1;
 }
 
-/* Services Section */
+/* 🔧 SERVICES SECTION - GRID RESPONSIVO ARREGLADO */
 .services-section {
     padding: 150px 50px;
     background: var(--dark);
     position: relative;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .services-container {
     max-width: 1400px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .services-header {
@@ -579,10 +591,12 @@ body {
     margin-bottom: 20px;
 }
 
+/* 🎯 GRID SIN OVERFLOW HORIZONTAL */
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 🔧 REDUCIDO DE 350px A 300px */
     gap: 40px;
+    width: 100%;
 }
 
 .service-card {
@@ -594,6 +608,8 @@ body {
     cursor: none;
     position: relative;
     overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .service-card::before {
@@ -803,15 +819,36 @@ body {
     animation: rise 15s infinite linear;
 }
 
-/* 📱 RESPONSIVE - COMPORTAMIENTO MÓVIL MEJORADO */
+/* 📱 RESPONSIVE MEJORADO */
 @media (max-width: 768px) {
+    /* 📏 HEADER MÓVIL CON MEJOR ESPACIADO */
     .header {
-        padding: 20px;
+        padding: 15px 20px;
     }
     
-    /* 🌊 DEPTH INDICATOR EN MÓVIL - APARECE AL SCROLL */
+    .header.scrolled {
+        padding: 12px 20px;
+    }
+    
+    .nav-container {
+        gap: 20px; /* 🎯 GAP REDUCIDO EN MÓVIL */
+        flex-wrap: nowrap;
+    }
+    
+    .heading-l {
+        font-size: clamp(1.5rem, 5vw, 2.2rem);
+        letter-spacing: 2px;
+    }
+    
+    .button {
+        padding: 10px 20px;
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+    
+    /* 🌊 DEPTH INDICATOR EN MÓVIL */
     .depth-indicator {
-        right: 15px;
+        right: 25px;
         opacity: 0;
         transform: translateY(-50%) translateX(50px);
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -832,11 +869,13 @@ body {
     }
     
     .depth-text {
-        right: 25px;
-        font-size: 1.2rem;
+        right: 0px;
+
+  top: 5px;
+   font-size            : 1.2rem;
     }
     
-    /* 🎨 ABOUT SECTION MÓVIL - ANCHO COMPLETO CON PARALLAX */
+    /* 🎨 ABOUT SECTION MÓVIL */
     .about-container {
         grid-template-columns: 1fr;
         gap: 0;
@@ -857,13 +896,30 @@ body {
     }
     
     .about-image {
-        background-attachment: scroll; /* Mejor rendimiento en móvil */
+        background-attachment: scroll;
         height: 110%;
         transform: translateY(-5%);
+        top: -5%;
     }
     
     .stats {
         grid-template-columns: 1fr;
+    }
+    
+    /* 🔧 SERVICES MÓVIL - SIN OVERFLOW */
+    .services-section {
+        padding: 100px 20px; /* 🎯 PADDING REDUCIDO */
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr; /* 🎯 UNA COLUMNA EN MÓVIL */
+        gap: 30px;
+    }
+    
+    .service-card {
+        padding: 30px 20px; /* 🎯 PADDING REDUCIDO */
+        margin: 0;
+        width: 100%;
     }
     
     .cta-container {
@@ -951,7 +1007,6 @@ body {
     }
 }
 
-/* 🎯 ANIMACIÓN SLIDE-IN PARA MÓVIL */
 @keyframes slideInFromRight {
     from {
         opacity: 0;
@@ -977,7 +1032,7 @@ body {
             <div class="volcano-icon">🏔️</div>
             <div class="flag-element flag-white"></div>
         </div>
-        <div class="loader-text">DIVING DEEP TENERIFE</div>
+        <div class="loader-text">DEEP DIVING TENERIFE</div>
         <div class="loader-bar">
             <div class="loader-progress"></div>
         </div>
@@ -1027,12 +1082,12 @@ body {
         </p>
         <div class="cta-container">
             <a href="#about" class="cta">Descubre Más</a>
-            <a href="#contact" class="cta outline">Contacto Pro</a>
+            <a href="#contact" class="cta outline">Contacto</a>
         </div>
     </div>
 </section>
 
-<!-- About Section - PARALLAX MODERNO -->
+<!-- About Section -->
 <section class="about-section" id="about">
     <div class="about-container">
         <div class="about-content">
@@ -1185,7 +1240,7 @@ body {
     </div>
     
     <div class="footer-bottom">
-        <p>&copy; 2024 Apnea Tenerife. Todos los derechos reservados. | Capital Mundial del Freediving</p>
+        <p>&copy; 2025 Apnea Tenerife. Todos los derechos reservados. | Made with 💜 by <a class="nodolink" href="https://nodoamd.github.io">Nodo</a></p>
     </div>
 </footer>
 
@@ -1243,7 +1298,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// 🌊 DEPTH INDICATOR MEJORADO - COMPORTAMIENTO DINÁMICO
+// Depth indicator mejorado
 const depthIndicator = document.querySelector('.depth-indicator');
 let hasScrolled = false;
 
@@ -1270,7 +1325,7 @@ function updateDepthIndicator() {
         depthMarker.style.boxShadow = `0 0 ${glowSize}px rgba(0, 212, 255, ${0.8 + glowIntensity * 0.2})`;
     }
     
-    // 📱 MOSTRAR/OCULTAR EN MÓVIL AL HACER SCROLL
+    // Mostrar/ocultar en móvil al hacer scroll
     if (window.innerWidth <= 768) {
         if (window.scrollY > 100 && !hasScrolled) {
             depthIndicator.classList.add('visible', 'slide-in');
@@ -1282,18 +1337,20 @@ function updateDepthIndicator() {
     }
 }
 
-// 🎨 PARALLAX PARA LA IMAGEN
+// 🎨 PARALLAX MEJORADO SIN GAPS
 function updateParallax() {
     const aboutImage = document.querySelector('.about-image');
     const aboutSection = document.querySelector('.about-section');
     
     if (aboutImage && aboutSection) {
         const rect = aboutSection.getBoundingClientRect();
-        const speed = 0.5;
+        const speed = 0.3; // 🎯 VELOCIDAD REDUCIDA PARA MENOS GAPS
         
         if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
             const yPos = rect.top * speed;
-            aboutImage.style.transform = `translateY(${yPos}px)`;
+            // 🎯 LIMITAMOS EL MOVIMIENTO PARA EVITAR GAPS
+            const clampedYPos = Math.max(-50, Math.min(50, yPos));
+            aboutImage.style.transform = `translateY(${clampedYPos}px)`;
         }
     }
 }
@@ -1373,19 +1430,19 @@ if (statsSection) {
     statsObserver.observe(statsSection);
 }
 
-// Initialize depth indicator on load
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
     updateDepthIndicator();
     updateParallax();
 });
 
-// Resize handler para reactivar efectos
+// Resize handler
 window.addEventListener('resize', () => {
     updateDepthIndicator();
     updateParallax();
 });
 
-console.log('🌊🎨 Apnea Tenerife - Dynamic version with mobile depth indicator and parallax effects loaded!');
+
 </script>
 </body>
 </html>
