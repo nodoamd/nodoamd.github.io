@@ -3,66 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apnea Diving in Tenerife</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <title>Diving Deep Spain</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Corrected CSS link -->
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
+        /* Inline styles for the parallax background */
         .hero {
-            background-image: url('https://example.com/hero-image.jpg');
+            background-image: url('your-image-url.jpg'); /* Replace with your image URL */
             height: 100vh;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
             text-align: center;
-            position: relative;
-        }
-        .hero h1 {
-            font-size: 4rem;
-            opacity: 0;
-        }
-        .intro {
-            padding: 50px;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-        }
-        .cta-button {
-            background-color: #ff5733;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
-
-    <section class="hero" id="hero">
-        <h1>Experience the Thrill of Apnea Diving in Tenerife</h1>
-    </section>
-
-    <section class="intro">
-        <h2>Why Choose Apnea Diving?</h2>
-        <p>Explore the stunning underwater world of Tenerife with our professional apnea diving courses. Whether you're a beginner or a seasoned diver, Tenerife offers clear waters and diverse marine life.</p>
-        <button class="cta-button">Join Us Now</button>
-    </section>
-
-    <script>
-        gsap.to(".hero h1", { duration: 2, opacity: 1, y: -50 });
-        gsap.from(".intro", { duration: 2, y: 50, opacity: 0, delay: 1 });
-    </script>
+    <header class="hero">
+        <h1>Welcome to Diving Deep Spain</h1>
+        <p>Explore the underwater wonders of Spain</p>
+    </header>
+    <main>
+        <section>
+            <h2>About Us</h2>
+            <p>At Diving Deep Spain, we offer unique diving experiences...</p>
+        </section>
+        <section>
+            <h2>Our Services</h2>
+            <ul>
+                <li>Scuba Diving</li>
+                <li>Snorkeling</li>
+                <li>Underwater Photography</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Contact Us</h2>
+            <p>Email: info@divingdeep.com</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Diving Deep Spain. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
