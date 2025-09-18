@@ -31,7 +31,7 @@ body {
     cursor: none;
 }
 
-/* Loading Screen - MEJORADO */
+/* Loading Screen - BARRA CENTRADA */
 .loader {
     position: fixed;
     top: 0;
@@ -56,6 +56,9 @@ body {
 .loader-content {
     text-align: center;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* CENTRADO PERFECTO */
 }
 
 .loader-text {
@@ -102,6 +105,7 @@ body {
     text-shadow: 0 0 20px var(--accent);
 }
 
+/* 🎯 BARRA DE LOADING CENTRADA */
 .loader-bar {
     width: clamp(250px, 60vw, 400px);
     height: 4px;
@@ -110,6 +114,7 @@ body {
     overflow: hidden;
     position: relative;
     box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    margin: 0 auto; /* CENTRADO HORIZONTAL */
 }
 
 .loader-progress {
@@ -370,7 +375,7 @@ body {
     animation: floatB 8s ease-in-out infinite;
 }
 
-/* Depth Indicator - MEJORADO PARA MÓVIL */
+/* 📍 DEPTH INDICATOR - POSICIÓN DEL NÚMERO */
 .depth-indicator {
     position: fixed;
     right: 20px;
@@ -400,10 +405,11 @@ body {
     transition: all 0.3s ease;
 }
 
+/* 🎯 AQUÍ PUEDES CAMBIAR LA POSICIÓN DEL NÚMERO */
 .depth-text {
     position: absolute;
     top: -25px;
-    right: 15px;
+    right: 15px; /* 📝 CAMBIA ESTE VALOR: más alto = más a la derecha */
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(1rem, 3vw, 1.5rem);
     letter-spacing: 1px;
@@ -609,7 +615,7 @@ body {
     font-size: 1.1rem;
 }
 
-/* Footer - NUEVO PROFESIONAL */
+/* Footer */
 .footer {
     background: linear-gradient(135deg, #000511 0%, var(--dark) 50%, #001122 100%);
     padding: 80px 50px 40px;
@@ -769,6 +775,12 @@ body {
         height: 6px;
     }
     
+    /* 📱 POSICIÓN DEL NÚMERO EN MÓVIL - AQUÍ PUEDES AJUSTAR */
+    .depth-text {
+        right: 25px; /* 📝 CAMBIA ESTE VALOR para moverlo más a la derecha en móvil */
+        font-size: 1.2rem; /* Tamaño un poco más pequeño en móvil */
+    }
+    
     .cursor, .cursor-follower {
         display: none;
     }
@@ -852,7 +864,7 @@ body {
 </style>
 </head>
 <body>
-<!-- Loading Screen - MEJORADO -->
+<!-- Loading Screen -->
 <div class="loader">
     <div class="loader-content">
         <div class="tenerife-flag">
@@ -871,7 +883,7 @@ body {
 <div class="cursor"></div>
 <div class="cursor-follower"></div>
 
-<!-- Depth Indicator - MEJORADO PARA MÓVIL -->
+<!-- Depth Indicator -->
 <div class="depth-indicator">
     <div class="depth-text">0m</div>
     <div class="depth-line">
@@ -1021,7 +1033,7 @@ body {
     </div>
 </section>
 
-<!-- Footer - NUEVO PROFESIONAL -->
+<!-- Footer -->
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-section">
@@ -1123,7 +1135,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Depth indicator - FUNCIONAL MEJORADO PARA MÓVIL
+// Depth indicator
 function updateDepthIndicator() {
     const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
     const maxDepth = 100;
@@ -1227,7 +1239,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateDepthIndicator();
 });
 
-console.log('🏝️ Apnea Tenerife - Complete version with Tenerife branding loaded!');
+console.log('🏝️ Apnea Tenerife - Fixed version loaded!');
 </script>
 </body>
 </html>
