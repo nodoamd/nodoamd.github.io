@@ -31,7 +31,7 @@ body {
     cursor: none;
 }
 
-/* Loading Screen - BARRA CENTRADA */
+/* Loading Screen */
 .loader {
     position: fixed;
     top: 0;
@@ -58,7 +58,7 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center; /* CENTRADO PERFECTO */
+    align-items: center;
 }
 
 .loader-text {
@@ -105,7 +105,6 @@ body {
     text-shadow: 0 0 20px var(--accent);
 }
 
-/* 🎯 BARRA DE LOADING CENTRADA */
 .loader-bar {
     width: clamp(250px, 60vw, 400px);
     height: 4px;
@@ -114,7 +113,7 @@ body {
     overflow: hidden;
     position: relative;
     box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-    margin: 0 auto; /* CENTRADO HORIZONTAL */
+    margin: 0 auto;
 }
 
 .loader-progress {
@@ -375,14 +374,15 @@ body {
     animation: floatB 8s ease-in-out infinite;
 }
 
-/* 📍 DEPTH INDICATOR - POSICIÓN DEL NÚMERO */
+/* 🌊 DEPTH INDICATOR MEJORADO - COMPORTAMIENTO DINÁMICO */
 .depth-indicator {
     position: fixed;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
     z-index: 100;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
 }
 
 .depth-line {
@@ -405,11 +405,10 @@ body {
     transition: all 0.3s ease;
 }
 
-/* 🎯 AQUÍ PUEDES CAMBIAR LA POSICIÓN DEL NÚMERO */
 .depth-text {
     position: absolute;
     top: -25px;
-    right: 15px; /* 📝 CAMBIA ESTE VALOR: más alto = más a la derecha */
+    right: 15px;
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(1rem, 3vw, 1.5rem);
     letter-spacing: 1px;
@@ -419,11 +418,12 @@ body {
     text-align: center;
 }
 
-/* About Section */
+/* About Section - PARALLAX MODERNO */
 .about-section {
     position: relative;
-    padding: 150px 50px;
+    padding: 0;
     background: linear-gradient(180deg, var(--dark) 0%, #001f3f 100%);
+    overflow: hidden;
 }
 
 .about-container {
@@ -431,8 +431,18 @@ body {
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
+    gap: 0;
+    align-items: stretch;
+    min-height: 100vh;
+}
+
+.about-content {
+    padding: 150px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+    position: relative;
 }
 
 .about-content h2 {
@@ -463,6 +473,8 @@ body {
     padding: 20px;
     background: rgba(0, 212, 255, 0.1);
     border-left: 3px solid var(--accent);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
 }
 
 .stat-number {
@@ -478,12 +490,24 @@ body {
     opacity: 0.7;
 }
 
-.about-image {
+/* 🎨 IMAGEN PARALLAX MODERNA */
+.about-image-container {
     position: relative;
-    height: 600px;
-    background: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=2070') center/cover;
-    border-radius: 20px;
+    height: 100vh;
     overflow: hidden;
+    background: #000;
+}
+
+.about-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%; /* Más grande para el efecto parallax */
+    background: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=2070') center/cover;
+    background-attachment: fixed;
+    will-change: transform;
+    transition: transform 0.1s ease-out;
 }
 
 .about-image::before {
@@ -493,7 +517,43 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, transparent 0%, rgba(0, 31, 63, 0.8) 100%);
+    background: linear-gradient(135deg, 
+        rgba(0, 31, 63, 0.3) 0%, 
+        transparent 50%, 
+        rgba(0, 212, 255, 0.2) 100%);
+    z-index: 1;
+}
+
+.about-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(0deg, 
+        rgba(0, 31, 63, 0.9) 0%, 
+        transparent 100%);
+    z-index: 2;
+}
+
+/* Efecto de overlay dinámico */
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 70% 30%, 
+        rgba(0, 212, 255, 0.15) 0%, 
+        transparent 50%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: 3;
+}
+
+.about-image-container:hover .image-overlay {
+    opacity: 1;
 }
 
 /* Services Section */
@@ -743,27 +803,23 @@ body {
     animation: rise 15s infinite linear;
 }
 
-/* Responsive */
+/* 📱 RESPONSIVE - COMPORTAMIENTO MÓVIL MEJORADO */
 @media (max-width: 768px) {
     .header {
         padding: 20px;
     }
     
-    .about-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-    
-    .stats {
-        grid-template-columns: 1fr;
-    }
-    
-    .cta-container {
-        flex-direction: column;
-    }
-    
+    /* 🌊 DEPTH INDICATOR EN MÓVIL - APARECE AL SCROLL */
     .depth-indicator {
         right: 15px;
+        opacity: 0;
+        transform: translateY(-50%) translateX(50px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .depth-indicator.visible {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
     }
     
     .depth-line {
@@ -775,10 +831,43 @@ body {
         height: 6px;
     }
     
-    /* 📱 POSICIÓN DEL NÚMERO EN MÓVIL - AQUÍ PUEDES AJUSTAR */
     .depth-text {
-        right: 25px; /* 📝 CAMBIA ESTE VALOR para moverlo más a la derecha en móvil */
-        font-size: 1.2rem; /* Tamaño un poco más pequeño en móvil */
+        right: 25px;
+        font-size: 1.2rem;
+    }
+    
+    /* 🎨 ABOUT SECTION MÓVIL - ANCHO COMPLETO CON PARALLAX */
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 0;
+        max-width: 100%;
+    }
+    
+    .about-content {
+        padding: 80px 20px;
+        order: 2;
+    }
+    
+    .about-image-container {
+        order: 1;
+        height: 70vh;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        position: relative;
+    }
+    
+    .about-image {
+        background-attachment: scroll; /* Mejor rendimiento en móvil */
+        height: 110%;
+        transform: translateY(-5%);
+    }
+    
+    .stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-container {
+        flex-direction: column;
     }
     
     .cursor, .cursor-follower {
@@ -861,6 +950,22 @@ body {
         transform: translateY(0);
     }
 }
+
+/* 🎯 ANIMACIÓN SLIDE-IN PARA MÓVIL */
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateY(-50%) translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+    }
+}
+
+.depth-indicator.slide-in {
+    animation: slideInFromRight 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
 </style>
 </head>
 <body>
@@ -927,7 +1032,7 @@ body {
     </div>
 </section>
 
-<!-- About Section -->
+<!-- About Section - PARALLAX MODERNO -->
 <section class="about-section" id="about">
     <div class="about-container">
         <div class="about-content">
@@ -962,7 +1067,10 @@ body {
                 </div>
             </div>
         </div>
-        <div class="about-image"></div>
+        <div class="about-image-container">
+            <div class="about-image"></div>
+            <div class="image-overlay"></div>
+        </div>
     </div>
 </section>
 
@@ -1135,7 +1243,10 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Depth indicator
+// 🌊 DEPTH INDICATOR MEJORADO - COMPORTAMIENTO DINÁMICO
+const depthIndicator = document.querySelector('.depth-indicator');
+let hasScrolled = false;
+
 function updateDepthIndicator() {
     const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
     const maxDepth = 100;
@@ -1158,6 +1269,33 @@ function updateDepthIndicator() {
         const glowSize = window.innerWidth <= 768 ? 10 + glowIntensity * 15 : 15 + glowIntensity * 20;
         depthMarker.style.boxShadow = `0 0 ${glowSize}px rgba(0, 212, 255, ${0.8 + glowIntensity * 0.2})`;
     }
+    
+    // 📱 MOSTRAR/OCULTAR EN MÓVIL AL HACER SCROLL
+    if (window.innerWidth <= 768) {
+        if (window.scrollY > 100 && !hasScrolled) {
+            depthIndicator.classList.add('visible', 'slide-in');
+            hasScrolled = true;
+        } else if (window.scrollY <= 100 && hasScrolled) {
+            depthIndicator.classList.remove('visible', 'slide-in');
+            hasScrolled = false;
+        }
+    }
+}
+
+// 🎨 PARALLAX PARA LA IMAGEN
+function updateParallax() {
+    const aboutImage = document.querySelector('.about-image');
+    const aboutSection = document.querySelector('.about-section');
+    
+    if (aboutImage && aboutSection) {
+        const rect = aboutSection.getBoundingClientRect();
+        const speed = 0.5;
+        
+        if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
+            const yPos = rect.top * speed;
+            aboutImage.style.transform = `translateY(${yPos}px)`;
+        }
+    }
 }
 
 // Throttled scroll for better performance
@@ -1166,6 +1304,7 @@ window.addEventListener('scroll', () => {
     if (!ticking) {
         requestAnimationFrame(() => {
             updateDepthIndicator();
+            updateParallax();
             ticking = false;
         });
         ticking = true;
@@ -1237,9 +1376,16 @@ if (statsSection) {
 // Initialize depth indicator on load
 document.addEventListener('DOMContentLoaded', () => {
     updateDepthIndicator();
+    updateParallax();
 });
 
-console.log('🏝️ Apnea Tenerife - Fixed version loaded!');
+// Resize handler para reactivar efectos
+window.addEventListener('resize', () => {
+    updateDepthIndicator();
+    updateParallax();
+});
+
+console.log('🌊🎨 Apnea Tenerife - Dynamic version with mobile depth indicator and parallax effects loaded!');
 </script>
 </body>
 </html>
