@@ -7,6 +7,9 @@
     <title>BetterWLPRS — Descarga, Comparte, ¡DISFRUTA!. Videos completos y en alta resolución con suscripción.</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="./logobetterwlprs.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./logobetterwlprs.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./logobetterwlprs.png">
+    <link rel="shortcut icon" href="./logobetterwlprs.png">
     <!-- Tipografía -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
@@ -38,11 +41,13 @@
             <!-- Desktop Menu -->
             <div class="nav-menu" id="navMenu">
                 <a href="#hero" class="nav-item active" data-section="gallery" data-i18n="nav.gallery">Inicio</a>
-                <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">🎨
-                    Galería</a>
-                <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Videos</a>
+                <a href="#gallery" class="nav-item" data-section="videos" data-i18n="nav.videos">Videos</a>
                 <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">Cómo funciona</a>
                 <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Beneficios</a>
+                <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">
+                    🎨
+                    Galería
+                </a>
             </div>
 
             <!-- Desktop Actions -->
@@ -51,10 +56,10 @@
                 <button class="icon-btn" id="themeToggle" aria-label="Cambiar tema">
                     <span>☀️</span>
                 </button>
-                <a href="https://www.patreon.com/betterwlprs" target="_blank" title="Patreon"
+                <a href="https://gumroad.com/betterwlprsx" target="_blank" title="Gumroad"
                     style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
-                    <i class="fa-brands fa-patreon" style="color: #fc6354; font-size:18px;"></i>
-                    <span style="font-weight:600;color:#f96854;font-size:14px;">Patreon</span>
+                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad" style="width:18px;height:18px;">
+                    <span style="font-weight:600;color:#ff90b3;font-size:14px;">Gumroad</span>
                 </a>
                 <a href="https://ko-fi.com/betterwlprs" target="_blank" title="Ko-fi"
                     style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
@@ -78,8 +83,7 @@
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-content">
             <a href="#hero" class="nav-item" data-section="gallery" data-i18n="nav.gallery">Inicio</a>
-            <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">Galería</a>
-            <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Videos</a>
+            <a href="#gallery" class="nav-item" data-section="videos" data-i18n="nav.videos">Videos</a>
             <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">Cómo funciona</a>
             <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Beneficios</a>
             <a href="#gallery" class="nav-item" data-section="gallery" data-i18n="nav.gallery">🎁 Paquete de inicio
@@ -95,9 +99,9 @@
                 </div>
 
                 <div class="mobile-social">
-                    <a href="https://www.patreon.com/betterwlprs" target="_blank" class="social-link">
-                        <i class="fa-brands fa-patreon" style="color: #fc6354; font-size:18px;"></i>
-                        <span>Patreon</span>
+                    <a href="https://gumroad.com/betterwlprsx" target="_blank" class="social-link" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad" style="width:18px;height:18px;filter:drop-shadow(0 0 2px #ff90b3);">
+                        <span style="font-weight:600;color:#ff90b3;font-size:14px;">Gumroad</span>
                     </a>
                     <a href="https://ko-fi.com/betterwlprs" target="_blank" class="social-link">
                         <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png"
@@ -120,14 +124,15 @@
             <p data-i18n="hero.desc">Descarga arte original y optimizado. Disfruta la calidad BetterWLPRS.</p>
             <div class="hero-actions">
                 <a href="galeria.html" class="btn primary">
-                    <span data-i18n="hero.explore">🎁 Paquete de inicio gratis
+                    <span data-i18n="hero.explore">
+                        🎁 Paquete de inicio gratis
                         <span>→</span>
+                    </span>
                 </a>
-
-                <a href="#how" class="btn secondary" data-i18n="hero.how"><img
-                        src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png"
-                        alt="Ko-fi" style="width:18px;height:18px;">
-                    <span style="font-weight:600;color:#29abe0;font-size:14px;">Ko-fi</span>Gracias</a>
+                <a href="https://gumroad.com/betterwlprsx" class="btn secondary" target="_blank" data-i18n="hero.how">
+                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad" style="width:18px;height:18px;filter:invert(64%) sepia(88%) saturate(1000%) hue-rotate(315deg) brightness(105%) contrast(101%);">
+                    ¿Quieres más de 1000?
+                </a>
             </div>
             <!-- spline-viewer ABSOLUTE, fuera del flujo -->
             <div class="steamdeck-hero-absolute"
@@ -221,17 +226,16 @@
             </div>
             <div class="card">
                 <div class="card-image">
-                    <img src="./img/videowlprs/madmaxlivewlprsany.gif" alt="Estado de ánimo analógico">
-                    <div class="card-badge">Mad Max</div>
+                    <img src="./img/lessgo.gif" alt="Fondos en vivo de Metro Exodus">
+                    <div class="card-badge">Metro Exodus</div>
                 </div>
                 <div class="card-content">
                     <div>
                         <div class="card-title">Fondos en vivo con sonido del juego</div>
-                        <div class="card-subtitle">Los fondos capturados tienen la máxima calidad y audio activado para
-                            que vivas la experiencia completa</div>
+                        <div class="card-subtitle">Los fondos capturados son tomados con la configuración de máxima calidad y
+                            audio activado para que puedas asegurar la experiencia completa</div>
                     </div>
                     <button class="card-action secondary" data-i18n="card.viewImage">Ver imagen</button>
-
                 </div>
             </div>
         </div>
@@ -715,16 +719,13 @@
                     </a>
                     <a href="https://gumroad.com/betterwlprsx" target="_blank"
                         style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                        <!-- Gumroad eliminado -->
-                        <a href="https://www.patreon.com/betterwlprs" target="_blank"
-                            style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                            <i class="fa-brands fa-patreon" style="color: #fc6354; font-size:22px;"></i>
-                        </a>
-                        <a href="https://ko-fi.com/betterwlprs" target="_blank"
-                            style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                            <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png"
-                                alt="Ko-fi" style="width:22px;height:22px;">
-                        </a>
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad" style="width:22px;height:22px;">
+                    </a>
+                    <a href="https://ko-fi.com/betterwlprs" target="_blank"
+                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                        <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png"
+                            alt="Ko-fi" style="width:22px;height:22px;">
+                    </a>
                 </div>
             </div>
             <!-- Enlaces rápidos -->
@@ -1228,14 +1229,14 @@
         }
     });
 
-    // All subscription buttons now go to Patreon
+    // All subscription buttons now go to Gumroad
     const subscriptionButtons = ['subscribeBtn', 'subscribeMobileBtn', 'stickyCta', 'finalCtaBtn'];
     subscriptionButtons.forEach(btnId => {
         const btn = document.getElementById(btnId);
         if (btn) {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                window.open('https://www.patreon.com/betterwlprs', '_blank');
+                window.open('https://gumroad.com/betterwlprsx', '_blank');
             });
         }
     });
