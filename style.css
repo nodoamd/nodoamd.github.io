@@ -31,6 +31,19 @@
             overflow-x: hidden !important;
             touch-action: pan-y pinch-zoom;
         }
+
+        /* Prevenir desbordamiento en todas las secciones */
+        section, div, .nodo-contact-section, .nodo-contact-info, .nodo-contact-form {
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        /* Asegurar que el texto no se desborde */
+        p, h1, h2, h3, h4, h5, h6, span, a {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
     }
 
     ::selection {
@@ -3526,14 +3539,48 @@
         }
     }
 
-    @media (max-width: 576px) {
+    @media (max-width: 768px) {
         .nodo-contact-section {
-            padding: 40px 15px;
+            padding: 40px 20px;
+            margin: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .nodo-contact-container {
+            gap: 20px;
         }
 
         .nodo-contact-form,
         .nodo-contact-info {
-            padding: 30px 20px;
+            padding: 25px 20px;
+            min-width: 280px;
+            box-sizing: border-box;
+        }
+
+        .nodo-info-content h4 {
+            font-size: 14px;
+        }
+
+        .nodo-info-content p,
+        .nodo-info-content a {
+            font-size: 15px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .nodo-contact-section {
+            padding: 30px 15px;
+            margin: 0 5px;
+            box-sizing: border-box;
+        }
+
+        .nodo-contact-form,
+        .nodo-contact-info {
+            padding: 20px 15px;
+            min-width: 250px;
+            box-sizing: border-box;
         }
 
         .nodo-contact-header h2 {
@@ -3542,6 +3589,122 @@
 
         .nodo-contact-header p {
             font-size: 15px;
+            padding: 0 10px;
+        }
+
+        .nodo-info-title {
+            font-size: 20px;
+        }
+
+        .nodo-info-content h4 {
+            font-size: 13px;
+        }
+
+        .nodo-info-content p,
+        .nodo-info-content a {
+            font-size: 14px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .nodo-contact-section {
+            padding: 25px 10px;
+            margin: 0;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        .nodo-contact-container {
+            gap: 15px;
+        }
+
+        .nodo-contact-form,
+        .nodo-contact-info {
+            padding: 15px 12px;
+            min-width: 200px;
+            box-sizing: border-box;
+        }
+
+        .nodo-contact-header h2 {
+            font-size: 24px;
+        }
+
+        .nodo-contact-header p {
+            font-size: 14px;
+            padding: 0 5px;
+        }
+
+        .nodo-info-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .nodo-info-item {
+            margin-bottom: 20px;
+        }
+
+        .nodo-info-icon {
+            min-width: 40px;
+            height: 40px;
+            margin-right: 12px;
+        }
+
+        .nodo-info-icon i {
+            font-size: 16px;
+        }
+
+        .nodo-info-content h4 {
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .nodo-info-content p,
+        .nodo-info-content a {
+            font-size: 13px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .nodo-social-links {
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .nodo-social-links a {
+            width: 36px;
+            height: 36px;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .nodo-contact-section {
+            padding: 20px 8px;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .nodo-contact-form,
+        .nodo-contact-info {
+            padding: 12px 10px;
+            min-width: auto;
+            box-sizing: border-box;
+        }
+
+        .nodo-contact-header h2 {
+            font-size: 22px;
+        }
+
+        .nodo-contact-header p {
+            font-size: 13px;
+            padding: 0 2px;
+        }
+
+        .nodo-info-content p,
+        .nodo-info-content a {
+            font-size: 12px;
         }
     }
 
