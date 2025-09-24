@@ -1,778 +1,2240 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>BetterWLPRS — Download, Share, ENJOY!. Full-res and complete videos with subscription.</title>
-        <!-- Favicon -->
-        <link rel="icon" type="image/png" href="./logobetterwlprs.png">
-        <!-- Tipografía -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <meta name="description" content="Explore exclusive sessions in open previews. Subscribe to download originals in full quality and unlock complete videos.">
-    </head>
-    <body>
-        <script>
-        // Aplica el tema guardado o el del sistema al cargar
-        (function() {
-            const userTheme = localStorage.getItem('theme');
-            const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-            const theme = userTheme || systemTheme;
-            document.documentElement.setAttribute('data-theme', theme);
-        })();
-        </script>
-        <!-- NUEVA NAVEGACIÓN -->
-        <nav class="navbar" id="navbar">
-            <div class="nav-container">
-                <div class="nav-brand">
-                    BetterWLPRS
-                </div>
-                <!-- Desktop Menu -->
-                <div class="nav-menu" id="navMenu">
-                    <a
-                        href="#hero"
-                        class="nav-item active"
-                        data-section="gallery"
-                        data-i18n="nav.gallery"
-                    >Home</a>
-                    <a
-                        href="#gallery"
-                        class="nav-item"
-                        data-section="videos"
-                        data-i18n="nav.videos"
-                    >Videos</a>
-                    <a
-                        href="#how"
-                        class="nav-item"
-                        data-section="how"
-                        data-i18n="nav.how"
-                    >How it works</a>
-                    <a
-                        href="#benefits"
-                        class="nav-item"
-                        data-section="benefits"
-                        data-i18n="nav.benefits"
-                    >Benefits</a>
-                    <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">
-                        🎨
-                        Gallery
-                    </a>
-                </div>
-                <!-- Desktop Actions -->
-                <div class="nav-actions">
-                    <a class="icon-btn" id="langToggle" aria-label="Toggle language" href="./index-es.html">ES</a>
-                    <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BetterWLPRS — Download, Share, ENJOY!. Full-res and complete videos with subscription.</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./logobetterwlprs.png">
+    <!-- Tipografía -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description"
+        content="Explore exclusive sessions in open previews. Subscribe to download originals in full quality and unlock complete videos.">
+    <style>
+        /* Theme: Light overrides using CSS variables */
+        :root[data-theme="light"] {
+            --bg: #f8f9fb;
+            --bg-secondary: #ffffff;
+            --text: #0f1222;
+            --text-secondary: #2d3350;
+            --muted: #5b6280;
+            --card: #ffffff;
+            --card-hover: #f4f6fb;
+            --border: rgba(15, 18, 34, 0.08);
+            --border-hover: rgba(15, 18, 34, 0.16);
+            /* Keep brand accent but brighten slightly in light */
+            --accent: #8f6dfb;
+            --accent-dark: #6a46f2;
+        }
+
+        /* Minimal icon buttons for toggles */
+        .icon-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text);
+            margin-right: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .icon-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .icon-btn span {
+            font-size: 14px;
+        }
+
+        :root {
+            --bg: #0a0a0f;
+            --bg-secondary: #0f0f17;
+            --card: #16161e;
+            --card-hover: #1a1a24;
+            --text: #f0f0f7;
+            --text-secondary: #c4c4d1;
+            --muted: #9494a6;
+            --accent: #a787ff;
+            --accent-light: #b999ff;
+            --accent-dark: #8f6fff;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #ef4444;
+            --radius: 20px;
+            --radius-sm: 12px;
+            --radius-lg: 28px;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.15);
+            --shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.4);
+            --blur: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(1400px 800px at 60% -20%, rgba(167, 135, 255, 0.12), transparent),
+                radial-gradient(1200px 600px at 20% 100%, rgba(167, 135, 255, 0.08), transparent),
+                var(--bg);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        /* ===== NUEVA NAVEGACIÓN MEJORADA ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(var(--blur));
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 900;
+            font-size: 22px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .nav-brand::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-item {
+            position: relative;
+            padding: 10px 18px;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .nav-item:hover {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-1px);
+        }
+
+        .nav-item.active {
+            color: var(--accent);
+            background: rgba(167, 135, 255, 0.1);
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            border-radius: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item.active::after,
+        .nav-item:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn.secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .nav-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border-color: var(--border-hover);
+            transform: translateY(-1px);
+        }
+
+        .nav-btn.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 4px 20px rgba(167, 135, 255, 0.3);
+        }
+
+        .nav-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(167, 135, 255, 0.4);
+        }
+
+        .nav-btn.primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-btn.primary:hover::before {
+            opacity: 1;
+        }
+
+        .nav-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Mobile Menu */
+        .nav-mobile {
+            display: none;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .hamburger {
+            width: 28px;
+            height: 28px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translateY(6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translateY(-6px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .mobile-menu-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .mobile-menu .nav-item {
+            font-size: 24px;
+            font-weight: 600;
+            padding: 12px 24px;
+            text-align: center;
+            width: 100%;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu .nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-nav-actions {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .mobile-toggles {
+            display: flex;
+            gap: 12px;
+        }
+
+        .mobile-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .mobile-buttons .nav-btn {
+            width: 100%;
+            padding: 16px 32px;
+            font-size: 16px;
+            justify-content: center;
+            display: flex;
+        }
+
+        .mobile-social {
+            display: flex;
+            gap: 16px;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .social-link img {
+            width: 18px;
+            height: 18px;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        /* Desktop social links hover effects */
+        .nav-actions a[title="Gumroad"]:hover {
+            background: rgba(167, 135, 255, 0.1) !important;
+            border-color: rgba(167, 135, 255, 0.3) !important;
+            transform: translateY(-1px);
+        }
+
+        .nav-actions a[title="Patreon"]:hover {
+            background: rgba(249, 104, 84, 0.1) !important;
+            border-color: rgba(249, 104, 84, 0.3) !important;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 24px 60px;
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 8px 16px;
+            border: 1px solid rgba(167, 135, 255, 0.3);
+            border-radius: 50px;
+            background: rgba(167, 135, 255, 0.05);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--text) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .gradient-text {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: clamp(1.125rem, 3vw, 1.375rem);
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            opacity: 1 !important;
+            visibility: visible !important;
+            z-index: 10;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 32px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+            opacity: 1 !important;
+            visibility: visible !important;
+            z-index: 10;
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            box-shadow: 0 6px 30px rgba(167, 135, 255, 0.3);
+        }
+
+        .btn.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(167, 135, 255, 0.4);
+        }
+
+
+
+        .btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(0.75rem, 2vw, 1rem);
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .chip {
+            font-size: clamp(0.8125rem, 1.5vw, 0.875rem);
+            padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 2.5vw, 1.25rem);
+            border-radius: 50px;
+            background: rgba(167, 135, 255, 0.1);
+            border: 1px solid rgba(167, 135, 255, 0.2);
+            color: var(--accent);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+        }
+
+        .chip:hover {
+            background: rgba(167, 135, 255, 0.15);
+            color: var(--accent);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(167, 135, 255, 0.2);
+        }
+
+        /* Sections */
+        .section {
+            padding: clamp(5rem, 10vw, 8rem) clamp(1.5rem, 4vw, 3rem);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: clamp(4rem, 8vw, 6rem);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .section-header p {
+            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: underlineReveal 0.8s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes underlineReveal {
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: clamp(1.5rem, 3vw, 2.5rem);
+            padding: clamp(2rem, 4vw, 3rem) 0;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            backdrop-filter: blur(10px);
+            transform: translateY(0);
+            opacity: 1;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            background: var(--card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-image {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        /* Posicionamiento específico para el GIF de Batman */
+        .card-image img[src="./img/arkham.gif"] {
+            object-position: 25% center;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            padding: 6px 12px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-premium {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-content {
+            padding: clamp(1.5rem, 3vw, 2rem);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+            color: var(--text);
+        }
+
+        .card-subtitle {
+            font-size: clamp(0.875rem, 2vw, 1rem);
+            color: var(--muted);
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .card-action {
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .card-action.primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+        }
+
+        .card-action.secondary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ========== ACTION MODAL ========== */
+        .action-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2001;
+            padding: 24px;
+        }
+
+        .action-modal-content {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .action-modal.active .action-modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .action-modal-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .action-modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .action-modal-subtitle {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .action-modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .action-btn {
+            padding: 16px 24px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background: var(--card-hover);
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: left;
+        }
+
+        .action-btn:hover {
+            background: var(--border-hover);
+            transform: translateY(-1px);
+        }
+
+        .action-btn-primary {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .action-btn-primary:hover {
+            background: var(--accent-dark);
+            transform: translateY(-1px);
+        }
+
+        .action-btn-icon {
+            opacity: 0.7;
+            font-size: 16px;
+        }
+
+        .action-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: none;
+            color: var(--muted);
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.2s ease;
+        }
+
+        .action-modal-close:hover {
+            background: var(--border);
+            color: var(--text);
+        }
+
+        /* ========== IMAGE VIEWER ========== */
+        .image-viewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1999;
+            padding: 24px;
+        }
+
+        .image-viewer-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-viewer img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: var(--radius-sm);
+            position: relative;
+        }
+
+        .image-watermark {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .image-viewer-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .image-viewer-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(167, 135, 255, 0.4);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+        }
+
+        .sticky-cta.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .sticky-cta:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(167, 135, 255, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 60px 24px 24px;
+            color: var(--text-secondary);
+        }
+
+        .footer a:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .footer h4 {
+            position: relative;
+        }
+
+        .footer h4::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-actions {
+                display: none;
+            }
+
+            .nav-mobile {
+                display: flex;
+            }
+
+            .nav-brand {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding: 100px 20px 40px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .chips {
+                gap: 8px;
+            }
+
+            .chip {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+
+            /* Forzar visibilidad en móvil */
+            .card,
+            .section,
+            .grid {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+                visibility: visible !important;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Utilities */
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Smooth scroll offset for fixed navbar */
+        html {
+            scroll-padding-top: 100px;
+        }
+
+        /* Loading states */
+        .card.loading {
+            background: linear-gradient(90deg, var(--card) 0%, var(--card-hover) 50%, var(--card) 100%);
+            background-size: 200% 100%;
+            animation: loading 1.5s ease-in-out infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        /* Setup Gallery Styles */
+        .setup-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--border-hover);
+        }
+
+        .setup-card img {
+            transition: transform 0.6s ease;
+        }
+
+        .setup-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Spline Viewer Fixes */
+        .steamdeck-hero-absolute {
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        spline-viewer {
+            width: 100%;
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .steamdeck-viewer-main {
+                width: 100vw;
+                max-width: 100vw;
+                min-width: 100vw;
+                margin: 0;
+                position: relative;
+                left: 0;
+                right: 0;
+                transform: none;
+                display: block;
+                border-radius: 0.75rem;
+        }
+
+        @media (max-width: 768px) {
+            .setup-gallery {
+                grid-template-columns: 1fr !important;
+                gap: 16px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NUEVA NAVEGACIÓN -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                BetterWLPRS
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="nav-menu" id="navMenu">
+                <a href="#gallery" class="nav-item active" data-section="gallery" data-i18n="nav.gallery">Gallery</a>
+                <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">🎨 Full
+                    gallery</a>
+                <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Videos</a>
+                <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">How it works</a>
+                <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Benefits</a>
+            </div>
+
+            <!-- Desktop Actions -->
+            <div class="nav-actions">
+                <button class="icon-btn" id="langToggle" aria-label="Toggle language">EN</button>
+                <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+                    <span>☀️</span>
+                </button>
+                <a href="https://www.patreon.com/betterwlprs" target="_blank" title="Patreon"
+                    style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
+                    <i class="fa-brands fa-patreon" style="color: #fc6354; font-size:18px;"></i>
+                    <span style="font-weight:600;color:#f96854;font-size:14px;">Patreon</span>
+                </a>
+                <a href="https://ko-fi.com/betterwlprs" target="_blank" title="Ko-fi"
+                    style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
+                    <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png"
+                        alt="Ko-fi" style="width:18px;height:18px;">
+                    <span style="font-weight:600;color:#29abe0;font-size:14px;">Ko-fi</span>
+                </a>
+            </div>
+
+            <!-- Mobile Actions -->
+            <div class="nav-mobile">
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <a href="#gallery" class="nav-item" data-section="gallery" data-i18n="nav.gallery">Gallery</a>
+            <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">🎨 Full gallery</a>
+            <a href="#videos" class="nav-item" data-section="videos" data-i18n="nav.videos">Videos</a>
+            <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">How it works</a>
+            <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Benefits</a>
+
+            <div class="mobile-nav-actions">
+                <div class="mobile-toggles">
+                    <button class="icon-btn" id="langToggleMobile" aria-label="Toggle language">EN</button>
+                    <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme">
                         <span>☀️</span>
                     </button>
-                    <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year?_gl=1*g2sl03*_ga*ODIwNzAxNzQyLjE3NTg2NDQxMDc.*_ga_6LJN6D94N6*czE3NTg2NTA5MDEkbzMkZzEkdDE3NTg2NTEwNjIkajYkbDAkaDA." target="_blank" title="Gumroad"
-        style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad" style="width:18px;height:18px;filter:invert(64%) sepia(88%) saturate(1000%) hue-rotate(315deg) brightness(105%) contrast(101%);">
-        <span style="font-weight:600;color:#ff90b3;font-size:14px;">Gumroad</span>
-    </a>
-    <a href="https://ko-fi.com/betterwlprs" target="_blank" title="Ko-fi"
-        style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
-        <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png" alt="Ko-fi" style="width:18px;height:18px;">
-        <span style="font-weight:600;color:#29abe0;font-size:14px;">Ko-fi</span>
-    </a>
                 </div>
-                <!-- Mobile Actions -->
-                <div class="nav-mobile">
-                    <button class="hamburger" id="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
+              
+                <div class="mobile-social">
+                    <a href="https://www.patreon.com/betterwlprs" target="_blank" class="social-link">
+                        <i class="fa-brands fa-patreon" style="color: #fc6354; font-size:18px;"></i>
+                        <span>Patreon</span>
+                    </a>
+                    <a href="https://ko-fi.com/betterwlprs" target="_blank" class="social-link">
+                        <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png"
+                            alt="Ko-fi" style="width:18px;height:18px;">
+                        <span>Ko-fi</span>
+                    </a>
                 </div>
             </div>
-        </nav>
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-            <div class="mobile-menu-content">
-                <a
-                    href="#hero"
-                    class="nav-item"
-                    data-section="gallery"
-                    data-i18n="nav.gallery"
-                >Home</a>
-                <a
-                    href="#gallery"
-                    class="nav-item"
-                    data-section="videos"
-                    data-i18n="nav.videos"
-                >Videos</a>
-                <a
-                    href="#how"
-                    class="nav-item"
-                    data-section="how"
-                    data-i18n="nav.how"
-                >How it works</a>
-                <a
-                    href="#benefits"
-                    class="nav-item"
-                    data-section="benefits"
-                    data-i18n="nav.benefits"
-                >Benefits</a>
-                <a
-                    href="#gallery"
-                    class="nav-item"
-                    data-section="gallery"
-                    data-i18n="nav.gallery"
-                >🎁 Free Starter Pack</a>
-                <div class="mobile-nav-actions">
-                    <div class="mobile-toggles">
-                        <button class="icon-btn" id="langToggleMobile" aria-label="Toggle language">ES</button>
-                        <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme">
-                            <span>☀️</span>
-                        </button>
+        </div>
+    </div>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="eyebrow" data-i18n="hero.eyebrow">BetterWLPRS</div>
+            <h1 style="padding: 25px;">
+                <span class="title-line" data-i18n="hero.title1">BetterWLPRS</span>
+                <br>
+                <span class="gradient-text" data-i18n="hero.title2">for all your devices</span>
+            </h1>
+            <p data-i18n="hero.desc" style="padding: 15px;">Download original and optimized art. Enjoy BetterWLPRS quality.</p>
+            <div class="hero-actions">
+                <a href="galeria.html" class="btn primary">
+                    <span data-i18n="hero.explore">Explore full gallery</span>
+                    <span>→</span>
+                </a>
+                <a href="#how" class="btn secondary" data-i18n="hero.how">How does it work?</a>
+            </div>
+            <!-- spline-viewer ABSOLUTE, fuera del flujo -->
+            <div class="steamdeck-hero-absolute"
+                style="width:100%; display:flex; justify-content:center; margin:0 auto; pointer-events:none; z-index:0; margin-top:0; overflow:hidden;">
+                <div
+                    style="width:100%; max-width:1200px; position:relative; z-index:0; display:flex; justify-content:center;">
+                    <script type="module"
+                        src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
+                    <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
+                        style="height:400px; width:100vw; min-width:100vw; max-width:100vw; border-radius:0.75rem; background:transparent; pointer-events:none; display:block;"
+                        class="steamdeck-viewer-main"></spline-viewer>
+                </div>
+            </div>
+            <div class="chips">
+                <span class="chip">Original</span>
+                <span class="chip">Only here</span>
+                <span class="chip">Multi-device</span>
+                <span class="chip">Instant download</span>
+            </div>
+        </div>
+    </section>
+    <!-- GALERÍA -->
+    <section class="section" id="gallery">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="gallery.titlePrefix">Original</span>
+                <span class="highlight" data-i18n="gallery.highlight">Wallpapers</span>
+            </h2>
+            <p>
+                <span data-i18n="gallery.desc.part1">Each image is captured individually with love and care. We have
+                    a</span>
+                <a href="https://betterwlprsx.gumroad.com/l/starter-pack-free" target="_blank"
+                    style="color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 2px;"
+                    href="https://ko-fi.com/betterwlprs">
+                    <span data-i18n="gallery.desc.link">Free BetterWLPRS Pack</span>
+                </a>
+                <span data-i18n="gallery.desc.part2">so you can enjoy them in every device, always 😊</span>
+            </p>
+        </div>
+        <div class="grid" id="galleryGrid">
+            <div class="card">
+                <div class="card-image">
+                    <img src="./img/marcussittedahh.gif" alt="Golden Hour">
+                    <div class="card-badge">Watch Dogs 2</div>
+                  
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Marcus in San Francisco</div>
+                        <div class="card-subtitle" data-i18n="card.membersOnly">
+                            Members only access — subscription for full-res
+                        </div>
                     </div>
-                    <div class="mobile-social">
-                        <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year?_gl=1*g2sl03*_ga*ODIwNzAxNzQyLjE3NTg2NDQxMDc.*_ga_6LJN6D94N6*czE3NTg2NTA5MDEkbzMkZzEkdDE3NTg2NTEwNjIkajYkbDAkaDA." target="_blank" class="social-link" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad" style="width:18px;height:18px;filter:invert(64%) sepia(88%) saturate(1000%) hue-rotate(315deg) brightness(105%) contrast(101%);">
-        <span style="font-weight:600;color:#ff90b3;font-size:14px;">Gumroad</span>
-    </a>
-    <a href="https://ko-fi.com/betterwlprs" target="_blank" class="social-link">
-        <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png" alt="Ko-fi" style="width:18px;height:18px;">
-        <span>Ko-fi</span>
-    </a>
+                    <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="./img/arkham.gif" alt="City Nights">
+                    <div class="card-badge">Arkham Knight</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Batman Arkham</div>
+                        <div class="card-subtitle" data-i18n="card.download1600">Download 1600px</div>
+                    </div>
+                    <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="img/videowlprs/discoelysiumstart.gif" alt="Studio Vibes">
+                
+                    <!-- <div class="card-premium">🔒</div> -->
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Disco Elysium</div>
+                        <div class="card-subtitle" data-i18n="card.membersOnly">
+                            Members only access — subscription for full-res
+                        </div>
+                    </div>
+                    <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="img/samsittedahh.gif" alt="Soft Neon">
+                    <div class="card-badge">Death Stranding</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Sam chilling on a mountain</div>
+                        <div class="card-subtitle" data-i18n="card.membersOnly">
+                            Members only access — subscription for full-res
+                        </div>
+                    </div>
+                    <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="./img/sanfracampview.jpg" alt="Analog Mood">
+                    <div class="card-badge">Watch Dogs 2 Landscape</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">San Francisco</div>
+                        <div class="card-subtitle">San Francisco view — download 1600px</div>
+                    </div>
+                    <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
+
+                </div>
+            </div>
+        </div>
+        <!-- Botón a galería completa -->
+        <div style="text-align: center; margin-top: 2rem; margin-bottom: 5rem;">
+            <a href="galeria.html" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px;">
+                <span>🖼️ View full gallery</span>
+                <span>→</span>
+            </a>
+        </div>
+    </section>
+    <!-- GALERÍA -->
+    <section class="section" id="galeria">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="videos.title">Videos</span>
+                <span class="highlight" data-i18n="videos.highlight">Exclusive</span>
+                BetterWLPRS
+            </h2>
+            <p data-i18n="videos.desc">
+                Discover unique clips from our best shots. Members enjoy full content in maximum quality.
+            </p>
+        </div>
+        <div class="grid" id="videoGrid">
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/spidersky.gif" alt="Behind The Lens">
+                    
+                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);"
+                        data-i18n="video.overlay">Ver vídeo</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Spider Sky</div>
+                        <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al suscribirte</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/thelongdarkwolfs.png" alt="Street Cut">
+                  
+                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);"
+                        data-i18n="video.overlay">Ver vídeo</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">The Long Dark</div>
+                        <div class="card-subtitle" data-i18n="videos.card.premium">Vídeo — completo al suscribirte</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/samsatori.gif" alt="Death Stranding Main Character sitting on a mountain">
+                    <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);"
+                        data-i18n="video.overlay">Ver vídeo</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Samurai Satori</div>
+                        <div class="card-subtitle" data-i18n="videos.card.open">Vídeo — abierto</div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- HERO -->
-        <section class="hero" id="hero">
-            <div class="hero-content">
-                <div class="eyebrow" data-i18n="hero.eyebrow">BetterWLPRS</div>
-                <h1>
-                    <span class="title-line" data-i18n="hero.title1">BetterWLPRS</span>
-                    <br>
-                    <span class="gradient-text" data-i18n="hero.title2">for all your devices</span>
-                </h1>
-                <p data-i18n="hero.desc">Download original and optimized art. Enjoy BetterWLPRS quality.</p>
-                <div class="hero-actions">
-                    <a href="galeria.html" class="btn primary">
-                        <span data-i18n="hero.explore">
-                            🎁 Free Starter Pack
-                            <span>→</span>
-                        </span>
-                    </a>
-                    <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year?_gl=1*g2sl03*_ga*ODIwNzAxNzQyLjE3NTg2NDQxMDc.*_ga_6LJN6D94N6*czE3NTg2NTA5MDEkbzMkZzEkdDE3NTg2NTEwNjIkajYkbDAkaDA." class="btn secondary" target="_blank" data-i18n="hero.how">
-                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad" style="width:18px;height:18px;filter:invert(64%) sepia(88%) saturate(1000%) hue-rotate(315deg) brightness(105%) contrast(101%);">
-                        Want 1000+ more?
-                    </a>
+        <!-- Botón a galería completa -->
+        <div style="text-align: center; margin-top: 2rem; margin-bottom: 5rem;">
+            <a href="galeria.html" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px;">
+                <span>🖼️ Ver galería completa</span>
+                <span>→</span>
+            </a>
+        </div>
+    </section>
+    <!-- CÓMO FUNCIONA -->
+    <section class="section" id="how">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="how.titlePrefix">Cómo</span>
+                <span class="highlight" data-i18n="how.highlight">Funciona</span>
+            </h2>
+            <p data-i18n="how.desc">Hazlo en 3 pasos simples:</p>
+        </div>
+        <div class="grid" id="howGrid">
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/sanfracampview.jpg" alt="Sube y etiqueta">
                 </div>
-                <!-- spline-viewer ABSOLUTE, fuera del flujo -->
-                <div class="steamdeck-hero-absolute" style="width:100%; display:flex; justify-content:center; margin:0 auto; pointer-events:none; z-index:0; margin-top:0; overflow:hidden;">
-                    <div style="width:100%; max-width:1200px; position:relative; z-index:0; display:flex; justify-content:center;">
-                        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
-                        <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode" style="height:400px; border-radius:0.75rem; background:transparent; pointer-events:none;" class="steamdeck-viewer-main"></spline-viewer>
-                    </div>
-                </div>
-                <div class="chips">
-                    <span class="chip" data-i18n="chips.original">Original</span>
-                    <span class="chip" data-i18n="chips.onlyHere">Only here</span>
-                    <span class="chip" data-i18n="chips.multi">Multi-device</span>
-                    <span class="chip" data-i18n="chips.instant">Instant download</span>
-                </div>
-            </div>
-        </section>
-        <!-- GALERÍA -->
-        <section class="section" id="gallery">
-            <div class="section-header">
-                <h2>
-                    <span data-i18n="gallery.titlePrefix">Original</span>
-                    <span class="highlight" data-i18n="gallery.highlight">Wallpapers</span>
-                </h2>
-                <p>
-                    <span data-i18n="gallery.desc.part1">
-                        Each image is captured individually with love and care. We have
-                a
-                    </span>
-                    <a
-                        href="https://betterwlprsx.gumroad.com/l/starter-pack-free"
-                        target="_blank"
-                        style="color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 2px;"
-                        href="https://ko-fi.com/betterwlprs"
-                    >
-                        <span data-i18n="gallery.desc.link">Free BetterWLPRS Pack</span>
-                    </a>
-                    <span data-i18n="gallery.desc.part2">so you can enjoy them in every device, always 😊</span>
-                </p>
-            </div>
-            <div class="grid" id="galleryGrid">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="./img/marcussittedahh.gif" alt="Golden Hour">
-                        <div class="card-badge">FREE</div>
-                    </div>
-                    <div class="card-content">
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            1
+                        </div>
                         <div>
-                            <div class="card-title">🎁 Free Starter Pack</div>
-                            <div class="card-subtitle" data-i18n="card.membersOnly">
-                                +8GB premium wallpapers • No signup required
-                            </div>
+                            <div class="card-title">Descarga el Starter Pack</div>
                         </div>
-                        <button class="card-action secondary" data-i18n="card.viewImage">Let's a go!</button>
                     </div>
+                    <div class="card-subtitle">Empieza gratis y prueba nuestros mejores wallpapers premium.</div>
                 </div>
-                <div class="card">
-                    <div class="card-image">
-                        <img src="./img/arkham.gif" alt="City Nights">
-                        <div class="card-badge">Arkham Knight</div>
-                    </div>
-                    <div class="card-content">
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/arkham.gif" alt="Previews que enamoran">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            2
+                        </div>
                         <div>
-                            <div class="card-title">Photo Mode</div>
-                            <div class="card-subtitle" data-i18n="card.download1600">
-                                We use the highest settings avaliable
-                        on each game and scene to ensure the highest quality for our WLPRS!
-                            </div>
+                            <div class="card-title">Elige tu Plan</div>
                         </div>
-                        <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
                     </div>
+                    <div class="card-subtitle">Selecciona el plan que mejor se adapte a tus necesidades.</div>
                 </div>
-                <div class="card">
-                    <div class="card-image">
-                        <img src="img/samsittedahh.gif" alt="Soft Neon">
-                        <div class="card-badge">Death Stranding</div>
-                    </div>
-                    <div class="card-content">
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/spidersky.gif" alt="Acceso completo">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            3
+                        </div>
                         <div>
-                            <div class="card-title">Sam chilling on a windy peak</div>
-                            <div class="card-subtitle" data-i18n="card.membersOnly">
-                                Live WLPRS like the good ol' PS3 live
-                        themes!
-                        But in every scenario of our favourite game franchises! 🧐
-                            </div>
+                            <div class="card-title">Disfruta de BetterWLPRS</div>
                         </div>
-                        <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
+                    </div>
+                    <div class="card-subtitle">
+                        Accede a wallpapers ilimitados y personaliza todos tus dispositivos.
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-image">
-                        <img src="./img/lessgo.gif" alt="Video WLPR of Metro Exodus">
-                        <div class="card-badge">Metro Exodus</div>
-                    </div>
-                    <div class="card-content">
+            </div>
+        </div>
+    </section>
+    <!-- BENEFICIOS -->
+    <section class="section" id="benefits">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="benefits.titlePrefix">Beneficios para</span>
+                <span class="highlight" data-i18n="benefits.highlight">Miembros</span>
+            </h2>
+            <p data-i18n="benefits.desc">
+                Únete a más de 2,500+ usuarios que ya disfrutan de wallpapers premium para todos sus dispositivos.
+            </p>
+        </div>
+        <!-- Estadísticas destacadas -->
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <div
+                style="text-align: center; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">500+
+                </div>
+                <div style="font-size: 0.9rem; color: var(--text-secondary);">Wallpapers únicos</div>
+            </div>
+            <div
+                style="text-align: center; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">50+</div>
+                <div style="font-size: 0.9rem; color: var(--text-secondary);">Vídeowallpapers 4K</div>
+            </div>
+            <div
+                style="text-align: center; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">10+</div>
+                <div style="font-size: 0.9rem; color: var(--text-secondary);">Dispositivos soportados</div>
+            </div>
+        </div>
+        <div class="grid" id="benefitsGrid">
+            <!-- Beneficio Premium con imagen de fondo -->
+            <div class="card"
+                style="position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(167, 135, 255, 0.1), rgba(167, 135, 255, 0.05)); border: 2px solid rgba(167, 135, 255, 0.3);">
+                <div
+                    style="position: absolute; top: 0; right: 0; background: var(--accent); color: white; padding: 6px 12px; border-radius: 0 var(--radius) 0 12px; font-size: 11px; font-weight: 700; text-transform: uppercase;">
+                    Premium</div>
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px; position: relative; z-index: 2;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: linear-gradient(135deg, var(--accent), var(--accent-dark)); display: flex; align-items: center; justify-content: center; font-size: 24px; color: white; box-shadow: 0 8px 20px rgba(167, 135, 255, 0.3);">
+                            🖼️
+                        </div>
                         <div>
-                            <div class="card-title">Live WLPRS With in-game Sound</div>
-                            <div class="card-subtitle">
-                                The captured WLPRS are taken with the highest quality settings and
-                        audio turned on so you can ensure the full experience
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Sin limitaciones
                             </div>
+                            <div class="card-title">Acceso completo sin marca de agua</div>
                         </div>
-                        <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
+                    </div>
+                    <div class="card-subtitle">Descarga archivos originales en máxima calidad, tal como fueron creados.
+                        Sin restricciones, sin compromisos.</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;">
+                        <span
+                            style="background: rgba(167, 135, 255, 0.2); color: var(--accent); padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;">4K/8K</span>
+                        <span
+                            style="background: rgba(167, 135, 255, 0.2); color: var(--accent); padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;">PNG/JPG</span>
+                        <span
+                            style="background: rgba(167, 135, 255, 0.2); color: var(--accent); padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;">Sin
+                            límites</span>
                     </div>
                 </div>
             </div>
-            <!-- Botón a galería completa -->
-            <div style="text-align: center; margin-top: 2rem; margin-bottom: 5rem;">
-                <a href="galeria.html" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px;">
-                    <span>🖼️ View gallery</span>
-                    <span>→</span>
-                </a>
-            </div>
-        </section>
-        <!-- GALERÍA -->
-        <section class="section" id="galeria">
-            <div class="section-header">
-                <h2>
-                    <span data-i18n="videos.title">Better</span>
-                    <span class="highlight" data-i18n="videos.highlight">WLPRS</span>
-                    Are made with Love and Passion
-                </h2>
-                <p data-i18n="videos.desc">
-                    From live WLPRS with in-game sound to scenes captured in cinematics at the highest quality available.
-                </p>
-            </div>
-            <div class="grid" id="videoGrid">
-                <div class="card">
-                    <div class="card-image" style="aspect-ratio: 16/9;">
-                        <img
-                            src="./img/mgsdelta.png"
-                            frameborder="0"
-                            allow="autoplay; fullscreen; picture-in-picture"
-                            allowfullscreen
-                            style="width:100%;height:100%;aspect-ratio:16/9;display:block;border-radius:20px;"
-                        ></img>
-                    </div>
-                    <div class="card-content">
+            <!-- Vídeowallpapers -->
+            <div class="card">
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px; position: relative;">
+                            🎞️
+                            <div
+                                style="position: absolute; top: -6px; right: -6px; width: 20px; height: 20px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; color: white;">
+                                ✨</div>
+                        </div>
                         <div>
-                            <div class="card-title">Cinematic WLPRS</div>
-                            <div class="card-subtitle" data-i18n="videos.card.premium">
-                                In-game photos taken in cinematic
-                        scenes
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Vídeowallpapers
                             </div>
+                            <div class="card-title">Clips completos 1080p/4K</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Videos optimizados para loop perfecto. Desde ambientes relajantes hasta
+                        escenas épicas de videojuegos.</div>
+                    <div
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; margin-top: 12px;">
+                        <div
+                            style="background: var(--card-hover); padding: 8px; border-radius: 8px; text-align: center; font-size: 11px;">
+                            <div style="font-weight: 600; color: var(--text);">Duration</div>
+                            <div style="color: var(--muted);">10-30s loops</div>
+                        </div>
+                        <div
+                            style="background: var(--card-hover); padding: 8px; border-radius: 8px; text-align: center; font-size: 11px;">
+                            <div style="font-weight: 600; color: var(--text);">Quality</div>
+                            <div style="color: var(--muted);">4K ready</div>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-image" style="aspect-ratio: 16/9;">
-                        <img src="./img/ACOdissey-Vertical-Village-WLPR-08.png" alt="Behind The Lens">
-                    </div>
-                    <div class="card-content">
+            </div>
+            <!-- Multi-dispositivo con iconos -->
+            <div class="card">
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            📱
+                        </div>
                         <div>
-                            <div class="card-title">Vertical / Landscape WLPRS</div>
-                            <div class="card-subtitle" data-i18n="videos.card.premium">
-                                Every device and screen is supported
-                        "(kindle, steam deck, etc)"
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Multi-dispositivo
                             </div>
+                            <div class="card-title">Para todos tus dispositivos</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Resoluciones optimizadas para cada pantalla. Desde tu móvil hasta tu
+                        gaming setup.</div>
+                    <!-- Grid de dispositivos -->
+                    <div
+                        style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%; margin-top: 12px;">
+                        <div
+                            style="text-align: center; padding: 8px; background: var(--card-hover); border-radius: 8px;">
+                            <div style="font-size: 16px; margin-bottom: 4px;">📱</div>
+                            <div style="font-size: 10px; color: var(--muted);">Mobile</div>
+                        </div>
+                        <div
+                            style="text-align: center; padding: 8px; background: var(--card-hover); border-radius: 8px;">
+                            <div style="font-size: 16px; margin-bottom: 4px;">💻</div>
+                            <div style="font-size: 10px; color: var(--muted);">Desktop</div>
+                        </div>
+                        <div
+                            style="text-align: center; padding: 8px; background: var(--card-hover); border-radius: 8px;">
+                            <div style="font-size: 16px; margin-bottom: 4px;">📖</div>
+                            <div style="font-size: 10px; color: var(--muted);">Kindle</div>
+                        </div>
+                        <div
+                            style="text-align: center; padding: 8px; background: var(--card-hover); border-radius: 8px;">
+                            <div style="font-size: 16px; margin-bottom: 4px;">🎮</div>
+                            <div style="font-size: 10px; color: var(--muted);">Steam Deck</div>
+                        </div>
+                        <div
+                            style="text-align: center; padding: 8px; background: var(--card-hover); border-radius: 8px;">
+                            <div style="font-size: 16px; margin-bottom: 4px;">⚡</div>
+                            <div style="font-size: 10px; color: var(--muted);">ROG Ally</div>
+                        </div>
+                        <div
+                            style="text-align: center; padding: 8px; background: var(--card-hover); border-radius: 8px;">
+                            <div style="font-size: 16px; margin-bottom: 4px;">📺</div>
+                            <div style="font-size: 10px; color: var(--muted);">TV/Monitor</div>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-image" style="aspect-ratio: 16/9;">
-                        <img src="./img/DishonoredDLC-Landscape-InsideBasement-WLPR-02.png" alt="Death Stranding Main Character sitting on a mountain">
-                    </div>
-                    <div class="card-content">
+            </div>
+            <!-- Actualizaciones con timeline -->
+            <div class="card">
+                <div class="card-content"
+                    style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            🔄
+                        </div>
                         <div>
-                            <div class="card-title">Love and Care</div>
-                            <div class="card-subtitle" data-i18n="videos.card.open">
-                                Use them on your favorite platforms like
-                        Wallpaper Engine or Lively "(Free option wich I use and recommend)"
+                            <div
+                                style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                Siempre fresco
                             </div>
+                            <div class="card-title">Contenido nuevo cada semana</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">Nuevos wallpapers y vídeowallpapers añadidos regularmente. Nunca te
+                        quedarás sin opciones.</div>
+                    <!-- Timeline de actualizaciones -->
+                    <div style="margin-top: 16px; width: 100%;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                            <div style="width: 8px; height: 8px; background: var(--accent); border-radius: 50%;"></div>
+                            <div style="font-size: 12px; color: var(--text);">Esta semana: 5 nuevos wallpapers</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                            <div style="width: 8px; height: 8px; background: var(--muted); border-radius: 50%;"></div>
+                            <div style="font-size: 12px; color: var(--muted);">Próximamente: Pack gaming épico</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 8px; height: 8px; background: var(--muted); border-radius: 50%;"></div>
+                            <div style="font-size: 12px; color: var(--muted);">Febrero: Colección naturaleza 4K</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Botón a galería completa -->
-            <div style="text-align: center; margin-top: 2rem; margin-bottom: 5rem;">
-                <a href="galeria.html" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px;">
-                    <span>🖼️ View Gallery</span>
-                    <span>→</span>
-                </a>
+        </div>
+        <!-- CTA de prueba gratuita -->
+        <div
+            style="text-align: center; margin-top: 4rem; padding: 3rem 2rem; background: linear-gradient(135deg, rgba(167, 135, 255, 0.1), rgba(167, 135, 255, 0.05)); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius); position: relative; overflow: hidden;">
+            <div
+                style="position: absolute; top: -50%; right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(167, 135, 255, 0.1) 0%, transparent 70%); pointer-events: none;">
             </div>
-        </section>
-        <!-- CÓMO FUNCIONA -->
-        <section class="section" id="how">
-            <div class="section-header">
-                <h2>
-                    <span data-i18n="how.titlePrefix">How does</span>
-                    <span class="highlight" data-i18n="how.highlight">it work</span>
-                </h2>
-                <p data-i18n="how.desc">Do it in three simple steps:</p>
-            </div>
-            <div class="grid" id="howGrid">
-                <div class="card">
-                    <div class="card-image" style="aspect-ratio: 16/9;">
-                        <img src="./img/sanfracampview.jpg" alt="Download Starter Pack">
-                    </div>
-                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
-                                1
-                            </div>
-                            <div>
-                                <div class="card-title">Download Starter Pack</div>
-                            </div>
-                        </div>
-                        <div class="card-subtitle">
-                            Start and enjoy access to premium WLPRS for everyone. Includes
-                    VideoWLPRS, Landscape and Vertical formats for all your devices.
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image" style="aspect-ratio: 16/9;">
-                        <img src="./img/spidersky.gif" alt="Unlimited wallpapers">
-                    </div>
-                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
-                                2
-                            </div>
-                            <div>
-                                <div class="card-title">Enjoy BetterWLPRS</div>
-                            </div>
-                        </div>
-                        <div class="card-subtitle">
-                            <a href="https://nodoamd.github.io/">I made</a>
-                            BetterWLPRS to share my
-                    passion with photography and videogames, and to provide a platform for others to enjoy
-                    high-quality wallpapers that I could not find.
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image" style="aspect-ratio: 16/9;">
-                        <img src="./img/arkham.gif" alt="Upgrade BetterWLPRS">
-                    </div>
-                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
-                                3
-                            </div>
-                            <div>
-                                <div class="card-title">Upgrade BetterWLPRS</div>
-                            </div>
-                        </div>
-                        <div class="card-subtitle">
-                            Gain access to all WLPRS with the yearly plan (€3.99/year), or choose
-                    lifetime access if you love BetterWLPRS and want to support the project (limited to the first
-                    100 supporters).
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- BENEFICIOS -->
-        <section class="section" id="benefits">
-            <div class="section-header">
-                <h2>
-                    <span data-i18n="benefits.titlePrefix">Benefits for</span>
-                    <span class="highlight" data-i18n="benefits.highlight">Members</span>
-                </h2>
-                <p data-i18n="benefits.desc">
-                    Discover all the benefits of BetterWLPRS: premium wallpapers, exclusive video backgrounds, and full
-            access for every device you own.
-                </p>
-            </div>
-            <!-- Estadísticas destacadas -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; max-width: 800px; margin-left: auto; margin-right: auto;">
-                <div style="text-align: center; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius);">
-                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">
-                        1000+
-                    </div>
-                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Unique Wallpapers</div>
-                </div>
-                <div style="text-align: center; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius);">
-                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">
-                        200+
-                    </div>
-                    <div style="font-size: 0.9rem; color: var(--text-secondary);">VideoWLPRS 4K</div>
-                </div>
-                <div style="text-align: center; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius);">
-                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">10+</div>
-                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Supported Devices</div>
-                </div>
-            </div>
-            <!-- CTA de prueba gratuita -->
-            <div style="text-align: center; margin-top: 4rem; padding: 3rem 2rem; background: linear-gradient(135deg, rgba(167, 135, 255, 0.1), rgba(167, 135, 255, 0.05)); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius); position: relative; overflow: hidden;">
-                <div style="position: absolute; top: -50%; right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(167, 135, 255, 0.1) 0%, transparent 70%); pointer-events: none;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">
-                        Ready to transform your setup?
-                    </h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                        Start enjoying premium wallpapers today. Cancel anytime.
-                    </p>
-                    <button class="btn primary" style="font-size: 16px; padding: 16px 32px; margin-bottom: 1rem;" onclick="openModal()">
-                        <span>🚀 Start your free trial</span>
-                        <span>→</span>
-                    </button>
-                    <div style="font-size: 12px; color: var(--muted);">
-                        ✓ No commitment • ✓ Cancel anytime • ✓ Instant access
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="section" id="final-cta">
-            <div class="section-header">
-                <h2>
-                    <span data-i18n="final.titlePrefix">Elevate your experience to the</span>
-                    <span class="highlight" data-i18n="final.highlight">next level</span>
-                </h2>
-                <p data-i18n="final.desc">Unlock original wallpapers and videos. Cancel anytime.</p>
-            </div>
-            <!-- Galería de setups de usuarios -->
-            <div style="margin-top: 4rem;">
-                <h3 style="text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; color: var(--text);">
-                    Real community setups with BetterWLPRS
+            <div style="position: relative; z-index: 2;">
+                <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">
+                    ¿Listo para transformar tu setup?
                 </h3>
-                <!-- Botón a galería completa destacado -->
-                <div style="text-align: center; margin-bottom: 3rem;">
-                    <a href="galeria.html" class="btn primary" style="font-size: 16px; padding: 16px 32px; display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); box-shadow: 0 8px 24px rgba(167, 135, 255, 0.3);">
-                        <span>🎨 Explore Gallery</span>
-                        <span>✨</span>
+                <p
+                    style="color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Únete a miles de usuarios que ya disfrutan de wallpapers premium. Cancela cuando quieras.
+                </p>
+                <button class="btn primary" style="font-size: 16px; padding: 16px 32px; margin-bottom: 1rem;"
+                    onclick="openModal()">
+                    <span>🚀 Empieza tu prueba</span>
+                    <span>→</span>
+                </button>
+                <div style="font-size: 12px; color: var(--muted);">
+                    ✓ Sin permanencia • ✓ Cancela cuando quieras • ✓ Acceso inmediato
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CTA FINAL -->
+    <section class="section" id="final-cta">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="final.titlePrefix">Lleva tu setup al</span>
+                <span class="highlight" data-i18n="final.highlight">siguiente nivel</span>
+            </h2>
+            <p data-i18n="final.desc">Desbloquea originales y vídeowlprs. Cancela cuando quieras.</p>
+            <div style="margin-top: 3rem;">
+                <button class="btn primary" id="finalCtaBtn" style="font-size: 18px; padding: 20px 40px;">
+                    <span data-i18n="final.btn">Empieza ahora</span>
+                    <span>✨</span>
+                </button>
+            </div>
+        </div>
+        <!-- Galería de setups de usuarios -->
+        <div style="margin-top: 4rem;">
+            <h3
+                style="text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; color: var(--text);">
+                Setups reales de nuestra comunidad
+            </h3>
+            <!-- Botón a galería completa destacado -->
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <a href="galeria.html" class="btn primary"
+                    style="font-size: 16px; padding: 16px 32px; display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); box-shadow: 0 8px 24px rgba(167, 135, 255, 0.3);">
+                    <span>🎨 Explorar galería completa</span>
+                    <span>✨</span>
+                </a>
+                <p style="color: var(--text-secondary); font-size: 14px; margin-top: 1rem;">
+                    Más de 500+ wallpapers únicos esperándote
+                </p>
+            </div>
+            <div class="setup-gallery"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto;">
+                <!-- Setup 1 -->
+                <div class="setup-card"
+                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                    <video src="./img/setupkindle.mp4" autoplay muted loop playsinline
+                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"></video>
+                    <div
+                        style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+
+                        <p style="font-size: 0.9rem; font-weight: 600;">Setup Kindle BetterWLPRS</p>
+                        <p style="font-size: 0.8rem; opacity: 0.8;">@betterwlprs</p>
+                    </div>
+                </div>
+                <!-- Setup 2 -->
+                <div class="setup-card"
+                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                    <video src="./img/setupmarkus.mp4" autoplay muted loop playsinline
+                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"></video>
+                    <div
+                        style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                        <p style="font-size: 0.9rem; font-weight: 600;">Setup Marcus BetterWLPRS</p>
+                        <p style="font-size: 0.8rem; opacity: 0.8;">@betterwlprs</p>
+                    </div>
+                </div>
+                <!-- Setup 3 -->
+                <div class="setup-card"
+                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                    <video src="./img/setupmarkus2.mp4" autoplay muted loop playsinline
+                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"></video>
+                    <div
+                        style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                        <p style="font-size: 0.9rem; font-weight: 600;">Setup RGB Vibes</p>
+                        <p style="font-size: 0.8rem; opacity: 0.8;">@rgb_setups</p>
+                    </div>
+                </div>
+                <!-- Setup 4 -->
+                <div class="setup-card"
+                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                    <img src="./img/setupmarkus.webp" alt="Setup Streamer con BetterWLPRS"
+                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                    <div
+                        style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                        <p style="font-size: 0.9rem; font-weight: 600;">Setup Streamer Pro</p>
+                        <p style="font-size: 0.8rem; opacity: 0.8;">@streamer_pro</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- STICKY CTA -->
+    <button class="sticky-cta" id="stickyCta">
+        <span data-i18n="sticky.text">Suscríbete para full-res ✨</span>
+    </button>
+    <!-- ACTION MODAL -->
+    <div class="action-modal" id="actionModal">
+        <div class="action-modal-content">
+            <button class="action-modal-close" id="actionModalClose">×</button>
+            <div class="action-modal-header">
+                <div class="action-modal-title" data-i18n="actionModal.title">¿Qué te gustaría hacer?</div>
+                <div class="action-modal-subtitle" data-i18n="actionModal.subtitle">Puedes ver la imagen con marca de
+                    agua o explorar la galería completa</div>
+            </div>
+            <div class="action-modal-actions">
+                <button class="action-btn" id="expandImageBtn">
+                    <div>
+                        <div style="font-weight: 600;" data-i18n="actionModal.expandImage">🔍 Expandir imagen</div>
+                        <div style="font-size: 12px; color: var(--muted);" data-i18n="actionModal.expandDesc">Ver en
+                            tamaño completo con marca de agua</div>
+                    </div>
+                    <span class="action-btn-icon">→</span>
+                </button>
+                <button class="action-btn" id="viewGalleryBtn">
+                    <div>
+                        <div style="font-weight: 600;" data-i18n="actionModal.viewGallery">🖼️ Ver galería completa
+                        </div>
+                        <div style="font-size: 12px; color: var(--muted);" data-i18n="actionModal.galleryDesc">Explorar
+                            todas las imágenes disponibles</div>
+                    </div>
+                    <span class="action-btn-icon">→</span>
+                </button>
+                <button class="action-btn action-btn-primary" id="upgradeBtn">
+                    <div>
+                        <div style="font-weight: 600;" data-i18n="actionModal.upgrade">✨ Obtener sin marca de agua</div>
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.8);" data-i18n="actionModal.upgradeDesc">
+                            Suscríbete para acceso completo</div>
+                    </div>
+                    <span class="action-btn-icon">→</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- IMAGE VIEWER -->
+    <div class="image-viewer" id="imageViewer">
+        <div class="image-viewer-content">
+            <button class="image-viewer-close" id="imageViewerClose">×</button>
+            <img id="viewerImage" src="" alt="">
+            <div class="image-watermark">betterwlprs</div>
+        </div>
+    </div>
+    <!-- MODAL -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">×</button>
+            <div style="text-align: center;">
+                <h3 style="font-size: 28px; margin-bottom: 1rem;" data-i18n="modal.title">
+                    Tu acceso completo empieza
+                    aquí
+                </h3>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;" data-i18n="modal.desc">
+                    Descargas sin marca
+                    de agua, vídeos completos en 1080p/4K y sesiones completas.
+                </p>
+                <div style="display: grid; gap: 16px; margin-bottom: 2rem;">
+                    <div
+                        style="padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.02); display: flex; justify-content: space-between; align-items: center;">
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;">Yearly</div>
+                            <div style="color: var(--muted); font-size: 14px;">Billed yearly</div>
+                        </div>
+                        <button class="btn primary" id="yearlyPlan" style="min-width: 100px;">€3,99</button>
+                    </div>
+                    <div
+                        style="padding: 20px; border: 2px solid var(--accent); border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.05); display: flex; justify-content: space-between; align-items: center; position: relative;">
+                        <div
+                            style="position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">
+                            Limited</div>
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;">Lifetime</div>
+                            <div style="color: var(--muted); font-size: 14px;">One-time payment<br>Limited to 100 users
+                            </div>
+                        </div>
+                        <button class="btn primary" id="lifetimePlan" style="min-width: 100px;">€45</button>
+                    </div>
+                </div>
+                <p style="font-size: 12px; color: var(--muted);">
+                    <span data-i18n="modal.legalPrefix">Al suscribirte aceptas los</span>
+                    <a href="#" style="color: var(--accent);" data-i18n="modal.terms">Términos</a>
+                    <span>&nbsp;</span>
+                    <span data-i18n="modal.and">y la</span>
+                    <a href="#" style="color: var(--accent);" data-i18n="modal.privacy">Privacidad</a>
+                    .
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div
+            style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem;">
+            <!-- Logo y descripción -->
+            <div>
+                <div class="nav-brand" style="justify-content: flex-start; margin-bottom: 1rem;">BetterWLPRS</div>
+                <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Wallpapers únicos y videowallpapers premium para todos tus dispositivos. Calidad profesional,
+                    diseños exclusivos.
+                </p>
+                <!-- Redes sociales -->
+                <div style="display: flex; gap: 12px;">
+                    <a href="https://www.tiktok.com/@betterwlprs" target="_blank"
+                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok"
+                            style="width:22px;height:22px;">
                     </a>
-                    <p style="color: var(--text-secondary); font-size: 14px; margin-top: 1rem;">
-                        Over 500 unique wallpapers waiting for you
-                    </p>
-                </div>
-                <div class="setup-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto;">
-                    <!-- Setup 1 -->
-                    <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                        <video
-                            src="./img/setupkindle.mp4"
-                            autoplay
-                            muted
-                            loop
-                            playsinline
-                            style="width: 100%; height: 100%; object-fit: cover;"
-                            loading="lazy"
-                        ></video>
-                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
-                            <p style="font-size: 0.9rem; font-weight: 600;">Setup Kindle BetterWLPRS</p>
-                            <p style="font-size: 0.8rem; opacity: 0.8;">@betterwlprs</p>
-                        </div>
-                    </div>
-                    <!-- Setup 2 -->
-                    <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                        <video
-                            src="./img/setupmarkus.mp4"
-                            autoplay
-                            muted
-                            loop
-                            playsinline
-                            style="width: 100%; height: 100%; object-fit: cover;"
-                            loading="lazy"
-                        ></video>
-                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
-                            <p style="font-size: 0.9rem; font-weight: 600;">Setup Marcus BetterWLPRS</p>
-                            <p style="font-size: 0.8rem; opacity: 0.8;">@betterwlprs</p>
-                        </div>
-                    </div>
-                    <!-- Setup 3 -->
-                    <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                        <video
-                            src="./img/setupmarkus2.mp4"
-                            autoplay
-                            muted
-                            loop
-                            playsinline
-                            style="width: 100%; height: 100%; object-fit: cover;"
-                            loading="lazy"
-                        ></video>
-                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
-                            <p style="font-size: 0.9rem; font-weight: 600;">Setup RGB Vibes</p>
-                            <p style="font-size: 0.8rem; opacity: 0.8;">@rgb_setups</p>
-                        </div>
-                    </div>
-                    <!-- Setup 4 -->
-                    <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                        <img
-                            src="./img/setupmarkus.webp"
-                            alt="Setup Streamer con BetterWLPRS"
-                            style="width: 100%; height: 100%; object-fit: cover;"
-                            loading="lazy"
-                        >
-                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
-                            <p style="font-size: 0.9rem; font-weight: 600;">Setup Streamer Pro</p>
-                            <p style="font-size: 0.8rem; opacity: 0.8;">@streamer_pro</p>
-                        </div>
-                    </div>
+                    <a href="https://instagram.com/betterwlprs" target="_blank"
+                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg"
+                            alt="Instagram" style="width:22px;height:22px;">
+                    </a>
+                    <a href="https://twitter.com/betterwlprs" target="_blank"
+                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter"
+                            style="width:22px;height:22px;">
+                    </a>
+                    <a href="https://gumroad.com/betterwlprsx" target="_blank"
+                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                        <!-- Gumroad eliminado -->
+                        <a href="https://www.patreon.com/betterwlprs" target="_blank"
+                            style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                            <i class="fa-brands fa-patreon" style="color: #fc6354; font-size:22px;"></i>
+                        </a>
+                        <a href="https://ko-fi.com/betterwlprs" target="_blank"
+                            style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                            <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png"
+                                alt="Ko-fi" style="width:22px;height:22px;">
+                        </a>
                 </div>
             </div>
-        </section>
-        <!-- STICKY CTA -->
-        <button class="sticky-cta" id="stickyCta">
-            <span data-i18n="sticky.text">Suscríbete para full-res ✨</span>
-            <span data-i18n="sticky.text">Subscribe for full-res ✨</span>
-        </button>
-        <!-- ACTION MODAL -->
-        <div class="action-modal" id="actionModal">
-            <div class="action-modal-content">
-                <button class="action-modal-close" id="actionModalClose">×</button>
-                <div class="action-modal-header">
-                    <div class="action-modal-title">What would you like to do?</div>
-                    <div class="action-modal-subtitle">
-                        You can view the image with watermark or explore the full gallery
-                    </div>
+            <!-- Enlaces rápidos -->
+            <div>
+                <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">
+                    Enlaces rápidos
+                </h4>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <a href="#gallery"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Galería</a>
+                    <a href="#videos"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Vídeos</a>
+                    <a href="#how"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                        Cómo
+                        funciona
+                    </a>
+                    <a href="#benefits"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Beneficios</a>
                 </div>
-                <div class="action-modal-actions">
-                    <button class="action-btn" id="expandImageBtn">
-                        <div>
-                            <div style="font-weight: 600;">🔍 Expand image</div>
-                            <div style="font-size: 12px; color: var(--muted);">View full size with watermark</div>
-                        </div>
-                        <span class="action-btn-icon">→</span>
-                    </button>
-                    <button class="action-btn" id="viewGalleryBtn">
-                        <div>
-                            <div style="font-weight: 600;">🖼️ View gallery</div>
-                            <div style="font-size: 12px; color: var(--muted);">Explore all available images</div>
-                        </div>
-                        <span class="action-btn-icon">→</span>
-                    </button>
-                    <button class="action-btn action-btn-primary" id="upgradeBtn">
-                        <div>
-                            <div style="font-weight: 600;">✨ Get without watermark</div>
-                            <div style="font-size: 12px; color: rgba(255,255,255,0.8);">Subscribe for full access</div>
-                        </div>
-                        <span class="action-btn-icon">→</span>
-                    </button>
+            </div>
+            <!-- Contacto y soporte -->
+            <div>
+                <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">Contacto</h4>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <a href="mailto:hola@betterwlprs.com"
+                        style="color: var(--accent); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                        📧
+                        hola@betterwlprs.com
+                    </a>
+                    <a href="mailto:dfernandezy@hotmail.com"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                        🛠️
+                        Soporte técnico
+                    </a>
+                    <a href="#"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                        📋
+                        FAQ
+                    </a>
                 </div>
             </div>
         </div>
-        <!-- IMAGE VIEWER -->
-        <div class="image-viewer" id="imageViewer">
-            <div class="image-viewer-content">
-                <button class="image-viewer-close" id="imageViewerClose">×</button>
-                <img id="viewerImage" src="" alt="">
-                <div class="image-watermark">betterwlprs</div>
+        <!-- Copyright y legal -->
+        <div
+            style="border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <p style="color: var(--muted); font-size: 12px; margin: 0;">
+                © 2025 BetterWLPRS. Todos los derechos reservados.
+            </p>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                <a href="#" style="color: var(--muted); font-size: 12px; text-decoration: none;">Términos de uso</a>
+                <a href="#" style="color: var(--muted); font-size: 12px; text-decoration: none;">Privacidad</a>
+                <a href="#" style="color: var(--muted); font-size: 12px; text-decoration: none;">Cookies</a>
             </div>
         </div>
+    </footer>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        // ========== DATOS DE MUESTRA ==========
+        const photos = [
+            {
+                title: 'Golden Hour',
+                tag: 'Retrato',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=800&fit=crop&crop=face'
+            },
+            {
+                title: 'City Nights',
+                tag: 'Urbano',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=600&h=800&fit=crop'
+            },
+            {
+                title: 'Studio Vibes',
+                tag: 'Estudio',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=800&fit=crop'
+            },
+            {
+                title: 'Ocean Walk',
+                tag: 'Documental',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop&crop=face'
+            },
+            {
+                title: 'Soft Neon',
+                tag: 'Retrato',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&h=800&fit=crop&crop=face'
+            },
+            {
+                title: 'Analog Mood',
+                tag: 'Editorial',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&h=800&fit=crop&crop=face'
+            }
+        ];
 
-        <!-- LANGUAGE SUGGESTION MODAL -->
-        <div class="language-modal" id="languageModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 10000; opacity: 0; transition: opacity 0.3s ease;">
-            <div class="language-modal-content" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); background: var(--card); border-radius: var(--radius); padding: 2rem; max-width: 400px; width: 90%; border: 1px solid var(--border); transition: transform 0.3s ease;">
-                <div style="text-align: center; margin-bottom: 1.5rem;">
-                    <div style="font-size: 2rem; margin-bottom: 1rem;">🌍</div>
-                    <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem;">
-                        Detectamos que tu idioma es español
-                    </h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.4;">
-                        ¿Te gustaría visitar la versión en español de BetterWLPRS para una mejor experiencia?
-                    </p>
-                </div>
-                
-                <div style="display: flex; gap: 12px; flex-direction: column;">
-                    <button id="switchToSpanishBtn" style="width: 100%; padding: 12px 16px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; border: none; border-radius: var(--radius-sm); font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-size: 14px;">
-                        ✨ Ir al sitio en español
-                    </button>
-                    <button id="stayInEnglishBtn" style="width: 100%; padding: 12px 16px; background: transparent; color: var(--text-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); font-weight: 500; cursor: pointer; transition: all 0.3s ease; font-size: 14px;">
-                        Continuar en inglés
-                    </button>
-                </div>
-                
-                <div style="text-align: center; margin-top: 1rem;">
-                    <label style="display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--text-secondary); font-size: 12px; cursor: pointer;">
-                        <input type="checkbox" id="dontShowAgainCheck" style="margin: 0;">
-                        No volver a mostrar este mensaje
-                    </label>
-                </div>
-            </div>
-        </div>
-        <!-- MODAL -->
-        <div class="modal" id="modal">
-            <div class="modal-content">
-                <button class="modal-close" id="modalClose">×</button>
-                <div style="text-align: center;">
-                    <h3 style="font-size: 28px; margin-bottom: 1rem;">
-                        Your full access starts here
-                    </h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 2rem;">
-                        Download watermark-free, full 1080p/4K videos and complete sessions.
-                    </p>
-                    <div style="display: grid; gap: 16px; margin-bottom: 2rem;">
-                        <div style="padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.02); display: flex; justify-content: space-between; align-items: center;">
-                            <div style="text-align: left;">
-                                <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;">Yearly</div>
-                                <div style="color: var(--muted); font-size: 14px;">Billed yearly</div>
-                            </div>
-                            <button class="btn primary" id="yearlyPlan" style="min-width: 100px;">€3.99</button>
-                        </div>
-                        <div style="padding: 20px; border: 2px solid var(--accent); border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.05); display: flex; justify-content: space-between; align-items: center; position: relative;">
-                            <div style="position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">
-                                Limited
-                            </div>
-                            <div style="text-align: left;">
-                                <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;">Lifetime</div>
-                                <div style="color: var(--muted); font-size: 14px;">
-                                    One-time payment
-                                    <br>
-                                    Limited to 100 users
-                                </div>
-                            </div>
-                            <button class="btn primary" id="lifetimePlan" style="min-width: 100px;">€45</button>
-                        </div>
-                    </div>
-                    <p style="font-size: 12px; color: var(--muted);">
-                        <span>By subscribing you accept the</span>
-                        <a href="#" style="color: var(--accent);">Terms</a>
-                        <span>&nbsp;and&nbsp;</span>
-                        <a href="#" style="color: var(--accent);">Privacy Policy</a>
-                        .
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- FOOTER -->
-        <footer class="footer">
-            <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem;">
-                <!-- Logo y descripción -->
-                <div>
-                    <div class="nav-brand" style="justify-content: flex-start; margin-bottom: 1rem;">BetterWLPRS</div>
-                    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 1.5rem;">
-                        Unique wallpapers and premium video wallpapers for all your devices. Professional quality, exclusive
-                designs.
-                    </p>
-                    <!-- Redes sociales -->
-                    <div style="display: flex; gap: 12px;">
-                        <a href="https://www.tiktok.com/@betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok" style="width:22px;height:22px;">
-                        </a>
-                        <a href="https://instagram.com/betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style="width:22px;height:22px;">
-                        </a>
-                        <a href="https://twitter.com/betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter" style="width:22px;height:22px;">
-                        </a>
-                        <a href="https://gumroad.com/betterwlprsx" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad" style="width:22px;height:22px;">
-                        </a>
-                        <a href="https://ko-fi.com/betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                            <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png" alt="Ko-fi" style="width:22px;height:22px;">
-                        </a>
-                    </div>
-                    </div>
-                    <!-- Enlaces rápidos -->
-                    <div>
-                        <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">
-                            Quick Links
-                    </h4>
-                        <div style="display: flex; flex-direction: column; gap: 8px;">
-                            <a href="#gallery" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Gallery</a>
-                            <a href="#videos" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Videos</a>
-                            <a href="#how" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
-                                How it works
-                            </a>
-                            <a href="#benefits" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Benefits</a>
-                        </div>
-                    </div>
-                    <!-- Contacto y soporte -->
-                    <div>
-                        <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">Contacto</h4>
-                        <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">Contact</h4>
-                        <div style="display: flex; flex-direction: column; gap: 8px;">
-                            <a href="mailto:dfernandezy@hotmail.com" style="color: var(--accent); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
-                                📧
-                                dfernandezy@hotmail.com
-                            </a>
-                            <a href="mailto:dfernandezy@hotmail.com" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
-                                🛠️
-                    Technical Support
-                            </a>
-                            <a href="#how" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
-                                📋
-                    FAQ
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Copyright y legal -->
-                <div style="border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                    <p style="color: var(--muted); font-size: 12px; margin: 0;">
-                        © 2025 BetterWLPRS. All rights reserved.
-                    </p>
-                    <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-                        <a href="#" style="color: var(--muted); font-size: 12px; text-decoration: none;">Terms of Use</a>
-                        <a href="#" style="color: var(--muted); font-size: 12px; text-decoration: none;">Privacy</a>
-                        <a href="#" style="color: var(--muted); font-size: 12px; text-decoration: none;">Cookies</a>
-                    </div>
-                </div>
-            </footer>
-            <!-- GSAP -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-            <script>
+        const videos = [
+            {
+                title: 'Behind The Lens',
+                tag: 'Trailer 18s',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&h=400&fit=crop'
+            },
+            {
+                title: 'Street Cut',
+                tag: 'Trailer 12s',
+                premium: true,
+                thumb: 'https://images.unsplash.com/photo-1551913902-c92207136625?w=600&h=400&fit=crop'
+            },
+            {
+                title: 'Studio BTS',
+                tag: 'Trailer 15s',
+                premium: false,
+                thumb: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&h=400&fit=crop'
+            }
+        ];
 
-        // ========== NAVIGATION ========== 
+        const howSteps = [
+            {
+                title: 'Sube y etiqueta',
+                description: 'Transformamos a WebP/AVIF con srcset y marca de agua sutil.',
+                image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
+                step: '1'
+            },
+            {
+                title: 'Previews que enamoran',
+                description: 'Carga progresiva, blur inicial y micro-interacciones en scroll.',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
+                step: '2'
+            },
+            {
+                title: 'Acceso completo',
+                description: 'Originales y vídeowlprs completos tras la suscripción.',
+                image: 'https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=600&h=400&fit=crop',
+                step: '3'
+            },
+            {
+                title: 'Descargas seguras',
+                description: 'Enlaces firmados y límites anti-abuso para proteger tu trabajo.',
+                image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop',
+                step: '4'
+            }
+        ];
+
+        const benefits = [
+            {
+                title: 'Sin marca de agua',
+                description: 'Descarga los archivos tal y como fueron creados.',
+                icon: '🖼️',
+                category: 'Original'
+            },
+            {
+                title: 'Clips completos 1080p/4K',
+                description: 'Preparados para loop perfecto. Desde ambientes relajantes hasta escenas épicas de videojuegos.',
+                icon: '🎞️',
+                category: 'Vídeowlprs'
+            },
+            {
+                title: 'Formatos optimizados',
+                description: 'Móvil, desktop, tablet y Steam Deck.',
+                icon: '📱',
+                category: 'Por dispositivo'
+            },
+            {
+                title: 'Nuevos packs',
+                description: 'Contenido añadido de forma regular.',
+                icon: '🔄',
+                category: 'Actualizaciones'
+            }
+        ];
+
+        // ========== GSAP SETUP ==========
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ========== NAVIGATION ==========
         const navbar = document.getElementById('navbar');
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
-        const navItems = document.querySelectorAll('.nav-menu .nav-item[data-section]');
-        const mobileNavItems = document.querySelectorAll('.mobile-menu .nav-item[data-section]');
+        const navItems = document.querySelectorAll('.nav-item[data-section]');
 
-        // Navbar scroll effect (puedes reemplazar GSAP por CSS sticky si lo deseas)
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 80) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+        // Navbar scroll effect
+        ScrollTrigger.create({
+            start: "top -80",
+            end: 99999,
+            toggleClass: { className: "scrolled", targets: navbar }
         });
 
         // Mobile menu toggle
@@ -806,54 +2268,26 @@
             openModal();
         });
 
-        // ========== ACTIVE NAVIGATION TRACKING (Desktop y Mobile) ========== 
-        // Sincroniza el resaltado de la sección activa en ambos menús
-        const sectionIds = ['hero', 'gallery', 'videos', 'how', 'benefits'];
-        const sectionElements = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+        // Active navigation tracking
+        const sections = ['gallery', 'videos', 'how', 'benefits'];
 
-        function clearActiveNavs() {
-            navItems.forEach(item => item.classList.remove('active'));
-            mobileNavItems.forEach(item => item.classList.remove('active'));
-        }
-
-        function setActiveNav(sectionId) {
-            clearActiveNavs();
-            navItems.forEach(item => {
-                if (item.getAttribute('href') === `#${sectionId}`) {
-                    item.classList.add('active');
-                }
+        sections.forEach(sectionId => {
+            ScrollTrigger.create({
+                trigger: `#${sectionId}`,
+                start: "top 50%",
+                end: "bottom 50%",
+                onEnter: () => updateActiveNav(sectionId),
+                onEnterBack: () => updateActiveNav(sectionId)
             });
-            mobileNavItems.forEach(item => {
-                if (item.getAttribute('href') === `#${sectionId}`) {
-                    item.classList.add('active');
-                }
-            });
-        }
-
-        // IntersectionObserver para detectar la sección visible
-        const observer = new window.IntersectionObserver(
-            (entries) => {
-                let visibleSection = null;
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        visibleSection = entry.target.id;
-                    }
-                });
-                if (visibleSection) {
-                    setActiveNav(visibleSection);
-                }
-            },
-            {
-                root: null,
-                rootMargin: '0px 0px -60% 0px', // Ajusta para que cambie antes
-                threshold: 0.2
-            }
-        );
-        sectionElements.forEach(section => {
-            if (section) observer.observe(section);
         });
 
-    // ========== MODAL ========== 
+        function updateActiveNav(activeSection) {
+            navItems.forEach(item => {
+                item.classList.toggle('active', item.dataset.section === activeSection);
+            });
+        }
+
+        // ========== MODAL ==========
         const modal = document.getElementById('modal');
         const modalClose = document.getElementById('modalClose');
         const openModalBtns = ['subscribeBtn', 'subscribeMobileBtn', 'loginBtn', 'stickyCta', 'finalCtaBtn'];
@@ -901,19 +2335,323 @@
 
         // Eliminar lógica de Gumroad
 
+        // ========== STICKY CTA ==========
+        const stickyCta = document.getElementById('stickyCta');
 
+        ScrollTrigger.create({
+            start: "top -200",
+            end: 99999,
+            onUpdate: self => {
+                if (self.direction === 1 && self.progress > 0.1) {
+                    stickyCta.classList.add('visible');
+                } else if (self.direction === -1 && self.progress < 0.05) {
+                    stickyCta.classList.remove('visible');
+                }
+            }
+        });
 
+        // ========== RENDER CONTENT ==========
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            photos.forEach((photo, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-image">
+                        <img src="${photo.thumb}" alt="${photo.title}" loading="lazy">
+                        <div class="card-badge">${photo.tag}</div>
+                        ${photo.premium ? '<div class="card-premium">🔒</div>' : ''}
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">${photo.title}</div>
+                            <div class="card-subtitle">${photo.premium ? 'Preview — suscripción para full-res' : 'Descarga 1600px'}</div>
+                        </div>
+                        <button class="card-action ${photo.premium ? 'secondary' : 'primary'}" onclick="${photo.premium ? 'openModal()' : 'alert(\'Descargando...\')'}">
+                            ${photo.premium ? 'Ver preview' : 'Descargar'}
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderVideos() {
+            const grid = document.getElementById('videoGrid');
+            videos.forEach((video, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="${video.thumb}" alt="${video.title}" loading="lazy">
+                        <div class="card-badge">${video.tag}</div>
+                        ${video.premium ? '<div class="card-premium">🔒</div>' : ''}
+                        <div style="position: absolute; bottom: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 8px 12px; font-size: 12px; backdrop-filter: blur(10px);">
+                            Ver vídeo
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <div class="card-title">${video.title}</div>
+                            <div class="card-subtitle">${video.premium ? 'Trailer — completo al suscribirte' : 'Clip abierto'}</div>
+                        </div>
+                    </div>
+                `;
+                card.addEventListener('click', () => {
+                    if (video.premium) {
+                        openModal();
+                    } else {
+                        alert('Reproduciendo vídeo...');
+                    }
+                });
+                grid.appendChild(card);
+            });
+        }
+
+        function renderHowItWorks() {
+            const grid = document.getElementById('howGrid');
+            howSteps.forEach((step, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-image" style="aspect-ratio: 16/9;">
+                        <img src="${step.image}" alt="${step.title}" loading="lazy">
+                    </div>
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                                ${step.step}
+                            </div>
+                            <div>
+                                <div class="card-title">${step.title}</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">${step.description}</div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderBenefits() {
+            const grid = document.getElementById('benefitsGrid');
+            benefits.forEach((benefit, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 16px; padding: 32px 24px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.1); border: 1px solid rgba(167, 135, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                                ${benefit.icon}
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: var(--accent); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 4px;">
+                                    ${benefit.category}
+                                </div>
+                                <div class="card-title">${benefit.title}</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle">${benefit.description}</div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // ========== ANIMATIONS ==========
+        function initAnimations() {
+            // Detectar si es móvil
             const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-           
-      
+            // Hero animations optimizadas
+            const heroTl = gsap.timeline();
+            heroTl
+                .from('.eyebrow', {
+                    y: 20,
+                    opacity: 0,
+                    duration: isMobile ? 0.4 : 0.8,
+                    ease: "power3.out"
+                })
+                .from('.hero h1', {
+                    y: 30,
+                    opacity: 0,
+                    duration: isMobile ? 0.5 : 1,
+                    ease: "power3.out"
+                }, "-=0.3")
+                .from('.hero p', {
+                    y: 20,
+                    opacity: 0,
+                    duration: isMobile ? 0.4 : 0.8,
+                    ease: "power3.out"
+                }, "-=0.2")
+                .from('.hero-actions .btn', {
+                    y: 20,
+                    opacity: 0,
+                    duration: isMobile ? 0.3 : 0.6,
+                    stagger: isMobile ? 0.05 : 0.1,
+                    ease: "back.out(1.2)"
+                }, "-=0.2")
+                .from('.chip', {
+                    scale: 0,
+                    opacity: 0,
+                    duration: isMobile ? 0.2 : 0.4,
+                    stagger: isMobile ? 0.03 : 0.05,
+                    ease: "back.out(1.4)"
+                }, "-=0.1");
 
+            // Card animations optimizadas
+            gsap.utils.toArray('.card').forEach((card, index) => {
+                if (isMobile) {
+                    // En móvil, mostrar inmediatamente
+                    gsap.set(card, { y: 0, opacity: 1 });
+                } else {
+                    // Verificar si el elemento ya está visible (navegación directa)
+                    const rect = card.getBoundingClientRect();
+                    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
 
+                    if (isVisible) {
+                        // Si ya está visible, mostrarlo inmediatamente
+                        gsap.set(card, { y: 0, opacity: 1 });
+                    } else {
+                        // Si no está visible, preparar para animación
+                        gsap.set(card, { y: 60, opacity: 0 });
+                        ScrollTrigger.create({
+                            trigger: card,
+                            start: "top 85%",
+                            onEnter: () => {
+                                gsap.to(card, {
+                                    y: 0,
+                                    opacity: 1,
+                                    duration: 0.8,
+                                    ease: "power3.out",
+                                    delay: index * 0.1
+                                });
+                            }
+                        });
+                    }
+                }
+            });
 
-     
+            // Section headers
+            gsap.utils.toArray('.section-header').forEach(header => {
+                // Verificar si el header ya está visible
+                const rect = header.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
 
+                if (isVisible || isMobile) {
+                    // Si ya está visible o es móvil, mostrar inmediatamente
+                    gsap.set(header.children, { y: 0, opacity: 1 });
+                } else {
+                    // Si no está visible, preparar para animación
+                    gsap.from(header.children, {
+                        y: 30,
+                        opacity: 0,
+                        duration: isMobile ? 0.4 : 0.8,
+                        stagger: isMobile ? 0.1 : 0.2,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: header,
+                            start: "top 98%" // Aparecen antes al hacer scroll
+                        }
+                    });
+                }
+            });
 
-        
+            // Parallax effects solo en desktop
+            if (!isMobile) {
+                gsap.utils.toArray('.card-image img').forEach(img => {
+                    gsap.to(img, {
+                        yPercent: -20,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: img,
+                            start: "top bottom",
+                            end: "bottom top",
+                            scrub: 1
+                        }
+                    });
+                });
+            }
+
+            // Highlight underline animations
+            gsap.utils.toArray('.highlight').forEach(highlight => {
+                ScrollTrigger.create({
+                    trigger: highlight,
+                    start: "top 80%",
+                    onEnter: () => {
+                        gsap.to(highlight.querySelector('::after') || highlight, {
+                            scaleX: 1,
+                            duration: isMobile ? 0.4 : 0.8,
+                            ease: "power2.out"
+                        });
+                    }
+                });
+            });
+        }
+
+        // ========== SMOOTH SCROLLING ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+
+                    // Hacer visible el contenido inmediatamente después del scroll
+                    setTimeout(() => {
+                        makeVisible(target);
+                    }, 100);
+                }
+            });
+        });
+
+        // Función para hacer visible el contenido de una sección
+        function makeVisible(section) {
+            const cards = section.querySelectorAll('.card');
+            const headers = section.querySelectorAll('.section-header');
+
+            cards.forEach(card => {
+                gsap.set(card, { y: 0, opacity: 1 });
+            });
+
+            headers.forEach(header => {
+                gsap.set(header.children, { y: 0, opacity: 1 });
+            });
+
+            // Refrescar ScrollTriggers
+            ScrollTrigger.refresh();
+        }
+
+        // Explore button scroll to gallery
+        document.getElementById('exploreBtnHero')?.addEventListener('click', () => {
+            const gallerySection = document.getElementById('gallery');
+            if (gallerySection) {
+                gallerySection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+                // Hacer visible el contenido inmediatamente después del scroll
+                setTimeout(() => {
+                    makeVisible(gallerySection);
+                }, 100);
+            }
+        });
+
+        // All subscription buttons now go to Patreon
+        const subscriptionButtons = ['subscribeBtn', 'subscribeMobileBtn', 'stickyCta', 'finalCtaBtn'];
+        subscriptionButtons.forEach(btnId => {
+            const btn = document.getElementById(btnId);
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.open('https://www.patreon.com/betterwlprs', '_blank');
+                });
+            }
+        });
 
         // ========== INITIALIZATION ==========
         document.addEventListener('DOMContentLoaded', () => {
@@ -961,7 +2699,18 @@
                 }
             });
 
-           
+            // Handle video cards
+            document.querySelectorAll('#videoGrid .card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const isPremium = card.querySelector('.card-premium');
+                    if (isPremium) {
+                        showActionModal(card);
+                    } else {
+                        alert('Reproduciendo vídeo...');
+                    }
+                });
+            });
         }
 
         // ========== ACTION MODAL FUNCTIONS ==========
@@ -1042,6 +2791,138 @@
             });
         });
 
+        // ========== PERFORMANCE ==========
+        // Lazy loading para imágenes + blur inicial para GIFs pesados
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        // Si es GIF, poner blur inicial y quitarlo al cargar
+                        if (img.src.endsWith('.gif')) {
+                            img.style.filter = 'blur(12px)';
+                            img.onload = () => {
+                                img.style.transition = 'filter 0.4s';
+                                img.style.filter = 'none';
+                            };
+                        }
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            images.forEach(img => imageObserver.observe(img));
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('modal');
+                const actionModal = document.getElementById('actionModal');
+                const imageViewer = document.getElementById('imageViewer');
+
+                if (modal && modal.style.display === 'flex') {
+                    closeModal();
+                } else if (actionModal && actionModal.style.display === 'flex') {
+                    closeActionModal();
+                } else if (imageViewer && imageViewer.style.display === 'flex') {
+                    closeImageViewer();
+                }
+            }
+        });
+
+        // ========== THEME & I18N ==========
+        // Minimal i18n dictionary
+        const i18n = {
+            es: {
+                'nav.gallery': 'Galería',
+                'nav.videos': 'Vídeos',
+                'nav.how': 'Cómo funciona',
+                'nav.benefits': 'Beneficios',
+                'nav.login': 'Entrar',
+                'nav.subscribe': 'Suscribirse',
+                'hero.eyebrow': 'Fondos exclusivos',
+                'hero.title1': 'Wallpapers únicos',
+                'hero.title2': 'para todos tus dispositivos',
+                'hero.desc': 'Descarga arte original y optimizado. Disfruta calidad BetterWLPRS.',
+                'hero.explore': 'Descarga Gratis',
+                'hero.how': '¿Cómo funciona?',
+                'chips.original': 'Original',
+                'chips.onlyHere': 'Solo aquí',
+                'chips.multi': 'Multi-dispositivo',
+                'chips.instant': 'Descarga instantánea',
+                'gallery.titlePrefix': 'Fondos de pantalla',
+                'gallery.highlight': 'Originales',
+                'gallery.desc.part1': 'Cada imagen está capturada individualmente con amor y cuidado. Tenemos un',
+                'gallery.desc.link': 'Pack BetterWLPRS Gratis',
+                'gallery.desc.part2': 'para que puedas disfrutarlas en cada dispositivo, siempre 😊',
+                'badge.portrait': 'Retrato',
+                'badge.urban': 'Urbano',
+                'badge.studio': 'Estudio',
+                'badge.documentary': 'Documental',
+                'badge.editorial': 'Editorial',
+                'card.membersOnly': 'Acceso solo para miembros — suscripción para full-res',
+                'card.viewImage': 'Ver imagen',
+                'card.download': 'Descargar',
+                'card.download1600': 'Descarga 1600px',
+                'videos.title': 'Vídeos',
+                'videos.highlight': 'Exclusivos',
+                'videos.desc': 'Descubre clips únicos de nuestras mejores capturas. Los miembros disfrutan contenido completo en máxima calidad.',
+                'videos.card.premium': 'Vídeo — completo al suscribirte',
+                'videos.card.open': 'Vídeo — abierto',
+                'video.overlay': 'Ver vídeo',
+                'how.titlePrefix': 'Cómo',
+                'how.highlight': 'Funciona',
+                'how.desc': 'Publica tus sesiones y clips. El mundo ve un adelanto; lo premium se desbloquea con suscripción.',
+                'benefits.titlePrefix': 'Beneficios para',
+                'benefits.highlight': 'Miembros',
+                'benefits.desc': 'Acceso a originales en full-res y vídeowlprs completos, listos para tu setup.',
+                'final.titlePrefix': 'Lleva tu setup al',
+                'final.highlight': 'siguiente nivel',
+                'final.desc': 'Desbloquea originales y vídeowlprs. Cancela cuando quieras.',
+                'final.btn': 'Empieza ahora',
+                'sticky.text': 'Suscríbete para full-res ✨',
+                'modal.title': 'Tu acceso completo empieza aquí',
+                'modal.desc': 'Descargas sin marca de agua, vídeos completos en 1080p/4K y sesiones completas.',
+                'modal.monthly': 'Mensual',
+                'modal.cancelAnytime': 'Cancela cuando quieras',
+                'modal.popular': 'Popular',
+                'modal.annual': 'Anual',
+                'modal.twoMonthsFree': '2 meses de regalo',
+                'modal.legalPrefix': 'Al suscribirte aceptas los',
+                'modal.terms': 'Términos',
+                'modal.and': 'y la',
+                'modal.privacy': 'Privacidad',
+                'actionModal.title': '¿Qué te gustaría hacer?',
+                'actionModal.subtitle': 'Puedes ver la imagen con marca de agua o explorar la galería completa',
+                'actionModal.expandImage': '🔍 Expandir imagen',
+                'actionModal.expandDesc': 'Ver en tamaño completo con marca de agua',
+                'actionModal.viewGallery': '🖼️ Ver galería completa',
+                'actionModal.galleryDesc': 'Explorar todas las imágenes disponibles',
+                'actionModal.upgrade': '✨ Obtener sin marca de agua',
+                'actionModal.upgradeDesc': 'Suscríbete para acceso completo',
+                'footer.tagline': 'Previews que enamoran. Full-res al suscribirte.',
+                'footer.questions': '¿Preguntas?'
+            },
+        };
+
+        function applyTranslations(lang) {
+            const dict = i18n[lang] || i18n.en;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                // Si el elemento está en el nav, siempre usar inglés
+                if (el.closest('.nav-menu') || el.closest('.nav-actions')) {
+                    el.textContent = i18n['en'][el.getAttribute('data-i18n')] || el.textContent;
+                } else {
+                    const key = el.getAttribute('data-i18n');
+                    if (dict[key]) el.textContent = dict[key];
+                }
+            });
+            // Update lang toggle label
+            const btns = [document.getElementById('langToggle'), document.getElementById('langToggleMobile')];
+            btns.forEach(b => { if (b) b.textContent = lang === 'es' ? 'EN' : 'ES'; });
+            document.documentElement.setAttribute('lang', lang);
+        }
 
         function setTheme(theme) {
             const root = document.documentElement;
@@ -1049,73 +2930,22 @@
             const isLight = theme === 'light';
             const icons = [document.getElementById('themeToggle'), document.getElementById('themeToggleMobile')];
             icons.forEach(i => { if (i) i.innerHTML = isLight ? '<span>🌙</span>' : '<span>☀️</span>'; });
-            localStorage.setItem('theme', theme);
         }
 
-        // ========== LANGUAGE DETECTION AND MODAL ==========
-        function detectLanguageAndShowModal() {
-            // Check if user has already made a decision
-            const languagePreference = localStorage.getItem('languageModalDismissed');
-            if (languagePreference === 'true') {
-                return; // Don't show modal again
-            }
+        // Detect preferred language and theme on first load
+        (function initLangTheme() {
+            // Clear any previous language setting to ensure fresh start
+            // localStorage.removeItem('lang'); // Force reset - only enable temporarily
 
-            // Detect if browser language is Spanish
-            const userLanguage = navigator.language || navigator.userLanguage;
-            const isSpanish = userLanguage.toLowerCase().startsWith('es');
-            
-            // Only show if language is Spanish and we're on the English version
-            if (isSpanish && !window.location.pathname.includes('index-es.html')) {
-                setTimeout(() => {
-                    showLanguageModal();
-                }, 1500); // Show after 1.5 seconds to not interrupt loading
-            }
-        }
-
-        function showLanguageModal() {
-            const modal = document.getElementById('languageModal');
-            const content = modal.querySelector('.language-modal-content');
-            
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            
-            // Animate modal appearance
-            setTimeout(() => {
-                modal.style.opacity = '1';
-                content.style.transform = 'translate(-50%, -50%) scale(1)';
-            }, 10);
-        }
-
-        function closeLanguageModal(rememberChoice = false) {
-            const modal = document.getElementById('languageModal');
-            const content = modal.querySelector('.language-modal-content');
-            const dontShowAgain = document.getElementById('dontShowAgainCheck').checked;
-            
-            // Save preference if requested or checkbox is checked
-            if (rememberChoice || dontShowAgain) {
-                localStorage.setItem('languageModalDismissed', 'true');
-            }
-            
-            // Animate modal disappearance
-            modal.style.opacity = '0';
-            content.style.transform = 'translate(-50%, -50%) scale(0.9)';
-            
-            setTimeout(() => {
-                modal.style.display = 'none';
-                document.body.style.overflow = '';
-            }, 300);
-        }
-
-        function switchToSpanish() {
-            closeLanguageModal(true);
-            // Redirect to Spanish version
-            window.location.href = './index-es.html';
-        }
-
-        function stayInEnglish() {
-            closeLanguageModal(true);
-        }
-
+            const storedLang = localStorage.getItem('lang');
+            const storedTheme = localStorage.getItem('theme');
+            // Default to English unless user has specifically saved Spanish
+            const initialLang = storedLang || 'en';
+            const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+            const initialTheme = storedTheme || (prefersLight ? 'light' : 'dark');
+            setTheme(initialTheme);
+            applyTranslations(initialLang);
+        })();
 
         // Wire toggle buttons
         function toggleLanguage() {
@@ -1127,32 +2957,19 @@
         function toggleTheme() {
             const current = document.documentElement.getAttribute('data-theme') || 'dark';
             const next = current === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', next);
             setTheme(next);
         }
-    // Conectar los botones de tema
-    document.addEventListener('DOMContentLoaded', () => {
-        const themeBtn = document.getElementById('themeToggle');
-        const themeBtnMobile = document.getElementById('themeToggleMobile');
-        if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
-        if (themeBtnMobile) themeBtnMobile.addEventListener('click', toggleTheme);
-        // Al cargar, actualiza el icono según el tema
-        setTheme(document.documentElement.getAttribute('data-theme') || 'dark');
 
-        // ========== LANGUAGE MODAL EVENT LISTENERS ==========
-        // Language modal buttons
-        document.getElementById('switchToSpanishBtn')?.addEventListener('click', switchToSpanish);
-        document.getElementById('stayInEnglishBtn')?.addEventListener('click', stayInEnglish);
-
-        // Close modal when clicking outside
-        document.getElementById('languageModal')?.addEventListener('click', (e) => {
-            if (e.target.id === 'languageModal') {
-                closeLanguageModal();
-            }
+        ['langToggle', 'langToggleMobile'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener('click', toggleLanguage);
         });
+        ['themeToggle', 'themeToggleMobile'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener('click', toggleTheme);
+        });
+    </script>
+</body>
 
-        // Initialize language detection
-        detectLanguageAndShowModal();
-    });
-                </script>
-            </body>
-        </html>
+</html>
