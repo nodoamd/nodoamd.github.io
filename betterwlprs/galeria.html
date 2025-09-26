@@ -880,45 +880,14 @@
         </section>
       
 
-        <!-- Filter Section -->
-        <section class="py-12 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-7xl mx-auto px-2">
-                <div class="text-center mb-8">
-                    <h2 class="text-3xl font-bold text-white mb-4">Browse by Category</h2>
-                    <p class="text-gray-400">Find the perfect wallpaper for your style</p>
-                </div>
-                <div class="flex flex-wrap justify-center gap-4 mb-12">
-                    <button class="filter-button active px-8 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-primary to-accent" data-filter="all">
-                        All Wallpapers
-                    </button>
-                    <button class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20" data-filter="minimalist">
-                        Random Collection
-                    </button>
-                    <button class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20" data-filter="videos">
-                        Animated Wallpapers
-                    </button>
-                    <button class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20" data-filter="gaming">
-                        Death Stranding
-                    </button>
-                    <button class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20" data-filter="nature">
-                        Arkham Knight
-                    </button>
-                    <button class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20" data-filter="abstract">
-                        Spider-Man 2
-                    </button>
-                    <button class="filter-button px-8 py-3 rounded-full font-semibold text-white bg-white/10 hover:bg-white/20" data-filter="anime">
-                        Watch Dogs 2
-                    </button>
-                </div>
-            </div>
-        </section>
+      
         <!-- Gallery Section -->
         <section class="py-12 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto px-2">
                 <!-- Loading indicator -->
                 <div id="loadingIndicator" class="text-center py-8">
                     <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-                    <p class="text-gray-400 mt-4">Cargando wallpapers...</p>
+                    <p class="text-gray-400 mt-4">Loading BetterWLPRS...</p>
                 </div>
                 
                 <!-- Gallery grid -->
@@ -929,10 +898,10 @@
                 <!-- Load more button -->
                 <div id="loadMoreContainer" class="text-center mt-12" style="display: none;">
                     <button id="loadMoreBtn" class="bg-primary hover:bg-primary-dark px-8 py-3 rounded-lg font-semibold transition-colors">
-                        Cargar más wallpapers
+                        Load More WLPRS
                     </button>
                     <p class="text-gray-400 mt-4">
-                        <span id="currentCount">0</span> de <span id="totalCount">965</span> wallpapers mostrados
+                        <span id="currentCount">0</span> of <span id="totalCount">965</span> wallpapers shown
                     </p>
                 </div>
             </div>
@@ -1106,27 +1075,28 @@
 
         // ========== DRIVE WALLPAPERS SYSTEM ==========
         // Imágenes locales de la carpeta ./img
+        // Mapeo de imágenes con nombre y categoría
         const localImages = [
-            "img/ACOdissey-Vertical-Village-WLPR-08.png",
-            "img/arkham.gif",
-            "img/barman.png",
-            "img/discoelysium.webp",
-            "img/DishonoredDLC-Landscape-InsideBasement-WLPR-02.png",
-            "img/lessgo.gif",
-            "img/logobetterwlprs.png",
-            "img/marcusittingfocused.jpg",
-            "img/marcussittedahh.gif",
-            "img/mgsdelta.png",
-            "img/samizquierdasentado.png",
-            "img/samsatori.gif",
-            "img/samsittedahh.gif",
-            "img/sanfracampview.jpg",
-            "img/setupkindle.mp4",
-            "img/setupmarkus.mp4",
-            "img/setupmarkus.webp",
-            "img/setupmarkus2.mp4",
-            "img/spidersky.gif",
-            "img/thelongdarkwolfs.png"
+            { src: "img/marcussittedahh.gif", title: "Golden Hour", category: "Starter Pack" },
+            { src: "img/arkham.gif", title: "City Nights", category: "Arkham Knight" },
+            { src: "img/samsittedahh.gif", title: "Soft Neon", category: "Death Stranding" },
+            { src: "img/lessgo.gif", title: "Video WLPR of Metro Exodus", category: "Metro Exodus" },
+            { src: "img/ACOdissey-Vertical-Village-WLPR-08.png", title: "Behind The Lens", category: "Assassin's Creed Odyssey" },
+            { src: "img/DishonoredDLC-Landscape-InsideBasement-WLPR-02.png", title: "Death Stranding Main Character sitting on a mountain", category: "Death Stranding" },
+            { src: "img/mgsdelta.png", title: "Cinematic WLPRS", category: "Metal Gear Solid Delta" },
+            { src: "img/sanfracampview.jpg", title: "Download Starter Pack", category: "Starter Pack" },
+            { src: "img/spidersky.gif", title: "Unlimited wallpapers", category: "Spider-Man" },
+            { src: "img/barman.png", title: "Barman", category: "Otros" },
+            { src: "img/discoelysium.webp", title: "Disco Elysium", category: "Otros" },
+            { src: "img/logobetterwlprs.png", title: "Logo BetterWLPRS", category: "Otros" },
+            { src: "img/marcusittingfocused.jpg", title: "Marcus Sitting Focused", category: "Otros" },
+            { src: "img/samizquierdasentado.png", title: "Sam Izquierda Sentado", category: "Otros" },
+            { src: "img/samsatori.gif", title: "Sam Satori", category: "Otros" },
+            { src: "img/setupkindle.mp4", title: "Setup Kindle", category: "VideoWLPRS" },
+            { src: "img/setupmarkus.mp4", title: "Setup Markus", category: "VideoWLPRS" },
+            { src: "img/setupmarkus.webp", title: "Setup Markus WebP", category: "VideoWLPRS" },
+            { src: "img/setupmarkus2.mp4", title: "Setup Markus 2", category: "VideoWLPRS" },
+            { src: "img/thelongdarkwolfs.png", title: "The Long Dark Wolfs", category: "Otros" }
         ];
 
         // Configuration
@@ -1172,37 +1142,32 @@
         }
 
         // Create gallery item element
-        function createGalleryItem(url, index) {
-            const categories = ['gaming', 'nature', 'abstract', 'minimalist'];
-            const category = categories[index % categories.length];
-            const title = `WLPR ${String(index + 1).padStart(3, '0')}`;
-
+        function createGalleryItem(imgObj, index) {
+            const { src, title, category } = imgObj;
             const item = document.createElement('div');
             item.className = 'masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in';
             item.setAttribute('data-category', category);
             item.setAttribute('data-title', title);
-
             item.innerHTML = `
-                <img src="${url}" alt="${title}" class="w-full h-64 object-cover" loading="lazy" 
+                <img src="${src}" alt="${title}" class="w-full h-64 object-cover" loading="lazy" 
                      onerror="this.parentElement.style.display='none'">
                 <div class="gallery-overlay"></div>
                 <div class="gallery-content">
                     <div class="flex items-center justify-between mb-2">
                         <h3 class="text-xl font-bold text-white">${title}</h3>
-                        <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">PREMIUM</span>
+                        <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">${category}</span>
                     </div>
-                    <p class="text-gray-300 text-sm mb-3">${category.charAt(0).toUpperCase() + category.slice(1)}</p>
+                    <p class="text-gray-300 text-sm mb-3">${category}</p>
                     <div class="flex space-x-2">
-                        <button class="preview-btn bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors" onclick="openModal('${url}', '${title}')">
+                        <button class="preview-btn bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors" onclick="openModal('${src}', '${title}')">
                             Vista Previa
                         </button>
-                        <button class="download-btn bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors" onclick="downloadWallpaper('${url}', '${title}')">
+                        <button class="download-btn bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors" onclick="downloadWallpaper('${src}', '${title}')">
                             Download
                         </button>
                     </div>
                 </div>
             `;
-
             return item;
         }
 
