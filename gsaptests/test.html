@@ -184,7 +184,7 @@
 
     .cube {
         width: 80px;
-        height: 80px;
+        height: 140px;
         background: #e53935;
         border-radius: 16px;
         display: flex;
@@ -195,21 +195,103 @@
         font-weight: bold;
         box-shadow: 0 4px 16px #0004;
         overflow: hidden;
-        /* Si solo quieres fondo cuando no hay imagen, puedes quitar background si todas llevan img */
+        cursor: pointer;
+        transition: all 0.3s ease;
+        transform-style: preserve-3d;
+        perspective: 1000px;
+    }
+
+    .cube:hover {
+        transform: scale(1.05) rotateY(5deg);
+        box-shadow: 0 8px 24px #0006;
     }
 
     .cube img {
         width: 100%;
-        height: 140px;
+        height: 100%;
         object-fit: cover;
-        border-radius: 40px;
-        /* Para mantener el efecto redondo en esquinas, pero más alto */
+        border-radius: 16px;
         display: block;
+        transition: transform 0.3s ease;
     }
 
-    .cube {
-        height: 140px;
-        /* Asegura que el div acompañe la altura de la imagen */
+    .cube:hover img {
+        transform: scale(1.02);
+    }
+
+    /* Modal para mostrar imagen grande */
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+    }
+
+    .modal.active {
+        display: flex;
+    }
+
+    .modal-content {
+        max-width: 80vw;
+        max-height: 80vh;
+        background: #222;
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+        transform: scale(0.8);
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .modal.active .modal-content {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    .modal-image {
+        width: 100%;
+        max-height: 60vh;
+        object-fit: contain;
+        border-radius: 16px;
+        margin-bottom: 1.5rem;
+    }
+
+    .modal-title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        color: thistle;
+    }
+
+    .modal-description {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #ccc;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .close-modal {
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: thistle;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+    .close-modal:hover {
+        color: #e53935;
     }
 </style>
 
@@ -221,21 +303,31 @@
             <h2 class="bajal">Ilustrator, Designer, Autor</h2>
             <button class="button">Ilustrations</button>
         </header>
-        <div style="display: flex; gap: 1rem; justify-content: center; margin: 25rem 0;">
-            <div class="cube">
+        <div style="display: flex; gap: 1rem; justify-content: center; margin: 25rem 0;" class="cubes-container">
+            <div class="cube" data-title="Death Stranding" data-description="Official poster artwork for Hideo Kojima's Death Stranding. A cinematic piece that captures the essence of connection and isolation in a post-apocalyptic world.">
                 <img src="https://i0.wp.com/halcyonrealms.com/blogpics/deathstrandingposter02.jpg?resize=750%2C1060&ssl=1"
-                    alt="Imagen A" style="width:100%;height:100%;object-fit:cover;border-radius:16px;">
+                    alt="Death Stranding Poster" style="width:100%;height:100%;object-fit:cover;border-radius:16px;">
             </div>
-            <div class="cube">
-                <img src="https://i.redd.it/q1ux47q1mjix.png" alt="Imagen A"
+            <div class="cube" data-title="Metal Gear Solid" data-description="Iconic artwork for the Metal Gear series. Combining stealth, action, and deep storytelling through visual narrative and character design.">
+                <img src="https://i.redd.it/q1ux47q1mjix.png" alt="Metal Gear Artwork"
                     style="width:100%;height:100%;object-fit:cover;border-radius:16px;">
             </div>
-            <div class="cube">
-                <img src="https://i.pinimg.com/736x/c7/81/57/c7815731af08d0dd369b5340001b785e.jpg" alt="Imagen A"
+            <div class="cube" data-title="Character Study" data-description="Digital illustration exploring character design and atmospheric storytelling. Part of a series focusing on cinematic composition and mood.">
+                <img src="https://i.pinimg.com/736x/c7/81/57/c7815731af08d0dd369b5340001b785e.jpg" alt="Character Illustration"
                     style="width:100%;height:100%;object-fit:cover;border-radius:16px;">
             </div>
         </div>
         <div class="line"></div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <img class="modal-image" src="" alt="">
+            <div class="modal-title"></div>
+            <div class="modal-description"></div>
+        </div>
     </div>
 
 
@@ -357,7 +449,114 @@
             }
         });
 
-       
+        // Animación de giro fluido cuando llegamos a los cubos
+        gsap.utils.toArray('.cube').forEach((cube, i) => {
+            // Animación inicial de giro
+            gsap.fromTo(cube, 
+                {
+                    rotationY: 180,
+                    opacity: 0.3,
+                    scale: 0.5
+                },
+                {
+                    rotationY: 0,
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1.2,
+                    ease: "power2.out",
+                    delay: i * 0.2,
+                    scrollTrigger: {
+                        trigger: '.cubes-container',
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+
+            // Animación de agrandado con delay adicional (después del giro)
+            gsap.to(cube, {
+                scale: 1.3,
+                duration: 0.8,
+                ease: "elastic.out(1, 0.3)",
+                delay: (i * 0.2) + 1.5, // 1.5s después del giro inicial
+                scrollTrigger: {
+                    trigger: '.cubes-container',
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: "play none none reverse"
+                }
+            });
+
+            // Opcional: Volver al tamaño normal después de un tiempo
+            gsap.to(cube, {
+                scale: 1,
+                duration: 0.6,
+                ease: "power2.inOut",
+                delay: (i * 0.2) + 3, // 3s después del giro inicial
+                scrollTrigger: {
+                    trigger: '.cubes-container',
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+
+        // Funcionalidad del modal
+        const modal = document.getElementById('imageModal');
+        const modalImg = modal.querySelector('.modal-image');
+        const modalTitle = modal.querySelector('.modal-title');
+        const modalDescription = modal.querySelector('.modal-description');
+        const closeBtn = modal.querySelector('.close-modal');
+
+        // Abrir modal al hacer click en cube
+        document.querySelectorAll('.cube').forEach(cube => {
+            cube.addEventListener('click', () => {
+                const img = cube.querySelector('img');
+                const title = cube.getAttribute('data-title');
+                const description = cube.getAttribute('data-description');
+                
+                modalImg.src = img.src;
+                modalImg.alt = img.alt;
+                modalTitle.textContent = title;
+                modalDescription.textContent = description;
+                
+                modal.classList.add('active');
+                gsap.from('.modal-content', {
+                    scale: 0.5,
+                    rotation: 10,
+                    duration: 0.4,
+                    ease: "back.out(1.7)"
+                });
+            });
+        });
+
+        // Cerrar modal
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        function closeModal() {
+            gsap.to('.modal-content', {
+                scale: 0.8,
+                rotation: -5,
+                duration: 0.3,
+                ease: "power2.in",
+                onComplete: () => {
+                    modal.classList.remove('active');
+                }
+            });
+        }
+
+        // Cerrar con ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
     </script>
 </body>
 
