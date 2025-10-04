@@ -635,6 +635,171 @@
         .cta-glow:hover {
             box-shadow: 0 0 30px rgba(34, 197, 94, 0.6);
         }
+
+        /* Video styles */
+        .gallery-item video {
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover video {
+            transform: scale(1.05);
+        }
+
+        .video-sound-indicator {
+            animation: fadeInOut 0.3s ease;
+        }
+
+        @keyframes fadeInOut {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Video hover effects */
+        .gallery-item video:hover {
+            filter: brightness(1.1);
+        }
+
+        /* Collection Cards Styles */
+        .collection-btn {
+            padding: 12px 28px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .collection-btn:hover {
+            background: rgba(167, 135, 255, 0.2);
+            border-color: rgba(167, 135, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .collection-btn.active {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-color: #6366f1;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        .collection-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .collection-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(167, 135, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(167, 135, 255, 0.2);
+        }
+
+        .collection-preview {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .collection-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .collection-card:hover .collection-image {
+            transform: scale(1.1);
+        }
+
+        .collection-overlay {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .collection-count {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .collection-type {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .collection-info {
+            padding: 20px;
+        }
+
+        .collection-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .collection-description {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.4;
+        }
+
+        /* Animation for collections grid */
+        #collectionsGrid.show {
+            display: block;
+            animation: slideDown 0.4s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive collections */
+        @media (max-width: 768px) {
+            .collection-card {
+                margin-bottom: 1rem;
+            }
+            
+            .collection-preview {
+                height: 140px;
+            }
+            
+            .collection-info {
+                padding: 16px;
+            }
+            
+            .collection-title {
+                font-size: 16px;
+            }
+        }
         </style>
     </head>
     <body class="bg-dark text-white font-sans overflow-x-hidden">
@@ -861,6 +1026,155 @@
                     </div>
                 </div>
 
+                <!-- Quick Filters -->
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button class="collection-btn active" data-collection="all">
+                        🎨 All WLPRS
+                    </button>
+                    <button class="collection-btn" data-collection="video">
+                        🎬 VideoWLPRS
+                    </button>
+                    <button class="collection-btn" data-collection="static">
+                        🖼️ Static WLPRS
+                    </button>
+                    <button class="collection-btn" data-collection="collections">
+                        � Browse Collections
+                    </button>
+                </div>
+
+                <!-- Collections Grid (Hidden by default) -->
+                <div id="collectionsGrid" class="hidden mb-12">
+                    <h3 class="text-3xl font-bold text-center text-white mb-8">Game Collections</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                        <!-- The Witcher Collection -->
+                        <div class="collection-card" data-collection="The Witcher">
+                            <div class="collection-preview">
+                                <img src="img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.17.38.01-web.mp4" alt="The Witcher 3" class="collection-image">
+                                <div class="collection-overlay">
+                                    <div class="collection-count">10 WLPRS</div>
+                                    <div class="collection-type">VideoWLPRS</div>
+                                </div>
+                            </div>
+                            <div class="collection-info">
+                                <h4 class="collection-title">The Witcher 3</h4>
+                                <p class="collection-description">Novigrad, Skellige, Velen y más</p>
+                            </div>
+                        </div>
+
+                        <!-- Skyrim Collection -->
+                        <div class="collection-card" data-collection="Skyrim">
+                            <div class="collection-preview">
+                                <img src="img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_04-web.mp4" alt="Skyrim" class="collection-image">
+                                <div class="collection-overlay">
+                                    <div class="collection-count">5 WLPRS</div>
+                                    <div class="collection-type">VideoWLPRS</div>
+                                </div>
+                            </div>
+                            <div class="collection-info">
+                                <h4 class="collection-title">The Elder Scrolls V: Skyrim</h4>
+                                <p class="collection-description">Paisajes nórdicos épicos</p>
+                            </div>
+                        </div>
+
+                        <!-- Metro Exodus Collection -->
+                        <div class="collection-card" data-collection="Metro">
+                            <div class="collection-preview">
+                                <img src="img/OptimizedVideoWLPRS/MetroExodus_01-web.mp4" alt="Metro Exodus" class="collection-image">
+                                <div class="collection-overlay">
+                                    <div class="collection-count">7 WLPRS</div>
+                                    <div class="collection-type">VideoWLPRS</div>
+                                </div>
+                            </div>
+                            <div class="collection-info">
+                                <h4 class="collection-title">Metro Exodus</h4>
+                                <p class="collection-description">Apocalipsis post-nuclear</p>
+                            </div>
+                        </div>
+
+                        <!-- Death Stranding Collection -->
+                        <div class="collection-card" data-collection="Death Stranding">
+                            <div class="collection-preview">
+                                <img src="img/OptimizedVideoWLPRS/DeathStranding-SamWindy-VideoWLPR-web.mp4" alt="Death Stranding" class="collection-image">
+                                <div class="collection-overlay">
+                                    <div class="collection-count">5 WLPRS</div>
+                                    <div class="collection-type">Mixed</div>
+                                </div>
+                            </div>
+                            <div class="collection-info">
+                                <h4 class="collection-title">Death Stranding</h4>
+                                <p class="collection-description">Sam Porter Bridges</p>
+                            </div>
+                        </div>
+
+                        <!-- Spider-Man Collection -->
+                        <div class="collection-card" data-collection="Spider-Man">
+                            <div class="collection-preview">
+                                <img src="img/OptimizedVideoWLPRS/SM2-SkyView-VideoWLPR 2-web.mp4" alt="Spider-Man" class="collection-image">
+                                <div class="collection-overlay">
+                                    <div class="collection-count">3 WLPRS</div>
+                                    <div class="collection-type">VideoWLPRS</div>
+                                </div>
+                            </div>
+                            <div class="collection-info">
+                                <h4 class="collection-title">Spider-Man</h4>
+                                <p class="collection-description">Nueva York desde las alturas</p>
+                            </div>
+                        </div>
+
+                        <!-- Batman/Arkham Collection -->
+                        <div class="collection-card" data-collection="Batman/Arkham">
+                            <div class="collection-preview">
+                                <img src="img/OptimizedVideoWLPRS/BatmanKnight-NightWalker-VideoWLPR-web.mp4" alt="Batman" class="collection-image">
+                                <div class="collection-overlay">
+                                    <div class="collection-count">2 WLPRS</div>
+                                    <div class="collection-type">Mixed</div>
+                                </div>
+                            </div>
+                            <div class="collection-info">
+                                <h4 class="collection-title">Batman: Arkham</h4>
+                                <p class="collection-description">Gotham City</p>
+                            </div>
+                        </div>
+
+                        <!-- Watch Dogs Collection -->
+                        <div class="collection-card" data-collection="Watch Dogs">
+                            <div class="collection-preview">
+                                <img src="img/OptimizedVideoWLPRS/WD2-Marcus-WaterHouses-VideoWLPR-web.mp4" alt="Watch Dogs" class="collection-image">
+                                <div class="collection-overlay">
+                                    <div class="collection-count">4 WLPRS</div>
+                                    <div class="collection-type">Mixed</div>
+                                </div>
+                            </div>
+                            <div class="collection-info">
+                                <h4 class="collection-title">Watch Dogs</h4>
+                                <p class="collection-description">Hacking San Francisco</p>
+                            </div>
+                        </div>
+
+                        <!-- Mad Max Collection -->
+                        <div class="collection-card" data-collection="Mad Max">
+                            <div class="collection-preview">
+                                <img src="img/OptimizedVideoWLPRS/Mad-Max-SanFranciscoHope-VideoWLPR-web.mp4" alt="Mad Max" class="collection-image">
+                                <div class="collection-overlay">
+                                    <div class="collection-count">3 WLPRS</div>
+                                    <div class="collection-type">VideoWLPRS</div>
+                                </div>
+                            </div>
+                            <div class="collection-info">
+                                <h4 class="collection-title">Mad Max</h4>
+                                <p class="collection-description">Wasteland salvaje</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Back to Gallery Button -->
+                    <div class="text-center mt-8">
+                        <button id="backToGallery" class="collection-btn">
+                            ← Back to All WLPRS
+                        </button>
+                    </div>
+                </div>
+
                 <!-- Social Proof
                 <div class="text-center">
                     <p class="text-gray-400 text-sm mb-4">Trusted by 10,000+ desktop enthusiasts</p>
@@ -901,7 +1215,7 @@
                         Load More WLPRS
                     </button>
                     <p class="text-gray-400 mt-4">
-                        <span id="currentCount">0</span> of <span id="totalCount">965</span> wallpapers shown
+                        <span id="currentCount">0</span> of <span id="totalCount">85</span> wallpapers shown
                     </p>
                 </div>
             </div>
@@ -1074,36 +1388,119 @@
         });
 
         // ========== DRIVE WALLPAPERS SYSTEM ==========
-        // Imágenes locales de la carpeta ./img
-        // Mapeo de imágenes con nombre y categoría
+        // Imágenes locales organizadas por categorías específicas
         const localImages = [
-            { src: "img/marcussittedahh.gif", title: "Golden Hour", category: "Starter Pack" },
-            { src: "img/arkham.gif", title: "City Nights", category: "Arkham Knight" },
-            { src: "img/samsittedahh.gif", title: "Soft Neon", category: "Death Stranding" },
-            { src: "img/lessgo.gif", title: "Video WLPR of Metro Exodus", category: "Metro Exodus" },
-            { src: "img/ACOdissey-Vertical-Village-WLPR-08.png", title: "Behind The Lens", category: "Assassin's Creed Odyssey" },
-            { src: "img/DishonoredDLC-Landscape-InsideBasement-WLPR-02.png", title: "Death Stranding Main Character sitting on a mountain", category: "Death Stranding" },
-            { src: "img/mgsdelta.png", title: "Cinematic WLPRS", category: "Metal Gear Solid Delta" },
-            { src: "img/sanfracampview.jpg", title: "Download Starter Pack", category: "Starter Pack" },
-            { src: "img/spidersky.gif", title: "Unlimited wallpapers", category: "Spider-Man" },
-            { src: "img/barman.png", title: "Barman", category: "Otros" },
-            { src: "img/discoelysium.webp", title: "Disco Elysium", category: "Otros" },
-            { src: "img/logobetterwlprs.png", title: "Logo BetterWLPRS", category: "Otros" },
-            { src: "img/marcusittingfocused.jpg", title: "Marcus Sitting Focused", category: "Otros" },
-            { src: "img/samizquierdasentado.png", title: "Sam Izquierda Sentado", category: "Otros" },
-            { src: "img/samsatori.gif", title: "Sam Satori", category: "Otros" },
-            { src: "img/setupkindle.mp4", title: "Setup Kindle", category: "VideoWLPRS" },
-            { src: "img/setupmarkus.mp4", title: "Setup Markus", category: "VideoWLPRS" },
-            { src: "img/setupmarkus.webp", title: "Setup Markus WebP", category: "VideoWLPRS" },
-            { src: "img/setupmarkus2.mp4", title: "Setup Markus 2", category: "VideoWLPRS" },
-            { src: "img/thelongdarkwolfs.png", title: "The Long Dark Wolfs", category: "Otros" }
+            // === GAMING WLPRS ===
+            // Assassin's Creed
+            { src: "img/ACOdissey-Vertical-Village-WLPR-08.png", title: "Odyssey Village Vista", category: "Assassin's Creed", type: "image", game: "Assassin's Creed Odyssey" },
+            
+            // Batman/Arkham
+            { src: "img/arkham.gif", title: "Arkham City Nights", category: "Batman/Arkham", type: "gif", game: "Batman Arkham" },
+            
+            // Death Stranding
+            { src: "img/DishonoredDLC-Landscape-InsideBasement-WLPR-02.png", title: "Dishonored Basement", category: "Death Stranding", type: "image", game: "Dishonored" },
+            { src: "img/samsittedahh.gif", title: "Sam Sitting", category: "Death Stranding", type: "gif", game: "Death Stranding" },
+            { src: "img/samizquierdasentado.png", title: "Sam Portrait", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/samsatori.gif", title: "Sam Satori", category: "Death Stranding", type: "gif", game: "Death Stranding" },
+            
+            // Metal Gear
+            { src: "img/mgsdelta.png", title: "MGS Delta Snake", category: "Metal Gear", type: "image", game: "Metal Gear Solid Delta" },
+            
+            // Metro
+            { src: "img/lessgo.gif", title: "Metro Exodus Scene", category: "Metro", type: "gif", game: "Metro Exodus" },
+            
+            // Spider-Man
+            { src: "img/spidersky.gif", title: "Spider-Man Swinging", category: "Spider-Man", type: "gif", game: "Spider-Man" },
+            
+            // Watch Dogs
+            { src: "img/marcusittingfocused.jpg", title: "Marcus Focused", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            { src: "img/marcussittedahh.gif", title: "Marcus Sitting", category: "Watch Dogs", type: "gif", game: "Watch Dogs 2" },
+            
+            // The Long Dark
+            { src: "img/thelongdarkwolfs.png", title: "Wolves in Snow", category: "The Long Dark", type: "image", game: "The Long Dark" },
+            
+            // === NATURE & LANDSCAPES ===
+            { src: "img/sanfracampview.jpg", title: "San Francisco Camp View", category: "Nature", type: "image", game: "Landscape" },
+            
+            // === ABSTRACT & ART ===
+            { src: "img/discoelysium.webp", title: "Disco Elysium Art", category: "Abstract", type: "image", game: "Disco Elysium" },
+            { src: "img/barman.png", title: "Bartender Scene", category: "Abstract", type: "image", game: "Artistic" },
+            
+            // === BRAND & LOGOS ===
+            { src: "img/logobetterwlprs.png", title: "BetterWLPRS Logo", category: "Brand", type: "image", game: "BetterWLPRS" },
+            
+            // === VIDEO WLPRS - BATMAN ===
+            { src: "img/OptimizedVideoWLPRS/BatmanKnight-NightWalker-VideoWLPR-web.mp4", title: "Batman Night Walker", category: "Batman/Arkham", type: "video", game: "Batman Arkham Knight" },
+            
+            // === VIDEO WLPRS - DEATH STRANDING ===
+            { src: "img/OptimizedVideoWLPRS/DeathStranding-SamWindy-VideoWLPR-web.mp4", title: "Sam in Windy Plains", category: "Death Stranding", type: "video", game: "Death Stranding" },
+            
+            // === VIDEO WLPRS - DYING LIGHT ===
+            { src: "img/OptimizedVideoWLPRS/Dying Light  The Beast 2025.09.25 - 19.01.34.02-web.mp4", title: "Dying Light: The Beast", category: "Dying Light", type: "video", game: "Dying Light" },
+            
+            // === VIDEO WLPRS - FALLOUT ===
+            { src: "img/OptimizedVideoWLPRS/Fallout 3 2025.09.27 - 23.21.41.03-web.mp4", title: "Fallout 3 Wasteland", category: "Fallout", type: "video", game: "Fallout 3" },
+            
+            // === VIDEO WLPRS - MAD MAX ===
+            { src: "img/OptimizedVideoWLPRS/Mad-Max-MoonLightHouse-VideoWLPR-web.mp4", title: "Mad Max: Moon Lighthouse", category: "Mad Max", type: "video", game: "Mad Max" },
+            { src: "img/OptimizedVideoWLPRS/Mad-Max-SanFranciscoHope-VideoWLPR-web.mp4", title: "Mad Max: SF Hope", category: "Mad Max", type: "video", game: "Mad Max" },
+            { src: "img/OptimizedVideoWLPRS/Mad-Max-UnderSanFrancisco-VideoWLPR-web.mp4", title: "Mad Max: Under SF", category: "Mad Max", type: "video", game: "Mad Max" },
+            
+            // === VIDEO WLPRS - METRO EXODUS ===
+            { src: "img/OptimizedVideoWLPRS/MetroExodus_01-web.mp4", title: "Metro Exodus: Scene 01", category: "Metro", type: "video", game: "Metro Exodus" },
+            { src: "img/OptimizedVideoWLPRS/MetroExodus_03-web.mp4", title: "Metro Exodus: Scene 03", category: "Metro", type: "video", game: "Metro Exodus" },
+            { src: "img/OptimizedVideoWLPRS/MetroExodus_04-web.mp4", title: "Metro Exodus: Scene 04", category: "Metro", type: "video", game: "Metro Exodus" },
+            { src: "img/OptimizedVideoWLPRS/MetroExodus_05-web.mp4", title: "Metro Exodus: Scene 05", category: "Metro", type: "video", game: "Metro Exodus" },
+            { src: "img/OptimizedVideoWLPRS/MetroExodus_06-web.mp4", title: "Metro Exodus: Scene 06", category: "Metro", type: "video", game: "Metro Exodus" },
+            { src: "img/OptimizedVideoWLPRS/MetroExodus_08-web.mp4", title: "Metro Exodus: Scene 08", category: "Metro", type: "video", game: "Metro Exodus" },
+            { src: "img/OptimizedVideoWLPRS/MetroExodus_10-web.mp4", title: "Metro Exodus: Scene 10", category: "Metro", type: "video", game: "Metro Exodus" },
+            
+            // === VIDEO WLPRS - PREY ===
+            { src: "img/OptimizedVideoWLPRS/Prey (2017) 2025.09.08 - 18.00.41.02 - Trm-web.mp4", title: "Prey: Talos Station", category: "Prey", type: "video", game: "Prey (2017)" },
+            { src: "img/OptimizedVideoWLPRS/Prey (2017) 2025.09.08 - 18.03.51.04-web.mp4", title: "Prey: Corridor View", category: "Prey", type: "video", game: "Prey (2017)" },
+            { src: "img/OptimizedVideoWLPRS/Prey (2017) 2025.09.08 - 18.04.42.05-web.mp4", title: "Prey: Space Station", category: "Prey", type: "video", game: "Prey (2017)" },
+            
+            // === VIDEO WLPRS - SPIDER-MAN ===
+            { src: "img/OptimizedVideoWLPRS/SM2-Rainy-RaimiBlackSuit-Church-VideoWLPR-web.mp4", title: "Spider-Man: Rainy Church", category: "Spider-Man", type: "video", game: "Spider-Man 2" },
+            { src: "img/OptimizedVideoWLPRS/SM2-SkyView-VideoWLPR 2-web.mp4", title: "Spider-Man: Sky View", category: "Spider-Man", type: "video", game: "Spider-Man 2" },
+            
+            // === VIDEO WLPRS - SKYRIM ===
+            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_04-web.mp4", title: "Skyrim: Dragon Valley", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim" },
+            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_09-web.mp4", title: "Skyrim: Nordic Landscape", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim" },
+            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_10-web.mp4", title: "Skyrim: Mountain Vista", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim" },
+            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_12-web.mp4", title: "Skyrim: Aurora Borealis", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim" },
+            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_15-web.mp4", title: "Skyrim: Whiterun Plains", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim" },
+            
+            // === VIDEO WLPRS - SPEC OPS ===
+            { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_03-web.mp4", title: "Spec Ops: Desert Storm", category: "Spec Ops", type: "video", game: "Spec Ops: The Line" },
+            { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_04-web.mp4", title: "Spec Ops: Dubai Ruins", category: "Spec Ops", type: "video", game: "Spec Ops: The Line" },
+            { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_07-web.mp4", title: "Spec Ops: Sand Dunes", category: "Spec Ops", type: "video", game: "Spec Ops: The Line" },
+            { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_12-web.mp4", title: "Spec Ops: Burning City", category: "Spec Ops", type: "video", game: "Spec Ops: The Line" },
+            { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_Dinamic_08-web.mp4", title: "Spec Ops: Dynamic Scene", category: "Spec Ops", type: "video", game: "Spec Ops: The Line" },
+            
+            // === VIDEO WLPRS - THE WITCHER 3 ===
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.17.38.01-web.mp4", title: "Witcher 3: Novigrad Sunset", category: "The Witcher", type: "video", game: "The Witcher 3" },
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.19.02.02-web.mp4", title: "Witcher 3: Skellige Isles", category: "The Witcher", type: "video", game: "The Witcher 3" },
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.20.40.03-web.mp4", title: "Witcher 3: Velen Swamps", category: "The Witcher", type: "video", game: "The Witcher 3" },
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.34.02.08-web.mp4", title: "Witcher 3: Kaer Morhen", category: "The Witcher", type: "video", game: "The Witcher 3" },
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.45.29.09-web.mp4", title: "Witcher 3: Oxenfurt", category: "The Witcher", type: "video", game: "The Witcher 3" },
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.48.01.10-web.mp4", title: "Witcher 3: Toussaint", category: "The Witcher", type: "video", game: "The Witcher 3" },
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.53.39.12-web.mp4", title: "Witcher 3: White Orchard", category: "The Witcher", type: "video", game: "The Witcher 3" },
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.55.19.13-web.mp4", title: "Witcher 3: Crookback Bog", category: "The Witcher", type: "video", game: "The Witcher 3" },
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.55.56.14-web.mp4", title: "Witcher 3: Beauclair", category: "The Witcher", type: "video", game: "The Witcher 3" },
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.56.42.15-web.mp4", title: "Witcher 3: Corvo Bianco", category: "The Witcher", type: "video", game: "The Witcher 3" },
+            
+            // === VIDEO WLPRS - WATCH DOGS 2 ===
+            { src: "img/OptimizedVideoWLPRS/WD2-Marcus-WaterHouses-Landscape-VideoWLPR-web.mp4", title: "WD2: Marcus Bay Area", category: "Watch Dogs", type: "video", game: "Watch Dogs 2" },
+            { src: "img/OptimizedVideoWLPRS/WD2-Marcus-WaterHouses-VideoWLPR-web.mp4", title: "WD2: Marcus Waterfront", category: "Watch Dogs", type: "video", game: "Watch Dogs 2" }
         ];
 
         // Configuration
         const ITEMS_PER_PAGE = 12;
         let currentPage = 0;
-        let currentFilter = 'all';
+        let currentView = 'all'; // Cambio de currentFilter a currentView
         let currentSearch = '';
+        let currentCollection = null;
 
         // DOM elements
         const galleryGrid = document.getElementById('galleryGrid');
@@ -1143,23 +1540,47 @@
 
         // Create gallery item element
         function createGalleryItem(imgObj, index) {
-            const { src, title, category } = imgObj;
+            const { src, title, category, type, game } = imgObj;
             const item = document.createElement('div');
             item.className = 'masonry-item gallery-item bg-dark-light rounded-2xl overflow-hidden scale-in';
             item.setAttribute('data-category', category);
             item.setAttribute('data-title', title);
+            item.setAttribute('data-type', type);
+            item.setAttribute('data-game', game);
+            
+            let mediaElement = '';
+            if (type === 'video') {
+                const videoId = `video-${index}`;
+                mediaElement = `
+                    <video id="${videoId}" class="w-full h-64 object-cover" autoplay loop muted playsinline 
+                           style="cursor: pointer;" onclick="toggleVideoSound('${videoId}')" 
+                           onerror="this.parentElement.style.display='none'">
+                        <source src="${src}" type="video/mp4">
+                        Tu navegador no soporta videos.
+                    </video>
+                    <div class="video-sound-indicator" id="sound-${videoId}" style="position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; display: none;">
+                        🔊 Click para sonido
+                    </div>`;
+            } else {
+                mediaElement = `<img src="${src}" alt="${title}" class="w-full h-64 object-cover" loading="lazy" 
+                               onerror="this.parentElement.style.display='none'">`;
+            }
+            
+            const typeIcon = type === 'video' ? '🎬' : (type === 'gif' ? '🎞️' : '🖼️');
+            const typeBadge = type === 'video' ? 'VideoWLPR' : 'StaticWLPR';
+            
             item.innerHTML = `
-                <img src="${src}" alt="${title}" class="w-full h-64 object-cover" loading="lazy" 
-                     onerror="this.parentElement.style.display='none'">
+                ${mediaElement}
                 <div class="gallery-overlay"></div>
                 <div class="gallery-content">
                     <div class="flex items-center justify-between mb-2">
                         <h3 class="text-xl font-bold text-white">${title}</h3>
-                        <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">${category}</span>
+                        <span class="premium-badge px-2 py-1 rounded-full text-xs font-bold text-dark">${typeIcon} ${typeBadge}</span>
                     </div>
-                    <p class="text-gray-300 text-sm mb-3">${category}</p>
+                    <p class="text-gray-300 text-sm mb-1">${game}</p>
+                    <p class="text-gray-400 text-xs mb-3">${category}</p>
                     <div class="flex space-x-2">
-                        <button class="preview-btn bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors" onclick="openModal('${src}', '${title}')">
+                        <button class="preview-btn bg-primary hover:bg-primary-dark px-4 py-2 rounded-lg text-sm font-semibold transition-colors" onclick="openModal('${src}', '${title}', '${type}')">
                             Vista Previa
                         </button>
                         <button class="download-btn bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-semibold transition-colors" onclick="downloadWallpaper('${src}', '${title}')">
@@ -1171,9 +1592,59 @@
             return item;
         }
 
+        // Toggle video sound
+        function toggleVideoSound(videoId) {
+            const video = document.getElementById(videoId);
+            const indicator = document.getElementById(`sound-${videoId}`);
+            
+            if (video) {
+                if (video.muted) {
+                    video.muted = false;
+                    indicator.textContent = '🔇 Click para silenciar';
+                    indicator.style.display = 'block';
+                    setTimeout(() => {
+                        indicator.style.display = 'none';
+                    }, 2000);
+                } else {
+                    video.muted = true;
+                    indicator.textContent = '🔊 Click para sonido';
+                    indicator.style.display = 'block';
+                    setTimeout(() => {
+                        indicator.style.display = 'none';
+                    }, 2000);
+                }
+            }
+        }
+
         // Open modal
-        function openModal(imageUrl, title) {
-            modalImage.src = imageUrl;
+        function openModal(imageUrl, title, type = 'image') {
+            if (type === 'video') {
+                // Para videos, crear un elemento video en el modal
+                modalImage.style.display = 'none';
+                let existingVideo = document.getElementById('modalVideo');
+                if (existingVideo) {
+                    existingVideo.remove();
+                }
+                
+                const videoElement = document.createElement('video');
+                videoElement.id = 'modalVideo';
+                videoElement.src = imageUrl;
+                videoElement.className = 'w-full h-96 object-cover rounded-xl border border-white/10';
+                videoElement.controls = true;
+                videoElement.autoplay = true;
+                videoElement.loop = true;
+                
+                modalImage.parentNode.insertBefore(videoElement, modalImage);
+            } else {
+                // Para imágenes normales
+                let existingVideo = document.getElementById('modalVideo');
+                if (existingVideo) {
+                    existingVideo.remove();
+                }
+                modalImage.style.display = 'block';
+                modalImage.src = imageUrl;
+            }
+            
             modalTitle.textContent = title;
             previewModal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -1236,22 +1707,67 @@
         }
 
         // Filter functionality
-        const filterButtons = document.querySelectorAll('.filter-button');
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Update button states
-                filterButtons.forEach(btn => {
-                    btn.classList.remove('bg-primary', 'text-dark');
-                    btn.classList.add('bg-white/10', 'text-white');
+        const collectionButtons = document.querySelectorAll('.collection-btn');
+        const collectionsGrid = document.getElementById('collectionsGrid');
+        const backToGalleryBtn = document.getElementById('backToGallery');
+        
+        function initializeCollections() {
+            // Collection navigation buttons
+            collectionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const collection = button.getAttribute('data-collection');
+                    
+                    if (collection === 'collections') {
+                        showCollectionsView();
+                    } else {
+                        showGalleryView(collection);
+                    }
+                    
+                    updateActiveButton(button);
                 });
-                button.classList.remove('bg-white/10', 'text-white');
-                button.classList.add('bg-primary', 'text-dark');
-                
-                // Apply filter
-                currentFilter = button.getAttribute('data-filter');
-                applyFilters();
             });
-        });
+            
+            // Collection cards
+            document.querySelectorAll('.collection-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const collection = card.getAttribute('data-collection');
+                    showGalleryView(collection);
+                    updateActiveButton(document.querySelector(`[data-collection="${collection}"]`));
+                });
+            });
+            
+            // Back to gallery button
+            backToGalleryBtn?.addEventListener('click', () => {
+                showGalleryView('all');
+                updateActiveButton(document.querySelector('[data-collection="all"]'));
+            });
+        }
+        
+        function updateActiveButton(activeButton) {
+            collectionButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            activeButton?.classList.add('active');
+        }
+        
+        function showCollectionsView() {
+            currentView = 'collections';
+            galleryGrid.style.display = 'none';
+            collectionsGrid.classList.remove('hidden');
+            collectionsGrid.classList.add('show');
+            document.getElementById('loadMoreContainer').style.display = 'none';
+        }
+        
+        function showGalleryView(collection = 'all') {
+            currentView = collection;
+            currentCollection = collection;
+            collectionsGrid.classList.add('hidden');
+            collectionsGrid.classList.remove('show');
+            galleryGrid.style.display = 'block';
+            document.getElementById('loadMoreContainer').style.display = 'block';
+            
+            applyFilters();
+        }
 
         // Search functionality
         const searchInput = document.getElementById('searchInput');
@@ -1264,14 +1780,57 @@
 
         // Apply filters and search
         function applyFilters() {
-            galleryGrid.innerHTML = '';
-            loadedItems = [];
+            const allItems = Array.from(galleryGrid.children);
+            let visibleCount = 0;
             
-            // No implementado para local, solo recarga la galería
-            galleryGrid.innerHTML = '';
-            currentPage = 0;
-            loadMoreItems();
-            updateUI();
+            allItems.forEach(item => {
+                if (matchesFilter(item)) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Update counters
+            currentCount.textContent = visibleCount;
+            
+            // Animate visible items
+            const visibleItems = allItems.filter(item => item.style.display !== 'none');
+            visibleItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        item.style.transition = 'all 0.3s ease';
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 50);
+                }, index * 50);
+            });
+        }
+
+        // Check if item matches current filter and search
+        function matchesFilter(item) {
+            const category = item.getAttribute('data-category');
+            const title = item.getAttribute('data-title').toLowerCase();
+            const type = item.getAttribute('data-type');
+            
+            let matchesCategory = false;
+            
+            if (currentView === 'all') {
+                matchesCategory = true;
+            } else if (currentView === 'video') {
+                matchesCategory = type === 'video';
+            } else if (currentView === 'static') {
+                matchesCategory = type === 'image' || type === 'gif';
+            } else {
+                matchesCategory = category === currentView;
+            }
+            
+            const matchesSearch = currentSearch === '' || title.includes(currentSearch.toLowerCase());
+            
+            return matchesCategory && matchesSearch;
         }
 
         // Modal event listeners
@@ -1308,6 +1867,12 @@
                 
                 // Load first batch
                 loadMoreItems();
+                
+                // Initialize filters after gallery is loaded
+                setTimeout(() => {
+                    initializeCollections();
+                }, 500);
+                
                 console.log('Galería cargada');
             }, 1000);
         }
@@ -1362,22 +1927,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(enableMobileGalleryTap, 1500);
         });
-        // Initialize gallery
-        function initGallery() {
-            console.log('Iniciando galería...');
-            setTimeout(() => {
-                loadingIndicator.style.display = 'none';
-                galleryGrid.style.display = 'block';
-                loadMoreContainer.style.display = 'block';
-                
-                // Load first batch
-                loadMoreItems();
-                console.log('Galería cargada');
-            }, 1000);
-        }
-
-        // Start the gallery when page loads
-        document.addEventListener('DOMContentLoaded', initGallery);
         </script>
         
         <!-- Footer -->
