@@ -800,6 +800,60 @@
                 font-size: 16px;
             }
         }
+
+        /* Floating Shuffle Button */
+        .shuffle-float-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border: none;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .shuffle-float-btn:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.6);
+            background: linear-gradient(135deg, #059669, #047857);
+        }
+
+        .shuffle-float-btn:active {
+            transform: translateY(-1px) scale(1.05);
+        }
+
+        /* Responsive para móvil */
+        @media (max-width: 768px) {
+            .shuffle-float-btn {
+                width: 56px;
+                height: 56px;
+                bottom: 16px;
+                right: 16px;
+                font-size: 22px;
+            }
+        }
+
+        /* Animación de rotación para el shuffle */
+        .shuffle-float-btn.rotating {
+            animation: shuffleRotate 0.6s ease-in-out;
+        }
+
+        @keyframes shuffleRotate {
+            0% { transform: translateY(-3px) scale(1.1) rotate(0deg); }
+            50% { transform: translateY(-3px) scale(1.1) rotate(180deg); }
+            100% { transform: translateY(-3px) scale(1.1) rotate(360deg); }
+        }
         </style>
     </head>
     <body class="bg-dark text-white font-sans overflow-x-hidden">
@@ -994,8 +1048,10 @@
                     
                     <a href="https://www.patreon.com/betterwlprs" target="_blank" class="group inline-flex items-center justify-center gap-3 px-8 py-4 border-2 border-purple-500 bg-transparent hover:bg-purple-500 text-white rounded-full font-bold text-lg transition-all duration-200">
                         <i class="fa-brands fa-patreon text-[#fc6354] group-hover:text-white transition-colors duration-200"></i>
-                        Unlock Premium
-                        <span class="text-sm">$3/year</span>
+                        <div class="flex flex-col items-center">
+                            <span>Get +50GB of BetterWLPRS</span>
+                            <span class="text-xs opacity-80 font-normal">Cancel anytime • $3.99/month</span>
+                        </div>
                     </a>
                 </div>
 
@@ -1047,123 +1103,63 @@
                 <div id="collectionsGrid" class="hidden mb-12">
                     <h3 class="text-3xl font-bold text-center text-white mb-8">Game Collections</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                        <!-- The Witcher Collection -->
-                        <div class="collection-card" data-collection="The Witcher">
+                        <!-- Arkham Collection -->
+                        <div class="collection-card" data-collection="Batman/Arkham">
                             <div class="collection-preview">
-                                <img src="img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.17.38.01-web.mp4" alt="The Witcher 3" class="collection-image">
+                                <img src="img/webp Arkham/webp Arkham-ake.webp" alt="Batman Arkham" class="collection-image">
                                 <div class="collection-overlay">
-                                    <div class="collection-count">10 WLPRS</div>
-                                    <div class="collection-type">VideoWLPRS</div>
+                                    <div class="collection-count">6 WLPRS</div>
+                                    <div class="collection-type">Mixed</div>
                                 </div>
                             </div>
                             <div class="collection-info">
-                                <h4 class="collection-title">The Witcher 3</h4>
-                                <p class="collection-description">Novigrad, Skellige, Velen y más</p>
-                            </div>
-                        </div>
-
-                        <!-- Skyrim Collection -->
-                        <div class="collection-card" data-collection="Skyrim">
-                            <div class="collection-preview">
-                                <img src="img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_04-web.mp4" alt="Skyrim" class="collection-image">
-                                <div class="collection-overlay">
-                                    <div class="collection-count">5 WLPRS</div>
-                                    <div class="collection-type">VideoWLPRS</div>
-                                </div>
-                            </div>
-                            <div class="collection-info">
-                                <h4 class="collection-title">The Elder Scrolls V: Skyrim</h4>
-                                <p class="collection-description">Paisajes nórdicos épicos</p>
-                            </div>
-                        </div>
-
-                        <!-- Metro Exodus Collection -->
-                        <div class="collection-card" data-collection="Metro">
-                            <div class="collection-preview">
-                                <img src="img/OptimizedVideoWLPRS/MetroExodus_01-web.mp4" alt="Metro Exodus" class="collection-image">
-                                <div class="collection-overlay">
-                                    <div class="collection-count">7 WLPRS</div>
-                                    <div class="collection-type">VideoWLPRS</div>
-                                </div>
-                            </div>
-                            <div class="collection-info">
-                                <h4 class="collection-title">Metro Exodus</h4>
-                                <p class="collection-description">Apocalipsis post-nuclear</p>
+                                <h4 class="collection-title">Batman: Arkham</h4>
+                                <p class="collection-description">Gotham City en todo su esplendor</p>
                             </div>
                         </div>
 
                         <!-- Death Stranding Collection -->
                         <div class="collection-card" data-collection="Death Stranding">
                             <div class="collection-preview">
-                                <img src="img/OptimizedVideoWLPRS/DeathStranding-SamWindy-VideoWLPR-web.mp4" alt="Death Stranding" class="collection-image">
+                                <img src="img/webp Death Stranding/1 (1).webp" alt="Death Stranding" class="collection-image">
                                 <div class="collection-overlay">
-                                    <div class="collection-count">5 WLPRS</div>
+                                    <div class="collection-count">32 WLPRS</div>
                                     <div class="collection-type">Mixed</div>
                                 </div>
                             </div>
                             <div class="collection-info">
                                 <h4 class="collection-title">Death Stranding</h4>
-                                <p class="collection-description">Sam Porter Bridges</p>
+                                <p class="collection-description">Sam Porter Bridges y paisajes únicos</p>
                             </div>
                         </div>
 
-                        <!-- Spider-Man Collection -->
-                        <div class="collection-card" data-collection="Spider-Man">
-                            <div class="collection-preview">
-                                <img src="img/OptimizedVideoWLPRS/SM2-SkyView-VideoWLPR 2-web.mp4" alt="Spider-Man" class="collection-image">
-                                <div class="collection-overlay">
-                                    <div class="collection-count">3 WLPRS</div>
-                                    <div class="collection-type">VideoWLPRS</div>
-                                </div>
-                            </div>
-                            <div class="collection-info">
-                                <h4 class="collection-title">Spider-Man</h4>
-                                <p class="collection-description">Nueva York desde las alturas</p>
-                            </div>
-                        </div>
-
-                        <!-- Batman/Arkham Collection -->
-                        <div class="collection-card" data-collection="Batman/Arkham">
-                            <div class="collection-preview">
-                                <img src="img/OptimizedVideoWLPRS/BatmanKnight-NightWalker-VideoWLPR-web.mp4" alt="Batman" class="collection-image">
-                                <div class="collection-overlay">
-                                    <div class="collection-count">2 WLPRS</div>
-                                    <div class="collection-type">Mixed</div>
-                                </div>
-                            </div>
-                            <div class="collection-info">
-                                <h4 class="collection-title">Batman: Arkham</h4>
-                                <p class="collection-description">Gotham City</p>
-                            </div>
-                        </div>
-
-                        <!-- Watch Dogs Collection -->
+                        <!-- Watch Dogs 2 Collection -->
                         <div class="collection-card" data-collection="Watch Dogs">
                             <div class="collection-preview">
-                                <img src="img/OptimizedVideoWLPRS/WD2-Marcus-WaterHouses-VideoWLPR-web.mp4" alt="Watch Dogs" class="collection-image">
+                                <img src="img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122152462_12.webp" alt="Watch Dogs 2" class="collection-image">
                                 <div class="collection-overlay">
-                                    <div class="collection-count">4 WLPRS</div>
+                                    <div class="collection-count">20 WLPRS</div>
                                     <div class="collection-type">Mixed</div>
                                 </div>
                             </div>
                             <div class="collection-info">
-                                <h4 class="collection-title">Watch Dogs</h4>
-                                <p class="collection-description">Hacking San Francisco</p>
+                                <h4 class="collection-title">Watch Dogs 2</h4>
+                                <p class="collection-description">Hacking San Francisco con Marcus</p>
                             </div>
                         </div>
 
-                        <!-- Mad Max Collection -->
-                        <div class="collection-card" data-collection="Mad Max">
+                        <!-- Battlefront 2 Collection -->
+                        <div class="collection-card" data-collection="Star Wars">
                             <div class="collection-preview">
-                                <img src="img/OptimizedVideoWLPRS/Mad-Max-SanFranciscoHope-VideoWLPR-web.mp4" alt="Mad Max" class="collection-image">
+                                <img src="img/webp Battlefront 2/bf2pinky.webp" alt="Star Wars Battlefront 2" class="collection-image">
                                 <div class="collection-overlay">
-                                    <div class="collection-count">3 WLPRS</div>
-                                    <div class="collection-type">VideoWLPRS</div>
+                                    <div class="collection-count">2 WLPRS</div>
+                                    <div class="collection-type">Static</div>
                                 </div>
                             </div>
                             <div class="collection-info">
-                                <h4 class="collection-title">Mad Max</h4>
-                                <p class="collection-description">Wasteland salvaje</p>
+                                <h4 class="collection-title">Star Wars: Battlefront 2</h4>
+                                <p class="collection-description">Una galaxia muy, muy lejana</p>
                             </div>
                         </div>
                     </div>
@@ -1173,6 +1169,48 @@
                         <button id="backToGallery" class="collection-btn">
                             ← Back to All WLPRS
                         </button>
+                    </div>
+                    
+                    <!-- Pricing Card in Collections -->
+                    <div class="mt-12 max-w-2xl mx-auto">
+                        <div style="background: linear-gradient(135deg, rgba(167, 135, 255, 0.15), rgba(167, 135, 255, 0.08)); border: 2px solid rgba(167, 135, 255, 0.3); border-radius: 16px; padding: 2rem; text-align: center; position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: -50%; right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(167, 135, 255, 0.2) 0%, transparent 70%); pointer-events: none;"></div>
+                            
+                            <div style="position: relative; z-index: 2;">
+                                <div style="display: inline-block; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; padding: 6px 12px; border-radius: 50px; font-size: 12px; font-weight: 600; margin-bottom: 1rem;">🔥 Limited Time</div>
+                                
+                                <h3 style="font-size: 1.5rem; font-weight: 700; color: white; margin-bottom: 1rem;">Unlock Full Collections</h3>
+                                
+                                <div style="margin-bottom: 1.5rem;">
+                                    <span style="font-size: 2.5rem; font-weight: 800; color: var(--accent);">$3.99</span>
+                                    <span style="color: #cbd5e1; font-size: 1rem;">/month</span>
+                                </div>
+                                
+                                <ul style="list-style: none; padding: 0; margin: 0 0 1.5rem 0; text-align: left; max-width: 300px; margin-left: auto; margin-right: auto;">
+                                    <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; color: white; font-size: 14px;">
+                                        <span style="color: #10b981;">✓</span>
+                                        <span><strong>+50GB</strong> of premium WLPRS</span>
+                                    </li>
+                                    <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; color: white; font-size: 14px;">
+                                        <span style="color: #10b981;">✓</span>
+                                        <span>All current collections</span>
+                                    </li>
+                                    <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; color: white; font-size: 14px;">
+                                        <span style="color: #10b981;">✓</span>
+                                        <span>1000+ unique wallpapers</span>
+                                    </li>
+                                    <li style="display: flex; align-items: center; gap: 8px; color: white; font-size: 14px;">
+                                        <span style="color: #10b981;">✓</span>
+                                        <span>Cancel anytime</span>
+                                    </li>
+                                </ul>
+                                
+                                <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 14px; box-shadow: 0 4px 16px rgba(167, 135, 255, 0.4);">
+                                    <span>🚀 Get Full Access</span>
+                                    <span>→</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1193,7 +1231,20 @@
                 </div> -->
             </div>
         </section>
-      
+        
+        <!-- Pricing Banner -->
+        <!-- <section class="py-8 px-4 sm:px-6 lg:px-8" style="background: linear-gradient(135deg, rgba(167, 135, 255, 0.1), rgba(167, 135, 255, 0.05)); border-bottom: 1px solid rgba(167, 135, 255, 0.2);">
+            <div class="max-w-4xl mx-auto text-center">
+                <div style="display: inline-block; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; padding: 6px 12px; border-radius: 50px; font-size: 12px; font-weight: 600; margin-bottom: 1rem;">💎 Premium Access</div>
+                <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem;">Get instant access to +50GB of BetterWLPRS</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Subscribe for just <strong style="color: var(--accent);">$3.99/month</strong> and unlock our complete library of 1000+ premium wallpapers</p>
+                <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year" target="_blank" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; padding: 12px 24px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); text-decoration: none;">
+                    <span>🚀 Get Full Access</span>
+                    <span>→</span>
+                </a>
+            </div>
+        </section>
+       -->
 
       
         <!-- Gallery Section -->
@@ -1391,18 +1442,80 @@
         // ========== DRIVE WALLPAPERS SYSTEM ==========
         // Imágenes locales organizadas por categorías específicas
         const localImages = [
-            // === GAMING WLPRS ===
-            // Assassin's Creed
-            { src: "img/ACOdissey-Vertical-Village-WLPR-08.png", title: "Odyssey Village Vista", category: "Assassin's Creed", type: "image", game: "Assassin's Creed Odyssey" },
-            
-            // Batman/Arkham
+            // === BATMAN / ARKHAM COLLECTION ===
             { src: "img/arkham.gif", title: "Arkham City Nights", category: "Batman/Arkham", type: "gif", game: "Batman Arkham" },
+            { src: "img/webp Arkham/webp Arkham-ake.webp", title: "Arkham Knight - Gotham View", category: "Batman/Arkham", type: "image", game: "Batman Arkham" },
+            { src: "img/webp Arkham/webp Arkham-akl.webp", title: "Arkham Knight - City Patrol", category: "Batman/Arkham", type: "image", game: "Batman Arkham" },
+            { src: "img/webp Arkham/webp Arkham-aku.webp", title: "Arkham Knight - Dark Streets", category: "Batman/Arkham", type: "image", game: "Batman Arkham" },
+            { src: "img/webp Arkham/webp Arkham-akw.webp", title: "Arkham Knight - Batmobile", category: "Batman/Arkham", type: "image", game: "Batman Arkham" },
+            { src: "img/webp Arkham/webp Arkham-webp Arkham-aka.webp", title: "Arkham Knight - Rooftop", category: "Batman/Arkham", type: "image", game: "Batman Arkham" },
+            { src: "img/OptimizedVideoWLPRS/BatmanKnight-NightWalker-VideoWLPR-web.mp4", title: "Batman Night Walker", category: "Batman/Arkham", type: "video", game: "Batman Arkham Knight" },
             
-            // Death Stranding
-            { src: "img/DishonoredDLC-Landscape-InsideBasement-WLPR-02.png", title: "Dishonored Basement", category: "Death Stranding", type: "image", game: "Dishonored" },
+            // === DEATH STRANDING COLLECTION ===
             { src: "img/samsittedahh.gif", title: "Sam Sitting", category: "Death Stranding", type: "gif", game: "Death Stranding" },
             { src: "img/samizquierdasentado.png", title: "Sam Portrait", category: "Death Stranding", type: "image", game: "Death Stranding" },
             { src: "img/samsatori.gif", title: "Sam Satori", category: "Death Stranding", type: "gif", game: "Death Stranding" },
+            { src: "img/DishonoredDLC-Landscape-InsideBasement-WLPR-02.png", title: "Dishonored Basement", category: "Death Stranding", type: "image", game: "Dishonored" },
+            { src: "img/OptimizedVideoWLPRS/DeathStranding-SamWindy-VideoWLPR-web.mp4", title: "Sam in Windy Plains", category: "Death Stranding", type: "video", game: "Death Stranding" },
+            // Death Stranding WebP Collection
+            { src: "img/webp Death Stranding/1 (1).webp", title: "DS - Lonely Journey", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (2).webp", title: "DS - Mountain Vista", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (3).webp", title: "DS - Cargo Delivery", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (4).webp", title: "DS - Rain Shelter", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (5).webp", title: "DS - Cliff Portrait", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (6).webp", title: "DS - Bridge Builder", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (7).webp", title: "DS - Timefall Storm", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (8).webp", title: "DS - Sam's Rest", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (9).webp", title: "DS - BB Connection", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (10).webp", title: "DS - Chiral Network", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (11).webp", title: "DS - Porter's Path", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (12).webp", title: "DS - BT Territory", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (13).webp", title: "DS - Fragile Express", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (14).webp", title: "DS - Ocean View", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (15).webp", title: "DS - Safe House", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (16).webp", title: "DS - Mama's Lab", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (17).webp", title: "DS - Heartman's Study", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (18).webp", title: "DS - Deadman's Office", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (19).webp", title: "DS - Higgs Encounter", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (20).webp", title: "DS - Amelie's Beach", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (21).webp", title: "DS - The Last Stranding", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (22).webp", title: "DS - Post-Apocalyptic Beauty", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (23).webp", title: "DS - Rebuilt America", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (24).webp", title: "DS - Connection Restored", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (25).webp", title: "DS - Hope Reborn", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (26).webp", title: "DS - New Beginning", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            { src: "img/webp Death Stranding/1 (27).webp", title: "DS - Final Delivery", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            
+            // === WATCH DOGS 2 COLLECTION ===
+            { src: "img/marcusittingfocused.jpg", title: "Marcus Focused", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            { src: "img/marcussittedahh.gif", title: "Marcus Sitting", category: "Watch Dogs", type: "gif", game: "Watch Dogs 2" },
+            { src: "img/OptimizedVideoWLPRS/WD2-Marcus-WaterHouses-Landscape-VideoWLPR-web.mp4", title: "WD2: Marcus Bay Area", category: "Watch Dogs", type: "video", game: "Watch Dogs 2" },
+            { src: "img/OptimizedVideoWLPRS/WD2-Marcus-WaterHouses-VideoWLPR-web.mp4", title: "WD2: Marcus Waterfront", category: "Watch Dogs", type: "video", game: "Watch Dogs 2" },
+            // Watch Dogs 2 WebP Collection
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122152462_12.webp", title: "WD2 - SF Golden Gate", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122704840_8.webp", title: "WD2 - Alcatraz Hack", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122836006_8.webp", title: "WD2 - Silicon Valley", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702123833355_8.webp", title: "WD2 - Marcus Portrait", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702123853643_8.webp", title: "WD2 - DedSec HQ", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702124007602_8.webp", title: "WD2 - Hacker's Paradise", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702124029296_8.webp", title: "WD2 - City Lights", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702124032716_8.webp", title: "WD2 - Tech Noir", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702124044724_8.webp", title: "WD2 - Underground", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702124108862_8.webp", title: "WD2 - Street Art", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702124126803_8.webp", title: "WD2 - Drone View", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0705114554806_8.webp", title: "WD2 - Digital Revolution", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0705114601239_8.webp", title: "WD2 - Social Network", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0705114733025_8.webp", title: "WD2 - Hack the Planet", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0705114752003_8.webp", title: "WD2 - Freedom Fighter", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-webp Watch Dogs 2-1img_0702122130503_8.webp", title: "WD2 - San Francisco Bay", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            
+            // === STAR WARS BATTLEFRONT 2 COLLECTION ===
+            { src: "img/webp Battlefront 2/bf2pinky.webp", title: "Battlefront 2 - Pink Trooper", category: "Star Wars", type: "image", game: "Star Wars Battlefront 2" },
+            { src: "img/videowlprs/discoelysiumstart.gif", title: "Disco Elysium Start", category: "Star Wars", type: "gif", game: "Disco Elysium" },
+            
+            // === EXISTING COLLECTIONS ===
+            // Assassin's Creed
+            { src: "img/ACOdissey-Vertical-Village-WLPR-08.png", title: "Odyssey Village Vista", category: "Assassin's Creed", type: "image", game: "Assassin's Creed Odyssey" },
             
             // Metal Gear
             { src: "img/mgsdelta.png", title: "MGS Delta Snake", category: "Metal Gear", type: "image", game: "Metal Gear Solid Delta" },
@@ -1412,10 +1525,6 @@
             
             // Spider-Man
             { src: "img/spidersky.gif", title: "Spider-Man Swinging", category: "Spider-Man", type: "gif", game: "Spider-Man" },
-            
-            // Watch Dogs
-            { src: "img/marcusittingfocused.jpg", title: "Marcus Focused", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
-            { src: "img/marcussittedahh.gif", title: "Marcus Sitting", category: "Watch Dogs", type: "gif", game: "Watch Dogs 2" },
             
             // The Long Dark
             { src: "img/thelongdarkwolfs.png", title: "Wolves in Snow", category: "The Long Dark", type: "image", game: "The Long Dark" },
@@ -1430,24 +1539,20 @@
             // === BRAND & LOGOS ===
             { src: "img/logobetterwlprs.png", title: "BetterWLPRS Logo", category: "Brand", type: "image", game: "BetterWLPRS" },
             
-            // === VIDEO WLPRS - BATMAN ===
-            { src: "img/OptimizedVideoWLPRS/BatmanKnight-NightWalker-VideoWLPR-web.mp4", title: "Batman Night Walker", category: "Batman/Arkham", type: "video", game: "Batman Arkham Knight" },
-            
-            // === VIDEO WLPRS - DEATH STRANDING ===
-            { src: "img/OptimizedVideoWLPRS/DeathStranding-SamWindy-VideoWLPR-web.mp4", title: "Sam in Windy Plains", category: "Death Stranding", type: "video", game: "Death Stranding" },
-            
-            // === VIDEO WLPRS - DYING LIGHT ===
+            // === VIDEO WLPRS - EXISTING COLLECTIONS ===
+            // Dying Light
             { src: "img/OptimizedVideoWLPRS/Dying Light  The Beast 2025.09.25 - 19.01.34.02-web.mp4", title: "Dying Light: The Beast", category: "Dying Light", type: "video", game: "Dying Light" },
             
-            // === VIDEO WLPRS - FALLOUT ===
+            // Fallout
             { src: "img/OptimizedVideoWLPRS/Fallout 3 2025.09.27 - 23.21.41.03-web.mp4", title: "Fallout 3 Wasteland", category: "Fallout", type: "video", game: "Fallout 3" },
             
-            // === VIDEO WLPRS - MAD MAX ===
+            // Mad Max
             { src: "img/OptimizedVideoWLPRS/Mad-Max-MoonLightHouse-VideoWLPR-web.mp4", title: "Mad Max: Moon Lighthouse", category: "Mad Max", type: "video", game: "Mad Max" },
             { src: "img/OptimizedVideoWLPRS/Mad-Max-SanFranciscoHope-VideoWLPR-web.mp4", title: "Mad Max: SF Hope", category: "Mad Max", type: "video", game: "Mad Max" },
             { src: "img/OptimizedVideoWLPRS/Mad-Max-UnderSanFrancisco-VideoWLPR-web.mp4", title: "Mad Max: Under SF", category: "Mad Max", type: "video", game: "Mad Max" },
+            { src: "img/videowlprs/madmaxlivewlprsany.gif", title: "Mad Max Live WLPR", category: "Mad Max", type: "gif", game: "Mad Max" },
             
-            // === VIDEO WLPRS - METRO EXODUS ===
+            // Metro Exodus
             { src: "img/OptimizedVideoWLPRS/MetroExodus_01-web.mp4", title: "Metro Exodus: Scene 01", category: "Metro", type: "video", game: "Metro Exodus" },
             { src: "img/OptimizedVideoWLPRS/MetroExodus_03-web.mp4", title: "Metro Exodus: Scene 03", category: "Metro", type: "video", game: "Metro Exodus" },
             { src: "img/OptimizedVideoWLPRS/MetroExodus_04-web.mp4", title: "Metro Exodus: Scene 04", category: "Metro", type: "video", game: "Metro Exodus" },
@@ -1456,30 +1561,30 @@
             { src: "img/OptimizedVideoWLPRS/MetroExodus_08-web.mp4", title: "Metro Exodus: Scene 08", category: "Metro", type: "video", game: "Metro Exodus" },
             { src: "img/OptimizedVideoWLPRS/MetroExodus_10-web.mp4", title: "Metro Exodus: Scene 10", category: "Metro", type: "video", game: "Metro Exodus" },
             
-            // === VIDEO WLPRS - PREY ===
+            // Prey
             { src: "img/OptimizedVideoWLPRS/Prey (2017) 2025.09.08 - 18.00.41.02 - Trm-web.mp4", title: "Prey: Talos Station", category: "Prey", type: "video", game: "Prey (2017)" },
             { src: "img/OptimizedVideoWLPRS/Prey (2017) 2025.09.08 - 18.03.51.04-web.mp4", title: "Prey: Corridor View", category: "Prey", type: "video", game: "Prey (2017)" },
             { src: "img/OptimizedVideoWLPRS/Prey (2017) 2025.09.08 - 18.04.42.05-web.mp4", title: "Prey: Space Station", category: "Prey", type: "video", game: "Prey (2017)" },
             
-            // === VIDEO WLPRS - SPIDER-MAN ===
+            // Spider-Man
             { src: "img/OptimizedVideoWLPRS/SM2-Rainy-RaimiBlackSuit-Church-VideoWLPR-web.mp4", title: "Spider-Man: Rainy Church", category: "Spider-Man", type: "video", game: "Spider-Man 2" },
             { src: "img/OptimizedVideoWLPRS/SM2-SkyView-VideoWLPR 2-web.mp4", title: "Spider-Man: Sky View", category: "Spider-Man", type: "video", game: "Spider-Man 2" },
             
-            // === VIDEO WLPRS - SKYRIM ===
+            // Skyrim
             { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_04-web.mp4", title: "Skyrim: Dragon Valley", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim" },
             { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_09-web.mp4", title: "Skyrim: Nordic Landscape", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim" },
             { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_10-web.mp4", title: "Skyrim: Mountain Vista", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim" },
             { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_12-web.mp4", title: "Skyrim: Aurora Borealis", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim" },
             { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_15-web.mp4", title: "Skyrim: Whiterun Plains", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim" },
             
-            // === VIDEO WLPRS - SPEC OPS ===
+            // Spec Ops
             { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_03-web.mp4", title: "Spec Ops: Desert Storm", category: "Spec Ops", type: "video", game: "Spec Ops: The Line" },
             { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_04-web.mp4", title: "Spec Ops: Dubai Ruins", category: "Spec Ops", type: "video", game: "Spec Ops: The Line" },
             { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_07-web.mp4", title: "Spec Ops: Sand Dunes", category: "Spec Ops", type: "video", game: "Spec Ops: The Line" },
             { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_12-web.mp4", title: "Spec Ops: Burning City", category: "Spec Ops", type: "video", game: "Spec Ops: The Line" },
             { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_Dinamic_08-web.mp4", title: "Spec Ops: Dynamic Scene", category: "Spec Ops", type: "video", game: "Spec Ops: The Line" },
             
-            // === VIDEO WLPRS - THE WITCHER 3 ===
+            // The Witcher 3
             { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.17.38.01-web.mp4", title: "Witcher 3: Novigrad Sunset", category: "The Witcher", type: "video", game: "The Witcher 3" },
             { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.19.02.02-web.mp4", title: "Witcher 3: Skellige Isles", category: "The Witcher", type: "video", game: "The Witcher 3" },
             { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.20.40.03-web.mp4", title: "Witcher 3: Velen Swamps", category: "The Witcher", type: "video", game: "The Witcher 3" },
@@ -1489,11 +1594,7 @@
             { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.53.39.12-web.mp4", title: "Witcher 3: White Orchard", category: "The Witcher", type: "video", game: "The Witcher 3" },
             { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.55.19.13-web.mp4", title: "Witcher 3: Crookback Bog", category: "The Witcher", type: "video", game: "The Witcher 3" },
             { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.55.56.14-web.mp4", title: "Witcher 3: Beauclair", category: "The Witcher", type: "video", game: "The Witcher 3" },
-            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.56.42.15-web.mp4", title: "Witcher 3: Corvo Bianco", category: "The Witcher", type: "video", game: "The Witcher 3" },
-            
-            // === VIDEO WLPRS - WATCH DOGS 2 ===
-            { src: "img/OptimizedVideoWLPRS/WD2-Marcus-WaterHouses-Landscape-VideoWLPR-web.mp4", title: "WD2: Marcus Bay Area", category: "Watch Dogs", type: "video", game: "Watch Dogs 2" },
-            { src: "img/OptimizedVideoWLPRS/WD2-Marcus-WaterHouses-VideoWLPR-web.mp4", title: "WD2: Marcus Waterfront", category: "Watch Dogs", type: "video", game: "Watch Dogs 2" }
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.56.42.15-web.mp4", title: "Witcher 3: Corvo Bianco", category: "The Witcher", type: "video", game: "The Witcher 3" }
         ];
 
         // Configuration
@@ -1502,6 +1603,17 @@
         let currentView = 'all'; // Cambio de currentFilter a currentView
         let currentSearch = '';
         let currentCollection = null;
+        let shuffledImages = []; // Array para imágenes barajadas
+
+        // Función para barajear array (Fisher-Yates shuffle)
+        function shuffleArray(array) {
+            const shuffled = [...array]; // Crear copia para no modificar el original
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
 
         // DOM elements
         const galleryGrid = document.getElementById('galleryGrid');
@@ -1672,10 +1784,10 @@
         // Load more items
         function loadMoreItems() {
             const startIndex = currentPage * ITEMS_PER_PAGE;
-            const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, localImages.length);
+            const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, shuffledImages.length);
             for (let i = startIndex; i < endIndex; i++) {
-                if (i < localImages.length) {
-                    const item = createGalleryItem(localImages[i], i);
+                if (i < shuffledImages.length) {
+                    const item = createGalleryItem(shuffledImages[i], i);
                     galleryGrid.appendChild(item);
                 }
             }
@@ -1698,9 +1810,9 @@
         function updateUI() {
             const visibleItems = Array.from(galleryGrid.children).length;
             currentCount.textContent = visibleItems;
-            totalCount.textContent = localImages.length;
+            totalCount.textContent = shuffledImages.length;
             // Hide load more button if all items are loaded
-            if (currentPage * ITEMS_PER_PAGE >= localImages.length) {
+            if (currentPage * ITEMS_PER_PAGE >= shuffledImages.length) {
                 loadMoreBtn.textContent = '¡Todos los wallpapers cargados!';
                 loadMoreBtn.disabled = true;
                 loadMoreBtn.classList.add('opacity-50', 'cursor-not-allowed');
@@ -1766,6 +1878,23 @@
             collectionsGrid.classList.remove('show');
             galleryGrid.style.display = 'block';
             document.getElementById('loadMoreContainer').style.display = 'block';
+            
+            // Re-barajear cuando se cambie de vista para variedad
+            shuffledImages = shuffleArray(localImages);
+            
+            // Reset page counter y limpiar galería
+            currentPage = 0;
+            galleryGrid.innerHTML = '';
+            
+            // Reset del botón load more
+            if (loadMoreBtn) {
+                loadMoreBtn.textContent = 'Load More WLPRS';
+                loadMoreBtn.disabled = false;
+                loadMoreBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+            
+            // Load first batch
+            loadMoreItems();
             
             applyFilters();
         }
@@ -1861,6 +1990,10 @@
         // Initialize gallery
         function initGallery() {
             console.log('Iniciando galería...');
+            
+            // Barajear las imágenes para variedad
+            shuffledImages = shuffleArray(localImages);
+            
             setTimeout(() => {
                 loadingIndicator.style.display = 'none';
                 galleryGrid.style.display = 'block';
@@ -1874,12 +2007,58 @@
                     initializeCollections();
                 }, 500);
                 
-                console.log('Galería cargada');
+                console.log('Galería cargada con', shuffledImages.length, 'WLPRS aleatorios');
             }, 1000);
         }
 
         // Start the gallery when page loads
         document.addEventListener('DOMContentLoaded', initGallery);
+
+        // ========== SHUFFLE BUTTON FUNCTIONALITY ========== 
+        document.addEventListener('DOMContentLoaded', function() {
+            const shuffleBtn = document.getElementById('shuffleBtn');
+            
+            if (shuffleBtn) {
+                console.log('🎲 Shuffle button found and attached');
+                
+                shuffleBtn.addEventListener('click', function() {
+                    console.log('🎲 Shuffle button clicked!');
+                    const btn = this;
+                    
+                    // Añadir clase de animación
+                    btn.classList.add('rotating');
+                    
+                    // Re-barajear y recargar galería
+                    shuffledImages = shuffleArray(localImages);
+                    console.log('🔄 Images shuffled, new order created');
+                    
+                    // Limpiar galería completamente
+                    galleryGrid.innerHTML = '';
+                    currentPage = 0;
+                    console.log('🗑️ Gallery cleared, page reset to 0');
+                    
+                    // Reset del botón load more
+                    if (loadMoreBtn) {
+                        loadMoreBtn.textContent = 'Load More WLPRS';
+                        loadMoreBtn.disabled = false;
+                        loadMoreBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    }
+                    
+                    // Pequeña pausa para la animación
+                    setTimeout(() => {
+                        loadMoreItems();
+                        console.log('✅ New shuffled items loaded!');
+                    }, 300);
+                    
+                    // Remover clase de animación después de completar
+                    setTimeout(() => {
+                        btn.classList.remove('rotating');
+                    }, 600);
+                });
+            } else {
+                console.error('❌ Shuffle button not found!');
+            }
+        });
 
         // ========== MOBILE TAP HOVER FOR GALLERY ========== 
         function enableMobileGalleryTap() {
@@ -2014,5 +2193,10 @@
                 </div>
             </div>
         </footer>
+
+        <!-- Floating Shuffle Button -->
+        <button id="shuffleBtn" class="shuffle-float-btn" title="Shuffle Gallery - Mix up the WLPRS order!">
+            🎲
+        </button>
     </body>
 </html>
