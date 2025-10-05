@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5e6d3 0%, #faf4eb 100%);
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            width: 100%;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px 0;
+        }
+
+        .spline-container {
+            width: 90%;
+            max-width: 1200px;
+            height: 600px;
+            background: linear-gradient(135deg, #d4e5f7 0%, #c8dff8 100%);
+            border-radius: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .spline-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 40px;
+        }
+
+        .placeholder-text {
+            font-size: 72px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #e4a5c7 0%, #d89db8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            text-shadow: 0 4px 12px rgba(228, 165, 199, 0.3);
+        }
+
+        .projects-section {
+            width: 100%;
+            padding: 40px 20px 120px;
+            margin-top: -120px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #d4e5f7 0%, #c8dff8 100%);
+            border-radius: 30px;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(228, 165, 199, 0.2) 0%, rgba(216, 157, 184, 0.2) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 100%;
+        }
+
+        .project-preview {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            right: 40px;
+            transition: all 0.5s ease;
+        }
+
+        .project-number {
+            font-size: 14px;
+            font-weight: 600;
+            color: #e4a5c7;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .project-title {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .project-details {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0));
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-details {
+            transform: translateY(0);
+        }
+
+        .project-description {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .project-tag {
+            padding: 6px 14px;
+            background: rgba(228, 165, 199, 0.15);
+            color: #e4a5c7;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 20px;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            animation: fadeIn 1s ease 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .scroll-text {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            letter-spacing: 2px;
+        }
+
+        .scroll-arrow {
+            width: 30px;
+            height: 50px;
+            border: 2px solid #e4a5c7;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .scroll-arrow::before {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #e4a5c7;
+            border-radius: 50%;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scrollDown 2s ease infinite;
+        }
+
+        @keyframes scrollDown {
+            0%, 100% {
+                top: 10px;
+                opacity: 1;
+            }
+            50% {
+                top: 28px;
+                opacity: 0.5;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .project-card {
+                height: 400px;
+            }
+
+            .placeholder-text {
+                font-size: 56px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .spline-container {
+                height: 450px;
+                border-radius: 30px;
+            }
+
+            .placeholder-text {
+                font-size: 42px;
+            }
+
+            .section-title {
+                font-size: 36px;
+                margin-bottom: 40px;
+            }
+
+            .projects-section {
+                margin-top: -80px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .project-card {
+                height: 350px;
+            }
+
+            .project-preview {
+                bottom: 30px;
+                left: 30px;
+                right: 30px;
+            }
+
+            .project-title {
+                font-size: 28px;
+            }
+
+            .project-details {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section {
+                padding: 20px 15px 0;
+            }
+
+            .spline-container {
+                width: 95%;
+                height: 350px;
+                border-radius: 25px;
+            }
+
+            .placeholder-text {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .project-card {
+                height: 300px;
+                border-radius: 20px;
+            }
+
+            .project-preview {
+                bottom: 25px;
+                left: 25px;
+                right: 25px;
+            }
+
+            .project-title {
+                font-size: 24px;
+            }
+
+            .project-details {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <div class="spline-container">
+            <!-- Reemplaza este iframe con tu URL de Spline -->
+            <iframe src="https://my.spline.design/untitled-9b401ea5ce6fb8bec9984e05b76a8c0b/" frameborder="0"></iframe>
+            <!-- Si aún no tienes tu escena de Spline, se mostrará el placeholder -->
+            <!-- <div class="placeholder-text">Spline Scene</div> -->
+        </div>
+    </div>
+
+    <div class="scroll-indicator">
+        <span class="scroll-text">SCROLL</span>
+        <div class="scroll-arrow"></div>
+    </div>
+
+    <div class="projects-section">
+        <h2 class="section-title">Proyectos Destacados</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-content">
+                    <div class="project-preview">
+                        <div class="project-number">01</div>
+                        <h3 class="project-title">E-Commerce Platform</h3>
+                    </div>
+                    <div class="project-details">
+                        <p class="project-description">Una plataforma moderna de comercio electrónico con experiencia de usuario fluida y animaciones suaves.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">UI/UX</span>
+                            <span class="project-tag">React</span>
+                            <span class="project-tag">E-commerce</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-content">
+                    <div class="project-preview">
+                        <div class="project-number">02</div>
+                        <h3 class="project-title">Mobile App Design</h3>
+                    </div>
+                    <div class="project-details">
+                        <p class="project-description">Diseño de aplicación móvil intuitiva con enfoque en la experiencia del usuario y accesibilidad.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Mobile</span>
+                            <span class="project-tag">Design</span>
+                            <span class="project-tag">Figma</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-content">
+                    <div class="project-preview">
+                        <div class="project-number">03</div>
+                        <h3 class="project-title">Brand Identity</h3>
+                    </div>
+                    <div class="project-details">
+                        <p class="project-description">Desarrollo completo de identidad de marca con sistema de diseño coherente y memorable.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Branding</span>
+                            <span class="project-tag">Identity</span>
+                            <span class="project-tag">Design System</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-content">
+                    <div class="project-preview">
+                        <div class="project-number">04</div>
+                        <h3 class="project-title">Dashboard UI</h3>
+                    </div>
+                    <div class="project-details">
+                        <p class="project-description">Interfaz de dashboard con visualización de datos clara y navegación eficiente.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Dashboard</span>
+                            <span class="project-tag">Data Viz</span>
+                            <span class="project-tag">SaaS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-content">
+                    <div class="project-preview">
+                        <div class="project-number">05</div>
+                        <h3 class="project-title">Landing Page</h3>
+                    </div>
+                    <div class="project-details">
+                        <p class="project-description">Página de aterrizaje con alto impacto visual diseñada para maximizar conversiones.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Landing</span>
+                            <span class="project-tag">Marketing</span>
+                            <span class="project-tag">Conversion</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-content">
+                    <div class="project-preview">
+                        <div class="project-number">06</div>
+                        <h3 class="project-title">Social Platform</h3>
+                    </div>
+                    <div class="project-details">
+                        <p class="project-description">Plataforma social interactiva con características de tiempo real y diseño responsive.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Social</span>
+                            <span class="project-tag">Real-time</span>
+                            <span class="project-tag">Community</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Hide scroll indicator on scroll
+        window.addEventListener('scroll', () => {
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (window.scrollY > 100) {
+                scrollIndicator.style.opacity = '0';
+            } else {
+                scrollIndicator.style.opacity = '1';
+            }
+        });
+
+        // Intersection Observer for project cards animation
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'all 0.8s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
