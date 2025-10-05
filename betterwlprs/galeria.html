@@ -1102,66 +1102,8 @@
                 <!-- Collections Grid (Hidden by default) -->
                 <div id="collectionsGrid" class="hidden mb-12">
                     <h3 class="text-3xl font-bold text-center text-white mb-8">Game Collections</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                        <!-- Arkham Collection -->
-                        <div class="collection-card" data-collection="Batman/Arkham">
-                            <div class="collection-preview">
-                                <img src="img/webp Arkham/webp Arkham-ake.webp" alt="Batman Arkham" class="collection-image">
-                                <div class="collection-overlay">
-                                    <div class="collection-count">6 WLPRS</div>
-                                    <div class="collection-type">Mixed</div>
-                                </div>
-                            </div>
-                            <div class="collection-info">
-                                <h4 class="collection-title">Batman: Arkham</h4>
-                                <p class="collection-description">Gotham City en todo su esplendor</p>
-                            </div>
-                        </div>
-
-                        <!-- Death Stranding Collection -->
-                        <div class="collection-card" data-collection="Death Stranding">
-                            <div class="collection-preview">
-                                <img src="img/webp Death Stranding/1 (1).webp" alt="Death Stranding" class="collection-image">
-                                <div class="collection-overlay">
-                                    <div class="collection-count">32 WLPRS</div>
-                                    <div class="collection-type">Mixed</div>
-                                </div>
-                            </div>
-                            <div class="collection-info">
-                                <h4 class="collection-title">Death Stranding</h4>
-                                <p class="collection-description">Sam Porter Bridges y paisajes únicos</p>
-                            </div>
-                        </div>
-
-                        <!-- Watch Dogs 2 Collection -->
-                        <div class="collection-card" data-collection="Watch Dogs">
-                            <div class="collection-preview">
-                                <img src="img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122152462_12.webp" alt="Watch Dogs 2" class="collection-image">
-                                <div class="collection-overlay">
-                                    <div class="collection-count">20 WLPRS</div>
-                                    <div class="collection-type">Mixed</div>
-                                </div>
-                            </div>
-                            <div class="collection-info">
-                                <h4 class="collection-title">Watch Dogs 2</h4>
-                                <p class="collection-description">Hacking San Francisco con Marcus</p>
-                            </div>
-                        </div>
-
-                        <!-- Battlefront 2 Collection -->
-                        <div class="collection-card" data-collection="Star Wars">
-                            <div class="collection-preview">
-                                <img src="img/webp Battlefront 2/bf2pinky.webp" alt="Star Wars Battlefront 2" class="collection-image">
-                                <div class="collection-overlay">
-                                    <div class="collection-count">2 WLPRS</div>
-                                    <div class="collection-type">Static</div>
-                                </div>
-                            </div>
-                            <div class="collection-info">
-                                <h4 class="collection-title">Star Wars: Battlefront 2</h4>
-                                <p class="collection-description">Una galaxia muy, muy lejana</p>
-                            </div>
-                        </div>
+                    <div id="collectionsInnerGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                        <!-- Las tarjetas de colección se generan dinámicamente a partir de `localImages` -->
                     </div>
 
                     <!-- Back to Gallery Button -->
@@ -1795,16 +1737,7 @@
             updateUI();
         }
 
-        // Check if item matches current filter and search
-        function matchesFilter(item) {
-            const category = item.getAttribute('data-category');
-            const title = item.getAttribute('data-title').toLowerCase();
-            
-            const matchesCategory = currentFilter === 'all' || category === currentFilter;
-            const matchesSearch = currentSearch === '' || title.includes(currentSearch.toLowerCase());
-            
-            return matchesCategory && matchesSearch;
-        }
+        // (Removed old duplicate matchesFilter to use consolidated version later)
 
         // Update UI counters and buttons
         function updateUI() {
@@ -1845,7 +1778,8 @@
                 card.addEventListener('click', () => {
                     const collection = card.getAttribute('data-collection');
                     showGalleryView(collection);
-                    updateActiveButton(document.querySelector(`[data-collection="${collection}"]`));
+                    // Use the clicked card directly to set active state (safer for special chars)
+                    updateActiveButton(card);
                 });
             });
             
@@ -1857,10 +1791,88 @@
         }
         
         function updateActiveButton(activeButton) {
-            collectionButtons.forEach(btn => {
-                btn.classList.remove('active');
-            });
+            // Remove 'active' from top control buttons and from collection cards
+            document.querySelectorAll('.collection-btn, .collection-card').forEach(el => el.classList.remove('active'));
             activeButton?.classList.add('active');
+        }
+
+        // Construye dinámicamente el grid de colecciones a partir de localImages
+        function buildCollectionsGrid() {
+            const container = document.getElementById('collectionsInnerGrid');
+            if (!container) return;
+
+            // Agrupar imágenes por 'category' preferentemente, si no usar 'game'
+            const map = new Map();
+            localImages.forEach(img => {
+                const key = img.category || img.game || 'Misc';
+                if (!map.has(key)) map.set(key, []);
+                map.get(key).push(img);
+            });
+
+            // Limpiar contenido previo
+            container.innerHTML = '';
+
+            // Crear una tarjeta por cada categoría/juego con WLPRS
+            map.forEach((items, key) => {
+                // Evitar crear la colección 'Brand' o variantes
+                if (!key) return;
+                const keyLower = String(key).toLowerCase();
+                if (keyLower === 'brand' || keyLower.includes('brand')) return;
+
+                // Preferir una imagen estática (type === 'image') y que no sea un logo
+                const nonLogoImage = items.find(i => (i.type === 'image' || i.type === 'gif') && !/logo/i.test(i.src) && (String(i.category) === String(key) || String(i.game) === String(key)));
+                const fallbackImage = items.find(i => (i.type === 'image' || i.type === 'gif') && !/logo/i.test(i.src)) || items[0];
+                const preview = nonLogoImage || fallbackImage || items[0];
+
+                const count = items.length;
+                const type = items.some(i => i.type === 'video') ? 'Mixed' : (items.every(i => i.type === 'video') ? 'Video' : 'Static');
+
+                // Formatear título para mostrar (ej. 'Batman/Arkham' -> 'Batman: Arkham')
+                const displayTitle = String(key).includes('/') ? String(key).replace('/', ': ') : String(key);
+
+                const card = document.createElement('div');
+                card.className = 'collection-card';
+                card.setAttribute('data-collection', key);
+
+                // Construir preview: si preview es un video, mostrar <video> con poster si existe
+                let previewHtml = '';
+                const isVideoPreview = preview && (preview.type === 'video' || /\.mp4$|\.webm$|\.mov$/i.test(preview.src || ''));
+
+                if (isVideoPreview) {
+                    // Buscar un poster (imagen no-logo) dentro de la colección
+                    const poster = items.find(i => (i.type === 'image' || i.type === 'gif') && !/logo/i.test(i.src))?.src || '';
+                    const posterAttr = poster ? `poster="${poster}"` : '';
+
+                    previewHtml = `
+                        <video class="collection-image" ${posterAttr} autoplay muted loop playsinline onerror="this.style.display='none'; this.parentElement.querySelector('img.collection-image-fallback')?.style.display='block'">
+                            <source src="${preview.src}" type="video/mp4">
+                            Tu navegador no soporta video.
+                        </video>
+                        <img src="${poster || 'img/logobetterwlprs.png'}" alt="${displayTitle}" class="collection-image collection-image-fallback" style="display:none;" onerror="this.src='img/logobetterwlprs.png'">
+                    `;
+                } else {
+                    // Normal image/gif preview
+                    const imgSrc = preview?.src || 'img/logobetterwlprs.png';
+                    previewHtml = `<img src="${imgSrc}" alt="${displayTitle}" class="collection-image" onerror="this.src='img/logobetterwlprs.png'">`;
+                }
+
+                card.innerHTML = `
+                    <div class="collection-preview">
+                        ${previewHtml}
+                        <div class="collection-overlay">
+                            <div class="collection-count">${count} WLPRS</div>
+                            <div class="collection-type">${type}</div>
+                        </div>
+                    </div>
+                    <div class="collection-info">
+                        <h4 class="collection-title">${displayTitle}</h4>
+                        <p class="collection-description">Colección generada automáticamente a partir de los WLPRS disponibles</p>
+                    </div>
+                `;
+
+                // No añadir listeners aquí para evitar duplicados; initializeCollections() los manejará.
+                container.appendChild(card);
+            });
         }
         
         function showCollectionsView() {
@@ -2002,8 +2014,9 @@
                 // Load first batch
                 loadMoreItems();
                 
-                // Initialize filters after gallery is loaded
+                // Build collections grid and initialize filters after gallery is loaded
                 setTimeout(() => {
+                    buildCollectionsGrid();
                     initializeCollections();
                 }, 500);
                 
