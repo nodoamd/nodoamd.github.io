@@ -1397,8 +1397,10 @@
             { src: "img/samsittedahh.gif", title: "Sam Sitting", category: "Death Stranding", type: "gif", game: "Death Stranding" },
             { src: "img/samizquierdasentado.png", title: "Sam Portrait", category: "Death Stranding", type: "image", game: "Death Stranding" },
             { src: "img/samsatori.gif", title: "Sam Satori", category: "Death Stranding", type: "gif", game: "Death Stranding" },
-            { src: "img/DishonoredDLC-Landscape-InsideBasement-WLPR-02.png", title: "Dishonored Basement", category: "Death Stranding", type: "image", game: "Dishonored" },
             { src: "img/OptimizedVideoWLPRS/DeathStranding-SamWindy-VideoWLPR-web.mp4", title: "Sam in Windy Plains", category: "Death Stranding", type: "video", game: "Death Stranding" },
+            
+            // === DISHONORED COLLECTION ===
+            { src: "img/DishonoredDLC-Landscape-InsideBasement-WLPR-02.png", title: "Dishonored Basement", category: "Dishonored", type: "image", game: "Dishonored" },
             // Death Stranding WebP Collection
             { src: "img/webp Death Stranding/1 (1).webp", title: "DS - Lonely Journey", category: "Death Stranding", type: "image", game: "Death Stranding" },
             { src: "img/webp Death Stranding/1 (2).webp", title: "DS - Mountain Vista", category: "Death Stranding", type: "image", game: "Death Stranding" },
@@ -1453,7 +1455,9 @@
             
             // === STAR WARS BATTLEFRONT 2 COLLECTION ===
             { src: "img/webp Battlefront 2/bf2pinky.webp", title: "Battlefront 2 - Pink Trooper", category: "Star Wars", type: "image", game: "Star Wars Battlefront 2" },
-            { src: "img/videowlprs/discoelysiumstart.gif", title: "Disco Elysium Start", category: "Star Wars", type: "gif", game: "Disco Elysium" },
+            
+            // === DISCO ELYSIUM COLLECTION ===
+            { src: "img/videowlprs/discoelysiumstart.gif", title: "Disco Elysium Start", category: "Disco Elysium", type: "gif", game: "Disco Elysium" },
             
             // === EXISTING COLLECTIONS ===
             // Assassin's Creed
@@ -1471,12 +1475,13 @@
             // The Long Dark
             { src: "img/thelongdarkwolfs.png", title: "Wolves in Snow", category: "The Long Dark", type: "image", game: "The Long Dark" },
             
-            // === NATURE & LANDSCAPES ===
-            { src: "img/sanfracampview.jpg", title: "San Francisco Camp View", category: "Nature", type: "image", game: "Landscape" },
+            // === MISC COLLECTIONS (NOT SHOWN IN BROWSE) ===
+            // Nature & Landscapes
+            { src: "img/sanfracampview.jpg", title: "San Francisco Camp View", category: "Landscapes", type: "image", game: "Landscape" },
             
-            // === ABSTRACT & ART ===
-            { src: "img/discoelysium.webp", title: "Disco Elysium Art", category: "Abstract", type: "image", game: "Disco Elysium" },
-            { src: "img/barman.png", title: "Bartender Scene", category: "Abstract", type: "image", game: "Artistic" },
+            // Abstract & Art
+            { src: "img/discoelysium.webp", title: "Disco Elysium Art", category: "Disco Elysium", type: "image", game: "Disco Elysium" },
+            { src: "img/barman.png", title: "Bartender Scene", category: "Art", type: "image", game: "Artistic" },
             
             // === BRAND & LOGOS ===
             { src: "img/logobetterwlprs.png", title: "BetterWLPRS Logo", category: "Brand", type: "image", game: "BetterWLPRS" },
@@ -1723,29 +1728,67 @@
             document.body.removeChild(link);
         }
 
+        // Get filtered images based on current view
+        function getFilteredImages() {
+            let filtered = [];
+            
+            if (currentView === 'all') {
+                filtered = shuffledImages;
+            } else if (currentView === 'video') {
+                filtered = shuffledImages.filter(img => img.type === 'video');
+            } else if (currentView === 'static') {
+                filtered = shuffledImages.filter(img => img.type === 'image' || img.type === 'gif');
+            } else {
+                // Filtrar por categoría o juego específico
+                filtered = shuffledImages.filter(img => 
+                    img.category === currentView || img.game === currentView
+                );
+            }
+            
+            // Aplicar filtro de búsqueda si existe
+            if (currentSearch) {
+                filtered = filtered.filter(img => 
+                    img.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
+                    (img.game && img.game.toLowerCase().includes(currentSearch.toLowerCase())) ||
+                    (img.category && img.category.toLowerCase().includes(currentSearch.toLowerCase()))
+                );
+            }
+            
+            console.log(`Filtering for view '${currentView}': found ${filtered.length} items out of ${shuffledImages.length} total`);
+            return filtered;
+        }
+
         // Load more items
         function loadMoreItems() {
+            // Obtener las imágenes filtradas para la vista actual
+            const filteredImages = getFilteredImages();
+            
             const startIndex = currentPage * ITEMS_PER_PAGE;
-            const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, shuffledImages.length);
+            const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, filteredImages.length);
+            
             for (let i = startIndex; i < endIndex; i++) {
-                if (i < shuffledImages.length) {
-                    const item = createGalleryItem(shuffledImages[i], i);
+                if (i < filteredImages.length) {
+                    const item = createGalleryItem(filteredImages[i], i);
                     galleryGrid.appendChild(item);
                 }
             }
+            
             currentPage++;
-            updateUI();
+            updateUI(filteredImages.length);
         }
 
         // (Removed old duplicate matchesFilter to use consolidated version later)
 
         // Update UI counters and buttons
-        function updateUI() {
+        function updateUI(totalFilteredItems = null) {
             const visibleItems = Array.from(galleryGrid.children).length;
+            const totalItems = totalFilteredItems !== null ? totalFilteredItems : getFilteredImages().length;
+            
             currentCount.textContent = visibleItems;
-            totalCount.textContent = shuffledImages.length;
+            totalCount.textContent = totalItems;
+            
             // Hide load more button if all items are loaded
-            if (currentPage * ITEMS_PER_PAGE >= shuffledImages.length) {
+            if (currentPage * ITEMS_PER_PAGE >= totalItems) {
                 loadMoreBtn.textContent = '¡Todos los wallpapers cargados!';
                 loadMoreBtn.disabled = true;
                 loadMoreBtn.classList.add('opacity-50', 'cursor-not-allowed');
@@ -1814,18 +1857,35 @@
 
             // Crear una tarjeta por cada categoría/juego con WLPRS
             map.forEach((items, key) => {
-                // Evitar crear la colección 'Brand' o variantes
+                // Evitar crear colecciones problemáticas o vacías
                 if (!key) return;
                 const keyLower = String(key).toLowerCase();
-                if (keyLower === 'brand' || keyLower.includes('brand')) return;
+                const excludedCategories = ['brand', 'misc', 'abstract', 'nature', 'landscapes', 'art', 'artistic'];
+                if (excludedCategories.some(cat => keyLower.includes(cat)) || items.length < 2) return;
 
                 // Preferir una imagen estática (type === 'image') y que no sea un logo
-                const nonLogoImage = items.find(i => (i.type === 'image' || i.type === 'gif') && !/logo/i.test(i.src) && (String(i.category) === String(key) || String(i.game) === String(key)));
-                const fallbackImage = items.find(i => (i.type === 'image' || i.type === 'gif') && !/logo/i.test(i.src)) || items[0];
+                const nonLogoImage = items.find(i => (i.type === 'image' || i.type === 'gif') && 
+                    !/logo|brand/i.test(i.src) && !/logo|brand/i.test(i.title) &&
+                    (String(i.category) === String(key) || String(i.game) === String(key)));
+                const fallbackImage = items.find(i => (i.type === 'image' || i.type === 'gif') && 
+                    !/logo|brand/i.test(i.src) && !/logo|brand/i.test(i.title)) || items[0];
                 const preview = nonLogoImage || fallbackImage || items[0];
 
                 const count = items.length;
-                const type = items.some(i => i.type === 'video') ? 'Mixed' : (items.every(i => i.type === 'video') ? 'Video' : 'Static');
+                const videoCount = items.filter(i => i.type === 'video').length;
+                const imageCount = items.filter(i => i.type === 'image' || i.type === 'gif').length;
+                
+                let type, description;
+                if (videoCount > 0 && imageCount > 0) {
+                    type = 'Mixed';
+                    description = `${videoCount} videos + ${imageCount} imágenes de ${String(key)}`;
+                } else if (videoCount === count) {
+                    type = 'Video';
+                    description = `Colección completa de videos de ${String(key)}`;
+                } else {
+                    type = 'Static';
+                    description = `Fondos estáticos premium de ${String(key)}`;
+                }
 
                 // Formatear título para mostrar (ej. 'Batman/Arkham' -> 'Batman: Arkham')
                 const displayTitle = String(key).includes('/') ? String(key).replace('/', ': ') : String(key);
@@ -1866,7 +1926,7 @@
                     </div>
                     <div class="collection-info">
                         <h4 class="collection-title">${displayTitle}</h4>
-                        <p class="collection-description">Colección generada automáticamente a partir de los WLPRS disponibles</p>
+                        <p class="collection-description">${description}</p>
                     </div>
                 `;
 
@@ -1884,6 +1944,7 @@
         }
         
         function showGalleryView(collection = 'all') {
+            console.log('Showing gallery view for collection:', collection);
             currentView = collection;
             currentCollection = collection;
             collectionsGrid.classList.add('hidden');
@@ -1920,59 +1981,21 @@
             });
         }
 
-        // Apply filters and search
+        // Apply filters and search (simplified since filtering is now done before loading)
         function applyFilters() {
-            const allItems = Array.from(galleryGrid.children);
-            let visibleCount = 0;
+            // Reset and reload with new filters
+            currentPage = 0;
+            galleryGrid.innerHTML = '';
             
-            allItems.forEach(item => {
-                if (matchesFilter(item)) {
-                    item.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-            
-            // Update counters
-            currentCount.textContent = visibleCount;
-            
-            // Animate visible items
-            const visibleItems = allItems.filter(item => item.style.display !== 'none');
-            visibleItems.forEach((item, index) => {
-                setTimeout(() => {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        item.style.transition = 'all 0.3s ease';
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                    }, 50);
-                }, index * 50);
-            });
-        }
-
-        // Check if item matches current filter and search
-        function matchesFilter(item) {
-            const category = item.getAttribute('data-category');
-            const title = item.getAttribute('data-title').toLowerCase();
-            const type = item.getAttribute('data-type');
-            
-            let matchesCategory = false;
-            
-            if (currentView === 'all') {
-                matchesCategory = true;
-            } else if (currentView === 'video') {
-                matchesCategory = type === 'video';
-            } else if (currentView === 'static') {
-                matchesCategory = type === 'image' || type === 'gif';
-            } else {
-                matchesCategory = category === currentView;
+            // Reset load more button
+            if (loadMoreBtn) {
+                loadMoreBtn.textContent = 'Load More WLPRS';
+                loadMoreBtn.disabled = false;
+                loadMoreBtn.classList.remove('opacity-50', 'cursor-not-allowed');
             }
             
-            const matchesSearch = currentSearch === '' || title.includes(currentSearch.toLowerCase());
-            
-            return matchesCategory && matchesSearch;
+            // Load first batch with new filters
+            loadMoreItems();
         }
 
         // Modal event listeners
