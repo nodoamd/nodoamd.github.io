@@ -5,253 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CFC Barcelona - Elite Soccer Development</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        
-        /* Fallback styles in case Tailwind doesn't load */
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            background-color: #ffffff !important;
-            color: #1a1a1a;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-        
-        /* Ensure content is visible */
-        #home {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        
-        /* Force visibility for key elements */
-        .text-white {
-            color: #1a1a1a !important;
-        }
-        
-        .text-gray-400 {
-            color: #6b7280 !important;
-        }
-        
-        nav {
-            background: rgba(255, 255, 255, 0.95) !important;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #e5e7eb;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 50;
-            padding: 1rem;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            background: #ffffff;
-            color: #1a1a1a;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #8B2635 0%, #DC143C 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, rgba(139, 38, 53, 0.05) 0%, rgba(248, 249, 250, 1) 100%);
-        }
-        
-        .card-hover {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-10px);
-        }
-        
-        .nav-item {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .nav-item::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #DC143C;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-item:hover::after {
-            width: 100%;
-        }
-        
-        .parallax {
-            transition: transform 0.5s ease-out;
-        }
-        
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .fade-in.visible {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-        
-        .fade-in.immediate {
-            opacity: 1;
-            transform: translateY(0);
-            transition: none;
-        }
-        
-        .metric-card {
-            background: linear-gradient(135deg, rgba(139, 38, 53, 0.02) 0%, rgba(255, 255, 255, 0.95) 100%);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(139, 38, 53, 0.1);
-            box-shadow: 0 4px 20px rgba(139, 38, 53, 0.05);
-        }
-        
-        .floating {
-            animation: floating 3s ease-in-out infinite;
-        }
-        
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .loader {
-            width: 100%;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: all 0.5s ease;
-        }
-        
-        .loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transform: translateY(-100%);
-        }
-        
-        .loader-logo {
-            width: 120px;
-            animation: pulse 1s infinite;
-        }
-        
-        .video-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.2;
-            z-index: -1;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        
-        .timeline-item {
-            position: relative;
-            padding-left: 40px;
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: linear-gradient(180deg, #8B2635 0%, #DC143C 100%);
-        }
-        
-        .timeline-dot {
-            position: absolute;
-            left: -5px;
-            top: 5px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #DC143C;
-            box-shadow: 0 0 20px rgba(220, 20, 60, 0.5);
-        }
-        
-        .cta-button {
-            background: linear-gradient(135deg, #8B2635 0%, #DC143C 100%);
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-weight: 600;
-            display: inline-block;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(139, 38, 53, 0.2);
-        }
-        
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .cta-button:hover::before {
-            left: 100%;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(220, 20, 60, 0.3);
-        }
-    </style>
+    <link rel="stylesheet" href="./components/videoScroll.css">
+    <link rel="stylesheet" href="./components/parallaxHero.css">
+    <link rel="stylesheet" href="./components/formValidation.css">
+  <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
     <!-- Loader -->
@@ -311,8 +68,10 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-8 md:pt-32 lg:pt-40">
-        <div class="absolute inset-0 hero-gradient"></div>
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-8 md:pt-32 lg:pt-40" style="background: #ffffff;">
+        <!-- Parallax Background Image -->
+        <div class="absolute inset-0 parallax-bg" style="background-image: url('image2.jpg'); background-size: cover; background-position: center; background-attachment: fixed; opacity: 0.1;"></div>
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);"></div>
         <div class="absolute inset-0">
             <div class="absolute top-20 left-10 w-72 h-72 bg-red-100/40 rounded-full blur-3xl floating"></div>
             <div class="absolute bottom-20 right-10 w-96 h-96 bg-red-50/60 rounded-full blur-3xl floating" style="animation-delay: 1s;"></div>
@@ -327,60 +86,45 @@
             </div>
             
             <!-- Main Headline - Clear Desired Outcome -->
-            <h1 class="text-5xl md:text-7xl font-black text-gray-900 mb-6 leading-tight fade-in immediate">
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight fade-in immediate" style="color: #1a1a1a !important;">
                 Transform Your Soccer Skills
-                <span class="block gradient-text mt-2">Barcelona Style</span>
+                <span class="block gradient-text mt-2" style="background: linear-gradient(135deg, #c41230 0%, #e63946 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Barcelona Style</span>
             </h1>
             
             <!-- Clear Value Proposition -->
-            <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-8 fade-in immediate">
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-8 fade-in immediate" style="color: #4b5563 !important;">
                 Data-driven development program with UEFA Pro coaches. Get measurable results 
                 in technical skills, tactical awareness, and professional mindset.
             </p>
-            
-            <!-- Product in Action - Visual/Mockup -->
-            <div class="mb-12 fade-in immediate">
-                <div class="bg-white/90 backdrop-blur-sm border border-gray-200 rounded-2xl p-8 shadow-2xl max-w-4xl mx-auto">
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <div class="text-center p-6 bg-red-50 rounded-xl">
-                            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="font-bold text-gray-900 mb-2">Performance Analytics</h3>
-                            <p class="text-gray-600 text-sm">Real-time data tracking</p>
-                        </div>
-                        
-                        <div class="text-center p-6 bg-red-50 rounded-xl">
-                            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="font-bold text-gray-900 mb-2">Video Analysis</h3>
-                            <p class="text-gray-600 text-sm">Frame-by-frame improvement</p>
-                        </div>
-                        
-                        <div class="text-center p-6 bg-red-50 rounded-xl">
-                            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                                </svg>
-                            </div>
-                            <h3 class="font-bold text-gray-900 mb-2">UEFA Pro Coaches</h3>
-                            <p class="text-gray-600 text-sm">Elite European training</p>
-                        </div>
+            <style>
+                .hero-section p.hero-description, .text-xl.md\:text-2xl.max-w-3xl.mx-auto.mb-8.fade-in.immediate {
+                    color: #222 !important;
+                    font-weight: 500;
+                    text-shadow: 0 1px 2px rgba(0,0,0,0.04);
+                }
+            </style>
+            </p>
+            <!-- ELVIDEO - Full Screen Video Experience -->
+            <div id="video-section" class="mb-12">
+                <div id="video-container" class="relative">
+                    <div id="video-wrapper" class="bg-white/90 backdrop-blur-sm border border-gray-200 rounded-2xl p-8 shadow-2xl max-w-4xl mx-auto overflow-hidden">
+                        <video id="hero-video" class="rounded-xl shadow-lg w-full h-auto" muted loop playsinline>
+                            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                 </div>
             </div>
             
+            <!-- Spacer for scroll effect -->
+            <div id="video-spacer" style="height: 200vh;"></div>
+            
             <!-- Clear CTA with Compelling Reason -->
             <div class="flex flex-col md:flex-row gap-4 justify-center mb-12 fade-in immediate">
-                <a href="#contact" class="cta-button text-lg">
+                <a href="#contact" class="cta-button text-lg" style="background: linear-gradient(135deg, #c41230 0%, #e63946 100%); color: white; padding: 15px 40px; border-radius: 50px; font-weight: 600; display: inline-block;">
                     Start Your Transformation →
                 </a>
-                <a href="#solution" class="group px-8 py-4 border-2 border-red-600 text-red-600 rounded-full font-semibold hover:bg-red-600 hover:text-white transition-all">
+                <a href="#solution" class="group px-8 py-4 rounded-full font-semibold transition-all" style="border: 2px solid #c41230; color: #c41230 !important;">
                     See How It Works
                     <span class="inline-block ml-2 group-hover:translate-x-2 transition-transform">→</span>
                 </a>
@@ -389,20 +133,20 @@
             <!-- Trust Indicators/Stats -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 fade-in immediate">
                 <div class="text-center">
-                    <div class="text-4xl font-bold gradient-text">7+</div>
-                    <div class="text-gray-500 mt-2">Years in Europe</div>
+                    <div class="text-4xl font-bold gradient-text" style="background: linear-gradient(135deg, #c41230 0%, #e63946 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">7+</div>
+                    <div class="mt-2" style="color: #6b7280 !important;">Years in Europe</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl font-bold gradient-text">500+</div>
-                    <div class="text-gray-500 mt-2">Players Developed</div>
+                    <div class="text-4xl font-bold gradient-text" style="background: linear-gradient(135deg, #c41230 0%, #e63946 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">500+</div>
+                    <div class="mt-2" style="color: #6b7280 !important;">Players Developed</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl font-bold gradient-text">UEFA</div>
-                    <div class="text-gray-500 mt-2">Pro Certified</div>
+                    <div class="text-4xl font-bold gradient-text" style="background: linear-gradient(135deg, #c41230 0%, #e63946 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">UEFA</div>
+                    <div class="mt-2" style="color: #6b7280 !important;">Pro Certified</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl font-bold gradient-text">100%</div>
-                    <div class="text-gray-500 mt-2">Data Driven</div>
+                    <div class="text-4xl font-bold gradient-text" style="background: linear-gradient(135deg, #c41230 0%, #e63946 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">100%</div>
+                    <div class="mt-2" style="color: #6b7280 !important;">Data Driven</div>
                 </div>
             </div>
         </div>
@@ -1159,7 +903,6 @@
                         <div class="w-14 h-14 bg-red-900/30 rounded-xl flex items-center justify-center mr-4">
                             <svg class="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                            </svg>
                         </div>
                         <h3 class="text-2xl font-bold text-white">Summer Camps</h3>
                     </div>
@@ -1188,7 +931,6 @@
                         <div class="w-14 h-14 bg-red-900/30 rounded-xl flex items-center justify-center mr-4">
                             <svg class="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
                         </div>
                         <h3 class="text-2xl font-bold text-white">Weekend Clinics</h3>
                     </div>
@@ -1594,372 +1336,20 @@
     </footer>
 
     <!-- JavaScript -->
-    <script>
-        // Loading Animation - Remove immediately for debugging
-        document.addEventListener('DOMContentLoaded', function() {
-            const loader = document.getElementById('loader');
-            // Remove loader immediately for testing
-            if (loader) {
-                loader.style.display = 'none';
-            }
-        });
+    <script src="./gsap/gsap.min.js"></script>
+    <script src="./gsap/ScrollTrigger.min.js"></script>
+    <script type="module">
+        import { setupHeroVideoScroll } from './components/videoScroll.js';
+        import { setupParallaxHero } from './components/parallaxHero.js';
+        import { setupFormValidation } from './components/formValidation.js';
+        import { setupAnimations } from './components/animations.js';
         
-        // Alternative immediate removal
-        setTimeout(() => {
-            const loader = document.getElementById('loader');
-            if (loader) {
-                loader.style.display = 'none';
-            }
-        }, 100);
-
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        menuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-            
-            // Animate hamburger
-            const spans = menuToggle.querySelectorAll('path');
-            if (mobileMenu.classList.contains('hidden')) {
-                menuToggle.innerHTML = `
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                `;
-            } else {
-                menuToggle.innerHTML = `
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                `;
-            }
-        });
-
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    
-                    // Close mobile menu after clicking
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                        menuToggle.innerHTML = `
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                            </svg>
-                        `;
-                    }
-                }
-            });
-        });
-
-        // Parallax Effect
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.parallax');
-            
-            parallaxElements.forEach(element => {
-                const speed = element.dataset.speed || 0.5;
-                const yPos = -(scrolled * speed);
-                element.style.transform = `translateY(${yPos}px)`;
-            });
-        });
-
-        // Fade In Animation on Scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // FAQ Toggle
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const answer = this.querySelector('.faq-answer');
-                const icon = this.querySelector('.faq-icon');
-                
-                // Close all other FAQ items
-                document.querySelectorAll('.faq-item').forEach(otherItem => {
-                    if (otherItem !== this) {
-                        otherItem.querySelector('.faq-answer').classList.add('hidden');
-                        otherItem.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
-                    }
-                });
-                
-                // Toggle current item
-                answer.classList.toggle('hidden');
-                if (answer.classList.contains('hidden')) {
-                    icon.style.transform = 'rotate(0deg)';
-                } else {
-                    icon.style.transform = 'rotate(180deg)';
-                }
-            });
-        });
-
-        // Contact Form Handling
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            
-            // Show success message (you can integrate with your backend here)
-            alert('Thank you for your message! We will get back to you soon.');
-            
-            // Reset form
-            this.reset();
-        });
-
-        // Progress Bar Animation for Performance Metrics
-        function animateProgressBars() {
-            const progressBars = document.querySelectorAll('.metric-card [style*="width:"]');
-            
-            progressBars.forEach(bar => {
-                const width = bar.style.width;
-                bar.style.width = '0%';
-                
-                setTimeout(() => {
-                    bar.style.transition = 'width 2s ease-in-out';
-                    bar.style.width = width;
-                }, 500);
-            });
-        }
-
-        // Trigger progress bar animation when metrics section is visible
-        const metricsSection = document.querySelector('#about');
-        if (metricsSection) {
-            const metricsObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateProgressBars();
-                        metricsObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            metricsObserver.observe(metricsSection);
-        }
-
-        // Counter Animation for Stats
-        function animateCounter(element, target, duration = 2000) {
-            let start = 0;
-            const increment = target / (duration / 16);
-            
-            const timer = setInterval(() => {
-                start += increment;
-                if (start >= target) {
-                    element.textContent = target + (element.textContent.includes('+') ? '+' : '');
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(start) + (element.textContent.includes('+') ? '+' : '');
-                }
-            }, 16);
-        }
-
-        // Trigger counter animations when hero section is visible
-        const heroStats = document.querySelectorAll('#home .gradient-text');
-        if (heroStats.length > 0) {
-            const statsObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        heroStats.forEach((stat, index) => {
-                            const text = stat.textContent;
-                            if (text.includes('7')) {
-                                animateCounter(stat, 7);
-                            } else if (text.includes('500')) {
-                                animateCounter(stat, 500);
-                            } else if (text.includes('100')) {
-                                animateCounter(stat, 100);
-                            }
-                        });
-                        statsObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            statsObserver.observe(document.querySelector('#home'));
-        }
-
-        // Card Hover Effects
-        document.querySelectorAll('.card-hover').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-            });
-        });
-
-        // Performance Optimization: Debounce scroll events
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-
-        // Optimized scroll handler
-        const handleScroll = debounce(() => {
-            const scrolled = window.pageYOffset;
-            const navbar = document.querySelector('nav');
-            
-            if (scrolled > 100) {
-                navbar.style.background = 'rgba(0, 0, 0, 0.95)';
-            } else {
-                navbar.style.background = 'rgba(0, 0, 0, 0.9)';
-            }
-        }, 10);
-
-        window.addEventListener('scroll', handleScroll);
-
-        // Initialize all animations on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add initial classes for animations only if not already visible
-            document.querySelectorAll('.fade-in').forEach(el => {
-                if (!el.classList.contains('visible')) {
-                    el.style.opacity = '0';
-                    el.style.transform = 'translateY(30px)';
-                }
-            });
-            
-            // Immediately show elements in viewport
-            setTimeout(() => {
-                const elementsInView = document.querySelectorAll('.fade-in');
-                elementsInView.forEach(el => {
-                    const rect = el.getBoundingClientRect();
-                    if (rect.top < window.innerHeight && rect.bottom > 0) {
-                        el.classList.add('visible');
-                        el.style.opacity = '1';
-                        el.style.transform = 'translateY(0)';
-                    }
-                });
-            }, 100);
-        });
-
-        // Add click animation to CTA buttons
-        document.querySelectorAll('.cta-button').forEach(button => {
-            button.addEventListener('click', function(e) {
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                ripple.style.position = 'absolute';
-                ripple.style.borderRadius = '50%';
-                ripple.style.background = 'rgba(255, 255, 255, 0.3)';
-                ripple.style.transform = 'scale(0)';
-                ripple.style.animation = 'ripple 0.6s linear';
-                ripple.style.pointerEvents = 'none';
-                
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
-        });
-
-        // Add ripple effect CSS
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-            
-            .cta-button {
-                position: relative;
-                overflow: hidden;
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Form validation
-        function validateForm() {
-            const form = document.getElementById('contact-form');
-            const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
-            let isValid = true;
-            
-            inputs.forEach(input => {
-                if (!input.value.trim()) {
-                    input.style.borderColor = '#DC143C';
-                    isValid = false;
-                } else {
-                    input.style.borderColor = '';
-                }
-            });
-            
-            return isValid;
-        }
-
-        // Add form validation to submit event
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (validateForm()) {
-                // Show success message with animation
-                const successMessage = document.createElement('div');
-                successMessage.innerHTML = `
-                    <div class="fixed top-4 right-4 bg-green-600 text-white px-6 py-4 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform">
-                        <div class="flex items-center">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            Message sent successfully!
-                        </div>
-                    </div>
-                `;
-                
-                document.body.appendChild(successMessage);
-                
-                // Animate in
-                setTimeout(() => {
-                    successMessage.firstElementChild.style.transform = 'translateX(0)';
-                }, 100);
-                
-                // Animate out and remove
-                setTimeout(() => {
-                    successMessage.firstElementChild.style.transform = 'translateX(full)';
-                    setTimeout(() => {
-                        successMessage.remove();
-                    }, 300);
-                }, 3000);
-                
-                // Reset form
-                this.reset();
-            }
-        });
-
+        // Initialize all components
+        setupHeroVideoScroll();
+        setupParallaxHero();
+        setupFormValidation();
+        setupAnimations();
+        
         console.log('CFC Barcelona website loaded successfully!');
     </script>
 </body>
