@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./components/videoScroll.css">
     <link rel="stylesheet" href="./components/parallaxHero.css">
     <link rel="stylesheet" href="./components/formValidation.css">
+    <link rel="stylesheet" href="./components/galleryStyles.css">
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 
@@ -549,13 +550,13 @@
             <!-- Hero Video + Image Grid -->
             <div class="grid lg:grid-cols-3 gap-6 mb-8">
                 <!-- Main Hero Video/Image (Spans 2 columns) -->
-                <div class="lg:col-span-2 gallery-hero-item relative overflow-hidden rounded-3xl shadow-2xl h-96 lg:h-full min-h-96 group">
-                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500 z-10"></div>
+                <div class="lg:col-span-2 gallery-hero-item relative overflow-hidden rounded-3xl shadow-2xl h-96 lg:h-full min-h-96">
+                    <div class="absolute inset-0 bg-black/20 z-10"></div>
                     <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&h=600&fit=crop" 
                          alt="Elite Training Session" 
-                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                         class="absolute inset-0 w-full h-full object-cover">
                     <div class="absolute inset-0 flex items-center justify-center z-20">
-                        <button class="gallery-play-btn w-20 h-20 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:scale-110">
+                        <button class="gallery-play-btn w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
                             <svg class="w-8 h-8 text-red-600 ml-1" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M8 5v14l11-7z"></path>
                             </svg>
@@ -570,12 +571,12 @@
                 <!-- Right Column Images (Stacked) -->
                 <div class="space-y-6">
                     <!-- Image 2 -->
-                    <div class="gallery-item relative overflow-hidden rounded-2xl shadow-lg h-40 group cursor-pointer">
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500 z-10"></div>
+                    <div class="gallery-item relative overflow-hidden rounded-2xl shadow-lg h-40 cursor-pointer">
+                        <div class="absolute inset-0 bg-black/20 z-10"></div>
                         <img src="https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=600&h=400&fit=crop" 
                              alt="Player Development" 
-                             class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                             class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center z-20 opacity-0">
                             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
@@ -586,12 +587,12 @@
                     </div>
 
                     <!-- Image 3 -->
-                    <div class="gallery-item relative overflow-hidden rounded-2xl shadow-lg h-40 group cursor-pointer">
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500 z-10"></div>
+                    <div class="gallery-item relative overflow-hidden rounded-2xl shadow-lg h-40 cursor-pointer">
+                        <div class="absolute inset-0 bg-black/20 z-10"></div>
                         <img src="https://images.unsplash.com/photo-1574629810360-7efac8c8b3c7?w=600&h=400&fit=crop" 
                              alt="Barcelona Experience" 
-                             class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                             class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center z-20 opacity-0">
                             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
@@ -606,12 +607,12 @@
             <!-- Full Width Gallery Grid -->
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
                 <!-- Gallery Item 1 -->
-                <div class="gallery-item relative overflow-hidden rounded-2xl shadow-lg h-48 group cursor-pointer">
-                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500 z-10"></div>
+                <div class="gallery-item relative overflow-hidden rounded-2xl shadow-lg h-48 cursor-pointer">
+                    <div class="absolute inset-0 bg-black/20 z-10"></div>
                     <img src="https://images.unsplash.com/photo-1552108421-c14de40c71d6?w=600&h=400&fit=crop" 
                          alt="Team Training" 
-                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                         class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 flex items-center justify-center z-20 opacity-0">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
@@ -622,12 +623,12 @@
                 </div>
 
                 <!-- Gallery Item 2 -->
-                <div class="gallery-item relative overflow-hidden rounded-2xl shadow-lg h-48 group cursor-pointer">
-                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500 z-10"></div>
+                <div class="gallery-item relative overflow-hidden rounded-2xl shadow-lg h-48 cursor-pointer">
+                    <div class="absolute inset-0 bg-black/20 z-10"></div>
                     <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=600&h=400&fit=crop" 
                          alt="Data Analytics" 
-                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                         class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 flex items-center justify-center z-20 opacity-0">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
@@ -638,12 +639,12 @@
                 </div>
 
                 <!-- Gallery Item 3 -->
-                <div class="gallery-item relative overflow-hidden rounded-2xl shadow-lg h-48 group cursor-pointer">
-                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500 z-10"></div>
+                <div class="gallery-item relative overflow-hidden rounded-2xl shadow-lg h-48 cursor-pointer">
+                    <div class="absolute inset-0 bg-black/20 z-10"></div>
                     <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&h=400&fit=crop" 
                          alt="Facility" 
-                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                         class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 flex items-center justify-center z-20 opacity-0">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
@@ -654,12 +655,12 @@
                 </div>
 
                 <!-- Gallery Item 4 -->
-                <div class="gallery-item relative overflow-hidden rounded-2xl shadow-lg h-48 group cursor-pointer">
-                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500 z-10"></div>
+                <div class="gallery-item relative overflow-hidden rounded-2xl shadow-lg h-48 cursor-pointer">
+                    <div class="absolute inset-0 bg-black/20 z-10"></div>
                     <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop" 
                          alt="Coaches" 
-                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                         class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 flex items-center justify-center z-20 opacity-0">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
