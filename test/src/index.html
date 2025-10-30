@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Peines - Peluquería Ecológica Vegana</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="bg-cream">
+    <!-- Navigation -->
+    <nav class="px-8 py-6 flex justify-between items-center max-w-7xl mx-auto relative z-50">
+        <a href="#" class="flex items-center space-x-3 group">
+            <svg class="w-8 h-8 text-sage transition-transform group-hover:rotate-12" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4">
+                </path>
+            </svg>
+            <div class="flex flex-col">
+                <span class="font-display font-bold text-2xl text-sage tracking-tight">Juego de Peines</span>
+                <span class="text-xs text-sage-light tracking-widest uppercase">Peluquería Ecológica</span>
+            </div>
+        </a>
+
+        <div class="hidden md:flex items-center space-x-10">
+            <a href="#servicios" class="nav-link text-sage">Servicios</a>
+            <a href="#filosofia" class="nav-link text-sage">Filosofía</a>
+            <a href="#galeria" class="nav-link text-sage">Galería</a>
+            <a href="#contacto" class="nav-link text-sage">Contacto</a>
+        </div>
+
+        <div class="flex items-center space-x-4">
+            <a href="tel:+34123456789"
+                class="hidden md:block px-4 py-2 text-sage hover:text-sage-dark transition-colors">
+                📞 Llamar
+            </a>
+            <a href="#reservar" class="btn-primary">
+                Reservar Cita
+            </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden text-sage">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                </path>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="relative pt-8 pb-12 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-8">
+            <!-- Top Banner -->
+            <div class="text-center mb-10">
+                <span class="eco-badge">
+                    🌿 100% Vegano & Sostenible
+                </span>
+            </div>
+
+            <!-- Main Content -->
+            <div class="text-center max-w-5xl mx-auto">
+                <h1 class="hero-title">
+                    Belleza Consciente<br />
+                    <span class="highlight">que Respeta todo</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Especialistas en balayage y tonos naturales con productos 100% veganos.
+                    <br>Tu cabello merece lo mejor, sin comprometer el planeta.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 mt-8 mb-6">
+                    <div class="feature-pill">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        <span>Sin crueldad animal</span>
+                    </div>
+                    <div class="feature-pill">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        <span>Ingredientes naturales</span>
+                    </div>
+                    <div class="feature-pill">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        <span>Ambiente íntimo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!-- Carousel Section -->
+        <div class="carousel-wrapper mt-16">
+            <div class="carousel-container">
+                <div class="carousel-track" id="carousel">
+                    <div class="carousel-card">
+                        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80"
+                            alt="Balayage Natural">
+                    </div>
+                    <div class="carousel-card">
+                        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80"
+                            alt="Corte Sostenible">
+                    </div>
+                    <div class="carousel-card">
+                        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&q=80"
+                            alt="Coloración Vegana">
+                    </div>
+                    <div class="carousel-card">
+                        <img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=800&q=80"
+                            alt="Tratamientos Naturales">
+                    </div>
+                    <div class="carousel-card">
+                        <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=800&q=80"
+                            alt="Estilo Ecológico">
+                    </div>
+                    <div class="carousel-card">
+                        <img src="https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=800&q=80"
+                            alt="Cuidado Natural">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="text-center mt-12 mb-20">
+            <a href="#reservar"
+                class="premium-button text-white px-10 py-4 rounded-full text-lg font-medium shadow-lg inline-block hover:scale-105 transition-transform">
+                🌿 Reserva tu Cita
+            </a>
+        </div>
+    </main>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
