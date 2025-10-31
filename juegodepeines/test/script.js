@@ -1,6 +1,6 @@
 const carousel = document.getElementById('carousel');
 let position = 0;
-let speed = 0.5;
+let speed = 0.15;
 let isDragging = false;
 let startX = 0;
 let startPosition = 0;
@@ -30,7 +30,7 @@ carousel.addEventListener('mouseenter', () => {
     if (!isDragging) speed = 0;
 });
 carousel.addEventListener('mouseleave', () => {
-    if (!isDragging) speed = 0.5;
+    if (!isDragging) speed = 0.15;
 });
 
 // Mouse drag events
