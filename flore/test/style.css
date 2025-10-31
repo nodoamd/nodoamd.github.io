@@ -564,6 +564,7 @@ nav {
     .mb-4 {
         margin-bottom: 0.75rem !important;
     }
+
 }
 
 /* Additional Sections Styles */
@@ -851,4 +852,12 @@ nav {
     .md\:grid-cols-4 {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
+}
+
+.premium-button {
+    color: white !important;
+}
+
+.hero-content {
+    margin-bottom: 550px;
 }
