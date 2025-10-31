@@ -80,8 +80,9 @@
             margin: 0 auto;
             padding: 1.5rem 2rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
+            position: relative;
         }
 
         .logo {
@@ -159,6 +160,10 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         .btn-phone {
