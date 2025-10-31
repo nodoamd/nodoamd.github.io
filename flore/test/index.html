@@ -1115,32 +1115,32 @@
                             alt="Tratamientos Naturales">
                     </div>
                     <div class="carousel-card">
-                        <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=800&q=80"
+                        <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=800&q=80"
                             alt="Estilo Ecológico">
                     </div>
                     <div class="carousel-card">
-                        <img src="https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=800&q=80"
+                        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=800&q=80"
                             alt="Cuidado Natural">
                     </div>
                     <!-- Imágenes adicionales para más arrastre -->
                     <div class="carousel-card">
-                        <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=800&q=80"
+                        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&q=80"
                             alt="Peinado Ecológico">
                     </div>
                     <div class="carousel-card">
-                        <img src="https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?w=800&q=80"
+                        <img src="https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=800&q=80"
                             alt="Tratamiento Vegano">
                     </div>
                     <div class="carousel-card">
-                        <img src="https://images.unsplash.com/photo-1614030424754-24d0eebd46b2?w=800&q=80"
+                        <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=800&q=80"
                             alt="Corte Sostenible 2">
                     </div>
                     <div class="carousel-card">
-                        <img src="https://images.unsplash.com/photo-1605980676928-cb94230ff2a8?w=800&q=80"
+                        <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=800&q=80"
                             alt="Mechas Naturales">
                     </div>
                     <div class="carousel-card">
-                        <img src="https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=800&q=80"
+                        <img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?w=800&q=80"
                             alt="Estilizado Consciente">
                     </div>
                     <div class="carousel-card">
@@ -1503,48 +1503,57 @@
             });
         });
 
-        // Carousel functionality - Simple and robust version from index.html
+        // Carousel infinito mejorado
         const carousel = document.getElementById('carousel');
+        const cards = Array.from(carousel.children);
+        const cardWidth = 300 + 24; // ancho de la tarjeta + gap
+
+        // Duplicar las tarjetas para crear el efecto infinito
+        cards.forEach(card => {
+            const clone = card.cloneNode(true);
+            carousel.appendChild(clone);
+        });
+
         let position = 0;
         let speed = 0.5;
         let isDragging = false;
         let startX = 0;
         let startPosition = 0;
+        let animationFrame;
 
         function moveCarousel() {
             if (!isDragging) {
                 position -= speed;
 
-                // Reset position when a card width is reached
-                if (position < -320) {
+                // Loop infinito: cuando lleguemos al final del primer set, volvemos al inicio
+                const totalWidth = cardWidth * cards.length;
+                if (Math.abs(position) >= totalWidth) {
                     position = 0;
-                    // Move first card to end
-                    carousel.appendChild(carousel.firstElementChild);
                 }
             }
 
-            // Apply the transform with a slight curve effect
             carousel.style.transform = `rotate(-5deg) translateX(${position}px)`;
-            requestAnimationFrame(moveCarousel);
+            animationFrame = requestAnimationFrame(moveCarousel);
         }
 
-        // Initialize carousel
+        // Inicializar
         moveCarousel();
 
-        // Mouse events
+        // Pausar al pasar el mouse
         carousel.addEventListener('mouseenter', () => {
             if (!isDragging) speed = 0;
         });
+
         carousel.addEventListener('mouseleave', () => {
             if (!isDragging) speed = 0.5;
         });
 
-        // Mouse drag events
+        // Eventos de arrastre con mouse
         carousel.addEventListener('mousedown', handleStart);
         document.addEventListener('mousemove', handleMove);
         document.addEventListener('mouseup', handleEnd);
 
-        // Touch events for mobile
+        // Eventos táctiles para móvil
         carousel.addEventListener('touchstart', handleStart, { passive: false });
         document.addEventListener('touchmove', handleMove, { passive: false });
         document.addEventListener('touchend', handleEnd);
@@ -1556,24 +1565,16 @@
             startX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
             startPosition = position;
             carousel.style.cursor = 'grabbing';
-            carousel.style.userSelect = 'none';
-            // Remove any transition while dragging for immediate response
-            carousel.style.transition = 'none';
+            carousel.classList.add('dragging');
         }
 
         function handleMove(e) {
             if (!isDragging) return;
-
             e.preventDefault();
+
             const currentX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
             const deltaX = currentX - startX;
-
-            // Smooth movement with momentum
-            position = startPosition + deltaX * 0.8;
-
-            // Expanded boundary limits for more images
-            if (position > 200) position = 200; // Más arrastre hacia la derecha
-            if (position < -1600) position = -1600; // Más arrastre hacia la izquierda para las nuevas imágenes
+            position = startPosition + deltaX;
         }
 
         function handleEnd(e) {
@@ -1581,27 +1582,14 @@
 
             isDragging = false;
             carousel.style.cursor = 'grab';
-            carousel.style.userSelect = '';
+            carousel.classList.remove('dragging');
 
-            // Add smooth transition when releasing
-            carousel.style.transition = 'transform 0.4s ease-out';
-
-            // Snap to boundaries smoothly if needed - Updated for more images
-            if (position > 200) {
-                position = 180; // Gentle snap back
-            }
-            if (position < -1600) {
-                position = -1580; // Gentle snap back
-            }
-
-            // Resume auto-scroll after a short delay
+            // Reanudar movimiento automático
             setTimeout(() => {
                 if (!isDragging) {
                     speed = 0.5;
-                    // Remove transition for smooth auto-scrolling
-                    carousel.style.transition = 'none';
                 }
-            }, 800);
+            }, 300);
         }
 
         // Form handling
