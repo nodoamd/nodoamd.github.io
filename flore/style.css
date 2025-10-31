@@ -502,7 +502,7 @@ nav {
     }
 
     nav {
-        padding: 0.25rem 0.75rem;
+        padding: 0.5rem 1rem;
     }
 
     nav .flex.flex-col {
@@ -510,8 +510,8 @@ nav {
     }
 
     nav svg {
-        width: 1rem;
-        height: 1rem;
+        width: 1.25rem;
+        height: 1.25rem;
     }
 
     nav .space-x-3 {
@@ -564,6 +564,7 @@ nav {
     .mb-4 {
         margin-bottom: 0.75rem !important;
     }
+
 }
 
 /* Additional Sections Styles */
@@ -851,4 +852,12 @@ nav {
     .md\:grid-cols-4 {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
+}
+
+.premium-button {
+    color: white !important;
+}
+
+.hero-content {
+    margin-bottom: 550px;
 }
