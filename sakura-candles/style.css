@@ -20,7 +20,7 @@
     /* Typography */
     --font-japanese: 'Noto Sans JP', sans-serif;
     --font-serif: 'Playfair Display', serif;
-    --font-sans: 'Inter', sans-serif;
+    --font-sans: 'DM Sans', sans-serif;
 
     /* Spacing */
     --spacing-xs: 0.5rem;
@@ -372,7 +372,7 @@ a {
 }
 
 .hero-title {
-    font-family: var(--font-serif);
+    font-family: var(--font-japanese);
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
     line-height: 1.15;
@@ -527,7 +527,7 @@ a {
 }
 
 .section-title {
-    font-family: var(--font-serif);
+    font-family: var(--font-japanese);
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
     color: var(--charcoal);
@@ -775,7 +775,7 @@ a {
 }
 
 .step-title {
-    font-family: var(--font-serif);
+    font-family: var(--font-japanese);
     font-size: 1.75rem;
     font-weight: 600;
     color: var(--charcoal);
@@ -881,7 +881,7 @@ a {
 }
 
 .contacto-title {
-    font-family: var(--font-serif);
+    font-family: var(--font-japanese);
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--charcoal);
@@ -1021,7 +1021,7 @@ a {
 }
 
 .footer-brand-name {
-    font-family: var(--font-serif);
+    font-family: var(--font-japanese);
     font-size: 1.5rem;
     font-weight: 700;
     color: white;
