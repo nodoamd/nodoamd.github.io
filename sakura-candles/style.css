@@ -107,19 +107,30 @@ a {
 .sakura-flower {
     width: 100%;
     height: 100%;
-    animation: sakuraFloat 2s ease-in-out infinite, sakuraScale 3s ease-in-out infinite;
+    animation: sakuraRotate 4s linear infinite, sakuraGlow 4s ease-in-out infinite;
     filter: drop-shadow(0 10px 25px rgba(255, 183, 197, 0.4));
+    transform-origin: center;
 }
 
-@keyframes sakuraFloat {
+@keyframes sakuraRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes sakuraGlow {
 
     0%,
     100% {
-        transform: translateY(0px);
+        filter: drop-shadow(0 10px 25px rgba(255, 183, 197, 0.4));
     }
 
     50% {
-        transform: translateY(-15px);
+        filter: drop-shadow(0 15px 35px rgba(255, 183, 197, 0.7)) drop-shadow(0 0 20px rgba(220, 99, 142, 0.5));
     }
 }
 
@@ -1192,6 +1203,20 @@ a {
     :root {
         --spacing-lg: 3rem;
         --spacing-xl: 4rem;
+    }
+
+    .brand-icon {
+        width: 48px !important;
+        height: 48px !important;
+    }
+
+    .brand-name {
+        font-size: 1.1rem;
+    }
+
+    .brand-sub {
+        font-size: 0.55rem;
+        letter-spacing: 0.1em;
     }
 
     .nav-links {
