@@ -3,13 +3,15 @@
 // Premium interactions & functionality
 // ========================================
 
-// === PAGE LOADER ===
+// === PAGE LOADER - CANDLE EFFECT ===
 window.addEventListener('load', () => {
     const loader = document.getElementById('pageLoader');
 
+    // Duración total: 2.5 segundos de animación + transición
     setTimeout(() => {
+        loader.style.transition = 'opacity 0.6s ease, visibility 0.6s ease';
         loader.classList.add('hidden');
-    }, 1500);
+    }, 2500);
 });
 
 // === NAVIGATION ===
@@ -391,17 +393,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// === PARALLAX EFFECT (Subtle) ===
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.hero-image');
-
-    parallaxElements.forEach(el => {
-        const speed = 0.15;
-        el.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-});
-
 // === PRODUCT HOVER EFFECTS ===
 document.querySelectorAll('.product-card').forEach(card => {
     card.addEventListener('mouseenter', function () {
@@ -411,6 +402,156 @@ document.querySelectorAll('.product-card').forEach(card => {
     card.addEventListener('mouseleave', function () {
         this.style.zIndex = '1';
     });
+});
+
+// === CART MODAL ===
+const cartModal = document.getElementById('cartModal');
+const cartBtn = document.getElementById('cartBtn');
+const closeCartBtn = document.getElementById('closeCartBtn');
+const cartOverlay = document.getElementById('cartOverlay');
+const cartItemsList = document.getElementById('cartItemsList');
+const emptyCartMessage = document.getElementById('emptyCartMessage');
+const whatsappCheckoutBtn = document.getElementById('whatsappCheckoutBtn');
+
+function toggleCartModal() {
+    cartModal.classList.toggle('active');
+    if (cartModal.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+        updateCartDisplay();
+    } else {
+        document.body.style.overflow = '';
+    }
+}
+
+function updateCartDisplay() {
+    cartItemsList.innerHTML = '';
+
+    if (cart.length === 0) {
+        emptyCartMessage.style.display = 'block';
+        cartItemsList.style.display = 'none';
+        whatsappCheckoutBtn.disabled = true;
+        updateCartTotals();
+        return;
+    }
+
+    emptyCartMessage.style.display = 'none';
+    cartItemsList.style.display = 'flex';
+    whatsappCheckoutBtn.disabled = false;
+
+    cart.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+
+        const itemTotal = (item.price * item.quantity).toFixed(2);
+
+        cartItem.innerHTML = `
+            <div class="cart-item-image">
+                🕯️
+            </div>
+            <div class="cart-item-content">
+                <div class="cart-item-header">
+                    <span class="cart-item-name">${item.name}</span>
+                    <span class="cart-item-price">€${item.price.toFixed(2)}</span>
+                </div>
+                <div class="cart-item-footer">
+                    <div class="cart-item-qty">
+                        <button class="qty-btn minus" data-index="${index}">−</button>
+                        <span class="qty-display">${item.quantity}</span>
+                        <button class="qty-btn plus" data-index="${index}">+</button>
+                    </div>
+                    <span style="font-size: 0.9rem; color: #999;">€${itemTotal}</span>
+                    <button class="cart-item-remove" data-index="${index}">🗑️</button>
+                </div>
+            </div>
+        `;
+
+        cartItemsList.appendChild(cartItem);
+    });
+
+    // Add event listeners for quantity buttons
+    document.querySelectorAll('.qty-btn.minus').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const index = parseInt(e.target.dataset.index);
+            if (cart[index].quantity > 1) {
+                cart[index].quantity--;
+            } else {
+                cart.splice(index, 1);
+            }
+            updateCartDisplay();
+            updateCartCount();
+        });
+    });
+
+    document.querySelectorAll('.qty-btn.plus').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const index = parseInt(e.target.dataset.index);
+            cart[index].quantity++;
+            updateCartDisplay();
+            updateCartCount();
+        });
+    });
+
+    // Add event listeners for remove buttons
+    document.querySelectorAll('.cart-item-remove').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const index = parseInt(e.target.dataset.index);
+            cart.splice(index, 1);
+            updateCartDisplay();
+            updateCartCount();
+        });
+    });
+
+    updateCartTotals();
+}
+
+function updateCartTotals() {
+    const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    const shipping = subtotal > 50 ? 0 : 4.99; // Free shipping over €50
+    const total = subtotal + shipping;
+
+    document.getElementById('cartSubtotal').textContent = `€${subtotal.toFixed(2)}`;
+    document.getElementById('cartShipping').textContent = `€${shipping.toFixed(2)}`;
+    document.getElementById('cartTotal').textContent = `€${total.toFixed(2)}`;
+}
+
+// Cart button listeners
+cartBtn.addEventListener('click', toggleCartModal);
+closeCartBtn.addEventListener('click', toggleCartModal);
+cartOverlay.addEventListener('click', toggleCartModal);
+
+// WhatsApp checkout
+whatsappCheckoutBtn.addEventListener('click', () => {
+    const phoneNumber = '34612345678'; // Reemplaza con tu número WhatsApp (código país + número sin espacios)
+
+    let message = '🌸 *Pedido Sakura Candles & Soaps*\n\n';
+    message += '*Productos:*\n';
+
+    cart.forEach(item => {
+        const itemTotal = (item.price * item.quantity).toFixed(2);
+        message += `• ${item.name} x${item.quantity} — €${itemTotal}\n`;
+    });
+
+    const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    const shipping = subtotal > 50 ? 0 : 4.99;
+    const total = subtotal + shipping;
+
+    message += `\n*Resumen:*\n`;
+    message += `Subtotal: €${subtotal.toFixed(2)}\n`;
+    if (shipping > 0) {
+        message += `Envío: €${shipping.toFixed(2)}\n`;
+    } else {
+        message += `Envío: GRATIS\n`;
+    }
+    message += `*Total: €${total.toFixed(2)}*\n\n`;
+    message += `Confirma tu pedido para proceder con la compra.`;
+
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+
+    // Clear cart after sending
+    cart = [];
+    updateCartDisplay();
+    updateCartCount();
 });
 
 // === LOG CART (for debugging) ===
