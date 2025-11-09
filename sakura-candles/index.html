@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakura Candles & Soaps - Velas Artesanales Inspiradas en Japón</title>
+
+    <!-- Meta tags para compartir en redes sociales -->
+    <meta property="og:title" content="Sakura Candles & Soaps - Velas Artesanales">
+    <meta property="og:description"
+        content="Velas artesanales de cera de soja inspiradas en la naturaleza y la armonía de la cultura japonesa, para iluminar tus momentos de calma.">
+    <meta property="og:image" content="https://tudominio.com/sakura-preview.jpg">
+    <meta property="og:url" content="https://tudominio.com">
+    <meta property="og:type" content="website">
+
+    <!-- Meta tags para Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sakura Candles & Soaps">
+    <meta name="twitter:description"
+        content="Velas artesanales inspiradas en la cultura japonesa. Eco-friendly, wellness & aromatherapy.">
+    <meta name="twitter:image" content="https://tudominio.com/sakura-preview.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Page Loader -->
+    <!-- <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <svg class="sakura-icon" width="60" height="60" viewBox="0 0 60 60" fill="none">
+                <path d="M30 10C30 10 25 15 25 20C25 25 30 30 30 30C30 30 35 25 35 20C35 15 30 10 30 10Z"
+                    fill="currentColor" opacity="0.8" />
+                <path d="M30 30C30 30 25 35 25 40C25 45 30 50 30 50C30 50 35 45 35 40C35 35 30 30 30 30Z"
+                    fill="currentColor" opacity="0.6" />
+                <path d="M10 30C10 30 15 25 20 25C25 25 30 30 30 30C30 30 25 35 20 35C15 35 10 30 10 30Z"
+                    fill="currentColor" opacity="0.7" />
+                <path d="M50 30C50 30 45 25 40 25C35 25 30 30 30 30C30 30 35 35 40 35C45 35 50 30 50 30Z"
+                    fill="currentColor" opacity="0.7" />
+                <circle cx="30" cy="30" r="5" fill="currentColor" />
+            </svg>
+            <div class="loader-text">Sakura Candles</div>
+        </div>
+    </div> -->
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-brand">
+                <svg class="brand-icon" width="32" height="32" viewBox="0 0 60 60" fill="none">
+                    <path d="M30 10C30 10 25 15 25 20C25 25 30 30 30 30C30 30 35 25 35 20C35 15 30 10 30 10Z"
+                        fill="currentColor" opacity="0.8" />
+                    <path d="M30 30C30 30 25 35 25 40C25 45 30 50 30 50C30 50 35 45 35 40C35 35 30 30 30 30Z"
+                        fill="currentColor" opacity="0.6" />
+                    <path d="M10 30C10 30 15 25 20 25C25 25 30 30 30 30C30 30 25 35 20 35C15 35 10 30 10 30Z"
+                        fill="currentColor" opacity="0.7" />
+                    <path d="M50 30C50 30 45 25 40 25C35 25 30 30 30 30C30 30 35 35 40 35C45 35 50 30 50 30Z"
+                        fill="currentColor" opacity="0.7" />
+                    <circle cx="30" cy="30" r="5" fill="currentColor" />
+                </svg>
+                <span class="brand-text">
+                    <span class="brand-name">SAKURA</span>
+                    <span class="brand-sub">Candles & Soaps</span>
+                </span>
+            </a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#coleccion" class="nav-link">Colección</a>
+                <a href="#filosofia" class="nav-link">Filosofía</a>
+                <a href="#proceso" class="nav-link">Proceso</a>
+                <a href="#contacto" class="nav-link">Contacto</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="https://wa.me/34612345678?text=Hola%2C%20me%20gustaría%20conocer%20más%20sobre%20Sakura%20Candles"
+                    target="_blank" class="btn-whatsapp">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                    </svg>
+                    WhatsApp
+                </a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" id="mobileClose">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <div class="mobile-links">
+            <a href="#coleccion" class="mobile-link">Colección</a>
+            <a href="#filosofia" class="mobile-link">Filosofía</a>
+            <a href="#proceso" class="mobile-link">Proceso</a>
+            <a href="#contacto" class="mobile-link">Contacto</a>
+            <a href="https://wa.me/34612345678?text=Hola%2C%20me%20gustaría%20conocer%20más%20sobre%20Sakura%20Candles"
+                target="_blank" class="btn-primary-mobile">
+                Contáctanos por WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section - Split Screen -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-left">
+                <div class="hero-badge">
+                    <svg width="18" height="18" viewBox="0 0 60 60" fill="none">
+                        <circle cx="30" cy="30" r="5" fill="currentColor" />
+                    </svg>
+                    Handmade • Eco-friendly
+                </div>
+                <h1 class="hero-title">
+                    Velas Artesanales<br />
+                    <span class="hero-title-accent">Inspiradas en Japón</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Ilumina tus momentos de calma con nuestras velas de cera de soja natural,
+                    creadas a mano con aromas que evocan la serenidad y armonía de la cultura japonesa.
+                </p>
+                <div class="hero-features">
+                    <div class="hero-feature">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Cera de soja 100% natural</span>
+                    </div>
+                    <div class="hero-feature">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                        </svg>
+                        <span>Aromaterapia & Wellness</span>
+                    </div>
+                    <div class="hero-feature">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                        <span>Hecho con amor en Barcelona</span>
+                    </div>
+                </div>
+                <div class="hero-cta">
+                    <a href="#coleccion" class="btn-primary">
+                        Ver Colección
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/34612345678?text=Hola%2C%20me%20gustaría%20hacer%20un%20pedido%20de%20Sakura%20Candles"
+                        target="_blank" class="btn-secondary">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                        </svg>
+                        Hacer Pedido
+                    </a>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="hero-image-wrapper">
+                    <img src="./assets/images/a (10).jpg" alt="Vela artesanal Sakura" class="hero-image">
+                    <div class="hero-image-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filosofía Zen Section -->
+    <section class="filosofia-zen" id="filosofia">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Nuestra Esencia</span>
+                <h2 class="section-title">Armonía y Calma Japonesa</h2>
+                <p class="section-subtitle">
+                    Cada vela y jabón está inspirado en los principios del zen y la belleza de la naturaleza.
+                    Creamos productos que transforman espacios en santuarios de paz.
+                </p>
+            </div>
+
+            <div class="zen-grid">
+                <div class="zen-card">
+                    <div class="zen-icon">
+                        <svg width="40" height="40" viewBox="0 0 60 60" fill="none">
+                            <circle cx="30" cy="30" r="25" stroke="currentColor" stroke-width="2" fill="none" />
+                            <path d="M30 15 L30 30 L40 30" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h3 class="zen-title">Ichi-go Ichi-e</h3>
+                    <p class="zen-description">
+                        "Una vez, un encuentro". Cada momento es único e irrepetible.
+                        Celebra el presente con nuestras velas artesanales.
+                    </p>
+                </div>
+
+                <div class="zen-card">
+                    <div class="zen-icon">
+                        <svg width="40" height="40" viewBox="0 0 60 60" fill="none">
+                            <path d="M15 30 Q30 10 45 30 Q30 50 15 30" stroke="currentColor" stroke-width="2"
+                                fill="none" />
+                            <circle cx="30" cy="30" r="5" fill="currentColor" />
+                        </svg>
+                    </div>
+                    <h3 class="zen-title">Wabi-Sabi</h3>
+                    <p class="zen-description">
+                        La belleza de lo imperfecto. Cada vela es única,
+                        creada a mano con amor y respeto por los materiales naturales.
+                    </p>
+                </div>
+
+                <div class="zen-card">
+                    <div class="zen-icon">
+                        <svg width="40" height="40" viewBox="0 0 60 60" fill="none">
+                            <path d="M20 40 Q30 20 40 40" stroke="currentColor" stroke-width="2" fill="none" />
+                            <path d="M25 35 Q30 25 35 35" stroke="currentColor" stroke-width="2" fill="none" />
+                            <path d="M27.5 32.5 Q30 27.5 32.5 32.5" stroke="currentColor" stroke-width="2"
+                                fill="none" />
+                        </svg>
+                    </div>
+                    <h3 class="zen-title">Ma (間)</h3>
+                    <p class="zen-description">
+                        El espacio vacío que permite la respiración y la contemplación.
+                        Aromas suaves que crean atmósferas de serenidad.
+                    </p>
+                </div>
+
+                <div class="zen-card">
+                    <div class="zen-icon">
+                        <svg width="40" height="40" viewBox="0 0 60 60" fill="none">
+                            <circle cx="30" cy="20" r="8" fill="currentColor" opacity="0.3" />
+                            <circle cx="22" cy="35" r="6" fill="currentColor" opacity="0.5" />
+                            <circle cx="38" cy="35" r="6" fill="currentColor" opacity="0.5" />
+                            <circle cx="30" cy="45" r="5" fill="currentColor" opacity="0.7" />
+                        </svg>
+                    </div>
+                    <h3 class="zen-title">Sakura Spirit</h3>
+                    <p class="zen-description">
+                        Como las flores de cerezo, celebramos la belleza efímera.
+                        Cada fragancia es un recordatorio para vivir el momento.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Colección de Productos - Bento Grid -->
+    <section class="coleccion" id="coleccion">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Nuestra Colección</span>
+                <h2 class="section-title">Velas con Alma Japonesa</h2>
+                <p class="section-subtitle">
+                    Cada vela lleva un nombre japonés que representa un concepto filosófico.
+                    Elige la que resuene con tu espíritu.
+                </p>
+            </div>
+
+            <div class="products-grid">
+                <!-- Producto 1 -->
+                <div class="product-card product-large">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1602874801006-c6de707e92b5?w=600&q=80"
+                            alt="Vela GANBARU">
+                        <div class="product-badge">Más Vendida</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">GANBARU</h3>
+                        <p class="product-meaning">頑張る • Perseverancia</p>
+                        <p class="product-description">
+                            Aroma a madera de cedro y sándalo. Perfecta para momentos de concentración y trabajo.
+                        </p>
+                        <div class="product-footer">
+                            <span class="product-price">22€</span>
+                            <button class="btn-add-cart" onclick="addToCart('GANBARU', 22)">
+                                Añadir al Carrito
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?w=400&q=80"
+                            alt="Vela NINTAI">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">NINTAI</h3>
+                        <p class="product-meaning">忍耐 • Paciencia</p>
+                        <p class="product-description">Lavanda y eucalipto para la calma interior.</p>
+                        <div class="product-footer">
+                            <span class="product-price">20€</span>
+                            <button class="btn-add-cart" onclick="addToCart('NINTAI', 20)">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1583000557146-13eaa6e1346f?w=400&q=80"
+                            alt="Vela SATORI">
+                        <div class="product-badge new">Nuevo</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">SATORI</h3>
+                        <p class="product-meaning">悟り • Iluminación</p>
+                        <p class="product-description">Incienso japonés y flor de loto.</p>
+                        <div class="product-footer">
+                            <span class="product-price">24€</span>
+                            <button class="btn-add-cart" onclick="addToCart('SATORI', 24)">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=400&q=80"
+                            alt="Vela KAKEBO">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">KAKEBO</h3>
+                        <p class="product-meaning">家計簿 • Equilibrio</p>
+                        <p class="product-description">Té verde matcha y bergamota.</p>
+                        <div class="product-footer">
+                            <span class="product-price">21€</span>
+                            <button class="btn-add-cart" onclick="addToCart('KAKEBO', 21)">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 5 -->
+                <div class="product-card product-wide">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1603006904321-39e8c71df62b?w=600&q=80"
+                            alt="Vela HANAMI">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">HANAMI</h3>
+                        <p class="product-meaning">花見 • Contemplar las Flores</p>
+                        <p class="product-description">
+                            Flor de cerezo y jazmín. Una celebración de la primavera y la belleza efímera.
+                        </p>
+                        <div class="product-footer">
+                            <span class="product-price">23€</span>
+                            <button class="btn-add-cart" onclick="addToCart('HANAMI', 23)">
+                                Añadir al Carrito
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 6 - Jabones -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1600428977552-5e156891685e?w=400&q=80"
+                            alt="Jabones Artesanales">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">JABONES SAKURA</h3>
+                        <p class="product-meaning">石鹸 • Jabones Naturales</p>
+                        <p class="product-description">Set de 4 jabones artesanales.</p>
+                        <div class="product-footer">
+                            <span class="product-price">18€</span>
+                            <button class="btn-add-cart" onclick="addToCart('JABONES SAKURA', 18)">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proceso Artesanal -->
+    <section class="proceso" id="proceso">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Nuestro Proceso</span>
+                <h2 class="section-title">Artesanía con Propósito</h2>
+                <p class="section-subtitle">
+                    Cada vela es creada cuidadosamente a mano, con amor y atención al detalle.
+                </p>
+            </div>
+
+            <div class="proceso-timeline">
+                <div class="proceso-step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Selección de Materiales</h3>
+                        <p class="step-description">
+                            Cera de soja 100% natural, aceites esenciales puros y mechas de algodón ecológico.
+                        </p>
+                    </div>
+                    <div class="step-image">
+                        <img src="https://images.unsplash.com/photo-1615887023516-738555ffe2b6?w=400&q=80"
+                            alt="Materiales naturales">
+                    </div>
+                </div>
+
+                <div class="proceso-step reverse">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Creación Artesanal</h3>
+                        <p class="step-description">
+                            Derretimos, mezclamos y vertemos cada vela con técnicas tradicionales y paciencia.
+                        </p>
+                    </div>
+                    <div class="step-image">
+                        <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59?w=400&q=80"
+                            alt="Proceso artesanal">
+                    </div>
+                </div>
+
+                <div class="proceso-step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Curado y Empaque</h3>
+                        <p class="step-description">
+                            Dejamos reposar cada vela durante 48h para que los aromas se integren perfectamente.
+                        </p>
+                    </div>
+                    <div class="step-image">
+                        <img src="https://images.unsplash.com/photo-1602874801006-c6de707e92b5?w=400&q=80"
+                            alt="Empaque artesanal">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="testimonios">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Testimonios</span>
+                <h2 class="section-title">Lo que Dicen Nuestros Clientes</h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Las velas de Sakura han transformado mi rutina de meditación. El aroma es delicado
+                        y duradero. ¡Increíbles!"
+                    </p>
+                    <div class="testimonial-author">
+                        <strong>Laura M.</strong>
+                        <span>Barcelona</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card featured">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Me encantan los nombres japoneses y el concepto detrás de cada vela.
+                        GANBARU es perfecta para mi estudio. La calidad es excepcional."
+                    </p>
+                    <div class="testimonial-author">
+                        <strong>Carlos R.</strong>
+                        <span>Madrid</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Compré el set de jabones y son maravillosos. Naturales, suaves y con aromas únicos.
+                        Totalmente recomendados."
+                    </p>
+                    <div class="testimonial-author">
+                        <strong>Ana P.</strong>
+                        <span>Valencia</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="contacto" id="contacto">
+        <div class="container">
+            <div class="contacto-content">
+                <div class="contacto-left">
+                    <h2 class="contacto-title">Haz tu Pedido</h2>
+                    <p class="contacto-subtitle">
+                        Envíanos un mensaje por WhatsApp y te ayudaremos a elegir
+                        la vela perfecta para ti o como regalo.
+                    </p>
+
+                    <div class="contacto-info">
+                        <div class="contacto-item">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <div>
+                                <strong>Barcelona, España</strong>
+                                <p>Envíos a toda España</p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                            </svg>
+                            <div>
+                                <strong>WhatsApp</strong>
+                                <p>+34 612 345 678</p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <div>
+                                <strong>Email</strong>
+                                <p>hola@sakuracandles.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/sakuracandles_soaps" target="_blank" class="social-link">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/sakuracandles" target="_blank" class="social-link">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contacto-right">
+                    <div class="contacto-whatsapp-card">
+                        <svg class="whatsapp-icon" width="80" height="80" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                        </svg>
+                        <h3>¿Listo para tu pedido?</h3>
+                        <p>Te responderemos en menos de 24 horas</p>
+                        <a href="https://wa.me/34612345678?text=Hola%2C%20me%20gustaría%20hacer%20un%20pedido%20de%20Sakura%20Candles"
+                            target="_blank" class="btn-whatsapp-large">
+                            Abrir WhatsApp
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <svg class="brand-icon" width="40" height="40" viewBox="0 0 60 60" fill="none">
+                        <path d="M30 10C30 10 25 15 25 20C25 25 30 30 30 30C30 30 35 25 35 20C35 15 30 10 30 10Z"
+                            fill="currentColor" opacity="0.8" />
+                        <path d="M30 30C30 30 25 35 25 40C25 45 30 50 30 50C30 50 35 45 35 40C35 35 30 30 30 30Z"
+                            fill="currentColor" opacity="0.6" />
+                        <path d="M10 30C10 30 15 25 20 25C25 25 30 30 30 30C30 30 25 35 20 35C15 35 10 30 10 30Z"
+                            fill="currentColor" opacity="0.7" />
+                        <path d="M50 30C50 30 45 25 40 25C35 25 30 30 30 30C30 30 35 35 40 35C45 35 50 30 50 30Z"
+                            fill="currentColor" opacity="0.7" />
+                        <circle cx="30" cy="30" r="5" fill="currentColor" />
+                    </svg>
+                    <div>
+                        <div class="footer-brand-name">SAKURA</div>
+                        <div class="footer-brand-sub">Candles & Soaps</div>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Productos</h4>
+                        <a href="#coleccion">Velas</a>
+                        <a href="#coleccion">Jabones</a>
+                        <a href="#coleccion">Sets Regalo</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Información</h4>
+                        <a href="#filosofia">Nuestra Filosofía</a>
+                        <a href="#proceso">Proceso Artesanal</a>
+                        <a href="#contacto">Contacto</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="#">Política de Privacidad</a>
+                        <a href="#">Términos y Condiciones</a>
+                        <a href="#">Envíos y Devoluciones</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sakura Candles & Soaps. Hecho con amor en Barcelona.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
