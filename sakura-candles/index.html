@@ -178,7 +178,62 @@
         </div>
     </section>
 
-    <!-- Colección de Productos - Bento Grid -->
+
+    <!-- Proceso Artesanal -->
+    <section class="proceso" id="proceso">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Nuestro Proceso</span>
+                <h2 class="section-title">Artesanía con Propósito</h2>
+                <p class="section-subtitle">
+                    Cada vela es creada cuidadosamente a mano, con amor y atención al detalle.
+                </p>
+            </div>
+
+            <div class="proceso-timeline">
+                <div class="proceso-step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Selección de Materiales</h3>
+                        <p class="step-description">
+                            Cera de soja 100% natural, aceites esenciales puros y mechas de algodón ecológico.
+                        </p>
+                    </div>
+                    <div class="step-image">
+                        <img src="./assets/images/a%20(12).jpg" alt="Materiales naturales">
+                    </div>
+                </div>
+
+                <div class="proceso-step reverse">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Creación Artesanal</h3>
+                        <p class="step-description">
+                            Derretimos, mezclamos y vertemos cada vela con técnicas tradicionales y paciencia.
+                        </p>
+                    </div>
+                    <div class="step-image">
+                        <img src="./assets/images/a%20(13).jpg" alt="Proceso artesanal">
+                    </div>
+                </div>
+
+                <div class="proceso-step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Curado y Empaque</h3>
+                        <p class="step-description">
+                            Dejamos reposar cada vela durante 48h para que los aromas se integren perfectamente.
+                        </p>
+                    </div>
+                    <div class="step-image">
+                        <img src="./assets/images/a%20(14).jpg" alt="Empaque artesanal">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <!-- Colección de Productos - Bento Grid -->
     <section class="coleccion" id="coleccion">
         <div class="container">
@@ -197,6 +252,18 @@
                     <div class="product-image">
                         <img src="./assets/images/a%20(2).jpg" alt="Vela GANBARU">
                         <div class="product-badge">Más Vendida</div>
+                        <div class="product-overlay">
+                            <button class="product-overlay-btn add-cart" onclick="addToCart('GANBARU', 22)">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                Añadir al Carrito
+                            </button>
+                            <button class="product-overlay-btn view-detail" onclick="openProductModal('GANBARU')">
+                                👁️ Ver Descripción
+                            </button>
+                        </div>
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">GANBARU</h3>
@@ -207,7 +274,6 @@
                         <div class="product-footer">
                             <span class="product-price">22€</span>
                             <button class="btn-add-cart" onclick="addToCart('GANBARU', 22)">
-                                Añadir al Carrito
                                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -221,6 +287,18 @@
                 <div class="product-card">
                     <div class="product-image">
                         <img src="./assets/images/a%20(3).jpg" alt="Vela NINTAI">
+                        <div class="product-overlay">
+                            <button class="product-overlay-btn add-cart" onclick="addToCart('NINTAI', 20)">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                Añadir al Carrito
+                            </button>
+                            <button class="product-overlay-btn view-detail" onclick="openProductModal('NINTAI')">
+                                👁️ Ver Descripción
+                            </button>
+                        </div>
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">NINTAI</h3>
@@ -243,6 +321,18 @@
                     <div class="product-image">
                         <img src="./assets/images/a%20(4).jpg" alt="Vela SATORI">
                         <div class="product-badge new">Nuevo</div>
+                        <div class="product-overlay">
+                            <button class="product-overlay-btn add-cart" onclick="addToCart('SATORI', 24)">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                Añadir al Carrito
+                            </button>
+                            <button class="product-overlay-btn view-detail" onclick="openProductModal('SATORI')">
+                                👁️ Ver Descripción
+                            </button>
+                        </div>
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">SATORI</h3>
@@ -264,6 +354,18 @@
                 <div class="product-card">
                     <div class="product-image">
                         <img src="./assets/images/a%20(5).jpg" alt="Vela KAKEBO">
+                        <div class="product-overlay">
+                            <button class="product-overlay-btn add-cart" onclick="addToCart('KAKEBO', 21)">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                Añadir al Carrito
+                            </button>
+                            <button class="product-overlay-btn view-detail" onclick="openProductModal('KAKEBO')">
+                                👁️ Ver Descripción
+                            </button>
+                        </div>
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">KAKEBO</h3>
@@ -285,6 +387,18 @@
                 <div class="product-card product-wide">
                     <div class="product-image">
                         <img src="./assets/images/a%20(6).jpg" alt="Vela HANAMI">
+                        <div class="product-overlay">
+                            <button class="product-overlay-btn add-cart" onclick="addToCart('HANAMI', 23)">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                Añadir al Carrito
+                            </button>
+                            <button class="product-overlay-btn view-detail" onclick="openProductModal('HANAMI')">
+                                👁️ Ver Descripción
+                            </button>
+                        </div>
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">HANAMI</h3>
@@ -295,7 +409,6 @@
                         <div class="product-footer">
                             <span class="product-price">23€</span>
                             <button class="btn-add-cart" onclick="addToCart('HANAMI', 23)">
-                                Añadir al Carrito
                                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -309,6 +422,19 @@
                 <div class="product-card">
                     <div class="product-image">
                         <img src="./assets/images/a%20(7).jpg" alt="Jabones Artesanales">
+                        <div class="product-overlay">
+                            <button class="product-overlay-btn add-cart" onclick="addToCart('JABONES SAKURA', 18)">
+                                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                Añadir al Carrito
+                            </button>
+                            <button class="product-overlay-btn view-detail"
+                                onclick="openProductModal('JABONES SAKURA')">
+                                👁️ Ver Descripción
+                            </button>
+                        </div>
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">JABONES SAKURA</h3>
@@ -389,59 +515,6 @@
         </div>
     </section>
 
-    <!-- Proceso Artesanal -->
-    <section class="proceso" id="proceso">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Nuestro Proceso</span>
-                <h2 class="section-title">Artesanía con Propósito</h2>
-                <p class="section-subtitle">
-                    Cada vela es creada cuidadosamente a mano, con amor y atención al detalle.
-                </p>
-            </div>
-
-            <div class="proceso-timeline">
-                <div class="proceso-step">
-                    <div class="step-number">01</div>
-                    <div class="step-content">
-                        <h3 class="step-title">Selección de Materiales</h3>
-                        <p class="step-description">
-                            Cera de soja 100% natural, aceites esenciales puros y mechas de algodón ecológico.
-                        </p>
-                    </div>
-                    <div class="step-image">
-                        <img src="./assets/images/a%20(12).jpg" alt="Materiales naturales">
-                    </div>
-                </div>
-
-                <div class="proceso-step reverse">
-                    <div class="step-number">02</div>
-                    <div class="step-content">
-                        <h3 class="step-title">Creación Artesanal</h3>
-                        <p class="step-description">
-                            Derretimos, mezclamos y vertemos cada vela con técnicas tradicionales y paciencia.
-                        </p>
-                    </div>
-                    <div class="step-image">
-                        <img src="./assets/images/a%20(13).jpg" alt="Proceso artesanal">
-                    </div>
-                </div>
-
-                <div class="proceso-step">
-                    <div class="step-number">03</div>
-                    <div class="step-content">
-                        <h3 class="step-title">Curado y Empaque</h3>
-                        <p class="step-description">
-                            Dejamos reposar cada vela durante 48h para que los aromas se integren perfectamente.
-                        </p>
-                    </div>
-                    <div class="step-image">
-                        <img src="./assets/images/a%20(14).jpg" alt="Empaque artesanal">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Testimonios -->
     <section class="testimonios">
@@ -663,6 +736,39 @@
             </div>
         </div>
     </footer>
+
+    <!-- Product Detail Modal -->
+    <div class="product-modal" id="productModal">
+        <div class="product-modal-overlay" onclick="closeProductModal()"></div>
+        <div class="product-modal-content">
+            <button class="product-modal-close" onclick="closeProductModal()">×</button>
+            <div class="product-modal-image">
+                <img id="modalProductImage" src="" alt="Product">
+            </div>
+            <div class="product-modal-body">
+                <div class="product-modal-header">
+                    <h2 id="modalProductName"></h2>
+                    <p id="modalProductMeaning" class="modal-meaning"></p>
+                </div>
+                <p id="modalProductDescription" class="modal-description"></p>
+                <div class="modal-features">
+                    <div class="feature-item">✓ Cera de soja 100% natural</div>
+                    <div class="feature-item">✓ Hecho con amor en Barcelona</div>
+                    <div class="feature-item">✓ Aromas premium</div>
+                </div>
+                <div class="modal-footer">
+                    <span class="modal-price" id="modalProductPrice"></span>
+                    <button class="modal-btn" id="modalAddCartBtn" onclick="addToCartFromModal()">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        Añadir al Carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

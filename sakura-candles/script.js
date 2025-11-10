@@ -562,3 +562,101 @@ window.getCart = () => {
 
 console.log('%c🌸 Sakura Candles & Soaps', 'color: #FFB7C5; font-size: 20px; font-weight: bold;');
 console.log('%cHandmade with love in Barcelona', 'color: #8B4789; font-size: 14px;');
+
+// === PRODUCT DATA FOR MODALS ===
+const productData = {
+    'GANBARU': {
+        name: 'GANBARU',
+        meaning: '頑張る • Perseverancia',
+        description: 'Aroma a madera de cedro y sándalo. Perfecta para momentos de concentración y trabajo.',
+        image: './assets/images/a%20(2).jpg',
+        price: 22
+    },
+    'NINTAI': {
+        name: 'NINTAI',
+        meaning: '忍耐 • Paciencia',
+        description: 'Lavanda y eucalipto para la calma interior.',
+        image: './assets/images/a%20(3).jpg',
+        price: 20
+    },
+    'SATORI': {
+        name: 'SATORI',
+        meaning: '悟り • Iluminación',
+        description: 'Incienso japonés y flor de loto.',
+        image: './assets/images/a%20(4).jpg',
+        price: 24
+    },
+    'KAKEBO': {
+        name: 'KAKEBO',
+        meaning: '家計簿 • Equilibrio',
+        description: 'Té verde matcha y bergamota.',
+        image: './assets/images/a%20(5).jpg',
+        price: 21
+    },
+    'HANAMI': {
+        name: 'HANAMI',
+        meaning: '花見 • Contemplar las Flores',
+        description: 'Flor de cerezo y jazmín. Una celebración de la primavera y la belleza efímera.',
+        image: './assets/images/a%20(6).jpg',
+        price: 23
+    },
+    'JABONES SAKURA': {
+        name: 'JABONES SAKURA',
+        meaning: '石鹸 • Jabones Naturales',
+        description: 'Set de 4 jabones artesanales hechos con ingredientes 100% naturales.',
+        image: './assets/images/a%20(7).jpg',
+        price: 18
+    }
+};
+
+let currentModalProduct = null;
+
+// === PRODUCT MODAL ===
+function openProductModal(productName) {
+    const product = productData[productName];
+    if (!product) return;
+
+    currentModalProduct = product;
+
+    const modal = document.getElementById('productModal');
+    document.getElementById('modalProductName').textContent = product.name;
+    document.getElementById('modalProductMeaning').textContent = product.meaning;
+    document.getElementById('modalProductDescription').textContent = product.description;
+    document.getElementById('modalProductImage').src = product.image;
+    document.getElementById('modalProductPrice').textContent = `€${product.price}`;
+    document.getElementById('modalAddCartBtn').onclick = () => addToCartFromModal();
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProductModal() {
+    const modal = document.getElementById('productModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    currentModalProduct = null;
+}
+
+function addToCartFromModal() {
+    if (currentModalProduct) {
+        addToCart(currentModalProduct.name, currentModalProduct.price);
+        closeProductModal();
+    }
+}
+
+// Close modal when clicking overlay
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('productModal');
+    const overlay = document.querySelector('.product-modal-overlay');
+
+    if (overlay) {
+        overlay.addEventListener('click', closeProductModal);
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeProductModal();
+        }
+    });
+});
