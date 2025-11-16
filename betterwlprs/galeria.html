@@ -928,6 +928,141 @@
                 transform: scale(1) translateY(0);
             }
         }
+
+        /* ============================================
+           SECTION STYLES - Themed Gallery Sections
+           ============================================ */
+
+        .gallery-section {
+            margin-bottom: 4rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--primary), transparent);
+            width: 100%;
+        }
+
+        .section-emoji {
+            font-size: 2rem;
+            margin-right: 0.75rem;
+            display: inline-block;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+            display: inline;
+        }
+
+        .section-subtitle {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 0.5rem;
+            font-weight: 400;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .section-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .section-emoji {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Section color accents */
+        .section-dark-moody .section-title {
+            background: linear-gradient(135deg, #4f46e5, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-tranquil .section-title {
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-adrenaline .section-title {
+            background: linear-gradient(135deg, #f97316, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-artistic .section-title {
+            background: linear-gradient(135deg, #ec4899, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-cinematic .section-title {
+            background: linear-gradient(135deg, #a78bfa, #d946ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Hide collection grid and show sections */
+        #galleryContainer {
+            display: none;
+        }
+
+        #galleryContainer.show-sections {
+            display: block;
+        }
+
+        #collectionsGrid {
+            display: none;
+        }
+
+        #collectionsGrid.show {
+            display: block;
+        }
         </style>
     </head>
     <body class="bg-dark text-white font-sans overflow-x-hidden">
@@ -1274,7 +1409,12 @@
                     <p class="text-gray-400 mt-4">Loading BetterWLPRS...</p>
                 </div>
                 
-                <!-- Gallery grid -->
+                <!-- Gallery Container with Sections -->
+                <div id="galleryContainer" style="display: none;">
+                    <!-- Sections will be generated here -->
+                </div>
+                
+                <!-- Legacy Gallery grid (hidden by default) -->
                 <div id="galleryGrid" class="masonry-grid" style="display: none;">
                     <!-- Images will be loaded dynamically here -->
                 </div>
@@ -1458,166 +1598,163 @@
         });
 
         // ========== DRIVE WALLPAPERS SYSTEM ==========
-        // Imágenes locales organizadas por categorías específicas
+        // Sistema de secciones temáticas bien organizadas
+        // METADATOS: section, intensity (calm/dynamic), theme (gaming/nature/abstract)
         const localImages = [
+            // ============================================
+            // 🌙 SECTION 1: DARK & MOODY (Cinematic, Noir)
+            // ============================================
             // === BATMAN / ARKHAM COLLECTION ===
-            { src: "img/arkham.gif", title: "Arkham City Nights", category: "Batman/Arkham", type: "gif", game: "Batman Arkham" },
-            { src: "img/webp Arkham/webp Arkham-ake.webp", title: "Arkham Knight - Gotham View", category: "Batman/Arkham", type: "image", game: "Batman Arkham" },
-            { src: "img/webp Arkham/webp Arkham-akl.webp", title: "Arkham Knight - City Patrol", category: "Batman/Arkham", type: "image", game: "Batman Arkham" },
-            { src: "img/webp Arkham/webp Arkham-aku.webp", title: "Arkham Knight - Dark Streets", category: "Batman/Arkham", type: "image", game: "Batman Arkham" },
-            { src: "img/webp Arkham/webp Arkham-akw.webp", title: "Arkham Knight - Batmobile", category: "Batman/Arkham", type: "image", game: "Batman Arkham" },
-            { src: "img/webp Arkham/webp Arkham-webp Arkham-aka.webp", title: "Arkham Knight - Rooftop", category: "Batman/Arkham", type: "image", game: "Batman Arkham" },
-            { src: "img/OptimizedVideoWLPRS/BatmanKnight-NightWalker-VideoWLPR-web.mp4", title: "Batman Night Walker", category: "Batman/Arkham", type: "video", game: "Batman Arkham Knight" },
+            { src: "img/arkham.gif", title: "Arkham City Nights", category: "Batman/Arkham", type: "gif", game: "Batman Arkham", section: "Dark & Moody", intensity: "dynamic", theme: "gaming" },
+            { src: "img/webp Arkham/webp Arkham-ake.webp", title: "Arkham Knight - Gotham View", category: "Batman/Arkham", type: "image", game: "Batman Arkham", section: "Dark & Moody", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Arkham/webp Arkham-akl.webp", title: "Arkham Knight - City Patrol", category: "Batman/Arkham", type: "image", game: "Batman Arkham", section: "Dark & Moody", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Arkham/webp Arkham-aku.webp", title: "Arkham Knight - Dark Streets", category: "Batman/Arkham", type: "image", game: "Batman Arkham", section: "Dark & Moody", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Arkham/webp Arkham-akw.webp", title: "Arkham Knight - Batmobile", category: "Batman/Arkham", type: "image", game: "Batman Arkham", section: "Dark & Moody", intensity: "dynamic", theme: "gaming" },
+            { src: "img/webp Arkham/webp Arkham-webp Arkham-aka.webp", title: "Arkham Knight - Rooftop", category: "Batman/Arkham", type: "image", game: "Batman Arkham", section: "Dark & Moody", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/BatmanKnight-NightWalker-VideoWLPR-web.mp4", title: "Batman Night Walker", category: "Batman/Arkham", type: "video", game: "Batman Arkham Knight", section: "Dark & Moody", intensity: "dynamic", theme: "gaming" },
             
-            // === DEATH STRANDING COLLECTION ===
-            { src: "img/samsittedahh.gif", title: "Sam Sitting", category: "Death Stranding", type: "gif", game: "Death Stranding" },
-            { src: "img/samizquierdasentado.png", title: "Sam Portrait", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/samsatori.gif", title: "Sam Satori", category: "Death Stranding", type: "gif", game: "Death Stranding" },
-            { src: "img/OptimizedVideoWLPRS/DeathStranding-SamWindy-VideoWLPR-web.mp4", title: "Sam in Windy Plains", category: "Death Stranding", type: "video", game: "Death Stranding" },
+            // === WATCH DOGS 2 COLLECTION (Nocturne Tech) ===
+            { src: "img/marcusittingfocused.jpg", title: "Marcus Focused", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", section: "Dark & Moody", intensity: "calm", theme: "gaming" },
+            { src: "img/marcussittedahh.gif", title: "Marcus Sitting", category: "Watch Dogs", type: "gif", game: "Watch Dogs 2", section: "Dark & Moody", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702123833355_8.webp", title: "WD2 - Marcus Portrait", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", section: "Dark & Moody", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702123853643_8.webp", title: "WD2 - DedSec HQ", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", section: "Dark & Moody", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/WD2-Marcus-WaterHouses-Landscape-VideoWLPR-web.mp4", title: "WD2: Marcus Bay Area", category: "Watch Dogs", type: "video", game: "Watch Dogs 2", section: "Dark & Moody", intensity: "calm", theme: "gaming" },
             
-            // === DISHONORED COLLECTION ===
-            { src: "img/DishonoredDLC-Landscape-InsideBasement-WLPR-02.png", title: "Dishonored Basement", category: "Dishonored", type: "image", game: "Dishonored" },
-            // Death Stranding WebP Collection
-            { src: "img/webp Death Stranding/1 (1).webp", title: "DS - Lonely Journey", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (2).webp", title: "DS - Mountain Vista", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (3).webp", title: "DS - Cargo Delivery", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (4).webp", title: "DS - Rain Shelter", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (5).webp", title: "DS - Cliff Portrait", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (6).webp", title: "DS - Bridge Builder", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (7).webp", title: "DS - Timefall Storm", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (8).webp", title: "DS - Sam's Rest", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (9).webp", title: "DS - BB Connection", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (10).webp", title: "DS - Chiral Network", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (11).webp", title: "DS - Porter's Path", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (12).webp", title: "DS - BT Territory", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (13).webp", title: "DS - Fragile Express", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (14).webp", title: "DS - Ocean View", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (15).webp", title: "DS - Safe House", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (16).webp", title: "DS - Mama's Lab", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (17).webp", title: "DS - Heartman's Study", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (18).webp", title: "DS - Deadman's Office", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (19).webp", title: "DS - Higgs Encounter", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (20).webp", title: "DS - Amelie's Beach", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (21).webp", title: "DS - The Last Stranding", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (22).webp", title: "DS - Post-Apocalyptic Beauty", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (23).webp", title: "DS - Rebuilt America", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (24).webp", title: "DS - Connection Restored", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (25).webp", title: "DS - Hope Reborn", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (26).webp", title: "DS - New Beginning", category: "Death Stranding", type: "image", game: "Death Stranding" },
-            { src: "img/webp Death Stranding/1 (27).webp", title: "DS - Final Delivery", category: "Death Stranding", type: "image", game: "Death Stranding" },
+            // === DISHONORED COLLECTION (Dark Academia) ===
+            { src: "img/DishonoredDLC-Landscape-InsideBasement-WLPR-02.png", title: "Dishonored Basement", category: "Dishonored", type: "image", game: "Dishonored", section: "Dark & Moody", intensity: "calm", theme: "gaming" },
             
-            // === WATCH DOGS 2 COLLECTION ===
-            { src: "img/marcusittingfocused.jpg", title: "Marcus Focused", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
-            { src: "img/marcussittedahh.gif", title: "Marcus Sitting", category: "Watch Dogs", type: "gif", game: "Watch Dogs 2" },
-            { src: "img/OptimizedVideoWLPRS/WD2-Marcus-WaterHouses-Landscape-VideoWLPR-web.mp4", title: "WD2: Marcus Bay Area", category: "Watch Dogs", type: "video", game: "Watch Dogs 2" },
-            { src: "img/OptimizedVideoWLPRS/WD2-Marcus-WaterHouses-VideoWLPR-web.mp4", title: "WD2: Marcus Waterfront", category: "Watch Dogs", type: "video", game: "Watch Dogs 2" },
-            // Watch Dogs 2 WebP Collection
-            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122152462_12.webp", title: "WD2 - SF Golden Gate", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
-            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122704840_8.webp", title: "WD2 - Alcatraz Hack", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
-            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122836006_8.webp", title: "WD2 - Silicon Valley", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
-            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702123833355_8.webp", title: "WD2 - Marcus Portrait", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
-            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702123853643_8.webp", title: "WD2 - DedSec HQ", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
-            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702124007602_8.webp", title: "WD2 - Hacker's Paradise", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
-            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702124029296_8.webp", title: "WD2 - City Lights", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
-            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702124032716_8.webp", title: "WD2 - Tech Noir", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
-            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702124044724_8.webp", title: "WD2 - Underground", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
-            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702124108862_8.webp", title: "WD2 - Street Art", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
-            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702124126803_8.webp", title: "WD2 - Drone View", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
-            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0705114554806_8.webp", title: "WD2 - Digital Revolution", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
-            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0705114601239_8.webp", title: "WD2 - Social Network", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
-            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0705114733025_8.webp", title: "WD2 - Hack the Planet", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
-            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0705114752003_8.webp", title: "WD2 - Freedom Fighter", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
-            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-webp Watch Dogs 2-1img_0702122130503_8.webp", title: "WD2 - San Francisco Bay", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+            // ============================================
+            // 🌿 SECTION 2: TRANQUIL LANDSCAPES (Peaceful, Meditative)
+            // ============================================
+            // === DEATH STRANDING COLLECTION (Serene/Contemplative) ===
+            { src: "img/samsittedahh.gif", title: "Sam Sitting", category: "Death Stranding", type: "gif", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/samizquierdasentado.png", title: "Sam Portrait", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/samsatori.gif", title: "Sam Satori", category: "Death Stranding", type: "gif", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/DeathStranding-SamWindy-VideoWLPR-web.mp4", title: "Sam in Windy Plains", category: "Death Stranding", type: "video", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            // Death Stranding WebP Collection - Tranquil Landscapes
+            { src: "img/webp Death Stranding/1 (1).webp", title: "DS - Lonely Journey", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (2).webp", title: "DS - Mountain Vista", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (3).webp", title: "DS - Cargo Delivery", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (4).webp", title: "DS - Rain Shelter", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (5).webp", title: "DS - Cliff Portrait", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (6).webp", title: "DS - Bridge Builder", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (7).webp", title: "DS - Timefall Storm", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (8).webp", title: "DS - Sam's Rest", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (9).webp", title: "DS - BB Connection", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (10).webp", title: "DS - Chiral Network", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (11).webp", title: "DS - Porter's Path", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (12).webp", title: "DS - BT Territory", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (13).webp", title: "DS - Fragile Express", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (14).webp", title: "DS - Ocean View", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (15).webp", title: "DS - Safe House", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (16).webp", title: "DS - Mama's Lab", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (17).webp", title: "DS - Heartman's Study", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (18).webp", title: "DS - Deadman's Office", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (19).webp", title: "DS - Higgs Encounter", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (20).webp", title: "DS - Amelie's Beach", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (21).webp", title: "DS - The Last Stranding", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (22).webp", title: "DS - Post-Apocalyptic Beauty", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (23).webp", title: "DS - Rebuilt America", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (24).webp", title: "DS - Connection Restored", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (25).webp", title: "DS - Hope Reborn", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (26).webp", title: "DS - New Beginning", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/webp Death Stranding/1 (27).webp", title: "DS - Final Delivery", category: "Death Stranding", type: "image", game: "Death Stranding", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
             
-            // === STAR WARS BATTLEFRONT 2 COLLECTION ===
-            { src: "img/webp Battlefront 2/bf2pinky.webp", title: "Battlefront 2 - Pink Trooper", category: "Star Wars", type: "image", game: "Star Wars Battlefront 2" },
+            // === SKYRIM - Scenic Landscapes (Tranquil Landscapes) ===
+            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_04-web.mp4", title: "Skyrim: Dragon Valley", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_09-web.mp4", title: "Skyrim: Nordic Landscape", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_10-web.mp4", title: "Skyrim: Mountain Vista", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_12-web.mp4", title: "Skyrim: Aurora Borealis", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_15-web.mp4", title: "Skyrim: Whiterun Plains", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
             
-            // === DISCO ELYSIUM COLLECTION ===
-            { src: "img/videowlprs/discoelysiumstart.gif", title: "Disco Elysium Start", category: "Disco Elysium", type: "gif", game: "Disco Elysium" },
+            // === METRO EXODUS - Atmospheric Post-Apocalyptic (Tranquil with melancholy) ===
+            { src: "img/lessgo.gif", title: "Metro Exodus Scene", category: "Metro", type: "gif", game: "Metro Exodus", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/MetroExodus_01-web.mp4", title: "Metro Exodus: Scene 01", category: "Metro", type: "video", game: "Metro Exodus", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/MetroExodus_03-web.mp4", title: "Metro Exodus: Scene 03", category: "Metro", type: "video", game: "Metro Exodus", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/MetroExodus_04-web.mp4", title: "Metro Exodus: Scene 04", category: "Metro", type: "video", game: "Metro Exodus", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/MetroExodus_05-web.mp4", title: "Metro Exodus: Scene 05", category: "Metro", type: "video", game: "Metro Exodus", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/MetroExodus_06-web.mp4", title: "Metro Exodus: Scene 06", category: "Metro", type: "video", game: "Metro Exodus", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/MetroExodus_08-web.mp4", title: "Metro Exodus: Scene 08", category: "Metro", type: "video", game: "Metro Exodus", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/MetroExodus_10-web.mp4", title: "Metro Exodus: Scene 10", category: "Metro", type: "video", game: "Metro Exodus", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
             
-            // === EXISTING COLLECTIONS ===
-            // Assassin's Creed
-            { src: "img/ACOdissey-Vertical-Village-WLPR-08.png", title: "Odyssey Village Vista", category: "Assassin's Creed", type: "image", game: "Assassin's Creed Odyssey" },
+            // === THE LONG DARK (Survival in Nature) ===
+            { src: "img/thelongdarkwolfs.png", title: "Wolves in Snow", category: "The Long Dark", type: "image", game: "The Long Dark", section: "Tranquil Landscapes", intensity: "calm", theme: "gaming" },
             
-            // Metal Gear
-            { src: "img/mgsdelta.png", title: "MGS Delta Snake", category: "Metal Gear", type: "image", game: "Metal Gear Solid Delta" },
+            // ============================================
+            // ⚡ SECTION 3: ADRENALINE RUSH (Action, Dynamic, Movement)
+            // ============================================
+            // === SPIDER-MAN (Dynamic Action Moments) ===
+            { src: "img/spidersky.gif", title: "Spider-Man Swinging", category: "Spider-Man", type: "gif", game: "Spider-Man", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/SM2-Rainy-RaimiBlackSuit-Church-VideoWLPR-web.mp4", title: "Spider-Man: Rainy Church", category: "Spider-Man", type: "video", game: "Spider-Man 2", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/SM2-SkyView-VideoWLPR 2-web.mp4", title: "Spider-Man: Sky View", category: "Spider-Man", type: "video", game: "Spider-Man 2", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
             
-            // Metro
-            { src: "img/lessgo.gif", title: "Metro Exodus Scene", category: "Metro", type: "gif", game: "Metro Exodus" },
+            // === MAD MAX (Post-Apocalyptic Action) ===
+            { src: "img/videowlprs/madmaxlivewlprsany.gif", title: "Mad Max Live WLPR", category: "Mad Max", type: "gif", game: "Mad Max", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/Mad-Max-MoonLightHouse-VideoWLPR-web.mp4", title: "Mad Max: Moon Lighthouse", category: "Mad Max", type: "video", game: "Mad Max", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/Mad-Max-SanFranciscoHope-VideoWLPR-web.mp4", title: "Mad Max: SF Hope", category: "Mad Max", type: "video", game: "Mad Max", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/Mad-Max-UnderSanFrancisco-VideoWLPR-web.mp4", title: "Mad Max: Under SF", category: "Mad Max", type: "video", game: "Mad Max", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
             
-            // Spider-Man
-            { src: "img/spidersky.gif", title: "Spider-Man Swinging", category: "Spider-Man", type: "gif", game: "Spider-Man" },
+            // === SPEC OPS: THE LINE (Intense Military Action) ===
+            { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_03-web.mp4", title: "Spec Ops: Desert Storm", category: "Spec Ops", type: "video", game: "Spec Ops: The Line", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_04-web.mp4", title: "Spec Ops: Dubai Ruins", category: "Spec Ops", type: "video", game: "Spec Ops: The Line", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_07-web.mp4", title: "Spec Ops: Sand Dunes", category: "Spec Ops", type: "video", game: "Spec Ops: The Line", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_12-web.mp4", title: "Spec Ops: Burning City", category: "Spec Ops", type: "video", game: "Spec Ops: The Line", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_Dinamic_08-web.mp4", title: "Spec Ops: Dynamic Scene", category: "Spec Ops", type: "video", game: "Spec Ops: The Line", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
             
-            // The Long Dark
-            { src: "img/thelongdarkwolfs.png", title: "Wolves in Snow", category: "The Long Dark", type: "image", game: "The Long Dark" },
+            // === DYING LIGHT (Horror Action) ===
+            { src: "img/OptimizedVideoWLPRS/Dying Light  The Beast 2025.09.25 - 19.01.34.02-web.mp4", title: "Dying Light: The Beast", category: "Dying Light", type: "video", game: "Dying Light", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
             
-            // === MISC COLLECTIONS (NOT SHOWN IN BROWSE) ===
-            // Nature & Landscapes
-            { src: "img/sanfracampview.jpg", title: "San Francisco Camp View", category: "Landscapes", type: "image", game: "Landscape" },
+            // === WATCH DOGS 2 - Urban Tech Action ===
+            { src: "img/OptimizedVideoWLPRS/WD2-Marcus-WaterHouses-VideoWLPR-web.mp4", title: "WD2: Marcus Waterfront", category: "Watch Dogs", type: "video", game: "Watch Dogs 2", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122152462_12.webp", title: "WD2 - SF Golden Gate", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122704840_8.webp", title: "WD2 - Alcatraz Hack", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122836006_8.webp", title: "WD2 - Silicon Valley", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702124007602_8.webp", title: "WD2 - Hacker's Paradise", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702124029296_8.webp", title: "WD2 - City Lights", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702124032716_8.webp", title: "WD2 - Tech Noir", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702124044724_8.webp", title: "WD2 - Underground", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702124108862_8.webp", title: "WD2 - Street Art", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702124126803_8.webp", title: "WD2 - Drone View", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0705114554806_8.webp", title: "WD2 - Digital Revolution", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0705114601239_8.webp", title: "WD2 - Social Network", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0705114733025_8.webp", title: "WD2 - Hack the Planet", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0705114752003_8.webp", title: "WD2 - Freedom Fighter", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
+            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-webp Watch Dogs 2-1img_0702122130503_8.webp", title: "WD2 - San Francisco Bay", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", section: "Adrenaline Rush", intensity: "dynamic", theme: "gaming" },
             
-            // Abstract & Art
-            { src: "img/discoelysium.webp", title: "Disco Elysium Art", category: "Disco Elysium", type: "image", game: "Disco Elysium" },
-            { src: "img/barman.png", title: "Bartender Scene", category: "Art", type: "image", game: "Artistic" },
+            // ============================================
+            // 🎨 SECTION 4: ABSTRACT & ARTISTIC (Artistic, Minimalist)
+            // ============================================
+            // === DISCO ELYSIUM (Artistic Noir) ===
+            { src: "img/videowlprs/discoelysiumstart.gif", title: "Disco Elysium Start", category: "Disco Elysium", type: "gif", game: "Disco Elysium", section: "Abstract & Artistic", intensity: "calm", theme: "abstract" },
+            { src: "img/discoelysium.webp", title: "Disco Elysium Art", category: "Disco Elysium", type: "image", game: "Disco Elysium", section: "Abstract & Artistic", intensity: "calm", theme: "abstract" },
             
-            // === BRAND & LOGOS ===
-            { src: "img/logobetterwlprs.png", title: "BetterWLPRS Logo", category: "Brand", type: "image", game: "BetterWLPRS" },
+            // === OTHER ARTISTIC ===
+            { src: "img/barman.png", title: "Bartender Scene", category: "Art", type: "image", game: "Artistic", section: "Abstract & Artistic", intensity: "calm", theme: "abstract" },
+            { src: "img/ACOdissey-Vertical-Village-WLPR-08.png", title: "Odyssey Village Vista", category: "Assassin's Creed", type: "image", game: "Assassin's Creed Odyssey", section: "Abstract & Artistic", intensity: "calm", theme: "gaming" },
+            { src: "img/mgsdelta.png", title: "MGS Delta Snake", category: "Metal Gear", type: "image", game: "Metal Gear Solid Delta", section: "Abstract & Artistic", intensity: "calm", theme: "gaming" },
             
-            // === VIDEO WLPRS - EXISTING COLLECTIONS ===
-            // Dying Light
-            { src: "img/OptimizedVideoWLPRS/Dying Light  The Beast 2025.09.25 - 19.01.34.02-web.mp4", title: "Dying Light: The Beast", category: "Dying Light", type: "video", game: "Dying Light" },
+            // ============================================
+            // 🎬 SECTION 5: CINEMATIC GAMING (Witcher 3, Prey - Story-driven)
+            // ============================================
+            // === THE WITCHER 3 (Rich Fantasy Cinematics) ===
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.17.38.01-web.mp4", title: "Witcher 3: Novigrad Sunset", category: "The Witcher", type: "video", game: "The Witcher 3", section: "Cinematic Gaming", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.19.02.02-web.mp4", title: "Witcher 3: Skellige Isles", category: "The Witcher", type: "video", game: "The Witcher 3", section: "Cinematic Gaming", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.20.40.03-web.mp4", title: "Witcher 3: Velen Swamps", category: "The Witcher", type: "video", game: "The Witcher 3", section: "Cinematic Gaming", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.34.02.08-web.mp4", title: "Witcher 3: Kaer Morhen", category: "The Witcher", type: "video", game: "The Witcher 3", section: "Cinematic Gaming", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.45.29.09-web.mp4", title: "Witcher 3: Oxenfurt", category: "The Witcher", type: "video", game: "The Witcher 3", section: "Cinematic Gaming", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.48.01.10-web.mp4", title: "Witcher 3: Toussaint", category: "The Witcher", type: "video", game: "The Witcher 3", section: "Cinematic Gaming", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.53.39.12-web.mp4", title: "Witcher 3: White Orchard", category: "The Witcher", type: "video", game: "The Witcher 3", section: "Cinematic Gaming", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.55.19.13-web.mp4", title: "Witcher 3: Crookback Bog", category: "The Witcher", type: "video", game: "The Witcher 3", section: "Cinematic Gaming", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.55.56.14-web.mp4", title: "Witcher 3: Beauclair", category: "The Witcher", type: "video", game: "The Witcher 3", section: "Cinematic Gaming", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.56.42.15-web.mp4", title: "Witcher 3: Corvo Bianco", category: "The Witcher", type: "video", game: "The Witcher 3", section: "Cinematic Gaming", intensity: "calm", theme: "gaming" },
             
-            // Fallout
-            { src: "img/OptimizedVideoWLPRS/Fallout 3 2025.09.27 - 23.21.41.03-web.mp4", title: "Fallout 3 Wasteland", category: "Fallout", type: "video", game: "Fallout 3" },
+            // === PREY (Sci-Fi Cinematic) ===
+            { src: "img/OptimizedVideoWLPRS/Prey (2017) 2025.09.08 - 18.00.41.02 - Trm-web.mp4", title: "Prey: Talos Station", category: "Prey", type: "video", game: "Prey (2017)", section: "Cinematic Gaming", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/Prey (2017) 2025.09.08 - 18.03.51.04-web.mp4", title: "Prey: Corridor View", category: "Prey", type: "video", game: "Prey (2017)", section: "Cinematic Gaming", intensity: "calm", theme: "gaming" },
+            { src: "img/OptimizedVideoWLPRS/Prey (2017) 2025.09.08 - 18.04.42.05-web.mp4", title: "Prey: Space Station", category: "Prey", type: "video", game: "Prey (2017)", section: "Cinematic Gaming", intensity: "calm", theme: "gaming" },
             
-            // Mad Max
-            { src: "img/OptimizedVideoWLPRS/Mad-Max-MoonLightHouse-VideoWLPR-web.mp4", title: "Mad Max: Moon Lighthouse", category: "Mad Max", type: "video", game: "Mad Max" },
-            { src: "img/OptimizedVideoWLPRS/Mad-Max-SanFranciscoHope-VideoWLPR-web.mp4", title: "Mad Max: SF Hope", category: "Mad Max", type: "video", game: "Mad Max" },
-            { src: "img/OptimizedVideoWLPRS/Mad-Max-UnderSanFrancisco-VideoWLPR-web.mp4", title: "Mad Max: Under SF", category: "Mad Max", type: "video", game: "Mad Max" },
-            { src: "img/videowlprs/madmaxlivewlprsany.gif", title: "Mad Max Live WLPR", category: "Mad Max", type: "gif", game: "Mad Max" },
-            
-            // Metro Exodus
-            { src: "img/OptimizedVideoWLPRS/MetroExodus_01-web.mp4", title: "Metro Exodus: Scene 01", category: "Metro", type: "video", game: "Metro Exodus" },
-            { src: "img/OptimizedVideoWLPRS/MetroExodus_03-web.mp4", title: "Metro Exodus: Scene 03", category: "Metro", type: "video", game: "Metro Exodus" },
-            { src: "img/OptimizedVideoWLPRS/MetroExodus_04-web.mp4", title: "Metro Exodus: Scene 04", category: "Metro", type: "video", game: "Metro Exodus" },
-            { src: "img/OptimizedVideoWLPRS/MetroExodus_05-web.mp4", title: "Metro Exodus: Scene 05", category: "Metro", type: "video", game: "Metro Exodus" },
-            { src: "img/OptimizedVideoWLPRS/MetroExodus_06-web.mp4", title: "Metro Exodus: Scene 06", category: "Metro", type: "video", game: "Metro Exodus" },
-            { src: "img/OptimizedVideoWLPRS/MetroExodus_08-web.mp4", title: "Metro Exodus: Scene 08", category: "Metro", type: "video", game: "Metro Exodus" },
-            { src: "img/OptimizedVideoWLPRS/MetroExodus_10-web.mp4", title: "Metro Exodus: Scene 10", category: "Metro", type: "video", game: "Metro Exodus" },
-            
-            // Prey
-            { src: "img/OptimizedVideoWLPRS/Prey (2017) 2025.09.08 - 18.00.41.02 - Trm-web.mp4", title: "Prey: Talos Station", category: "Prey", type: "video", game: "Prey (2017)" },
-            { src: "img/OptimizedVideoWLPRS/Prey (2017) 2025.09.08 - 18.03.51.04-web.mp4", title: "Prey: Corridor View", category: "Prey", type: "video", game: "Prey (2017)" },
-            { src: "img/OptimizedVideoWLPRS/Prey (2017) 2025.09.08 - 18.04.42.05-web.mp4", title: "Prey: Space Station", category: "Prey", type: "video", game: "Prey (2017)" },
-            
-            // Spider-Man
-            { src: "img/OptimizedVideoWLPRS/SM2-Rainy-RaimiBlackSuit-Church-VideoWLPR-web.mp4", title: "Spider-Man: Rainy Church", category: "Spider-Man", type: "video", game: "Spider-Man 2" },
-            { src: "img/OptimizedVideoWLPRS/SM2-SkyView-VideoWLPR 2-web.mp4", title: "Spider-Man: Sky View", category: "Spider-Man", type: "video", game: "Spider-Man 2" },
-            
-            // Skyrim
-            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_04-web.mp4", title: "Skyrim: Dragon Valley", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim" },
-            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_09-web.mp4", title: "Skyrim: Nordic Landscape", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim" },
-            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_10-web.mp4", title: "Skyrim: Mountain Vista", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim" },
-            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_12-web.mp4", title: "Skyrim: Aurora Borealis", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim" },
-            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_15-web.mp4", title: "Skyrim: Whiterun Plains", category: "Skyrim", type: "video", game: "The Elder Scrolls V: Skyrim" },
-            
-            // Spec Ops
-            { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_03-web.mp4", title: "Spec Ops: Desert Storm", category: "Spec Ops", type: "video", game: "Spec Ops: The Line" },
-            { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_04-web.mp4", title: "Spec Ops: Dubai Ruins", category: "Spec Ops", type: "video", game: "Spec Ops: The Line" },
-            { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_07-web.mp4", title: "Spec Ops: Sand Dunes", category: "Spec Ops", type: "video", game: "Spec Ops: The Line" },
-            { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_12-web.mp4", title: "Spec Ops: Burning City", category: "Spec Ops", type: "video", game: "Spec Ops: The Line" },
-            { src: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_Dinamic_08-web.mp4", title: "Spec Ops: Dynamic Scene", category: "Spec Ops", type: "video", game: "Spec Ops: The Line" },
-            
-            // The Witcher 3
-            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.17.38.01-web.mp4", title: "Witcher 3: Novigrad Sunset", category: "The Witcher", type: "video", game: "The Witcher 3" },
-            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.19.02.02-web.mp4", title: "Witcher 3: Skellige Isles", category: "The Witcher", type: "video", game: "The Witcher 3" },
-            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.20.40.03-web.mp4", title: "Witcher 3: Velen Swamps", category: "The Witcher", type: "video", game: "The Witcher 3" },
-            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.34.02.08-web.mp4", title: "Witcher 3: Kaer Morhen", category: "The Witcher", type: "video", game: "The Witcher 3" },
-            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.45.29.09-web.mp4", title: "Witcher 3: Oxenfurt", category: "The Witcher", type: "video", game: "The Witcher 3" },
-            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.48.01.10-web.mp4", title: "Witcher 3: Toussaint", category: "The Witcher", type: "video", game: "The Witcher 3" },
-            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.53.39.12-web.mp4", title: "Witcher 3: White Orchard", category: "The Witcher", type: "video", game: "The Witcher 3" },
-            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.55.19.13-web.mp4", title: "Witcher 3: Crookback Bog", category: "The Witcher", type: "video", game: "The Witcher 3" },
-            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.55.56.14-web.mp4", title: "Witcher 3: Beauclair", category: "The Witcher", type: "video", game: "The Witcher 3" },
-            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.56.42.15-web.mp4", title: "Witcher 3: Corvo Bianco", category: "The Witcher", type: "video", game: "The Witcher 3" }
+            // === FALLOUT (Retro-Futuristic) ===
+            { src: "img/OptimizedVideoWLPRS/Fallout 3 2025.09.27 - 23.21.41.03-web.mp4", title: "Fallout 3 Wasteland", category: "Fallout", type: "video", game: "Fallout 3", section: "Cinematic Gaming", intensity: "dynamic", theme: "gaming" }
         ];
 
         // Configuration
@@ -2099,27 +2236,121 @@
         loadMoreBtn?.addEventListener('click', loadMoreItems);
 
         // Initialize gallery
-        function initGallery() {
-            console.log('Iniciando galería...');
+        // ========== SECTIONS & RENDERING BY THEME ==========
+        // Define section order and metadata
+        const sectionConfig = [
+            { 
+                id: "dark-moody", 
+                title: "Dark & Moody", 
+                emoji: "🌙",
+                subtitle: "Cinematic, noir, and atmospheric gaming moments"
+            },
+            { 
+                id: "tranquil", 
+                title: "Tranquil Landscapes", 
+                emoji: "🌿",
+                subtitle: "Peaceful, meditative, and serene atmospheres"
+            },
+            { 
+                id: "adrenaline", 
+                title: "Adrenaline Rush", 
+                emoji: "⚡",
+                subtitle: "Action-packed, dynamic, and fast-paced content"
+            },
+            { 
+                id: "artistic", 
+                title: "Abstract & Artistic", 
+                emoji: "🎨",
+                subtitle: "Creative, artistic, and minimalist designs"
+            },
+            { 
+                id: "cinematic", 
+                title: "Cinematic Gaming", 
+                emoji: "🎬",
+                subtitle: "Story-driven, rich, and visually cinematic experiences"
+            }
+        ];
+
+        // Group images by section
+        function groupImagesBySection() {
+            const sections = {};
             
-            // Barajear las imágenes para variedad
-            shuffledImages = shuffleArray(localImages);
+            localImages.forEach(img => {
+                if (!img.section) return; // Skip if no section defined
+                
+                if (!sections[img.section]) {
+                    sections[img.section] = [];
+                }
+                sections[img.section].push(img);
+            });
+            
+            console.log('Imágenes agrupadas por sección:', sections);
+            return sections;
+        }
+
+        // Render gallery by sections
+        function renderGalleryBySections() {
+            const galleryContainer = document.getElementById('galleryContainer');
+            const groupedImages = groupImagesBySection();
+            
+            galleryContainer.innerHTML = '';
+            
+            // Render sections in configured order
+            sectionConfig.forEach(section => {
+                const images = groupedImages[section.title] || [];
+                
+                if (images.length === 0) return; // Skip empty sections
+                
+                // Create section element
+                const sectionEl = document.createElement('div');
+                sectionEl.className = `gallery-section section-${section.id}`;
+                sectionEl.setAttribute('data-section', section.title);
+                
+                // Create header
+                const headerEl = document.createElement('div');
+                headerEl.className = 'section-header';
+                headerEl.innerHTML = `
+                    <h2 class="section-title">
+                        <span class="section-emoji">${section.emoji}</span>${section.title}
+                    </h2>
+                    <p class="section-subtitle">${section.subtitle}</p>
+                    <p style="font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 0.25rem;">${images.length} wallpapers</p>
+                `;
+                sectionEl.appendChild(headerEl);
+                
+                // Create grid
+                const gridEl = document.createElement('div');
+                gridEl.className = 'section-grid';
+                
+                // Add images to grid
+                images.forEach((img, index) => {
+                    const item = createGalleryItem(img, index);
+                    gridEl.appendChild(item);
+                });
+                
+                sectionEl.appendChild(gridEl);
+                galleryContainer.appendChild(sectionEl);
+            });
+        }
+
+        function initGallery() {
+            console.log('Iniciando galería con secciones temáticas...');
             
             setTimeout(() => {
                 loadingIndicator.style.display = 'none';
-                galleryGrid.style.display = 'block';
-                loadMoreContainer.style.display = 'block';
+                document.getElementById('galleryContainer').style.display = 'block';
+                document.getElementById('loadMoreContainer').style.display = 'none'; // Hide load more for sections view
                 
-                // Load first batch
-                loadMoreItems();
+                // Render all sections
+                renderGalleryBySections();
                 
-                // Build collections grid and initialize filters after gallery is loaded
+                // Build collections grid and initialize filters
                 setTimeout(() => {
                     buildCollectionsGrid();
                     initializeCollections();
                 }, 500);
                 
-                console.log('Galería cargada con', shuffledImages.length, 'WLPRS aleatorios');
+                console.log('✅ Galería cargada con secciones temáticas');
             }, 1000);
         }
 
