@@ -4,37 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>La Chiquitana - El Mejor Restaurante Boliviano en Barcelona | Comida Boliviana Auténtica</title>
+    <title>La Chiquitana - Panadería Boliviana en Barcelona | Comida Boliviana Auténtica</title>
     <meta name="description"
-        content="Descubre La Chiquitana, el auténtico restaurante boliviano en Barcelona. Salteñas, cuñapé, empanadas y más. Sabores de Bolivia preparados con recetas tradicionales.">
-    <meta name="keywords"
-        content="comida boliviana Barcelona, restaurante boliviano Barcelona, la chiquitana, salteñas Barcelona, cuñapé, empanadas bolivianas, gastronomía boliviana, Bolivia Barcelona">
+        content="Descubre La Chiquitana, la auténtica panadería boliviana en Barcelona. Salteñas, Cuñapé, empanadas y más. Sabores de Bolivia preparados con recetas tradicionales.">
+
+    <!-- Preconnect para mejorar performance -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://codepen.io">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.lachiquitana.com/">
-    <meta property="og:title" content="La Chiquitana - Restaurante Boliviano Auténtico en Barcelona">
+    <meta property="og:title" content="La Chiquitana - Panadería Boliviana Auténtica en Barcelona">
     <meta property="og:description"
-        content="Auténtica comida boliviana en Barcelona. Salteñas, cuñapé y empanadas tradicionales de Bolivia preparadas con amor.">
+        content="Auténtica panadería boliviana en Barcelona. Salteñas, Cuñapé y empanadas tradicionales de Bolivia preparadas con amor.">
     <meta property="og:image" content="./img/lachiquitanaLogo.webp">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.lachiquitana.com/">
-    <meta property="twitter:title" content="La Chiquitana - Restaurante Boliviano en Barcelona">
+    <meta property="twitter:title" content="La Chiquitana - Panadería Boliviana en Barcelona">
     <meta property="twitter:description"
-        content="Auténtica comida boliviana en Barcelona. Salteñas, cuñapé y empanadas tradicionales de Bolivia.">
+        content="Auténtica panadería boliviana en Barcelona. Salteñas, Cuñapé y empanadas tradicionales de Bolivia.">
     <meta property="twitter:image" content="./img/lachiquitanaLogo.webp">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://www.lachiquitana.com/">
 
     <!-- Favicon -->
-    <link rel="icon" href="./img/lachiquitanaLogo.webp" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="./img/lachiquitanaLogo.webp">
-    <link rel="icon" type="image/webp" sizes="32x32" href="./img/lachiquitanaLogo.webp">
-    <link rel="icon" type="image/webp" sizes="16x16" href="./img/lachiquitanaLogo.webp">
+    <link rel="icon" href="./img/renewedLogo.png" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/renewedLogo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/renewedLogo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/renewedLogo.png">
     <link rel="manifest" href="./img/site.webmanifest">
+
+    <!-- Preload recursos críticos -->
+    <link rel="preload" href="./img/renewedLogo.png" as="image">
+    <link rel="preload" href="./style.css" as="style">
 
     <link rel='stylesheet' href='https://codepen.io/GreenSock/pen/gOWxmWG.css'>
     <link rel="stylesheet" href="./style.css">
@@ -44,19 +51,27 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Restaurant",
+      "@type": "Bakery",
       "name": "La Chiquitana",
-      "image": "./img/lachiquitanaLogo.webp",
+      "description": "Auténtica panadería boliviana en Barcelona. Salteñas, Cuñapé y empanadas tradicionales de Bolivia preparadas con recetas originales.",
+      "image": "https://www.lachiquitana.com/img/lachiquitanaLogo.webp",
+      "logo": "https://www.lachiquitana.com/img/renewedLogo.png",
       "url": "https://www.lachiquitana.com",
       "telephone": "+34619084848",
+      "priceRange": "€€",
+      "servesCuisine": "Boliviana",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Barcelona",
-        "addressRegion": "Cataluña",
+        "streetAddress": "Carrer de la Pubilla Cases, 21",
+        "addressLocality": "L'Hospitalet de Llobregat",
+        "addressRegion": "Barcelona",
+        "postalCode": "08906",
         "addressCountry": "ES"
       },
       "geo": {
-        "@type": "GeoCoordinates"
+        "@type": "GeoCoordinates",
+        "latitude": "41.3704993",
+        "longitude": "2.1028793"
       },
       "servesCuisine": "Boliviana",
       "priceRange": "€€",
@@ -74,7 +89,40 @@
           "closes": "15:00"
         }
       ],
-      "menu": "https://www.lachiquitana.com/productos/productos.html"
+      "sameAs": [
+        "https://www.facebook.com/lachiquitanaoriginal",
+        "https://www.instagram.com/lachiquitana/"
+      ],
+      "menu": "https://www.lachiquitana.com/productos/productos.html",
+      "hasMenu": {
+        "@type": "Menu",
+        "hasMenuSection": [
+          {
+            "@type": "MenuSection",
+            "name": "Productos Estrella",
+            "hasMenuItem": [
+              {
+                "@type": "MenuItem",
+                "name": "Salteñas",
+                "description": "Empanada boliviana con carne desmechada y caldo jugoso",
+                "image": "https://www.lachiquitana.com/img/saltenas.webp"
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Cuñapé",
+                "description": "Pan de queso boliviano tradicional",
+                "image": "https://www.lachiquitana.com/img/cunape.webp"
+              },
+              {
+                "@type": "MenuItem",
+                "name": "Asadito Camba",
+                "description": "Empanada de carne con huevo duro",
+                "image": "https://www.lachiquitana.com/img/asadito.webp"
+              }
+            ]
+          }
+        ]
+      }
     }
     </script>
 </head>
@@ -89,17 +137,17 @@
         <div id="smooth-content">
             <header>
                 <div class="logo" style="width: 250px; height: 50px;">
-                    <a href="./index.html" style="display:block;"> <img src="./img/logopng.webp"
-                            alt="La Chiquitana - Restaurante Boliviano en Barcelona"></a>
+                    <a href="./index.html" style="display:block;"> <img src="./img/renewedLogo.png"
+                            alt="La Chiquitana - Panadería Boliviana en Barcelona"></a>
 
                 </div>
-                <nav class="menu-nav">
-                    <button class="menu-toggle" aria-expanded="false" aria-controls="menu-list">Menú <i
-                            class="fa fa-chevron-down"></i></button>
+                <nav class="menu-nav" aria-label="Navegación principal">
+                    <button class="menu-toggle" aria-expanded="false" aria-controls="menu-list"
+                        aria-label="Abrir menú">Menú <i class="fa fa-chevron-down"></i></button>
                     <ul class="menu-list" id="menu-list">
                         <li><a href="./index.html">Inicio</a></li>
-                        <li><a href="#historia-hero">Sobre Nosotros</a></li>
-                        <li><a href="#productos-hero">Productos</a></li>
+                        <li><a href="./historia/historia.html">Sobre Nosotros</a></li>
+                        <li><a href="./productos/productos.html">Productos</a></li>
                         <li><a href="./historia/historia.html">Historia</a></li>
                         <li><a href="./blog/blog.html">Blog</a></li>
                         <li><a href="#contacto-hero">Contacto</a></li>
@@ -127,8 +175,8 @@
                             <span class="yt">La Chiquitana</span>
                             <!-- Texto SEO oculto -->
                             <span
-                                style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">El
-                                Mejor Restaurante Boliviano en Barcelona</span>
+                                style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">Panadería
+                                boliviana en Barcelona</span>
                         </h1>
                         <div class="en-espana" id="en-espana">
                             En España.
@@ -140,10 +188,14 @@
                     </div>
                 </div>
                 <div class="images">
-                    <img data-speed="clamp(2.4)" src='./img/ala6.webp' alt='Gastronomía Boliviana en Barcelona'>
-                    <img data-speed="clamp(1.8)" src='./img/iglesiacerca.webp' alt='Cultura de Bolivia en Barcelona'>
-                    <img data-speed="clamp(2.2)" src='./img/ala9.webp' alt='Salteñas Bolivianas en Barcelona'>
-                    <img data-speed="clamp(1.5)" src='./img/diversas.webp' alt='Restaurante Boliviano Barcelona'>
+                    <img data-speed="clamp(2.4)" src='./img/ala6.webp'
+                        alt='Productos de panadería boliviana tradicional - La Chiquitana Barcelona' loading="lazy">
+                    <img data-speed="clamp(1.8)" src='./img/iglesiacerca.webp'
+                        alt='Iglesia de la Chiquitania boliviana - Cultura y tradición' loading="lazy">
+                    <img data-speed="clamp(2.2)" src='./img/ala9.webp'
+                        alt='Salteñas bolivianas recién horneadas en Barcelona' loading="lazy">
+                    <img data-speed="clamp(1.5)" src='./img/diversas.webp'
+                        alt='Variedad de productos bolivianos - Panadería La Chiquitana' loading="lazy">
                 </div>
 
 
@@ -155,8 +207,8 @@
             <div class="floating-card">
                 <div class="floating-card-content">
                     <span class="card-tag">Descubre</span>
-                    <h2 class="card-title">Nuestra Cocina Cruzqueña</h2>
-                    <p class="card-desc">La mejor panadería-restaurante Cruzqueña de Barcelona</p>
+                    <h2 class="card-title">Nuestra Cocina Cruceña</h2>
+                    <p class="card-desc">Auténtica panadería cruceña en Barcelona</p>
                 </div>
             </div>
 
@@ -290,83 +342,148 @@
 
                 <div class="content-wrapper">
                     <div class="productos-grid-modern">
-                        <!-- Producto 1 - Destacado -->
-                        <div class="producto-card-modern producto-featured">
-                            <div class="producto-badge">⭐ Más vendida</div>
-                            <div class="producto-image-modern saltena-bg-desktop">
-                                <img src="./img/saltenas.webp" alt="Salteñas Bolivianas">
+                        <!-- Producto ESTRELLA - Salteñas -->
+                        <div class="producto-hero-card">
+                            <div class="hero-badge hero-badge-desktop">
+                                <span>⭐</span>
+                                <span>Producto Estrella</span>
                             </div>
-                            <div class="producto-info-modern">
-                                <h3>Salteñas</h3>
-                                <p class="saltena-frase-destacada">¡La empanada boliviana más famosa y jugosa de
-                                    Barcelona!</p>
-                                <p>Empanada jugosa tradicional con carne, papa y ají</p>
-                                <a href="./productos/saltena.html" class="btn-modern">Descubrir</a>
-                            </div>
-                            <style>
-                                @media (min-width: 1025px) {
-                                    .saltena-bg-desktop {
-                                        background: url('./img/lazochiquitana.svg') no-repeat right bottom/120px, linear-gradient(135deg, #fffbe6 0%, #fff8d6 100%);
-                                        position: relative;
-                                    }
-
-                                    .saltena-frase-destacada {
-                                        font-size: 1.08rem;
-                                        color: #e8a238;
-                                        font-weight: 700;
-                                        margin-bottom: 0.7rem;
-                                        margin-top: 0.2rem;
-                                        letter-spacing: 0.2px;
-                                    }
-                                }
-
-                                @media (max-width: 1024px) {
-                                    .saltena-frase-destacada {
-                                        display: none;
-                                    }
-                                }
-                            </style>
-                        </div>
-
-                        <!-- Producto 2 -->
-                        <div class="producto-card-modern">
-                            <div class="producto-image-modern">
-                                <img src="./img/asadito.webp" alt="Asadito Boliviano">
-                            </div>
-                            <div class="producto-info-modern">
-                                <h3>Asadito</h3>
-                                <p>Pastel de carne con especias bolivianas</p>
-                                <a href="./productos/asadito.html" class="btn-modern">Ver más</a>
+                            <div class="hero-content">
+                                <div class="hero-text">
+                                    <div class="hero-badge hero-badge-mobile">
+                                        <span>⭐</span>
+                                        <span>Producto Estrella</span>
+                                    </div>
+                                    <h2>Salteñas</h2>
+                                    <p class="hero-tagline">Empanada Boliviana</p>
+                                    <p class="hero-description hero-description-desktop">Preparada con recetas
+                                        originales de la región de San José, Bolivia. Nuestra masa dorada que envuelve
+                                        el jugoso relleno, te transporta a un bocado tradicional y lleno de historia.
+                                    </p>
+                                    <p class="hero-description hero-description-mobile">Nuestra Auténtica empanada Cruceña.
+                                        Nuestra masa dorada que envuelve el jugoso relleno, te transporta a un bocado
+                                        tradicional y lleno de historia.</p>
+                                    <div class="hero-features">
+                                        <span>♨️ Horneadas cada día</span>
+                                        <span>🌶️ Dulce y salado perfectamente equilibrado</span>
+                                        <span>🥩 Pollo / Carne o Vegetariano </span>
+                                        <span>💧 Súper jugosas por dentro</span>
+                                    </div>
+                                    <a href="./productos/saltena.html" class="btn-hero">
+                                        <span>Descubrir Salteñas</span>
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                                <div class="hero-image">
+                                    <div class="image-container">
+                                        <img src="./img/saltenas.webp"
+                                            alt="Salteñas bolivianas recién horneadas con carne desmechada y caldo - La Chiquitana Barcelona"
+                                            loading="lazy">
+                                        <div class="image-overlay"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Producto 3 -->
-                        <div class="producto-card-modern">
-                            <div class="producto-image-modern">
-                                <img src="./img/cunape.webp" alt="Cuñapé Boliviano">
+                        <!-- Grid de productos secundarios -->
+                        <div class="productos-secondary-grid">
+                            <!-- Producto 2 -->
+                            <div class="producto-card-secondary">
+                                <div class="secondary-image">
+                                    <img src="./img/asadito.webp"
+                                        alt="Asadito boliviano con carne y yuca rallada - Empanada cruceña tradicional"
+                                        loading="lazy">
+                                </div>
+                                <div class="secondary-info">
+                                    <h3>Asadito Camba</h3>
+                                    <p class="product-desc-desktop">Deliciosa mezcla de carne, yuca rallada y verduras
+                                        al estilo cruceño</p>
+                                    <p class="product-desc-mobile">Carne con yuca rallada al estilo cruceño</p>
+                                    <a href="./productos/asadito.html" class="btn-secondary">Ver más</a>
+                                </div>
                             </div>
-                            <div class="producto-info-modern">
-                                <h3>Cuñapé</h3>
-                                <p>Panecillo de queso de Santa Cruz</p>
-                                <a href="./productos/cunape.html" class="btn-modern">Ver más</a>
-                            </div>
-                        </div>
 
-                        <!-- Producto 4 -->
-                        <div class="producto-card-modern">
-                            <div class="producto-image-modern">
-                                <img src="./img/tortitamaiz.webp" alt="Empanada de Maíz">
+                            <!-- Producto 3 -->
+                            <div class="producto-card-secondary">
+                                <div class="secondary-image">
+                                    <img src="./img/cunape.webp"
+                                        alt="Cuñapé boliviano - Pan de queso con yuca sin gluten Barcelona"
+                                        loading="lazy">
+                                </div>
+                                <div class="secondary-info">
+                                    <h3>Cuñapé</h3>
+                                    <p class="product-desc-desktop">Pan de queso con almidón de yuca, libre de gluten.
+                                        En dos versiones: tierno y bizcocho</p>
+                                    <p class="product-desc-mobile">Pan de queso con yuca. Tierno y bizcocho</p>
+                                    <a href="./productos/cunape.html" class="btn-secondary">Ver más</a>
+                                </div>
                             </div>
-                            <div class="producto-info-modern">
-                                <h3>Empanada de Maíz</h3>
-                                <p>Rellena de queso, cocida al vapor</p>
-                                <a href="./productos/empanadamaiz.html" class="btn-modern">Ver más</a>
+
+                            <!-- Producto 4 -->
+                            <div class="producto-card-secondary">
+                                <div class="secondary-image">
+                                    <img src="./img/tortitamaiz.webp"
+                                        alt="Empanada de maíz boliviana con queso - Sin gluten" loading="lazy">
+                                </div>
+                                <div class="secondary-info">
+                                    <h3>Empanada de Maíz</h3>
+                                    <p class="product-desc-desktop">Masa de harina de maíz rellena de queso, cocida al
+                                        vapor. Libre de gluten</p>
+                                    <p class="product-desc-mobile">Masa de maíz con queso. Libre de gluten</p>
+                                    <a href="./productos/empanadamaiz.html" class="btn-secondary">Ver más</a>
+                                </div>
+                            </div>
+
+                            <!-- Producto 5 - Empanadas de Arroz -->
+                            <div class="producto-card-secondary">
+                                <div class="secondary-image">
+                                    <img src="./img/empanadarroz.jpeg"
+                                        alt="Empanadas de arroz bolivianas con queso y cebollitas verdes"
+                                        loading="lazy">
+                                </div>
+                                <div class="secondary-info">
+                                    <h3>Empanadas de Arroz</h3>
+                                    <p class="product-desc-desktop">Masa de harina de arroz con queso, con o sin
+                                        cebollitas verdes</p>
+                                    <p class="product-desc-mobile">Harina de arroz con queso y cebollitas</p>
+                                    <a href="./productos/productos.html" class="btn-secondary">Ver más</a>
+                                </div>
+                            </div>
+
+                            <!-- Producto 6 - Sonso -->
+                            <div class="producto-card-secondary">
+                                <div class="secondary-image">
+                                    <img src="./img/sonso.jpg"
+                                        alt="Sonso boliviano - Especialidad cruceña de yuca fresca" loading="lazy">
+                                </div>
+                                <div class="secondary-info">
+                                    <h3>Sonso</h3>
+                                    <p class="product-desc-desktop">Especialidad cruceña tradicional elaborada con yuca
+                                        fresca</p>
+                                    <p class="product-desc-mobile">Especialidad cruceña de yuca fresca</p>
+                                    <a href="./productos/productos.html" class="btn-secondary">Ver más</a>
+                                </div>
+                            </div>
+
+                            <!-- Producto 7 - Pan de Mollete -->
+                            <div class="producto-card-secondary">
+                                <div class="secondary-image">
+                                    <img src="./img/mollete.webp"
+                                        alt="Pan de mollete boliviano con manjar blanco casero y canela" loading="lazy">
+                                </div>
+                                <div class="secondary-info">
+                                    <h3>Pan de Mollete</h3>
+                                    <p class="product-desc-desktop">Pan relleno de manjar blanco casero con canela,
+                                        hecho en 8 horas</p>
+                                    <p class="product-desc-mobile">Pan con manjar blanco casero y canela</p>
+                                    <a href="./productos/productos.html" class="btn-secondary">Ver más</a>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- CTA compacto -->
-                    <div style="text-align: center; margin-top: 2rem;">
+                    <div style="text-align: center; margin-top: 3rem;">
                         <a href="./productos/productos.html" class="btn-cta-modern">
                             Ver toda la carta
                             <i class="fas fa-arrow-right" style="margin-left: 8px; font-size: 0.9rem;"></i>
@@ -375,226 +492,411 @@
 
                     <style>
                         .productos-hero {
-                            padding: 2rem 1rem;
-                            background: #fff;
+                            padding: 3rem 1rem;
+                            background: linear-gradient(135deg, #fefcf8 0%, #fff8e6 100%);
                         }
 
                         .productos-grid-modern {
-                            display: grid;
-                            grid-template-columns: repeat(4, 1fr);
-                            gap: 1.5rem;
-                            max-width: 1200px;
+                            max-width: 1400px;
                             margin: 0 auto;
-                            padding: 0 1rem;
+
                         }
 
-                        .producto-card-modern {
+                        /* HERO CARD - SALTEÑAS ESTRELLA */
+                        .producto-hero-card {
+                            background: linear-gradient(135deg, #fff 0%, #fffef9 100%);
+                            border-radius: 24px;
+                            overflow: hidden;
+                            box-shadow: 0 20px 60px rgba(232, 162, 56, 0.15);
+                            margin-bottom: 3rem;
+                            position: relative;
+                            border: 1px solid rgba(232, 162, 56, 0.2);
+                        }
+
+                        .hero-badge {
+                            position: absolute;
+                            top: 2rem;
+                            right: 2rem;
+                            background: linear-gradient(135deg, #e8a238, #ffc062);
+                            color: white;
+                            padding: 0.8rem 1.5rem;
+                            border-radius: 50px;
+                            font-weight: 700;
+                            font-size: 0.9rem;
+                            z-index: 10;
+                            box-shadow: 0 8px 25px rgba(232, 162, 56, 0.4);
+                            display: flex;
+                            align-items: center;
+                            gap: 0.5rem;
+                            backdrop-filter: blur(10px);
+                        }
+
+                        .hero-badge-mobile {
+                            position: static !important;
+                            display: none;
+                            margin: 0 auto 1.5rem auto;
+                            width: fit-content;
+                        }
+
+                        .hero-badge-desktop {
+                            display: flex;
+                        }
+
+                        .hero-content {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+                            min-height: 400px;
+                            align-items: center;
+                        }
+
+                        .hero-text {
+                            padding: 3rem 3rem 3rem 3rem;
+                            z-index: 5;
+                            position: relative;
+                        }
+
+                        .hero-text h2 {
+                            font-size: 3rem;
+                            color: #2c2419;
+                            margin: 0 0 1rem 0;
+                            font-weight: 900;
+                            line-height: 1.1;
+                            letter-spacing: -0.02em;
+                        }
+
+                        .hero-tagline {
+                            font-size: 1.3rem;
+                            color: #e8a238;
+                            font-weight: 700;
+                            margin: 0 0 1.5rem 0;
+                            line-height: 1.3;
+                        }
+
+                        .hero-description {
+                            font-size: 1.1rem;
+                            color: #666;
+                            line-height: 1.6;
+                            margin: 0 0 2rem 0;
+                        }
+
+                        .hero-features {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 0.8rem;
+                            margin-bottom: 2.5rem;
+                        }
+
+                        .hero-features span {
+                            font-size: 0.95rem;
+                            color: #555;
+                            font-weight: 500;
+                        }
+
+                        .btn-hero {
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 0.8rem;
+                            padding: 1rem 2rem;
+                            background: linear-gradient(135deg, #e8a238, #ffc062);
+                            color: white;
+                            text-decoration: none;
+                            border-radius: 50px;
+                            font-weight: 700;
+                            font-size: 1rem;
+                            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                            text-transform: uppercase;
+                            letter-spacing: 0.5px;
+                            box-shadow: 0 8px 25px rgba(232, 162, 56, 0.3);
+                        }
+
+                        .btn-hero:hover {
+                            background: linear-gradient(135deg, #d4941f, #e8a238);
+                            transform: translateY(-3px);
+                            box-shadow: 0 15px 40px rgba(232, 162, 56, 0.4);
+                            color: white;
+                        }
+
+                        .btn-hero i {
+                            transition: transform 0.3s ease;
+                        }
+
+                        .btn-hero:hover i {
+                            transform: translateX(3px);
+                        }
+
+                        .hero-image {
+                            position: relative;
+                            height: 100%;
+                            min-height: 400px;
+                        }
+
+                        .image-container {
+                            position: relative;
+                            height: 100%;
+                            overflow: hidden;
+                            background: linear-gradient(135deg, #fffbe6 0%, #fff8d6 100%);
+                        }
+
+                        .image-container::before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background: url('./img/lazochiquitana.svg') no-repeat center/150px;
+                            opacity: 0.1;
+                            z-index: 1;
+                        }
+
+                        .hero-image img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            transition: transform 0.5s ease;
+                            position: relative;
+                            z-index: 2;
+                        }
+
+                        .producto-hero-card:hover .hero-image img {
+                            transform: scale(1.05);
+                        }
+
+                        .image-overlay {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background: linear-gradient(45deg, rgba(232, 162, 56, 0.1) 0%, transparent 50%);
+                            z-index: 3;
+                        }
+
+                        /* GRID SECUNDARIO */
+                        .productos-secondary-grid {
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                            gap: 1.5rem;
+                            max-width: 1400px;
+                            margin: 0 auto;
+                        }
+
+                        .producto-card-secondary {
                             background: white;
                             border-radius: 16px;
                             overflow: hidden;
-                            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
                             transition: all 0.3s ease;
-                            position: relative;
                             border: 1px solid rgba(232, 162, 56, 0.1);
                             height: 100%;
                             display: flex;
                             flex-direction: column;
                         }
 
-                        .producto-card-modern:hover {
-                            transform: translateY(-4px);
-                            box-shadow: 0 8px 30px rgba(232, 162, 56, 0.15);
+                        .producto-card-secondary:hover {
+                            transform: translateY(-5px);
+                            box-shadow: 0 15px 45px rgba(232, 162, 56, 0.15);
                         }
 
-                        .producto-featured {
-                            grid-column: span 2;
-                            grid-row: span 2;
-                        }
-
-                        .producto-featured .producto-image-modern {
-                            height: 300px;
-                        }
-
-                        .producto-featured .producto-info-modern {
-                            padding: 2rem;
-                        }
-
-                        .producto-featured h3 {
-                            font-size: 1.6rem;
-                            margin-bottom: 1rem;
-                        }
-
-                        .producto-image-modern {
+                        .secondary-image {
                             height: 180px;
-                            width: 100%;
                             overflow: hidden;
-                            position: relative;
                         }
 
-                        .producto-image-modern img {
+                        .secondary-image img {
                             width: 100%;
                             height: 100%;
                             object-fit: cover;
                             transition: transform 0.3s ease;
                         }
 
-                        .producto-card-modern:hover .producto-image-modern img {
+                        .producto-card-secondary:hover .secondary-image img {
                             transform: scale(1.05);
                         }
 
-                        .producto-info-modern {
-                            padding: 1rem;
+                        .secondary-info {
+                            padding: 1.5rem;
+                            flex: 1;
+                            display: flex;
+                            flex-direction: column;
                         }
 
-                        .producto-info-modern h3 {
-                            font-size: 1.1rem;
-                            font-weight: 700;
+                        .secondary-info h3 {
+                            font-size: 1.2rem;
                             color: #2c2c2c;
-                            margin: 0 0 0.5rem 0;
+                            margin: 0 0 0.8rem 0;
+                            font-weight: 700;
                         }
 
-                        .producto-info-modern p {
-                            font-size: 0.85rem;
+                        .secondary-info p {
+                            font-size: 0.9rem;
                             color: #666;
-                            margin: 0 0 1rem 0;
                             line-height: 1.4;
+                            margin: 0 0 1.5rem 0;
+                            flex: 1;
+                            min-height: 3rem;
                         }
 
-                        .btn-modern {
+                        .btn-secondary {
                             display: inline-block;
-                            padding: 0.5rem 1rem;
-                            background: linear-gradient(135deg, #e8a238, #ffc062);
-                            color: white;
-                            text-decoration: none;
-                            border-radius: 20px;
-                            font-size: 0.8rem;
-                            font-weight: 600;
-                            transition: all 0.3s ease;
-                            text-transform: uppercase;
-                            letter-spacing: 0.5px;
-                        }
-
-                        .btn-modern:hover {
-                            background: linear-gradient(135deg, #d4941f, #e8a238);
-                            transform: translateY(-1px);
-                            color: white;
-                        }
-
-                        .clica-recoge-hero {
-                            background: #fff6e9;
-                        }
-
-                        .producto-badge {
-                            position: absolute;
-                            top: 0.5rem;
-                            right: 0.5rem;
-                            background: linear-gradient(135deg, #e8a238, #ffc062);
-                            color: white;
-                            padding: 0.25rem 0.75rem;
-                            border-radius: 12px;
-                            font-size: 0.7rem;
-                            font-weight: 600;
-                            z-index: 2;
-                            box-shadow: 0 2px 8px rgba(232, 162, 56, 0.3);
-                        }
-
-                        .btn-cta-modern {
-                            display: inline-flex;
-                            align-items: center;
-                            padding: 0.75rem 1.5rem;
+                            padding: 0.7rem 1.3rem;
                             background: rgba(232, 162, 56, 0.1);
                             color: #e8a238;
                             text-decoration: none;
                             border-radius: 25px;
                             font-weight: 600;
+                            font-size: 0.85rem;
+                            text-transform: uppercase;
+                            letter-spacing: 0.5px;
+                            border: 2px solid transparent;
+                            transition: all 0.3s ease;
+                            text-align: center;
+                        }
+
+                        .btn-secondary:hover {
+                            background: #e8a238;
+                            color: white;
+                            border-color: #e8a238;
+                        }
+
+                        .btn-cta-modern {
+                            display: inline-flex;
+                            align-items: center;
+                            padding: 1rem 2rem;
+                            background: rgba(232, 162, 56, 0.1);
+                            color: #e8a238;
+                            text-decoration: none;
+                            border-radius: 50px;
+                            font-weight: 700;
                             border: 2px solid #e8a238;
                             transition: all 0.3s ease;
+                            font-size: 1rem;
                         }
 
                         .btn-cta-modern:hover {
                             background: #e8a238;
                             color: white;
+                            transform: translateY(-2px);
+                            box-shadow: 0 10px 30px rgba(232, 162, 56, 0.3);
                         }
 
-                        /* Responsive */
+                        /* Responsive Design */
                         @media (max-width: 1024px) {
-                            .productos-grid-modern {
-                                grid-template-columns: repeat(3, 1fr);
+                            .hero-content {
+                                grid-template-columns: 1fr;
+                                min-height: auto;
                             }
 
-                            .hero pad-l {
-                                margin-bottom: 390px;
+                            .hero-text {
+                                padding: 2.5rem 2rem;
+                                text-align: center;
                             }
 
-                            .producto-featured {
-                                grid-column: span 3;
+                            .hero-text h2 {
+                                font-size: 2.2rem;
+                            }
+
+                            .hero-image {
+                                min-height: 300px;
+                            }
+
+                            .productos-secondary-grid {
+                                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                                gap: 1rem;
                             }
                         }
 
                         @media (max-width: 768px) {
-                            .productos-grid-modern {
-                                grid-template-columns: repeat(2, 1fr);
+                            .productos-hero {
+                                padding: 2rem 1rem;
+                            }
+
+                            .hero-text {
+                                padding: 2rem 1.5rem;
+                            }
+
+                            .hero-text h2 {
+                                font-size: 1.8rem;
+                            }
+
+                            .hero-tagline {
+                                font-size: 1.1rem;
+                            }
+
+                            .hero-description {
+                                font-size: 1rem;
+                            }
+
+                            .productos-secondary-grid {
+                                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                                 gap: 1rem;
-                                padding: 0 0.5rem;
                             }
 
-                            .producto-featured {
-                                grid-column: span 2;
+                            .hero-badge-desktop {
+                                display: none !important;
                             }
 
-
-
-                            .producto-featured .producto-image-modern {
-                                height: 200px;
+                            .hero-badge-mobile {
+                                display: inline-flex !important;
+                                padding: 0.6rem 1rem;
+                                font-size: 0.8rem;
                             }
 
-                            .producto-featured h3 {
-                                font-size: 1.4rem;
+                            .hero-content {
+                                text-align: center;
+                            }
+
+                            /* Mostrar solo versión móvil */
+                            .hero-description-desktop,
+                            .product-desc-desktop {
+                                display: none !important;
+                            }
+
+                            .hero-description-mobile,
+                            .product-desc-mobile {
+                                display: block !important;
                             }
                         }
 
                         @media (max-width: 480px) {
-                            .productos-grid-modern {
+
+
+                            .hero-text h2 {
+                                font-size: 1.6rem;
+                            }
+
+                            .hero-badge-mobile {
+                                padding: 0.5rem 0.8rem;
+                                font-size: 0.75rem;
+                                margin-bottom: 1rem;
+                            }
+
+                            .btn-hero {
+                                padding: 0.8rem 1.5rem;
+                                font-size: 0.9rem;
+                            }
+
+                            .productos-secondary-grid {
                                 grid-template-columns: 1fr;
                                 gap: 1rem;
                             }
-
-                            .producto-featured {
-                                grid-column: span 1;
-                            }
-
-                            .producto-image-modern {
-                                height: 200px;
-                            }
-
-                            .producto-featured .producto-image-modern {
-                                height: 220px;
-                            }
-
-                            .producto-featured .producto-info-modern {
-                                padding: 1.5rem;
-                            }
                         }
 
-                        @media (max-width: 900px) {
-                            .clica-recoge-hero .content-wrapper {
-                                max-width: 98vw !important;
-                                padding-left: 0 !important;
-                                padding-right: 0 !important;
-                            }
+                        /* Por defecto, mostrar solo versión desktop */
+                        .hero-description-mobile,
+                        .product-desc-mobile {
+                            display: none;
+                        }
 
-                            .clica-recoge-hero .locales-grid {
-                                max-width: 98vw !important;
-                                width: 98vw !important;
-                                padding-left: 0.5rem;
-                                padding-right: 0.5rem;
-                            }
+                        .hero-description-desktop,
+                        .product-desc-desktop {
+                            display: block;
                         }
                     </style>
                 </div>
 
                 <section class="about-hero" id="about-hero"
-                    style="padding: 70px 0 60px; background: #fff !important; margin-top: 0;">
+                    style="padding: 120px 0 60px;  background: #fff !important; margin-top: 0;">
                     <div class="content-wrapper" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
                         <!-- Header de sección -->
                         <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
@@ -634,8 +936,8 @@
                                     </h3>
                                     <p
                                         style="color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
-                                        Cada día horneamos con dedicación, seleccionando los mejores ingredientes y
-                                        siguiendo recetas familiares transmitidas de generación en generación.
+                                        Traemos tradición y pasión culinaria de Santa Cruz a Barcelona, ofreciendo
+                                        sabores como los de casa.
                                     </p>
 
                                     <!-- Lista de puntos clave -->
@@ -672,9 +974,9 @@
 
                                     <!-- CTA integrado -->
                                     <div style="text-align: center; margin-top: 2rem;">
-                                        <a href="./productos/productos.html"
+                                        <a href="./historia/historia.html"
                                             style="display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #e8a238, #ffc062); color: white; text-decoration: none; padding: 1rem 2rem; border-radius: 50px; font-weight: 600; font-size: 1rem; box-shadow: 0 8px 25px rgba(232, 162, 56, 0.4); transition: all 0.3s ease;">
-                                            <span>Ver Carta Completa</span>
+                                            <span>Nuestra Historia</span>
                                             <i class="fa-solid fa-arrow-right"
                                                 style="transition: transform 0.3s ease;"></i>
                                         </a>
@@ -690,7 +992,7 @@
                                     <div class="slider"
                                         style="display: flex; width: 300%; height: 100%; transform: translateX(0%); transition: transform 0.6s ease;">
                                         <div style="width: 33.333%; flex-shrink: 0; position: relative;">
-                                            <img src="./img/iglesiacerca.webp" alt="Restaurante Boliviano en Barcelona"
+                                            <img src="./img/iglesiacerca.webp" alt="Panadería Boliviana en Barcelona"
                                                 style="width: 100%; height: 100%; object-fit: cover;">
                                             <div
                                                 style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 2rem 1.5rem 1.5rem; color: white;">
@@ -811,7 +1113,7 @@
 
                     @media (max-width: 480px) {
                         .about-hero {
-                            padding: 3rem 0 2rem !important;
+                            padding: 6rem 0 2rem !important;
                             background: #fff !important;
                         }
 
@@ -870,15 +1172,16 @@
 
 
             <!-- Sección de Historia y Tradición -->
-            <section class="historia-hero" id="historia-hero">
+            <!-- <section class="historia-hero" id="historia-hero">
                 <div class="content-wrapper">
                     <div class="historia-container">
                         <div class="historia-text">
-                            <span class="overline">Bolivia en Barcelona</span>
-                            <h2 class="section-title">El Mejor Restaurante Boliviano en Barcelona</h2>
+                            <span class="overline" style="color: #ffce9d; font-weight: bold;">Bolivia en
+                                Barcelona</span>
+                            <h2 class="section-title">Auténtica panadería boliviana en Barcelona</h2>
                             <p class="historia-desc">
                                 Una joven cruceña llegó a Barcelona con el sueño de compartir sus raíces y sabores. Así
-                                nació nuestra panadería-restaurante, donde cada receta boliviana se reinventa con un
+                                nació nuestra panadería, donde cada receta boliviana se reinventa con un
                                 toque artesanal y mucho cariño, para ofrecerte calidad y tradición en cada bocado.
                             </p>
                             <div class="timeline">
@@ -905,23 +1208,18 @@
                                 </div>
                             </div>
 
-                            <!-- Botón CTA en nuestra historia -->
+                          
                             <div style="text-align:center; margin-top:4rem;">
                                 <a href="./historia/historia.html" class="btn-ver-mas"
                                     style="border: 1px solid #fff">Descubre más de nuestra
                                     historia</a>
                             </div>
-                            <!-- Imagen de historia SOLO en móvil/tablet con pie de foto -->
+                           
                             <div class="historia-visual historia-visual-mobile">
                                 <figure class="historia-figure">
                                     <img src="./img/familias.webp" alt="Familia fundadora"
                                         class="historia-img historia-img-1">
-                                    <figcaption class="historia-caption">
-                                        <span class="historia-caption-title" style="padding: 5px;">Nuestra familia,
-                                            origen de la
-                                            tradición</span>
-                                        <span class="historia-caption-desc">San José de Chiquitos, 1952</span>
-                                    </figcaption>
+
                                 </figure>
                             </div>
                         </div>
@@ -947,474 +1245,8 @@
                 }
             </style>
 
+ -->
 
-
-
-
-            <!-- Sección de Impacto Social Positivo (clases únicas) -->
-            <section class="impacto-uniq-hero" id="impacto-hero">
-                <div class="impacto-uniq-content-wrapper">
-                    <!-- Header -->
-                    <div class="impacto-uniq-section-header">
-                        <span class="impacto-uniq-overline">Por Qué Elegirnos</span>
-                        <h2 class="impacto-uniq-section-title">Más Que Un Restaurante</h2>
-                        <p class="impacto-uniq-section-desc">
-                            Al elegir La Chiquitana, no solo disfrutas la mejor comida boliviana de Barcelona - también
-                            contribuyes a un impacto positivo en comunidades de Bolivia.
-                        </p>
-                    </div>
-
-                    <!-- Cards con iconos -->
-                    <div class="impacto-uniq-cards">
-                        <div class="impacto-uniq-card">
-                            <div class="impacto-uniq-card-icon">
-                                <i class="fa-solid fa-people-group"></i>
-                            </div>
-                            <div class="impacto-uniq-card-content">
-                                <h3>Ingredientes Premium</h3>
-                                <p>Trabajamos directamente con <strong>150 familias</strong> productoras bolivianas para
-                                    garantizar ingredientes frescos y auténticos en cada plato.</p>
-                                <div class="impacto-uniq-card-stat">
-                                    <span class="impacto-uniq-stat-number">8</span>
-                                    <span class="impacto-uniq-stat-label">Regiones de Bolivia</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="impacto-uniq-card">
-                            <div class="impacto-uniq-card-icon">
-                                <i class="fa-solid fa-graduation-cap"></i>
-                            </div>
-                            <div class="impacto-uniq-card-content">
-                                <h3>Tradición Garantizada</h3>
-                                <p>Más de <strong>5 años</strong> perfeccionando recetas familiares de 3 generaciones.
-                                    Cada salteña mantiene el sabor auténtico de Santa Cruz.</p>
-                                <div class="impacto-uniq-card-stat">
-                                    <span class="impacto-uniq-stat-number">5</span>
-                                    <span class="impacto-uniq-stat-label">Años en Barcelona</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="impacto-uniq-card">
-                            <div class="impacto-uniq-card-icon">
-                                <i class="fa-solid fa-leaf"></i>
-                            </div>
-                            <div class="impacto-uniq-card-content">
-                                <h3>Calidad Artesanal</h3>
-                                <p>Elaboración diaria con técnicas tradicionales y ingredientes naturales. Sin
-                                    conservantes ni sabores artificiales.</p>
-                                <div class="impacto-uniq-card-stat">
-                                    <span class="impacto-uniq-stat-number">100%</span>
-                                    <span class="impacto-uniq-stat-label">Artesanal</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- CTA -->
-                    <div class="impacto-uniq-cta-container">
-                        <div class="impacto-uniq-cta-content">
-                            <h3>¿Listo Para Probarlo?</h3>
-                            <p>Únete a más de 5,000 barceloneses que ya han descubierto el mejor sabor boliviano de la
-                                ciudad.</p>
-                            <a href="./productos/productos.html" class="impacto-uniq-cta-button">
-                                <span>Ver Carta y Precios</span>
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-            <style>
-                .impacto-uniq-hero {
-                    background: #af7927;
-                    padding: 2rem 1rem;
-                    margin-top: 60px;
-                    position: relative;
-                    overflow: hidden;
-                }
-
-                .impacto-uniq-hero::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%),
-                        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-                    pointer-events: none;
-                }
-
-                .impacto-uniq-content-wrapper {
-                    max-width: 1200px;
-                    margin: 0 auto;
-                    position: relative;
-                    z-index: 1;
-                }
-
-                /* Header */
-                .impacto-uniq-section-header {
-                    text-align: center;
-                    margin-bottom: 2rem;
-                }
-
-                .impacto-uniq-overline {
-                    display: inline-block;
-                    color: #ffa928;
-                    font-size: 0.875rem;
-                    font-weight: 600;
-                    text-transform: uppercase;
-                    letter-spacing: 2px;
-                    margin-bottom: 0.5rem;
-                }
-
-                .impacto-uniq-section-title {
-                    color: #ffffff;
-                    font-size: 1.75rem;
-                    font-weight: 800;
-                    margin-bottom: 0.75rem;
-                    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                }
-
-                .impacto-uniq-section-desc {
-                    color: rgba(255, 255, 255, 0.9);
-                    font-size: 0.9rem;
-                    max-width: 600px;
-                    margin: 0 auto;
-                    line-height: 1.5;
-                }
-
-                /* Cards */
-                .impacto-uniq-cards {
-                    display: grid;
-                    gap: 1rem;
-                    margin-bottom: 2rem;
-                }
-
-                .impacto-uniq-card {
-                    background: rgba(255, 255, 255, 0.95);
-                    backdrop-filter: blur(10px);
-                    border-radius: 16px;
-                    padding: 1.25rem;
-                    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-                    border: 1px solid rgba(255, 255, 255, 0.2);
-                    transition: all 0.3s ease;
-                    position: relative;
-                    overflow: hidden;
-                }
-
-                .impacto-uniq-card::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    height: 4px;
-                    background: linear-gradient(90deg, #e8a238, #ffc062);
-                }
-
-                .impacto-uniq-card:hover {
-                    transform: translateY(-5px);
-                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-                }
-
-                .impacto-uniq-card-icon {
-                    width: 48px;
-                    height: 48px;
-                    background: linear-gradient(135deg, #e8a238, #ffc062);
-                    border-radius: 14px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    margin-bottom: 1rem;
-                    box-shadow: 0 6px 20px rgba(232, 162, 56, 0.25);
-                }
-
-                .impacto-uniq-card-icon i {
-                    font-size: 1.25rem;
-                    color: white;
-                }
-
-                .impacto-uniq-card-content h3 {
-                    color: #333;
-                    font-size: 1.1rem;
-                    font-weight: 700;
-                    margin-bottom: 0.75rem;
-                }
-
-                .impacto-uniq-card-content p {
-                    color: #666;
-                    font-size: 0.85rem;
-                    line-height: 1.5;
-                    margin-bottom: 1rem;
-                }
-
-                .impacto-uniq-card-stat {
-                    display: flex;
-                    align-items: baseline;
-                    gap: 0.4rem;
-                    padding: 0.75rem;
-                    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-                    border-radius: 10px;
-                    border-left: 3px solid #e8a238;
-                }
-
-                .impacto-uniq-stat-number {
-                    font-size: 1.5rem;
-                    font-weight: 900;
-                    color: #e8a238;
-                    line-height: 1;
-                }
-
-                .impacto-uniq-stat-label {
-                    font-size: 0.75rem;
-                    font-weight: 600;
-                    color: #666;
-                    text-transform: uppercase;
-                    letter-spacing: 0.5px;
-                }
-
-                /* CTA */
-                .impacto-uniq-cta-container {
-                    display: flex;
-                    justify-content: center;
-                }
-
-                .impacto-uniq-cta-content {
-                    background: rgba(255, 255, 255, 0.1);
-                    backdrop-filter: blur(10px);
-                    border: 1px solid rgba(255, 255, 255, 0.2);
-                    border-radius: 20px;
-                    padding: 1.5rem;
-                    text-align: center;
-                    max-width: 500px;
-                    width: 100%;
-                }
-
-                .impacto-uniq-cta-content h3 {
-                    color: white;
-                    font-size: 1.25rem;
-                    font-weight: 700;
-                    margin-bottom: 0.5rem;
-                }
-
-                .impacto-uniq-cta-content p {
-                    color: rgba(255, 255, 255, 0.8);
-                    font-size: 0.9rem;
-                    margin-bottom: 1.25rem;
-                    line-height: 1.4;
-                }
-
-                .impacto-uniq-cta-button {
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 0.5rem;
-                    background: linear-gradient(135deg, #e8a238, #ffc062);
-                    color: white;
-                    text-decoration: none;
-                    padding: 0.75rem 1.5rem;
-                    border-radius: 25px;
-                    font-weight: 600;
-                    font-size: 0.9rem;
-                    box-shadow: 0 6px 20px rgba(232, 162, 56, 0.4);
-                    transition: all 0.3s ease;
-                }
-
-                .impacto-uniq-cta-button:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 12px 35px rgba(232, 162, 56, 0.5);
-                }
-
-                .impacto-uniq-cta-button i {
-                    transition: transform 0.3s ease;
-                }
-
-                .impacto-uniq-cta-button:hover i {
-                    transform: translateX(3px);
-                }
-
-                /* Móvil pequeño */
-                @media (max-width: 480px) {
-                    .impacto-uniq-hero {
-                        padding: 1.5rem 0.75rem;
-                        margin-top: 40px;
-                    }
-
-                    .impacto-uniq-section-header {
-                        margin-bottom: 1.5rem;
-                    }
-
-                    .impacto-uniq-section-title {
-                        font-size: 1.5rem;
-                        margin-bottom: 0.5rem;
-                    }
-
-                    .impacto-uniq-section-desc {
-                        font-size: 0.85rem;
-                        line-height: 1.4;
-                    }
-
-                    .impacto-uniq-cards {
-                        gap: 0.75rem;
-                        margin-bottom: 1.5rem;
-                    }
-
-                    .impacto-uniq-card {
-                        padding: 1rem;
-                        border-radius: 12px;
-                    }
-
-                    .impacto-uniq-card-icon {
-                        width: 40px;
-                        height: 40px;
-                        margin-bottom: 0.75rem;
-                    }
-
-                    .impacto-uniq-card-icon i {
-                        font-size: 1rem;
-                    }
-
-                    .impacto-uniq-card-content h3 {
-                        font-size: 1rem;
-                        margin-bottom: 0.5rem;
-                    }
-
-                    .impacto-uniq-card-content p {
-                        font-size: 0.8rem;
-                        margin-bottom: 0.75rem;
-                    }
-
-                    .impacto-uniq-card-stat {
-                        padding: 0.5rem;
-                    }
-
-                    .impacto-uniq-stat-number {
-                        font-size: 1.25rem;
-                    }
-
-                    .impacto-uniq-stat-label {
-                        font-size: 0.7rem;
-                    }
-
-                    .impacto-uniq-cta-content {
-                        padding: 1.25rem;
-                        border-radius: 16px;
-                    }
-
-                    .impacto-uniq-cta-content h3 {
-                        font-size: 1.1rem;
-                    }
-
-                    .impacto-uniq-cta-content p {
-                        font-size: 0.85rem;
-                        margin-bottom: 1rem;
-                    }
-
-                    .impacto-uniq-cta-button {
-                        padding: 0.6rem 1.25rem;
-                        font-size: 0.85rem;
-                    }
-                }
-
-                /* Tablet */
-                @media (min-width: 768px) {
-                    .impacto-uniq-hero {
-                        padding: 3rem 2rem;
-                    }
-
-                    .impacto-uniq-section-title {
-                        font-size: 2.25rem;
-                    }
-
-                    .impacto-uniq-section-desc {
-                        font-size: 1rem;
-                    }
-
-                    .impacto-uniq-cards {
-                        grid-template-columns: repeat(2, 1fr);
-                        gap: 1.5rem;
-                    }
-
-                    .impacto-uniq-card {
-                        padding: 1.75rem;
-                    }
-
-                    .impacto-uniq-card-icon {
-                        width: 56px;
-                        height: 56px;
-                    }
-
-                    .impacto-uniq-card-content h3 {
-                        font-size: 1.2rem;
-                    }
-
-                    .impacto-uniq-card-content p {
-                        font-size: 0.9rem;
-                    }
-                }
-
-                /* Desktop */
-                @media (min-width: 1024px) {
-                    .impacto-uniq-hero {
-                        padding: 4rem 2rem;
-                    }
-
-                    .impacto-uniq-section-title {
-                        font-size: 2.75rem;
-                    }
-
-                    .impacto-uniq-section-desc {
-                        font-size: 1.1rem;
-                    }
-
-                    .impacto-uniq-cards {
-                        grid-template-columns: repeat(3, 1fr);
-                        gap: 2rem;
-                    }
-
-                    .impacto-uniq-card {
-                        padding: 2rem;
-                    }
-
-                    .impacto-uniq-card-icon {
-                        width: 64px;
-                        height: 64px;
-                    }
-
-                    .impacto-uniq-card-icon i {
-                        font-size: 1.5rem;
-                    }
-
-                    .impacto-uniq-card-content h3 {
-                        font-size: 1.3rem;
-                    }
-
-                    .impacto-uniq-card-content p {
-                        font-size: 0.95rem;
-                    }
-
-                    .impacto-uniq-cta-content {
-                        padding: 2.5rem;
-                    }
-
-                    .impacto-uniq-cta-content h3 {
-                        font-size: 1.5rem;
-                    }
-
-                    .impacto-uniq-cta-content p {
-                        font-size: 1rem;
-                    }
-
-                    .impacto-uniq-cta-button {
-                        padding: 1rem 2rem;
-                        font-size: 1rem;
-                    }
-                }
-            </style>
 
 
 
@@ -1441,65 +1273,62 @@
 
 
                         <div class="testimonios-grid"
-                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 30px 0;">
-                            <div class="testimonio-card"
-                                style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.05), 0 5px 15px rgba(232,162,56,0.08); display: flex; flex-direction: column; max-height: 480px;">
-                                <div class="testimonio-content" style="padding: 0 0 20px 0; position: relative;">
-                                    <img src="./img/puebloespanol.jpg" alt="María González"
-                                        style="height: 180px; width: 100%; object-fit: cover; border-radius: 0; margin-bottom: 20px;">
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin: 30px 0;">
+                            <div class="testimonio-card testimonio-card-improved"
+                                style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.05), 0 5px 15px rgba(232,162,56,0.08); display: flex; flex-direction: column; min-height: 450px; height: auto;">
+                                <div class="testimonio-image-container"
+                                    style="position: relative; height: 180px; overflow: hidden;">
+                                    <img src="./img/puebloespanol.jpg" alt="Puesto Salteña en Pueblo Español"
+                                        style="height: 100%; width: 100%; object-fit: cover; border-radius: 0;">
                                     <div class="stars"
-                                        style="position: absolute; top: calc(180px - 8px); left: 15px; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; box-shadow: 0 3px 8px rgba(232,162,56,0.4);">
+                                        style="position: absolute; top: 10px; left: 15px; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; box-shadow: 0 3px 8px rgba(232,162,56,0.4);">
                                         ★★★★★</div>
-                                    <div style="padding: 0 20px;">
-                                        <p
-                                            style="color: #444; line-height: 1.5; font-size: 0.95rem; font-style: italic; position: relative; padding-left: 20px; margin-bottom: 15px;">
-                                            <span
-                                                style="position: absolute; left: 0; top: -8px; font-size: 1.5rem; color: #e8a238;">"</span>
-                                            ¡Un rincón auténtico de la cultura cruceña! Recomiendo todos los productos.
-                                            ¡Felicidades!
-                                            <span
-                                                style="position: absolute; right: 0; bottom: -8px; font-size: 1.5rem; color: #e8a238;">"</span>
-                                        </p>
-                                    </div>
+                                </div>
+                                <div class="testimonio-content"
+                                    style="padding: 25px 20px 20px; flex-grow: 1; display: flex; flex-direction: column;">
+                                    <p
+                                        style="color: #444; line-height: 1.6; font-size: 1rem; font-style: italic; position: relative; margin: 0 0 auto 0; text-align: center; padding: 0 10px;">
+                                        ¡Un rincón auténtico de la cultura cruceña! Recomiendo todos los productos.
+                                        ¡Felicidades!
+                                    </p>
                                 </div>
                                 <div class="testimonio-author"
-                                    style="margin-top: auto; padding: 15px 20px; border-top: 1px solid rgba(232,162,56,0.2); background: rgba(255,251,230,0.5);">
-                                    <div class="author-info" style="display: flex; flex-direction: column;">
-                                        <h4 style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #333;">Puesto
-                                            Salteña en Pueblo Español</h4>
-                                        <span style="color: #777; font-size: 0.85rem; margin-top: 2px;">+ 1000 clientes
-                                            felices</span>
+                                    style="margin-top: auto; padding: 20px; border-top: 1px solid rgba(232,162,56,0.2); background: rgba(255,251,230,0.5);">
+                                    <div class="author-info" style="text-align: center;">
+                                        <h4
+                                            style="margin: 0 0 5px 0; font-size: 1.1rem; font-weight: 700; color: #333;">
+                                            Puesto Salteña en Pueblo Español</h4>
+                                        <span style="color: #777; font-size: 0.9rem;">+ 1000 clientes felices</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="testimonio-card"
-                                style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.05), 0 5px 15px rgba(232,162,56,0.08); display: flex; flex-direction: column; max-height: 480px;">
-                                <div class="testimonio-content" style="padding: 0 0 20px 0; position: relative;">
-                                    <img src="./img/clientesfelices.webp" alt="Carlos Mendoza"
-                                        style="height: 180px; width: 100%; object-fit: cover; border-radius: 0; margin-bottom: 20px;">
+                            <div class="testimonio-card testimonio-card-improved"
+                                style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.05), 0 5px 15px rgba(232,162,56,0.08); display: flex; flex-direction: column; min-height: 450px; height: auto;">
+                                <div class="testimonio-image-container"
+                                    style="position: relative; height: 180px; overflow: hidden;">
+                                    <img src="./img/clientesfelices.webp" alt="Carla Mendoza"
+                                        style="height: 100%; width: 100%; object-fit: cover; border-radius: 0;">
                                     <div class="stars"
-                                        style="position: absolute; top: calc(180px - 8px); left: 15px; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; box-shadow: 0 3px 8px rgba(232,162,56,0.4);">
+                                        style="position: absolute; top: 10px; left: 15px; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; box-shadow: 0 3px 8px rgba(232,162,56,0.4);">
                                         ★★★★★</div>
-                                    <div style="padding: 0 20px;">
-                                        <p
-                                            style="color: #444; line-height: 1.5; font-size: 0.95rem; font-style: italic; position: relative; padding-left: 20px; margin-bottom: 15px;">
-                                            <span
-                                                style="position: absolute; left: 0; top: -8px; font-size: 1.5rem; color: #e8a238;">"</span>
-                                            Desde que llegué a Barcelona, buscaba el sabor de casa. ¡Aquí lo encontré!
-                                            Calidad y sabor únicos.
-                                            <span
-                                                style="position: absolute; right: 0; bottom: -8px; font-size: 1.5rem; color: #e8a238;">"</span>
-                                        </p>
-                                    </div>
+                                </div>
+                                <div class="testimonio-content"
+                                    style="padding: 25px 20px 20px; flex-grow: 1; display: flex; flex-direction: column;">
+                                    <p
+                                        style="color: #444; line-height: 1.6; font-size: 1rem; font-style: italic; position: relative; margin: 0 0 auto 0; text-align: center; padding: 0 10px;">
+                                        Desde que llegué a Barcelona, buscaba el sabor de casa. ¡Aquí lo encontré!
+                                        Calidad y sabor únicos.
+                                    </p>
                                 </div>
                                 <div class="testimonio-author"
-                                    style="margin-top: auto; padding: 15px 20px; border-top: 1px solid rgba(232,162,56,0.2); background: rgba(255,251,230,0.5);">
-                                    <div class="author-info" style="display: flex; flex-direction: column;">
-                                        <h4 style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #333;">Carla
-                                            Mendoza</h4>
-                                        <span style="color: #777; font-size: 0.85rem; margin-top: 2px;">Madre Boliviana
-                                            en Barcelona</span>
+                                    style="margin-top: auto; padding: 20px; border-top: 1px solid rgba(232,162,56,0.2); background: rgba(255,251,230,0.5);">
+                                    <div class="author-info" style="text-align: center;">
+                                        <h4
+                                            style="margin: 0 0 5px 0; font-size: 1.1rem; font-weight: 700; color: #333;">
+                                            Carla Mendoza</h4>
+                                        <span style="color: #777; font-size: 0.9rem;">Madre Boliviana en
+                                            Barcelona</span>
                                     </div>
                                 </div>
                             </div>
@@ -1521,43 +1350,104 @@
                     </div>
                 </div>
 
-                <!-- Estilos responsive específicos para testimonios -->
+                <!-- Estilos responsive específicos para testimonios mejorados -->
                 <style>
+                    .testimonio-card-improved:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 20px 40px rgba(232, 162, 56, 0.15);
+                        transition: all 0.3s ease;
+                    }
+
                     @media (max-width: 768px) {
                         .testimonios-grid {
                             grid-template-columns: 1fr !important;
-                            gap: 20px !important;
+                            gap: 25px !important;
                             margin: 20px 0 !important;
+                            padding: 0 15px !important;
                         }
 
-                        .testimonio-card {
-                            max-height: 400px !important;
+                        .testimonio-card-improved {
+                            min-height: 420px !important;
+                            max-width: 500px !important;
+                            margin: 0 auto !important;
                         }
 
-                        .testimonio-card img {
-                            height: 150px !important;
+                        .testimonio-image-container {
+                            height: 160px !important;
                         }
 
                         .stars {
-                            top: calc(150px - 6px) !important;
                             font-size: 0.7rem !important;
+                            padding: 3px 8px !important;
+                            top: 8px !important;
+                            left: 12px !important;
+                        }
+
+                        .testimonio-content {
+                            padding: 20px 15px 15px !important;
+                        }
+
+                        .testimonio-content p {
+                            font-size: 0.95rem !important;
+                            line-height: 1.5 !important;
+                            padding: 0 5px !important;
+                        }
+
+                        .testimonio-content p span {
+                            font-size: 1.6rem !important;
+                        }
+
+                        .testimonio-author {
+                            padding: 18px 15px !important;
+                        }
+
+                        .author-info h4 {
+                            font-size: 1.05rem !important;
+                        }
+
+                        .author-info span {
+                            font-size: 0.85rem !important;
+                        }
+                    }
+
+                    @media (max-width: 480px) {
+                        .testimonios-grid {
+                            padding: 0 10px !important;
+                            gap: 20px !important;
+                        }
+
+                        .testimonio-card-improved {
+                            min-height: 380px !important;
+                            border-radius: 12px !important;
+                        }
+
+                        .testimonio-image-container {
+                            height: 140px !important;
+                        }
+
+                        .stars {
+                            font-size: 0.65rem !important;
                             padding: 2px 6px !important;
+                            top: 6px !important;
+                            left: 10px !important;
+                        }
+
+                        .testimonio-content {
+                            padding: 18px 12px 12px !important;
                         }
 
                         .testimonio-content p {
                             font-size: 0.9rem !important;
-                            line-height: 1.5 !important;
-                            padding-left: 15px !important;
-                            padding-right: 15px !important;
-                            margin-bottom: 10px !important;
+                            line-height: 1.4 !important;
+                            padding: 0 !important;
                         }
 
                         .testimonio-content p span {
-                            font-size: 1.2rem !important;
+                            font-size: 1.4rem !important;
                         }
 
                         .testimonio-author {
-                            padding: 12px 15px !important;
+                            padding: 15px 12px !important;
                         }
 
                         .author-info h4 {
@@ -1569,63 +1459,25 @@
                         }
                     }
 
-                    @media (max-width: 480px) {
-                        .testimonios-grid {
-                            padding: 0 10px !important;
+                    @media (max-width: 360px) {
+                        .testimonio-card-improved {
+                            min-height: 350px !important;
                         }
 
-                        .testimonio-card {
-                            max-height: 350px !important;
-                            border-radius: 12px !important;
-                        }
-
-                        .testimonio-card img {
+                        .testimonio-image-container {
                             height: 120px !important;
                         }
 
-                        .stars {
-                            top: calc(120px - 4px) !important;
-                            left: 10px !important;
-                            font-size: 0.65rem !important;
-                            padding: 1px 5px !important;
-                        }
-
                         .testimonio-content {
-                            padding: 15px !important;
+                            padding: 15px 10px 10px !important;
                         }
 
                         .testimonio-content p {
                             font-size: 0.85rem !important;
-                            line-height: 1.4 !important;
-                            padding-left: 10px !important;
-                            padding-right: 10px !important;
-                        }
-
-                        .testimonio-content p span {
-                            font-size: 1.1rem !important;
                         }
 
                         .testimonio-author {
-                            padding: 10px 15px !important;
-                        }
-
-                        .author-info h4 {
-                            font-size: 0.95rem !important;
-                        }
-
-                        .author-info span {
-                            font-size: 0.75rem !important;
-                        }
-                    }
-
-                    @media (min-width: 769px) and (max-width: 1024px) {
-                        .testimonios-grid {
-                            grid-template-columns: repeat(2, 1fr) !important;
-                            gap: 25px !important;
-                        }
-
-                        .testimonio-card {
-                            max-height: 450px !important;
+                            padding: 12px 10px !important;
                         }
                     }
                 </style>
@@ -1659,98 +1511,145 @@
 
                     <div class="eventos-grid"
                         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; margin-top: 30px;">
-                        <!-- Evento 1 -->
+                        <!-- Feria de la Cita -->
                         <div class="evento-card"
                             style="background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.05), 0 5px 20px rgba(232,162,56,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative;">
-                            <!-- Banda decorativa superior -->
                             <div
                                 style="height: 8px; width: 100%; background: linear-gradient(90deg, #e8a238, #ffc062);">
                             </div>
-
                             <div style="padding: 35px 30px;">
                                 <div class="evento-fecha"
                                     style="position: absolute; top: 20px; right: 20px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); border-radius: 50px; padding: 8px 18px; font-size: 0.95rem; letter-spacing: 1px; box-shadow: 0 8px 15px rgba(232,162,56,0.25);">
-                                    20 Jul 2025
-                                </div>
-
+                                    Fin de enero</div>
                                 <div class="evento-info" style="margin-top: 25px;">
                                     <h3
                                         style="margin-bottom: 20px; font-size: 1.5rem; font-weight: 700; color: #333; line-height: 1.3;">
-                                        Degustación en Pueblo Español
-                                    </h3>
-
+                                        Feria de la Cita</h3>
                                     <p style="margin-bottom: 20px; color: #555; font-size: 1.05rem; line-height: 1.7;">
-                                        Ven a probar nuestras salteñas y cuñapés en el mercado de verano.
-                                        <strong style="color: #e8a238;">¡Te esperamos con los brazos abiertos y mucho
-                                            cariño!</strong>
-                                    </p>
-
+                                        Participamos en la tradicional Feria de la Cita, exposición de miniaturas y
+                                        rituales ancestrales de agradecimiento a la Pachamama. Ofrecemos comida y
+                                        bebidas típicas bolivianas.</p>
                                     <div
                                         style="padding: 15px; background: rgba(255,251,230,0.7); border-radius: 10px; margin: 25px 0 20px 0; border-left: 4px solid #e8a238;">
-                                        <span style="color: #666; font-size: 1rem; display: block; font-style: italic;">
-                                            Un encuentro para compartir sabores, música y sonrisas en familia.
-                                        </span>
-                                    </div>
+                                        <span
+                                            style="color: #666; font-size: 1rem; display: block; font-style: italic;">Un
+                                            evento lleno de tradición y cultura andina.</span></div>
                                 </div>
+                                <div
+                                    style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(232,162,56,0.15); display: flex; align-items: center;">
+                                    <div
+                                        style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #fffbe6 0%, #ffe5b4 100%); display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 5px 15px rgba(232,162,56,0.15);">
+                                        <i class="fa-solid fa-mountain-sun"
+                                            style="color: #e8a238; font-size: 1.2rem;"></i></div><span
+                                        style="color: #666; font-size: 0.95rem; font-weight: 500;">Rituales y
+                                        gastronomía boliviana</span>
+                                </div>
+                            </div>
+                        </div>
 
+                        <!-- Fiesta en La Bordeta -->
+                        <div class="evento-card"
+                            style="background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.05), 0 5px 20px rgba(232,162,56,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative;">
+                            <div
+                                style="height: 8px; width: 100%; background: linear-gradient(90deg, #e8a238, #ffc062);">
+                            </div>
+                            <div style="padding: 35px 30px;">
+                                <div class="evento-fecha"
+                                    style="position: absolute; top: 20px; right: 20px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); border-radius: 50px; padding: 8px 18px; font-size: 0.95rem; letter-spacing: 1px; box-shadow: 0 8px 15px rgba(232,162,56,0.25);">
+                                    Septiembre</div>
+                                <div class="evento-info" style="margin-top: 25px;">
+                                    <h3
+                                        style="margin-bottom: 20px; font-size: 1.5rem; font-weight: 700; color: #333; line-height: 1.3;">
+                                        Fiesta en La Bordeta</h3>
+                                    <p style="margin-bottom: 20px; color: #555; font-size: 1.05rem; line-height: 1.7;">
+                                        Participamos en la fiesta del barrio La Bordeta, integrando sabores bolivianos y
+                                        españoles. Ofrecemos empanadas, barbacoa y platos adaptados al público local.
+                                    </p>
+                                    <div
+                                        style="padding: 15px; background: rgba(255,251,230,0.7); border-radius: 10px; margin: 25px 0 20px 0; border-left: 4px solid #e8a238;">
+                                        <span
+                                            style="color: #666; font-size: 1rem; display: block; font-style: italic;">Un
+                                            espacio de integración y encuentro multicultural.</span></div>
+                                </div>
                                 <div
                                     style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(232,162,56,0.15); display: flex; align-items: center;">
                                     <div
                                         style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #fffbe6 0%, #ffe5b4 100%); display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 5px 15px rgba(232,162,56,0.15);">
                                         <i class="fa-solid fa-people-group"
-                                            style="color: #e8a238; font-size: 1.2rem;"></i>
-                                    </div>
-                                    <span style="color: #666; font-size: 0.95rem; font-weight: 500;">Evento familiar y
-                                        abierto a todos</span>
+                                            style="color: #e8a238; font-size: 1.2rem;"></i></div><span
+                                        style="color: #666; font-size: 0.95rem; font-weight: 500;">Comida, barbacoa y
+                                        convivencia</span>
                                 </div>
                             </div>
                         </div>
 
-
-                        <!-- Evento 3 (Añadido nuevo) -->
+                        <!-- Día de la Salteña Boliviana -->
                         <div class="evento-card"
                             style="background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.05), 0 5px 20px rgba(232,162,56,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative;">
-                            <!-- Banda decorativa superior -->
                             <div
                                 style="height: 8px; width: 100%; background: linear-gradient(90deg, #e8a238, #ffc062);">
                             </div>
-
                             <div style="padding: 35px 30px;">
                                 <div class="evento-fecha"
                                     style="position: absolute; top: 20px; right: 20px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); border-radius: 50px; padding: 8px 18px; font-size: 0.95rem; letter-spacing: 1px; box-shadow: 0 8px 15px rgba(232,162,56,0.25);">
-                                    30 Sep 2025
-                                </div>
-
+                                    10 Noviembre</div>
                                 <div class="evento-info" style="margin-top: 25px;">
                                     <h3
                                         style="margin-bottom: 20px; font-size: 1.5rem; font-weight: 700; color: #333; line-height: 1.3;">
-                                        Taller de Cocina Boliviana
-                                    </h3>
-
+                                        Día de la Salteña Boliviana</h3>
                                     <p style="margin-bottom: 20px; color: #555; font-size: 1.05rem; line-height: 1.7;">
-                                        Aprende a preparar auténticas salteñas y cuñapés con nuestros chefs expertos.
-                                        Plazas limitadas.
-                                        <strong style="color: #e8a238;">¡Reserva tu lugar ahora!</strong>
-                                    </p>
-
+                                        Celebramos el Día Nacional de la Salteña en Bolivia con degustaciones especiales,
+                                        promociones exclusivas y actividades para honrar a nuestra empanada estrella.
+                                        ¡Ven a probar las mejores salteñas de Barcelona!</p>
                                     <div
                                         style="padding: 15px; background: rgba(255,251,230,0.7); border-radius: 10px; margin: 25px 0 20px 0; border-left: 4px solid #e8a238;">
-                                        <span style="color: #666; font-size: 1rem; display: block; font-style: italic;">
-                                            Descubre los secretos de la cocina boliviana en un ambiente acogedor y
-                                            divertido.
-                                        </span>
-                                    </div>
+                                        <span
+                                            style="color: #666; font-size: 1rem; display: block; font-style: italic;">Una
+                                            celebración en honor a la reina de la gastronomía boliviana.</span></div>
                                 </div>
-
                                 <div
                                     style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(232,162,56,0.15); display: flex; align-items: center;">
                                     <div
                                         style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #fffbe6 0%, #ffe5b4 100%); display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 5px 15px rgba(232,162,56,0.15);">
-                                        <i class="fa-solid fa-kitchen-set"
-                                            style="color: #e8a238; font-size: 1.2rem;"></i>
-                                    </div>
-                                    <span style="color: #666; font-size: 0.95rem; font-weight: 500;">Taller práctico,
-                                        incluye degustación</span>
+                                        <i class="fa-solid fa-star"
+                                            style="color: #e8a238; font-size: 1.2rem;"></i></div><span
+                                        style="color: #666; font-size: 0.95rem; font-weight: 500;">Degustaciones y
+                                        promociones especiales</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gran Fiesta Cruceña (Grito Libertario) -->
+                        <div class="evento-card"
+                            style="background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.05), 0 5px 20px rgba(232,162,56,0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative;">
+                            <div
+                                style="height: 8px; width: 100%; background: linear-gradient(90deg, #e8a238, #ffc062);">
+                            </div>
+                            <div style="padding: 35px 30px;">
+                                <div class="evento-fecha"
+                                    style="position: absolute; top: 20px; right: 20px; font-weight: 700; color: #fff; background: linear-gradient(135deg, #e8a238 0%, #ffc062 100%); border-radius: 50px; padding: 8px 18px; font-size: 0.95rem; letter-spacing: 1px; box-shadow: 0 8px 15px rgba(232,162,56,0.25);">
+                                    Último Dom. Sept.</div>
+                                <div class="evento-info" style="margin-top: 25px;">
+                                    <h3
+                                        style="margin-bottom: 20px; font-size: 1.5rem; font-weight: 700; color: #333; line-height: 1.3;">
+                                        Gran Fiesta Cruceña</h3>
+                                    <p style="margin-bottom: 20px; color: #555; font-size: 1.05rem; line-height: 1.7;">
+                                        Celebramos el grito libertario de Santa Cruz con una gran fiesta. Vestimos de
+                                        blanco y verde, cocinamos en vivo y servimos platos típicos como patasca y
+                                        picante de gallina. Es nuestro evento más grande del año.</p>
+                                    <div
+                                        style="padding: 15px; background: rgba(255,251,230,0.7); border-radius: 10px; margin: 25px 0 20px 0; border-left: 4px solid #e8a238;">
+                                        <span
+                                            style="color: #666; font-size: 1rem; display: block; font-style: italic;">Un
+                                            día de unión, tradición y mucho sabor cruceño.</span></div>
+                                </div>
+                                <div
+                                    style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(232,162,56,0.15); display: flex; align-items: center;">
+                                    <div
+                                        style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #fffbe6 0%, #ffe5b4 100%); display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 5px 15px rgba(232,162,56,0.15);">
+                                        <i class="fa-solid fa-utensils" style="color: #e8a238; font-size: 1.2rem;"></i>
+                                    </div><span style="color: #666; font-size: 0.95rem; font-weight: 500;">Cocina en
+                                        vivo y platos típicos</span>
                                 </div>
                             </div>
                         </div>
@@ -1773,18 +1672,18 @@
                     <div class="contacto-modern-info">
                         <h2 class="contacto-modern-title">
                             <span class="contacto-modern-icon"><i class="fa-solid fa-envelope-open-text"></i></span>
-                            Visita el Mejor Restaurante Boliviano en Barcelona
+                            Visita nuestra panadería boliviana en Barcelona
                         </h2>
                         <p class="contacto-modern-desc">
                             La Chiquitana: auténtica comida boliviana en Barcelona. Reserva, pide a domicilio y disfruta
-                            el mejor sabor de Bolivia en España.
+                            el auténtico sabor de Bolivia en España.
                         </p>
                         <ul class="contacto-modern-list">
                             <li>
                                 <i class="fa-solid fa-location-dot"></i>
                                 <a href="https://g.co/kgs/s23htE8" target="_blank" rel="noopener"
                                     style="color:inherit;">
-                                    Restaurante Boliviano en Barcelona · (Madrid próximamente) · Envíos a toda España
+                                    Panadería boliviana en Barcelona · (Madrid próximamente) · Envíos a toda España
                                 </a>
                             </li>
                             <li>
@@ -1835,7 +1734,9 @@
                                 <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2994.861310898983!2d2.1028793!3d41.3704993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4996fb910b4e3%3A0xc78e4988dbbdb9f3!2sLa%20Chiquitana!5e0!3m2!1ses!2ses!4v1699999999999!5m2!1ses!2ses"
                                     width="100%" height="100%" style="border:0; border-radius: 0 0 18px 18px;"
-                                    allowfullscreen="" referrerpolicy="no-referrer-when-downgrade">
+                                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                                    title="Ubicación de La Chiquitana en L'Hospitalet de Llobregat"
+                                    aria-label="Mapa de Google Maps mostrando la ubicación de La Chiquitana">
                                 </iframe>
                             </div>
                         </div>
@@ -1858,7 +1759,9 @@
                                 <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2993.211393234759!2d2.1705113!3d41.4334781!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4bd3553925ee1%3A0x3eed0a457bd3fbe3!2sLa%20Chiquitana%20Granja%20Cafeter%C3%ADa!5e0!3m2!1ses!2ses!4v1699999999999!5m2!1ses!2ses"
                                     width="100%" height="100%" style="border:0; border-radius: 0 0 18px 18px;"
-                                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                                    title="Ubicación de La Chiquitana Granja Cafetería en Horta-Guinardó"
+                                    aria-label="Mapa de Google Maps mostrando la ubicación de La Chiquitana Granja Cafetería">
                                 </iframe>
                             </div>
                         </div>
@@ -1873,10 +1776,11 @@
             <footer class="footer-modern">
                 <div class="footer-modern-wrapper">
                     <div class="footer-modern-brand">
-                        <img src="./img/logopng.webp" alt="La Chiquitana Logo" class="footer-modern-logo">
+                        <img src="./img/logopng.webp" alt="La Chiquitana - Panadería Boliviana en Barcelona"
+                            class="footer-modern-logo">
                         <div class="footer-modern-desc">
-                            <strong>La Chiquitana - Restaurante Boliviano en Barcelona</strong>
-                            El mejor restaurante de comida boliviana en Barcelona. Desde 1952, tres generaciones
+                            <strong>La Chiquitana - Panadería Boliviana en Barcelona</strong>
+                            Panadería de comida boliviana en Barcelona. Desde 1952, tres generaciones
                             preservando la
                             tradición culinaria de Bolivia en España, con recetas auténticas y el sabor de nuestra
                             tierra.
@@ -1896,7 +1800,7 @@
                             <ul style="margin: 0%;">
                                 <li><a href="./productos/saltena.html">Salteñas Bolivianas en Barcelona</a></li>
                                 <li><a href="./productos/cunape.html">Cuñapé Tradicional Boliviano</a></li>
-                                <li><a href="./productos/asadito.html">Asadito de Bolivia</a></li>
+                                <li><a href="./productos/asadito.html">Asadito Camba de Bolivia</a></li>
                                 <li><a href="./productos/empanadamaiz.html">Empanada de Maíz Boliviana</a></li>
                                 <li><a href="./productos/productos.html">Ver toda la comida boliviana</a></li>
                             </ul>
@@ -1904,7 +1808,7 @@
                         <div>
                             <h4>La Chiquitana - Bolivia en Barcelona</h4>
                             <ul>
-                                <li><a href=" #historia-hero">Sobre Nosotros</a></li>
+                                <li><a href="./historia/historia.html">Sobre Nosotros</a></li>
                                 <li><a href="#productos-hero">Productos</a></li>
                                 <li><a href="./historia/historia.html" target="_blank">Historia</a></li>
                                 <li><a href="#poemas-hero">Poemas</a></li>
@@ -1931,22 +1835,32 @@
                     </div>
                 </div>
                 <div class="footer-modern-bottom">
-                    Todos los derechos reservados. | La
-                    Chiquitana - Restaurante Boliviano en Barcelona - Comida Boliviana Auténtica. &copy; 2025 Hecho con
-                    💜 <a href="https://nodoamd.github.io" target="_blank"
-                        style="color:#e8a238;text-decoration:underline;">por Nodo Agencia Marketing Digital</a>.
+                    <div class="footer-bottom-content">
+                        <p class="footer-bottom-text">
+                            Todos los derechos reservados &copy; 2025 | La Chiquitana - Panadería Boliviana en Barcelona
+                        </p>
+                        <div class="footer-bottom-credit">
+                            <span>Hecho por</span>
+                            <a href="https://nodoamd.github.io" target="_blank" rel="noopener" aria-label="Nodo Digital">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="118 82 47 106" class="footer-nodo-icon">
+                                    <path fill="currentColor" d="M118.934 109.058C118.935 107.469 118.998 105.888 119.391 104.339C120.323 100.667 127.063 88.9964 130.224 87.2871C131.74 86.4675 137.647 88.4372 139.382 89.0349C141.177 89.6534 142.812 90.5383 144.284 91.7411C148.144 94.8948 153.299 102.257 155.469 106.724C156.107 107.779 156.629 108.929 156.841 110.152C157.365 113.177 157.482 116.345 157.789 119.406L159.4 134.643C159.844 139.182 160.169 143.742 160.671 148.273C161.062 151.791 161.68 155.306 161.932 158.834C162.053 160.527 162.302 162.781 161.877 164.427C160.038 171.562 152.991 178.565 149.296 185.021C148.903 185.922 148.293 186.806 147.797 187.659C144.661 184.091 142.732 179.828 140.43 175.714C138.768 172.742 136.886 169.772 135.587 166.62C134.195 163.239 133.562 159.126 132.524 155.575C130.909 150.048 128.512 144.424 127.508 138.783C126.497 135.839 125.921 132.693 125 129.71C123.626 125.26 119.067 113.247 118.934 109.058Z" />
+                                </svg>
+                                <span>Nodo Digital</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </footer>
 
         </div>
     </div>
 
-    <script src="./gsap/gsap.min.js"></script>
-    <script src="./gsap/ScrollTrigger.min.js"></script>
-    <script src="./gsap/ScrollSmoother.min.js"></script>
-    <script src="./gsap/DrawSVGPlugin.min.js"></script>
+    <script src="./gsap/gsap.min.js" defer></script>
+    <script src="./gsap/ScrollTrigger.min.js" defer></script>
+    <script src="./gsap/ScrollSmoother.min.js" defer></script>
+    <script src="./gsap/DrawSVGPlugin.min.js" defer></script>
     <script type="module" src="./script.js"></script>
-    <script src="./slider.js"></script>
+    <script src="./slider.js" defer></script>
 
 </body>
 

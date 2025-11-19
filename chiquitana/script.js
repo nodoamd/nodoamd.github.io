@@ -45,7 +45,6 @@ let smoother = ScrollSmoother.create({
     wrapper: "#smooth-wrapper",
     content: "#smooth-content",
     smooth: 0.1,
-    smoothTouch: 0.1,
     effects: true,
     // normalizeScroll: true, // PRueba
     // ignoreMobileResize: true, // PRueba
@@ -352,3 +351,210 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Estos event listeners ya están definidos o deberían estar dentro del DOMContentLoaded
 // y están causando errores porque las variables no están definidas en este ámbito
+// ========================================
+// Animación del Footer Signature (Nodo Digital)
+// ========================================
+gsap.timeline({
+    scrollTrigger: {
+        trigger: "#footer-signature-section",
+        start: "top bottom-=100",
+        end: "top center",
+        toggleActions: "play none none reverse",
+        // markers: true // Descomenta para debug
+    }
+})
+    // Animar el copyright desde abajo
+    .to(".footer-copyright", {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out"
+    })
+    // Animar el logo y texto de Nodo desde la derecha
+    .to("#nodo-signature", {
+        opacity: 1,
+        x: 0,
+        duration: 0.8,
+        ease: "power3.out"
+    }, "-=0.4")
+    // Pequeña rotación y escala del logo SVG
+    .from(".nodo-logo-svg", {
+        scale: 0,
+        rotation: -180,
+        duration: 0.6,
+        ease: "back.out(1.7)"
+    }, "-=0.6")
+    // Efecto de "respiración" sutil en el texto
+    .to(".nodo-text", {
+        opacity: 1,
+        duration: 0.4,
+        ease: "power2.out"
+    }, "-=0.3");
+
+// Efecto hover mejorado con GSAP para el logo
+document.querySelector('#nodo-signature')?.addEventListener('mouseenter', function() {
+    gsap.to('.nodo-logo-svg', {
+        rotation: 5,
+        scale: 1.1,
+        duration: 0.3,
+        ease: "power2.out"
+    });
+    gsap.to('.nodo-text', {
+        x: 3,
+        duration: 0.3,
+        ease: "power2.out"
+    });
+});
+
+document.querySelector('#nodo-signature')?.addEventListener('mouseleave', function() {
+    gsap.to('.nodo-logo-svg', {
+        rotation: 0,
+        scale: 1,
+        duration: 0.3,
+        ease: "power2.out"
+    });
+    gsap.to('.nodo-text', {
+        x: 0,
+        duration: 0.3,
+        ease: "power2.out"
+    });
+});
+
+// ========================================
+// Animación Nodo Glow en Footer
+// ========================================
+ScrollTrigger.create({
+    trigger: ".footer-modern-bottom",
+    start: "top bottom-=200",
+    end: "top center",
+    onEnter: () => {
+        document.querySelector('.footer-nodo-icon')?.classList.add('glowing');
+    },
+    onLeaveBack: () => {
+        document.querySelector('.footer-nodo-icon')?.classList.remove('glowing');
+    }
+});
+
+// ========================================
+// Timeline Animation - Bolivia en Barcelona
+// ========================================
+// Animaciones Historia con Scroll Reveal
+// ========================================
+
+gsap.utils.toArray('.historia-block').forEach((block, index) => {
+    const textBlock = block.querySelector('.historia-block-text');
+    const imageBlock = block.querySelector('.historia-reveal-img');
+    
+    // Animación del bloque completo
+    gsap.fromTo(block,
+        {
+            opacity: 0,
+            y: 40
+        },
+        {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: block,
+                start: "top center+=100",
+                toggleActions: "play none none reverse"
+            }
+        }
+    );
+
+    // Animación del texto con reveal gradual
+    gsap.from(textBlock, {
+        opacity: 0,
+        x: -40,
+        duration: 0.8,
+        ease: "power2.out",
+        delay: 0.2,
+        scrollTrigger: {
+            trigger: block,
+            start: "top center+=100",
+            toggleActions: "play none none reverse"
+        }
+    });
+
+    // Animación de la imagen con zoom y opacity
+    gsap.from(imageBlock, {
+        opacity: 0,
+        scale: 1.15,
+        duration: 1,
+        ease: "power2.out",
+        delay: 0.3,
+        scrollTrigger: {
+            trigger: block,
+            start: "top center+=100",
+            toggleActions: "play none none reverse"
+        }
+    });
+});
+
+
+// ========================================
+// Animaciones Sección Sobre Nosotros
+// ========================================
+
+// Animación del contenido
+gsap.from(".sobre-nosotros-content", {
+    opacity: 0,
+    x: -50,
+    duration: 1,
+    ease: "power2.out",
+    scrollTrigger: {
+        trigger: ".sobre-nosotros-hero",
+        start: "top center",
+        toggleActions: "play none none reverse"
+    }
+});
+
+// Animación de stats con contador
+gsap.utils.toArray('.stat-item').forEach((item, index) => {
+    const number = item.querySelector('.stat-number');
+    const finalValue = number.textContent;
+    
+    gsap.from(item, {
+        opacity: 0,
+        y: 20,
+        duration: 0.6,
+        ease: "power2.out",
+        delay: index * 0.1,
+        scrollTrigger: {
+            trigger: ".sobre-nosotros-hero",
+            start: "top center",
+            toggleActions: "play none none reverse"
+        }
+    });
+});
+
+// Animación de galería - items con stagger
+gsap.from(".gallery-item", {
+    opacity: 0,
+    scale: 0.95,
+    y: 30,
+    duration: 0.8,
+    ease: "back.out",
+    stagger: 0.15,
+    scrollTrigger: {
+        trigger: ".sobre-nosotros-gallery",
+        start: "top center+=100",
+        toggleActions: "play none none reverse"
+    }
+});
+
+// Parallax sutil en imágenes de galería
+gsap.utils.toArray('.gallery-img').forEach((img) => {
+    gsap.to(img, {
+        yPercent: 10,
+        scrollTrigger: {
+            trigger: img,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+            markers: false
+        }
+    });
+});
