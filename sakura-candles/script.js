@@ -660,3 +660,366 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+
+// ========================================
+// EVENTOS & COTIZACIÓN - PROFESSIONAL FUNCTIONALITY
+// ========================================
+
+// === SELECT PACKAGE FUNCTION ===
+function selectPackage(packageName, basePrice) {
+    // Scroll to form
+    const cotizacionSection = document.getElementById('cotizacion');
+    if (cotizacionSection) {
+        cotizacionSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Pre-fill form based on package
+    setTimeout(() => {
+        const form = document.getElementById('cotizacionForm');
+        if (!form) return;
+
+        // Set event type based on package
+        const tipoEvento = document.getElementById('tipoEvento');
+        if (packageName.includes('Boda')) {
+            tipoEvento.value = 'boda';
+        } else if (packageName.includes('Comunión')) {
+            tipoEvento.value = 'comunion';
+        } else if (packageName.includes('Corporativo')) {
+            tipoEvento.value = 'corporativo';
+        } else if (packageName.includes('Mayorista')) {
+            tipoEvento.value = 'mayorista';
+        }
+
+        // Set quantity based on package
+        const cantidad = document.getElementById('cantidad');
+        if (packageName.includes('Íntima')) {
+            cantidad.value = '31-50';
+        } else if (packageName.includes('Gran')) {
+            cantidad.value = '101-200';
+        } else if (packageName.includes('Mayorista')) {
+            cantidad.value = '200+';
+        }
+
+        // Set budget
+        const presupuesto = document.getElementById('presupuesto');
+        if (basePrice < 500) {
+            presupuesto.value = 'menos-300';
+        } else if (basePrice < 800) {
+            presupuesto.value = '300-600';
+        } else if (basePrice < 1500) {
+            presupuesto.value = '1000-2000';
+        } else {
+            presupuesto.value = '2000+';
+        }
+
+        // Add package name to message
+        const mensaje = document.getElementById('mensaje');
+        mensaje.value = `Estoy interesado/a en el paquete "${packageName}". `;
+        mensaje.focus();
+
+        // Trigger estimation update
+        updateEstimacion();
+    }, 500);
+}
+
+// === OPEN CUSTOM QUOTE ===
+function openCustomQuote() {
+    const cotizacionSection = document.getElementById('cotizacion');
+    if (cotizacionSection) {
+        cotizacionSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    setTimeout(() => {
+        const mensaje = document.getElementById('mensaje');
+        if (mensaje) {
+            mensaje.value = 'Me gustaría solicitar un paquete personalizado. ';
+            mensaje.focus();
+        }
+    }, 500);
+}
+
+// === ESTIMATE CALCULATION ===
+function updateEstimacion() {
+    const cantidad = document.getElementById('cantidad')?.value;
+    const tipoEvento = document.getElementById('tipoEvento')?.value;
+    const estimacionPreview = document.getElementById('estimacionPreview');
+    const estimacionRango = document.getElementById('estimacionRango');
+
+    if (!cantidad || !tipoEvento || !estimacionPreview || !estimacionRango) return;
+
+    let minPrice = 0;
+    let maxPrice = 0;
+
+    // Base price per unit ranges
+    const priceRanges = {
+        '1-10': { min: 20, max: 25 },
+        '11-30': { min: 18, max: 23 },
+        '31-50': { min: 16, max: 21 },
+        '51-100': { min: 15, max: 19 },
+        '101-200': { min: 13, max: 17 },
+        '200+': { min: 12, max: 15 }
+    };
+
+    const range = priceRanges[cantidad];
+    if (!range) {
+        estimacionPreview.style.display = 'none';
+        return;
+    }
+
+    // Calculate based on quantity
+    const quantities = {
+        '1-10': 5,
+        '11-30': 20,
+        '31-50': 40,
+        '51-100': 75,
+        '101-200': 150,
+        '200+': 250
+    };
+
+    const avgQuantity = quantities[cantidad];
+    minPrice = Math.round(avgQuantity * range.min);
+    maxPrice = Math.round(avgQuantity * range.max);
+
+    // Adjust for event type
+    if (tipoEvento === 'boda') {
+        minPrice = Math.round(minPrice * 1.2);
+        maxPrice = Math.round(maxPrice * 1.3);
+    } else if (tipoEvento === 'corporativo') {
+        minPrice = Math.round(minPrice * 1.15);
+        maxPrice = Math.round(maxPrice * 1.25);
+    } else if (tipoEvento === 'catering') {
+        minPrice = Math.round(minPrice * 1.3);
+        maxPrice = Math.round(maxPrice * 1.4);
+    }
+
+    estimacionRango.textContent = `€${minPrice} - €${maxPrice}`;
+    estimacionPreview.style.display = 'block';
+}
+
+// === FORM VALIDATION & SUBMISSION ===
+const cotizacionFormInit = () => {
+    const cotizacionForm = document.getElementById('cotizacionForm');
+    const cantidad = document.getElementById('cantidad');
+    const tipoEvento = document.getElementById('tipoEvento');
+    const numPersonas = document.getElementById('numPersonas');
+
+    // Update estimation on input change
+    if (cantidad && tipoEvento) {
+        cantidad.addEventListener('change', updateEstimacion);
+        tipoEvento.addEventListener('change', updateEstimacion);
+        numPersonas?.addEventListener('input', updateEstimacion);
+    }
+
+    // Form submission
+    if (cotizacionForm) {
+        cotizacionForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Get form data
+            const formData = {
+                tipoEvento: document.getElementById('tipoEvento').value,
+                fechaEvento: document.getElementById('fechaEvento').value,
+                numPersonas: document.getElementById('numPersonas').value,
+                nombre: document.getElementById('nombre').value,
+                email: document.getElementById('email').value,
+                telefono: document.getElementById('telefono').value,
+                cantidad: document.getElementById('cantidad').value,
+                presupuesto: document.getElementById('presupuesto').value,
+                personalizacion: document.getElementById('personalizacion').checked,
+                mensaje: document.getElementById('mensaje').value,
+                contacto: document.querySelector('input[name="contacto"]:checked').value
+            };
+
+            // Validate
+            if (!formData.nombre || !formData.email || !formData.telefono) {
+                alert('Por favor completa todos los campos obligatorios');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = cotizacionForm.querySelector('.btn-submit-cotizacion');
+            submitBtn.classList.add('loading');
+            submitBtn.textContent = 'Enviando...';
+
+            // Simulate API call (replace with actual endpoint)
+            try {
+                // Here you would typically send to your backend
+                // await fetch('/api/cotizacion', { method: 'POST', body: JSON.stringify(formData) });
+
+                // For now, create WhatsApp message
+                const whatsappMessage = createWhatsAppMessage(formData);
+                
+                // Option 1: Send via WhatsApp
+                if (formData.contacto === 'whatsapp') {
+                    const whatsappURL = `https://wa.me/34612345678?text=${encodeURIComponent(whatsappMessage)}`;
+                    window.open(whatsappURL, '_blank');
+                }
+
+                // Show success message
+                setTimeout(() => {
+                    cotizacionForm.style.display = 'none';
+                    document.getElementById('formSuccess').style.display = 'block';
+                    
+                    // Log to console (for demo - replace with actual tracking)
+                    console.log('Cotización enviada:', formData);
+                }, 1000);
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Hubo un error al enviar la solicitud. Por favor, inténtalo de nuevo o contáctanos por WhatsApp.');
+                submitBtn.classList.remove('loading');
+                submitBtn.innerHTML = `
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    Enviar Solicitud de Cotización
+                `;
+            }
+        });
+    }
+};
+
+// Initialize form when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', cotizacionFormInit);
+} else {
+    cotizacionFormInit();
+}
+
+// === CREATE WHATSAPP MESSAGE ===
+function createWhatsAppMessage(data) {
+    const eventTypes = {
+        'boda': 'Boda',
+        'comunion': 'Comunión',
+        'corporativo': 'Evento Corporativo',
+        'mayorista': 'Pedido al Por Mayor',
+        'individual': 'Pedido Individual',
+        'catering': 'Catering Completo',
+        'otro': 'Otro'
+    };
+
+    let message = `🌸 *SOLICITUD DE COTIZACIÓN - SAKURA CANDLES* 🌸\n\n`;
+    message += `*Tipo de Evento:* ${eventTypes[data.tipoEvento] || data.tipoEvento}\n`;
+    message += `*Fecha:* ${data.fechaEvento}\n`;
+    message += `*Número de Personas:* ${data.numPersonas}\n`;
+    message += `*Cantidad de Velas:* ${data.cantidad}\n\n`;
+    
+    message += `👤 *DATOS DE CONTACTO*\n`;
+    message += `*Nombre:* ${data.nombre}\n`;
+    message += `*Email:* ${data.email}\n`;
+    message += `*Teléfono:* ${data.telefono}\n`;
+    message += `*Método preferido:* ${data.contacto}\n\n`;
+    
+    if (data.presupuesto) {
+        message += `💰 *Presupuesto:* ${data.presupuesto}\n`;
+    }
+    
+    if (data.personalizacion) {
+        message += `✨ *Requiere Personalización:* Sí\n`;
+    }
+    
+    if (data.mensaje) {
+        message += `\n📝 *Mensaje:*\n${data.mensaje}\n`;
+    }
+    
+    message += `\n---\n_Solicitud enviada desde sakuracandles.com_`;
+    
+    return message;
+}
+
+// === RESET FORM ===
+function resetForm() {
+    const form = document.getElementById('cotizacionForm');
+    const successMsg = document.getElementById('formSuccess');
+    
+    if (form && successMsg) {
+        form.reset();
+        form.style.display = 'block';
+        successMsg.style.display = 'none';
+        
+        // Reset button
+        const submitBtn = form.querySelector('.btn-submit-cotizacion');
+        submitBtn.classList.remove('loading');
+        submitBtn.innerHTML = `
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            Enviar Solicitud de Cotización
+        `;
+        
+        // Hide estimation
+        const estimacionPreview = document.getElementById('estimacionPreview');
+        if (estimacionPreview) {
+            estimacionPreview.style.display = 'none';
+        }
+    }
+}
+
+// === SMOOTH SCROLL FOR ALL ANCHOR LINKS ===
+const initSmoothScroll = () => {
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    
+    anchorLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href === '#' || !href) return;
+            
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+                
+                // Close mobile menu if open
+                const mobileMenu = document.querySelector('.mobile-menu');
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+            }
+        });
+    });
+};
+
+// Initialize smooth scroll
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSmoothScroll);
+} else {
+    initSmoothScroll();
+}
+
+// === CONVERSION TRACKING (Optional - for analytics) ===
+function trackEvent(eventName, eventData) {
+    // Add your analytics tracking here
+    // Example: gtag('event', eventName, eventData);
+    // Example: fbq('track', eventName, eventData);
+    console.log('Event tracked:', eventName, eventData);
+}
+
+// Track form views
+const initFormTracking = () => {
+    const cotizacionSection = document.getElementById('cotizacion');
+    if (cotizacionSection && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    trackEvent('form_view', { section: 'cotizacion' });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(cotizacionSection);
+    }
+};
+
+// Initialize tracking
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFormTracking);
+} else {
+    initFormTracking();
+}
