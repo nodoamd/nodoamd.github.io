@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +8,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-        
+
         * {
             font-family: 'Inter', sans-serif;
         }
-        
+
         body {
             background: #0a0a0f;
             color: #fff;
         }
-        
+
         .wallpaper-card {
             position: relative;
             overflow: hidden;
@@ -25,23 +26,23 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             background: #1a1a24;
         }
-        
+
         .wallpaper-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
         }
-        
+
         .wallpaper-card img {
             width: 100%;
             height: 240px;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
-        
+
         .wallpaper-card:hover img {
             transform: scale(1.05);
         }
-        
+
         .tag {
             background: rgba(139, 92, 246, 0.2);
             border: 1px solid rgba(139, 92, 246, 0.4);
@@ -51,7 +52,7 @@
             font-size: 12px;
             font-weight: 500;
         }
-        
+
         .category-btn {
             width: 100%;
             text-align: left;
@@ -61,18 +62,18 @@
             color: #9ca3af;
             font-weight: 500;
         }
-        
+
         .category-btn:hover {
             background: rgba(139, 92, 246, 0.1);
             color: #a78bfa;
         }
-        
+
         .category-btn.active {
             background: rgba(139, 92, 246, 0.2);
             color: #a78bfa;
             border-left: 3px solid #8b5cf6;
         }
-        
+
         .modal {
             display: none;
             position: fixed;
@@ -84,31 +85,32 @@
             z-index: 1000;
             backdrop-filter: blur(10px);
         }
-        
+
         .modal.active {
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        
+
         .modal-content {
             max-width: 90vw;
             max-height: 90vh;
             position: relative;
             animation: modalFadeIn 0.3s ease;
         }
-        
+
         @keyframes modalFadeIn {
             from {
                 opacity: 0;
                 transform: scale(0.95);
             }
+
             to {
                 opacity: 1;
                 transform: scale(1);
             }
         }
-        
+
         .close-modal {
             position: absolute;
             top: -40px;
@@ -126,32 +128,32 @@
             font-size: 24px;
             transition: all 0.2s ease;
         }
-        
+
         .close-modal:hover {
             background: rgba(139, 92, 246, 0.4);
         }
-        
+
         .scrollbar-hide::-webkit-scrollbar {
             display: none;
         }
-        
+
         .scrollbar-hide {
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-        
+
         /* Collection Section Styles */
         .collection-section {
             margin-bottom: 4rem;
         }
-        
+
         .section-header {
             margin-bottom: 2rem;
             padding-bottom: 1.5rem;
             border-bottom: 2px solid rgba(255, 255, 255, 0.1);
             position: relative;
         }
-        
+
         .section-header::after {
             content: '';
             position: absolute;
@@ -161,13 +163,13 @@
             background: linear-gradient(90deg, #a787ff, #6366f1, transparent);
             width: 100%;
         }
-        
+
         .section-emoji {
             font-size: 2rem;
             margin-right: 0.75rem;
             display: inline-block;
         }
-        
+
         .section-title {
             font-size: 2rem;
             font-weight: 800;
@@ -178,39 +180,39 @@
             margin: 0;
             display: inline;
         }
-        
+
         .section-subtitle {
             font-size: 0.95rem;
             color: rgba(255, 255, 255, 0.6);
             margin-top: 0.5rem;
             font-weight: 400;
         }
-        
+
         .section-count {
             font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.5);
             margin-top: 0.25rem;
         }
-        
+
         .sidebar-container {
             position: relative;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
         .sidebar-container.collapsed {
             width: 60px;
         }
-        
+
         .sidebar-container.collapsed aside {
             width: 60px;
             overflow: hidden;
         }
-        
+
         .sidebar-container.collapsed .sidebar-content {
             opacity: 0;
             pointer-events: none;
         }
-        
+
         .toggle-sidebar {
             position: absolute;
             top: 12px;
@@ -229,16 +231,41 @@
             color: #a78bfa;
             font-size: 18px;
         }
-        
+
         .toggle-sidebar:hover {
             background: rgba(139, 92, 246, 0.3);
             transform: scale(1.1);
         }
-        
+
         .sidebar-content {
             transition: opacity 0.3s ease;
         }
-        
+
+        .video-placeholder {
+            background: linear-gradient(45deg, #1a1a24 25%, #252530 25%, #252530 50%, #1a1a24 50%, #1a1a24 75%, #252530 75%, #252530);
+            background-size: 40px 40px;
+            animation: loading 1.5s linear infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 40px 40px;
+            }
+        }
+
+        .video-lazy {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-lazy.loaded {
+            opacity: 1;
+        }
+
         @media (max-width: 768px) {
             .sidebar-container {
                 position: fixed;
@@ -247,17 +274,18 @@
                 z-index: 40;
                 transform: translateX(0);
             }
-            
+
             .sidebar-container.collapsed {
                 transform: translateX(-100%);
             }
-            
+
             .toggle-sidebar {
                 right: -40px;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header class="border-b border-gray-800 bg-[#0a0a0f]/80 backdrop-blur-lg sticky top-0 z-50">
@@ -283,12 +311,8 @@
                 <div class="bg-[#13131a] rounded-xl p-6 border border-gray-800 sidebar-content">
                     <!-- Search -->
                     <div class="mb-6">
-                        <input 
-                            type="text" 
-                            id="searchInput"
-                            placeholder="Search wallpapers..." 
-                            class="w-full bg-[#1a1a24] border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition"
-                        >
+                        <input type="text" id="searchInput" placeholder="Search wallpapers..."
+                            class="w-full bg-[#1a1a24] border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition">
                     </div>
 
                     <!-- Moods -->
@@ -301,39 +325,40 @@
                             <button class="category-btn" data-category="epic">� Epic Moments</button>
                             <button class="category-btn" data-category="cyberpunk">🌆 Cyberpunk</button>
                         </div>
-                    </div>                <!-- Games -->
-                <div>
-                    <h3 class="text-sm font-semibold text-gray-400 uppercase mb-3">Games</h3>
-                    <div class="space-y-1 max-h-96 overflow-y-auto scrollbar-hide">
-                        <button class="category-btn" data-category="death-stranding">Death Stranding</button>
-                        <button class="category-btn" data-category="arkham">Batman Arkham</button>
-                        <button class="category-btn" data-category="dishonored">Dishonored</button>
-                        <button class="category-btn" data-category="watchdogs">Watch Dogs 2</button>
-                        <button class="category-btn" data-category="spiderman">Spider-Man 2</button>
-                        <button class="category-btn" data-category="skyrim">Skyrim</button>
-                        <button class="category-btn" data-category="metro">Metro Exodus</button>
-                        <button class="category-btn" data-category="witcher">The Witcher 3</button>
-                        <button class="category-btn" data-category="madmax">Mad Max</button>
-                        <button class="category-btn" data-category="prey">Prey</button>
-                        <button class="category-btn" data-category="specops">Spec Ops: The Line</button>
-                        <button class="category-btn" data-category="mgs">MGS Delta</button>
-                        <button class="category-btn" data-category="ac-odyssey">AC Odyssey</button>
-                        <button class="category-btn" data-category="longdark">The Long Dark</button>
-                        <button class="category-btn" data-category="dyinglight">Dying Light</button>
-                        <button class="category-btn" data-category="forza">Forza Horizon</button>
-                        <button class="category-btn" data-category="uncharted">Uncharted 4</button>
-                        <button class="category-btn" data-category="fallout">Fallout 3</button>
-                        <button class="category-btn" data-category="battlefront">Star Wars BF2</button>
-                        <button class="category-btn" data-category="disco-elysium">Disco Elysium</button>
+                    </div> <!-- Games -->
+                    <div>
+                        <h3 class="text-sm font-semibold text-gray-400 uppercase mb-3">Games</h3>
+                        <div class="space-y-1 max-h-96 overflow-y-auto scrollbar-hide">
+                            <button class="category-btn" data-category="death-stranding">Death Stranding</button>
+                            <button class="category-btn" data-category="arkham">Batman Arkham</button>
+                            <button class="category-btn" data-category="dishonored">Dishonored</button>
+                            <button class="category-btn" data-category="watchdogs">Watch Dogs 2</button>
+                            <button class="category-btn" data-category="spiderman">Spider-Man 2</button>
+                            <button class="category-btn" data-category="skyrim">Skyrim</button>
+                            <button class="category-btn" data-category="metro">Metro Exodus</button>
+                            <button class="category-btn" data-category="witcher">The Witcher 3</button>
+                            <button class="category-btn" data-category="madmax">Mad Max</button>
+                            <button class="category-btn" data-category="prey">Prey</button>
+                            <button class="category-btn" data-category="specops">Spec Ops: The Line</button>
+                            <button class="category-btn" data-category="mgs">MGS Delta</button>
+                            <button class="category-btn" data-category="ac-odyssey">AC Odyssey</button>
+                            <button class="category-btn" data-category="longdark">The Long Dark</button>
+                            <button class="category-btn" data-category="dyinglight">Dying Light</button>
+                            <button class="category-btn" data-category="forza">Forza Horizon</button>
+                            <button class="category-btn" data-category="uncharted">Uncharted 4</button>
+                            <button class="category-btn" data-category="fallout">Fallout 3</button>
+                            <button class="category-btn" data-category="battlefront">Star Wars BF2</button>
+                            <button class="category-btn" data-category="disco-elysium">Disco Elysium</button>
+                        </div>
                     </div>
-                </div>
             </aside>
         </div>
 
         <!-- Main Content -->
         <main class="flex-1">
             <div class="mb-12 text-center">
-                <h1 class="text-5xl font-bold mb-3" style="background: linear-gradient(135deg, #a787ff, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                <h1 class="text-5xl font-bold mb-3"
+                    style="background: linear-gradient(135deg, #a787ff, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
                     <span id="categoryTitle">✨ All Collections</span>
                 </h1>
                 <p class="text-gray-400 text-lg">
@@ -366,16 +391,13 @@
                     <p id="modalGame" class="text-gray-400 mb-4"></p>
                     <div class="flex flex-wrap gap-2 mb-4" id="modalTags"></div>
                     <div class="flex gap-3">
-                        <button 
-                            id="downloadBtn"
-                            class="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition flex items-center justify-center gap-2"
-                        >
+                        <button id="downloadBtn"
+                            class="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition flex items-center justify-center gap-2">
                             <span>⬇</span> Download
                         </button>
-                        <button 
+                        <button
                             class="bg-[#1a1a24] hover:bg-[#252530] text-white font-semibold py-3 px-6 rounded-lg transition border border-gray-700"
-                            onclick="closeModal()"
-                        >
+                            onclick="closeModal()">
                             Close
                         </button>
                     </div>
@@ -385,6 +407,50 @@
     </div>
 
     <script>
+        // Performance utilities
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Intersection Observer for lazy loading videos
+        let videoObserver = null;
+        const loadedVideos = new Set();
+
+        function initVideoObserver() {
+            if ('IntersectionObserver' in window) {
+                videoObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const video = entry.target;
+                            const src = video.dataset.src;
+                            if (src && !loadedVideos.has(src)) {
+                                video.src = src;
+                                video.classList.add('loaded');
+                                loadedVideos.add(src);
+                                video.play().catch(() => { });
+                            }
+                        } else {
+                            // Pause video when out of view to save resources
+                            if (entry.target.tagName === 'VIDEO' && !entry.target.paused) {
+                                entry.target.pause();
+                            }
+                        }
+                    });
+                }, {
+                    rootMargin: '50px',
+                    threshold: 0.1
+                });
+            }
+        }
+
         // Complete wallpapers collection - Organized by featured/epic first, then variety
         const allWallpapers = [
             // === FEATURED EPIC PICKS (Mixed games for variety) ===
@@ -401,7 +467,7 @@
             { id: 171, title: "Treasure Hunt", game: "Uncharted 4", image: "img/wlprs/Uncharted4-Landscape-WLPR-3.webp", resolution: "3840x2160", mood: ["epic", "nature"], category: "uncharted", featured: true },
             { id: 140, title: "Wolves Hunt", game: "The Long Dark", image: "img/thelongdarkwolfs.png", resolution: "3840x2160", mood: ["dark", "nature", "melancholic"], category: "longdark", featured: true },
             { id: 41, title: "Marcus Focused", game: "Watch Dogs 2", image: "img/marcusittingfocused.jpg", resolution: "3840x2160", mood: ["melancholic", "cyberpunk"], category: "watchdogs", featured: true },
-            
+
             // === DEATH STRANDING ===
             { id: 2, title: "Lonely Trek", game: "Death Stranding", image: "img/wlprs/DS-Landscape-WLPR-15.webp", resolution: "3840x2160", mood: ["melancholic", "nature"], category: "death-stranding" },
             { id: 3, title: "Mountain Journey", game: "Death Stranding", image: "img/wlprs/DS-Landscape-WLPR-16.webp", resolution: "3840x2160", mood: ["epic", "nature"], category: "death-stranding" },
@@ -412,7 +478,7 @@
             { id: 8, title: "Golden Hour Trek", game: "Death Stranding", image: "img/wlprs/DS-Landscape-WLPR-29.webp", resolution: "3840x2160", mood: ["epic", "nature"], category: "death-stranding" },
             { id: 9, title: "Mountain Peak", game: "Death Stranding", image: "img/wlprs/DS-Landscape-WLPR-30.webp", resolution: "3840x2160", mood: ["epic", "nature"], category: "death-stranding" },
             { id: 10, title: "Sunset Delivery", game: "Death Stranding", image: "img/wlprs/DS-Landscape-WLPR-38.webp", resolution: "3840x2160", mood: ["melancholic", "nature"], category: "death-stranding" },
-            
+
             // === BATMAN ARKHAM KNIGHT ===
             { id: 21, title: "Gotham Vigilante", game: "Batman Arkham Knight", image: "img/arkham.gif", resolution: "3840x2160", mood: ["dark", "cyberpunk"], category: "arkham" },
             { id: 22, title: "City Watcher", game: "Batman Arkham Knight", image: "img/wlprs/BatmanAK-Landscape-CityContemplate-WLPR-01.webp", resolution: "3840x2160", mood: ["dark", "cyberpunk"], category: "arkham" },
@@ -566,17 +632,17 @@
         function renderGallery() {
             const gallery = document.getElementById('gallery');
             const noResults = document.getElementById('noResults');
-            
+
             let filtered = wallpapers;
-            
+
             // Filter by search first
             if (currentSearch) {
-                filtered = filtered.filter(w => 
+                filtered = filtered.filter(w =>
                     w.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
                     w.game.toLowerCase().includes(currentSearch.toLowerCase())
                 );
             }
-            
+
             // Show/hide no results
             if (filtered.length === 0) {
                 gallery.innerHTML = '';
@@ -584,21 +650,21 @@
                 document.getElementById('wallpaperCount').textContent = 0;
                 return;
             }
-            
+
             noResults.classList.add('hidden');
-            
+
             // Render by collection or single category
             if (currentCategory === 'all') {
                 // Show all collections
                 gallery.innerHTML = '';
                 let totalCount = 0;
-                
+
                 collections.forEach(collection => {
-                    const collectionWallpapers = filtered.filter(collection.filter).slice(0, 8); // Limit to 8
+                    const collectionWallpapers = filtered.filter(collection.filter).slice(0, 12); // Limit to 12 for performance
                     if (collectionWallpapers.length === 0) return;
-                    
+
                     totalCount += collectionWallpapers.length;
-                    
+
                     const sectionEl = document.createElement('div');
                     sectionEl.className = 'collection-section';
                     sectionEl.innerHTML = `
@@ -607,7 +673,7 @@
                                 <span class="section-emoji">${collection.emoji}</span>${collection.title}
                             </h2>
                             <p class="section-subtitle">${collection.subtitle}</p>
-                            <p class="section-count">${collectionWallpapers.length} wallpapers</p>
+                            <p class="section-count">${collectionWallpapers.length} wallpapers shown</p>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             ${collectionWallpapers.map(w => createWallpaperCard(w)).join('')}
@@ -615,40 +681,73 @@
                     `;
                     gallery.appendChild(sectionEl);
                 });
-                
+
                 document.getElementById('wallpaperCount').textContent = totalCount;
                 document.getElementById('categoryTitle').textContent = '✨ All Collections';
-                
+
             } else {
-                // Show single collection/category
+                // Show single collection/category - limit to 24 items initially
                 const collection = collections.find(c => c.id === currentCategory);
-                
+
                 if (collection) {
+                    // Filter by mood collection
                     filtered = filtered.filter(collection.filter);
+                } else {
+                    // Filter by game category
+                    filtered = filtered.filter(w => w.category === currentCategory);
                 }
-                
+
+                const displayLimit = 24;
+                const displayFiltered = filtered.slice(0, displayLimit);
+
                 document.getElementById('wallpaperCount').textContent = filtered.length;
-                
+
                 gallery.innerHTML = `
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        ${filtered.map(w => createWallpaperCard(w)).join('')}
+                        ${displayFiltered.map(w => createWallpaperCard(w)).join('')}
                     </div>
+                    ${filtered.length > displayLimit ? `
+                        <div class="text-center mt-8">
+                            <p class="text-gray-400 mb-4">Showing ${displayLimit} of ${filtered.length} wallpapers</p>
+                            <button onclick="loadMoreWallpapers()" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-8 rounded-lg transition">
+                                Load More
+                            </button>
+                        </div>
+                    ` : ''}
                 `;
             }
+
+            // Activate lazy loading for videos
+            setTimeout(() => {
+                if (videoObserver) {
+                    document.querySelectorAll('video[data-src]').forEach(video => {
+                        videoObserver.observe(video);
+                    });
+                }
+            }, 100);
         }
 
-        // Create wallpaper card HTML
+        // Create wallpaper card HTML with lazy loading
         function createWallpaperCard(w) {
             let mediaHTML;
-            
+
             if (w.type === 'youtube') {
-                mediaHTML = `<iframe src="${w.image}" style="width: 100%; height: 240px; border: none; pointer-events: none;" allowfullscreen></iframe>`;
+                // Don't autoload YouTube - use thumbnail instead
+                const videoId = w.image.match(/embed\/([^?]+)/)?.[1] || '';
+                mediaHTML = `
+                    <div class="relative" style="width: 100%; height: 240px; background: #1a1a24;">
+                        <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg"
+                             alt="${w.title}"
+                             loading="lazy"
+                             style="width: 100%; height: 100%; object-fit: cover;">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 48px; opacity: 0.8;">▶️</div>
+                    </div>`;
             } else if (w.type === 'video') {
-                mediaHTML = `<video src="${w.image}" autoplay loop muted playsinline style="width: 100%; height: 240px; object-fit: cover;"></video>`;
+                mediaHTML = `<video data-src="${w.image}" loop muted playsinline class="video-lazy video-placeholder" style="width: 100%; height: 240px; object-fit: cover;"></video>`;
             } else {
                 mediaHTML = `<img src="${w.image}" alt="${w.title}" loading="lazy">`;
             }
-            
+
             return `
                 <div class="wallpaper-card" onclick="openModal(${w.id})">
                     ${mediaHTML}
@@ -668,21 +767,21 @@
         function openModal(id) {
             const wallpaper = wallpapers.find(w => w.id === id);
             if (!wallpaper) return;
-            
+
             const modalImageContainer = document.getElementById('modalImage').parentElement;
-            
+
             if (wallpaper.type === 'video') {
                 modalImageContainer.innerHTML = `<video id="modalImage" src="${wallpaper.image}" autoplay loop muted controls class="w-full max-h-[70vh] object-contain"></video>`;
             } else {
                 modalImageContainer.innerHTML = `<img id="modalImage" src="${wallpaper.image}" alt="${wallpaper.title}" class="w-full max-h-[70vh] object-contain">`;
             }
-            
+
             document.getElementById('modalTitle').textContent = wallpaper.title;
             document.getElementById('modalGame').textContent = wallpaper.game;
-            document.getElementById('modalTags').innerHTML = wallpaper.mood.map(m => 
+            document.getElementById('modalTags').innerHTML = wallpaper.mood.map(m =>
                 `<span class="tag">${m}</span>`
             ).join('');
-            
+
             document.getElementById('downloadBtn').onclick = () => {
                 // Implement actual download logic here
                 const link = document.createElement('a');
@@ -690,29 +789,45 @@
                 link.download = `${wallpaper.title.replace(/\s+/g, '-')}-BetterWLPRS.${wallpaper.type === 'video' ? 'mp4' : 'webp'}`;
                 link.click();
             };
-            
+
             document.getElementById('modal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        // Close modal
+        // Close modal with cleanup
         function closeModal() {
-            document.getElementById('modal').classList.remove('active');
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
             document.body.style.overflow = 'auto';
+
+            // Cleanup video resources
+            const modalVideo = document.querySelector('#modal video');
+            if (modalVideo) {
+                modalVideo.pause();
+                modalVideo.src = '';
+                modalVideo.load();
+            }
+        }
+
+        // Load more wallpapers
+        let currentDisplayLimit = 24;
+        function loadMoreWallpapers() {
+            currentDisplayLimit += 24;
+            renderGallery();
         }
 
         // Category buttons
         document.querySelectorAll('.category-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 // Update active state
-                document.querySelectorAll('.category-btn').forEach(b => 
+                document.querySelectorAll('.category-btn').forEach(b =>
                     b.classList.remove('active')
                 );
                 btn.classList.add('active');
-                
+
                 // Update category
                 currentCategory = btn.dataset.category;
-                
+
                 // Update title based on collection
                 if (currentCategory === 'all') {
                     document.getElementById('categoryTitle').textContent = '✨ All Collections';
@@ -724,15 +839,19 @@
                         document.getElementById('categoryTitle').textContent = btn.textContent.trim();
                     }
                 }
-                
+
                 renderGallery();
             });
         });
 
-        // Search
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            currentSearch = e.target.value;
+        // Search with debounce for performance
+        const debouncedSearch = debounce((value) => {
+            currentSearch = value;
             renderGallery();
+        }, 300);
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            debouncedSearch(e.target.value);
         });
 
         // Close modal on escape
@@ -757,8 +876,17 @@
             toggleBtn.title = sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar';
         });
 
-        // Initial render
+        // Initialize and render
+        initVideoObserver();
         renderGallery();
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (videoObserver) {
+                videoObserver.disconnect();
+            }
+        });
     </script>
 </body>
+
 </html>
