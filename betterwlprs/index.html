@@ -1,1019 +1,1127 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>BetterWLPRS — $4.99 One Time Forever. No Subscriptions.</title>
-        <!-- Favicon -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BetterWLPRS — $3.99/Year. Access 100GB+ Curated Wallpapers. No Subscriptions.</title>
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/logobetterwlprs.png">
-        <!-- Tipografía -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <meta name="description" content="1000+ premium 4K wallpapers. Pay once $4.99, yours forever. No subscriptions, no hidden fees. 50GB+ instant download.">
-    </head>
-    <body>
-        <script>
+    <!-- Tipografía -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description"
+        content="100GB+ curated and edited 4K wallpapers captured by me. $3.99/year for 1-year access to BetterWLPRS collection. No subscriptions, no hidden fees. Instant download.">
+</head>
+
+<body>
+    <script>
         // Aplica el tema guardado o el del sistema al cargar
-        (function() {
+        (function () {
             const userTheme = localStorage.getItem('theme');
             const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
             const theme = userTheme || systemTheme;
             document.documentElement.setAttribute('data-theme', theme);
         })();
-        </script>
-        <!-- NUEVA NAVEGACIÓN -->
-        <nav class="navbar" id="navbar">
-            <div class="nav-container">
-                <div class="nav-brand">
-                    BetterWLPRS
-                </div>
-                <!-- Desktop Menu -->
-                <div class="nav-menu" id="navMenu">
-                    <a
-                        href="#hero"
-                        class="nav-item active"
-                        data-section="gallery"
-                        data-i18n="nav.gallery"
-                    >Home</a>
-                    <a
-                        href="#gallery"
-                        class="nav-item"
-                        data-section="videos"
-                        data-i18n="nav.videos"
-                    >Videos</a>
-                    <a
-                        href="#how"
-                        class="nav-item"
-                        data-section="how"
-                        data-i18n="nav.how"
-                    >How it works</a>
-                    <a
-                        href="#benefits"
-                        class="nav-item"
-                        data-section="benefits"
-                        data-i18n="nav.benefits"
-                    >Benefits</a>
-                    <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">
-                        🎨
-                        Gallery
-                    </a>
-                </div>
-                <!-- Desktop Actions -->
-                <div class="nav-actions">
-                    <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+    </script>
+    <!-- NUEVA NAVEGACIÓN -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                BetterWLPRS
+            </div>
+            <!-- Desktop Menu -->
+            <div class="nav-menu" id="navMenu">
+                <a href="#hero" class="nav-item active" data-section="gallery" data-i18n="nav.gallery">Home</a>
+                <a href="#gallery" class="nav-item" data-section="videos" data-i18n="nav.videos">Videos</a>
+                <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">How it works</a>
+                <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Benefits</a>
+                <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">
+                    🎨
+                    Gallery
+                </a>
+            </div>
+            <!-- Desktop Actions -->
+            <div class="nav-actions">
+                <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+                    <span>☀️</span>
+                </button>
+                <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year?_gl=1*g2sl03*_ga*ODIwNzAxNzQyLjE3NTg2NDQxMDc.*_ga_6LJN6D94N6*czE3NTg2NTA5MDEkbzMkZzEkdDE3NTg2NTEwNjIkajYkbDAkaDA."
+                    target="_blank" title="Gumroad"
+                    style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
+                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad"
+                        style="width:18px;height:18px;filter:invert(64%) sepia(88%) saturate(1000%) hue-rotate(315deg) brightness(105%) contrast(101%);">
+                    <span style="font-weight:600;color:#ff90b3;font-size:14px;">Gumroad</span>
+                </a>
+                <a href="https://ko-fi.com/betterwlprs" target="_blank" title="Ko-fi"
+                    style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
+                    <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png"
+                        alt="Ko-fi" style="width:18px;height:18px;">
+                    <span style="font-weight:600;color:#29abe0;font-size:14px;">Ko-fi</span>
+                </a>
+            </div>
+            <!-- Mobile Actions -->
+            <div class="nav-mobile">
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <a href="#hero" class="nav-item" data-section="gallery" data-i18n="nav.gallery">Home</a>
+            <a href="#gallery" class="nav-item" data-section="videos" data-i18n="nav.videos">Videos</a>
+            <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">How it works</a>
+            <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Benefits</a>
+            <a href="https://drive.google.com/drive/folders/1MuJkt_ZfpcPGAPSR5q5Q6K8aRJLgLdAE?usp=sharing"
+                class="nav-item" data-section="gallery" data-i18n="nav.gallery">🎁 Download Starter Pack</a>
+            <div class="mobile-nav-actions">
+                <div class="mobile-toggles">
+                    <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme">
                         <span>☀️</span>
                     </button>
-                    <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year?_gl=1*g2sl03*_ga*ODIwNzAxNzQyLjE3NTg2NDQxMDc.*_ga_6LJN6D94N6*czE3NTg2NTA5MDEkbzMkZzEkdDE3NTg2NTEwNjIkajYkbDAkaDA." target="_blank" title="Gumroad"
-        style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad" style="width:18px;height:18px;filter:invert(64%) sepia(88%) saturate(1000%) hue-rotate(315deg) brightness(105%) contrast(101%);">
-        <span style="font-weight:600;color:#ff90b3;font-size:14px;">Gumroad</span>
-    </a>
-    <a href="https://ko-fi.com/betterwlprs" target="_blank" title="Ko-fi"
-        style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
-        <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png" alt="Ko-fi" style="width:18px;height:18px;">
-        <span style="font-weight:600;color:#29abe0;font-size:14px;">Ko-fi</span>
-    </a>
                 </div>
-                <!-- Mobile Actions -->
-                <div class="nav-mobile">
-                    <button class="hamburger" id="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
+                <div class="mobile-social">
+                    <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year?_gl=1*g2sl03*_ga*ODIwNzAxNzQyLjE3NTg2NDQxMDc.*_ga_6LJN6D94N6*czE3NTg2NTA5MDEkbzMkZzEkdDE3NTg2NTEwNjIkajYkbDAkaDA."
+                        target="_blank" class="social-link"
+                        style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad"
+                            style="width:18px;height:18px;filter:invert(64%) sepia(88%) saturate(1000%) hue-rotate(315deg) brightness(105%) contrast(101%);">
+                        <span style="font-weight:600;color:#ff90b3;font-size:14px;">Gumroad</span>
+                    </a>
+                    <a href="https://ko-fi.com/betterwlprs" target="_blank" class="social-link">
+                        <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png"
+                            alt="Ko-fi" style="width:18px;height:18px;">
+                        <span>Ko-fi</span>
+                    </a>
                 </div>
             </div>
-        </nav>
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-            <div class="mobile-menu-content">
-                <a
-                    href="#hero"
-                    class="nav-item"
-                    data-section="gallery"
-                    data-i18n="nav.gallery"
-                >Home</a>
-                <a
-                    href="#gallery"
-                    class="nav-item"
-                    data-section="videos"
-                    data-i18n="nav.videos"
-                >Videos</a>
-                <a
-                    href="#how"
-                    class="nav-item"
-                    data-section="how"
-                    data-i18n="nav.how"
-                >How it works</a>
-                <a
-                    href="#benefits"
-                    class="nav-item"
-                    data-section="benefits"
-                    data-i18n="nav.benefits"
-                >Benefits</a>
-                <a
-                    href="https://drive.google.com/drive/folders/1MuJkt_ZfpcPGAPSR5q5Q6K8aRJLgLdAE?usp=sharing"
-                    class="nav-item"
-                    data-section="gallery"
-                    data-i18n="nav.gallery"
-                >🎁 Download Starter Pack</a>
-                <div class="mobile-nav-actions">
-                    <div class="mobile-toggles">
-                        <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme">
-                            <span>☀️</span>
-                        </button>
+        </div>
+    </div>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="eyebrow" data-i18n="hero.eyebrow">Your favorite gaming scenes as Wallpapers</div>
+            <h1>
+                <span class="title-line" data-i18n="hero.title1">Better Wallpapers</span>
+                <br>
+                <span class="gradient-text" data-i18n="hero.title2">Captured In-Game</span>
+            </h1>
+            <p data-i18n="hero.desc" style="max-width: 600px; margin: 0 auto 2rem;">1000+ unique wallpapers captured
+                from Death Stranding, Skyrim, Metro Exodus, and more. Professional quality. No watermarks.</p>
+            <div class="hero-actions">
+                <a href="#gallery" class="btn primary">
+                    <span data-i18n="hero.explore">
+                        Explore Gallery
+                        <span>→</span>
+                    </span>
+                </a>
+
+                <a href="https://drive.google.com/drive/folders/1MuJkt_ZfpcPGAPSR5q5Q6K8aRJLgLdAE?usp=sharing"
+                    class="btn secondary" target="_blank" data-i18n="hero.how">
+                    <span style="display: flex; align-items: center; gap: 8px;">
+                        <span>🎁</span>
+                        <span>Download Starter Pack</span>
+                    </span>
+                </a>
+            </div>
+            <!-- spline-viewer ABSOLUTE, fuera del flujo -->
+            <div class="steamdeck-hero-absolute"
+                style="width:100%; display:flex; justify-content:center; margin:0 auto; pointer-events:none; z-index:0; margin-top:0; overflow:hidden;">
+                <div
+                    style="width:100%; max-width:1200px; position:relative; z-index:0; display:flex; justify-content:center;">
+                    <script type="module"
+                        src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
+                    <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
+                        style="height:400px; border-radius:0.75rem; background:transparent; pointer-events:none;"
+                        class="steamdeck-viewer-main"></spline-viewer>
+                </div>
+            </div>
+            <div class="chips">
+                <span class="chip" data-i18n="chips.original">🎮 Live Wallpapers</span>
+                <span class="chip" data-i18n="chips.onlyHere">Like in PS3!</span>
+                <span class="chip" data-i18n="chips.multi">🚇 Metro Exodus</span>
+                <span class="chip" data-i18n="chips.instant">🦇 Batman Arkham</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT IS BETTERWLPRS - Nueva sección explicativa -->
+    <section class="section"
+        style="padding: 4rem 1.5rem; background: linear-gradient(135deg, rgba(167, 135, 255, 0.05), rgba(167, 135, 255, 0.02));">
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <div
+                    style="display: inline-block; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; padding: 8px 20px; border-radius: 50px; font-size: 13px; font-weight: 600; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">
+                    Remember Live Themes on the PS3/PS4? I do!
+                </div>
+
+                <h2
+                    style="font-size: 2.2rem; font-weight: 800; color: var(--text); margin-bottom: 1.5rem; line-height: 1.2;">
+                    Since there aren't any more, I decided to make them.
+                </h2>
+
+                <p
+                    style="font-size: 1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                    That's why I capture those cinematic moments and transform them into <strong
+                        style="color: var(--text);">BetterWLPRS</strong> — to store with care and love my curated
+                    collection of live in-game wallpapers, static shots and more.
+                </p>
+            </div>
+
+            <!-- Video Preview -->
+            <div
+                style="margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(167, 135, 255, 0.2); border: 2px solid rgba(167, 135, 255, 0.15);">
+                <video width="100%" height="auto" autoplay muted loop style="display: block; background: #000;">
+                    <source src="img/OptimizedVideoWLPRS/DeathStranding-SamWindy-VideoWLPR-web.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <!-- Features grid -->
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                <!-- Feature 1 -->
+                <div style="text-align: center; padding: 1.5rem;">
+                    <div
+                        style="width: 60px; height: 60px; margin: 0 auto 1rem; background: linear-gradient(135deg, rgba(167, 135, 255, 0.2), rgba(167, 135, 255, 0.1)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px;">
+                        🎬
                     </div>
-                    <div class="mobile-social">
-                        <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year?_gl=1*g2sl03*_ga*ODIwNzAxNzQyLjE3NTg2NDQxMDc.*_ga_6LJN6D94N6*czE3NTg2NTA5MDEkbzMkZzEkdDE3NTg2NTEwNjIkajYkbDAkaDA." target="_blank" class="social-link" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad" style="width:18px;height:18px;filter:invert(64%) sepia(88%) saturate(1000%) hue-rotate(315deg) brightness(105%) contrast(101%);">
-        <span style="font-weight:600;color:#ff90b3;font-size:14px;">Gumroad</span>
-    </a>
-    <a href="https://ko-fi.com/betterwlprs" target="_blank" class="social-link">
-        <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png" alt="Ko-fi" style="width:18px;height:18px;">
-        <span>Ko-fi</span>
-    </a>
+                    <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem;">4K Video
+                        Wallpapers</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">Animated moments from
+                        Death Stranding, Metro Exodus, Skyrim, and more</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div style="text-align: center; padding: 1.5rem;">
+                    <div
+                        style="width: 60px; height: 60px; margin: 0 auto 1rem; background: linear-gradient(135deg, rgba(167, 135, 255, 0.2), rgba(167, 135, 255, 0.1)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px;">
+                        ✨
+                    </div>
+                    <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem;">Every
+                        Classic Captured</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">I plan to have every
+                        video-game that I physically can, featured in this collection. Stay tuned!</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div style="text-align: center; padding: 1.5rem;">
+                    <div
+                        style="width: 60px; height: 60px; margin: 0 auto 1rem; background: linear-gradient(135deg, rgba(167, 135, 255, 0.2), rgba(167, 135, 255, 0.1)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px;">
+                        💫
+                    </div>
+                    <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem;">
+                        Handcrafted Collection</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">Each clip captured,
+                        edited, and optimized with love for your setup</p>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; margin-top: 3rem; padding: 2rem; background: rgba(255, 255, 255, 0.02); border-radius: var(--radius); border: 1px solid var(--border);">
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; font-weight: 800; color: var(--accent); margin-bottom: 0.25rem;">1000+
+                    </div>
+                    <div
+                        style="font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;">
+                        Wallpapers</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; font-weight: 800; color: var(--accent); margin-bottom: 0.25rem;">200+
+                    </div>
+                    <div
+                        style="font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;">
+                        4K Videos</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; font-weight: 800; color: var(--accent); margin-bottom: 0.25rem;">50GB+
+                    </div>
+                    <div
+                        style="font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;">
+                        Library Size</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 1.1rem; font-weight: 600; color: var(--accent); margin-bottom: 0.25rem;">
+                        $3.99</div>
+                    <div
+                        style="font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;">
+                        Per Year</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section class="section" id="gallery">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="gallery.titlePrefix">See What You're</span>
+                <span class="highlight" data-i18n="gallery.highlight">Getting</span>
+            </h2>
+            <p>
+                <span data-i18n="gallery.desc.part1">
+                    Every wallpaper is a real screenshot captured from games. No AI. No stock photos. Just pure gaming
+                    moments in 4K quality. Start with our
+                </span>
+                <a href="https://betterwlprsx.gumroad.com/l/starter-pack-free" target="_blank"
+                    style="color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 2px;"
+                    href="https://ko-fi.com/betterwlprs">
+                    <span data-i18n="gallery.desc.link">BetterWLPRS Starter Pack</span>
+                </a>
+                <span data-i18n="gallery.desc.part2">so you can enjoy them in every device, always 😊</span>
+            </p>
+        </div>
+        <div class="grid" id="galleryGrid">
+            <div class="card">
+                <div class="card-image">
+                    <img src="./img/marcussittedahh.gif" alt="Golden Hour">
+                    <div class="card-badge">0$</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">🎁 Download Starter Pack</div>
+                        <div class="card-subtitle" data-i18n="card.membersOnly">
+                            +10GB premium wallpapers • No signup required
+                        </div>
+                    </div>
+                    <button class="card-action secondary" data-i18n="card.viewImage">Let's a go!</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="./img/arkham.gif" alt="City Nights">
+                    <div class="card-badge">Arkham Knight</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Photo Mode</div>
+                        <div class="card-subtitle" data-i18n="card.download1600">
+                            We use the highest settings avaliable
+                            on each game and scene to ensure the highest quality for our WLPRS!
+                        </div>
+                    </div>
+                    <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="img/samsittedahh.gif" alt="Soft Neon">
+                    <div class="card-badge">Death Stranding</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Sam chilling on a windy peak</div>
+                        <div class="card-subtitle" data-i18n="card.membersOnly">
+                            Live WLPRS like the good ol' PS3 live
+                            themes!
+                            But in every scenario of our favourite game franchises! 🧐
+                        </div>
+                    </div>
+                    <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="./img/lessgo.gif" alt="Video WLPR of Metro Exodus">
+                    <div class="card-badge">Metro Exodus</div>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Live WLPRS With in-game Sound</div>
+                        <div class="card-subtitle">
+                            The captured WLPRS are taken with the highest quality settings and
+                            audio turned on so you can ensure the full experience
+                        </div>
+                    </div>
+                    <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
+                </div>
+            </div>
+        </div>
+        <!-- Botón a galería completa -->
+        <div style="text-align: center; margin-top: 2rem; margin-bottom: 5rem;">
+            <a href="galeria.html" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px;">
+                <span>🖼️ View gallery</span>
+                <span>→</span>
+            </a>
+        </div>
+    </section>
+    <!-- GALERÍA -->
+    <section class="section" id="galeria">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="videos.title">Better</span>
+                <span class="highlight" data-i18n="videos.highlight">WLPRS</span>
+                Are made with Love and Passion
+            </h2>
+            <p data-i18n="videos.desc">
+                From live WLPRS with in-game sound to scenes captured in cinematics at the highest quality available.
+            </p>
+        </div>
+        <div class="grid" id="videoGrid">
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/mgsdelta.png" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen
+                        style="width:100%;height:100%;aspect-ratio:16/9;display:block;border-radius:20px;"></img>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Cinematic WLPRS</div>
+                        <div class="card-subtitle" data-i18n="videos.card.premium">
+                            In-game photos taken in cinematic
+                            scenes
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/ACOdissey-Vertical-Village-WLPR-08.png" alt="Behind The Lens">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Vertical / Landscape WLPRS</div>
+                        <div class="card-subtitle" data-i18n="videos.card.premium">
+                            Every device and screen is supported
+                            "(kindle, steam deck, etc)"
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/DishonoredDLC-Landscape-InsideBasement-WLPR-02.png"
+                        alt="Death Stranding Main Character sitting on a mountain">
+                </div>
+                <div class="card-content">
+                    <div>
+                        <div class="card-title">Love and Care</div>
+                        <div class="card-subtitle" data-i18n="videos.card.open">
+                            Use them on your favorite platforms like
+                            Wallpaper Engine or Lively "(Free option wich I use and recommend)"
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- HERO -->
-        <section class="hero" id="hero">
-            <div class="hero-content">
-                <div class="eyebrow" data-i18n="hero.eyebrow">Your favorite gaming scenes as Wallpapers</div>
-                <h1>
-                    <span class="title-line" data-i18n="hero.title1">Better Wallpapers</span>
-                    <br>
-                    <span class="gradient-text" data-i18n="hero.title2">Captured In-Game</span>
-                </h1>
-                <p data-i18n="hero.desc" style="max-width: 600px; margin: 0 auto 2rem;">1000+ unique wallpapers captured from Death Stranding, Skyrim, Metro Exodus, and more. Professional quality. No watermarks.</p>
-                <div class="hero-actions">
-                    <a href="#gallery" class="btn primary">
-                        <span data-i18n="hero.explore">
-                            Explore Gallery
-                            <span>→</span>
-                        </span>
-                    </a>
-                   
-                    <a href="https://drive.google.com/drive/folders/1MuJkt_ZfpcPGAPSR5q5Q6K8aRJLgLdAE?usp=sharing" class="btn secondary" target="_blank" data-i18n="hero.how">
-                        <span style="display: flex; align-items: center; gap: 8px;">
-                            <span>🎁</span>
-                            <span>Download Starter Pack</span>
-                        </span>
-                    </a>
+        <!-- Botón a galería completa -->
+        <div style="text-align: center; margin-top: 2rem; margin-bottom: 5rem;">
+            <a href="galeria.html" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px;">
+                <span>🖼️ View Gallery</span>
+                <span>→</span>
+            </a>
+        </div>
+    </section>
+    <!-- CÓMO FUNCIONA -->
+    <section class="section" id="how">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="how.titlePrefix">How does</span>
+                <span class="highlight" data-i18n="how.highlight">it work</span>
+            </h2>
+            <p data-i18n="how.desc">Do it in three simple steps:</p>
+        </div>
+        <div class="grid" id="howGrid">
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/sanfracampview.jpg" alt="Download Starter Pack">
                 </div>
-                <!-- spline-viewer ABSOLUTE, fuera del flujo -->
-                <div class="steamdeck-hero-absolute" style="width:100%; display:flex; justify-content:center; margin:0 auto; pointer-events:none; z-index:0; margin-top:0; overflow:hidden;">
-                    <div style="width:100%; max-width:1200px; position:relative; z-index:0; display:flex; justify-content:center;">
-                        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
-                        <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode" style="height:400px; border-radius:0.75rem; background:transparent; pointer-events:none;" class="steamdeck-viewer-main"></spline-viewer>
-                    </div>
-                </div>
-                <div class="chips">
-                    <span class="chip" data-i18n="chips.original">🎮 Live Wallpapers</span>
-                    <span class="chip" data-i18n="chips.onlyHere">Like in PS3!</span>
-                    <span class="chip" data-i18n="chips.multi">🚇 Metro Exodus</span>
-                    <span class="chip" data-i18n="chips.instant">🦇 Batman Arkham</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- WHAT IS BETTERWLPRS - Nueva sección explicativa -->
-        <section class="section" style="padding: 4rem 1.5rem; background: linear-gradient(135deg, rgba(167, 135, 255, 0.05), rgba(167, 135, 255, 0.02));">
-            <div style="max-width: 1000px; margin: 0 auto;">
-                <div style="text-align: center; margin-bottom: 3rem;">
-                    <div style="display: inline-block; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; padding: 8px 20px; border-radius: 50px; font-size: 13px; font-weight: 600; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">
-                        Remember Live Themes on the PS3/PS4? I do!
-                    </div>
-                    
-                    <h2 style="font-size: 2.2rem; font-weight: 800; color: var(--text); margin-bottom: 1.5rem; line-height: 1.2;">
-                        Since there aren't any more, I decided to make them.
-                    </h2>
-                    
-                    <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-                        That's why I capture those cinematic moments and transform them into <strong style="color: var(--text);">BetterWLPRS</strong> — to store with care and love my curated collection of live in-game wallpapers, static shots and more.
-                    </p>
-                </div>
-
-                <!-- Video Preview -->
-                <div style="margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(167, 135, 255, 0.2); border: 2px solid rgba(167, 135, 255, 0.15);">
-                    <video width="100%" height="auto" autoplay muted loop style="display: block; background: #000;">
-                        <source src="img/OptimizedVideoWLPRS/DeathStranding-SamWindy-VideoWLPR-web.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-
-                <!-- Features grid -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
-                    <!-- Feature 1 -->
-                    <div style="text-align: center; padding: 1.5rem;">
-                        <div style="width: 60px; height: 60px; margin: 0 auto 1rem; background: linear-gradient(135deg, rgba(167, 135, 255, 0.2), rgba(167, 135, 255, 0.1)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px;">
-                            🎬
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            1
                         </div>
-                        <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem;">4K Video Wallpapers</h3>
-                        <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">Animated moments from Death Stranding, Metro Exodus, Skyrim, and more</p>
-                    </div>
-
-                    <!-- Feature 2 -->
-                    <div style="text-align: center; padding: 1.5rem;">
-                        <div style="width: 60px; height: 60px; margin: 0 auto 1rem; background: linear-gradient(135deg, rgba(167, 135, 255, 0.2), rgba(167, 135, 255, 0.1)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px;">
-                            ✨
+                        <div>
+                            <div class="card-title">Download Starter Pack</div>
                         </div>
-                        <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem;">Every Classic Captured</h3>
-                        <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">I plan to have every video-game that I physically can, featured in this collection. Stay tuned!</p>
                     </div>
-
-                    <!-- Feature 3 -->
-                    <div style="text-align: center; padding: 1.5rem;">
-                        <div style="width: 60px; height: 60px; margin: 0 auto 1rem; background: linear-gradient(135deg, rgba(167, 135, 255, 0.2), rgba(167, 135, 255, 0.1)); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px;">
-                            💫
-                        </div>
-                        <h3 style="font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem;">Handcrafted Collection</h3>
-                        <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">Each clip captured, edited, and optimized with love for your setup</p>
-                    </div>
-                </div>
-
-                <!-- Stats -->
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; margin-top: 3rem; padding: 2rem; background: rgba(255, 255, 255, 0.02); border-radius: var(--radius); border: 1px solid var(--border);">
-                    <div style="text-align: center;">
-                        <div style="font-size: 2rem; font-weight: 800; color: var(--accent); margin-bottom: 0.25rem;">1000+</div>
-                        <div style="font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;">Wallpapers</div>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="font-size: 2rem; font-weight: 800; color: var(--accent); margin-bottom: 0.25rem;">200+</div>
-                        <div style="font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;">4K Videos</div>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="font-size: 2rem; font-weight: 800; color: var(--accent); margin-bottom: 0.25rem;">50GB+</div>
-                        <div style="font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;">Library Size</div>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="font-size: 1.1rem; font-weight: 600; color: var(--accent); margin-bottom: 0.25rem;">From $4.99</div>
-                        <div style="font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;">A Year!</div>
+                    <div class="card-subtitle">
+                        Start and enjoy access to premium WLPRS for everyone. Includes
+                        VideoWLPRS, Landscape and Vertical formats for all your devices.
                     </div>
                 </div>
             </div>
-        </section>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/spidersky.gif" alt="Unlimited wallpapers">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            2
+                        </div>
+                        <div>
+                            <div class="card-title">Enjoy BetterWLPRS</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">
+                        That's why I built BetterWLPRS. To store with care and love my curated collection of live
+                        in-game wallpapers and video backgrounds.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="aspect-ratio: 16/9;">
+                    <img src="./img/arkham.gif" alt="Upgrade BetterWLPRS">
+                </div>
+                <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 16px;">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
+                            3
+                        </div>
+                        <div>
+                            <div class="card-title">Get BetterWLPRS Forever</div>
+                        </div>
+                    </div>
+                    <div class="card-subtitle">
+                        Pay $3.99/year for 1-year access to BetterWLPRS's curated and edited wallpaper collection. Get
+                        instant access to your complete download link.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- GALERÍA -->
-        <section class="section" id="gallery">
-            <div class="section-header">
-                <h2>
-                    <span data-i18n="gallery.titlePrefix">See What You're</span>
-                    <span class="highlight" data-i18n="gallery.highlight">Getting</span>
-                </h2>
-                <p>
-                    <span data-i18n="gallery.desc.part1">
-                        Every wallpaper is a real screenshot captured from games. No AI. No stock photos. Just pure gaming moments in 4K quality. Start with our
-                    </span>
-                    <a
-                        href="https://betterwlprsx.gumroad.com/l/starter-pack-free"
-                        target="_blank"
-                        style="color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 2px;"
-                        href="https://ko-fi.com/betterwlprs"
-                    >
-                        <span data-i18n="gallery.desc.link">BetterWLPRS Starter Pack</span>
-                    </a>
-                    <span data-i18n="gallery.desc.part2">so you can enjoy them in every device, always 😊</span>
+    <!-- TESTIMONIOS / SOCIAL PROOF -->
+    <section class="section"
+        style="background: linear-gradient(135deg, rgba(167, 135, 255, 0.03), rgba(167, 135, 255, 0.01));">
+        <div class="section-header">
+            <h2>
+                <span>What Gamers Say</span>
+            </h2>
+            <p>Real feedback from the BetterWLPRS community</p>
+        </div>
+
+        <div
+            style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <!-- Testimonial 1 -->
+            <div
+                style="padding: 2rem; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius); position: relative;">
+                <div style="display: flex; gap: 12px; margin-bottom: 1rem; align-items: center;">
+                    <div
+                        style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #a787ff, #7c3aed); flex-shrink: 0;">
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; color: var(--text);">@marcus.gaming</div>
+                        <div style="font-size: 12px; color: var(--text-secondary);">Streamer • Verified Buyer</div>
+                    </div>
+                </div>
+                <div style="font-size: 13px; color: #fbbf24; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</div>
+                <p style="color: var(--text-secondary); margin: 0; font-size: 0.95rem; line-height: 1.6;">
+                    "These are scenes I never thought I could capture. Better than any wallpaper engine pack out there.
+                    Worth every penny."
                 </p>
             </div>
-            <div class="grid" id="galleryGrid">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="./img/marcussittedahh.gif" alt="Golden Hour">
-                        <div class="card-badge">0$</div>
+
+            <!-- Testimonial 2 -->
+            <div
+                style="padding: 2rem; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius); position: relative;">
+                <div style="display: flex; gap: 12px; margin-bottom: 1rem; align-items: center;">
+                    <div
+                        style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #ec4899, #f97316); flex-shrink: 0;">
                     </div>
-                    <div class="card-content">
-                        <div>
-                            <div class="card-title">🎁 Download Starter Pack</div>
-                            <div class="card-subtitle" data-i18n="card.membersOnly">
-                                +10GB premium wallpapers • No signup required
-                            </div>
+                    <div>
+                        <div style="font-weight: 600; color: var(--text);">@luna.setups</div>
+                        <div style="font-size: 12px; color: var(--text-secondary);">Setup Enthusiast • Desktop Ricer
                         </div>
-                        <button class="card-action secondary" data-i18n="card.viewImage">Let's a go!</button>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-image">
-                        <img src="./img/arkham.gif" alt="City Nights">
-                        <div class="card-badge">Arkham Knight</div>
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <div class="card-title">Photo Mode</div>
-                            <div class="card-subtitle" data-i18n="card.download1600">
-                                We use the highest settings avaliable
-                        on each game and scene to ensure the highest quality for our WLPRS!
-                            </div>
-                        </div>
-                        <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image">
-                        <img src="img/samsittedahh.gif" alt="Soft Neon">
-                        <div class="card-badge">Death Stranding</div>
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <div class="card-title">Sam chilling on a windy peak</div>
-                            <div class="card-subtitle" data-i18n="card.membersOnly">
-                                Live WLPRS like the good ol' PS3 live
-                        themes!
-                        But in every scenario of our favourite game franchises! 🧐
-                            </div>
-                        </div>
-                        <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image">
-                        <img src="./img/lessgo.gif" alt="Video WLPR of Metro Exodus">
-                        <div class="card-badge">Metro Exodus</div>
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <div class="card-title">Live WLPRS With in-game Sound</div>
-                            <div class="card-subtitle">
-                                The captured WLPRS are taken with the highest quality settings and
-                        audio turned on so you can ensure the full experience
-                            </div>
-                        </div>
-                        <button class="card-action secondary" data-i18n="card.viewImage">View image</button>
-                    </div>
-                </div>
+                <div style="font-size: 13px; color: #fbbf24; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</div>
+                <p style="color: var(--text-secondary); margin: 0; font-size: 0.95rem; line-height: 1.6;">
+                    "The 4K quality is insane. My friends thought I was using a gaming PC. Best $19.99 I've spent on
+                    setup customization."
+                </p>
             </div>
-            <!-- Botón a galería completa -->
-            <div style="text-align: center; margin-top: 2rem; margin-bottom: 5rem;">
-                <a href="galeria.html" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px;">
-                    <span>🖼️ View gallery</span>
+
+            <!-- Testimonial 3 -->
+            <div
+                style="padding: 2rem; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius); position: relative;">
+                <div style="display: flex; gap: 12px; margin-bottom: 1rem; align-items: center;">
+                    <div
+                        style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #06b6d4, #0891b2); flex-shrink: 0;">
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; color: var(--text);">@skyrim_forever</div>
+                        <div style="font-size: 12px; color: var(--text-secondary);">RPG Fan • Active Patron</div>
+                    </div>
+                </div>
+                <div style="font-size: 13px; color: #fbbf24; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</div>
+                <p style="color: var(--text-secondary); margin: 0; font-size: 0.95rem; line-height: 1.6;">
+                    "I subscribed on Patreon and get new wallpapers every month. The dedication to quality is chef's
+                    kiss."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section class="section" id="benefits">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="benefits.titlePrefix">Benefits for</span>
+                <span class="highlight" data-i18n="benefits.highlight">Members</span>
+            </h2>
+            <p data-i18n="benefits.desc">
+                Discover all the benefits of BetterWLPRS: premium wallpapers, exclusive video backgrounds, and full
+                access for every device you own.
+            </p>
+        </div>
+        <!-- Estadísticas destacadas -->
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <div
+                style="text-align: center; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">
+                    +50GB
+                </div>
+                <div style="font-size: 0.9rem; color: var(--text-secondary);">Premium Library</div>
+            </div>
+            <div
+                style="text-align: center; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">
+                    200+
+                </div>
+                <div style="font-size: 0.9rem; color: var(--text-secondary);">VideoWLPRS 4K</div>
+            </div>
+            <div
+                style="text-align: center; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius);">
+                <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">10+</div>
+                <div style="font-size: 0.9rem; color: var(--text-secondary);">Supported Devices</div>
+            </div>
+        </div>
+        <!-- CTA de prueba gratuita -->
+        <div
+            style="text-align: center; margin-top: 4rem; padding: 3rem 2rem; background: linear-gradient(135deg, rgba(167, 135, 255, 0.1), rgba(167, 135, 255, 0.05)); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius); position: relative; overflow: hidden;">
+            <div
+                style="position: absolute; top: -50%; right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(167, 135, 255, 0.1) 0%, transparent 70%); pointer-events: none;">
+            </div>
+            <div style="position: relative; z-index: 2;">
+                <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">
+                    Ready to access BetterWLPRS's complete collection?
+                </h3>
+                <p
+                    style="color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    $3.99/year for 1-year access to our carefully curated and edited wallpaper collection. Instant
+                    download link included.
+                </p>
+                <a href="#pricing" class="btn primary"
+                    style="font-size: 16px; padding: 16px 32px; margin-bottom: 1rem; text-decoration: none; display: inline-flex; align-items: center; gap: 12px;">
+                    <span>🚀 See All Plans</span>
                     <span>→</span>
                 </a>
-            </div>
-        </section>
-        <!-- GALERÍA -->
-        <section class="section" id="galeria">
-            <div class="section-header">
-                <h2>
-                    <span data-i18n="videos.title">Better</span>
-                    <span class="highlight" data-i18n="videos.highlight">WLPRS</span>
-                    Are made with Love and Passion
-                </h2>
-                <p data-i18n="videos.desc">
-                    From live WLPRS with in-game sound to scenes captured in cinematics at the highest quality available.
-                </p>
-            </div>
-            <div class="grid" id="videoGrid">
-                <div class="card">
-                    <div class="card-image" style="aspect-ratio: 16/9;">
-                        <img
-                            src="./img/mgsdelta.png"
-                            frameborder="0"
-                            allow="autoplay; fullscreen; picture-in-picture"
-                            allowfullscreen
-                            style="width:100%;height:100%;aspect-ratio:16/9;display:block;border-radius:20px;"
-                        ></img>
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <div class="card-title">Cinematic WLPRS</div>
-                            <div class="card-subtitle" data-i18n="videos.card.premium">
-                                In-game photos taken in cinematic
-                        scenes
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image" style="aspect-ratio: 16/9;">
-                        <img src="./img/ACOdissey-Vertical-Village-WLPR-08.png" alt="Behind The Lens">
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <div class="card-title">Vertical / Landscape WLPRS</div>
-                            <div class="card-subtitle" data-i18n="videos.card.premium">
-                                Every device and screen is supported
-                        "(kindle, steam deck, etc)"
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image" style="aspect-ratio: 16/9;">
-                        <img src="./img/DishonoredDLC-Landscape-InsideBasement-WLPR-02.png" alt="Death Stranding Main Character sitting on a mountain">
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <div class="card-title">Love and Care</div>
-                            <div class="card-subtitle" data-i18n="videos.card.open">
-                                Use them on your favorite platforms like
-                        Wallpaper Engine or Lively "(Free option wich I use and recommend)"
-                            </div>
-                        </div>
-                    </div>
+                <div style="font-size: 12px; color: var(--muted);">
+                    ✓ No subscription • ✓ One-time payment • ✓ Instant access
                 </div>
             </div>
-            <!-- Botón a galería completa -->
-            <div style="text-align: center; margin-top: 2rem; margin-bottom: 5rem;">
-                <a href="galeria.html" class="btn primary" style="display: inline-flex; align-items: center; gap: 8px;">
-                    <span>🖼️ View Gallery</span>
-                    <span>→</span>
-                </a>
-            </div>
-        </section>
-        <!-- CÓMO FUNCIONA -->
-        <section class="section" id="how">
-            <div class="section-header">
-                <h2>
-                    <span data-i18n="how.titlePrefix">How does</span>
-                    <span class="highlight" data-i18n="how.highlight">it work</span>
-                </h2>
-                <p data-i18n="how.desc">Do it in three simple steps:</p>
-            </div>
-            <div class="grid" id="howGrid">
-                <div class="card">
-                    <div class="card-image" style="aspect-ratio: 16/9;">
-                        <img src="./img/sanfracampview.jpg" alt="Download Starter Pack">
-                    </div>
-                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
-                                1
-                            </div>
-                            <div>
-                                <div class="card-title">Download Starter Pack</div>
-                            </div>
-                        </div>
-                        <div class="card-subtitle">
-                            Start and enjoy access to premium WLPRS for everyone. Includes
-                    VideoWLPRS, Landscape and Vertical formats for all your devices.
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image" style="aspect-ratio: 16/9;">
-                        <img src="./img/spidersky.gif" alt="Unlimited wallpapers">
-                    </div>
-                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
-                                2
-                            </div>
-                            <div>
-                                <div class="card-title">Enjoy BetterWLPRS</div>
-                            </div>
-                        </div>
-                        <div class="card-subtitle">
-                            That's why I built BetterWLPRS. To store with care and love my curated collection of live in-game wallpapers and video backgrounds.
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image" style="aspect-ratio: 16/9;">
-                        <img src="./img/arkham.gif" alt="Upgrade BetterWLPRS">
-                    </div>
-                    <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
-                        <div style="display: flex; align-items: center; gap: 16px;">
-                            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;">
-                                3
-                            </div>
-                            <div>
-                                <div class="card-title">Get BetterWLPRS Forever</div>
-                            </div>
-                        </div>
-                        <div class="card-subtitle">
-                            Choose your plan: Annual ($4.99/year), Forever ($19.99), or Patreon ($3.99/month). Get instant access to +50GB of premium BetterWLPRS.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- TESTIMONIOS / SOCIAL PROOF -->
-        <section class="section" style="background: linear-gradient(135deg, rgba(167, 135, 255, 0.03), rgba(167, 135, 255, 0.01));">
-            <div class="section-header">
-                <h2>
-                    <span>What Gamers Say</span>
-                </h2>
-                <p>Real feedback from the BetterWLPRS community</p>
-            </div>
-            
-            <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                <!-- Testimonial 1 -->
-                <div style="padding: 2rem; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius); position: relative;">
-                    <div style="display: flex; gap: 12px; margin-bottom: 1rem; align-items: center;">
-                        <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #a787ff, #7c3aed); flex-shrink: 0;"></div>
-                        <div>
-                            <div style="font-weight: 600; color: var(--text);">@marcus.gaming</div>
-                            <div style="font-size: 12px; color: var(--text-secondary);">Streamer • Verified Buyer</div>
-                        </div>
-                    </div>
-                    <div style="font-size: 13px; color: #fbbf24; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</div>
-                    <p style="color: var(--text-secondary); margin: 0; font-size: 0.95rem; line-height: 1.6;">
-                        "These are scenes I never thought I could capture. Better than any wallpaper engine pack out there. Worth every penny."
-                    </p>
-                </div>
-                
-                <!-- Testimonial 2 -->
-                <div style="padding: 2rem; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius); position: relative;">
-                    <div style="display: flex; gap: 12px; margin-bottom: 1rem; align-items: center;">
-                        <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #ec4899, #f97316); flex-shrink: 0;"></div>
-                        <div>
-                            <div style="font-weight: 600; color: var(--text);">@luna.setups</div>
-                            <div style="font-size: 12px; color: var(--text-secondary);">Setup Enthusiast • Desktop Ricer</div>
-                        </div>
-                    </div>
-                    <div style="font-size: 13px; color: #fbbf24; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</div>
-                    <p style="color: var(--text-secondary); margin: 0; font-size: 0.95rem; line-height: 1.6;">
-                        "The 4K quality is insane. My friends thought I was using a gaming PC. Best $19.99 I've spent on setup customization."
-                    </p>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div style="padding: 2rem; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius); position: relative;">
-                    <div style="display: flex; gap: 12px; margin-bottom: 1rem; align-items: center;">
-                        <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #06b6d4, #0891b2); flex-shrink: 0;"></div>
-                        <div>
-                            <div style="font-weight: 600; color: var(--text);">@skyrim_forever</div>
-                            <div style="font-size: 12px; color: var(--text-secondary);">RPG Fan • Active Patron</div>
-                        </div>
-                    </div>
-                    <div style="font-size: 13px; color: #fbbf24; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</div>
-                    <p style="color: var(--text-secondary); margin: 0; font-size: 0.95rem; line-height: 1.6;">
-                        "I subscribed on Patreon and get new wallpapers every month. The dedication to quality is chef's kiss."
-                    </p>
-                </div>
-            </div>
-        </section>
+    <!-- PRICING SECTION -->
+    <section class="section" id="pricing">
+        <div class="section-header">
+            <h2>
+                <span>Simple</span>
+                <span class="highlight">Pricing</span>
+            </h2>
+            <p>Choose your plan: annual access, permanent library, or join our community.</p>
+        </div>
 
-        <!-- BENEFICIOS -->
-        <section class="section" id="benefits">
-            <div class="section-header">
-                <h2>
-                    <span data-i18n="benefits.titlePrefix">Benefits for</span>
-                    <span class="highlight" data-i18n="benefits.highlight">Members</span>
-                </h2>
-                <p data-i18n="benefits.desc">
-                    Discover all the benefits of BetterWLPRS: premium wallpapers, exclusive video backgrounds, and full
-            access for every device you own.
-                </p>
-            </div>
-            <!-- Estadísticas destacadas -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; max-width: 800px; margin-left: auto; margin-right: auto;">
-                <div style="text-align: center; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius);">
-                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">
-                        +50GB
+        <!-- Pricing Cards Grid -->
+        <div
+            style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+
+            <!-- Plan 1: Annual -->
+            <div
+                style="background: linear-gradient(135deg, rgba(167, 135, 255, 0.08), rgba(167, 135, 255, 0.02)); border: 2px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius); padding: 2.5rem 2rem; position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: -50%; right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(167, 135, 255, 0.1) 0%, transparent 70%); pointer-events: none;">
+                </div>
+                <div style="position: relative; z-index: 2; text-align: center;">
+                    <div
+                        style="display: inline-block; background: rgba(167, 135, 255, 0.15); color: var(--accent); padding: 6px 12px; border-radius: 50px; font-size: 12px; font-weight: 600; margin-bottom: 1.5rem;">
+                        � Annual Plan</div>
+                    <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">Annual
+                        Access</h3>
+                    <div style="margin-bottom: 2rem;">
+                        <span style="font-size: 2.5rem; font-weight: 800; color: var(--accent);">$4.99</span>
+                        <span style="color: var(--text-secondary); font-size: 1rem;"> / year</span>
+                        <div style="margin-top: 0.5rem; font-size: 13px; color: var(--muted);">Renews annually</div>
                     </div>
-                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Premium Library</div>
-                </div>
-                <div style="text-align: center; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius);">
-                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">
-                        200+
+                    <div
+                        style="background: rgba(255, 255, 255, 0.03); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 2rem; text-align: left;">
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li
+                                style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--text);">
+                                <span style="color: #10b981;">✓</span>
+                                <span>+50GB library access</span>
+                            </li>
+                            <li
+                                style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--text);">
+                                <span style="color: #10b981;">✓</span>
+                                <span>1000+ wallpapers 4K</span>
+                            </li>
+                            <li
+                                style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--text);">
+                                <span style="color: #10b981;">✓</span>
+                                <span>200+ VideoWLPRS</span>
+                            </li>
+                            <li
+                                style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text);">
+                                <span style="color: #10b981;">✓</span>
+                                <span>All devices</span>
+                            </li>
+                        </ul>
                     </div>
-                    <div style="font-size: 0.9rem; color: var(--text-secondary);">VideoWLPRS 4K</div>
-                </div>
-                <div style="text-align: center; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius);">
-                    <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem;">10+</div>
-                    <div style="font-size: 0.9rem; color: var(--text-secondary);">Supported Devices</div>
-                </div>
-            </div>
-            <!-- CTA de prueba gratuita -->
-            <div style="text-align: center; margin-top: 4rem; padding: 3rem 2rem; background: linear-gradient(135deg, rgba(167, 135, 255, 0.1), rgba(167, 135, 255, 0.05)); border: 1px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius); position: relative; overflow: hidden;">
-                <div style="position: absolute; top: -50%; right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(167, 135, 255, 0.1) 0%, transparent 70%); pointer-events: none;"></div>
-                <div style="position: relative; z-index: 2;">
-                    <h3 style="font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">
-                        Ready to get +50GB of premium WLPRS forever?
-                    </h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                        Choose your plan and get instant access to our complete library. From $3.99/month or one-time purchase.
-                    </p>
-                    <a href="#pricing" class="btn primary" style="font-size: 16px; padding: 16px 32px; margin-bottom: 1rem; text-decoration: none; display: inline-flex; align-items: center; gap: 12px;">
-                        <span>🚀 See All Plans</span>
+                    <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year" target="_blank" class="btn primary"
+                        style="font-size: 14px; padding: 12px 24px; display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, rgba(167, 135, 255, 0.8), rgba(167, 135, 255, 0.6)); box-shadow: 0 6px 20px rgba(167, 135, 255, 0.2); text-decoration: none; border-radius: 8px;">
+                        <span>Get Annual</span>
                         <span>→</span>
                     </a>
-                    <div style="font-size: 12px; color: var(--muted);">
-                        ✓ No subscription • ✓ One-time payment • ✓ Instant access
-                    </div>
                 </div>
             </div>
-        </section>
 
-        <!-- PRICING SECTION -->
-        <section class="section" id="pricing">
-            <div class="section-header">
-                <h2>
-                    <span>Simple</span>
-                    <span class="highlight">Pricing</span>
-                </h2>
-                <p>Choose your plan: annual access, permanent library, or join our community.</p>
+            <!-- Plan 2: Forever (Featured) -->
+            <div
+                style="background: linear-gradient(135deg, rgba(167, 135, 255, 0.15), rgba(167, 135, 255, 0.08)); border: 2px solid rgba(167, 135, 255, 0.5); border-radius: var(--radius); padding: 2.5rem 2rem; position: relative; overflow: hidden; transform: scale(1.05);">
+                <div
+                    style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--accent), var(--accent-dark));">
+                </div>
+                <div
+                    style="position: absolute; top: -50%; right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(167, 135, 255, 0.15) 0%, transparent 70%); pointer-events: none;">
+                </div>
+                <div style="position: relative; z-index: 2; text-align: center;">
+                    <div
+                        style="display: inline-block; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; padding: 8px 16px; border-radius: 50px; font-size: 12px; font-weight: 600; margin-bottom: 1.5rem;">
+                        🔥 Most Popular</div>
+                    <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">Forever
+                        Library</h3>
+                    <div style="margin-bottom: 2rem;">
+                        <span style="font-size: 2.5rem; font-weight: 800; color: var(--accent);">$19.99</span>
+                        <span style="color: var(--text-secondary); font-size: 1rem;"> one time</span>
+                        <div style="margin-top: 0.5rem; font-size: 13px; color: var(--muted);">Never expires</div>
+                    </div>
+                    <div
+                        style="background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 2rem; text-align: left;">
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li
+                                style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--text);">
+                                <span style="color: #10b981;">✓</span>
+                                <span><strong>Download & keep forever</strong></span>
+                            </li>
+                            <li
+                                style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--text);">
+                                <span style="color: #10b981;">✓</span>
+                                <span>+50GB ZIP file</span>
+                            </li>
+                            <li
+                                style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--text);">
+                                <span style="color: #10b981;">✓</span>
+                                <span>Offline access anytime</span>
+                            </li>
+                            <li
+                                style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text);">
+                                <span style="color: #10b981;">✓</span>
+                                <span>No recurring charges</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://betterwlprsx.gumroad.com/l/betterwlprs-forever" target="_blank" class="btn primary"
+                        style="font-size: 14px; padding: 12px 24px; display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); box-shadow: 0 8px 24px rgba(167, 135, 255, 0.3); text-decoration: none; border-radius: 8px;">
+                        <span>🎁 Get Forever</span>
+                        <span>→</span>
+                    </a>
+                </div>
             </div>
-            
-            <!-- Pricing Cards Grid -->
-            <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-                
-                <!-- Plan 1: Annual -->
-                <div style="background: linear-gradient(135deg, rgba(167, 135, 255, 0.08), rgba(167, 135, 255, 0.02)); border: 2px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius); padding: 2.5rem 2rem; position: relative; overflow: hidden;">
-                    <div style="position: absolute; top: -50%; right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(167, 135, 255, 0.1) 0%, transparent 70%); pointer-events: none;"></div>
-                    <div style="position: relative; z-index: 2; text-align: center;">
-                        <div style="display: inline-block; background: rgba(167, 135, 255, 0.15); color: var(--accent); padding: 6px 12px; border-radius: 50px; font-size: 12px; font-weight: 600; margin-bottom: 1.5rem;">� Annual Plan</div>
-                        <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">Annual Access</h3>
-                        <div style="margin-bottom: 2rem;">
-                            <span style="font-size: 2.5rem; font-weight: 800; color: var(--accent);">$4.99</span>
-                            <span style="color: var(--text-secondary); font-size: 1rem;"> / year</span>
-                            <div style="margin-top: 0.5rem; font-size: 13px; color: var(--muted);">Renews annually</div>
-                        </div>
-                        <div style="background: rgba(255, 255, 255, 0.03); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 2rem; text-align: left;">
-                            <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--text);">
-                                    <span style="color: #10b981;">✓</span>
-                                    <span>+50GB library access</span>
-                                </li>
-                                <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--text);">
-                                    <span style="color: #10b981;">✓</span>
-                                    <span>1000+ wallpapers 4K</span>
-                                </li>
-                                <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--text);">
-                                    <span style="color: #10b981;">✓</span>
-                                    <span>200+ VideoWLPRS</span>
-                                </li>
-                                <li style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text);">
-                                    <span style="color: #10b981;">✓</span>
-                                    <span>All devices</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year" target="_blank" class="btn primary" style="font-size: 14px; padding: 12px 24px; display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, rgba(167, 135, 255, 0.8), rgba(167, 135, 255, 0.6)); box-shadow: 0 6px 20px rgba(167, 135, 255, 0.2); text-decoration: none; border-radius: 8px;">
-                            <span>Get Annual</span>
-                            <span>→</span>
-                        </a>
+
+            <!-- Plan 3: Patreon -->
+            <div
+                style="background: linear-gradient(135deg, rgba(167, 135, 255, 0.08), rgba(167, 135, 255, 0.02)); border: 2px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius); padding: 2.5rem 2rem; position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: -50%; right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(167, 135, 255, 0.1) 0%, transparent 70%); pointer-events: none;">
+                </div>
+                <div style="position: relative; z-index: 2; text-align: center;">
+                    <div
+                        style="display: inline-block; background: rgba(167, 135, 255, 0.15); color: var(--accent); padding: 6px 12px; border-radius: 50px; font-size: 12px; font-weight: 600; margin-bottom: 1.5rem;">
+                        👑 Community</div>
+                    <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">Patreon
+                        Member</h3>
+                    <div style="margin-bottom: 2rem;">
+                        <span style="font-size: 2.5rem; font-weight: 800; color: var(--accent);">$3.99</span>
+                        <span style="color: var(--text-secondary); font-size: 1rem;"> / month</span>
+                        <div style="margin-top: 0.5rem; font-size: 13px; color: var(--muted);">Cancel anytime</div>
+                    </div>
+                    <div
+                        style="background: rgba(255, 255, 255, 0.03); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 2rem; text-align: left;">
+                        <ul style="list-style: none; padding: 0; margin: 0;">
+                            <li
+                                style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--text);">
+                                <span style="color: #10b981;">✓</span>
+                                <span>Full library access</span>
+                            </li>
+                            <li
+                                style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--text);">
+                                <span style="color: #10b981;">✓</span>
+                                <span>Exclusive new content</span>
+                            </li>
+                            <li
+                                style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--text);">
+                                <span style="color: #10b981;">✓</span>
+                                <span>Custom requests</span>
+                            </li>
+                            <li
+                                style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text);">
+                                <span style="color: #10b981;">✓</span>
+                                <span>Join our community</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://www.patreon.com/betterwlprs" target="_blank" class="btn primary"
+                        style="font-size: 14px; padding: 12px 24px; display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, rgba(167, 135, 255, 0.8), rgba(167, 135, 255, 0.6)); box-shadow: 0 6px 20px rgba(167, 135, 255, 0.2); text-decoration: none; border-radius: 8px;">
+                        <span>Join Patreon</span>
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Free Start200Pack CTA -->
+        <div
+            style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.15); border-radius: var(--radius-sm);">
+            <p style="color: var(--text); margin-bottom: 1rem;"><strong>Want to try before you buy?</strong> Download
+                our free starter pack with 50+ premium WLPRS.</p>
+            <a href="https://drive.google.com/drive/folders/1MuJkt_ZfpcPGAPSR5q5Q6K8aRJLgLdAE?usp=sharing"
+                target="_blank" style="color: var(--accent); font-weight: 600; text-decoration: none;">Get Free Starter
+                Pack →</a>
+        </div>
+
+        <!-- Support Notice -->
+        <div style="text-align: center; margin-top: 2rem; font-size: 13px; color: var(--text-secondary);">
+            💙 All proceeds support indie development • ✓ Secure payments • Questions? Contact dfernandezy@hotmail.com
+        </div>
+    </section>
+    <section class="section" id="final-cta">
+        <div class="section-header">
+            <h2>
+                <span data-i18n="final.titlePrefix">Elevate your experience to the</span>
+                <span class="highlight" data-i18n="final.highlight">next level</span>
+            </h2>
+            <p data-i18n="final.desc">Unlock original wallpapers and videos. Cancel anytime.</p>
+        </div>
+        <!-- Galería de setups de usuarios -->
+        <div style="margin-top: 4rem;">
+            <h3
+                style="text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; color: var(--text);">
+                Real community setups with BetterWLPRS
+            </h3>
+            <!-- Botón a galería completa destacado -->
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <a href="galeria.html" class="btn primary"
+                    style="font-size: 16px; padding: 16px 32px; display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); box-shadow: 0 8px 24px rgba(167, 135, 255, 0.3);">
+                    <span>🎨 Explore Gallery</span>
+                    <span>✨</span>
+                </a>
+                <p style="color: var(--text-secondary); font-size: 14px; margin-top: 1rem;">
+                    Over 500 unique wallpapers waiting for you
+                </p>
+            </div>
+            <div class="setup-gallery"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto;">
+                <!-- Setup 1 -->
+                <div class="setup-card"
+                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                    <video src="./img/setupkindle.mp4" autoplay muted loop playsinline
+                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"></video>
+                    <div
+                        style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                        <p style="font-size: 0.9rem; font-weight: 600;">Setup Kindle BetterWLPRS</p>
+                        <p style="font-size: 0.8rem; opacity: 0.8;">@betterwlprs</p>
                     </div>
                 </div>
-                
-                <!-- Plan 2: Forever (Featured) -->
-                <div style="background: linear-gradient(135deg, rgba(167, 135, 255, 0.15), rgba(167, 135, 255, 0.08)); border: 2px solid rgba(167, 135, 255, 0.5); border-radius: var(--radius); padding: 2.5rem 2rem; position: relative; overflow: hidden; transform: scale(1.05);">
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--accent), var(--accent-dark));"></div>
-                    <div style="position: absolute; top: -50%; right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(167, 135, 255, 0.15) 0%, transparent 70%); pointer-events: none;"></div>
-                    <div style="position: relative; z-index: 2; text-align: center;">
-                        <div style="display: inline-block; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; padding: 8px 16px; border-radius: 50px; font-size: 12px; font-weight: 600; margin-bottom: 1.5rem;">🔥 Most Popular</div>
-                        <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">Forever Library</h3>
-                        <div style="margin-bottom: 2rem;">
-                            <span style="font-size: 2.5rem; font-weight: 800; color: var(--accent);">$19.99</span>
-                            <span style="color: var(--text-secondary); font-size: 1rem;"> one time</span>
-                            <div style="margin-top: 0.5rem; font-size: 13px; color: var(--muted);">Never expires</div>
-                        </div>
-                        <div style="background: rgba(255, 255, 255, 0.05); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 2rem; text-align: left;">
-                            <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--text);">
-                                    <span style="color: #10b981;">✓</span>
-                                    <span><strong>Download & keep forever</strong></span>
-                                </li>
-                                <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--text);">
-                                    <span style="color: #10b981;">✓</span>
-                                    <span>+50GB ZIP file</span>
-                                </li>
-                                <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--text);">
-                                    <span style="color: #10b981;">✓</span>
-                                    <span>Offline access anytime</span>
-                                </li>
-                                <li style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text);">
-                                    <span style="color: #10b981;">✓</span>
-                                    <span>No recurring charges</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <a href="https://betterwlprsx.gumroad.com/l/betterwlprs-forever" target="_blank" class="btn primary" style="font-size: 14px; padding: 12px 24px; display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); box-shadow: 0 8px 24px rgba(167, 135, 255, 0.3); text-decoration: none; border-radius: 8px;">
-                            <span>🎁 Get Forever</span>
-                            <span>→</span>
-                        </a>
+                <!-- Setup 2 -->
+                <div class="setup-card"
+                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                    <video src="./img/setupmarkus.mp4" autoplay muted loop playsinline
+                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"></video>
+                    <div
+                        style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                        <p style="font-size: 0.9rem; font-weight: 600;">Setup Marcus BetterWLPRS</p>
+                        <p style="font-size: 0.8rem; opacity: 0.8;">@betterwlprs</p>
                     </div>
                 </div>
-                
-                <!-- Plan 3: Patreon -->
-                <div style="background: linear-gradient(135deg, rgba(167, 135, 255, 0.08), rgba(167, 135, 255, 0.02)); border: 2px solid rgba(167, 135, 255, 0.2); border-radius: var(--radius); padding: 2.5rem 2rem; position: relative; overflow: hidden;">
-                    <div style="position: absolute; top: -50%; right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(167, 135, 255, 0.1) 0%, transparent 70%); pointer-events: none;"></div>
-                    <div style="position: relative; z-index: 2; text-align: center;">
-                        <div style="display: inline-block; background: rgba(167, 135, 255, 0.15); color: var(--accent); padding: 6px 12px; border-radius: 50px; font-size: 12px; font-weight: 600; margin-bottom: 1.5rem;">👑 Community</div>
-                        <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 1rem;">Patreon Member</h3>
-                        <div style="margin-bottom: 2rem;">
-                            <span style="font-size: 2.5rem; font-weight: 800; color: var(--accent);">$3.99</span>
-                            <span style="color: var(--text-secondary); font-size: 1rem;"> / month</span>
-                            <div style="margin-top: 0.5rem; font-size: 13px; color: var(--muted);">Cancel anytime</div>
-                        </div>
-                        <div style="background: rgba(255, 255, 255, 0.03); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 2rem; text-align: left;">
-                            <ul style="list-style: none; padding: 0; margin: 0;">
-                                <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--text);">
-                                    <span style="color: #10b981;">✓</span>
-                                    <span>Full library access</span>
-                                </li>
-                                <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--text);">
-                                    <span style="color: #10b981;">✓</span>
-                                    <span>Exclusive new content</span>
-                                </li>
-                                <li style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 14px; color: var(--text);">
-                                    <span style="color: #10b981;">✓</span>
-                                    <span>Custom requests</span>
-                                </li>
-                                <li style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text);">
-                                    <span style="color: #10b981;">✓</span>
-                                    <span>Join our community</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <a href="https://www.patreon.com/betterwlprs" target="_blank" class="btn primary" style="font-size: 14px; padding: 12px 24px; display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, rgba(167, 135, 255, 0.8), rgba(167, 135, 255, 0.6)); box-shadow: 0 6px 20px rgba(167, 135, 255, 0.2); text-decoration: none; border-radius: 8px;">
-                            <span>Join Patreon</span>
-                            <span>→</span>
-                        </a>
+                <!-- Setup 3 -->
+                <div class="setup-card"
+                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                    <video src="./img/setupmarkus2.mp4" autoplay muted loop playsinline
+                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"></video>
+                    <div
+                        style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                        <p style="font-size: 0.9rem; font-weight: 600;">Setup RGB Vibes</p>
+                        <p style="font-size: 0.8rem; opacity: 0.8;">@rgb_setups</p>
                     </div>
                 </div>
-                
+                <!-- Setup 4 -->
+                <div class="setup-card"
+                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
+                    <img src="./img/setupmarkus.webp" alt="Setup Streamer con BetterWLPRS"
+                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+                    <div
+                        style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
+                        <p style="font-size: 0.9rem; font-weight: 600;">Setup Streamer Pro</p>
+                        <p style="font-size: 0.8rem; opacity: 0.8;">@streamer_pro</p>
+                    </div>
+                </div>
             </div>
-            
-            <!-- Free Starter Pack CTA -->
-            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(167, 135, 255, 0.05); border: 1px solid rgba(167, 135, 255, 0.15); border-radius: var(--radius-sm);">
-                <p style="color: var(--text); margin-bottom: 1rem;"><strong>Want to try before you buy?</strong> Download our free starter pack with 50+ premium WLPRS.</p>
-                <a href="https://drive.google.com/drive/folders/1MuJkt_ZfpcPGAPSR5q5Q6K8aRJLgLdAE?usp=sharing" target="_blank" style="color: var(--accent); font-weight: 600; text-decoration: none;">Get Free Starter Pack →</a>
+        </div>
+    </section>
+    <!-- STICKY CTA -->
+    <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year" target="_blank" class="sticky-cta" id="stickyCta"
+        style="text-decoration: none; color: inherit;">
+        <span data-i18n="sticky.text">Get +50GB for $3.99/month ✨</span>
+    </a>
+    <!-- ACTION MODAL -->
+    <div class="action-modal" id="actionModal">
+        <div class="action-modal-content">
+            <button class="action-modal-close" id="actionModalClose">×</button>
+            <div class="action-modal-header">
+                <div class="action-modal-title">What would you like to do?</div>
+                <div class="action-modal-subtitle">
+                    You can view the image with watermark or explore the full gallery
+                </div>
             </div>
-            
-            <!-- Support Notice -->
-            <div style="text-align: center; margin-top: 2rem; font-size: 13px; color: var(--text-secondary);">
-                💙 All proceeds support indie development • ✓ Secure payments • Questions? Contact dfernandezy@hotmail.com
+            <div class="action-modal-actions">
+                <button class="action-btn" id="expandImageBtn">
+                    <div>
+                        <div style="font-weight: 600;">🔍 Expand image</div>
+                        <div style="font-size: 12px; color: var(--muted);">View full size with watermark</div>
+                    </div>
+                    <span class="action-btn-icon">→</span>
+                </button>
+                <button class="action-btn" id="viewGalleryBtn">
+                    <div>
+                        <div style="font-weight: 600;">🖼️ View gallery</div>
+                        <div style="font-size: 12px; color: var(--muted);">Explore all available images</div>
+                    </div>
+                    <span class="action-btn-icon">→</span>
+                </button>
+                <a href="https://drive.google.com/drive/folders/1MuJkt_ZfpcPGAPSR5q5Q6K8aRJLgLdAE?usp=sharing"
+                    target="_blank" class="action-btn action-btn-primary"
+                    style="background: #22c55e; color: #fff; font-weight:600; margin-bottom:8px;">
+                    <div>
+                        <div style="font-weight: 600;">🎁 Download 15GB from BetterWLPRS</div>
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.8);">Wallpapers & videos, no signup</div>
+                    </div>
+                    <span class="action-btn-icon">→</span>
+                </a>
+                <button class="action-btn action-btn-primary" id="upgradeBtn">
+                    <div>
+                        <div style="font-weight: 600;">👑 Join Community</div>
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.8);">Get +50GB + exclusive updates</div>
+                    </div>
+                    <span class="action-btn-icon">→</span>
+                </button>
             </div>
-        </section>
-        <section class="section" id="final-cta">
-            <div class="section-header">
-                <h2>
-                    <span data-i18n="final.titlePrefix">Elevate your experience to the</span>
-                    <span class="highlight" data-i18n="final.highlight">next level</span>
-                </h2>
-                <p data-i18n="final.desc">Unlock original wallpapers and videos. Cancel anytime.</p>
-            </div>
-            <!-- Galería de setups de usuarios -->
-            <div style="margin-top: 4rem;">
-                <h3 style="text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; color: var(--text);">
-                    Real community setups with BetterWLPRS
+        </div>
+    </div>
+    <!-- IMAGE VIEWER -->
+    <div class="image-viewer" id="imageViewer">
+        <div class="image-viewer-content">
+            <button class="image-viewer-close" id="imageViewerClose">×</button>
+            <img id="viewerImage" src="" alt="">
+            <div class="image-watermark">betterwlprs</div>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal" id="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <button class="modal-close" id="modalClose"
+                style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--text-secondary); font-size: 32px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; transition: color 0.3s;">×</button>
+            <div style="text-align: center;">
+                <h3
+                    style="font-size: 32px; font-weight: 800; margin-bottom: 0.5rem; color: var(--text); line-height: 1.2;">
+                    Your full access<br>starts here
                 </h3>
-                <!-- Botón a galería completa destacado -->
-                <div style="text-align: center; margin-bottom: 3rem;">
-                    <a href="galeria.html" class="btn primary" style="font-size: 16px; padding: 16px 32px; display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); box-shadow: 0 8px 24px rgba(167, 135, 255, 0.3);">
-                        <span>🎨 Explore Gallery</span>
-                        <span>✨</span>
+                <p style="color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 15px; line-height: 1.6;">
+                    Access 100GB+ of premium wallpapers. Watermark-free, 4K quality.
+                </p>
+                <div style="display: grid; gap: 12px; margin-bottom: 2.5rem;">
+                    <!-- YEARLY PLAN -->
+                    <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year" target="_blank"
+                        style="padding: 24px; border: 2px solid var(--accent); border-radius: 12px; background: linear-gradient(135deg, rgba(167, 135, 255, 0.15), rgba(167, 135, 255, 0.08)); display: flex; justify-content: space-between; align-items: center; position: relative; text-decoration: none; transition: all 0.3s ease;">
+                        <div
+                            style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; padding: 6px 16px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;">
+                            ⭐ BEST VALUE
+                        </div>
+                        <div style="text-align: left; flex: 1;">
+                            <div style="font-weight: 800; font-size: 18px; color: var(--text); margin-bottom: 2px;">
+                                Yearly Access</div>
+                            <div style="color: var(--text-secondary); font-size: 13px; line-height: 1.5;">
+                                Full year • 100GB+ library
+                                <br>
+                                <span style="color: var(--accent); font-weight: 600;">Auto-renews annually</span>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 28px; font-weight: 800; color: var(--accent); margin-bottom: 2px;">
+                                $3.99</div>
+                            <div style="font-size: 12px; color: var(--text-secondary);">/year</div>
+                        </div>
                     </a>
-                    <p style="color: var(--text-secondary); font-size: 14px; margin-top: 1rem;">
-                        Over 500 unique wallpapers waiting for you
-                    </p>
-                </div>
-                <div class="setup-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto;">
-                    <!-- Setup 1 -->
-                    <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                        <video
-                            src="./img/setupkindle.mp4"
-                            autoplay
-                            muted
-                            loop
-                            playsinline
-                            style="width: 100%; height: 100%; object-fit: cover;"
-                            loading="lazy"
-                        ></video>
-                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
-                            <p style="font-size: 0.9rem; font-weight: 600;">Setup Kindle BetterWLPRS</p>
-                            <p style="font-size: 0.8rem; opacity: 0.8;">@betterwlprs</p>
+                    <!-- MONTHLY PLAN -->
+                    <a href="https://www.patreon.com/betterwlprs" target="_blank"
+                        style="padding: 24px; border: 1px solid var(--border); border-radius: 12px; background: rgba(255, 255, 255, 0.02); display: flex; justify-content: space-between; align-items: center; text-decoration: none; transition: all 0.3s ease;">
+                        <div style="text-align: left; flex: 1;">
+                            <div style="font-weight: 800; font-size: 18px; color: var(--text); margin-bottom: 2px;">
+                                Support + New WLPRS</div>
+                            <div style="color: var(--text-secondary); font-size: 13px; line-height: 1.5;">
+                                Community • New wallpapers weekly
+                                <br>
+                                <span style="color: var(--text-secondary); font-weight: 500;">Patreon membership</span>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Setup 2 -->
-                    <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                        <video
-                            src="./img/setupmarkus.mp4"
-                            autoplay
-                            muted
-                            loop
-                            playsinline
-                            style="width: 100%; height: 100%; object-fit: cover;"
-                            loading="lazy"
-                        ></video>
-                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
-                            <p style="font-size: 0.9rem; font-weight: 600;">Setup Marcus BetterWLPRS</p>
-                            <p style="font-size: 0.8rem; opacity: 0.8;">@betterwlprs</p>
+                        <div style="text-align: right;">
+                            <div style="font-size: 28px; font-weight: 800; color: var(--text); margin-bottom: 2px;">
+                                $3.99</div>
+                            <div style="font-size: 12px; color: var(--text-secondary);">/month</div>
                         </div>
-                    </div>
-                    <!-- Setup 3 -->
-                    <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                        <video
-                            src="./img/setupmarkus2.mp4"
-                            autoplay
-                            muted
-                            loop
-                            playsinline
-                            style="width: 100%; height: 100%; object-fit: cover;"
-                            loading="lazy"
-                        ></video>
-                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
-                            <p style="font-size: 0.9rem; font-weight: 600;">Setup RGB Vibes</p>
-                            <p style="font-size: 0.8rem; opacity: 0.8;">@rgb_setups</p>
-                        </div>
-                    </div>
-                    <!-- Setup 4 -->
-                    <div class="setup-card" style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                        <img
-                            src="./img/setupmarkus.webp"
-                            alt="Setup Streamer con BetterWLPRS"
-                            style="width: 100%; height: 100%; object-fit: cover;"
-                            loading="lazy"
-                        >
-                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
-                            <p style="font-size: 0.9rem; font-weight: 600;">Setup Streamer Pro</p>
-                            <p style="font-size: 0.8rem; opacity: 0.8;">@streamer_pro</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- STICKY CTA -->
-        <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year" target="_blank" class="sticky-cta" id="stickyCta" style="text-decoration: none; color: inherit;">
-            <span data-i18n="sticky.text">Get +50GB for $3.99/month ✨</span>
-        </a>
-        <!-- ACTION MODAL -->
-        <div class="action-modal" id="actionModal">
-            <div class="action-modal-content">
-                <button class="action-modal-close" id="actionModalClose">×</button>
-                <div class="action-modal-header">
-                    <div class="action-modal-title">What would you like to do?</div>
-                    <div class="action-modal-subtitle">
-                        You can view the image with watermark or explore the full gallery
-                    </div>
-                </div>
-                <div class="action-modal-actions">
-                    <button class="action-btn" id="expandImageBtn">
-                        <div>
-                            <div style="font-weight: 600;">🔍 Expand image</div>
-                            <div style="font-size: 12px; color: var(--muted);">View full size with watermark</div>
-                        </div>
-                        <span class="action-btn-icon">→</span>
-                    </button>
-                    <button class="action-btn" id="viewGalleryBtn">
-                        <div>
-                            <div style="font-weight: 600;">🖼️ View gallery</div>
-                            <div style="font-size: 12px; color: var(--muted);">Explore all available images</div>
-                        </div>
-                        <span class="action-btn-icon">→</span>
-                    </button>
-                    <a href="https://drive.google.com/drive/folders/1MuJkt_ZfpcPGAPSR5q5Q6K8aRJLgLdAE?usp=sharing" target="_blank" class="action-btn action-btn-primary" style="background: #22c55e; color: #fff; font-weight:600; margin-bottom:8px;">
-                        <div>
-                            <div style="font-weight: 600;">🎁 Download 15GB from BetterWLPRS</div>
-                            <div style="font-size: 12px; color: rgba(255,255,255,0.8);">Wallpapers & videos, no signup</div>
-                        </div>
-                        <span class="action-btn-icon">→</span>
                     </a>
-                    <button class="action-btn action-btn-primary" id="upgradeBtn">
-                        <div>
-                            <div style="font-weight: 600;">👑 Join Community</div>
-                            <div style="font-size: 12px; color: rgba(255,255,255,0.8);">Get +50GB + exclusive updates</div>
-                        </div>
-                        <span class="action-btn-icon">→</span>
-                    </button>
+                </div>
+                <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.6;">
+                    <span>By subscribing you accept the</span><br>
+                    <a href="terms.html"
+                        style="color: var(--accent); text-decoration: none; font-weight: 600;">Terms</a>
+                    <span>&nbsp;and&nbsp;</span>
+                    <a href="privacy.html"
+                        style="color: var(--accent); text-decoration: none; font-weight: 600;">Privacy Policy</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div
+            style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem;">
+            <!-- Logo y descripción -->
+            <div>
+                <div class="nav-brand" style="justify-content: flex-start; margin-bottom: 1rem;">BetterWLPRS</div>
+                <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Unique wallpapers and premium video wallpapers for all your devices. Professional quality, exclusive
+                    designs.
+                </p>
+                <!-- Redes sociales -->
+                <div style="display: flex; gap: 12px;">
+                    <a href="https://www.tiktok.com/@betterwlprs" target="_blank"
+                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok"
+                            style="width:22px;height:22px;">
+                    </a>
+                    <a href="https://instagram.com/betterwlprs" target="_blank"
+                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg"
+                            alt="Instagram" style="width:22px;height:22px;">
+                    </a>
+                    <a href="https://twitter.com/betterwlprs" target="_blank"
+                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter"
+                            style="width:22px;height:22px;">
+                    </a>
+                    <a href="https://gumroad.com/betterwlprsx" target="_blank"
+                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad"
+                            style="width:22px;height:22px;">
+                    </a>
+                    <a href="https://ko-fi.com/betterwlprs" target="_blank"
+                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+                        <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png"
+                            alt="Ko-fi" style="width:22px;height:22px;">
+                    </a>
+                </div>
+            </div>
+            <!-- Enlaces rápidos -->
+            <div>
+                <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">
+                    Quick Links
+                </h4>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <a href="#gallery"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Gallery</a>
+                    <a href="#videos"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Videos</a>
+                    <a href="#how"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                        How it works
+                    </a>
+                    <a href="#benefits"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Benefits</a>
+                </div>
+            </div>
+            <!-- Contacto y soporte -->
+            <div>
+                <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">Contacto</h4>
+                <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">Contact</h4>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <a href="mailto:dfernandezy@hotmail.com"
+                        style="color: var(--accent); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                        📧
+                        dfernandezy@hotmail.com
+                    </a>
+                    <a href="mailto:dfernandezy@hotmail.com"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                        🛠️
+                        Technical Support
+                    </a>
+                    <a href="#how"
+                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
+                        📋
+                        FAQ
+                    </a>
                 </div>
             </div>
         </div>
-        <!-- IMAGE VIEWER -->
-        <div class="image-viewer" id="imageViewer">
-            <div class="image-viewer-content">
-                <button class="image-viewer-close" id="imageViewerClose">×</button>
-                <img id="viewerImage" src="" alt="">
-                <div class="image-watermark">betterwlprs</div>
+        <!-- Copyright y legal -->
+        <div
+            style="border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+                <p style="color: var(--muted); font-size: 12px; margin: 0 0 8px 0;">
+                    © 2025 BetterWLPRS. All rights reserved.
+                </p>
+                <p style="color: var(--muted); font-size: 11px; margin: 0; max-width: 600px; line-height: 1.5;">
+                    All wallpapers and content are the exclusive property of BetterWLPRS. Redistribution, resale, or
+                    unauthorized use is prohibited. Attribution required for any sharing.
+                </p>
+            </div>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                <a href="terms.html"
+                    style="color: var(--muted); font-size: 12px; text-decoration: none; transition: color 0.3s ease;">Terms
+                    of Service</a>
+                <a href="privacy.html"
+                    style="color: var(--muted); font-size: 12px; text-decoration: none; transition: color 0.3s ease;">Privacy
+                    Policy</a>
+                <a href="mailto:dfernandezy@hotmail.com"
+                    style="color: var(--muted); font-size: 12px; text-decoration: none; transition: color 0.3s ease;">Contact</a>
             </div>
         </div>
+    </footer>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
 
-        <!-- MODAL -->
-        <div class="modal" id="modal">
-            <div class="modal-content">
-                <button class="modal-close" id="modalClose">×</button>
-                <div style="text-align: center;">
-                    <h3 style="font-size: 28px; margin-bottom: 1rem;">
-                        Your full access starts here
-                    </h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 2rem;">
-                        Download watermark-free, full 1080p/4K videos and complete sessions.
-                    </p>
-                    <div style="display: grid; gap: 16px; margin-bottom: 2rem;">
-                        <div style="padding: 20px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.02); display: flex; justify-content: space-between; align-items: center;">
-                            <div style="text-align: left;">
-                                <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;">Monthly</div>
-                                <div style="color: var(--muted); font-size: 14px;">Billed monthly</div>
-                            </div>
-                            <button class="btn primary" id="yearlyPlan" style="min-width: 100px;">$3.99</button>
-                        </div>
-                        <div style="padding: 20px; border: 2px solid var(--accent); border-radius: var(--radius-sm); background: rgba(167, 135, 255, 0.05); display: flex; justify-content: space-between; align-items: center; position: relative;">
-                            <div style="position: absolute; top: -12px; left: 20px; background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">
-                                Limited
-                            </div>
-                            <div style="text-align: left;">
-                                <div style="font-weight: 700; font-size: 20px; margin-bottom: 4px;">Lifetime</div>
-                                <div style="color: var(--muted); font-size: 14px;">
-                                    One-time payment
-                                    <br>
-                                    Limited to 100 users
-                                </div>
-                            </div>
-                            <button class="btn primary" id="lifetimePlan" style="min-width: 100px;">€45</button>
-                        </div>
-                    </div>
-                    <p style="font-size: 12px; color: var(--muted);">
-                        <span>By subscribing you accept the</span>
-                        <a href="#" style="color: var(--accent);">Terms</a>
-                        <span>&nbsp;and&nbsp;</span>
-                        <a href="#" style="color: var(--accent);">Privacy Policy</a>
-                        .
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- FOOTER -->
-        <footer class="footer">
-            <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem;">
-                <!-- Logo y descripción -->
-                <div>
-                    <div class="nav-brand" style="justify-content: flex-start; margin-bottom: 1rem;">BetterWLPRS</div>
-                    <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 1.5rem;">
-                        Unique wallpapers and premium video wallpapers for all your devices. Professional quality, exclusive
-                designs.
-                    </p>
-                    <!-- Redes sociales -->
-                    <div style="display: flex; gap: 12px;">
-                        <a href="https://www.tiktok.com/@betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok" style="width:22px;height:22px;">
-                        </a>
-                        <a href="https://instagram.com/betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style="width:22px;height:22px;">
-                        </a>
-                        <a href="https://twitter.com/betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter" style="width:22px;height:22px;">
-                        </a>
-                        <a href="https://gumroad.com/betterwlprsx" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad" style="width:22px;height:22px;">
-                        </a>
-                        <a href="https://ko-fi.com/betterwlprs" target="_blank" style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                            <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png" alt="Ko-fi" style="width:22px;height:22px;">
-                        </a>
-                    </div>
-                    </div>
-                    <!-- Enlaces rápidos -->
-                    <div>
-                        <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">
-                            Quick Links
-                    </h4>
-                        <div style="display: flex; flex-direction: column; gap: 8px;">
-                            <a href="#gallery" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Gallery</a>
-                            <a href="#videos" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Videos</a>
-                            <a href="#how" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
-                                How it works
-                            </a>
-                            <a href="#benefits" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Benefits</a>
-                        </div>
-                    </div>
-                    <!-- Contacto y soporte -->
-                    <div>
-                        <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">Contacto</h4>
-                        <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">Contact</h4>
-                        <div style="display: flex; flex-direction: column; gap: 8px;">
-                            <a href="mailto:dfernandezy@hotmail.com" style="color: var(--accent); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
-                                📧
-                                dfernandezy@hotmail.com
-                            </a>
-                            <a href="mailto:dfernandezy@hotmail.com" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
-                                🛠️
-                    Technical Support
-                            </a>
-                            <a href="#how" style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
-                                📋
-                    FAQ
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Copyright y legal -->
-                <div style="border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                    <div>
-                        <p style="color: var(--muted); font-size: 12px; margin: 0 0 8px 0;">
-                            © 2025 BetterWLPRS. All rights reserved.
-                        </p>
-                        <p style="color: var(--muted); font-size: 11px; margin: 0; max-width: 600px; line-height: 1.5;">
-                            All wallpapers and content are the exclusive property of BetterWLPRS. Redistribution, resale, or unauthorized use is prohibited. Attribution required for any sharing.
-                        </p>
-                    </div>
-                    <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-                        <a href="terms.html" style="color: var(--muted); font-size: 12px; text-decoration: none; transition: color 0.3s ease;">Terms of Service</a>
-                        <a href="privacy.html" style="color: var(--muted); font-size: 12px; text-decoration: none; transition: color 0.3s ease;">Privacy Policy</a>
-                        <a href="mailto:dfernandezy@hotmail.com" style="color: var(--muted); font-size: 12px; text-decoration: none; transition: color 0.3s ease;">Contact</a>
-                    </div>
-                </div>
-            </footer>
-            <!-- GSAP -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-            <script>
-
-        // ========== NAVIGATION ========== 
+        // ========== NAVIGATION ==========
         const navbar = document.getElementById('navbar');
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -1060,7 +1168,7 @@
             openModal();
         });
 
-        // ========== ACTIVE NAVIGATION TRACKING (Desktop y Mobile) ========== 
+        // ========== ACTIVE NAVIGATION TRACKING (Desktop y Mobile) ==========
         // Sincroniza el resaltado de la sección activa en ambos menús
         const sectionIds = ['hero', 'gallery', 'videos', 'how', 'benefits'];
         const sectionElements = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
@@ -1107,7 +1215,7 @@
             if (section) observer.observe(section);
         });
 
-    // ========== MODAL ========== 
+        // ========== MODAL ==========
         const modal = document.getElementById('modal');
         const modalClose = document.getElementById('modalClose');
         const openModalBtns = ['subscribeBtn', 'subscribeMobileBtn', 'loginBtn', 'stickyCta', 'finalCtaBtn'];
@@ -1157,17 +1265,17 @@
 
 
 
-            const isMobile = window.matchMedia('(max-width: 768px)').matches;
-
-           
-      
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
 
 
-     
 
 
-        
+
+
+
+
+
 
         // ========== INITIALIZATION ==========
         document.addEventListener('DOMContentLoaded', () => {
@@ -1215,7 +1323,7 @@
                 }
             });
 
-           
+
         }
 
         // ========== ACTION MODAL FUNCTIONS ==========
@@ -1311,16 +1419,16 @@
             const next = current === 'dark' ? 'light' : 'dark';
             setTheme(next);
         }
-    // Conectar los botones de tema
-    document.addEventListener('DOMContentLoaded', () => {
-        const themeBtn = document.getElementById('themeToggle');
-        const themeBtnMobile = document.getElementById('themeToggleMobile');
-        if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
-        if (themeBtnMobile) themeBtnMobile.addEventListener('click', toggleTheme);
-        // Al cargar, actualiza el icono según el tema
-        setTheme(document.documentElement.getAttribute('data-theme') || 'dark');
-    });
-                </script>
-            </body>
-        </html>
+        // Conectar los botones de tema
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeBtn = document.getElementById('themeToggle');
+            const themeBtnMobile = document.getElementById('themeToggleMobile');
+            if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
+            if (themeBtnMobile) themeBtnMobile.addEventListener('click', toggleTheme);
+            // Al cargar, actualiza el icono según el tema
+            setTheme(document.documentElement.getAttribute('data-theme') || 'dark');
+        });
+    </script>
+</body>
 
+</html>

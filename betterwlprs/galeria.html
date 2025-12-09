@@ -406,6 +406,44 @@
         </div>
     </div>
 
+    <!-- Premium Access Modal -->
+    <div id="premiumModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closePremiumModal()">×</button>
+            <div class="bg-[#13131a] rounded-xl overflow-hidden border border-purple-500/50 max-w-md">
+                <div class="p-8 text-center">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🎨</div>
+                    <h2 class="text-2xl font-bold mb-2 text-white">Unlock Full Collection</h2>
+                    <p class="text-gray-400 mb-6">
+                        Get unlimited access to BetterWLPRS's complete 100GB+ collection of curated and edited
+                        wallpapers
+                    </p>
+                    <div class="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4 mb-6">
+                        <div class="text-3xl font-bold text-purple-400">$3.99</div>
+                        <div class="text-gray-400 text-sm">1-Year Access</div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6">
+                        Pay once per year and get instant access to download your entire curated wallpaper collection
+                    </p>
+                    <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year" target="_blank"
+                        class="block w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition mb-3 text-decoration-none">
+                        Get Premium Access
+                    </a>
+                    <button onclick="closePremiumModal()"
+                        class="w-full bg-[#1a1a24] hover:bg-[#252530] text-white font-semibold py-3 px-6 rounded-lg transition border border-gray-700">
+                        Cancel
+                    </button>
+                    <div class="mt-6 pt-6 border-t border-gray-700">
+                        <p class="text-xs text-gray-500">
+                            Free users can preview wallpapers from the gallery. Premium members get the complete
+                            high-quality collection.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Performance utilities
         function debounce(func, wait) {
@@ -783,11 +821,8 @@
             ).join('');
 
             document.getElementById('downloadBtn').onclick = () => {
-                // Implement actual download logic here
-                const link = document.createElement('a');
-                link.href = wallpaper.image;
-                link.download = `${wallpaper.title.replace(/\s+/g, '-')}-BetterWLPRS.${wallpaper.type === 'video' ? 'mp4' : 'webp'}`;
-                link.click();
+                // Show premium modal instead of direct download
+                document.getElementById('premiumModal').classList.add('active');
             };
 
             document.getElementById('modal').classList.add('active');
@@ -808,6 +843,16 @@
                 modalVideo.load();
             }
         }
+
+        // Close premium modal
+        function closePremiumModal() {
+            document.getElementById('premiumModal').classList.remove('active');
+        }
+
+        // Close premium modal on background click
+        document.getElementById('premiumModal').addEventListener('click', (e) => {
+            if (e.target.id === 'premiumModal') closePremiumModal();
+        });
 
         // Load more wallpapers
         let currentDisplayLimit = 24;
