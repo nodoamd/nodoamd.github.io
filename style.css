@@ -28,7 +28,7 @@
         }
 
         .overflow-hidden {
-            overflow-x: hidden !important;
+            overflow-x: hidden;
             touch-action: pan-y pinch-zoom;
         }
 
@@ -38,8 +38,8 @@
         .nodo-contact-section,
         .nodo-contact-info,
         .nodo-contact-form {
-            max-width: 100% !important;
-            box-sizing: border-box !important;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         /* Asegurar que el texto no se desborde */
@@ -270,6 +270,11 @@
         height: 480px;
         margin: -100px auto 40px;
         padding: 0 1rem;
+    }
+
+    #metrics-accordion {
+        overflow: hidden;
+        transition: max-height 0.4s ease;
     }
 
     .spline-shell spline-viewer {
@@ -2333,15 +2338,15 @@
     }
 
     .contact-link {
-        color: #6366F1 !important;
+        color: #6366F1;
     }
 
     .cta-button {
         background-color: #6366F1;
-        color: white !important;
+        color: white;
         padding: 12px 24px;
         border-radius: 100px;
-        transition: background-color 0.3s ease !important;
+        transition: background-color 0.3s ease;
     }
 
     .cta-button:hover {
