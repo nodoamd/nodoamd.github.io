@@ -288,6 +288,10 @@
         pointer-events: none;
     }
 
+    .progress-fill {
+        width: 0;
+    }
+
     .spline-loader {
         position: absolute;
         inset: 0;
