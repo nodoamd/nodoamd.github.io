@@ -33,13 +33,25 @@
         }
 
         /* Prevenir desbordamiento en todas las secciones */
-        section, div, .nodo-contact-section, .nodo-contact-info, .nodo-contact-form {
+        section,
+        div,
+        .nodo-contact-section,
+        .nodo-contact-info,
+        .nodo-contact-form {
             max-width: 100% !important;
             box-sizing: border-box !important;
         }
 
         /* Asegurar que el texto no se desborde */
-        p, h1, h2, h3, h4, h5, h6, span, a {
+        p,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        span,
+        a {
             word-wrap: break-word;
             overflow-wrap: break-word;
             hyphens: auto;
@@ -60,7 +72,7 @@
     /* .custom-cursor.cursor-hover {
         animation: cursorRotate 2s linear infinite;
     } */
-    /* 
+    /*
     @keyframes cursorRotate {
         from {
             transform: translate(-50%, -50%) rotate(0deg);
@@ -252,6 +264,66 @@
         /* Reducimos el padding por defecto */
     }
 
+    .spline-shell {
+        position: relative;
+        max-width: 1200px;
+        height: 480px;
+        margin: -100px auto 40px;
+        padding: 0 1rem;
+    }
+
+    .spline-shell spline-viewer {
+        width: 100%;
+        height: 100%;
+        border-radius: 24px;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+    }
+
+    .hero-ready .spline-shell spline-viewer {
+        opacity: 1;
+    }
+
+    .spline-shell.loading spline-viewer {
+        pointer-events: none;
+    }
+
+    .spline-loader {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        z-index: 1;
+        opacity: 1;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .spline-shell:not(.loading) .spline-loader {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .spline-loader::before {
+        content: '';
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 3px solid rgba(78, 83, 190, 0.15);
+        border-top-color: #4e53be;
+        animation: spinLoader 0.9s linear infinite;
+        box-shadow: 0 0 0 8px rgba(78, 83, 190, 0.05);
+    }
+
+    @keyframes spinLoader {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
     /*  */
     /*  */
     /*  */
@@ -264,6 +336,17 @@
             /* Reducimos aún más el padding en móvil */
             width: 100%;
             /* Aseguramos que ocupe todo el ancho */
+        }
+
+        .spline-shell {
+            height: 320px;
+            margin-top: -30px;
+            padding: 0 0.5rem;
+        }
+
+        .spline-shell spline-viewer,
+        .spline-shell .spline-placeholder {
+            border-radius: 18px;
         }
 
         .hero h1 {

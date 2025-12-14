@@ -194,8 +194,11 @@
 
     </main>
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.66/build/spline-viewer.js"></script>
-    <spline-viewer style="height: 450px; margin-top: -100px;"
-        url="https://prod.spline.design/413yij0subdFPRs9/scene.splinecode"></spline-viewer>
+    <div class="spline-shell loading" id="spline-shell">
+        <div class="spline-loader" aria-hidden="true"></div>
+        <spline-viewer id="hero-spline"
+            url="https://prod.spline.design/413yij0subdFPRs9/scene.splinecode"></spline-viewer>
+    </div>
     <div class="cursor-effect"></div>
 
 
@@ -857,7 +860,7 @@
 
 
 
-    <!-- 
+    <!--
 
     <section class="services-grid">
         <h2 class="services-title">Sitios web, apps, branding y más.</h2>
@@ -1110,7 +1113,7 @@
         }
     </style>
 
-    <!-- 
+    <!--
     <section class="testimonials">
         <h2>Lo que dicen nuestros clientes</h2>
         <div class="testimonials-slider">
@@ -1172,7 +1175,7 @@
 
 
 
-    <!-- 
+    <!--
 
 
     <div class="nodo-services-cta" style="margin: 25px;">
@@ -2233,28 +2236,26 @@
             observer.observe(statsSection);
         });
 
-        // Añade este JavaScript
+        // Controlar animaciones del hero y sincronizarlas con la carga del Spline
         document.addEventListener('DOMContentLoaded', () => {
-            // Añadir clase parallax-element a los elementos que queremos animar
             const elements = [
                 document.querySelector('.author'),
                 document.querySelector('.hero h1'),
                 document.querySelector('.hero p'),
                 document.querySelector('.btn.contacto'),
                 document.querySelector('.users-count')
-            ];
+            ].filter(Boolean);
 
-            elements.forEach(element => {
-                if (element) {
-                    element.classList.add('parallax-element');
-                }
-            });
+            elements.forEach(element => element.classList.add('parallax-element'));
 
-            // Función para manejar la animación al hacer scroll
+            const splineShell = document.getElementById('spline-shell');
+            const splineViewer = document.getElementById('hero-spline');
+            let heroReady = false;
+
             const handleScroll = () => {
-                elements.forEach(element => {
-                    if (!element) return;
+                if (!heroReady) return;
 
+                elements.forEach(element => {
                     const rect = element.getBoundingClientRect();
                     const windowHeight = window.innerHeight;
 
@@ -2264,10 +2265,22 @@
                 });
             };
 
-            // Ejecutar una vez al cargar la página
+            const activateHero = () => {
+                if (heroReady) return;
+                heroReady = true;
+                document.body.classList.add('hero-ready');
+                splineShell?.classList.remove('loading');
+                handleScroll();
+            };
+
+            splineViewer?.addEventListener('load', activateHero);
+            splineViewer?.addEventListener('error', activateHero);
+            window.addEventListener('load', () => setTimeout(activateHero, 600));
+            setTimeout(activateHero, 4000);
+
+            // Ejecutar una vez al cargar la página (no revelará hasta heroReady)
             handleScroll();
 
-            // Añadir el evento scroll con throttling para mejor rendimiento
             let isScrolling = false;
             window.addEventListener('scroll', () => {
                 if (!isScrolling) {
