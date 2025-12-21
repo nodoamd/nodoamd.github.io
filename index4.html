@@ -1,1562 +1,859 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nodo | Exitos de Clientes Nodo</title>
-    <meta name="description" content="Innovación donde merece + Mejoras constantes = Un futuro brillante.">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nodoamd.github.io/">
-    <meta property="og:title" content="Nodo | Tu Agencia de Márketing Digital">
-    <meta property="og:description" content="Innovación donde merece + Mejoras constantes = Un futuro brillante.">
-    <meta property="og:image" content="https://nodoamd.github.io/phone_mockup_1.png">
-    <meta property="og:image:alt" content="Mockup de teléfono mostrando el sitio de Nodo">
-    <meta property="og:site_name" content="Nodo">
-    <meta property="og:locale" content="es_ES">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta property="twitter:domain" content="nodoamd.github.io">
-    <meta property="twitter:url" content="https://nodoamd.github.io/">
-    <meta name="twitter:title" content="Nodo | Tu Agencia de Márketing Digital">
-    <meta name="twitter:description" content="Innovación donde merece + Mejoras constantes = Un futuro brillante.">
-    <meta name="twitter:image" content="https://nodoamd.github.io/phone_mockup_1.png">
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="./img/nodedos.svg">
-    <link rel="icon" type="image/x-icon" href="./img/nodedos.svg">
-    <link rel="apple-touch-icon" href="./img/nodedos.svg">
-
-
-    <!-- Apple Touch Icons -->
-    <link rel="apple-touch-icon" href="./img/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
-    <link rel="mask-icon" href="./img/safari-pinned-tab.svg" color="#4e53be">
-
-    <!-- Meta Tags para Apple -->
-    <meta name="apple-mobile-web-app-title" content="Nodo">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="purple">
-
-    <!-- Precargar recursos críticos -->
-    <link rel="preload" href="style.css" as="style">
-    <link rel="preload" href="./img/nodedos.svg" as="image">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Font Awesome con carga optimizada -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        media="print" onload="this.media='all'">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <meta name="theme-color" content="#4e53be">
-
-    <!-- Estilos -->
-    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casos de Éxito - Nodo</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'nodo-purple': '#6366f1',
-                        'nodo-blue': '#3b82f6',
-                        'nodo-light': '#f8fafc',
-                        'nodo-gray': '#64748b'
-                    }
-                }
-            }
-        }
-    </script>
+    <title>Nodo - 3D Web & AI Development</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
-            cursor: default;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FFF9F0;
+            --purple-dark: #2D1B4E;
+            --purple-mid: #5B3A8F;
+            --purple-bright: #8B5CF6;
+            --magenta: #E91E8C;
+            --gradient-1: linear-gradient(135deg, #8B5CF6 0%, #5B3A8F 100%);
+            --gradient-2: linear-gradient(135deg, #E91E8C 0%, #8B5CF6 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cream);
+            color: var(--purple-dark);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--purple-bright);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: multiply;
+            transition: transform 0.2s ease;
+        }
+
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--magenta);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.15s ease;
+            opacity: 0.4;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 2rem 4rem;
+            mix-blend-mode: difference;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            color: var(--purple-dark);
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            gap: 3rem;
+        }
+
+        nav a {
+            color: var(--purple-mid);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            position: relative;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--magenta);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 0 4rem;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-label {
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--purple-mid);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-bright) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 2rem);
+            color: var(--purple-mid);
+            max-width: 800px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            line-height: 1.4;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .btn-primary {
+            padding: 1.5rem 3rem;
+            background: var(--gradient-2);
+            color: var(--cream);
+            border: none;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-secondary {
+            padding: 1.5rem 3rem;
+            background: transparent;
+            color: var(--purple-dark);
+            border: 2px solid var(--purple-bright);
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--magenta);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        /* Spline Integration */
+        .spline-canvas {
+            position: absolute;
+            top: 50%;
+            right: -10%;
+            transform: translateY(-50%);
+            width: 50%;
+            height: 80vh;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* Marquee Section */
+        .marquee-section {
+            padding: 4rem 0;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+            overflow: hidden;
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        .marquee {
+            display: flex;
+            gap: 4rem;
+            animation: marquee 30s linear infinite;
+            width: fit-content;
+        }
+
+        .marquee span {
+            font-size: 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            color: var(--purple-bright);
+            opacity: 0.3;
+            white-space: nowrap;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Services Section */
+        #services {
+            padding: 12rem 4rem;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 4rem;
+            letter-spacing: -0.02em;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+        }
+
+        .service-card {
+            background: rgba(139, 92, 246, 0.05);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 24px;
+            padding: 3rem;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .service-card:hover::before {
+            opacity: 0.15;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--purple-bright);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+            color: var(--purple-dark);
+        }
+
+        .service-card p {
+            color: var(--purple-mid);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* Expertise Section */
+        #expertise {
+            padding: 12rem 4rem;
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1400px;
+        }
+
+        .expertise-item {
+            border-left: 2px solid var(--purple-bright);
+            padding-left: 2rem;
+        }
+
+        .expertise-item h3 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .expertise-item p {
+            font-size: 1.2rem;
+            color: var(--purple-mid);
+            line-height: 1.6;
+        }
+
+        /* Portfolio Section */
+        #portfolio {
+            padding: 12rem 4rem;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+        }
+
+        .portfolio-item {
+            aspect-ratio: 16/10;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            transition: transform 0.5s;
+        }
+
+        .portfolio-item:nth-child(2)::before {
+            background: var(--gradient-2);
+        }
+
+        .portfolio-item:nth-child(3)::before {
+            background: linear-gradient(135deg, #8B5CF6 0%, #E91E8C 100%);
+        }
+
+        .portfolio-item:hover::before {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 3rem;
+            background: linear-gradient(to top, rgba(45, 27, 78, 0.9) 0%, transparent 100%);
+            z-index: 2;
+        }
+
+        .portfolio-item h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--cream);
+        }
+
+        .portfolio-item p {
+            color: rgba(255, 249, 240, 0.7);
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 6rem 4rem 3rem;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            color: var(--purple-dark);
+        }
+
+        .footer-brand p {
+            color: var(--purple-mid);
+            line-height: 1.6;
+        }
+
+        .footer-links h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--purple-dark);
+        }
+
+        .footer-links a {
+            display: block;
+            color: var(--purple-mid);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--magenta);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+            color: var(--purple-mid);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            header, .hero, #services, #expertise, #portfolio, footer {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .spline-canvas {
+                opacity: 0.3;
+            }
+
+            nav {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
 
-<body class="bg-white">
-
-
-    <header class="header">
-        <a href="https://nodoamd.github.io/" class="flex items-center group">
-            <span class="mr-2 relative">
-                <span class="text-xl font-extrabold tracking-tight text-[#4e53be]">Nodo</span>
-                <span
-                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#6c72e5] group-hover:w-full transition-all duration-300"></span>
-            </span>
-            <img src="./img/nodedos.svg" height="25" width="25" alt="Nodo Logo"
-                class="transform group-hover:rotate-12 transition-all duration-300">
-        </a>
-        <nav class="nav-links">
-            <a href="#nodo-services-section">Servicios</a>
-            <a href="#case-studies">Proyectos</a>
-            <a href="#pricing-container">Precios</a>
-            <a href="#nodo-faq-section">FAQ</a>
-        </nav>
-        <div class="buttons">
-            <a href="https://wa.me/+34622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo" target="_blank"
-                class="btn btn-secondary">Contacto</a>
-            <a href="./consulta.html" class="btn btn-primary">Cotizar Proyecto</a>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">NODO</div>
+            <nav>
+                <a href="#services">Services</a>
+                <a href="#expertise">Expertise</a>
+                <a href="#portfolio">Work</a>
+            </nav>
         </div>
     </header>
+
     <!-- Hero Section -->
-    <section
-        class="relative min-h-[90vh] flex items-start md:items-center justify-center bg-gradient-to-br from-purple-50 to-blue-50 overflow-hidden py-12 md:py-0">
-        <div class="absolute inset-0 bg-gradient-to-r from-purple-400/10 to-blue-400/10"></div>
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-8 md:mt-0"
-            style="margin-bottom: 50px;">
-            <div class="mb-4 pt-8 md:pt-0">
-                <span class="inline-flex items-center text-nodo-purple font-medium text-base md:text-lg">
-                    ⚡ Casos de Éxito
-                </span>
-            </div>
-            <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 px-4">
-                <span class="text-nodo-purple">Transformamos</span> negocios,<br class="hidden sm:block">
-                creamos <span
-                    class="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">resultados
-                    extraordinarios</span>
-            </h1>
-            <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed px-4">
-                Descubre cómo hemos ayudado a empresas como la tuya a
-                <span class="text-nodo-purple font-semibold">multiplicar sus ventas</span>
-                y dominar el mundo digital con estrategias personalizadas y resultados medibles.
-            </p>
-
-            <!-- Botones con mejor espaciado móvil -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 px-4">
-                <a href="#success-stories"
-                    class="w-full sm:w-auto bg-nodo-purple hover:bg-purple-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl">
-                    Ver Todos los Casos
-                </a>
-                <a href="https://wa.me/+34622494800?text=Hola%20Nodo,%20me%20gustaría%20impulsar%20mi%20negocio%20con%20vuestros%20servicios"
-                    target="_blank"
-                    class="w-full sm:w-auto border-2 border-gray-300 hover:border-nodo-purple text-gray-700 hover:text-nodo-purple font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-full transition-all duration-300">
-                    Impulsa tu Negocio
-                </a>
-            </div>
-
-            <!-- Stats con mejor diseño responsive -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 max-w-4xl mx-auto px-4">
-                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-lg border border-white/20">
-                    <div class="text-2xl md:text-3xl font-bold text-nodo-purple mb-2">+500%</div>
-                    <div class="text-sm md:text-base text-gray-600">Crecimiento Promedio</div>
-                </div>
-                <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-lg border border-white/20">
-                    <div class="text-2xl md:text-3xl font-bold text-nodo-blue mb-2">120+</div>
-                    <div class="text-sm md:text-base text-gray-600">Proyectos Exitosos</div>
-                </div>
-                <div
-                    class="bg-white/70 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-lg border border-white/20 sm:col-span-2 md:col-span-1">
-                    <div class="text-2xl md:text-3xl font-bold text-purple-600 mb-2">98%</div>
-                    <div class="text-sm md:text-base text-gray-600">Satisfacción Cliente</div>
-                </div>
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-label">NYC ↔ Barcelona</div>
+            <h1>Web3D & AI<br>Development<br>Studio</h1>
+            <p class="hero-subtitle">Crafting immersive 3D web experiences and intelligent AI solutions that bridge creativity and technology across continents.</p>
+            <div class="hero-cta">
+                <a href="#" class="btn-primary">Start Project</a>
+                <a href="#portfolio" class="btn-secondary">View Work</a>
             </div>
         </div>
-
-        <!-- Floating Elements -->
-        <div class="absolute top-20 left-10 w-20 h-20 bg-purple-400/20 rounded-full blur-xl animate-pulse"></div>
-        <div class="absolute bottom-32 right-16 w-32 h-32 bg-blue-400/20 rounded-full blur-xl animate-pulse delay-1000">
+        <div class="spline-canvas">
+            <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.66/build/spline-viewer.js"></script>
+            <spline-viewer url="https://prod.spline.design/413yij0subdFPRs9/scene.splinecode"></spline-viewer>
         </div>
     </section>
 
-    <div class="relative">
-        <!-- Slider principal -->
-        <div class="overflow-hidden">
-            <div id="slides-container" class="flex transition-transform duration-500">
-                <!-- Caso 1: Clínica Dental -->
-                <div class="w-full flex-shrink-0">
-                    <div class="max-w-7xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
-                        <!-- Encabezado -->
-                        <div class="relative">
-                            <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-blue-500 opacity-90"></div>
-                            <div class="relative z-10 px-8 py-12 md:py-16">
-                                <div class="flex flex-col md:flex-row items-center justify-between">
-                                    <div>
-                                        <h2 class="text-3xl md:text-4xl font-bold text-white">Clínica Dental Dra.
-                                            Hitachi
-                                        </h2>
-                                        <p class="mt-2 text-indigo-100 text-lg max-w-2xl">Transformación digital
-                                            completa
-                                            con resultados
-                                            medibles</p>
-                                    </div>
-                                    <a href="#"
-                                        class="mt-4 md:mt-0 inline-flex items-center px-5 py-3 bg-white text-indigo-600 rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-300">
-                                        <i class="fa-solid fa-external-link mr-2"></i>
-                                        Ver Proyecto
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Contenido principal -->
-                        <div class="grid grid-cols-1 md:grid-cols-12 gap-0">
-                            <!-- Columna izquierda: Antes/Después -->
-                            <div class="md:col-span-7 bg-gray-50">
-                                <div class="p-8 md:p-12">
-                                    <div class="flex mb-8">
-                                        <button
-                                            class="before-btn px-6 py-3 border-b-2 border-indigo-600 text-indigo-600 font-medium mr-6">ANTES</button>
-                                        <button
-                                            class="after-btn px-6 py-3 border-b-2 border-transparent text-gray-500 font-medium hover:text-indigo-600 transition-all">DESPUÉS</button>
-                                    </div>
-
-                                    <!-- Contenedor de imágenes antes/después -->
-                                    <div class="relative bg-white rounded-lg shadow-md overflow-hidden">
-                                        <!-- Contenido ANTES -->
-                                        <div class="before-content p-4 md:p-6 transition-opacity duration-500">
-                                            <div class="mb-4">
-                                                <span
-                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                                    ANTES - Sin presencia digital
-                                                </span>
-                                            </div>
-                                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                                <div class="space-y-4">
-                                                    <div class="flex items-start space-x-3">
-                                                        <div
-                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
-                                                            <i class="fa-solid fa-xmark text-red-600"></i>
-                                                        </div>
-                                                        <p class="text-gray-700 text-sm md:text-base">Sin página web
-                                                            profesional</p>
-                                                    </div>
-                                                    <div class="flex items-start space-x-3">
-                                                        <div
-                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
-                                                            <i class="fa-solid fa-xmark text-red-600"></i>
-                                                        </div>
-                                                        <p class="text-gray-700 text-sm md:text-base">Cero visibilidad
-                                                            en
-                                                            Google</p>
-                                                    </div>
-                                                    <div class="flex items-start space-x-3">
-                                                        <div
-                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
-                                                            <i class="fa-solid fa-xmark text-red-600"></i>
-                                                        </div>
-                                                        <p class="text-gray-700 text-sm md:text-base">Sistema de citas
-                                                            telefónico
-                                                            únicamente</p>
-                                                    </div>
-                                                    <div class="flex items-start space-x-3">
-                                                        <div
-                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
-                                                            <i class="fa-solid fa-xmark text-red-600"></i>
-                                                        </div>
-                                                        <p class="text-gray-700 text-sm md:text-base">Pérdida de
-                                                            pacientes
-                                                            potenciales
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center min-h-48">
-                                                    <div class="text-center">
-                                                        <i
-                                                            class="fa-solid fa-ban text-4xl md:text-6xl text-gray-300 mb-4"></i>
-                                                        <p class="text-gray-500 font-medium">Sin presencia online</p>
-                                                        <p class="text-sm text-gray-400">0 búsquedas orgánicas</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Contenido DESPUÉS -->
-                                        <div
-                                            class="after-content p-4 md:p-6 opacity-0 transition-opacity duration-500 absolute inset-0">
-                                            <div class="mb-4">
-                                                <span
-                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                    DESPUÉS - Presencia digital completa
-                                                </span>
-                                            </div>
-                                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                                <div class="space-y-4">
-                                                    <div
-                                                        class="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg overflow-hidden">
-                                                        <img src="./img/metricashitachi.png" alt="Nueva web profesional"
-                                                            class="w-full h-full object-cover">
-                                                    </div>
-                                                    <div class="grid grid-cols-2 gap-3">
-                                                        <div class="bg-green-50 p-3 rounded-lg text-center">
-                                                            <p class="text-xl md:text-2xl font-bold text-green-600">24/7
-                                                            </p>
-                                                            <p class="text-xs text-green-700">Reservas Online</p>
-                                                        </div>
-                                                        <div class="bg-blue-50 p-3 rounded-lg text-center">
-                                                            <p class="text-xl md:text-2xl font-bold text-blue-600">95%
-                                                            </p>
-                                                            <p class="text-xs text-blue-700">Velocidad Web</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="space-y-4">
-                                                    <!-- Métricas de Search Console simuladas -->
-                                                    <div class="bg-gray-50 rounded-lg p-4">
-                                                        <h4 class="text-sm font-medium text-gray-700 mb-3">Métricas de
-                                                            Google
-                                                            Search
-                                                            Console</h4>
-                                                        <div class="space-y-3">
-                                                            <div class="flex justify-between items-center">
-                                                                <span class="text-xs text-gray-600">Impresiones
-                                                                    totales</span>
-                                                                <span
-                                                                    class="text-sm font-bold text-indigo-600">+1,250%</span>
-                                                            </div>
-                                                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                                                <div class="bg-indigo-600 h-2 rounded-full"
-                                                                    style="width: 85%"></div>
-                                                            </div>
-                                                            <div class="flex justify-between items-center">
-                                                                <span class="text-xs text-gray-600">Clics
-                                                                    orgánicos</span>
-                                                                <span
-                                                                    class="text-sm font-bold text-green-600">+890%</span>
-                                                            </div>
-                                                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                                                <div class="bg-green-600 h-2 rounded-full"
-                                                                    style="width: 75%"></div>
-                                                            </div>
-                                                            <div class="flex justify-between items-center">
-                                                                <span class="text-xs text-gray-600">CTR promedio</span>
-                                                                <span
-                                                                    class="text-sm font-bold text-blue-600">12.5%</span>
-                                                            </div>
-                                                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                                                <div class="bg-blue-600 h-2 rounded-full"
-                                                                    style="width: 60%"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg p-4">
-                                                        <div class="text-center">
-                                                            <p class="text-xl md:text-2xl font-bold text-indigo-600">
-                                                                15-20</p>
-                                                            <p class="text-sm text-indigo-700">Nuevas consultas por
-                                                                semana
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <a href="https://www.hitachi.com" target="_blank" class="block group">
-                                        <div
-                                            class="bg-gradient-to-br from-white to-gray-50 rounded-xl p-5 border border-gray-100 shadow-sm transition-transform group-hover:scale-105">
-                                            <img src="./img/landinghitachi.webp" alt="" class="rounded-lg mb-4">
-                                            <div class="text-center">
-                                                <button
-                                                    class="bg-indigo-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-400 transition">
-                                                    Visitar Web
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </a>
-
-
-                                    <!-- Características clave -->
-                                    <div class="mt-10">
-                                        <h3 class="text-xl font-semibold text-gray-900 mb-6">Transformación Realizada
-                                        </h3>
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <div class="flex items-start">
-                                                <div class="flex-shrink-0">
-                                                    <div
-                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-indigo-600 text-white">
-                                                        <i class="fa-solid fa-bezier-curve"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <h4 class="text-base font-medium text-gray-900">Branding Profesional
-                                                    </h4>
-                                                    <p class="mt-1 text-sm text-gray-600">Identidad visual consistente y
-                                                        moderna
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div class="flex items-start">
-                                                <div class="flex-shrink-0">
-                                                    <div
-                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-indigo-600 text-white">
-                                                        <i class="fa-solid fa-laptop-code"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <h4 class="text-base font-medium text-gray-900">Diseño Web Premium
-                                                    </h4>
-                                                    <p class="mt-1 text-sm text-gray-600">Experiencia de usuario
-                                                        optimizada
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div class="flex items-start">
-                                                <div class="flex-shrink-0">
-                                                    <div
-                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-indigo-600 text-white">
-                                                        <i class="fa-solid fa-calendar-check"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <h4 class="text-base font-medium text-gray-900">Sistema de Reservas
-                                                    </h4>
-                                                    <p class="mt-1 text-sm text-gray-600">Automatización de citas online
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div class="flex items-start">
-                                                <div class="flex-shrink-0">
-                                                    <div
-                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-indigo-600 text-white">
-                                                        <i class="fa-solid fa-chart-line"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <h4 class="text-base font-medium text-gray-900">Estrategia SEO</h4>
-                                                    <p class="mt-1 text-sm text-gray-600">Optimización para mayor
-                                                        visibilidad
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Columna derecha: Resultados -->
-                            <div class="md:col-span-5 bg-gradient-to-br from-slate-50 to-white">
-                                <div class="p-8 md:p-12">
-                                    <h3 class="text-xl font-semibold text-gray-900 mb-8">Impacto en el Negocio</h3>
-
-                                    <!-- Métricas principales -->
-                                    <div class="space-y-6 mb-10">
-                                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                                            <div class="flex items-center justify-between">
-                                                <div>
-                                                    <p class="text-sm font-medium text-gray-500">Consultas Mensuales</p>
-                                                    <div class="mt-1 flex items-baseline">
-                                                        <p class="text-3xl font-extrabold text-indigo-600">+60%</p>
-                                                        <p class="ml-2 text-sm font-medium text-green-600">↑ incremento
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-50 text-indigo-700">
-                                                    <i class="fa-solid fa-phone-volume"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                                            <div class="flex items-center justify-between">
-                                                <div>
-                                                    <p class="text-sm font-medium text-gray-500">Nuevos Pacientes</p>
-                                                    <div class="mt-1 flex items-baseline">
-                                                        <p class="text-3xl font-extrabold text-indigo-600">+45%</p>
-                                                        <p class="ml-2 text-sm font-medium text-green-600">↑ incremento
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-50 text-indigo-700">
-                                                    <i class="fa-solid fa-user-plus"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                                            <div class="flex items-center justify-between">
-                                                <div>
-                                                    <p class="text-sm font-medium text-gray-500">Visibilidad en Google
-                                                    </p>
-                                                    <div class="mt-1 flex items-baseline">
-                                                        <p class="text-3xl font-extrabold text-indigo-600">+120%</p>
-                                                        <p class="ml-2 text-sm font-medium text-green-600">↑ incremento
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-50 text-indigo-700">
-                                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Testimonial -->
-                                    <div class="relative">
-                                        <div class="absolute -top-2 -left-2 text-indigo-200 text-4xl">
-                                            <i class="fa-solid fa-quote-left"></i>
-                                        </div>
-                                        <div class="relative pl-6 pt-4">
-                                            <p class="text-gray-700 italic">La transformación digital de nuestra clínica
-                                                ha
-                                                superado
-                                                nuestras expectativas. El sistema de citas online ha reducido la carga
-                                                administrativa y
-                                                los pacientes valoran la facilidad para reservar.</p>
-                                            <div class="mt-4 flex items-center">
-                                                <div
-                                                    class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-200 flex items-center justify-center text-indigo-600">
-                                                    <img src="./img/doctorahitachi.webp"
-                                                        alt="Imagen de la Dra. María Hitachi"
-                                                        class="h-10 w-10 rounded-full object-cover">
-                                                </div>
-                                                <div class="ml-3">
-                                                    <p class="text-sm font-medium text-gray-900">Dra. Hitachi A.</p>
-                                                    <p class="text-xs text-gray-500">Directora, Clínica Dental</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Caso 2: LlarÚnica -->
-                <div class="w-full flex-shrink-0">
-                    <div class="max-w-7xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
-                        <div class="relative">
-                            <div class="absolute inset-0 bg-gradient-to-r from-amber-600 to-orange-500 opacity-90">
-                            </div>
-                            <div class="relative z-10 px-8 py-12 md:py-16">
-                                <div class="flex flex-col md:flex-row items-center justify-between">
-                                    <div>
-                                        <h2 class="text-3xl md:text-4xl font-bold text-white">LlarÚnica</h2>
-                                        <p class="mt-2 text-amber-100 text-lg max-w-2xl">Transformación digital del
-                                            sector inmobiliario</p>
-                                    </div>
-                                    <a href="#"
-                                        class="mt-4 md:mt-0 inline-flex items-center px-5 py-3 bg-white text-amber-600 rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-300">
-                                        <i class="fa-solid fa-external-link mr-2"></i>
-                                        Ver Proyecto
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Contenido principal -->
-                        <div class="grid grid-cols-1 md:grid-cols-12 gap-0">
-                            <!-- Columna izquierda: Antes/Después -->
-                            <div class="md:col-span-7 bg-gray-50">
-                                <div class="p-8 md:p-12">
-                                    <div class="flex mb-8">
-                                        <button
-                                            class="before-btn px-6 py-3 border-b-2 border-indigo-600 text-indigo-600 font-medium mr-6">ANTES</button>
-                                        <button
-                                            class="after-btn px-6 py-3 border-b-2 border-transparent text-gray-500 font-medium hover:text-indigo-600 transition-all">DESPUÉS</button>
-                                    </div>
-
-                                    <!-- Contenedor de imágenes antes/después -->
-                                    <div class="relative bg-white rounded-lg shadow-md overflow-hidden">
-                                        <!-- Contenido ANTES -->
-                                        <div class="before-content p-4 md:p-6 transition-opacity duration-500">
-                                            <div class="mb-4">
-                                                <span
-                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                                    ANTES - Sin presencia digital
-                                                </span>
-                                            </div>
-                                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                                <div class="space-y-4">
-                                                    <div class="flex items-start space-x-3">
-                                                        <div
-                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
-                                                            <i class="fa-solid fa-xmark text-red-600"></i>
-                                                        </div>
-                                                        <p class="text-gray-700 text-sm md:text-base">Sin página web
-                                                            profesional</p>
-                                                    </div>
-                                                    <div class="flex items-start space-x-3">
-                                                        <div
-                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
-                                                            <i class="fa-solid fa-xmark text-red-600"></i>
-                                                        </div>
-                                                        <p class="text-gray-700 text-sm md:text-base">Cero visibilidad
-                                                            en
-                                                            Google</p>
-                                                    </div>
-                                                    <div class="flex items-start space-x-3">
-                                                        <div
-                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
-                                                            <i class="fa-solid fa-xmark text-red-600"></i>
-                                                        </div>
-                                                        <p class="text-gray-700 text-sm md:text-base">Sistema de citas
-                                                            telefónico
-                                                            únicamente</p>
-                                                    </div>
-                                                    <div class="flex items-start space-x-3">
-                                                        <div
-                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
-                                                            <i class="fa-solid fa-xmark text-red-600"></i>
-                                                        </div>
-                                                        <p class="text-gray-700 text-sm md:text-base">Pérdida de
-                                                            pacientes
-                                                            potenciales
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center min-h-48">
-                                                    <div class="text-center">
-                                                        <i
-                                                            class="fa-solid fa-ban text-4xl md:text-6xl text-gray-300 mb-4"></i>
-                                                        <p class="text-gray-500 font-medium">Sin presencia online</p>
-                                                        <p class="text-sm text-gray-400">0 búsquedas orgánicas</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Contenido DESPUÉS -->
-                                        <div
-                                            class="after-content p-4 md:p-6 opacity-0 transition-opacity duration-500 absolute inset-0">
-                                            <div class="mb-4">
-                                                <span
-                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                    DESPUÉS - Presencia digital completa
-                                                </span>
-                                            </div>
-                                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                                <div class="space-y-4">
-                                                    <div
-                                                        class="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg overflow-hidden">
-                                                        <img src="./img/llarunicagoogle.png" alt="Nueva web profesional"
-                                                            class="w-full h-full object-cover">
-                                                    </div>
-                                                    <div class="grid grid-cols-2 gap-3">
-                                                        <div class="bg-green-50 p-3 rounded-lg text-center">
-                                                            <p class="text-xl md:text-2xl font-bold text-green-600">24/7
-                                                            </p>
-                                                            <p class="text-xs text-green-700">Reservas Online</p>
-                                                        </div>
-                                                        <div class="bg-blue-50 p-3 rounded-lg text-center">
-                                                            <p class="text-xl md:text-2xl font-bold text-blue-600">95%
-                                                            </p>
-                                                            <p class="text-xs text-blue-700">Velocidad Web</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="space-y-4">
-                                                    <!-- Métricas de Search Console simuladas -->
-                                                    <div class="bg-gray-50 rounded-lg p-4">
-                                                        <h4 class="text-sm font-medium text-gray-700 mb-3">Métricas de
-                                                            Google
-                                                            Search
-                                                            Console</h4>
-                                                        <div class="space-y-3">
-                                                            <div class="flex justify-between items-center">
-                                                                <span class="text-xs text-gray-600">Impresiones
-                                                                    totales</span>
-                                                                <span
-                                                                    class="text-sm font-bold text-indigo-600">+1,250%</span>
-                                                            </div>
-                                                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                                                <div class="bg-indigo-600 h-2 rounded-full"
-                                                                    style="width: 85%"></div>
-                                                            </div>
-                                                            <div class="flex justify-between items-center">
-                                                                <span class="text-xs text-gray-600">Clics
-                                                                    orgánicos</span>
-                                                                <span
-                                                                    class="text-sm font-bold text-green-600">+890%</span>
-                                                            </div>
-                                                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                                                <div class="bg-green-600 h-2 rounded-full"
-                                                                    style="width: 75%"></div>
-                                                            </div>
-                                                            <div class="flex justify-between items-center">
-                                                                <span class="text-xs text-gray-600">CTR promedio</span>
-                                                                <span
-                                                                    class="text-sm font-bold text-blue-600">12.5%</span>
-                                                            </div>
-                                                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                                                <div class="bg-blue-600 h-2 rounded-full"
-                                                                    style="width: 60%"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg p-4">
-                                                        <div class="text-center">
-                                                            <p class="text-xl md:text-2xl font-bold text-indigo-600">
-                                                                15-20</p>
-                                                            <p class="text-sm text-indigo-700">Nuevas consultas por
-                                                                semana
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <a href="https://www.sakura.com" target="_blank" class="block group">
-                                        <div
-                                            class="bg-gradient-to-br from-white to-gray-50 rounded-xl p-5 border border-gray-100 shadow-sm transition-transform group-hover:scale-105">
-                                            <img src="./img/llarunica.webp" alt="" class="rounded-lg mb-4">
-                                            <div class="text-center">
-                                                <button
-                                                    class="bg-rose-600 text-white px-4 py-2 rounded-lg shadow hover:bg-orange-400 transition">
-                                                    Visitar Web
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </a>
-
-
-                                    <!-- Características clave -->
-                                    <div class="mt-10">
-                                        <h3 class="text-xl font-semibold text-gray-900 mb-6">Transformación Realizada
-                                        </h3>
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <div class="flex items-start">
-                                                <div class="flex-shrink-0">
-                                                    <div
-                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-rose-600 text-white">
-                                                        <i class="fa-solid fa-utensils"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <h4 class="text-base font-medium text-gray-900">Menú Digital</h4>
-                                                    <p class="mt-1 text-sm text-gray-600">Acceso fácil y rápido desde
-                                                        cualquier
-                                                        dispositivo
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div class="flex items-start">
-                                                <div class="flex-shrink-0">
-                                                    <div
-                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-rose-600 text-white">
-                                                        <i class="fa-solid fa-calendar-check"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <h4 class="text-base font-medium text-gray-900">Sistema de Reservas
-                                                    </h4>
-                                                    <p class="mt-1 text-sm text-gray-600">Automatización de reservas y
-                                                        gestión
-                                                        de
-                                                        mesas
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div class="flex items-start">
-                                                <div class="flex-shrink-0">
-                                                    <div
-                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-rose-600 text-white">
-                                                        <i class="fa-solid fa-chart-line"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <h4 class="text-base font-medium text-gray-900">Estrategia SEO</h4>
-                                                    <p class="mt-1 text-sm text-gray-600">Optimización para mayor
-                                                        visibilidad
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div class="flex items-start">
-                                                <div class="flex-shrink-0">
-                                                    <div
-                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-rose-600 text-white">
-                                                        <i class="fa-solid fa-mobile-alt"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <h4 class="text-base font-medium text-gray-900">Responsive Design
-                                                    </h4>
-                                                    <p class="mt-1 text-sm text-gray-600">Diseño adaptable a todos los
-                                                        dispositivos
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Columna derecha: Resultados -->
-                            <div class="md:col-span-5 bg-gradient-to-br from-slate-50 to-white">
-                                <div class="p-8 md:p-12">
-                                    <h3 class="text-xl font-semibold text-gray-900 mb-8">Impacto en el Negocio</h3>
-
-                                    <!-- Métricas principales -->
-                                    <div class="space-y-6 mb-10">
-                                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                                            <div class="flex items-center justify-between">
-                                                <div>
-                                                    <p class="text-sm font-medium text-gray-500">Consultas Mensuales</p>
-                                                    <div class="mt-1 flex items-baseline">
-                                                        <p class="text-3xl font-extrabold text-indigo-600">+75%</p>
-                                                        <p class="ml-2 text-sm font-medium text-green-600">↑ incremento
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-50 text-indigo-700">
-                                                    <i class="fa-solid fa-phone-volume"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                                            <div class="flex items-center justify-between">
-                                                <div>
-                                                    <p class="text-sm font-medium text-gray-500">Nuevos Pacientes</p>
-                                                    <div class="mt-1 flex items-baseline">
-                                                        <p class="text-3xl font-extrabold text-indigo-600">+50%</p>
-                                                        <p class="ml-2 text-sm font-medium text-green-600">↑ incremento
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-50 text-indigo-700">
-                                                    <i class="fa-solid fa-user-plus"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                                            <div class="flex items-center justify-between">
-                                                <div>
-                                                    <p class="text-sm font-medium text-gray-500">Visibilidad en Google
-                                                    </p>
-                                                    <div class="mt-1 flex items-baseline">
-                                                        <p class="text-3xl font-extrabold text-indigo-600">+150%</p>
-                                                        <p class="ml-2 text-sm font-medium text-green-600">↑ incremento
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-50 text-indigo-700">
-                                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Testimonial -->
-                                    <div class="relative">
-                                        <div class="absolute -top-2 -left-2 text-indigo-200 text-4xl">
-                                            <i class="fa-solid fa-quote-left"></i>
-                                        </div>
-                                        <div class="relative pl-6 pt-4">
-                                            <p class="text-gray-700 italic">La transformación digital de nuestro
-                                                restaurante ha
-                                                sido
-                                                excepcional. Ahora podemos gestionar reservas y pedidos en línea sin
-                                                complicaciones.</p>
-                                            <div class="mt-4 flex items-center">
-                                                <div
-                                                    class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-200 flex items-center justify-center text-indigo-600">
-                                                    <img src="./img/lucas.webp"
-                                                        alt="Imagen de Eigen, propietario de Sakura"
-                                                        class="h-10 w-10 rounded-full object-cover">
-                                                </div>
-                                                <div class="ml-3">
-                                                    <p class="text-sm font-medium text-gray-900">Alex H.</p>
-                                                    <p class="text-xs text-gray-500">Propietario, LlarUnica Inmobiliaria
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Caso 3: Booth APP -->
-                <div class="w-full flex-shrink-0">
-                    <div class="max-w-7xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
-                        <div class="relative">
-                            <div class="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-500 opacity-90">
-                            </div>
-                            <div class="relative z-10 px-8 py-12 md:py-16">
-                                <div class="flex flex-col md:flex-row items-center justify-between">
-                                    <div>
-                                        <h2 class="text-3xl md:text-4xl font-bold text-white">Booth APP</h2>
-                                        <p class="mt-2 text-green-100 text-lg max-w-2xl">Desarrollo de aplicación móvil
-                                            multiplataforma</p>
-                                    </div>
-                                    <a href="#"
-                                        class="mt-4 md:mt-0 inline-flex items-center px-5 py-3 bg-white text-green-600 rounded-full font-medium shadow-md hover:shadow-lg transition-all duration-300">
-                                        <i class="fa-solid fa-external-link mr-2"></i>
-                                        Ver Proyecto
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Contenido principal -->
-                        <div class="grid grid-cols-1 md:grid-cols-12 gap-0">
-                            <!-- Columna izquierda: Antes/Después -->
-                            <div class="md:col-span-7 bg-gray-50">
-                                <div class="p-8 md:p-12">
-                                    <div class="flex mb-8">
-                                        <button
-                                            class="before-btn px-6 py-3 border-b-2 border-indigo-600 text-indigo-600 font-medium mr-6">ANTES</button>
-                                        <button
-                                            class="after-btn px-6 py-3 border-b-2 border-transparent text-gray-500 font-medium hover:text-indigo-600 transition-all">DESPUÉS</button>
-                                    </div>
-
-                                    <!-- Contenedor de imágenes antes/después -->
-                                    <div class="relative bg-white rounded-lg shadow-md overflow-hidden">
-                                        <!-- Contenido ANTES -->
-                                        <div class="before-content p-4 md:p-6 transition-opacity duration-500">
-                                            <div class="mb-4">
-                                                <span
-                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                                    ANTES - Sin presencia digital
-                                                </span>
-                                            </div>
-                                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                                <div class="space-y-4">
-                                                    <div class="flex items-start space-x-3">
-                                                        <div
-                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
-                                                            <i class="fa-solid fa-xmark text-red-600"></i>
-                                                        </div>
-                                                        <p class="text-gray-700 text-sm md:text-base">Sin página web
-                                                            profesional</p>
-                                                    </div>
-                                                    <div class="flex items-start space-x-3">
-                                                        <div
-                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
-                                                            <i class="fa-solid fa-xmark text-red-600"></i>
-                                                        </div>
-                                                        <p class="text-gray-700 text-sm md:text-base">Cero visibilidad
-                                                            en
-                                                            Google</p>
-                                                    </div>
-                                                    <div class="flex items-start space-x-3">
-                                                        <div
-                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
-                                                            <i class="fa-solid fa-xmark text-red-600"></i>
-                                                        </div>
-                                                        <p class="text-gray-700 text-sm md:text-base">Sistema de citas
-                                                            telefónico
-                                                            únicamente</p>
-                                                    </div>
-                                                    <div class="flex items-start space-x-3">
-                                                        <div
-                                                            class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-1">
-                                                            <i class="fa-solid fa-xmark text-red-600"></i>
-                                                        </div>
-                                                        <p class="text-gray-700 text-sm md:text-base">Pérdida de
-                                                            pacientes
-                                                            potenciales
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center min-h-48">
-                                                    <div class="text-center">
-                                                        <i
-                                                            class="fa-solid fa-ban text-4xl md:text-6xl text-gray-300 mb-4"></i>
-                                                        <p class="text-gray-500 font-medium">Sin presencia online</p>
-                                                        <p class="text-sm text-gray-400">0 búsquedas orgánicas</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Contenido DESPUÉS -->
-                                        <div
-                                            class="after-content p-4 md:p-6 opacity-0 transition-opacity duration-500 absolute inset-0">
-                                            <div class="mb-4">
-                                                <span
-                                                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                    DESPUÉS - Presencia digital completa
-                                                </span>
-                                            </div>
-                                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                                <div class="space-y-4">
-                                                    <div
-                                                        class="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg overflow-hidden">
-                                                        <img src="./img/metricasbooth.png" alt="Nueva web profesional"
-                                                            class="w-full h-full object-cover">
-                                                    </div>
-                                                    <div class="grid grid-cols-2 gap-3">
-                                                        <div class="bg-green-50 p-3 rounded-lg text-center">
-                                                            <p class="text-xl md:text-2xl font-bold text-green-600">24/7
-                                                            </p>
-                                                            <p class="text-xs text-green-700">Reservas Online</p>
-                                                        </div>
-                                                        <div class="bg-blue-50 p-3 rounded-lg text-center">
-                                                            <p class="text-xl md:text-2xl font-bold text-blue-600">95%
-                                                            </p>
-                                                            <p class="text-xs text-blue-700">Velocidad Web</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="space-y-4">
-                                                    <!-- Métricas de Search Console simuladas -->
-                                                    <div class="bg-gray-50 rounded-lg p-4">
-                                                        <h4 class="text-sm font-medium text-gray-700 mb-3">Métricas de
-                                                            Google
-                                                            Search
-                                                            Console</h4>
-                                                        <div class="space-y-3">
-                                                            <div class="flex justify-between items-center">
-                                                                <span class="text-xs text-gray-600">Impresiones
-                                                                    totales</span>
-                                                                <span
-                                                                    class="text-sm font-bold text-indigo-600">+1,250%</span>
-                                                            </div>
-                                                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                                                <div class="bg-indigo-600 h-2 rounded-full"
-                                                                    style="width: 85%"></div>
-                                                            </div>
-                                                            <div class="flex justify-between items-center">
-                                                                <span class="text-xs text-gray-600">Clics
-                                                                    orgánicos</span>
-                                                                <span
-                                                                    class="text-sm font-bold text-green-600">+890%</span>
-                                                            </div>
-                                                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                                                <div class="bg-green-600 h-2 rounded-full"
-                                                                    style="width: 75%"></div>
-                                                            </div>
-                                                            <div class="flex justify-between items-center">
-                                                                <span class="text-xs text-gray-600">CTR promedio</span>
-                                                                <span
-                                                                    class="text-sm font-bold text-blue-600">12.5%</span>
-                                                            </div>
-                                                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                                                <div class="bg-blue-600 h-2 rounded-full"
-                                                                    style="width: 60%"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg p-4">
-                                                        <div class="text-center">
-                                                            <p class="text-xl md:text-2xl font-bold text-indigo-600">
-                                                                15-20</p>
-                                                            <p class="text-sm text-indigo-700">Nuevas consultas por
-                                                                semana
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <a href="https://www.fitpro.com" target="_blank" class="block group">
-                                        <div
-                                            class="bg-gradient-to-br from-white to-gray-50 rounded-xl p-5 border border-gray-100 shadow-sm transition-transform group-hover:scale-105">
-                                            <img src="./img/booth.webp" alt="" class="rounded-lg mb-4">
-                                            <div class="text-center">
-                                                <button
-                                                    class="bg-green-600 text-white px-4 py-2 rounded-lg shadow hover:bg-emerald-400 transition">
-                                                    Visitar Web
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </a>
-
-
-                                    <!-- Características clave -->
-                                    <div class="mt-10">
-                                        <h3 class="text-xl font-semibold text-gray-900 mb-6">Transformación Realizada
-                                        </h3>
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <div class="flex items-start">
-                                                <div class="flex-shrink-0">
-                                                    <div
-                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-green-600 text-white">
-                                                        <i class="fa-solid fa-mobile-alt"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <h4 class="text-base font-medium text-gray-900">Desarrollo de APP
-                                                    </h4>
-                                                    <p class="mt-1 text-sm text-gray-600">Aplicación móvil
-                                                        personalizada
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div class="flex items-start">
-                                                <div class="flex-shrink-0">
-                                                    <div
-                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-green-600 text-white">
-                                                        <i class="fa-solid fa-code-branch"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <h4 class="text-base font-medium text-gray-900">Integración API
-                                                    </h4>
-                                                    <p class="mt-1 text-sm text-gray-600">Conexiones seguras y
-                                                        eficientes
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div class="flex items-start">
-                                                <div class="flex-shrink-0">
-                                                    <div
-                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-green-600 text-white">
-                                                        <i class="fa-solid fa-chart-line"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <h4 class="text-base font-medium text-gray-900">Estrategia SEO</h4>
-                                                    <p class="mt-1 text-sm text-gray-600">Optimización para mayor
-                                                        visibilidad
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div class="flex items-start">
-                                                <div class="flex-shrink-0">
-                                                    <div
-                                                        class="flex items-center justify-center w-10 h-10 rounded-md bg-green-600 text-white">
-                                                        <i class="fa-solid fa-desktop"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="ml-4">
-                                                    <h4 class="text-base font-medium text-gray-900">Soporte y
-                                                        Mantenimiento
-                                                    </h4>
-                                                    <p class="mt-1 text-sm text-gray-600">Actualizaciones y soporte
-                                                        continuo
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Columna derecha: Resultados -->
-                            <div class="md:col-span-5 bg-gradient-to-br from-slate-50 to-white">
-                                <div class="p-8 md:p-12">
-                                    <h3 class="text-xl font-semibold text-gray-900 mb-8">Impacto en el Negocio</h3>
-
-                                    <!-- Métricas principales -->
-                                    <div class="space-y-6 mb-10">
-                                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                                            <div class="flex items-center justify-between">
-                                                <div>
-                                                    <p class="text-sm font-medium text-gray-500">Consultas Mensuales</p>
-                                                    <div class="mt-1 flex items-baseline">
-                                                        <p class="text-3xl font-extrabold text-indigo-600">+80%</p>
-                                                        <p class="ml-2 text-sm font-medium text-green-600">↑ incremento
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-50 text-indigo-700">
-                                                    <i class="fa-solid fa-phone-volume"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                                            <div class="flex items-center justify-between">
-                                                <div>
-                                                    <p class="text-sm font-medium text-gray-500">Nuevos Pacientes</p>
-                                                    <div class="mt-1 flex items-baseline">
-                                                        <p class="text-3xl font-extrabold text-indigo-600">+60%</p>
-                                                        <p class="ml-2 text-sm font-medium text-green-600">↑ incremento
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-50 text-indigo-700">
-                                                    <i class="fa-solid fa-user-plus"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                                            <div class="flex items-center justify-between">
-                                                <div>
-                                                    <p class="text-sm font-medium text-gray-500">Visibilidad en Google
-                                                    </p>
-                                                    <div class="mt-1 flex items-baseline">
-                                                        <p class="text-3xl font-extrabold text-indigo-600">+180%</p>
-                                                        <p class="ml-2 text-sm font-medium text-green-600">↑ incremento
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-50 text-indigo-700">
-                                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Testimonial -->
-                                    <div class="relative">
-                                        <div class="absolute -top-2 -left-2 text-indigo-200 text-4xl">
-                                            <i class="fa-solid fa-quote-left"></i>
-                                        </div>
-                                        <div class="relative pl-6 pt-4">
-                                            <p class="text-gray-700 italic">Gracias a la transformación digital, hemos
-                                                optimizado
-                                                nuestros procesos y aumentado significativamente nuestra base de
-                                                clientes.</p>
-                                            <div class="mt-4 flex items-center">
-                                                <div
-                                                    class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-200 flex items-center justify-center text-indigo-600">
-                                                    <img src="./img/booth.webp" alt="Imagen de Juan, gerente de FitPro"
-                                                        class="h-10 w-10 rounded-full object-cover">
-                                                </div>
-                                                <div class="ml-3">
-                                                    <p class="text-sm font-medium text-gray-900">Booth Company.H.S</p>
-                                                    <p class="text-xs text-gray-500">CEO, Booth - APP</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Controles del slider (reposicionados) -->
-        <div
-            class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex items-center gap-4 bg-white/90 px-6 py-3 rounded-full shadow-lg">
-            <button id="prev" class="p-2 rounded-full bg-gray-100 hover:bg-indigo-100 transition-all group">
-                <i class="fas fa-chevron-left text-gray-600 group-hover:text-indigo-600"></i>
-            </button>
-
-            <!-- Indicadores -->
-            <div class="flex items-center space-x-4">
-                <button class="indicator-btn group" data-index="0">
-                    <div
-                        class="w-3 h-3 rounded-full bg-indigo-200 group-hover:bg-indigo-400 transition-all indicator active">
-                    </div>
-                    <span
-                        class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-white py-1 px-2 rounded text-xs text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Clínica
-                        Dental</span>
-                </button>
-                <button class="indicator-btn group" data-index="1">
-                    <div class="w-3 h-3 rounded-full bg-indigo-200 group-hover:bg-indigo-400 transition-all indicator">
-                    </div>
-                    <span
-                        class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-white py-1 px-2 rounded text-xs text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">LlarÚnica</span>
-                </button>
-                <button class="indicator-btn group" data-index="2">
-                    <div class="w-3 h-3 rounded-full bg-indigo-200 group-hover:bg-indigo-400 transition-all indicator">
-                    </div>
-                    <span
-                        class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-white py-1 px-2 rounded text-xs text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Booth
-                        APP</span>
-                </button>
-            </div>
-
-            <button id="next" class="p-2 rounded-full bg-gray-100 hover:bg-indigo-100 transition-all group">
-                <i class="fas fa-chevron-right text-gray-600 group-hover:text-indigo-600"></i>
-            </button>
-        </div>
-
-        <!-- Eliminar los controles laterales antiguos -->
-
-        <!-- Indicador de scroll horizontal -->
-        <div class="absolute bottom-28 right-8 animate-bounce">
-            <div class="bg-white/90 px-3 py-2 rounded-full shadow-lg flex items-center space-x-2">
-                <i class="fas fa-arrows-left-right text-indigo-600"></i>
-                <span class="text-sm text-gray-600">Desliza para ver más casos</span>
-            </div>
+    <!-- Marquee -->
+    <div class="marquee-section">
+        <div class="marquee">
+            <span>3D WEB DEVELOPMENT</span>
+            <span>•</span>
+            <span>AI INTEGRATION</span>
+            <span>•</span>
+            <span>LLM PROGRAMMING</span>
+            <span>•</span>
+            <span>IMMERSIVE EXPERIENCES</span>
+            <span>•</span>
+            <span>3D WEB DEVELOPMENT</span>
+            <span>•</span>
+            <span>AI INTEGRATION</span>
+            <span>•</span>
+            <span>LLM PROGRAMMING</span>
+            <span>•</span>
+            <span>IMMERSIVE EXPERIENCES</span>
+            <span>•</span>
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title">What We Do</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">🌐</span>
+                <h3>3D Web Experiences</h3>
+                <p>Cutting-edge WebGL, Three.js, and Spline implementations that transform static websites into immersive digital environments.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🤖</span>
+                <h3>LLM Integration</h3>
+                <p>Custom AI solutions powered by GPT-4, Claude, and proprietary models to enhance user experiences and automate workflows.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">⚡</span>
+                <h3>Real-time Applications</h3>
+                <p>High-performance web applications with WebSockets, real-time data streaming, and interactive 3D interfaces.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🎨</span>
+                <h3>Creative Development</h3>
+                <p>Award-winning digital experiences that merge artistic vision with technical excellence, built for global brands.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🚀</span>
+                <h3>Performance Optimization</h3>
+                <p>Blazing-fast load times, smooth 60fps animations, and optimized 3D rendering for seamless user experiences.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">💎</span>
+                <h3>Premium Support</h3>
+                <p>White-glove service across NYC and Barcelona time zones with dedicated technical support and rapid response times.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="expertise">
+        <h2 class="section-title">Our Expertise</h2>
+        <div class="expertise-grid">
+            <div class="expertise-item">
+                <h3>NYC Roots</h3>
+                <p>Born from the fast-paced innovation of New York's tech scene, we've developed 3D web experiences for Fortune 500 companies, startups, and creative agencies that demand excellence.</p>
+            </div>
+            <div class="expertise-item">
+                <h3>Barcelona Vision</h3>
+                <p>Infused with Mediterranean creativity and European design sensibility, we bring a unique cultural perspective that bridges American ambition with European artistry.</p>
+            </div>
+            <div class="expertise-item">
+                <h3>AI-First Approach</h3>
+                <p>Deep expertise in LLM programming, prompt engineering, and AI model integration. We build intelligent systems that understand context and deliver meaningful interactions.</p>
+            </div>
+            <div class="expertise-item">
+                <h3>3D Mastery</h3>
+                <p>From architectural visualizations to interactive product configurators, we push the boundaries of what's possible in the browser with WebGL and modern 3D frameworks.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <h2 class="section-title">Featured Work</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-overlay">
+                    <h3>NYC Real Estate</h3>
+                    <p>Interactive 3D property visualization platform</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-overlay">
+                    <h3>AI Content Studio</h3>
+                    <p>LLM-powered creative workspace with real-time collaboration</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div class="portfolio-overlay">
+                    <h3>Immersive E-commerce</h3>
+                    <p>3D product configurator with AR integration</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>NODO</h3>
+                <p>Bridging NYC innovation with Barcelona creativity. We build the future of web experiences with 3D technology and artificial intelligence.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <a href="#">3D Development</a>
+                <a href="#">AI Integration</a>
+                <a href="#">Creative Dev</a>
+                <a href="#">Consulting</a>
+            </div>
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Twitter</a>
+                <a href="#">Email</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Nodo. Crafted between NYC & Barcelona.</p>
+        </div>
+    </footer>
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            function setupBeforeAfter() {
-                const cases = document.querySelectorAll('.md\\:col-span-7');
+        gsap.registerPlugin(ScrollTrigger);
 
-                cases.forEach(caseElement => {
-                    const beforeBtn = caseElement.querySelector('.before-btn');
-                    const afterBtn = caseElement.querySelector('.after-btn');
-                    const beforeContent = caseElement.querySelector('.before-content');
-                    const afterContent = caseElement.querySelector('.after-content');
-                    const container = beforeContent.parentElement;
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const follower = document.querySelector('.cursor-follower');
 
-                    function updateContainerHeight(content) {
-                        requestAnimationFrame(() => {
-                            container.style.height = `${content.scrollHeight}px`;
-                        });
-                    }
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1
+            });
+            gsap.to(follower, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.3
+            });
+        });
 
-                    function showBefore() {
-                        beforeBtn.classList.add('border-indigo-600', 'text-indigo-600');
-                        beforeBtn.classList.remove('border-transparent', 'text-gray-500');
-                        afterBtn.classList.add('border-transparent', 'text-gray-500');
-                        afterBtn.classList.remove('border-indigo-600', 'text-indigo-600');
+        // Hover effects for interactive elements
+        const interactives = document.querySelectorAll('a, button, .service-card, .portfolio-item');
+        interactives.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                gsap.to(cursor, { scale: 2, duration: 0.3 });
+                gsap.to(follower, { scale: 1.5, duration: 0.3 });
+            });
+            el.addEventListener('mouseleave', () => {
+                gsap.to(cursor, { scale: 1, duration: 0.3 });
+                gsap.to(follower, { scale: 1, duration: 0.3 });
+            });
+        });
 
-                        beforeContent.style.position = 'relative';
-                        beforeContent.classList.remove('opacity-0');
-                        beforeContent.classList.add('opacity-100');
-                        afterContent.style.position = 'absolute';
-                        afterContent.classList.remove('opacity-100');
-                        afterContent.classList.add('opacity-0');
+        // Hero Animations
+        const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
-                        updateContainerHeight(beforeContent);
-                    }
+        tl.from('.hero-label', {
+            opacity: 0,
+            y: 30,
+            duration: 1,
+            delay: 0.2
+        })
+        .from('.hero h1', {
+            opacity: 0,
+            y: 100,
+            duration: 1.2,
+            stagger: 0.1
+        }, '-=0.6')
+        .from('.hero-subtitle', {
+            opacity: 0,
+            y: 50,
+            duration: 1
+        }, '-=0.8')
+        .from('.hero-cta', {
+            opacity: 0,
+            y: 30,
+            duration: 1
+        }, '-=0.6')
+        .from('.spline-canvas', {
+            opacity: 0,
+            x: 100,
+            duration: 1.5
+        }, '-=1.2');
 
-                    function showAfter() {
-                        afterBtn.classList.add('border-indigo-600', 'text-indigo-600');
-                        afterBtn.classList.remove('border-transparent', 'text-gray-500');
-                        beforeBtn.classList.add('border-transparent', 'text-gray-500');
-                        beforeBtn.classList.remove('border-indigo-600', 'text-indigo-600');
+        // Parallax Hero
+        gsap.to('.hero-bg', {
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1
+            },
+            scale: 1.5,
+            opacity: 0
+        });
 
-                        afterContent.style.position = 'relative';
-                        afterContent.classList.remove('opacity-0');
-                        afterContent.classList.add('opacity-100');
-                        beforeContent.style.position = 'absolute';
-                        beforeContent.classList.remove('opacity-100');
-                        beforeContent.classList.add('opacity-0');
+        // Service Cards Animation
+        gsap.utils.toArray('.service-card').forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                    end: 'top 60%',
+                    scrub: 1
+                },
+                opacity: 0,
+                y: 100,
+                rotation: i % 2 === 0 ? -5 : 5,
+                scale: 0.8
+            });
+        });
 
-                        updateContainerHeight(afterContent);
-                    }
+        // Expertise Items
+        gsap.utils.toArray('.expertise-item').forEach((item, i) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 80%',
+                    end: 'top 50%',
+                    scrub: 1
+                },
+                opacity: 0,
+                x: i % 2 === 0 ? -100 : 100
+            });
+        });
 
-                    // Altura inicial con el contenido "antes"
-                    updateContainerHeight(beforeContent);
+        // Portfolio Items
+        gsap.utils.toArray('.portfolio-item').forEach((item, i) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 85%',
+                    end: 'top 50%',
+                    scrub: 1
+                },
+                opacity: 0,
+                scale: 0.8,
+                rotation: i % 2 === 0 ? 10 : -10
+            });
+        });
 
-                    // Actualizar altura en resize
-                    window.addEventListener('resize', () => {
-                        if (beforeContent.classList.contains('opacity-100')) {
-                            updateContainerHeight(beforeContent);
-                        } else {
-                            updateContainerHeight(afterContent);
-                        }
+        // Section Titles
+        gsap.utils.toArray('.section-title').forEach(title => {
+            gsap.from(title, {
+                scrollTrigger: {
+                    trigger: title,
+                    start: 'top 80%',
+                    end: 'top 60%',
+                    scrub: 1
+                },
+                opacity: 0,
+                y: 50,
+                scale: 0.9
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    gsap.to(window, {
+                        scrollTo: { y: target, offsetY: 100 },
+                        duration: 1.5,
+                        ease: 'power3.inOut'
                     });
-
-                    beforeBtn.addEventListener('click', showBefore);
-                    afterBtn.addEventListener('click', showAfter);
-                });
-            }
-
-            // Inicializar el antes/después
-            setupBeforeAfter();
-
-            // Slider functionality
-            const slidesContainer = document.getElementById('slides-container');
-            const prevButton = document.getElementById('prev');
-            const nextButton = document.getElementById('next');
-            const indicators = document.querySelectorAll('.indicator');
-            let currentSlide = 0;
-            const totalSlides = 3;
-
-            function updateSlider(index) {
-                currentSlide = index;
-                slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-                // Update indicators
-                indicators.forEach((indicator, i) => {
-                    indicator.classList.toggle('bg-white', i === currentSlide);
-                    indicator.classList.toggle('bg-white/50', i !== currentSlide);
-                });
-            }
-
-            prevButton.addEventListener('click', () => {
-                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-                updateSlider(currentSlide);
-            });
-
-            nextButton.addEventListener('click', () => {
-                currentSlide = (currentSlide + 1) % totalSlides;
-                updateSlider(currentSlide);
-            });
-
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => updateSlider(index));
-            });
-
-            // Añadir efecto de desvanecimiento al indicador de scroll después de 5 segundos
-            setTimeout(() => {
-                const scrollIndicator = document.querySelector('.animate-bounce');
-                scrollIndicator.classList.add('transition-opacity', 'duration-1000', 'opacity-0');
-                setTimeout(() => scrollIndicator.remove(), 1000);
-            }, 5000);
-
-            // Añadir interacción con el teclado
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') {
-                    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-                    updateSlider(currentSlide);
-                } else if (e.key === 'ArrowRight') {
-                    currentSlide = (currentSlide + 1) % totalSlides;
-                    updateSlider(currentSlide);
                 }
             });
         });
+
+        // Reveal footer on scroll
+        gsap.from('footer', {
+            scrollTrigger: {
+                trigger: 'footer',
+                start: 'top 90%',
+                end: 'top 60%',
+                scrub: 1
+            },
+            opacity: 0,
+            y: 100
+        });
     </script>
-
-
-    <!-- Testimonials -->
-    <section class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                    Lo que Dicen Nuestros Clientes
-                </h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Sus palabras valen más que mil promesas
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Dra. Hitachi -->
-                <div class="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl p-8 border border-purple-100">
-                    <div class="flex items-center mb-6">
-                        <div
-                            class="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                            DH
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-900">Dra. Hitachi A.</h4>
-                            <p class="text-gray-600">Fundadora, Clínica Dental Hitachi</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 italic mb-4">
-                        "Nodo no solo transformó nuestra presencia digital, nos ayudó a pensar diferente sobre nuestro
-                        negocio. Los resultados hablan por sí solos."
-                    </p>
-                    <div class="flex text-yellow-400">
-                        ⭐⭐⭐⭐⭐
-                    </div>
-                </div>
-
-                <!-- Alex de Llar Única -->
-                <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-8 border border-green-100">
-                    <div class="flex items-center mb-6">
-                        <div
-                            class="w-12 h-12 bg-gradient-to-r from-green-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                            AL
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-900">Alex L.</h4>
-                            <p class="text-gray-600">CEO, Llar Única</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 italic mb-4">
-                        "Con Nodo logramos que nuestros servicios de reformas se posicionaran en Google y empezamos a
-                        recibir clientes de forma constante. Fue un cambio total para nosotros."
-                    </p>
-                    <div class="flex text-yellow-400">
-                        ⭐⭐⭐⭐⭐
-                    </div>
-                </div>
-
-                <!-- Luis de Impresiones Barcelona -->
-                <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-8 border border-orange-100">
-                    <div class="flex items-center mb-6">
-                        <div
-                            class="w-12 h-12 bg-gradient-to-r from-orange-600 to-red-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                            LL
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-900">Luis Lozano</h4>
-                            <p class="text-gray-600">Director, Impresiones Barcelona</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 italic mb-4">
-                        "Nodo nos ayudó a rediseñar toda nuestra estrategia digital. Ahora llegamos a muchos más
-                        clientes y nuestra web por fin convierte."
-                    </p>
-                    <div class="flex text-yellow-400">
-                        ⭐⭐⭐⭐⭐
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Results Section -->
-    <section class="py-24 bg-gray-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">
-                    Resultados que Hablan por Sí Solos
-                </h2>
-                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
-                    Números reales de transformaciones digitales exitosas
-                </p>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="text-5xl font-bold text-nodo-purple mb-2">120+</div>
-                    <div class="text-gray-300">Proyectos Completados</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-5xl font-bold text-nodo-blue mb-2">€50M+</div>
-                    <div class="text-gray-300">Facturación Generada</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-5xl font-bold text-green-400 mb-2">98%</div>
-                    <div class="text-gray-300">Clientes Satisfechos</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-5xl font-bold text-yellow-400 mb-2">24/7</div>
-                    <div class="text-gray-300">Soporte Dedicado</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-24 bg-gradient-to-br from-purple-600 to-blue-600 text-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">
-                ¿Listo para Ser el Próximo Caso de Éxito?
-            </h2>
-            <p class="text-xl mb-12 opacity-90">
-                Únete a más de 120 empresas que ya han transformado su negocio con Nodo.
-                Tu historia de éxito puede ser la siguiente.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <button
-                    class="bg-white text-nodo-purple hover:bg-gray-100 font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl">
-                    Cotizar Proyecto
-                </button>
-                <button
-                    class="border-2 border-white text-white hover:bg-white hover:text-nodo-purple font-semibold py-4 px-8 rounded-full transition-all duration-300">
-                    Agenda una Consulta
-                </button>
-            </div>
-        </div>
-    </section>
 </body>
-
 </html>
