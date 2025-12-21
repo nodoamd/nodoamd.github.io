@@ -78,19 +78,19 @@
     <style>
         #loader {
             position: relative;
-            width: 50px;
-            height: 50px;
+            width: 78px;
+            height: 78px;
         }
 
         #box {
-            width: 50px;
-            height: 50px;
+            width: 78px;
+            height: 78px;
             background: #fff;
-            animation: animate .5s linear infinite;
+            animation: animate .7s linear infinite;
             position: absolute;
             top: 0;
             left: 0;
-            border-radius: 3px;
+            border-radius: 6px;
         }
 
         @keyframes animate {
@@ -99,16 +99,16 @@
             }
 
             25% {
-                transform: translateY(9px) rotate(22.5deg);
+                transform: translateY(12px) rotate(22.5deg);
             }
 
             50% {
-                transform: translateY(18px) scale(1, .9) rotate(45deg);
-                border-bottom-right-radius: 40px;
+                transform: translateY(24px) scale(1, .9) rotate(45deg);
+                border-bottom-right-radius: 48px;
             }
 
             75% {
-                transform: translateY(9px) rotate(67.5deg);
+                transform: translateY(12px) rotate(67.5deg);
             }
 
             100% {
@@ -117,20 +117,22 @@
         }
 
         #shadow {
-            width: 50px;
-            height: 5px;
+            width: 78px;
+            height: 8px;
             background: #000;
-            opacity: 0.1;
+            opacity: 0.12;
             position: absolute;
-            top: 59px;
+            top: 90px;
             left: 0;
             border-radius: 50%;
-            animation: shadow .5s linear infinite;
+            animation: shadow .7s linear infinite;
+            filter: blur(1px);
         }
 
         @keyframes shadow {
             50% {
-                transform: scale(1.2, 1);
+                transform: scale(1.25, 1);
+                opacity: 0.18;
             }
         }
     </style>
@@ -176,8 +178,8 @@
         </nav>
         <div class="buttons">
             <a href="https://wa.me/+34622494800?text=Me%20interesan%20los%20Servicios%20Web%20de%20Nodo" target="_blank"
-                class="btn btn-secondary">Contacto</a>
-            <a href="./consulta.html" class="btn btn-primary">Cotizar Proyecto</a>
+                class="btn btn-primary">Contacto</a>
+            <a href="#before-after" class="btn btn-secondary">Ver proyectos</a>
         </div>
     </header>
 
@@ -247,14 +249,13 @@
                 Nodo.</span>
         </div>
 
-        <h1><i style="font-weight: bold; font-size: larger;" class="highlihgto"><span class="tuhaces"> Tu</i> dominas tu
-            negocio, <br></span>nosotros diseñamos <span class="highlight"> tu presencia digital.</span></h1>
-        <p class="parallax-element">
-            Transformamos tu marca <span style="color: #471fa5;"><b>con las últimas tendencias.</b></span>
-
-            Nodo nace del deseo de crear proyectos que perduren en el tiempo <span style="color: #471fa5;"><b>y en la
-                    memoria,</b></span>
-            empleando el diseño y el esfuerzo de <span style="color: #471fa5;"><b>todos.</b></span>
+        <h1 class="parallax-element">
+            <span class="tuhaces">Historia, cultura y tecnología.</span><br>
+            <span class="highlight">Desde Barcelona a Nueva York</span> diseñamos experiencias digitales premium.
+        </h1>
+        <p class="parallax-element hero-lead">
+            Estrategia, copy y desarrollo full-stack en un solo squad. Narrativa de marca, UX/UI y automatización con IA
+            para lanzar sitios rápidos, medibles y listos para escalar.
         </p>
         <div class="hero-buttons">
             <a href="#nodo-services-section" class="btn btn-primary contacto parallax-element">Planificar
@@ -262,9 +263,8 @@
             <a href="#before-after" class="btn btn-secondary parallax-element">Ver
                 proyectos</a>
         </div>
-        <p
-            style="font-weight: 200; font-size: 0.5rem; animation: ease-in 1s; margin-top: 5px; animation: countUp 3s ease-out forwards;">
-            Sesión breve para entender tus objetivos y definir próximos pasos.
+        <p class="hero-microcopy parallax-element">
+            Sesión breve para mapear objetivos, priorizar quick wins y alinear el roadmap.
         </p>
 
         <div class="users-count parallax-element">
