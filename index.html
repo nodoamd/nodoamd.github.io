@@ -67,6 +67,97 @@
 
 
 <body>
+    <!-- Loader Fullpage -->
+    <div id="loader-nodo"
+        style="position:fixed;z-index:99999;inset:0;display:flex;align-items:center;justify-content:center;background:#4e53be;">
+        <div id="loader">
+            <div id="shadow"></div>
+            <div id="box"></div>
+        </div>
+    </div>
+    <style>
+        #loader {
+            position: relative;
+            width: 50px;
+            height: 50px;
+        }
+
+        #box {
+            width: 50px;
+            height: 50px;
+            background: #fff;
+            animation: animate .5s linear infinite;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 3px;
+        }
+
+        @keyframes animate {
+            17% {
+                border-bottom-right-radius: 3px;
+            }
+
+            25% {
+                transform: translateY(9px) rotate(22.5deg);
+            }
+
+            50% {
+                transform: translateY(18px) scale(1, .9) rotate(45deg);
+                border-bottom-right-radius: 40px;
+            }
+
+            75% {
+                transform: translateY(9px) rotate(67.5deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(90deg);
+            }
+        }
+
+        #shadow {
+            width: 50px;
+            height: 5px;
+            background: #000;
+            opacity: 0.1;
+            position: absolute;
+            top: 59px;
+            left: 0;
+            border-radius: 50%;
+            animation: shadow .5s linear infinite;
+        }
+
+        @keyframes shadow {
+            50% {
+                transform: scale(1.2, 1);
+            }
+        }
+    </style>
+    <script>
+        // Oculta el loader después de 5 segundos una vez que la página termina de cargar
+        (function () {
+            let loaderHidden = false;
+            const hideLoader = () => {
+                if (loaderHidden) return;
+                loaderHidden = true;
+                const loader = document.getElementById('loader-nodo');
+                if (loader) loader.style.display = 'none';
+            };
+
+            document.addEventListener('DOMContentLoaded', () => {
+                setTimeout(hideLoader, 10500);
+            });
+
+            // Si load llega antes, ocultamos en el acto
+            window.addEventListener('load', () => {
+                hideLoader();
+            });
+
+            // Fallback duro por si algo bloquea: 4s desde inicio
+            setTimeout(hideLoader, 4000);
+        })();
+    </script>
     <header class="header">
         <a href="https://nodoamd.github.io/" class="flex items-center group">
             <span class="mr-2 relative">
@@ -165,14 +256,15 @@
                     memoria,</b></span>
             empleando el diseño y el esfuerzo de <span style="color: #471fa5;"><b>todos.</b></span>
         </p>
-        <a href="#nodo-services-section" class="btn btn-primary contacto parallax-element"
-            style="padding: 5.0;">Impulsar
-            mi negocio</a>
+        <div class="hero-buttons">
+            <a href="#nodo-services-section" class="btn btn-primary contacto parallax-element">Planificar
+                mi proyecto</a>
+            <a href="#before-after" class="btn btn-secondary parallax-element">Ver
+                proyectos</a>
+        </div>
         <p
             style="font-weight: 200; font-size: 0.5rem; animation: ease-in 1s; margin-top: 5px; animation: countUp 3s ease-out forwards;">
-            Consulta Gratuita -
-            Resultados
-            Garantizados
+            Sesión breve para entender tus objetivos y definir próximos pasos.
         </p>
 
         <div class="users-count parallax-element">
@@ -1390,6 +1482,10 @@
                             class="block w-full py-3 px-4 rounded-md shadow bg-orange-600 text-white font-medium hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
                             Quiero impulsar mi negocio
                         </button>
+                        <a href="#before-after"
+                            class="block w-full mt-2 py-3 px-4 rounded-md border border-orange-200 text-orange-700 font-medium text-center hover:bg-orange-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-200">
+                            Ver proyectos
+                        </a>
                         <p class="mt-2 text-xs text-center text-gray-500">SEO Web + Marketing en tiempo récord</p>
                     </div>
                 </div>
@@ -1492,6 +1588,10 @@
                             class="block w-full py-3 px-4 rounded-md shadow bg-white text-indigo-600 font-medium hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Quiero impulsar mi negocio
                         </button>
+                        <a href="#before-after"
+                            class="block w-full mt-2 py-3 px-4 rounded-md border border-white text-white font-medium text-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300">
+                            Ver proyectos
+                        </a>
                         <p class="mt-2 text-xs text-center text-indigo-200">Incluye soporte prioritario</p>
                     </div>
                 </div>
@@ -2303,6 +2403,7 @@
                 document.querySelector('.hero h1'),
                 document.querySelector('.hero p'),
                 document.querySelector('.btn.contacto'),
+                document.querySelector('.hero .btn.btn-secondary'),
                 document.querySelector('.users-count')
             ].filter(Boolean);
 
@@ -2311,6 +2412,7 @@
             const splineShell = document.getElementById('spline-shell');
             const splineViewer = document.getElementById('hero-spline');
             let heroReady = false;
+            let heroIntroPlayed = false;
 
             const handleScroll = () => {
                 if (!heroReady) return;
@@ -2330,6 +2432,22 @@
                 heroReady = true;
                 document.body.classList.add('hero-ready');
                 splineShell?.classList.remove('loading');
+                if (!heroIntroPlayed && window.gsap) {
+                    heroIntroPlayed = true;
+                    gsap.fromTo(elements,
+                        { opacity: 0, y: 32 },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.9,
+                            stagger: 0.08,
+                            ease: 'power3.out',
+                            onComplete: () => elements.forEach(el => el.classList.add('visible'))
+                        }
+                    );
+                } else {
+                    elements.forEach(el => el.classList.add('visible'));
+                }
                 handleScroll();
             };
 
