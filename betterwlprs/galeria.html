@@ -1,937 +1,1702 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="/logobetterwlprs.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery | BetterWLPRS</title>
+    <title>BetterWLPRS - Premium 4K Wallpapers</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'primary': '#6366f1',
+                    'primary-dark': '#4f46e5',
+                    'accent': '#a787ff',
+                    'dark': '#0a0a0f',
+                    'dark-light': '#16161f'
+                },
+                fontFamily: {
+                    'sans': ['Inter', 'system-ui', 'sans-serif']
+                }
+            }
+        }
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    :root {
+        --primary: #6366f1;
+        --accent: #a787ff;
+        --dark: #0a0a0f;
+        --dark-light: #16161f;
+        --text: #ffffff;
+        --text-secondary: #a1a1aa;
+        --border: rgba(255, 255, 255, 0.06);
+    }
 
-        * {
-            font-family: 'Inter', sans-serif;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        body {
-            background: #0a0a0f;
-            color: #fff;
-        }
+    body {
+        background: var(--dark);
+        color: var(--text);
+        font-family: 'Inter', sans-serif;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+    }
 
-        .wallpaper-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background: #1a1a24;
-        }
+    /* TYPOGRAPHY - ULTRA BOLD */
+    h1, h2, h3, h4 {
+        font-weight: 900;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+    }
 
-        .wallpaper-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
-        }
+    .hero-title {
+        font-size: clamp(2.5rem, 8vw, 6rem);
+        font-weight: 900;
+        background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
 
-        .wallpaper-card img {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
+    .section-title {
+        font-size: clamp(1.5rem, 4vw, 2.5rem);
+        font-weight: 900;
+        margin-bottom: 1rem;
+    }
 
-        .wallpaper-card:hover img {
-            transform: scale(1.05);
-        }
+    /* NAVIGATION - MINIMAL & CLEAN */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 20px 0;
+        transition: all 0.3s ease;
+    }
 
-        .tag {
-            background: rgba(139, 92, 246, 0.2);
-            border: 1px solid rgba(139, 92, 246, 0.4);
-            color: #a78bfa;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 500;
-        }
+    .navbar.scrolled {
+        background: rgba(10, 10, 15, 0.85);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        padding: 12px 0;
+    }
 
-        .category-btn {
-            width: 100%;
-            text-align: left;
-            padding: 12px 16px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            color: #9ca3af;
-            font-weight: 500;
-        }
+    .nav-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+    }
 
-        .category-btn:hover {
-            background: rgba(139, 92, 246, 0.1);
-            color: #a78bfa;
-        }
+    .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 900;
+        font-size: 22px;
+        letter-spacing: -0.02em;
+        background: linear-gradient(135deg, var(--accent), #c4a5ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        position: relative;
+    }
 
-        .category-btn.active {
-            background: rgba(139, 92, 246, 0.2);
-            color: #a78bfa;
-            border-left: 3px solid #8b5cf6;
-        }
+    .nav-brand::before {
+        content: '';
+        position: absolute;
+        left: -8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 24px;
+        background: linear-gradient(135deg, var(--accent), #c4a5ff);
+        border-radius: 2px;
+    }
 
-        .modal {
+    .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        flex: 1;
+        justify-content: center;
+    }
+
+    .nav-item {
+        position: relative;
+        padding: 10px 18px;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 15px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        color: var(--text-secondary);
+        text-decoration: none;
+    }
+
+    .nav-item:hover {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.05);
+        transform: translateY(-1px);
+    }
+
+    .nav-item.active {
+        color: var(--accent);
+        background: rgba(167, 135, 255, 0.1);
+    }
+
+    .nav-item::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 50%;
+        transform: translateX(-50%) scaleX(0);
+        width: 20px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent), #c4a5ff);
+        border-radius: 2px;
+        transition: transform 0.3s ease;
+    }
+
+    .nav-item.active::after,
+    .nav-item:hover::after {
+        transform: translateX(-50%) scaleX(1);
+    }
+
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .icon-btn {
+        width: 36px;
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text-secondary);
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .icon-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--accent);
+        color: var(--text);
+        transform: translateY(-2px);
+    }
+
+    /* Mobile Menu */
+    .nav-mobile {
+        display: none;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .hamburger {
+        width: 28px;
+        height: 28px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 4px;
+        transition: all 0.3s ease;
+    }
+
+    .hamburger span {
+        width: 100%;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+        transform-origin: center;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translateY(6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translateY(-6px);
+    }
+
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(10, 10, 15, 0.98);
+        backdrop-filter: blur(20px);
+        z-index: 999;
+        display: none;
+        padding: 80px 24px 24px;
+        overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+        display: block;
+    }
+
+    .mobile-menu-content {
+        max-width: 500px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .mobile-menu .nav-item {
+        width: 100%;
+        text-align: left;
+        padding: 16px 20px;
+        font-size: 18px;
+        border-radius: 12px;
+    }
+
+    .mobile-nav-actions {
+        margin-top: 24px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+    }
+
+    .mobile-toggles {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .mobile-toggles .icon-btn {
+        flex: 1;
+        height: 48px;
+    }
+
+    .mobile-social {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .mobile-social a {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+        height: auto;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .nav-link {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.875rem;
+        transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+        color: var(--text);
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, var(--accent), var(--primary));
+        color: var(--text);
+        padding: 0.75rem 2rem;
+        border-radius: 100px;
+        font-weight: 800;
+        font-size: 0.875rem;
+        text-decoration: none;
+        transition: transform 0.2s, box-shadow 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 40px rgba(167, 135, 255, 0.3);
+    }
+
+    .btn-primary i {
+        font-size: 1rem;
+    }
+
+    /* HERO SECTION */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8rem 2rem 4rem;
+        text-align: center;
+        position: relative;
+    }
+
+    .hero-content {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(167, 135, 255, 0.1);
+        border: 1px solid rgba(167, 135, 255, 0.2);
+        padding: 0.5rem 1rem;
+        border-radius: 100px;
+        font-weight: 700;
+        font-size: 0.75rem;
+        color: var(--accent);
+        margin-bottom: 2rem;
+    }
+
+    .hero-badge i {
+        font-size: 0.875rem;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        color: var(--text-secondary);
+        margin: 2rem 0;
+        font-weight: 500;
+        line-height: 1.6;
+    }
+
+    .hero-stats {
+        display: flex;
+        gap: 3rem;
+        justify-content: center;
+        margin: 3rem 0;
+    }
+
+    .stat {
+        text-align: center;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, var(--accent), var(--primary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        font-weight: 600;
+        margin-top: 0.5rem;
+    }
+
+    .hero-cta {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 3rem;
+        flex-wrap: wrap;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-cta .btn-primary {
+        flex: 1;
+        min-width: 200px;
+        padding: 1rem 2rem;
+        font-size: 0.9rem;
+        justify-content: center;
+    }
+
+    /* SEARCH BAR - PREMIUM */
+    .search-container {
+        max-width: 600px;
+        margin: 3rem auto;
+        position: relative;
+    }
+
+    .search-input {
+        width: 100%;
+        background: var(--dark-light);
+        border: 1px solid var(--border);
+        padding: 1.25rem 3.5rem 1.25rem 1.5rem;
+        border-radius: 100px;
+        color: var(--text);
+        font-size: 1rem;
+        font-weight: 600;
+        transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+        outline: none;
+        border-color: var(--accent);
+    }
+
+    .search-icon {
+        position: absolute;
+        right: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-secondary);
+    }
+
+    /* FILTERS - MINIMAL */
+    .filters {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 2rem 0;
+    }
+
+    .filter-btn {
+        background: var(--dark-light);
+        border: 1px solid var(--border);
+        color: var(--text-secondary);
+        padding: 0.75rem 1.5rem;
+        border-radius: 100px;
+        font-weight: 700;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+        border-color: var(--accent);
+        color: var(--text);
+    }
+
+    .filter-btn.active {
+        background: linear-gradient(135deg, var(--accent), var(--primary));
+        border-color: transparent;
+        color: var(--text);
+    }
+
+    /* GALLERY - MASONRY */
+    .gallery {
+        max-width: 1400px;
+        margin: 4rem auto;
+        padding: 0 2rem;
+    }
+
+    .gallery-grid {
+        columns: 1;
+        column-gap: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+        .gallery-grid { columns: 2; }
+    }
+
+    @media (min-width: 1024px) {
+        .gallery-grid { columns: 3; }
+    }
+
+    @media (min-width: 1280px) {
+        .gallery-grid { columns: 4; }
+    }
+
+    .gallery-item {
+        break-inside: avoid;
+        margin-bottom: 1.5rem;
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        background: var(--dark-light);
+        border: 1px solid var(--border);
+        transition: transform 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+    }
+
+    .gallery-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        border-color: var(--accent);
+    }
+
+    .gallery-image {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+    }
+
+    .gallery-info {
+        padding: 1rem;
+        background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 15, 0.95) 100%);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transform: translateY(100%);
+        transition: transform 0.3s;
+    }
+
+    .gallery-item:hover .gallery-info {
+        transform: translateY(0);
+    }
+
+    .gallery-title {
+        font-weight: 800;
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .gallery-category {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        font-weight: 600;
+    }
+
+    .gallery-badge {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        background: rgba(10, 10, 15, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 0.5rem 0.875rem;
+        border-radius: 100px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--accent);
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+    }
+
+    .gallery-badge i {
+        font-size: 0.875rem;
+    }
+
+    /* LOADING */
+    .loading {
+        text-align: center;
+        padding: 4rem 0;
+    }
+
+    .spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid var(--border);
+        border-top-color: var(--accent);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    /* MODAL */
+    .modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 10, 15, 0.95);
+        backdrop-filter: blur(20px);
+        z-index: 2000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    .modal.active {
+        display: flex;
+    }
+
+    .modal-content {
+        max-width: 1000px;
+        width: 100%;
+        background: var(--dark-light);
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        padding: 2rem;
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .modal-title {
+        font-size: 1.5rem;
+        font-weight: 900;
+    }
+
+    .modal-close {
+        background: transparent;
+        border: none;
+        color: var(--text-secondary);
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+    .modal-close:hover {
+        color: var(--text);
+    }
+
+    .modal-image {
+        width: 100%;
+        max-height: 500px;
+        object-fit: contain;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+    }
+
+    .modal-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+    }
+
+    /* COLLECTIONS SECTION */
+    .collections-view {
+        display: none;
+    }
+
+    .collections-view.active {
+        display: block;
+    }
+
+    .collection-card {
+        background: var(--dark-light);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .collection-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-4px);
+        box-shadow: 0 20px 60px rgba(167, 135, 255, 0.2);
+    }
+
+    .collection-preview {
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .collection-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .collection-count {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(10, 10, 15, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 0.5rem 1rem;
+        border-radius: 100px;
+        font-weight: 800;
+        font-size: 0.875rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .collection-count i {
+        font-size: 1rem;
+        color: var(--accent);
+    }
+
+    .collection-info {
+        padding: 1.5rem;
+    }
+
+    .collection-title {
+        font-size: 1.25rem;
+        font-weight: 900;
+        margin-bottom: 0.5rem;
+    }
+
+    .collection-description {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+        .nav-menu {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 1000;
-            backdrop-filter: blur(10px);
         }
 
-        .modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
-            max-width: 90vw;
-            max-height: 90vh;
-            position: relative;
-            animation: modalFadeIn 0.3s ease;
-        }
-
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .close-modal {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            background: rgba(139, 92, 246, 0.2);
-            border: 1px solid rgba(139, 92, 246, 0.4);
-            color: #fff;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 24px;
-            transition: all 0.2s ease;
-        }
-
-        .close-modal:hover {
-            background: rgba(139, 92, 246, 0.4);
-        }
-
-        .scrollbar-hide::-webkit-scrollbar {
+        .nav-actions {
             display: none;
         }
 
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        /* Collection Section Styles */
-        .collection-section {
-            margin-bottom: 4rem;
-        }
-
-        .section-header {
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-        }
-
-        .section-header::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #a787ff, #6366f1, transparent);
-            width: 100%;
-        }
-
-        .section-emoji {
-            font-size: 2rem;
-            margin-right: 0.75rem;
-            display: inline-block;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #a787ff, #6366f1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin: 0;
-            display: inline;
-        }
-
-        .section-subtitle {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 0.5rem;
-            font-weight: 400;
-        }
-
-        .section-count {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-top: 0.25rem;
-        }
-
-        .sidebar-container {
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .sidebar-container.collapsed {
-            width: 60px;
-        }
-
-        .sidebar-container.collapsed aside {
-            width: 60px;
-            overflow: hidden;
-        }
-
-        .sidebar-container.collapsed .sidebar-content {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .toggle-sidebar {
-            position: absolute;
-            top: 12px;
-            right: -12px;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: rgba(139, 92, 246, 0.2);
-            border: 1px solid rgba(139, 92, 246, 0.4);
+        .nav-mobile {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-            color: #a78bfa;
-            font-size: 18px;
+        }
+        
+        .hero-stats {
+            gap: 1.5rem;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+        }
+        
+        .hero-cta {
+            flex-direction: column;
+            width: 100%;
+            padding: 0 1rem;
         }
 
-        .toggle-sidebar:hover {
-            background: rgba(139, 92, 246, 0.3);
-            transform: scale(1.1);
+        .hero-cta .btn-primary {
+            width: 100%;
+            min-width: unset;
+            padding: 1.25rem 2rem;
+            font-size: 1rem;
         }
 
-        .sidebar-content {
-            transition: opacity 0.3s ease;
+        .hero-content {
+            padding: 0 1rem;
         }
 
-        .video-placeholder {
-            background: linear-gradient(45deg, #1a1a24 25%, #252530 25%, #252530 50%, #1a1a24 50%, #1a1a24 75%, #252530 75%, #252530);
-            background-size: 40px 40px;
-            animation: loading 1.5s linear infinite;
+        .search-container {
+            padding: 0 1rem;
         }
+    }
 
-        @keyframes loading {
-            0% {
-                background-position: 0 0;
-            }
+    /* UTILITIES */
+    .hidden {
+        display: none !important;
+    }
 
-            100% {
-                background-position: 40px 40px;
-            }
+    .grid-cols-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+        .md\\:grid-cols-3 {
+            grid-template-columns: repeat(3, 1fr);
         }
+    }
 
-        .video-lazy {
-            opacity: 0;
-            transition: opacity 0.3s ease;
+    @media (min-width: 1024px) {
+        .lg\\:grid-cols-4 {
+            grid-template-columns: repeat(4, 1fr);
         }
+    }
 
-        .video-lazy.loaded {
-            opacity: 1;
+    /* FOOTER */
+    .footer {
+        background: linear-gradient(180deg, var(--dark) 0%, #0d1117 100%);
+        border-top: 1px solid var(--border);
+        margin-top: 6rem;
+    }
+
+    .footer-cta {
+        background: linear-gradient(135deg, #1a2332 0%, #0f1419 100%);
+        padding: 4rem 2rem;
+        text-align: center;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .footer-cta-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(34, 197, 94, 0.1);
+        border: 1px solid rgba(34, 197, 94, 0.3);
+        padding: 0.5rem 1rem;
+        border-radius: 100px;
+        font-weight: 700;
+        font-size: 0.75rem;
+        color: #22c55e;
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-cta-title {
+        font-size: clamp(1.75rem, 4vw, 3rem);
+        font-weight: 900;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+
+    .footer-cta-title .gradient-text {
+        background: linear-gradient(135deg, var(--accent), var(--primary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .footer-cta-description {
+        color: var(--text-secondary);
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer-cta-stats {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+    }
+
+    .footer-stat {
+        text-align: center;
+    }
+
+    .footer-stat-number {
+        font-size: 2rem;
+        font-weight: 900;
+        color: var(--text);
+        display: block;
+    }
+
+    .footer-stat-label {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        font-weight: 600;
+        margin-top: 0.25rem;
+    }
+
+    .footer-cta-features {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        font-weight: 600;
+    }
+
+    .footer-cta-features span {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .footer-cta-features i {
+        color: #22c55e;
+    }
+
+    .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3rem;
+    }
+
+    .footer-brand {
+        max-width: 280px;
+    }
+
+    .footer-brand h3 {
+        font-size: 1.5rem;
+        font-weight: 900;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, var(--accent), var(--primary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .footer-brand p {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-social {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .footer-social a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--dark-light);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        color: var(--text-secondary);
+        transition: all 0.3s;
+        text-decoration: none;
+    }
+
+    .footer-social a:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--text);
+        transform: translateY(-2px);
+    }
+
+    .footer-column h4 {
+        font-size: 0.875rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1.5rem;
+        color: var(--text);
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .footer-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+        color: var(--text);
+    }
+
+    .footer-bottom {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+        border-top: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+    }
+
+    .footer-bottom a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .footer-bottom a:hover {
+        color: var(--accent);
+    }
+
+    .footer-love {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .footer-love .heart {
+        color: #ef4444;
+        animation: heartbeat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+        0%, 100% { transform: scale(1); }
+        25% { transform: scale(1.2); }
+        50% { transform: scale(1); }
+    }
+
+    @media (max-width: 1024px) {
+        .footer-content {
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
         }
+    }
 
-        @media (max-width: 768px) {
-            .sidebar-container {
-                position: fixed;
-                left: 0;
-                top: 72px;
-                z-index: 40;
-                transform: translateX(0);
-            }
-
-            .sidebar-container.collapsed {
-                transform: translateX(-100%);
-            }
-
-            .toggle-sidebar {
-                right: -40px;
-            }
+    @media (max-width: 640px) {
+        .footer-content {
+            grid-template-columns: 1fr;
         }
+        
+        .footer-bottom {
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+        
+        .footer-cta-stats {
+            gap: 1rem;
+        }
+    }
     </style>
 </head>
-
 <body>
-    <!-- Header -->
-    <header class="border-b border-gray-800 bg-[#0a0a0f]/80 backdrop-blur-lg sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-            <a href="index.html" class="text-2xl font-bold">
-                <span class="text-white">Better</span><span class="text-purple-500">WLPRS</span>
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                BetterWLPRS
+            </div>
+            <!-- Desktop Menu -->
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="index.html#gallery" class="nav-item">Videos</a>
+                <a href="index.html#how" class="nav-item">How it works</a>
+                <a href="index.html#benefits" class="nav-item">Benefits</a>
+                <a href="galeria.html" class="nav-item active" style="color: var(--accent); font-weight: 600;">
+                    🎨 Gallery
+                </a>
+            </div>
+            <!-- Desktop Actions -->
+            <div class="nav-actions">
+                <a class="icon-btn" href="./index-es.html" aria-label="Toggle language">ES</a>
+                <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year" target="_blank" title="Gumroad" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
+                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad" style="width:18px;height:18px;filter:invert(64%) sepia(88%) saturate(1000%) hue-rotate(315deg) brightness(105%) contrast(101%);">
+                    <span style="font-weight:600;color:#ff90b3;font-size:14px;">Gumroad</span>
+                </a>
+                <a href="https://ko-fi.com/betterwlprs" target="_blank" title="Ko-fi" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
+                    <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png" alt="Ko-fi" style="width:18px;height:18px;">
+                    <span style="font-weight:600;color:#29abe0;font-size:14px;">Ko-fi</span>
+                </a>
+            </div>
+            <!-- Mobile Actions -->
+            <div class="nav-mobile">
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="index.html#gallery" class="nav-item">Videos</a>
+            <a href="index.html#how" class="nav-item">How it works</a>
+            <a href="index.html#benefits" class="nav-item">Benefits</a>
+            <a href="galeria.html" class="nav-item active">🎨 Gallery</a>
+            <a href="https://drive.google.com/drive/folders/1MuJkt_ZfpcPGAPSR5q5Q6K8aRJLgLdAE?usp=sharing" target="_blank" class="nav-item">
+                🎁 Download Starter Pack
             </a>
-            <nav class="flex items-center gap-6">
-                <a href="index.html" class="text-gray-400 hover:text-white transition">Home</a>
-                <a href="galeria.html" class="text-purple-500 font-medium">Gallery</a>
-                <a href="index.html#how" class="text-gray-400 hover:text-white transition">How it works</a>
-            </nav>
-        </div>
-    </header>
-
-    <div class="container mx-auto px-6 py-8 flex gap-8">
-        <!-- Sidebar -->
-        <div class="sidebar-container collapsed w-64 flex-shrink-0">
-            <button class="toggle-sidebar" id="toggleSidebar" title="Expand sidebar">
-                ▶
-            </button>
-            <aside class="sticky top-24 h-fit">
-                <div class="bg-[#13131a] rounded-xl p-6 border border-gray-800 sidebar-content">
-                    <!-- Search -->
-                    <div class="mb-6">
-                        <input type="text" id="searchInput" placeholder="Search wallpapers..."
-                            class="w-full bg-[#1a1a24] border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition">
-                    </div>
-
-                    <!-- Moods -->
-                    <div class="mb-6">
-                        <h3 class="text-sm font-semibold text-gray-400 uppercase mb-3">Collections</h3>
-                        <div class="space-y-1">
-                            <button class="category-btn active" data-category="all">✨ All Collections</button>
-                            <button class="category-btn" data-category="dark-moody">🌙 Dark & Moody</button>
-                            <button class="category-btn" data-category="tranquil">🌿 Tranquil Landscapes</button>
-                            <button class="category-btn" data-category="epic">� Epic Moments</button>
-                            <button class="category-btn" data-category="cyberpunk">🌆 Cyberpunk</button>
-                        </div>
-                    </div> <!-- Games -->
-                    <div>
-                        <h3 class="text-sm font-semibold text-gray-400 uppercase mb-3">Games</h3>
-                        <div class="space-y-1 max-h-96 overflow-y-auto scrollbar-hide">
-                            <button class="category-btn" data-category="death-stranding">Death Stranding</button>
-                            <button class="category-btn" data-category="arkham">Batman Arkham</button>
-                            <button class="category-btn" data-category="dishonored">Dishonored</button>
-                            <button class="category-btn" data-category="watchdogs">Watch Dogs 2</button>
-                            <button class="category-btn" data-category="spiderman">Spider-Man 2</button>
-                            <button class="category-btn" data-category="skyrim">Skyrim</button>
-                            <button class="category-btn" data-category="metro">Metro Exodus</button>
-                            <button class="category-btn" data-category="witcher">The Witcher 3</button>
-                            <button class="category-btn" data-category="madmax">Mad Max</button>
-                            <button class="category-btn" data-category="prey">Prey</button>
-                            <button class="category-btn" data-category="specops">Spec Ops: The Line</button>
-                            <button class="category-btn" data-category="mgs">MGS Delta</button>
-                            <button class="category-btn" data-category="ac-odyssey">AC Odyssey</button>
-                            <button class="category-btn" data-category="longdark">The Long Dark</button>
-                            <button class="category-btn" data-category="dyinglight">Dying Light</button>
-                            <button class="category-btn" data-category="forza">Forza Horizon</button>
-                            <button class="category-btn" data-category="uncharted">Uncharted 4</button>
-                            <button class="category-btn" data-category="fallout">Fallout 3</button>
-                            <button class="category-btn" data-category="battlefront">Star Wars BF2</button>
-                            <button class="category-btn" data-category="disco-elysium">Disco Elysium</button>
-                        </div>
-                    </div>
-            </aside>
-        </div>
-
-        <!-- Main Content -->
-        <main class="flex-1">
-            <div class="mb-12 text-center">
-                <h1 class="text-5xl font-bold mb-3"
-                    style="background: linear-gradient(135deg, #a787ff, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-                    <span id="categoryTitle">✨ All Collections</span>
-                </h1>
-                <p class="text-gray-400 text-lg">
-                    <span id="wallpaperCount">0</span> wallpapers available
-                </p>
-            </div>
-
-            <!-- Gallery Container (will hold collections) -->
-            <div id="gallery">
-                <!-- Collections will be inserted here by JavaScript -->
-            </div>
-
-            <!-- No Results -->
-            <div id="noResults" class="hidden text-center py-20">
-                <div class="text-6xl mb-4">🔍</div>
-                <h3 class="text-xl font-semibold mb-2">No wallpapers found</h3>
-                <p class="text-gray-400">Try a different search or category</p>
-            </div>
-        </main>
-    </div>
-
-    <!-- Modal -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal()">×</button>
-            <div class="bg-[#13131a] rounded-xl overflow-hidden border border-gray-800">
-                <img id="modalImage" src="" alt="" class="w-full max-h-[70vh] object-contain">
-                <div class="p-6">
-                    <h2 id="modalTitle" class="text-2xl font-bold mb-2"></h2>
-                    <p id="modalGame" class="text-gray-400 mb-4"></p>
-                    <div class="flex flex-wrap gap-2 mb-4" id="modalTags"></div>
-                    <div class="flex gap-3">
-                        <button id="downloadBtn"
-                            class="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition flex items-center justify-center gap-2">
-                            <span>⬇</span> Download
-                        </button>
-                        <button
-                            class="bg-[#1a1a24] hover:bg-[#252530] text-white font-semibold py-3 px-6 rounded-lg transition border border-gray-700"
-                            onclick="closeModal()">
-                            Close
-                        </button>
-                    </div>
+            <div class="mobile-nav-actions">
+                <div class="mobile-toggles">
+                    <a class="icon-btn" href="./index-es.html" aria-label="Toggle language">ES</a>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Premium Access Modal -->
-    <div id="premiumModal" class="modal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closePremiumModal()">×</button>
-            <div class="bg-[#13131a] rounded-xl overflow-hidden border border-purple-500/50 max-w-md">
-                <div class="p-8 text-center">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🎨</div>
-                    <h2 class="text-2xl font-bold mb-2 text-white">Unlock Full Collection</h2>
-                    <p class="text-gray-400 mb-6">
-                        Get unlimited access to BetterWLPRS's complete 100GB+ collection of curated and edited
-                        wallpapers
-                    </p>
-                    <div class="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4 mb-6">
-                        <div class="text-3xl font-bold text-purple-400">$3.99</div>
-                        <div class="text-gray-400 text-sm">1-Year Access</div>
-                    </div>
-                    <p class="text-gray-400 text-sm mb-6">
-                        Pay once per year and get instant access to download your entire curated wallpaper collection
-                    </p>
-                    <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year" target="_blank"
-                        class="block w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition mb-3 text-decoration-none">
-                        Get Premium Access
+                <div class="mobile-social">
+                    <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad" style="width:18px;height:18px;filter:invert(64%) sepia(88%) saturate(1000%) hue-rotate(315deg) brightness(105%) contrast(101%);">
+                        <span style="font-weight:600;color:#ff90b3;font-size:14px;">Gumroad</span>
                     </a>
-                    <button onclick="closePremiumModal()"
-                        class="w-full bg-[#1a1a24] hover:bg-[#252530] text-white font-semibold py-3 px-6 rounded-lg transition border border-gray-700">
-                        Cancel
-                    </button>
-                    <div class="mt-6 pt-6 border-t border-gray-700">
-                        <p class="text-xs text-gray-500">
-                            Free users can preview wallpapers from the gallery. Premium members get the complete
-                            high-quality collection.
-                        </p>
-                    </div>
+                    <a href="https://ko-fi.com/betterwlprs" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
+                        <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png" alt="Ko-fi" style="width:18px;height:18px;">
+                        <span style="font-weight:600;color:#29abe0;font-size:14px;">Ko-fi</span>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-bolt"></i> +50GB PREMIUM WALLPAPERS
+            </div>
+            
+            <h1 class="hero-title">
+                Better<br>WallPapers
+            </h1>
+            
+            <p class="hero-subtitle">
+                Handcrafted wallpapers from gaming masterpieces, stunning landscapes, and artistic designs. 
+                <strong>Ultra HD quality. Instant download.</strong>
+            </p>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">WALLPAPERS</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">4K</div>
+                    <div class="stat-label">QUALITY</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">CATEGORIES</div>
+                </div>
+            </div>
+
+            <div class="hero-cta">
+                <a href="https://drive.google.com/drive/folders/1MuJkt_ZfpcPGAPSR5q5Q6K8aRJLgLdAE?usp=sharing" target="_blank" class="btn-primary">
+                    DOWNLOAD FREE PACK
+                </a>
+                <a href="https://www.patreon.com/betterwlprs" target="_blank" class="btn-primary">
+                    GET 50GB+ PREMIUM
+                </a>
+            </div>
+
+            <!-- SEARCH -->
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Search wallpapers..."
+                >
+                <svg class="search-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+            </div>
+
+            <!-- FILTERS -->
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">ALL</button>
+                <button class="filter-btn" data-filter="video">VIDEOS</button>
+                <button class="filter-btn" data-filter="static">STATIC</button>
+                <button class="filter-btn" data-filter="collections">COLLECTIONS</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY VIEW -->
+    <section class="gallery" id="galleryView">
+        <div id="loadingIndicator" class="loading">
+            <div class="spinner"></div>
+            <p style="color: var(--text-secondary); font-weight: 600;">LOADING WALLPAPERS...</p>
+        </div>
+        
+        <div id="galleryGrid" class="gallery-grid hidden"></div>
+        
+        <div id="loadMoreContainer" class="hidden" style="text-align: center; margin-top: 3rem;">
+            <button id="loadMoreBtn" class="btn-primary">
+                LOAD MORE
+            </button>
+            <p style="color: var(--text-secondary); margin-top: 1rem; font-weight: 600;">
+                <span id="currentCount">0</span> / <span id="totalCount">0</span> WALLPAPERS
+            </p>
+        </div>
+    </section>
+
+    <!-- COLLECTIONS VIEW -->
+    <section class="gallery collections-view" id="collectionsView">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">BROWSE COLLECTIONS</h2>
+        <div id="collectionsGrid" class="grid-cols-2 md:grid-cols-3 lg:grid-cols-4"></div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <button id="backToGallery" class="btn-primary">← BACK TO GALLERY</button>
+        </div>
+    </section>
+
+    <!-- MODAL -->
+    <div id="previewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle" class="modal-title">WALLPAPER PREVIEW</h3>
+                <button id="closeModal" class="modal-close">×</button>
+            </div>
+            <img id="modalImage" src="" alt="Preview" class="modal-image">
+            <div class="modal-actions">
+                <button id="downloadModal" class="btn-primary">DOWNLOAD HD</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <!-- CTA Section -->
+        <div class="footer-cta">
+            <div class="footer-cta-badge">
+                <i class="fas fa-gift"></i> FREE STARTER PACK
+            </div>
+            <h2 class="footer-cta-title">
+                Get +2GB BetterWLPRS Starter Pack<br>
+                <span class="gradient-text">Absolutely Free</span>
+            </h2>
+            <p class="footer-cta-description">
+                Start your collection with our handpicked selection of premium 4K wallpapers. No signup required, instant download.
+            </p>
+            
+            <div class="footer-cta-stats">
+                <div class="footer-stat">
+                    <span class="footer-stat-number">+50</span>
+                    <span class="footer-stat-label">Premium Wallpapers</span>
+                </div>
+                <div class="footer-stat">
+                    <span class="footer-stat-number">4K</span>
+                    <span class="footer-stat-label">Ultra HD Quality</span>
+                </div>
+                <div class="footer-stat">
+                    <span class="footer-stat-number">5</span>
+                    <span class="footer-stat-label">Different Styles</span>
+                </div>
+                <div class="footer-stat">
+                    <span class="footer-stat-number">0€</span>
+                    <span class="footer-stat-label">Completely Free</span>
+                </div>
+            </div>
+
+            <a href="https://drive.google.com/drive/folders/1MuJkt_ZfpcPGAPSR5q5Q6K8aRJLgLdAE?usp=sharing" target="_blank" class="btn-primary" style="margin-top: 1rem;">
+                <i class="fas fa-download"></i> Download Free Pack Now
+            </a>
+
+            <div class="footer-cta-features">
+                <span><i class="fas fa-check-circle"></i> No email required</span>
+                <span><i class="fas fa-check-circle"></i> Instant download</span>
+                <span><i class="fas fa-check-circle"></i> Ready to use</span>
+            </div>
+        </div>
+
+        <!-- Footer Links -->
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>BetterWLPRS</h3>
+                <p>Premium wallpapers and exclusive content to elevate your desktop experience. 4K quality and unique designs.</p>
+                <div class="footer-social">
+                    <a href="https://www.patreon.com/betterwlprs" target="_blank" title="Patreon">
+                        <i class="fab fa-patreon"></i>
+                    </a>
+                    <a href="#" target="_blank" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" target="_blank" title="Pinterest">
+                        <i class="fab fa-pinterest"></i>
+                    </a>
+                    <a href="#" target="_blank" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Navigation</h4>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="galeria.html">Gallery</a>
+                    <a href="#categories">Categories</a>
+                    <a href="https://www.patreon.com/betterwlprs" target="_blank">Premium</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Categories</h4>
+                <div class="footer-links">
+                    <a href="#gaming">Gaming</a>
+                    <a href="#nature">Nature</a>
+                    <a href="#abstract">Abstract</a>
+                    <a href="#minimalist">Minimalist</a>
+                    <a href="#videos">Videos</a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Support</h4>
+                <div class="footer-links">
+                    <a href="#faq">FAQ</a>
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="https://www.patreon.com/betterwlprs" target="_blank">Patreon</a>
+                    <a href="#report">Report Issue</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div>© 2025 BetterWLPRS. All rights reserved.</div>
+            <div class="footer-love">
+                Designed with <i class="fas fa-heart heart"></i> by BetterWLPRS
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // Performance utilities
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
+    // GALLERY DATA
+    const localImages = [
+        // BATMAN/ARKHAM
+        { src: "img/arkham.gif", title: "Arkham City Nights", category: "Batman", type: "gif", game: "Batman Arkham" },
+        { src: "img/webp Arkham/webp Arkham-ake.webp", title: "Arkham Knight - Gotham View", category: "Batman", type: "image", game: "Batman Arkham" },
+        { src: "img/webp Arkham/webp Arkham-akl.webp", title: "Arkham Knight - City Patrol", category: "Batman", type: "image", game: "Batman Arkham" },
+        { src: "img/webp Arkham/webp Arkham-aku.webp", title: "Arkham Knight - Dark Streets", category: "Batman", type: "image", game: "Batman Arkham" },
+        { src: "img/webp Arkham/webp Arkham-akw.webp", title: "Arkham Knight - Batmobile", category: "Batman", type: "image", game: "Batman Arkham" },
+        { src: "img/OptimizedVideoWLPRS/BatmanKnight-NightWalker-VideoWLPR-web.mp4", title: "Batman Night Walker", category: "Batman", type: "video", game: "Batman Arkham" },
+        
+        // DEATH STRANDING
+        { src: "img/samsittedahh.gif", title: "Sam Sitting", category: "Death Stranding", type: "gif", game: "Death Stranding" },
+        { src: "img/samizquierdasentado.png", title: "Sam Portrait", category: "Death Stranding", type: "image", game: "Death Stranding" },
+        { src: "img/samsatori.gif", title: "Sam Satori", category: "Death Stranding", type: "gif", game: "Death Stranding" },
+        { src: "img/OptimizedVideoWLPRS/DeathStranding-SamWindy-VideoWLPR-web.mp4", title: "Sam in Windy Plains", category: "Death Stranding", type: "video", game: "Death Stranding" },
+        { src: "img/webp Death Stranding/1 (1).webp", title: "DS - Lonely Journey", category: "Death Stranding", type: "image", game: "Death Stranding" },
+        { src: "img/webp Death Stranding/1 (2).webp", title: "DS - Mountain Vista", category: "Death Stranding", type: "image", game: "Death Stranding" },
+        { src: "img/webp Death Stranding/1 (3).webp", title: "DS - Cargo Delivery", category: "Death Stranding", type: "image", game: "Death Stranding" },
+        { src: "img/webp Death Stranding/1 (5).webp", title: "DS - Cliff Portrait", category: "Death Stranding", type: "image", game: "Death Stranding" },
+        
+        // WATCH DOGS 2
+        { src: "img/marcusittingfocused.jpg", title: "Marcus Focused", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+        { src: "img/marcussittedahh.gif", title: "Marcus Sitting", category: "Watch Dogs", type: "gif", game: "Watch Dogs 2" },
+        { src: "img/OptimizedVideoWLPRS/WD2-Marcus-WaterHouses-Landscape-VideoWLPR-web.mp4", title: "WD2: Marcus Bay Area", category: "Watch Dogs", type: "video", game: "Watch Dogs 2" },
+        { src: "img/OptimizedVideoWLPRS/WD2-Marcus-WaterHouses-VideoWLPR-web.mp4", title: "WD2: Marcus Waterfront", category: "Watch Dogs", type: "video", game: "Watch Dogs 2" },
+        { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122152462_12.webp", title: "WD2 - SF Golden Gate", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+        { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122704840_8.webp", title: "WD2 - Alcatraz Hack", category: "Watch Dogs", type: "image", game: "Watch Dogs 2" },
+        
+        // THE WITCHER 3
+        { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.17.38.01-web.mp4", title: "Witcher 3: Novigrad Sunset", category: "The Witcher", type: "video", game: "The Witcher 3" },
+        { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.19.02.02-web.mp4", title: "Witcher 3: Skellige Isles", category: "The Witcher", type: "video", game: "The Witcher 3" },
+        { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.20.40.03-web.mp4", title: "Witcher 3: Velen Swamps", category: "The Witcher", type: "video", game: "The Witcher 3" },
+        { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.34.02.08-web.mp4", title: "Witcher 3: Kaer Morhen", category: "The Witcher", type: "video", game: "The Witcher 3" },
+        
+        // METRO EXODUS
+        { src: "img/lessgo.gif", title: "Metro Exodus Scene", category: "Metro", type: "gif", game: "Metro Exodus" },
+        { src: "img/OptimizedVideoWLPRS/MetroExodus_01-web.mp4", title: "Metro Exodus: Scene 01", category: "Metro", type: "video", game: "Metro Exodus" },
+        { src: "img/OptimizedVideoWLPRS/MetroExodus_03-web.mp4", title: "Metro Exodus: Scene 03", category: "Metro", type: "video", game: "Metro Exodus" },
+        { src: "img/OptimizedVideoWLPRS/MetroExodus_04-web.mp4", title: "Metro Exodus: Scene 04", category: "Metro", type: "video", game: "Metro Exodus" },
+        
+        // SKYRIM
+        { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_04-web.mp4", title: "Skyrim: Dragon Valley", category: "Skyrim", type: "video", game: "Skyrim" },
+        { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_09-web.mp4", title: "Skyrim: Nordic Landscape", category: "Skyrim", type: "video", game: "Skyrim" },
+        { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_10-web.mp4", title: "Skyrim: Mountain Vista", category: "Skyrim", type: "video", game: "Skyrim" },
+        { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_12-web.mp4", title: "Skyrim: Aurora Borealis", category: "Skyrim", type: "video", game: "Skyrim" },
+        
+        // SPIDER-MAN
+        { src: "img/spidersky.gif", title: "Spider-Man Swinging", category: "Spider-Man", type: "gif", game: "Spider-Man" },
+        { src: "img/OptimizedVideoWLPRS/SM2-Rainy-RaimiBlackSuit-Church-VideoWLPR-web.mp4", title: "Spider-Man: Rainy Church", category: "Spider-Man", type: "video", game: "Spider-Man 2" },
+        { src: "img/OptimizedVideoWLPRS/SM2-SkyView-VideoWLPR 2-web.mp4", title: "Spider-Man: Sky View", category: "Spider-Man", type: "video", game: "Spider-Man 2" },
+        
+        // MAD MAX
+        { src: "img/videowlprs/madmaxlivewlprsany.gif", title: "Mad Max Live", category: "Mad Max", type: "gif", game: "Mad Max" },
+        { src: "img/OptimizedVideoWLPRS/Mad-Max-MoonLightHouse-VideoWLPR-web.mp4", title: "Mad Max: Moon Lighthouse", category: "Mad Max", type: "video", game: "Mad Max" },
+        { src: "img/OptimizedVideoWLPRS/Mad-Max-SanFranciscoHope-VideoWLPR-web.mp4", title: "Mad Max: SF Hope", category: "Mad Max", type: "video", game: "Mad Max" },
+        
+        // DISHONORED
+        { src: "img/DishonoredDLC-Landscape-InsideBasement-WLPR-02.png", title: "Dishonored Basement", category: "Dishonored", type: "image", game: "Dishonored" },
+        
+        // DISCO ELYSIUM
+        { src: "img/videowlprs/discoelysiumstart.gif", title: "Disco Elysium Start", category: "Disco Elysium", type: "gif", game: "Disco Elysium" },
+        { src: "img/discoelysium.webp", title: "Disco Elysium Art", category: "Disco Elysium", type: "image", game: "Disco Elysium" }
+    ];
+
+    // CONFIG
+    const ITEMS_PER_PAGE = 12;
+    let currentPage = 0;
+    let currentFilter = 'all';
+    let currentSearch = '';
+    let shuffledImages = [];
+    let currentCollection = null;
+
+    // GENERATE COLLECTIONS FROM GAMES
+    const collections = (() => {
+        const gameCollections = {};
+        
+        localImages.forEach(img => {
+            const gameName = img.game;
+            if (!gameCollections[gameName]) {
+                gameCollections[gameName] = {
+                    name: gameName,
+                    category: img.category,
+                    items: [],
+                    cover: img.src // Use first image as cover
                 };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
+            }
+            gameCollections[gameName].items.push(img);
+        });
+        
+        return Object.values(gameCollections);
+    })();
+
+    // DOM ELEMENTS
+    const galleryGrid = document.getElementById('galleryGrid');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    const loadMoreContainer = document.getElementById('loadMoreContainer');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const galleryView = document.getElementById('galleryView');
+    const collectionsView = document.getElementById('collectionsView');
+    const previewModal = document.getElementById('previewModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+
+    // SHUFFLE ARRAY
+    function shuffleArray(arr) {
+        const shuffled = [...arr];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
         }
+        return shuffled;
+    }
 
-        // Intersection Observer for lazy loading videos
-        let videoObserver = null;
-        const loadedVideos = new Set();
-
-        function initVideoObserver() {
-            if ('IntersectionObserver' in window) {
-                videoObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const video = entry.target;
-                            const src = video.dataset.src;
-                            if (src && !loadedVideos.has(src)) {
-                                video.src = src;
-                                video.classList.add('loaded');
-                                loadedVideos.add(src);
-                                video.play().catch(() => { });
-                            }
-                        } else {
-                            // Pause video when out of view to save resources
-                            if (entry.target.tagName === 'VIDEO' && !entry.target.paused) {
-                                entry.target.pause();
-                            }
-                        }
-                    });
-                }, {
-                    rootMargin: '50px',
-                    threshold: 0.1
-                });
-            }
+    // CREATE GALLERY ITEM
+    function createGalleryItem(img) {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        
+        const typeIcon = img.type === 'video' ? 'fa-video' : 'fa-image';
+        const typeLabel = img.type === 'video' ? 'VIDEO' : 'STATIC';
+        
+        let mediaElement = '';
+        if (img.type === 'video') {
+            mediaElement = `<video class="gallery-image" autoplay loop muted playsinline><source src="${img.src}" type="video/mp4"></video>`;
+        } else {
+            mediaElement = `<img src="${img.src}" alt="${img.title}" class="gallery-image" loading="lazy">`;
         }
+        
+        item.innerHTML = `
+            ${mediaElement}
+            <div class="gallery-badge"><i class="fas ${typeIcon}"></i> ${typeLabel}</div>
+            <div class="gallery-info">
+                <div class="gallery-title">${img.title}</div>
+                <div class="gallery-category">${img.game}</div>
+            </div>
+        `;
+        
+        item.addEventListener('click', () => openModal(img.src, img.title));
+        return item;
+    }
 
-        // Complete wallpapers collection - Organized by featured/epic first, then variety
-        const allWallpapers = [
-            // === FEATURED EPIC PICKS (Mixed games for variety) ===
-            { id: 51, title: "Spider Sky", game: "Spider-Man 2", image: "img/spidersky.gif", resolution: "3840x2160", mood: ["epic", "cyberpunk"], category: "spiderman", featured: true },
-            { id: 20, title: "Night Walker", game: "Batman Arkham Knight", image: "img/OptimizedVideoWLPRS/BatmanKnight-NightWalker-VideoWLPR-web.mp4", resolution: "3840x2160", mood: ["dark", "epic", "cyberpunk"], category: "arkham", type: "video", featured: true },
-            { id: 21, title: "Spooky and Cozy", game: "Dying Light 1", image: "https://www.youtube.com/embed/a6vym-JUiJg?autoplay=1&mute=1&loop=1&playlist=a6vym-JUiJg&controls=0&modestbranding=1", resolution: "3840x2160", mood: ["dark", "epic", "cyberpunk"], category: "arkham", type: "youtube", featured: true },
-            { id: 82, title: "Kaer Morhen", game: "The Witcher 3", image: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.20.40.03-web.mp4", resolution: "3840x2160", mood: ["epic", "nature"], category: "witcher", type: "video", featured: true },
-            { id: 60, title: "Dragon's Lair", game: "Skyrim", image: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_04-web.mp4", resolution: "3840x2160", mood: ["epic", "nature"], category: "skyrim", type: "video", featured: true },
-            { id: 1, title: "Sam Windswept Plains", game: "Death Stranding", image: "img/OptimizedVideoWLPRS/DeathStranding-SamWindy-VideoWLPR-web.mp4", resolution: "3840x2160", mood: ["melancholic", "nature", "epic"], category: "death-stranding", type: "video", featured: true },
-            { id: 50, title: "Rainy Church", game: "Spider-Man 2", image: "img/OptimizedVideoWLPRS/SM2-Rainy-RaimiBlackSuit-Church-VideoWLPR-web.mp4", resolution: "3840x2160", mood: ["dark", "epic", "melancholic"], category: "spiderman", type: "video", featured: true },
-            { id: 91, title: "San Francisco Hope", game: "Mad Max", image: "img/OptimizedVideoWLPRS/Mad-Max-SanFranciscoHope-VideoWLPR-web.mp4", resolution: "3840x2160", mood: ["epic", "melancholic"], category: "madmax", type: "video", featured: true },
-            { id: 130, title: "Greek Village", game: "AC Odyssey", image: "img/ACOdissey-Vertical-Village-WLPR-08.png", resolution: "2560x1440", mood: ["epic", "nature"], category: "ac-odyssey", featured: true },
-            { id: 120, title: "Snake Eater", game: "MGS Delta", image: "img/mgsdelta.png", resolution: "3840x2160", mood: ["nature", "epic"], category: "mgs", featured: true },
-            { id: 171, title: "Treasure Hunt", game: "Uncharted 4", image: "img/wlprs/Uncharted4-Landscape-WLPR-3.webp", resolution: "3840x2160", mood: ["epic", "nature"], category: "uncharted", featured: true },
-            { id: 140, title: "Wolves Hunt", game: "The Long Dark", image: "img/thelongdarkwolfs.png", resolution: "3840x2160", mood: ["dark", "nature", "melancholic"], category: "longdark", featured: true },
-            { id: 41, title: "Marcus Focused", game: "Watch Dogs 2", image: "img/marcusittingfocused.jpg", resolution: "3840x2160", mood: ["melancholic", "cyberpunk"], category: "watchdogs", featured: true },
+    // CREATE COLLECTION CARD
+    function createCollectionCard(collection) {
+        const card = document.createElement('div');
+        card.className = 'collection-card';
+        
+        let mediaElement = '';
+        if (collection.cover.endsWith('.mp4')) {
+            mediaElement = `<video class="collection-image" autoplay loop muted playsinline><source src="${collection.cover}" type="video/mp4"></video>`;
+        } else {
+            mediaElement = `<img src="${collection.cover}" alt="${collection.name}" class="collection-image" loading="lazy">`;
+        }
+        
+        card.innerHTML = `
+            <div class="collection-preview">
+                ${mediaElement}
+                <div class="collection-count"><i class="fas fa-layer-group"></i> ${collection.items.length}</div>
+            </div>
+            <div class="collection-info">
+                <div class="collection-title">${collection.name}</div>
+                <div class="collection-description">${collection.category} • Videos & Images</div>
+            </div>
+        `;
+        
+        card.addEventListener('click', () => openCollection(collection));
+        return card;
+    }
 
-            // === DEATH STRANDING ===
-            { id: 2, title: "Lonely Trek", game: "Death Stranding", image: "img/wlprs/DS-Landscape-WLPR-15.webp", resolution: "3840x2160", mood: ["melancholic", "nature"], category: "death-stranding" },
-            { id: 3, title: "Mountain Journey", game: "Death Stranding", image: "img/wlprs/DS-Landscape-WLPR-16.webp", resolution: "3840x2160", mood: ["epic", "nature"], category: "death-stranding" },
-            { id: 4, title: "Sam's Rest", game: "Death Stranding", image: "img/samsatori.gif", resolution: "3840x2160", mood: ["melancholic"], category: "death-stranding" },
-            { id: 5, title: "Contemplation", game: "Death Stranding", image: "img/samizquierdasentado.png", resolution: "3840x2160", mood: ["melancholic"], category: "death-stranding" },
-            { id: 6, title: "Vast Landscapes", game: "Death Stranding", image: "img/wlprs/DS-Landscape-WLPR-21.webp", resolution: "3840x2160", mood: ["nature", "melancholic"], category: "death-stranding" },
-            { id: 7, title: "Riverside Path", game: "Death Stranding", image: "img/wlprs/DS-Landscape-WLPR-28.webp", resolution: "3840x2160", mood: ["nature", "melancholic"], category: "death-stranding" },
-            { id: 8, title: "Golden Hour Trek", game: "Death Stranding", image: "img/wlprs/DS-Landscape-WLPR-29.webp", resolution: "3840x2160", mood: ["epic", "nature"], category: "death-stranding" },
-            { id: 9, title: "Mountain Peak", game: "Death Stranding", image: "img/wlprs/DS-Landscape-WLPR-30.webp", resolution: "3840x2160", mood: ["epic", "nature"], category: "death-stranding" },
-            { id: 10, title: "Sunset Delivery", game: "Death Stranding", image: "img/wlprs/DS-Landscape-WLPR-38.webp", resolution: "3840x2160", mood: ["melancholic", "nature"], category: "death-stranding" },
+    // RENDER COLLECTIONS
+    function renderCollections() {
+        const collectionsGrid = document.getElementById('collectionsGrid');
+        collectionsGrid.innerHTML = '';
+        
+        collections.forEach(collection => {
+            collectionsGrid.appendChild(createCollectionCard(collection));
+        });
+    }
 
-            // === BATMAN ARKHAM KNIGHT ===
-            { id: 21, title: "Gotham Vigilante", game: "Batman Arkham Knight", image: "img/arkham.gif", resolution: "3840x2160", mood: ["dark", "cyberpunk"], category: "arkham" },
-            { id: 22, title: "City Watcher", game: "Batman Arkham Knight", image: "img/wlprs/BatmanAK-Landscape-CityContemplate-WLPR-01.webp", resolution: "3840x2160", mood: ["dark", "cyberpunk"], category: "arkham" },
-            { id: 23, title: "Rooftop Patrol", game: "Batman Arkham Knight", image: "img/wlprs/BatmanAK-Landscape-CityWalker-WLPR-01.webp", resolution: "3840x2160", mood: ["dark", "epic"], category: "arkham" },
-            { id: 24, title: "Gotham Skyline", game: "Batman Arkham Knight", image: "img/wlprs/BatmanAK-Landscape-CityWalker-WLPR-02.webp", resolution: "3840x2160", mood: ["dark", "cyberpunk"], category: "arkham" },
-            { id: 25, title: "Batmobile Ready", game: "Batman Arkham Knight", image: "img/wlprs/BatmanAK-Landscape-Batmobile-WLPR-02.webp", resolution: "3840x2160", mood: ["epic", "dark"], category: "arkham" },
+    // OPEN COLLECTION
+    function openCollection(collection) {
+        currentCollection = collection;
+        shuffledImages = shuffleArray(collection.items);
+        currentFilter = 'collection';
+        currentSearch = '';
+        
+        collectionsView.classList.remove('active');
+        galleryView.style.display = 'block';
+        
+        // Update filter buttons
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        
+        resetGallery();
+    }
 
-            // === DISHONORED ===
-            { id: 30, title: "Dunwall Basement", game: "Dishonored", image: "img/DishonoredDLC-Landscape-InsideBasement-WLPR-02.png", resolution: "3840x2160", mood: ["dark", "melancholic"], category: "dishonored" },
-            { id: 31, title: "Brigmore Witches", game: "Dishonored", image: "img/wlprs/DishonoredDLC-Landscape-InsideBasement-WLPR-02.webp", resolution: "3840x2160", mood: ["dark", "melancholic"], category: "dishonored" },
-            { id: 32, title: "Tower View", game: "Dishonored", image: "img/wlprs/DishonoredDLC-Vertical-WLPR-10.webp", resolution: "2560x1440", mood: ["epic", "dark"], category: "dishonored" },
-            { id: 33, title: "Karnaca Rooftops", game: "Dishonored", image: "img/wlprs/DishonoredDLC-Vertical-WLPR-13.webp", resolution: "2560x1440", mood: ["dark"], category: "dishonored" },
+    // FILTER IMAGES
+    function getFilteredImages() {
+        let filtered = shuffledImages;
+        
+        // If in collection mode, use collection items
+        if (currentFilter === 'collection' && currentCollection) {
+            filtered = shuffledImages; // Already filtered by collection
+        } else if (currentFilter === 'video') {
+            filtered = filtered.filter(img => img.type === 'video');
+        } else if (currentFilter === 'static') {
+            filtered = filtered.filter(img => img.type !== 'video');
+        }
+        
+        if (currentSearch) {
+            filtered = filtered.filter(img =>
+                img.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
+                img.game.toLowerCase().includes(currentSearch.toLowerCase())
+            );
+        }
+        
+        return filtered;
+    }
 
-            // === WATCH DOGS 2 ===
-            { id: 40, title: "Marcus on Water", game: "Watch Dogs 2", image: "img/OptimizedVideoWLPRS/WD2-Marcus-WaterHouses-VideoWLPR-web.mp4", resolution: "3840x2160", mood: ["cyberpunk", "nature"], category: "watchdogs", type: "video" },
-            { id: 41, title: "Marcus Focused", game: "Watch Dogs 2", image: "img/marcusittingfocused.jpg", resolution: "3840x2160", mood: ["melancholic", "cyberpunk"], category: "watchdogs" },
-            { id: 42, title: "San Francisco View", game: "Watch Dogs 2", image: "img/sanfracampview.jpg", resolution: "3840x2160", mood: ["nature", "epic"], category: "watchdogs" },
-            { id: 43, title: "City Hacker", game: "Watch Dogs 2", image: "img/wlprs/WD2-Landscape-WLPR-05.webp", resolution: "3840x2160", mood: ["cyberpunk"], category: "watchdogs" },
-            { id: 44, title: "Dedsec Member", game: "Watch Dogs 2", image: "img/wlprs/WD2-Landscape-WLPR-06.webp", resolution: "3840x2160", mood: ["cyberpunk"], category: "watchdogs" },
-            { id: 45, title: "Urban Explorer", game: "Watch Dogs 2", image: "img/wlprs/WD2-Landscape-WLPR-07.webp", resolution: "3840x2160", mood: ["cyberpunk"], category: "watchdogs" },
-            { id: 46, title: "Night Hack", game: "Watch Dogs 2", image: "img/wlprs/WD2-Landscape-WLPR-09.webp", resolution: "3840x2160", mood: ["dark", "cyberpunk"], category: "watchdogs" },
-            { id: 47, title: "SF Bay Area", game: "Watch Dogs 2", image: "img/wlprs/WD2-Landscape-WLPR-10.webp", resolution: "3840x2160", mood: ["nature", "cyberpunk"], category: "watchdogs" },
+    // LOAD MORE ITEMS
+    function loadMoreItems() {
+        const filtered = getFilteredImages();
+        const start = currentPage * ITEMS_PER_PAGE;
+        const end = Math.min(start + ITEMS_PER_PAGE, filtered.length);
+        
+        for (let i = start; i < end; i++) {
+            galleryGrid.appendChild(createGalleryItem(filtered[i]));
+        }
+        
+        currentPage++;
+        document.getElementById('currentCount').textContent = Math.min(currentPage * ITEMS_PER_PAGE, filtered.length);
+        document.getElementById('totalCount').textContent = filtered.length;
+        
+        if (currentPage * ITEMS_PER_PAGE >= filtered.length) {
+            loadMoreBtn.textContent = 'ALL LOADED';
+            loadMoreBtn.disabled = true;
+        }
+    }
 
-            // === SPIDER-MAN 2 ===
-            { id: 50, title: "Rainy Church", game: "Spider-Man 2", image: "img/OptimizedVideoWLPRS/SM2-Rainy-RaimiBlackSuit-Church-VideoWLPR-web.mp4", resolution: "3840x2160", mood: ["dark", "epic", "melancholic"], category: "spiderman", type: "video" },
-            { id: 51, title: "Spider Sky", game: "Spider-Man 2", image: "img/spidersky.gif", resolution: "3840x2160", mood: ["epic", "cyberpunk"], category: "spiderman" },
-            { id: 52, title: "City Swing", game: "Spider-Man 2", image: "img/OptimizedVideoWLPRS/SM2-SkyView-VideoWLPR 2-web.mp4", resolution: "3840x2160", mood: ["epic", "cyberpunk"], category: "spiderman", type: "video" },
-            { id: 53, title: "Web Slinger", game: "Spider-Man 2", image: "img/wlprs/SP2-Landscape-WLPR-15.webp", resolution: "3840x2160", mood: ["epic"], category: "spiderman" },
-            { id: 54, title: "Manhattan View", game: "Spider-Man 2", image: "img/wlprs/SP2-Landscape-WLPR-21.webp", resolution: "3840x2160", mood: ["epic", "cyberpunk"], category: "spiderman" },
+    // RESET GALLERY
+    function resetGallery() {
+        currentPage = 0;
+        galleryGrid.innerHTML = '';
+        loadMoreBtn.textContent = 'LOAD MORE';
+        loadMoreBtn.disabled = false;
+        loadMoreItems();
+    }
 
-            // === SKYRIM ===
-            { id: 60, title: "Dragon's Lair", game: "Skyrim", image: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_04-web.mp4", resolution: "3840x2160", mood: ["epic", "nature"], category: "skyrim", type: "video" },
-            { id: 61, title: "Northern Lights", game: "Skyrim", image: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_09-web.mp4", resolution: "3840x2160", mood: ["epic", "nature"], category: "skyrim", type: "video" },
-            { id: 62, title: "Mountain Pass", game: "Skyrim", image: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_10-web.mp4", resolution: "3840x2160", mood: ["nature", "melancholic"], category: "skyrim", type: "video" },
-            { id: 63, title: "Whiterun Plains", game: "Skyrim", image: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_12-web.mp4", resolution: "3840x2160", mood: ["nature", "epic"], category: "skyrim", type: "video" },
-            { id: 64, title: "Snowy Peaks", game: "Skyrim", image: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_15-web.mp4", resolution: "3840x2160", mood: ["nature", "melancholic"], category: "skyrim", type: "video" },
+    // MODAL
+    function openModal(src, title) {
+        modalImage.src = src;
+        modalTitle.textContent = title;
+        previewModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 
-            // === METRO EXODUS ===
-            { id: 70, title: "Post-Apocalyptic Russia", game: "Metro Exodus", image: "img/OptimizedVideoWLPRS/MetroExodus_01-web.mp4", resolution: "3840x2160", mood: ["dark", "melancholic"], category: "metro", type: "video" },
-            { id: 71, title: "Aurora Train", game: "Metro Exodus", image: "img/OptimizedVideoWLPRS/MetroExodus_03-web.mp4", resolution: "3840x2160", mood: ["melancholic", "epic"], category: "metro", type: "video" },
-            { id: 72, title: "Frozen Wasteland", game: "Metro Exodus", image: "img/OptimizedVideoWLPRS/MetroExodus_04-web.mp4", resolution: "3840x2160", mood: ["melancholic", "nature"], category: "metro", type: "video" },
-            { id: 73, title: "Artyom's Journey", game: "Metro Exodus", image: "img/OptimizedVideoWLPRS/MetroExodus_05-web.mp4", resolution: "3840x2160", mood: ["dark", "melancholic"], category: "metro", type: "video" },
-            { id: 74, title: "Nuclear Winter", game: "Metro Exodus", image: "img/wlprs/ME-Artyiom-Landscape-WLPR-09.webp", resolution: "3840x2160", mood: ["dark", "melancholic"], category: "metro" },
-            { id: 75, title: "Survivor's View", game: "Metro Exodus", image: "img/wlprs/ME-Artyiom-Landscape-WLPR-17.webp", resolution: "3840x2160", mood: ["melancholic", "nature"], category: "metro" },
+    function closeModal() {
+        previewModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
 
-            // === THE WITCHER 3 ===
-            { id: 80, title: "Geralt's Path", game: "The Witcher 3", image: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.17.38.01-web.mp4", resolution: "3840x2160", mood: ["epic", "nature"], category: "witcher", type: "video" },
-            { id: 81, title: "Velen Swamps", game: "The Witcher 3", image: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.19.02.02-web.mp4", resolution: "3840x2160", mood: ["dark", "nature"], category: "witcher", type: "video" },
-            { id: 82, title: "Kaer Morhen", game: "The Witcher 3", image: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.20.40.03-web.mp4", resolution: "3840x2160", mood: ["epic", "nature"], category: "witcher", type: "video" },
-            { id: 83, title: "Toussaint Vineyards", game: "The Witcher 3", image: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.34.02.08-web.mp4", resolution: "3840x2160", mood: ["nature", "epic"], category: "witcher", type: "video" },
-            { id: 84, title: "Novigrad Nights", game: "The Witcher 3", image: "img/wlprs/The Witcher 3 Screenshot 2025.10.02 - 14.48.30.93.webp", resolution: "3840x2160", mood: ["dark", "cyberpunk"], category: "witcher" },
-            { id: 85, title: "Skellige Islands", game: "The Witcher 3", image: "img/wlprs/The Witcher 3 Screenshot 2025.10.02 - 14.50.01.37.webp", resolution: "3840x2160", mood: ["nature", "melancholic"], category: "witcher" },
-
-            // === MAD MAX ===
-            { id: 90, title: "Moonlight Lighthouse", game: "Mad Max", image: "img/OptimizedVideoWLPRS/Mad-Max-MoonLightHouse-VideoWLPR-web.mp4", resolution: "3840x2160", mood: ["melancholic", "dark"], category: "madmax", type: "video" },
-            { id: 91, title: "San Francisco Hope", game: "Mad Max", image: "img/OptimizedVideoWLPRS/Mad-Max-SanFranciscoHope-VideoWLPR-web.mp4", resolution: "3840x2160", mood: ["epic", "melancholic"], category: "madmax", type: "video" },
-            { id: 92, title: "Under the Bridge", game: "Mad Max", image: "img/OptimizedVideoWLPRS/Mad-Max-UnderSanFrancisco-VideoWLPR-web.mp4", resolution: "3840x2160", mood: ["dark", "melancholic"], category: "madmax", type: "video" },
-            { id: 93, title: "Wasteland Warrior", game: "Mad Max", image: "img/wlprs/Mad Max Screenshot 2025.08.30 - 11.14.54.76.webp", resolution: "3840x2160", mood: ["epic", "dark"], category: "madmax" },
-
-            // === PREY ===
-            { id: 100, title: "Talos I Exterior", game: "Prey", image: "img/OptimizedVideoWLPRS/Prey (2017) 2025.09.08 - 18.00.41.02 - Trm-web.mp4", resolution: "3840x2160", mood: ["dark", "epic"], category: "prey", type: "video" },
-            { id: 101, title: "Space Station", game: "Prey", image: "img/OptimizedVideoWLPRS/Prey (2017) 2025.09.08 - 18.03.51.04-web.mp4", resolution: "3840x2160", mood: ["dark", "epic"], category: "prey", type: "video" },
-            { id: 102, title: "Morgan Yu", game: "Prey", image: "img/wlprs/Prey (2017) Screenshot 2025.09.08 - 17.38.08.24.webp", resolution: "3840x2160", mood: ["dark"], category: "prey" },
-
-            // === SPEC OPS: THE LINE ===
-            { id: 110, title: "Dubai Ruins", game: "Spec Ops: The Line", image: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_03-web.mp4", resolution: "3840x2160", mood: ["dark", "melancholic"], category: "specops", type: "video" },
-            { id: 111, title: "Desert Storm", game: "Spec Ops: The Line", image: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_04-web.mp4", resolution: "3840x2160", mood: ["epic", "dark"], category: "specops", type: "video" },
-            { id: 112, title: "Sandstorm", game: "Spec Ops: The Line", image: "img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_07-web.mp4", resolution: "3840x2160", mood: ["dark", "melancholic"], category: "specops", type: "video" },
-
-            // === METAL GEAR SOLID DELTA ===
-            { id: 120, title: "Snake Eater", game: "MGS Delta", image: "img/mgsdelta.png", resolution: "3840x2160", mood: ["nature", "epic"], category: "mgs" },
-            { id: 121, title: "Jungle Ops", game: "MGS Delta", image: "img/wlprs/MGSD-Landscape-WLPR-04.webp", resolution: "3840x2160", mood: ["nature", "dark"], category: "mgs" },
-            { id: 122, title: "CQC Master", game: "MGS Delta", image: "img/wlprs/MGSD-Landscape-WLPR-05.webp", resolution: "3840x2160", mood: ["nature"], category: "mgs" },
-            { id: 123, title: "Tselinoyarsk", game: "MGS Delta", image: "img/wlprs/MGSD-Landscape-WLPR-06.webp", resolution: "3840x2160", mood: ["nature", "melancholic"], category: "mgs" },
-
-            // === ASSASSIN'S CREED ODYSSEY ===
-            { id: 130, title: "Greek Village", game: "AC Odyssey", image: "img/ACOdissey-Vertical-Village-WLPR-08.png", resolution: "2560x1440", mood: ["epic", "nature"], category: "ac-odyssey" },
-            { id: 131, title: "Ancient Greece", game: "AC Odyssey", image: "img/wlprs/ACOdissey-Landscape-StatueOnTheVillage-WLPR-06.webp", resolution: "3840x2160", mood: ["epic", "nature"], category: "ac-odyssey" },
-            { id: 132, title: "Mediterranean View", game: "AC Odyssey", image: "img/wlprs/ACOdissey-Landscape-VillageSkyView-WLPR-06.webp", resolution: "3840x2160", mood: ["nature", "epic"], category: "ac-odyssey" },
-
-            // === THE LONG DARK ===
-            { id: 140, title: "Wolves Hunt", game: "The Long Dark", image: "img/thelongdarkwolfs.png", resolution: "3840x2160", mood: ["dark", "nature", "melancholic"], category: "longdark" },
-            { id: 141, title: "Frozen Wilderness", game: "The Long Dark", image: "img/wlprs/TheLongDark-Landscape-WLPR-1.webp", resolution: "3840x2160", mood: ["melancholic", "nature"], category: "longdark" },
-            { id: 142, title: "Survival", game: "The Long Dark", image: "img/wlprs/TheLongDark-Landscape-WLPR-2.webp", resolution: "3840x2160", mood: ["melancholic", "nature"], category: "longdark" },
-
-            // === DYING LIGHT ===
-            { id: 150, title: "The Beast Awakens", game: "Dying Light", image: "img/OptimizedVideoWLPRS/Dying Light  The Beast 2025.09.25 - 19.01.34.02-web.mp4", resolution: "3840x2160", mood: ["dark", "epic"], category: "dyinglight", type: "video" },
-            { id: 151, title: "Zombie Apocalypse", game: "Dying Light", image: "img/wlprs/Dying Light  The Beast Screenshot 2025.09.21 - 13.33.06.20.webp", resolution: "3840x2160", mood: ["dark"], category: "dyinglight" },
-
-            // === FORZA HORIZON 4 & 5 ===
-            { id: 160, title: "British Countryside", game: "Forza Horizon 4", image: "img/wlprs/FH4-Landscape-WLPR-130.webp", resolution: "3840x2160", mood: ["nature", "epic"], category: "forza" },
-            { id: 161, title: "Speed Demon", game: "Forza Horizon 4", image: "img/wlprs/FH4-Landscape-WLPR-149.webp", resolution: "3840x2160", mood: ["epic"], category: "forza" },
-            { id: 162, title: "Mexico Rally", game: "Forza Horizon 5", image: "img/wlprs/FH5-Landscape-WLPR-01.webp", resolution: "3840x2160", mood: ["nature", "epic"], category: "forza" },
-            { id: 163, title: "Desert Race", game: "Forza Horizon 5", image: "img/wlprs/FH5-Landscape-WLPR-02.webp", resolution: "3840x2160", mood: ["epic"], category: "forza" },
-
-            // === UNCHARTED 4 ===
-            { id: 170, title: "Drake's Fortune", game: "Uncharted 4", image: "img/wlprs/Uncharted4-Landscape-WLPR-1.webp", resolution: "3840x2160", mood: ["epic", "nature"], category: "uncharted" },
-            { id: 171, title: "Treasure Hunt", game: "Uncharted 4", image: "img/wlprs/Uncharted4-Landscape-WLPR-3.webp", resolution: "3840x2160", mood: ["epic", "nature"], category: "uncharted" },
-            { id: 172, title: "Adventure Awaits", game: "Uncharted 4", image: "img/wlprs/Uncharted4-Landscape-WLPR-4.webp", resolution: "3840x2160", mood: ["nature", "epic"], category: "uncharted" },
-
-            // === FALLOUT 3 ===
-            { id: 180, title: "Capital Wasteland", game: "Fallout 3", image: "img/OptimizedVideoWLPRS/Fallout 3 2025.09.27 - 23.21.41.03-web.mp4", resolution: "3840x2160", mood: ["dark", "melancholic"], category: "fallout", type: "video" },
-
-            // === STAR WARS BATTLEFRONT 2 ===
-            { id: 190, title: "Pink Sky Empire", game: "Star Wars Battlefront 2", image: "img/wlprs/StarWarsBF2-Landscape-PinkSkyView-WLPR-01.webp", resolution: "3840x2160", mood: ["epic", "cyberpunk"], category: "battlefront" },
-
-            // === DISCO ELYSIUM ===
-            { id: 200, title: "Martinaise District", game: "Disco Elysium", image: "img/discoelysium.webp", resolution: "3840x2160", mood: ["melancholic", "dark"], category: "disco-elysium" },
-            { id: 201, title: "Detective's View", game: "Disco Elysium", image: "img/wlprs/DiscoElysium-Landscape-Martinaisse-WLPR-1.webp", resolution: "3840x2160", mood: ["melancholic", "dark"], category: "disco-elysium" },
-        ];
-
-        // Create final wallpapers array with smart organization
-        const wallpapers = allWallpapers;
-
-        // Define collections
-        const collections = [
-            {
-                id: "dark-moody",
-                title: "Dark & Moody",
-                emoji: "🌙",
-                subtitle: "Cinematic, noir, and atmospheric gaming moments",
-                filter: (w) => w.mood.includes('dark') || w.mood.includes('melancholic')
-            },
-            {
-                id: "tranquil",
-                title: "Tranquil Landscapes",
-                emoji: "🌿",
-                subtitle: "Peaceful, meditative, and serene atmospheres",
-                filter: (w) => w.mood.includes('nature') && !w.mood.includes('epic')
-            },
-            {
-                id: "epic",
-                title: "Epic Moments",
-                emoji: "🔥",
-                subtitle: "Action-packed, dynamic, and breathtaking scenes",
-                filter: (w) => w.mood.includes('epic')
-            },
-            {
-                id: "cyberpunk",
-                title: "Cyberpunk",
-                emoji: "🌆",
-                subtitle: "Futuristic cities and neon-lit urban environments",
-                filter: (w) => w.mood.includes('cyberpunk')
-            }
-        ];
-
-        let currentCategory = 'all';
-        let currentSearch = '';
-
-        // Render gallery by collections
-        function renderGallery() {
-            const gallery = document.getElementById('gallery');
-            const noResults = document.getElementById('noResults');
-
-            let filtered = wallpapers;
-
-            // Filter by search first
-            if (currentSearch) {
-                filtered = filtered.filter(w =>
-                    w.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
-                    w.game.toLowerCase().includes(currentSearch.toLowerCase())
-                );
-            }
-
-            // Show/hide no results
-            if (filtered.length === 0) {
-                gallery.innerHTML = '';
-                noResults.classList.remove('hidden');
-                document.getElementById('wallpaperCount').textContent = 0;
+    // EVENTS
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (this.dataset.filter === 'collections') {
+                currentCollection = null;
+                galleryView.style.display = 'none';
+                collectionsView.classList.add('active');
+                renderCollections();
                 return;
             }
+            
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            currentFilter = this.dataset.filter;
+            currentCollection = null;
+            shuffledImages = shuffleArray(localImages);
+            resetGallery();
+        });
+    });
 
-            noResults.classList.add('hidden');
+    document.getElementById('backToGallery').addEventListener('click', () => {
+        currentCollection = null;
+        collectionsView.classList.remove('active');
+        galleryView.style.display = 'block';
+        
+        // Reset to all filter
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('[data-filter="all"]').classList.add('active');
+        currentFilter = 'all';
+        shuffledImages = shuffleArray(localImages);
+        resetGallery();
+    });
 
-            // Render by collection or single category
-            if (currentCategory === 'all') {
-                // Show all collections
-                gallery.innerHTML = '';
-                let totalCount = 0;
+    document.getElementById('searchInput').addEventListener('input', function() {
+        currentSearch = this.value;
+        resetGallery();
+    });
 
-                collections.forEach(collection => {
-                    const collectionWallpapers = filtered.filter(collection.filter).slice(0, 12); // Limit to 12 for performance
-                    if (collectionWallpapers.length === 0) return;
+    loadMoreBtn.addEventListener('click', loadMoreItems);
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    document.getElementById('downloadModal').addEventListener('click', () => {
+        const link = document.createElement('a');
+        link.href = modalImage.src;
+        link.download = modalTitle.textContent;
+        link.click();
+    });
 
-                    totalCount += collectionWallpapers.length;
+    // INIT
+    setTimeout(() => {
+        shuffledImages = shuffleArray(localImages);
+        loadingIndicator.classList.add('hidden');
+        galleryGrid.classList.remove('hidden');
+        loadMoreContainer.classList.remove('hidden');
+        loadMoreItems();
+    }, 1000);
 
-                    const sectionEl = document.createElement('div');
-                    sectionEl.className = 'collection-section';
-                    sectionEl.innerHTML = `
-                        <div class="section-header">
-                            <h2 class="section-title">
-                                <span class="section-emoji">${collection.emoji}</span>${collection.title}
-                            </h2>
-                            <p class="section-subtitle">${collection.subtitle}</p>
-                            <p class="section-count">${collectionWallpapers.length} wallpapers shown</p>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            ${collectionWallpapers.map(w => createWallpaperCard(w)).join('')}
-                        </div>
-                    `;
-                    gallery.appendChild(sectionEl);
-                });
-
-                document.getElementById('wallpaperCount').textContent = totalCount;
-                document.getElementById('categoryTitle').textContent = '✨ All Collections';
-
-            } else {
-                // Show single collection/category - limit to 24 items initially
-                const collection = collections.find(c => c.id === currentCategory);
-
-                if (collection) {
-                    // Filter by mood collection
-                    filtered = filtered.filter(collection.filter);
-                } else {
-                    // Filter by game category
-                    filtered = filtered.filter(w => w.category === currentCategory);
-                }
-
-                const displayLimit = 24;
-                const displayFiltered = filtered.slice(0, displayLimit);
-
-                document.getElementById('wallpaperCount').textContent = filtered.length;
-
-                gallery.innerHTML = `
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        ${displayFiltered.map(w => createWallpaperCard(w)).join('')}
-                    </div>
-                    ${filtered.length > displayLimit ? `
-                        <div class="text-center mt-8">
-                            <p class="text-gray-400 mb-4">Showing ${displayLimit} of ${filtered.length} wallpapers</p>
-                            <button onclick="loadMoreWallpapers()" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-8 rounded-lg transition">
-                                Load More
-                            </button>
-                        </div>
-                    ` : ''}
-                `;
-            }
-
-            // Activate lazy loading for videos
-            setTimeout(() => {
-                if (videoObserver) {
-                    document.querySelectorAll('video[data-src]').forEach(video => {
-                        videoObserver.observe(video);
-                    });
-                }
-            }, 100);
+    // NAVBAR SCROLL
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
         }
+    });
 
-        // Create wallpaper card HTML with lazy loading
-        function createWallpaperCard(w) {
-            let mediaHTML;
+    // MOBILE MENU
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-            if (w.type === 'youtube') {
-                // Don't autoload YouTube - use thumbnail instead
-                const videoId = w.image.match(/embed\/([^?]+)/)?.[1] || '';
-                mediaHTML = `
-                    <div class="relative" style="width: 100%; height: 240px; background: #1a1a24;">
-                        <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg"
-                             alt="${w.title}"
-                             loading="lazy"
-                             style="width: 100%; height: 100%; object-fit: cover;">
-                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 48px; opacity: 0.8;">▶️</div>
-                    </div>`;
-            } else if (w.type === 'video') {
-                mediaHTML = `<video data-src="${w.image}" loop muted playsinline class="video-lazy video-placeholder" style="width: 100%; height: 240px; object-fit: cover;"></video>`;
-            } else {
-                mediaHTML = `<img src="${w.image}" alt="${w.title}" loading="lazy">`;
-            }
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = hamburger.classList.contains('active') ? 'hidden' : 'auto';
+    });
 
-            return `
-                <div class="wallpaper-card" onclick="openModal(${w.id})">
-                    ${mediaHTML}
-                    <div class="p-4">
-                        <h3 class="font-semibold text-lg mb-1">${w.title}</h3>
-                        <p class="text-sm text-gray-400 mb-2">${w.game}</p>
-                        <div class="flex items-center justify-between">
-                            <span class="tag">${w.resolution}</span>
-                            ${(w.type === 'video' || w.type === 'youtube') ? '<span class="tag">🎬 Video</span>' : ''}
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Open modal
-        function openModal(id) {
-            const wallpaper = wallpapers.find(w => w.id === id);
-            if (!wallpaper) return;
-
-            const modalImageContainer = document.getElementById('modalImage').parentElement;
-
-            if (wallpaper.type === 'video') {
-                modalImageContainer.innerHTML = `<video id="modalImage" src="${wallpaper.image}" autoplay loop muted controls class="w-full max-h-[70vh] object-contain"></video>`;
-            } else {
-                modalImageContainer.innerHTML = `<img id="modalImage" src="${wallpaper.image}" alt="${wallpaper.title}" class="w-full max-h-[70vh] object-contain">`;
-            }
-
-            document.getElementById('modalTitle').textContent = wallpaper.title;
-            document.getElementById('modalGame').textContent = wallpaper.game;
-            document.getElementById('modalTags').innerHTML = wallpaper.mood.map(m =>
-                `<span class="tag">${m}</span>`
-            ).join('');
-
-            document.getElementById('downloadBtn').onclick = () => {
-                // Show premium modal instead of direct download
-                document.getElementById('premiumModal').classList.add('active');
-            };
-
-            document.getElementById('modal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Close modal with cleanup
-        function closeModal() {
-            const modal = document.getElementById('modal');
-            modal.classList.remove('active');
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.mobile-menu .nav-item').forEach(item => {
+        item.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
             document.body.style.overflow = 'auto';
-
-            // Cleanup video resources
-            const modalVideo = document.querySelector('#modal video');
-            if (modalVideo) {
-                modalVideo.pause();
-                modalVideo.src = '';
-                modalVideo.load();
-            }
-        }
-
-        // Close premium modal
-        function closePremiumModal() {
-            document.getElementById('premiumModal').classList.remove('active');
-        }
-
-        // Close premium modal on background click
-        document.getElementById('premiumModal').addEventListener('click', (e) => {
-            if (e.target.id === 'premiumModal') closePremiumModal();
         });
-
-        // Load more wallpapers
-        let currentDisplayLimit = 24;
-        function loadMoreWallpapers() {
-            currentDisplayLimit += 24;
-            renderGallery();
-        }
-
-        // Category buttons
-        document.querySelectorAll('.category-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Update active state
-                document.querySelectorAll('.category-btn').forEach(b =>
-                    b.classList.remove('active')
-                );
-                btn.classList.add('active');
-
-                // Update category
-                currentCategory = btn.dataset.category;
-
-                // Update title based on collection
-                if (currentCategory === 'all') {
-                    document.getElementById('categoryTitle').textContent = '✨ All Collections';
-                } else {
-                    const collection = collections.find(c => c.id === currentCategory);
-                    if (collection) {
-                        document.getElementById('categoryTitle').textContent = collection.emoji + ' ' + collection.title;
-                    } else {
-                        document.getElementById('categoryTitle').textContent = btn.textContent.trim();
-                    }
-                }
-
-                renderGallery();
-            });
-        });
-
-        // Search with debounce for performance
-        const debouncedSearch = debounce((value) => {
-            currentSearch = value;
-            renderGallery();
-        }, 300);
-
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            debouncedSearch(e.target.value);
-        });
-
-        // Close modal on escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        // Close modal on background click
-        document.getElementById('modal').addEventListener('click', (e) => {
-            if (e.target.id === 'modal') closeModal();
-        });
-
-        // Toggle sidebar
-        const toggleBtn = document.getElementById('toggleSidebar');
-        const sidebarContainer = document.querySelector('.sidebar-container');
-        let sidebarCollapsed = true; // Start collapsed by default
-
-        toggleBtn.addEventListener('click', () => {
-            sidebarCollapsed = !sidebarCollapsed;
-            sidebarContainer.classList.toggle('collapsed');
-            toggleBtn.textContent = sidebarCollapsed ? '▶' : '◀';
-            toggleBtn.title = sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar';
-        });
-
-        // Initialize and render
-        initVideoObserver();
-        renderGallery();
-
-        // Cleanup on page unload
-        window.addEventListener('beforeunload', () => {
-            if (videoObserver) {
-                videoObserver.disconnect();
-            }
-        });
+    });
     </script>
 </body>
-
 </html>
