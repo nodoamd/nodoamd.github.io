@@ -1225,6 +1225,27 @@
                 grid-template-columns: 1fr !important;
                 gap: 16px !important;
             }
+
+            /* Spline viewer full width en móvil */
+            .steamdeck-hero-absolute {
+                width: 100vw;
+                margin-left: calc(-50vw + 50%);
+                margin-right: calc(-50vw + 50%);
+                padding: 0;
+            }
+
+            .steamdeck-hero-absolute>div {
+                width: 100vw;
+                max-width: none;
+                padding: 0;
+            }
+
+            .steamdeck-viewer-main {
+                width: 100vw;
+                max-width: none;
+                border-radius: 0;
+                margin: 0;
+            }
         }
 
         /* ========== INFINITE SLIDER WITH FADE EDGES ========== */
@@ -1378,11 +1399,10 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, 
-                var(--accent) 0%, 
-                #c471ed 50%, 
-                var(--accent) 100%
-            );
+            background: linear-gradient(90deg,
+                    var(--accent) 0%,
+                    #c471ed 50%,
+                    var(--accent) 100%);
             border-radius: 999px;
             opacity: 0.8;
             box-shadow: 0 0 20px rgba(143, 109, 251, 0.6);
@@ -1395,6 +1415,7 @@
                 transform: scaleX(0);
                 opacity: 0;
             }
+
             to {
                 transform: scaleX(1);
                 opacity: 0.8;
@@ -1419,19 +1440,25 @@
         }
 
         @keyframes pulse-glow {
-            0%, 100% {
+
+            0%,
+            100% {
                 box-shadow: 0 8px 24px rgba(143, 109, 251, 0.2);
             }
+
             50% {
                 box-shadow: 0 12px 36px rgba(143, 109, 251, 0.4);
             }
         }
 
         @keyframes pulse-dot {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: 1;
                 transform: scale(1);
             }
+
             50% {
                 opacity: 0.6;
                 transform: scale(0.85);
@@ -1600,6 +1627,7 @@
             0% {
                 transform: translateX(0);
             }
+
             100% {
                 transform: translateX(calc(-50% - 0.75rem));
             }
@@ -1630,36 +1658,36 @@
             }
         }
 
-/* ========== TESTIMONIALS/VIDEOS TOGGLE ========== */
-.toggle-btn {
-    position: relative;
-    overflow: hidden;
-}
+        /* ========== TESTIMONIALS/VIDEOS TOGGLE ========== */
+        .toggle-btn {
+            position: relative;
+            overflow: hidden;
+        }
 
-.toggle-btn:hover {
-    transform: translateY(-2px);
-}
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+        }
 
-.toggle-btn.active {
-    box-shadow: 0 6px 20px rgba(167, 135, 255, 0.4);
-}
+        .toggle-btn.active {
+            box-shadow: 0 6px 20px rgba(167, 135, 255, 0.4);
+        }
 
-/* Setup cards hover effect */
-.setup-card {
-    cursor: pointer;
-}
+        /* Setup cards hover effect */
+        .setup-card {
+            cursor: pointer;
+        }
 
-.setup-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(167, 135, 255, 0.2);
-}
+        .setup-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(167, 135, 255, 0.2);
+        }
 
-.setup-card video,
-.setup-card img {
-    transition: transform 0.3s ease;
-}
+        .setup-card video,
+        .setup-card img {
+            transition: transform 0.3s ease;
+        }
 
-.setup-card:hover video,
-.setup-card:hover img {
-    transform: scale(1.05);
-}
+        .setup-card:hover video,
+        .setup-card:hover img {
+            transform: scale(1.05);
+        }
