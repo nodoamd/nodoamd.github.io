@@ -2174,6 +2174,10 @@
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function () {
                 if (this.dataset.filter === 'collections') {
+                    // Update active state for collections
+                    document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
                     currentCollection = null;
                     galleryView.style.display = 'none';
                     collectionsView.classList.add('active');
