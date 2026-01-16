@@ -270,11 +270,33 @@
             <span class="highlight">Nodo conecta lo físico con lo digital.</span>
             <!-- diseñamos experiencias digitales premium.-->
         </h1>
-        <p class="parallax-element hero-lead" style="text-align: center;">
+        <p class="parallax-element hero-lead" style="text-align: center;" id="hero-lead-text">
             Trabajamos con personas que quieren que su proyecto funcione con tecnología sólida, actual y bien aplicada.
             Creamos sistemas
             que perduran, comunican y generan un impacto real. Porque cada proyecto conecta personas a su entorno.
         </p>
+        
+        <script>
+        // Texto optimizado para mobile
+        (function() {
+            const heroLeadText = document.getElementById('hero-lead-text');
+            const fullText = 'Trabajamos con personas que quieren que su proyecto funcione con tecnología sólida, actual y bien aplicada. Creamos sistemas que perduran, comunican y generan un impacto real. Porque cada proyecto conecta personas a su entorno.';
+            const mobileText = 'Creamos sistemas con tecnología sólida que perduran y generan impacto real.';
+            
+            function updateHeroText() {
+                if (window.innerWidth <= 768) {
+                    heroLeadText.textContent = mobileText;
+                } else {
+                    heroLeadText.textContent = fullText;
+                }
+            }
+            
+            // Ejecutar al cargar y al cambiar tamaño
+            updateHeroText();
+            window.addEventListener('resize', updateHeroText);
+        })();
+        </script>
+        
         <div class="hero-buttons">
             <a href="#nodo-services-section" class="btn btn-primary contacto parallax-element">Planificar
                 mi proyecto</a>
@@ -285,23 +307,20 @@
             Sesión breve para mapear objetivos, priorizar quick wins y alinear el roadmap.
         </p>
 
+        <!-- Sección de usuarios -->
         <div class="users-count parallax-element">
-
-            <!-- Nueva sección de usuarios -->
-            <div class="users-count">
-                <div class="users-avatars">
-                    <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Usuario">
-                    <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Usuario">
-                    <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Usuario">
-                    <img src="https://randomuser.me/api/portraits/women/4.jpg" alt="Usuario">
-                    <img src="https://randomuser.me/api/portraits/men/5.jpg" alt="Usuario">
-                    <img src="https://randomuser.me/api/portraits/women/6.jpg" alt="Usuario">
-                    <img src="https://randomuser.me/api/portraits/men/7.jpg" alt="Usuario">
-                    <img src="https://randomuser.me/api/portraits/women/8.jpg" alt="Usuario">
-                    <img src="https://randomuser.me/api/portraits/men/9.jpg" alt="Usuario">
-                </div>
-                <p style="font-style: italic;"><span class="count">2,141</span> emprendedores confían en nosotros</p>
+            <div class="users-avatars">
+                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Usuario">
+                <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Usuario">
+                <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Usuario">
+                <img src="https://randomuser.me/api/portraits/women/4.jpg" alt="Usuario">
+                <img src="https://randomuser.me/api/portraits/men/5.jpg" alt="Usuario">
+                <img src="https://randomuser.me/api/portraits/women/6.jpg" alt="Usuario">
+                <img src="https://randomuser.me/api/portraits/men/7.jpg" alt="Usuario">
+                <img src="https://randomuser.me/api/portraits/women/8.jpg" alt="Usuario">
+                <img src="https://randomuser.me/api/portraits/men/9.jpg" alt="Usuario">
             </div>
+            <p style="font-style: italic;"><span class="count">2,141</span> emprendedores confían en nosotros</p>
         </div>
 
     </main>
@@ -2235,62 +2254,60 @@
 
 
 
-        // Función de animación de contador
-        function animateCounter(id, start, end, duration, format) {
-            let startTimestamp = null;
-            const element = document.getElementById(id);
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                let value = Math.floor(progress * (end - start) + start);
+        // CONTADORES STATS CON GSAP - Funciona cuando son visibles
+        function initStatsCounters() {
+            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+                console.error('GSAP o ScrollTrigger no están cargados');
+                return;
+            }
 
-                if (format === 'percentage') {
-                    element.innerText = `${value}%`;
-                } else if (format === 'plus') {
-                    element.innerText = `+${value}`;
-                } else {
-                    element.innerText = value;
-                }
+            // Contador de Servicios (+50)
+            const servicesCounter = document.getElementById('services-counter');
+            if (servicesCounter) {
+                gsap.from(servicesCounter, {
+                    textContent: 0,
+                    duration: 2,
+                    ease: "power1.out",
+                    snap: { textContent: 1 },
+                    scrollTrigger: {
+                        trigger: ".nodo-stats-section",
+                        start: "top 80%",
+                        once: true
+                    },
+                    onUpdate: function() {
+                        servicesCounter.textContent = '+' + Math.ceil(this.targets()[0].textContent);
+                    }
+                });
+            }
 
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
-
-        // Función para verificar si un elemento está visible en la ventana
-        function isElementInViewport(el) {
-            const rect = el.getBoundingClientRect();
-            return (
-                rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
-                rect.bottom >= 0 &&
-                rect.left >= 0 &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
-        }
-
-        // Función para iniciar las animaciones cuando los elementos son visibles
-        function handleAnimations() {
-            const section = document.querySelector('.nodo-stats-section');
-
-            if (isElementInViewport(section) && !section.classList.contains('nodo-animation-ready')) {
-                section.classList.add('nodo-animation-ready');
-
-                // Iniciar contadores con un pequeño retraso
-                setTimeout(() => {
-                    animateCounter('retention-counter', 0, 100, 2000, 'percentage');
-                    animateCounter('services-counter', 0, 50, 1800, 'plus');
-                }, 200);
+            // Contador de Retención (100%)
+            const retentionCounter = document.getElementById('retention-counter');
+            if (retentionCounter) {
+                gsap.from(retentionCounter, {
+                    textContent: 0,
+                    duration: 2,
+                    ease: "power1.out",
+                    snap: { textContent: 1 },
+                    scrollTrigger: {
+                        trigger: ".nodo-stats-section",
+                        start: "top 80%",
+                        once: true
+                    },
+                    onUpdate: function() {
+                        retentionCounter.textContent = Math.ceil(this.targets()[0].textContent) + '%';
+                    }
+                });
             }
         }
 
-        // Iniciar animaciones cuando se carga la página o se hace scroll
-        document.addEventListener('DOMContentLoaded', handleAnimations);
-        window.addEventListener('scroll', handleAnimations);
-
-        // También activamos las animaciones inmediatamente para demostración
-        setTimeout(handleAnimations, 500);
+        // Inicializar contadores stats después de que GSAP esté listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                setTimeout(initStatsCounters, 100);
+            });
+        } else {
+            setTimeout(initStatsCounters, 100);
+        }
 
 
 
@@ -2583,6 +2600,9 @@
         });
 
     </script>
+
+    <!-- ==================== GSAP HERO ANIMATIONS - VERSIÓN PROFESIONAL ==================== -->
+    <script src="./gsap-animations-clean.js"></script>
 
 </body>
 
