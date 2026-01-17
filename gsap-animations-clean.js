@@ -1,14 +1,20 @@
 // ==================== GSAP HERO ANIMATIONS - VERSIÓN PROFESIONAL ====================
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🎬 Esperando al loader...');
+    console.log('🎬 Preparando hero para animaciones...');
     
-    // Esperar a que el loader desaparezca (4 segundos + 400ms de fade)
+    // Ocultar elementos INMEDIATAMENTE (antes de que se vean)
+    gsap.set([".author", ".hero h1", ".hero-lead", ".hero-buttons .btn", ".hero-microcopy", ".users-count"], {
+        opacity: 0,
+        y: 30
+    });
+    
+    // Esperar a que el loader desaparezca (4 segundos exactos)
     setTimeout(() => {
-        console.log('✨ Loader terminado - Iniciando animaciones');
+        console.log('✨ Loader desapareciendo - Iniciando animaciones');
         initHeroAnimations();
         initStatsCounters();
-    }, 4400);
+    }, 4000); // Iniciar exactamente cuando empieza el fade del loader
 });
 
 function initHeroAnimations() {
@@ -20,12 +26,6 @@ function initHeroAnimations() {
     }
 
     gsap.registerPlugin(ScrollTrigger);
-
-    // CONFIGURACIÓN INICIAL - Ocultar todo con GSAP
-    gsap.set([".author", ".hero h1", ".hero-lead", ".hero-buttons .btn", ".hero-microcopy", ".users-count"], {
-        opacity: 0,
-        y: 30
-    });
 
     // ========== TIMELINE PRINCIPAL ==========
     const masterTimeline = gsap.timeline({

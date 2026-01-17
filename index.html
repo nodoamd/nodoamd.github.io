@@ -635,8 +635,30 @@
             position: relative;
             overflow: hidden;
             transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            cursor: pointer;
             --border-scale: 0;
+        }
+
+        /* Solo cursor pointer en desktop */
+        @media (hover: hover) and (pointer: fine) {
+            .why-nodo-card {
+                cursor: pointer;
+            }
+        }
+
+        /* Desactivar todos los eventos touch en móvil */
+        @media (max-width: 768px) {
+            .why-nodo-card {
+                pointer-events: none;
+                -webkit-tap-highlight-color: transparent;
+                -webkit-touch-callout: none;
+                user-select: none;
+            }
+
+            /* Permitir scroll pero no touch en las cards */
+            .why-nodo-card * {
+                pointer-events: none;
+                -webkit-tap-highlight-color: transparent;
+            }
         }
 
         .card-content {
@@ -645,7 +667,7 @@
             z-index: 2;
         }
 
-        /* Efecto glow en hover */
+        /* Efecto glow en hover - SOLO DESKTOP */
         .card-glow {
             position: absolute;
             top: 50%;
@@ -659,8 +681,10 @@
             z-index: 1;
         }
 
-        .why-nodo-card:hover .card-glow {
-            transform: translate(-50%, -50%) scale(2.5);
+        @media (hover: hover) and (pointer: fine) {
+            .why-nodo-card:hover .card-glow {
+                transform: translate(-50%, -50%) scale(2.5);
+            }
         }
 
         /* Borde animado superior */
@@ -677,17 +701,20 @@
             transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .why-nodo-card:hover::before {
-            --border-scale: 1;
-            transform: scaleX(1);
-        }
+        /* Hover SOLO en desktop */
+        @media (hover: hover) and (pointer: fine) {
+            .why-nodo-card:hover::before {
+                --border-scale: 1;
+                transform: scaleX(1);
+            }
 
-        .why-nodo-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            border-color: #c7d2fe;
-            box-shadow: 
-                0 25px 70px rgba(78, 83, 190, 0.2),
-                0 10px 30px rgba(78, 83, 190, 0.15);
+            .why-nodo-card:hover {
+                transform: translateY(-12px) scale(1.02);
+                border-color: #c7d2fe;
+                box-shadow: 
+                    0 25px 70px rgba(78, 83, 190, 0.2),
+                    0 10px 30px rgba(78, 83, 190, 0.15);
+            }
         }
 
         /* Card Destacada (IA & LLMs) */
@@ -698,10 +725,12 @@
             box-shadow: 0 20px 50px rgba(78, 83, 190, 0.3);
         }
 
-        .card-highlight:hover {
-            box-shadow: 
-                0 30px 80px rgba(78, 83, 190, 0.4),
-                0 15px 40px rgba(78, 83, 190, 0.3);
+        @media (hover: hover) and (pointer: fine) {
+            .card-highlight:hover {
+                box-shadow: 
+                    0 30px 80px rgba(78, 83, 190, 0.4),
+                    0 15px 40px rgba(78, 83, 190, 0.3);
+            }
         }
 
         .card-highlight .card-title,
@@ -754,9 +783,11 @@
             transition: all 0.4s ease;
         }
 
-        .why-nodo-card:hover .card-icon {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 10px 25px rgba(78, 83, 190, 0.2);
+        @media (hover: hover) and (pointer: fine) {
+            .why-nodo-card:hover .card-icon {
+                transform: scale(1.1) rotate(5deg);
+                box-shadow: 0 10px 25px rgba(78, 83, 190, 0.2);
+            }
         }
 
         /* Número de card */
@@ -775,13 +806,15 @@
             color: rgba(255, 255, 255, 0.15);
         }
 
-        .why-nodo-card:hover .card-number {
-            transform: scale(1.2);
-            color: rgba(78, 83, 190, 0.12);
-        }
+        @media (hover: hover) and (pointer: fine) {
+            .why-nodo-card:hover .card-number {
+                transform: scale(1.2);
+                color: rgba(78, 83, 190, 0.12);
+            }
 
-        .card-highlight:hover .card-number {
-            color: rgba(255, 255, 255, 0.2);
+            .card-highlight:hover .card-number {
+                color: rgba(255, 255, 255, 0.2);
+            }
         }
 
         /* Títulos y descripciones */
@@ -823,13 +856,15 @@
             color: white;
         }
 
-        .tag:hover {
-            transform: scale(1.05);
-            background: rgba(78, 83, 190, 0.15);
-        }
+        @media (hover: hover) and (pointer: fine) {
+            .tag:hover {
+                transform: scale(1.05);
+                background: rgba(78, 83, 190, 0.15);
+            }
 
-        .card-highlight .tag:hover {
-            background: rgba(255, 255, 255, 0.25);
+            .card-highlight .tag:hover {
+                background: rgba(255, 255, 255, 0.25);
+            }
         }
 
         /* Badge Cutting Edge */
@@ -980,6 +1015,27 @@
                 font-size: 3rem;
                 top: 24px;
                 right: 24px;
+            }
+
+            /* DESACTIVAR COMPLETAMENTE TRANSICIONES EN MÓVIL */
+            .why-nodo-card {
+                transition: none !important;
+                -webkit-tap-highlight-color: transparent !important;
+                -webkit-touch-callout: none !important;
+                touch-action: pan-y !important;
+            }
+
+            .card-icon,
+            .card-number,
+            .card-glow,
+            .tag {
+                transition: none !important;
+                -webkit-tap-highlight-color: transparent !important;
+            }
+
+            /* Forzar reset de todos los efectos */
+            .why-nodo-card::before {
+                transition: none !important;
             }
 
             .why-nodo-stats {
