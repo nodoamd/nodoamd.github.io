@@ -1309,12 +1309,17 @@
     function addSvcToClient(cid, sid) {
       if (!sid) return;
       const c = clientes.find(x => x.id === cid);
-      if (c && !c.svcs.includes(sid)) { c.svcs.push(sid); renderClientes(); recalc(); }
+      if (c && !c.svcs.find(s => s.id === sid)) {
+        // Permitir precio custom editable
+        const svc = SVCS.find(x => x.id === sid);
+        c.svcs.push({ id: sid, precio: svc ? svc.precio : 0 });
+        renderClientes(); recalc();
+      }
     }
 
     function delSvcFromClient(cid, sid) {
       const c = clientes.find(x => x.id === cid);
-      if (c) { c.svcs = c.svcs.filter(s => s !== sid); renderClientes(); recalc(); }
+      if (c) { c.svcs = c.svcs.filter(s => s.id !== sid); renderClientes(); recalc(); }
     }
 
     function updateNombre(id, val) {
@@ -1323,8 +1328,10 @@
     }
 
     function clienteTotal(c) {
-      return c.svcs.reduce((s, sid) => {
-        const sv = SVCS.find(x => x.id === sid);
+      return c.svcs.reduce((s, svc) => {
+        // Si tiene precio custom, usarlo; si no, buscar en SVCS
+        if (typeof svc === 'object' && svc.precio !== undefined) return s + (+svc.precio || 0);
+        const sv = SVCS.find(x => x.id === svc);
         return s + (sv ? sv.precio : 0);
       }, 0);
     }
@@ -1337,19 +1344,24 @@
       }
       el.innerHTML = clientes.map(c => {
         const total = clienteTotal(c);
-        const totalHoras = c.svcs.reduce((s, sid) => { const sv = SVCS.find(x => x.id === sid); return s + (sv ? sv.horas : 0); }, 0);
+        const totalHoras = c.svcs.reduce((s, svc) => {
+          const sv = SVCS.find(x => x.id === (svc.id || svc));
+          return s + (sv ? sv.horas : 0);
+        }, 0);
         const ratio = totalHoras > 0 ? total / totalHoras : 0;
         const ratioClass = ratio >= 60 ? 'good' : ratio >= 30 ? 'med' : 'low';
-        const chips = c.svcs.map(sid => {
+        const chips = c.svcs.map(svc => {
+          const sid = typeof svc === 'object' ? svc.id : svc;
           const s = SVCS.find(x => x.id === sid);
           if (!s) return '';
+          // Input editable para precio custom
           return `<span class="chip">
         <span style="font-size:11px">${s.tipo === 'mensual' ? '🔄' : '📦'}</span>
-        ${s.nombre} · ${fmt(s.precio)}
-        <span class="chip-x" onclick="delSvcFromClient(${c.id},'${s.id}')">×</span>
+        ${s.nombre} · <input type='number' min='0' value='${svc.precio !== undefined ? svc.precio : s.precio}' style='width:60px;font-size:12px;padding:2px 4px' onchange="updatePrecioCliente(${c.id},'${sid}',this.value)"> €
+        <span class="chip-x" onclick="delSvcFromClient(${c.id},'${sid}')">×</span>
       </span>`;
         }).join('');
-        const opts = SVCS.filter(s => !c.svcs.includes(s.id))
+        const opts = SVCS.filter(s => !c.svcs.find(x => (typeof x === 'object' ? x.id : x) === s.id))
           .map(s => `<option value="${s.id}">${s.tipo === 'mensual' ? '🔄' : '📦'} ${s.nombre} — ${fmt(s.precio)}</option>`)
           .join('');
         const nombre = c.nombre || '';
@@ -1374,6 +1386,16 @@
       </div>
     `;
       }).join('');
+    }
+    // Permite editar el precio custom de un servicio asignado a un cliente
+    function updatePrecioCliente(cid, sid, val) {
+      const c = clientes.find(x => x.id === cid);
+      if (!c) return;
+      const svc = c.svcs.find(s => (typeof s === 'object' ? s.id : s) === sid);
+      if (svc && typeof svc === 'object') {
+        svc.precio = +val || 0;
+        renderClientes(); recalc();
+      }
     }
 
     function recalc() {
