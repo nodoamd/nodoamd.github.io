@@ -996,6 +996,150 @@
         flex: 0 0 130px;
       }
     }
+
+    /* ── Nueva UI de servicios en clientes ── */
+    .svcs-list {
+      margin-bottom: 8px;
+    }
+
+    .svc-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .svc-row:last-child {
+      border-bottom: none;
+    }
+
+    .tipo-btn {
+      border-radius: 20px;
+      padding: 3px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: opacity .15s;
+    }
+
+    .tipo-btn:hover {
+      opacity: .75;
+    }
+
+    .tipo-btn.mensual {
+      background: var(--green-bg);
+      color: var(--green);
+      border: 1px solid var(--green);
+    }
+
+    .tipo-btn.unico {
+      background: var(--yel-bg);
+      color: var(--yellow);
+      border: 1px solid var(--yellow);
+    }
+
+    .svc-nombre-fixed {
+      flex: 1;
+      font-size: 13px;
+    }
+
+    .svc-nombre-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      font-size: 13px;
+      padding: 2px 4px;
+      outline: none;
+      min-width: 100px;
+    }
+
+    .svc-nombre-input:focus {
+      border-color: var(--accent);
+    }
+
+    .svc-row input[type=number] {
+      width: 78px;
+      font-size: 13px;
+      padding: 4px 6px;
+    }
+
+    .svc-unit {
+      font-size: 11px;
+      color: var(--text2);
+      white-space: nowrap;
+    }
+
+    .btn-del-svc {
+      background: none;
+      border: none;
+      color: var(--text3);
+      cursor: pointer;
+      font-size: 17px;
+      line-height: 1;
+      padding: 0 2px;
+      margin-left: auto;
+    }
+
+    .btn-del-svc:hover {
+      color: var(--red);
+    }
+
+    .svc-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .svc-actions .svc-select {
+      flex: 1;
+      margin-top: 0;
+      min-width: 180px;
+    }
+
+    .btn-add-svc {
+      background: none;
+      border: 1px dashed var(--border);
+      border-radius: var(--rs);
+      color: var(--text2);
+      font-size: 12px;
+      padding: 5px 12px;
+      cursor: pointer;
+      transition: border-color .15s, color .15s;
+      white-space: nowrap;
+    }
+
+    .btn-add-svc:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .client-totals {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .client-total-mensual {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--green);
+      white-space: nowrap;
+    }
+
+    .client-total-unico {
+      font-size: 11px;
+      color: var(--yellow);
+      white-space: nowrap;
+      margin-top: 1px;
+    }
   </style>
 </head>
 
@@ -1201,55 +1345,7 @@
   </div>
 
   <script>
-    // Descargar datos como archivo JSON
-    function descargarDatos() {
-      const datos = {
-        cuota: document.getElementById('g-cuota').value,
-        gestor: document.getElementById('g-gestor').value,
-        tools: document.getElementById('g-tools').value,
-        telco: document.getElementById('g-telco').value,
-        otros: document.getElementById('g-otros').value,
-        sueldo: document.getElementById('sueldo').value,
-        irpf: document.getElementById('irpf').value,
-        clientes,
-        nextId
-      };
-      const blob = new Blob([JSON.stringify(datos, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'nodo_autonomo_datos.json';
-      document.body.appendChild(a);
-      a.click();
-      setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
-    }
-
-    // Importar datos desde archivo JSON
-    function importarDatos(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function (evt) {
-        try {
-          const d = JSON.parse(evt.target.result);
-          if (d.cuota !== undefined) document.getElementById('g-cuota').value = d.cuota;
-          if (d.gestor !== undefined) document.getElementById('g-gestor').value = d.gestor;
-          if (d.tools !== undefined) document.getElementById('g-tools').value = d.tools;
-          if (d.telco !== undefined) document.getElementById('g-telco').value = d.telco;
-          if (d.otros !== undefined) document.getElementById('g-otros').value = d.otros;
-          if (d.sueldo !== undefined) document.getElementById('sueldo').value = d.sueldo;
-          if (d.irpf !== undefined) document.getElementById('irpf').value = d.irpf;
-          if (d.clientes) { clientes = d.clientes; nextId = d.nextId || (clientes.length + 1); }
-          renderClientes(); recalc();
-          document.getElementById('save-indicator').textContent = '✓ Datos importados';
-        } catch (err) {
-          alert('Archivo no válido');
-        }
-      };
-      reader.readAsText(file);
-      // Limpiar input para permitir importar el mismo archivo dos veces seguidas
-      e.target.value = '';
-    }
+    // ── Catálogo de servicios ──────────────────────────────────────────────
     const SVCS = [
       { id: 's1', nombre: 'Mantenimiento web', tipo: 'mensual', precio: 250, desc: 'Actualizaciones, backups, soporte técnico', horas: 3 },
       { id: 's2', nombre: 'Gestión redes sociales', tipo: 'mensual', precio: 600, desc: 'Contenidos, publicación y engagement', horas: 15 },
@@ -1263,14 +1359,95 @@
       { id: 's10', nombre: 'Auditoría SEO', tipo: 'proyecto', precio: 600, desc: 'Análisis completo + informe detallado', horas: 8 },
     ];
 
+    // Cada entrada en c.svcs es siempre:
+    // { uid, catId, nombre, precio, tipo:'mensual'|'unico' }
     let clientes = [];
-    let nextId = 1;
+    let nextClientId = 1;
+    let nextSvcId = 1;
     let _saveTimer = null;
 
-    // ── localStorage ─────────────────────────────────────────────────────────
-    const STORE_KEY = 'nodo_calc_v1';
+    const STORE_KEY = 'nodo_calc_v2';
+    const STORE_KEY_V1 = 'nodo_calc_v1';
 
+    // ── Helpers básicos ───────────────────────────────────────────────────
+    function v(id) { return document.getElementById(id).value; }
+    function n(id) { return +document.getElementById(id).value || 0; }
+    function fmt(x) { return Math.round(x).toLocaleString('es-ES') + ' €'; }
+    function toggle(id) { document.getElementById(id).classList.toggle('closed'); }
+    function triggerSave() { clearTimeout(_saveTimer); _saveTimer = setTimeout(guardarDatos, 600); }
+
+    // ── Migración v1 → v2 ─────────────────────────────────────────────────
+    function migrateV1(d) {
+      let uidCounter = 1;
+      d.clientes = (d.clientes || []).map(c => {
+        c.svcs = (c.svcs || []).map(svc => {
+          const oldId = typeof svc === 'string' ? svc : (svc.id || svc.catId);
+          const cs = SVCS.find(x => x.id === oldId);
+          return {
+            uid: 'u' + (uidCounter++),
+            catId: oldId || null,
+            nombre: cs ? cs.nombre : (typeof svc === 'string' ? svc : (svc.nombre || '')),
+            precio: svc.precio !== undefined ? svc.precio : (cs ? cs.precio : 0),
+            tipo: cs ? (cs.tipo === 'mensual' ? 'mensual' : 'unico') : 'mensual'
+          };
+        });
+        return c;
+      });
+      nextSvcId = uidCounter;
+      return d;
+    }
+
+    // ── Persistencia ──────────────────────────────────────────────────────
     function guardarDatos() {
+      localStorage.setItem(STORE_KEY, JSON.stringify({
+        cuota: v('g-cuota'), gestor: v('g-gestor'), tools: v('g-tools'),
+        telco: v('g-telco'), otros: v('g-otros'),
+        sueldo: v('sueldo'), irpf: v('irpf'),
+        clientes, nextClientId, nextSvcId
+      }));
+      const ind = document.getElementById('save-indicator');
+      ind.textContent = '✓ Guardado · ' + new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function cargarDatos() {
+      const raw = localStorage.getItem(STORE_KEY) || localStorage.getItem(STORE_KEY_V1);
+      if (!raw) return false;
+      try {
+        let d = JSON.parse(raw);
+        // Si viene de v1 (los svcs pueden ser strings u objetos sin uid), migrar
+        const esV1 = !localStorage.getItem(STORE_KEY) && localStorage.getItem(STORE_KEY_V1);
+        if (esV1) d = migrateV1(d);
+
+        if (d.cuota !== undefined) document.getElementById('g-cuota').value = d.cuota;
+        if (d.gestor !== undefined) document.getElementById('g-gestor').value = d.gestor;
+        if (d.tools !== undefined) document.getElementById('g-tools').value = d.tools;
+        if (d.telco !== undefined) document.getElementById('g-telco').value = d.telco;
+        if (d.otros !== undefined) document.getElementById('g-otros').value = d.otros;
+        if (d.sueldo !== undefined) document.getElementById('sueldo').value = d.sueldo;
+        if (d.irpf !== undefined) document.getElementById('irpf').value = d.irpf;
+        if (d.clientes) {
+          clientes = d.clientes;
+          nextClientId = d.nextClientId || clientes.length + 1;
+          nextSvcId = d.nextSvcId || 1;
+        }
+        return true;
+      } catch (e) { return false; }
+    }
+
+    function borrarDatos() {
+      if (!confirm('¿Borrar todos los datos guardados?')) return;
+      localStorage.removeItem(STORE_KEY);
+      localStorage.removeItem(STORE_KEY_V1);
+      clientes = []; nextClientId = 1; nextSvcId = 1;
+      const defs = { 'g-cuota': 80, 'g-gestor': 70, 'g-tools': 80, 'g-telco': 40, 'g-otros': 50 };
+      Object.entries(defs).forEach(([k, val]) => document.getElementById(k).value = val);
+      document.getElementById('sueldo').value = 1800;
+      document.getElementById('irpf').value = 7;
+      renderClientes(); recalc();
+      document.getElementById('save-indicator').textContent = 'Datos borrados';
+    }
+
+    function descargarDatos() {
       const datos = {
         cuota: document.getElementById('g-cuota').value,
         gestor: document.getElementById('g-gestor').value,
@@ -1282,115 +1459,136 @@
         clientes,
         nextId
       };
-      localStorage.setItem(STORE_KEY, JSON.stringify(datos));
-      const ind = document.getElementById('save-indicator');
-      ind.textContent = '✓ Guardado – ' + new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+      const blob = new Blob([JSON.stringify({ cuota: v('g-cuota'), gestor: v('g-gestor'), tools: v('g-tools'), telco: v('g-telco'), otros: v('g-otros'), sueldo: v('sueldo'), irpf: v('irpf'), clientes, nextClientId, nextSvcId }, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'nodo_autonomo_datos.json';
+      document.body.appendChild(a); a.click();
+      setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
     }
 
-    function cargarDatos() {
-      const raw = localStorage.getItem(STORE_KEY);
-      if (!raw) return false;
-      try {
-        const d = JSON.parse(raw);
-        if (d.cuota !== undefined) document.getElementById('g-cuota').value = d.cuota;
-        if (d.gestor !== undefined) document.getElementById('g-gestor').value = d.gestor;
-        if (d.tools !== undefined) document.getElementById('g-tools').value = d.tools;
-        if (d.telco !== undefined) document.getElementById('g-telco').value = d.telco;
-        if (d.otros !== undefined) document.getElementById('g-otros').value = d.otros;
-        if (d.sueldo !== undefined) document.getElementById('sueldo').value = d.sueldo;
-        if (d.irpf !== undefined) document.getElementById('irpf').value = d.irpf;
-        if (d.clientes) { clientes = d.clientes; nextId = d.nextId || (clientes.length + 1); }
-        return true;
-      } catch (e) { return false; }
+    function importarDatos(e) {
+      const file = e.target.files[0]; if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (evt) {
+        try {
+          let d = JSON.parse(evt.target.result);
+          // Detectar si es v1 (sin nextClientId) y migrar
+          if (!d.nextClientId && d.clientes) d = migrateV1(d);
+          if (d.cuota !== undefined) document.getElementById('g-cuota').value = d.cuota;
+          if (d.gestor !== undefined) document.getElementById('g-gestor').value = d.gestor;
+          if (d.tools !== undefined) document.getElementById('g-tools').value = d.tools;
+          if (d.telco !== undefined) document.getElementById('g-telco').value = d.telco;
+          if (d.otros !== undefined) document.getElementById('g-otros').value = d.otros;
+          if (d.sueldo !== undefined) document.getElementById('sueldo').value = d.sueldo;
+          if (d.irpf !== undefined) document.getElementById('irpf').value = d.irpf;
+          if (d.clientes) { clientes = d.clientes; nextClientId = d.nextClientId || clientes.length + 1; nextSvcId = d.nextSvcId || 1; }
+          renderClientes(); recalc();
+          document.getElementById('save-indicator').textContent = '✓ Datos importados';
+        } catch (err) { alert('Archivo no válido'); }
+      };
+      reader.readAsText(file);
+      e.target.value = '';
     }
 
-    function borrarDatos() {
-      if (!confirm('¿Borrar todos los datos guardados?')) return;
-      localStorage.removeItem(STORE_KEY);
-      clientes = []; nextId = 1;
-      ['g-cuota', 'g-gestor', 'g-tools', 'g-telco', 'g-otros'].forEach(id => {
-        const defaults = { 'g-cuota': 80, 'g-gestor': 70, 'g-tools': 80, 'g-telco': 40, 'g-otros': 50 };
-        document.getElementById(id).value = defaults[id];
-      });
-      document.getElementById('sueldo').value = 1800;
-      document.getElementById('irpf').value = 7;
-      renderClientes(); recalc();
-      document.getElementById('save-indicator').textContent = 'Datos borrados';
-    }
-
-    function init() {
-      renderCatalogo();
-      const cargado = cargarDatos();
-      renderClientes();
-      recalc();
-      if (cargado) {
-        document.getElementById('save-indicator').textContent = '✓ Datos restaurados de tu última sesión';
-      }
-    }
-
+    // ── Catálogo (Paso 3) ─────────────────────────────────────────────────
     function renderCatalogo() {
       document.getElementById('cat-grid').innerHTML = SVCS.map(s => `
-    <div class="cat-item">
-      <div class="cat-badge ${s.tipo}">${s.tipo === 'mensual' ? '🔄 Recurrente' : '📦 Proyecto'}</div>
-      <div class="cat-name">${s.nombre}</div>
-      <div class="cat-desc">${s.desc}</div>
-      <div class="cat-price-row">
-        <input type="number" id="p-${s.id}" value="${s.precio}" min="0" step="50"
-               oninput="updateSvcPrecio('${s.id}',this.value)">
-        <span class="unit">€ ${s.tipo === 'mensual' ? '/mes' : '/proyecto'}</span>
-      </div>
-      <div class="cat-horas">~${s.horas} h de trabajo</div>
-    </div>
-  `).join('');
+        <div class="cat-item">
+          <div class="cat-badge ${s.tipo === 'mensual' ? 'mensual' : 'proyecto'}">${s.tipo === 'mensual' ? '🔄 Recurrente' : '📦 Proyecto único'}</div>
+          <div class="cat-name">${s.nombre}</div>
+          <div class="cat-desc">${s.desc}</div>
+          <div class="cat-price-row">
+            <input type="number" id="p-${s.id}" value="${s.precio}" min="0" step="50" oninput="updateCatalogoPrecio('${s.id}',this.value)">
+            <span class="unit">€ ${s.tipo === 'mensual' ? '/mes' : '/proyecto'}</span>
+          </div>
+          <div class="cat-horas">~${s.horas} h · ${fmt(s.precio / s.horas)}/h</div>
+        </div>
+      `).join('');
     }
 
-    function updateSvcPrecio(id, val) {
+    function updateCatalogoPrecio(id, val) {
       const s = SVCS.find(x => x.id === id);
-      if (s) { s.precio = +val || 0; renderClientes(); recalc(); }
+      if (s) { s.precio = +val || 0; recalc(); }
     }
 
+    // ── Clientes (Paso 2) ─────────────────────────────────────────────────
     function addCliente() {
-      clientes.push({ id: nextId++, nombre: '', svcs: [] });
-      renderClientes();
-      recalc();
+      clientes.push({ id: nextClientId++, nombre: '', svcs: [] });
+      renderClientes(); recalc();
     }
 
     function delCliente(id) {
       clientes = clientes.filter(c => c.id !== id);
-      renderClientes();
+      renderClientes(); recalc();
+    }
+
+    function updateNombreCliente(id, val) {
+      const c = clientes.find(x => x.id === id);
+      if (c) { c.nombre = val; triggerSave(); }
+    }
+
+    function addSvcCatalogo(cid, catalogId) {
+      if (!catalogId) return;
+      const c = clientes.find(x => x.id === cid);
+      const cs = SVCS.find(x => x.id === catalogId);
+      if (!c || !cs) return;
+      if (c.svcs.find(s => s.catId === catalogId)) return;
+      c.svcs.push({ uid: 'u' + (nextSvcId++), catId: catalogId, nombre: cs.nombre, precio: cs.precio, tipo: cs.tipo === 'mensual' ? 'mensual' : 'unico' });
+      renderClientes(); recalc();
+    }
+
+    function addSvcCustom(cid) {
+      const c = clientes.find(x => x.id === cid);
+      if (!c) return;
+      c.svcs.push({ uid: 'u' + (nextSvcId++), catId: null, nombre: '', precio: 0, tipo: 'mensual' });
+      renderClientes(); recalc();
+    }
+
+    function delSvc(cid, uid) {
+      const c = clientes.find(x => x.id === cid);
+      if (c) { c.svcs = c.svcs.filter(s => s.uid !== uid); renderClientes(); recalc(); }
+    }
+
+    function getSvc(cid, uid) {
+      const c = clientes.find(x => x.id === cid);
+      return c ? c.svcs.find(s => s.uid === uid) : null;
+    }
+
+    function updateSvcNombre(cid, uid, val) {
+      const s = getSvc(cid, uid); if (s) { s.nombre = val; triggerSave(); }
+    }
+
+    function updateSvcPrecio(cid, uid, val) {
+      const s = getSvc(cid, uid);
+      if (!s) return;
+      s.precio = +val || 0;
+      // Actualizar total en pantalla sin re-renderizar todo
+      const elM = document.getElementById('ct-mensual-' + cid);
+      const elU = document.getElementById('ct-unico-' + cid);
+      const c = clientes.find(x => x.id === cid);
+      if (elM) elM.textContent = fmt(clienteTotalMensual(c)) + '/mes';
+      if (elU) { const uni = clienteTotalUnico(c); elU.textContent = uni > 0 ? '+' + fmt(uni) + ' único' : ''; }
       recalc();
     }
 
-    function addSvcToClient(cid, sid) {
-      if (!sid) return;
-      const c = clientes.find(x => x.id === cid);
-      if (c && !c.svcs.find(s => s.id === sid)) {
-        // Permitir precio custom editable
-        const svc = SVCS.find(x => x.id === sid);
-        c.svcs.push({ id: sid, precio: svc ? svc.precio : 0 });
-        renderClientes(); recalc();
-      }
+    function toggleSvcTipo(cid, uid) {
+      const s = getSvc(cid, uid);
+      if (s) { s.tipo = s.tipo === 'mensual' ? 'unico' : 'mensual'; renderClientes(); recalc(); }
     }
 
-    function delSvcFromClient(cid, sid) {
-      const c = clientes.find(x => x.id === cid);
-      if (c) { c.svcs = c.svcs.filter(s => s.id !== sid); renderClientes(); recalc(); }
+    // ── Totales ───────────────────────────────────────────────────────────
+    function clienteTotalMensual(c) {
+      return c.svcs.filter(s => s.tipo === 'mensual').reduce((sum, s) => sum + (+s.precio || 0), 0);
     }
 
-    function updateNombre(id, val) {
-      const c = clientes.find(x => x.id === id);
-      if (c) c.nombre = val;
+    function clienteTotalUnico(c) {
+      return c.svcs.filter(s => s.tipo === 'unico').reduce((sum, s) => sum + (+s.precio || 0), 0);
     }
 
-    function clienteTotal(c) {
-      return c.svcs.reduce((s, svc) => {
-        // Si tiene precio custom, usarlo; si no, buscar en SVCS
-        if (typeof svc === 'object' && svc.precio !== undefined) return s + (+svc.precio || 0);
-        const sv = SVCS.find(x => x.id === svc);
-        return s + (sv ? sv.precio : 0);
-      }, 0);
-    }
+    function clienteTotal(c) { return clienteTotalMensual(c); }
 
+    // ── Render clientes ───────────────────────────────────────────────────
     function renderClientes() {
       const el = document.getElementById('clientes-list');
       if (clientes.length === 0) {
@@ -1398,71 +1596,68 @@
         return;
       }
       el.innerHTML = clientes.map(c => {
-        const total = clienteTotal(c);
-        const totalHoras = c.svcs.reduce((s, svc) => {
-          const sv = SVCS.find(x => x.id === (svc.id || svc));
-          return s + (sv ? sv.horas : 0);
+        const mensual = clienteTotalMensual(c);
+        const unico = clienteTotalUnico(c);
+        const totalHoras = c.svcs.filter(s => s.tipo === 'mensual').reduce((sum, svc) => {
+          const cs = SVCS.find(x => x.id === svc.catId);
+          return sum + (cs ? cs.horas : 0);
         }, 0);
-        const ratio = totalHoras > 0 ? total / totalHoras : 0;
+        const ratio = totalHoras > 0 ? mensual / totalHoras : 0;
         const ratioClass = ratio >= 60 ? 'good' : ratio >= 30 ? 'med' : 'low';
-        const chips = c.svcs.map(svc => {
-          const sid = typeof svc === 'object' ? svc.id : svc;
-          const s = SVCS.find(x => x.id === sid);
-          if (!s) return '';
-          // Input editable para precio custom
-          return `<span class="chip">
-        <span style="font-size:11px">${s.tipo === 'mensual' ? '🔄' : '📦'}</span>
-        ${s.nombre} · <input type='number' min='0' value='${svc.precio !== undefined ? svc.precio : s.precio}' style='width:60px;font-size:12px;padding:2px 4px' onchange="updatePrecioCliente(${c.id},'${sid}',this.value)"> €
-        <span class="chip-x" onclick="delSvcFromClient(${c.id},'${sid}')">×</span>
-      </span>`;
-        }).join('');
-        const opts = SVCS.filter(s => !c.svcs.find(x => (typeof x === 'object' ? x.id : x) === s.id))
-          .map(s => `<option value="${s.id}">${s.tipo === 'mensual' ? '🔄' : '📦'} ${s.nombre} — ${fmt(s.precio)}</option>`)
-          .join('');
-        const nombre = c.nombre || '';
+
+        const svcsHtml = c.svcs.map(svc => `
+          <div class="svc-row">
+            <button class="tipo-btn ${svc.tipo}" onclick="toggleSvcTipo(${c.id},'${svc.uid}')" title="Clic para cambiar entre Mensual y Único">
+              ${svc.tipo === 'mensual' ? '🔄 Mensual' : '📦 Único'}
+            </button>
+            ${svc.catId
+            ? `<span class="svc-nombre-fixed">${svc.nombre}</span>`
+            : `<input class="svc-nombre-input" type="text" value="${(svc.nombre || '').replace(/"/g, '&quot;')}" placeholder="Nombre del servicio" onchange="updateSvcNombre(${c.id},'${svc.uid}',this.value)">`
+          }
+            <input type="number" min="0" value="${svc.precio}" onchange="updateSvcPrecio(${c.id},'${svc.uid}',this.value)">
+            <span class="svc-unit">${svc.tipo === 'mensual' ? '€/mes' : '€'}</span>
+            <button class="btn-del-svc" onclick="delSvc(${c.id},'${svc.uid}')">×</button>
+          </div>
+        `).join('');
+
+        const optsDisp = SVCS.filter(s => !c.svcs.find(x => x.catId === s.id));
+        const selectHtml = optsDisp.length > 0 ? `
+          <select class="svc-select" onchange="addSvcCatalogo(${c.id},this.value);this.value=''">
+            <option value="">+ Del catálogo...</option>
+            ${optsDisp.map(s => `<option value="${s.id}">${s.tipo === 'mensual' ? '🔄' : '📦'} ${s.nombre} — ${fmt(s.precio)}</option>`).join('')}
+          </select>` : '';
+
         return `
-      <div class="client-card">
-        <div class="client-top">
-          <input class="client-name" type="text" value="${nombre.replace(/"/g, '&quot;')}"
-            onchange="updateNombre(${c.id},this.value)"
-            onfocus="this.style.borderColor='var(--accent)'"
-            onblur="this.style.borderColor='var(--border)'"
-            placeholder="Nombre del cliente ${c.id}">
-          ${totalHoras > 0 ? `<span class="ratio-badge ${ratioClass}">${Math.round(ratio)} €/h</span>` : ''}<span class="client-total">${fmt(total)}/mes</span>
-          <button class="btn-del" onclick="delCliente(${c.id})">🗑</button>
-        </div>
-        <div class="chips">
-          ${chips || '<span style="font-size:12px;color:var(--text2)">Sin servicios — elige uno en el desplegable</span>'}
-        </div>
-        <select class="svc-select" onchange="addSvcToClient(${c.id},this.value);this.value=''">
-          <option value="">+ Asignar servicio a este cliente...</option>
-          ${opts}
-        </select>
-      </div>
-    `;
+          <div class="client-card">
+            <div class="client-top">
+              <input class="client-name" type="text" value="${(c.nombre || '').replace(/"/g, '&quot;')}"
+                onchange="updateNombreCliente(${c.id},this.value)"
+                onfocus="this.style.borderColor='var(--accent)'"
+                onblur="this.style.borderColor='var(--border)'"
+                placeholder="Nombre del cliente">
+              <div class="client-totals">
+                <span class="client-total-mensual" id="ct-mensual-${c.id}">${fmt(mensual)}/mes</span>
+                <span class="client-total-unico"   id="ct-unico-${c.id}">${unico > 0 ? '+' + fmt(unico) + ' único' : ''}</span>
+              </div>
+              <button class="btn-del" onclick="delCliente(${c.id})">🗑</button>
+            </div>
+            ${totalHoras > 0 ? `<div style="margin-bottom:8px"><span class="ratio-badge ${ratioClass}">${Math.round(ratio)} €/h</span></div>` : ''}
+            <div class="svcs-list">${svcsHtml || '<div style="font-size:12px;color:var(--text3);padding:6px 0">Sin servicios aún. Añade del catálogo o crea uno personalizado.</div>'}</div>
+            <div class="svc-actions">
+              ${selectHtml}
+              <button class="btn-add-svc" onclick="addSvcCustom(${c.id})">+ Personalizado</button>
+            </div>
+          </div>`;
       }).join('');
     }
-    // Permite editar el precio custom de un servicio asignado a un cliente
-    function updatePrecioCliente(cid, sid, val) {
-      const c = clientes.find(x => x.id === cid);
-      if (!c) return;
-      const svc = c.svcs.find(s => (typeof s === 'object' ? s.id : s) === sid);
-      if (svc && typeof svc === 'object') {
-        svc.precio = +val || 0;
-        renderClientes(); recalc();
-      }
-    }
 
+    // ── Recálculo principal ───────────────────────────────────────────────
     function recalc() {
-      const cuota = +document.getElementById('g-cuota').value || 0;
-      const gestor = +document.getElementById('g-gestor').value || 0;
-      const tools = +document.getElementById('g-tools').value || 0;
-      const telco = +document.getElementById('g-telco').value || 0;
-      const otros = +document.getElementById('g-otros').value || 0;
-      const sueldo = +document.getElementById('sueldo').value || 0;
-      const irpf = +document.getElementById('irpf').value || 7;
-
+      const cuota = n('g-cuota'), gestor = n('g-gestor'), tools = n('g-tools');
+      const telco = n('g-telco'), otros = n('g-otros');
+      const sueldo = n('sueldo'), irpf = n('irpf') || 7;
       const gastos = cuota + gestor + tools + telco + otros;
+
       document.getElementById('total-gastos').textContent = fmt(gastos);
       document.getElementById('sueldo-val').textContent = fmt(sueldo);
       document.getElementById('irpf-val').textContent = irpf + '%';
@@ -1472,13 +1667,12 @@
       document.getElementById('dash-necesitas').textContent = fmt(necesitas);
       document.getElementById('dash-necesitas').className = 'di-val muted';
 
-      const tienes = clientes.reduce((s, c) => s + clienteTotal(c), 0);
+      const tienes = clientes.reduce((s, c) => s + clienteTotalMensual(c), 0);
       document.getElementById('total-clientes').textContent = fmt(tienes);
       document.getElementById('dash-tienes').textContent = fmt(tienes);
 
       const gap = necesitas - tienes;
       const pct = necesitas > 0 ? Math.min(100, (tienes / necesitas) * 100) : 0;
-
       const gapEl = document.getElementById('dash-gap');
       const gapLbl = document.getElementById('gap-label');
       const gapSub = document.getElementById('gap-sub');
@@ -1486,13 +1680,10 @@
       if (necesitas === 0) {
         gapEl.textContent = '—'; gapEl.className = 'di-val muted';
       } else if (gap <= 0) {
-        gapLbl.textContent = '¡Lo consigues!';
-        gapEl.textContent = fmt(Math.abs(gap)) + ' extra';
-        gapEl.className = 'di-val green';
-        gapSub.textContent = 'Estás por encima del objetivo 🎉';
+        gapLbl.textContent = '¡Lo consigues!'; gapEl.textContent = fmt(Math.abs(gap)) + ' extra';
+        gapEl.className = 'di-val green'; gapSub.textContent = 'Estás por encima del objetivo 🎉';
       } else {
-        gapLbl.textContent = 'Te falta';
-        gapEl.textContent = fmt(gap);
+        gapLbl.textContent = 'Te falta'; gapEl.textContent = fmt(gap);
         gapEl.className = pct >= 70 ? 'di-val yellow' : 'di-val red';
         gapSub.textContent = 'para cubrir gastos + sueldo';
       }
@@ -1500,302 +1691,156 @@
       const bar = document.getElementById('prog-bar');
       bar.style.width = (pct || 2) + '%';
       bar.className = 'progress-fill' + (pct >= 100 ? ' green' : pct >= 70 ? ' yellow' : '');
-      document.getElementById('prog-txt').textContent = necesitas > 0
-        ? Math.round(pct) + '% de tu objetivo cubierto'
-        : 'Rellena el paso 1 para empezar';
+      document.getElementById('prog-txt').textContent = necesitas > 0 ? Math.round(pct) + '% de tu objetivo cubierto' : 'Rellena el paso 1 para empezar';
 
       renderSimulador(necesitas, tienes, gap, irpf);
       renderAlertas(necesitas, tienes, gap, irpf, gastos, sueldo);
       updateHacienda(tienes, necesitas, irpf);
-      clearTimeout(_saveTimer);
-      _saveTimer = setTimeout(guardarDatos, 600);
+      triggerSave();
     }
 
+    // ── Simulador (Paso 4) ────────────────────────────────────────────────
     function renderSimulador(necesitas, tienes, gap, irpf) {
-      const mant = SVCS.find(s => s.id === 's1');
-      const rrss = SVCS.find(s => s.id === 's2');
-      const ads = SVCS.find(s => s.id === 's4');
-      const pMant = mant ? mant.precio : 250;
-      const pRRSS = rrss ? rrss.precio : 600;
-      const pAds = ads ? ads.precio : 400;
-
-      const horasFact = 96;
-      const phMin = necesitas > 0 ? necesitas / horasFact : 0;
-      const phRec = phMin * 1.3;
-      const nMant = gap > 0 ? Math.ceil(gap / pMant) : 0;
-      const nRRSS = gap > 0 ? Math.ceil(gap / pRRSS) : 0;
+      const mant = SVCS.find(s => s.id === 's1'), rrss = SVCS.find(s => s.id === 's2'), ads = SVCS.find(s => s.id === 's4');
+      const pMant = mant ? mant.precio : 250, pRRSS = rrss ? rrss.precio : 600, pAds = ads ? ads.precio : 400;
+      const phMin = necesitas > 0 ? necesitas / 96 : 0;
+      const nMant = gap > 0 ? Math.ceil(gap / pMant) : 0, nRRSS = gap > 0 ? Math.ceil(gap / pRRSS) : 0;
       const reached = gap <= 0 && necesitas > 0;
-
       if (!necesitas) {
         document.getElementById('sim-grid').innerHTML = '<div class="sim-card" style="grid-column:1/-1"><div class="sim-lbl">Completa el paso 1 para ver la simulación.</div></div>';
-        document.getElementById('sim-tip').innerHTML = '';
-        return;
+        document.getElementById('sim-tip').innerHTML = ''; return;
       }
-
-      // Mix sugerido
-      const mixRRSS = Math.min(1, gap > 0 ? 1 : 0) * pRRSS;
-      const mixAds = Math.min(1, gap > 0 ? 1 : 0) * pAds;
-      const mixRest = Math.max(0, gap - mixRRSS - mixAds);
-      const nMant3 = Math.ceil(mixRest / pMant);
-      const mixTotal = mixRRSS + mixAds + nMant3 * pMant;
-
+      const nMant3 = Math.ceil(Math.max(0, gap - (gap > 0 ? pRRSS : 0) - (gap > 0 ? pAds : 0)) / pMant);
+      const mixTotal = (gap > 0 ? pRRSS : 0) + (gap > 0 ? pAds : 0) + nMant3 * pMant;
       document.getElementById('sim-grid').innerHTML = `
-    <div class="sim-card hl">
-      <div class="sim-lbl">Necesitas facturar</div>
-      <div class="sim-val accent">${fmt(necesitas)}/mes</div>
-      <div class="sim-sub">Gastos + sueldo + IRPF (${irpf}%)</div>
-    </div>
-    <div class="sim-card ${reached ? 'green-hl' : ''}">
-      <div class="sim-lbl">Tienes ahora</div>
-      <div class="sim-val ${reached ? 'green' : tienes > 0 ? '' : 'red'}">${fmt(tienes)}/mes</div>
-      <div class="sim-sub">${reached ? '¡Cubres el objetivo! 🎉' : tienes > 0 ? 'Faltan ' + fmt(gap) : 'Aún sin clientes'}</div>
-    </div>
-    <div class="sim-card">
-      <div class="sim-lbl">Precio mínimo por hora</div>
-      <div class="sim-val">${fmt(phMin)}/h</div>
-      <div class="sim-sub">Basado en ~96 h facturables/mes</div>
-    </div>
-    <div class="sim-card">
-      <div class="sim-lbl">Precio recomendado por hora</div>
-      <div class="sim-val">${fmt(phRec)}/h</div>
-      <div class="sim-sub">+30% de margen para imprevistos</div>
-    </div>
-    ${gap > 0 ? `
-    <div class="sim-card">
-      <div class="sim-lbl">Solo con mantenimiento web (${fmt(pMant)}/mes)</div>
-      <div class="sim-val">${nMant} cliente${nMant !== 1 ? 's' : ''} más</div>
-      <div class="sim-sub">para cubrir el hueco</div>
-    </div>
-    <div class="sim-card">
-      <div class="sim-lbl">Solo con redes sociales (${fmt(pRRSS)}/mes)</div>
-      <div class="sim-val">${nRRSS} cliente${nRRSS !== 1 ? 's' : ''} más</div>
-      <div class="sim-sub">para cubrir el hueco</div>
-    </div>
-    <div class="sim-card" style="grid-column:1/-1">
-      <div class="sim-lbl">💡 Mix realista para llegar al objetivo</div>
-      <div class="sim-val" style="font-size:16px;line-height:1.5">
-        1 cliente redes (${fmt(pRRSS)}) + 1 cliente Ads (${fmt(pAds)}) + ${nMant3} mantenimiento${nMant3 !== 1 ? 's' : ''} (${fmt(nMant3 * pMant)}) = <span style="color:var(--green)">${fmt(mixTotal)}/mes</span>
-      </div>
-      <div class="sim-sub">Combinación equilibrada de servicios recurrentes</div>
-    </div>
-    ` : `
-    <div class="sim-card green-hl" style="grid-column:1/-1">
-      <div class="sim-lbl">Estado</div>
-      <div class="sim-val green">¡Objetivo cumplido! 🎉</div>
-      <div class="sim-sub">Cubres todos tus gastos y sueldo con los clientes actuales</div>
-    </div>
-    `}
-  `;
-
+        <div class="sim-card hl"><div class="sim-lbl">Necesitas facturar</div><div class="sim-val accent">${fmt(necesitas)}/mes</div><div class="sim-sub">Gastos + sueldo + IRPF (${irpf}%)</div></div>
+        <div class="sim-card ${reached ? 'green-hl' : ''}"><div class="sim-lbl">Tienes ahora</div><div class="sim-val ${reached ? 'green' : tienes > 0 ? '' : 'red'}">${fmt(tienes)}/mes</div><div class="sim-sub">${reached ? '¡Cubres el objetivo! 🎉' : tienes > 0 ? 'Faltan ' + fmt(gap) : 'Aún sin clientes'}</div></div>
+        <div class="sim-card"><div class="sim-lbl">€/hora mínimo viable</div><div class="sim-val">${fmt(phMin)}/h</div><div class="sim-sub">Basado en ~96 h facturables/mes</div></div>
+        <div class="sim-card"><div class="sim-lbl">€/hora recomendado (+30%)</div><div class="sim-val">${fmt(phMin * 1.3)}/h</div><div class="sim-sub">Con margen para imprevistos</div></div>
+        ${gap > 0 ? `
+        <div class="sim-card"><div class="sim-lbl">Solo mantenimiento (${fmt(pMant)}/mes)</div><div class="sim-val">${nMant} cliente${nMant !== 1 ? 's' : ''} más</div><div class="sim-sub">para cubrir el hueco</div></div>
+        <div class="sim-card"><div class="sim-lbl">Solo redes sociales (${fmt(pRRSS)}/mes)</div><div class="sim-val">${nRRSS} cliente${nRRSS !== 1 ? 's' : ''} más</div><div class="sim-sub">para cubrir el hueco</div></div>
+        <div class="sim-card" style="grid-column:1/-1"><div class="sim-lbl">💡 Mix realista</div><div class="sim-val" style="font-size:16px;line-height:1.6">1 redes (${fmt(pRRSS)}) + 1 Ads (${fmt(pAds)}) + ${nMant3} mant. (${fmt(nMant3 * pMant)}) = <span style="color:var(--green)">${fmt(mixTotal)}/mes</span></div><div class="sim-sub">Combinación equilibrada de servicios recurrentes</div></div>
+        ` : `<div class="sim-card green-hl" style="grid-column:1/-1"><div class="sim-lbl">Estado</div><div class="sim-val green">¡Objetivo cumplido! 🎉</div><div class="sim-sub">Cubres todos tus gastos y sueldo con los clientes actuales</div></div>`}`;
       document.getElementById('sim-tip').innerHTML = reached
-        ? `<div class="sim-tip-box ok"><b>🎉 ¡Felicidades!</b> Tus ingresos actuales cubren todos tus gastos y tu sueldo objetivo. El excedente (${fmt(Math.abs(gap))}/mes) lo puedes guardar para los trimestres de IVA o reinvertir en crecer.</div>`
-        : `<div class="sim-tip-box"><b>💡 Estrategia recomendada:</b> Prioriza clientes de <b>mantenimiento web</b> — son el servicio con mejor ratio esfuerzo/ingreso para empezar. Con ${nMant} cliente${nMant !== 1 ? 's' : ''} de mantenimiento más alcanzas tu objetivo. Los proyectos web (webs corporativas, tiendas) son muy rentables pero no garantizan ingreso fijo cada mes.</div>`;
+        ? `<div class="sim-tip-box ok"><b>🎉 ¡Felicidades!</b> Tus ingresos cubren gastos y sueldo. El excedente (${fmt(Math.abs(gap))}/mes) guárdalo para los trimestres de IVA o reinviértelo.</div>`
+        : `<div class="sim-tip-box"><b>💡 Estrategia:</b> Prioriza <b>mantenimiento web</b> — mejor ratio esfuerzo/ingreso. Con ${nMant} cliente${nMant !== 1 ? 's' : ''} más llegas al objetivo.</div>`;
     }
 
+    // ── Alertas ───────────────────────────────────────────────────────────
     function renderAlertas(necesitas, tienes, gap, irpf, gastos, sueldo) {
       const alerts = [];
-      const cuota = +document.getElementById('g-cuota').value || 0;
+      if (n('g-cuota') <= 80) alerts.push({ tipo: 'warn', icon: '⏰', titulo: 'La tarifa plana dura solo 12 meses', desc: 'A partir del mes 13 la cuota sube a ~<b>330 €/mes</b> (250 € más). Tenlo en cuenta antes de firmar contratos largos.' });
+      if (irpf <= 7) alerts.push({ tipo: 'warn', icon: '📈', titulo: 'El IRPF subirá al 15% en el año 2', desc: 'Necesitarás facturar <b>' + fmt((gastos + sueldo) / 0.85 - necesitas) + ' más/mes</b>. Súbelo en el slider para ver el impacto.' });
 
-      // Tarifa plana
-      if (cuota <= 80) {
-        alerts.push({ tipo: 'warn', icon: '⏰', titulo: 'La tarifa plana dura solo 12 meses', desc: 'A partir del mes 13 la cuota de autónomo sube a ~<b>330 €/mes</b> (250 € más). Tenlo en cuenta antes de firmar contratos largos con esos precios.' });
-      }
+      const nC = clientes.filter(c => clienteTotalMensual(c) > 0).length;
+      if (nC === 0 && necesitas > 0) alerts.push({ tipo: 'danger', icon: '🚨', titulo: 'Sin ingresos recurrentes aún', desc: 'Necesitas <b>' + fmt(necesitas) + '/mes</b>. Ve al paso 2 y añade clientes.' });
+      else if (nC === 1) alerts.push({ tipo: 'danger', icon: '⚠️', titulo: 'Solo 1 cliente — riesgo máximo', desc: 'Si se va te quedas a <b>0 €</b>. Busca mínimo 3-4 clientes.' });
+      else if (nC === 2) alerts.push({ tipo: 'warn', icon: '⚠️', titulo: '2 clientes es frágil', desc: 'Perder uno sería quedarte al 50%. Apunta a 4+ clientes activos.' });
+      else if (nC >= 4) alerts.push({ tipo: 'ok', icon: '✅', titulo: 'Buena diversificación con ' + nC + ' clientes', desc: 'Con varios clientes, perder uno no es un desastre. Buen trabajo.' });
 
-      // IRPF va a subir
-      if (irpf <= 7) {
-        const nuevaNecesidad = (gastos + sueldo) / (1 - 0.15);
-        alerts.push({ tipo: 'warn', icon: '📈', titulo: 'El IRPF subirá al 15% en el año 2', desc: 'Para el mismo sueldo neto, necesitarás facturar <b>' + fmt(nuevaNecesidad - necesitas) + ' más cada mes</b> cuando el IRPF pase al 15%. Súbelo ya en el slider para ver el impacto.' });
-      }
-
-      // Dependencia de clientes
-      const nC = clientes.filter(c => clienteTotal(c) > 0).length;
-      if (nC === 0 && tienes === 0 && necesitas > 0) {
-        alerts.push({ tipo: 'danger', icon: '🚨', titulo: 'Sin ingresos todavía', desc: 'Aún no tienes clientes. Necesitas <b>' + fmt(necesitas) + '/mes</b> para cubrir gastos y sueldo. Ve al paso 2 y empieza a añadir clientes o prospectos.' });
-      } else if (nC === 1) {
-        alerts.push({ tipo: 'danger', icon: '⚠️', titulo: 'Solo 1 cliente — riesgo máximo', desc: 'Si ese cliente se va, te quedas a <b>0 €</b> de ingresos. Intenta tener mínimo 3-4 clientes para no depender de uno solo.' });
-      } else if (nC === 2) {
-        alerts.push({ tipo: 'warn', icon: '⚠️', titulo: '2 clientes es frágil', desc: 'Perder uno sería quedarte al 50% de tus ingresos de un día para otro. Apunta a 4+ clientes activos.' });
-      } else if (nC >= 4) {
-        alerts.push({ tipo: 'ok', icon: '✅', titulo: 'Buena diversificación con ' + nC + ' clientes', desc: 'Con varios clientes, perder uno no es un desastre. Buen trabajo manteniendo la cartera.' });
-      }
-
-      // Mix recurrente vs proyecto
       if (tienes > 0) {
-        const ingresoRec = clientes.reduce((sum, c) => {
-          return sum + c.svcs.reduce((s, sid) => {
-            const sv = SVCS.find(x => x.id === sid);
-            return s + (sv && sv.tipo === 'mensual' ? sv.precio : 0);
-          }, 0);
-        }, 0);
+        const ingresoRec = clientes.reduce((sum, c) => sum + clienteTotalMensual(c), 0);
         const pctRec = ingresoRec / tienes;
-        if (pctRec < 0.5) {
-          alerts.push({ tipo: 'warn', icon: '📦', titulo: 'Más del 50% son proyectos puntuales', desc: 'Los proyectos no garantizan ingreso fijo. Intenta que al menos el 60% venga de servicios recurrentes (mantenimiento, redes, SEO). Tu base recurrente ahora: <b>' + fmt(ingresoRec) + '/mes (' + Math.round(pctRec * 100) + '%)</b>.' });
-        } else if (ingresoRec >= necesitas && necesitas > 0) {
-          alerts.push({ tipo: 'ok', icon: '🔄', titulo: '¡Tus recurrentes ya cubren el objetivo!', desc: 'Tienes <b>' + fmt(ingresoRec) + '/mes</b> de ingresos fijos. Cualquier proyecto que cierres es beneficio sobre el objetivo. Excelente base.' });
-        }
+        if (pctRec < 0.5) alerts.push({ tipo: 'warn', icon: '📦', titulo: 'Más del 50% son pagos únicos', desc: 'No garantizan ingreso fijo. Intenta que >60% venga de servicios mensuales. Recurrente actual: <b>' + fmt(ingresoRec) + '/mes (' + Math.round(pctRec * 100) + '%)</b>.' });
+        else if (ingresoRec >= necesitas && necesitas > 0) alerts.push({ tipo: 'ok', icon: '🔄', titulo: '¡Tus mensuales ya cubren el objetivo!', desc: '<b>' + fmt(ingresoRec) + '/mes</b> en fijo. Cada proyecto único que cierres es extra.' });
+        alerts.push({ tipo: 'info', icon: '🏦', titulo: 'Aparta ' + fmt(tienes * 0.21) + '/mes para el IVA', desc: 'El 21% de IVA que cobras no es tuyo. Pásalo a cuenta aparte o te pillará en enero, abril, julio y octubre.' });
       }
 
-      // Precio/hora
       const phMin = necesitas > 0 ? necesitas / 96 : 0;
-      if (phMin > 0 && phMin < 20) {
-        alerts.push({ tipo: 'danger', icon: '💸', titulo: 'Tu precio/hora está muy por debajo del mercado', desc: '<b>' + fmt(phMin) + '/h</b> es demasiado bajo para servicios digitales en España. El mercado paga 35-80 €/h. Revisa tus tarifas o reduce gastos.' });
-      } else if (phMin >= 35 && phMin <= 85) {
-        alerts.push({ tipo: 'ok', icon: '💪', titulo: 'Precio/hora en rango sano para Barcelona', desc: '<b>' + fmt(phMin) + '/h</b> es competitivo para agencias digitales en Barcelona. Bien posicionado.' });
-      }
+      if (phMin > 0 && phMin < 20) alerts.push({ tipo: 'danger', icon: '💸', titulo: 'Precio/hora muy bajo', desc: '<b>' + fmt(phMin) + '/h</b> está por debajo del mercado (35-80 €/h en España).' });
+      else if (phMin >= 35 && phMin <= 85) alerts.push({ tipo: 'ok', icon: '💪', titulo: 'Precio/hora en rango sano', desc: '<b>' + fmt(phMin) + '/h</b> es competitivo para agencias digitales en Barcelona.' });
 
-      // IVA trimestral
-      if (tienes > 0) {
-        const ivaApartar = tienes * 0.21;
-        alerts.push({ tipo: 'info', icon: '🏦', titulo: 'Aparta ' + fmt(ivaApartar) + '/mes para el IVA trimestral', desc: 'El 21% de IVA que cobras a tus clientes nunca es tuyo. Pásalo a una cuenta aparte cada mes o te pillarán los trimestres (enero, abril, julio, octubre) por sorpresa.' });
-      }
-
-      // Cheque de viabilidad
-      if (necesitas > 0 && gap <= 0) {
-        const excedente = Math.abs(gap);
-        alerts.push({ tipo: 'ok', icon: '🎉', titulo: '¡Modelo viable! Tienes ' + fmt(excedente) + ' de margen', desc: 'Cubres todos los gastos y tu sueldo. Con el excedente puedes: guardar para el IRPF anual, reinvertir en marketing o aumentar tu fondo de emergencia (recomendado: 3 meses de gastos = <b>' + fmt((gastos) * 3) + '</b>).' });
-      }
+      if (necesitas > 0 && gap <= 0) alerts.push({ tipo: 'ok', icon: '🎉', titulo: '¡Modelo viable! ' + fmt(Math.abs(gap)) + ' de margen', desc: 'Cubres gastos y sueldo. Guarda el excedente para IRPF anual o fondo de emergencia (mín. 3 meses = <b>' + fmt(gastos * 3) + '</b>).' });
 
       const el = document.getElementById('alertas-list');
       const sub = document.getElementById('alerts-subtitle');
-      if (alerts.length === 0) {
-        el.innerHTML = '<div class="alerts-empty">Añade tus datos para recibir avisos personalizados.</div>';
-        sub.textContent = 'Se actualizan con tus datos en tiempo real';
-        return;
-      }
+      if (!alerts.length) { el.innerHTML = '<div class="alerts-empty">Añade tus datos para recibir avisos personalizados.</div>'; sub.textContent = 'Se actualizan con tus datos en tiempo real'; return; }
       sub.textContent = alerts.filter(a => a.tipo === 'danger').length + ' críticos · ' + alerts.filter(a => a.tipo === 'warn').length + ' avisos · ' + alerts.filter(a => a.tipo === 'ok').length + ' positivos';
       el.innerHTML = alerts.map(a => `<div class="alert-item ${a.tipo}"><div class="alert-icon">${a.icon}</div><div class="alert-body"><b>${a.titulo}</b><span>${a.desc}</span></div></div>`).join('');
     }
 
+    // ── Hucha Hacienda ────────────────────────────────────────────────────
     function updateHacienda(tienes, necesitas, irpf) {
       const row = document.getElementById('hacienda-row');
       const base = tienes > 0 ? tienes : necesitas;
       if (base === 0) { row.style.display = 'none'; return; }
-      const ivaApartar = base * 0.21;
-      const irpfEstim = base * (irpf / 100);
-      const total = ivaApartar + irpfEstim;
+      const iva = base * 0.21, irpfE = base * (irpf / 100);
       row.style.display = 'flex';
       row.innerHTML = `
-        <div class="hac-item">
-          <div class="hac-lbl">💰 Aparta para IVA</div>
-          <div class="hac-val warn">${fmt(ivaApartar)}/mes</div>
-          <div class="hac-sub">21% — no es tuyo</div>
-        </div>
-        <div class="hac-item">
-          <div class="hac-lbl">📋 Retención IRPF</div>
-          <div class="hac-val warn">${fmt(irpfEstim)}/mes</div>
-          <div class="hac-sub">${irpf}% ya retenido</div>
-        </div>
-        <div class="hac-item" style="background:var(--green-bg);border:1px solid #1e3a2a">
-          <div class="hac-lbl">✅ Reserva total/mes</div>
-          <div class="hac-val ok">${fmt(total)}/mes</div>
-          <div class="hac-sub">IVA + IRPF aparte</div>
-        </div>
-      `;
+        <div class="hac-item"><div class="hac-lbl">💰 Aparta IVA</div><div class="hac-val warn">${fmt(iva)}/mes</div><div class="hac-sub">21% — no es tuyo</div></div>
+        <div class="hac-item"><div class="hac-lbl">📋 IRPF retenido</div><div class="hac-val warn">${fmt(irpfE)}/mes</div><div class="hac-sub">${irpf}% ya retenido</div></div>
+        <div class="hac-item" style="background:var(--green-bg);border:1px solid #1e3a2a"><div class="hac-lbl">✅ Reserva total</div><div class="hac-val ok">${fmt(iva + irpfE)}/mes</div><div class="hac-sub">IVA + IRPF aparte</div></div>`;
     }
 
-    function fmt(n) {
-      return Math.round(n).toLocaleString('es-ES') + ' €';
-    }
-
-    function toggle(id) {
-      document.getElementById(id).classList.toggle('closed');
-    }
-
-    // ── Resumen para gestor ───────────────────────────────────────────────────
+    // ── Modal resumen ─────────────────────────────────────────────────────
     function abrirResumen() {
-      const cuota = +document.getElementById('g-cuota').value || 0;
-      const gestor = +document.getElementById('g-gestor').value || 0;
-      const tools = +document.getElementById('g-tools').value || 0;
-      const telco = +document.getElementById('g-telco').value || 0;
-      const otros = +document.getElementById('g-otros').value || 0;
-      const sueldo = +document.getElementById('sueldo').value || 0;
-      const irpf = +document.getElementById('irpf').value || 7;
+      const cuota = n('g-cuota'), gestor = n('g-gestor'), tools = n('g-tools'), telco = n('g-telco'), otros = n('g-otros');
+      const sueldo = n('sueldo'), irpf = n('irpf') || 7;
       const gastos = cuota + gestor + tools + telco + otros;
-      const necesitas = (gastos + sueldo) / (1 - irpf / 100);
-      const tienes = clientes.reduce((s, c) => s + clienteTotal(c), 0);
-      const gap = necesitas - tienes;
-      const phMin = necesitas > 0 ? necesitas / 96 : 0;
-      const ivaApartar = necesitas * 0.21;
+      const nec = (gastos + sueldo) / (1 - irpf / 100);
+      const tienes = clientes.reduce((s, c) => s + clienteTotalMensual(c), 0);
+      const gap = nec - tienes;
+      const phMin = nec > 0 ? nec / 96 : 0;
       const fecha = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' });
-
       document.getElementById('modal-contenido').innerHTML = `
-        <div class="resumen-block">
-          <h3>📋 Datos del autónomo · ${fecha}</h3>
-          <div class="resumen-row"><span class="rk">Régimen</span><span class="rv">Autónomo · módulos generales · España</span></div>
-          <div class="resumen-row"><span class="rk">Retención IRPF aplicada</span><span class="rv">${irpf}% ${irpf <= 7 ? '(tarifa primer año)' : ''}</span></div>
-        </div>
-        <div class="resumen-block">
-          <h3>💸 Estructura de costes mensuales</h3>
+        <div class="resumen-block"><h3>📋 Datos · ${fecha}</h3>
+          <div class="resumen-row"><span class="rk">Régimen</span><span class="rv">Autónomo · España</span></div>
+          <div class="resumen-row"><span class="rk">Retención IRPF</span><span class="rv">${irpf}%${irpf <= 7 ? ' (primer año)' : ''}</span></div></div>
+        <div class="resumen-block"><h3>💸 Costes mensuales</h3>
           <div class="resumen-row"><span class="rk">Cuota autónomo</span><span class="rv">${fmt(cuota)}/mes</span></div>
-          <div class="resumen-row"><span class="rk">Gestor / asesoría</span><span class="rv">${fmt(gestor)}/mes</span></div>
-          <div class="resumen-row"><span class="rk">Herramientas y software</span><span class="rv">${fmt(tools)}/mes</span></div>
-          <div class="resumen-row"><span class="rk">Teléfono / internet</span><span class="rv">${fmt(telco)}/mes</span></div>
-          <div class="resumen-row"><span class="rk">Otros gastos</span><span class="rv">${fmt(otros)}/mes</span></div>
-          <div class="resumen-row" style="font-weight:700"><span class="rk">Total gastos fijos</span><span class="rv">${fmt(gastos)}/mes</span></div>
-        </div>
-        <div class="resumen-block">
-          <h3>🎯 Objetivos económicos</h3>
+          <div class="resumen-row"><span class="rk">Gestor</span><span class="rv">${fmt(gestor)}/mes</span></div>
+          <div class="resumen-row"><span class="rk">Herramientas</span><span class="rv">${fmt(tools)}/mes</span></div>
+          <div class="resumen-row"><span class="rk">Teléfono/internet</span><span class="rv">${fmt(telco)}/mes</span></div>
+          <div class="resumen-row"><span class="rk">Otros</span><span class="rv">${fmt(otros)}/mes</span></div>
+          <div class="resumen-row" style="font-weight:700"><span class="rk">Total gastos</span><span class="rv">${fmt(gastos)}/mes</span></div></div>
+        <div class="resumen-block"><h3>🎯 Objetivos</h3>
           <div class="resumen-row"><span class="rk">Sueldo neto deseado</span><span class="rv">${fmt(sueldo)}/mes</span></div>
-          <div class="resumen-row"><span class="rk">Facturación mínima necesaria</span><span class="rv" style="color:var(--accent)">${fmt(necesitas)}/mes</span></div>
-          <div class="resumen-row"><span class="rk">Precio/hora mínimo viable</span><span class="rv">${fmt(phMin)}/h</span></div>
-          <div class="resumen-row"><span class="rk">Precio/hora recomendado (+30%)</span><span class="rv">${fmt(phMin * 1.3)}/h</span></div>
-        </div>
-        ${clientes.length > 0 ? `
-        <div class="resumen-block">
-          <h3>👥 Clientes actuales</h3>
-          ${clientes.map(c => {
-        const total = clienteTotal(c);
-        const svcsNombres = c.svcs.map(sid => { const s = SVCS.find(x => x.id === sid); return s ? s.nombre : ''; }).filter(Boolean).join(', ');
-        return `<div class="resumen-row"><span class="rk">${c.nombre || 'Sin nombre'}</span><span class="rv">${fmt(total)}/mes${svcsNombres ? ' · ' + svcsNombres : ''}</span></div>`;
-      }).join('')}
-          <div class="resumen-row" style="font-weight:700"><span class="rk">Total ingresos actuales</span><span class="rv" style="color:${gap <= 0 ? 'var(--green)' : 'var(--red)'}">${fmt(tienes)}/mes</span></div>
-        </div>` : ''}
-        <div class="resumen-block">
-          <h3>🏦 Reservas recomendadas (Hacienda)</h3>
-          <div class="resumen-row"><span class="rk">IVA a retener mensualmente (21%)</span><span class="rv">${fmt(necesitas * 0.21)}/mes</span></div>
-          <div class="resumen-row"><span class="rk">IRPF ya retenido en factura</span><span class="rv">${fmt(necesitas * irpf / 100)}/mes</span></div>
-          <div class="resumen-row" style="font-weight:700"><span class="rk">Total a apartar cada mes</span><span class="rv">${fmt(necesitas * 0.21 + necesitas * irpf / 100)}/mes</span></div>
-          <div class="resumen-row"><span class="rk">Fondo emergencia recomendado (3 meses)</span><span class="rv">${fmt(gastos * 3)}</span></div>
-        </div>
-        <div class="resumen-block">
-          <h3>⚠️ Alertas para el primer año</h3>
-          <div class="resumen-row"><span class="rk">Fin tarifa plana (mes 13)</span><span class="rv">+250 €/mes en cuota autónomo</span></div>
-          <div class="resumen-row"><span class="rk">IRPF año 2</span><span class="rv">Sube a 15% → facturar ${fmt((gastos + sueldo) / 0.85 - necesitas)} más/mes</span></div>
-          <div class="resumen-row"><span class="rk">Declaraciones trimestrales IVA</span><span class="rv">Enero, abril, julio, octubre</span></div>
-        </div>
-      `;
+          <div class="resumen-row"><span class="rk">Facturación mínima</span><span class="rv" style="color:var(--accent)">${fmt(nec)}/mes</span></div>
+          <div class="resumen-row"><span class="rk">€/h mínimo</span><span class="rv">${fmt(phMin)}/h</span></div>
+          <div class="resumen-row"><span class="rk">€/h recomendado (+30%)</span><span class="rv">${fmt(phMin * 1.3)}/h</span></div></div>
+        ${clientes.length > 0 ? `<div class="resumen-block"><h3>👥 Clientes</h3>
+          ${clientes.map(c => { const men = clienteTotalMensual(c), uni = clienteTotalUnico(c); const svcsNombres = c.svcs.map(s => s.nombre).filter(Boolean).join(', '); return `<div class="resumen-row"><span class="rk">${c.nombre || 'Sin nombre'}</span><span class="rv">${fmt(men)}/mes${uni > 0 ? ' + ' + fmt(uni) + ' único' : ''}${svcsNombres ? ' · ' + svcsNombres : ''}</span></div>`; }).join('')}
+          <div class="resumen-row" style="font-weight:700"><span class="rk">Total mensuales</span><span class="rv" style="color:${gap <= 0 ? 'var(--green)' : 'var(--red)'}">${fmt(tienes)}/mes</span></div></div>` : ''}
+        <div class="resumen-block"><h3>🏦 Reservas (Hacienda)</h3>
+          <div class="resumen-row"><span class="rk">IVA mensual (21%)</span><span class="rv">${fmt(nec * 0.21)}/mes</span></div>
+          <div class="resumen-row"><span class="rk">IRPF retenido</span><span class="rv">${fmt(nec * irpf / 100)}/mes</span></div>
+          <div class="resumen-row" style="font-weight:700"><span class="rk">Total apartar</span><span class="rv">${fmt(nec * 0.21 + nec * irpf / 100)}/mes</span></div>
+          <div class="resumen-row"><span class="rk">Fondo emergencia (3 meses)</span><span class="rv">${fmt(gastos * 3)}</span></div></div>
+        <div class="resumen-block"><h3>⚠️ Alertas primer año</h3>
+          <div class="resumen-row"><span class="rk">Fin tarifa plana (mes 13)</span><span class="rv">+250 €/mes en cuota</span></div>
+          <div class="resumen-row"><span class="rk">IRPF año 2 (15%)</span><span class="rv">+${fmt((gastos + sueldo) / 0.85 - nec)}/mes</span></div>
+          <div class="resumen-row"><span class="rk">Trimestres IVA</span><span class="rv">Enero, abril, julio, octubre</span></div></div>`;
       document.getElementById('modal-resumen').classList.remove('hidden');
     }
 
-    function cerrarResumen() {
-      document.getElementById('modal-resumen').classList.add('hidden');
-    }
+    function cerrarResumen() { document.getElementById('modal-resumen').classList.add('hidden'); }
 
     function copiarResumen() {
-      const sueldo = +document.getElementById('sueldo').value || 0;
-      const irpf = +document.getElementById('irpf').value || 7;
-      const cuota = +document.getElementById('g-cuota').value || 0;
-      const gastos = ['g-cuota', 'g-gestor', 'g-tools', 'g-telco', 'g-otros'].reduce((s, id) => s + (+document.getElementById(id).value || 0), 0);
-      const necesitas = (gastos + sueldo) / (1 - irpf / 100);
-      const tienes = clientes.reduce((s, c) => s + clienteTotal(c), 0);
-      const fecha = new Date().toLocaleDateString('es-ES');
-      let txt = `RESUMEN AUTÓNOMO · ${fecha}\n${'─'.repeat(40)}\n`;
-      txt += `Gastos fijos mensuales: ${fmt(gastos)}\n`;
-      txt += `Sueldo neto deseado: ${fmt(sueldo)}\n`;
-      txt += `IRPF aplicado: ${irpf}%\n`;
-      txt += `Facturación mínima necesaria: ${fmt(necesitas)}/mes\n`;
-      txt += `Precio/hora mínimo: ${fmt(necesitas / 96)}/h\n\n`;
+      const sueldo = n('sueldo'), irpf = n('irpf') || 7;
+      const gastos = ['g-cuota', 'g-gestor', 'g-tools', 'g-telco', 'g-otros'].reduce((s, id) => s + n(id), 0);
+      const nec = (gastos + sueldo) / (1 - irpf / 100);
+      const tienes = clientes.reduce((s, c) => s + clienteTotalMensual(c), 0);
+      let txt = `RESUMEN AUTÓNOMO · ${new Date().toLocaleDateString('es-ES')}\n${'─'.repeat(40)}\n`;
+      txt += `Gastos fijos: ${fmt(gastos)}\nSueldo neto: ${fmt(sueldo)}\nIRPF: ${irpf}%\nFacturación mínima: ${fmt(nec)}/mes\n€/h mínimo: ${fmt(nec / 96)}/h\n\n`;
       if (clientes.length) {
-        txt += `CLIENTES ACTUALES (${fmt(tienes)}/mes)\n${'─'.repeat(40)}\n`;
-        clientes.forEach(c => {
-          const t = clienteTotal(c);
-          const svcs = c.svcs.map(sid => { const s = SVCS.find(x => x.id === sid); return s ? s.nombre : ''; }).filter(Boolean).join(', ');
-          txt += `· ${c.nombre || 'Sin nombre'}: ${fmt(t)}/mes${svcs ? ' (' + svcs + ')' : ''}\n`;
-        });
+        txt += `CLIENTES (${fmt(tienes)}/mes)\n${'─'.repeat(40)}\n`;
+        clientes.forEach(c => { const men = clienteTotalMensual(c), uni = clienteTotalUnico(c); const svcs = c.svcs.map(s => s.nombre).filter(Boolean).join(', '); txt += `· ${c.nombre || 'Sin nombre'}: ${fmt(men)}/mes${uni > 0 ? ' + ' + fmt(uni) + ' único' : ''}${svcs ? ' (' + svcs + ')' : ''}\n`; });
       }
-      txt += `\nRESERVA HACIENDA: ${fmt(necesitas * 0.21)}/mes IVA + ${fmt(necesitas * irpf / 100)}/mes IRPF\n`;
-      navigator.clipboard.writeText(txt).then(() => alert('✓ Copiado al portapapeles')).catch(() => alert('No se pudo copiar. Selecciona el texto manualmente.'));
+      txt += `\nRESERVA HACIENDA: ${fmt(nec * 0.21)}/mes IVA + ${fmt(nec * irpf / 100)}/mes IRPF\n`;
+      navigator.clipboard.writeText(txt).then(() => alert('✓ Copiado al portapapeles')).catch(() => alert('No se pudo copiar'));
     }
+
+    // ── Init ──────────────────────────────────────────────────────────────
+    function init() {
+      renderCatalogo();
+      const cargado = cargarDatos();
+      renderClientes();
+      recalc();
+      if (cargado) document.getElementById('save-indicator').textContent = '✓ Datos restaurados de tu última sesión';
+    }
+
+    window.onload = init;
   </script>
 </body>
 
