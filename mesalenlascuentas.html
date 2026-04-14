@@ -1008,6 +1008,12 @@
       <div class="header-actions">
         <button class="hbtn" onclick="abrirResumen()">📄 Resumen para el gestor</button>
         <button class="hbtn" onclick="borrarDatos()">🗑 Borrar datos</button>
+        <button class="hbtn" onclick="descargarDatos()">⬇️ Descargar datos</button>
+        <label class="hbtn" style="cursor:pointer;display:inline-block">
+          ⬆️ Importar datos
+          <input type="file" id="importar-input" style="display:none" accept="application/json"
+            onchange="importarDatos(event)">
+        </label>
       </div>
       <div class="save-indicator" id="save-indicator">Los datos se guardan automáticamente en este navegador</div>
     </div>
@@ -1195,6 +1201,55 @@
   </div>
 
   <script>
+    // Descargar datos como archivo JSON
+    function descargarDatos() {
+      const datos = {
+        cuota: document.getElementById('g-cuota').value,
+        gestor: document.getElementById('g-gestor').value,
+        tools: document.getElementById('g-tools').value,
+        telco: document.getElementById('g-telco').value,
+        otros: document.getElementById('g-otros').value,
+        sueldo: document.getElementById('sueldo').value,
+        irpf: document.getElementById('irpf').value,
+        clientes,
+        nextId
+      };
+      const blob = new Blob([JSON.stringify(datos, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'nodo_autonomo_datos.json';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+    }
+
+    // Importar datos desde archivo JSON
+    function importarDatos(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (evt) {
+        try {
+          const d = JSON.parse(evt.target.result);
+          if (d.cuota !== undefined) document.getElementById('g-cuota').value = d.cuota;
+          if (d.gestor !== undefined) document.getElementById('g-gestor').value = d.gestor;
+          if (d.tools !== undefined) document.getElementById('g-tools').value = d.tools;
+          if (d.telco !== undefined) document.getElementById('g-telco').value = d.telco;
+          if (d.otros !== undefined) document.getElementById('g-otros').value = d.otros;
+          if (d.sueldo !== undefined) document.getElementById('sueldo').value = d.sueldo;
+          if (d.irpf !== undefined) document.getElementById('irpf').value = d.irpf;
+          if (d.clientes) { clientes = d.clientes; nextId = d.nextId || (clientes.length + 1); }
+          renderClientes(); recalc();
+          document.getElementById('save-indicator').textContent = '✓ Datos importados';
+        } catch (err) {
+          alert('Archivo no válido');
+        }
+      };
+      reader.readAsText(file);
+      // Limpiar input para permitir importar el mismo archivo dos veces seguidas
+      e.target.value = '';
+    }
     const SVCS = [
       { id: 's1', nombre: 'Mantenimiento web', tipo: 'mensual', precio: 250, desc: 'Actualizaciones, backups, soporte técnico', horas: 3 },
       { id: 's2', nombre: 'Gestión redes sociales', tipo: 'mensual', precio: 600, desc: 'Contenidos, publicación y engagement', horas: 15 },
