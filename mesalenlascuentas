@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Me salen las cuentas? — Agencia Digital · Autónomo España</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg2: #161b22;
+      --bg3: #1f2937;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text2: #8b949e;
+      --text3: #484f58;
+      --accent: #388bfd;
+      --acc-bg: #1c2d40;
+      --green: #3fb950;
+      --green-bg: #0d2116;
+      --yellow: #d29922;
+      --yel-bg: #2b1f00;
+      --red: #f85149;
+      --red-bg: #2d0f0c;
+      --r: 12px;
+      --rs: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 20px 16px 80px;
+    }
+
+    .site-header {
+      text-align: center;
+      padding: 28px 0 20px;
+    }
+
+    .site-header h1 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -.5px;
+      margin-bottom: 4px;
+    }
+
+    .site-header p {
+      color: var(--text2);
+      font-size: 14px;
+    }
+
+    .dash {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 18px 20px 14px;
+      margin-bottom: 20px;
+      position: sticky;
+      top: 8px;
+      z-index: 100;
+      box-shadow: 0 4px 20px #0006;
+    }
+
+    .dash-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .dash-item .di-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--text2);
+      margin-bottom: 3px;
+    }
+
+    .dash-item .di-val {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .dash-item .di-sub {
+      font-size: 11px;
+      color: var(--text3);
+      margin-top: 2px;
+    }
+
+    .di-val.green {
+      color: var(--green);
+    }
+
+    .di-val.yellow {
+      color: var(--yellow);
+    }
+
+    .di-val.red {
+      color: var(--red);
+    }
+
+    .di-val.muted {
+      color: var(--text2);
+    }
+
+    .progress-wrap {
+      background: var(--bg3);
+      border-radius: 20px;
+      height: 7px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 20px;
+      background: var(--red);
+      transition: width .4s, background .4s;
+      min-width: 3px;
+    }
+
+    .progress-fill.yellow {
+      background: var(--yellow);
+    }
+
+    .progress-fill.green {
+      background: var(--green);
+    }
+
+    .progress-txt {
+      font-size: 11px;
+      color: var(--text3);
+      margin-top: 5px;
+      text-align: right;
+    }
+
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .card-head:hover {
+      background: #ffffff06;
+    }
+
+    .num-badge {
+      background: var(--acc-bg);
+      color: var(--accent);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .card-sub {
+      font-size: 12px;
+      color: var(--text2);
+      margin-top: 1px;
+    }
+
+    .caret {
+      margin-left: auto;
+      color: var(--text2);
+      font-size: 12px;
+      transition: transform .2s;
+    }
+
+    .card.closed .caret {
+      transform: rotate(-90deg);
+    }
+
+    .card.closed .card-body {
+      display: none;
+    }
+
+    .card-body {
+      padding: 0 20px 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .frow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .frow:last-of-type {
+      border-bottom: none;
+    }
+
+    .frow-lbl {
+      flex: 1;
+    }
+
+    .frow-lbl b {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .frow-lbl s {
+      display: block;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text2);
+      font-style: normal;
+      text-decoration: none;
+    }
+
+    input[type=number] {
+      width: 110px;
+      text-align: right;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--rs);
+      color: var(--text);
+      font-size: 15px;
+      padding: 7px 10px;
+      outline: none;
+      transition: border-color .15s;
+    }
+
+    input[type=number]:focus {
+      border-color: var(--accent);
+    }
+
+    .cur {
+      font-size: 12px;
+      color: var(--text2);
+      min-width: 42px;
+    }
+
+    .srow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .srow:last-of-type {
+      border-bottom: none;
+    }
+
+    .srow-lbl {
+      flex: 0 0 162px;
+    }
+
+    .srow-lbl b {
+      font-size: 14px;
+      font-weight: 500;
+      display: block;
+    }
+
+    .srow-lbl s {
+      font-size: 12px;
+      color: var(--text2);
+      display: block;
+      font-style: normal;
+      text-decoration: none;
+    }
+
+    input[type=range] {
+      flex: 1;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .sval {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--accent);
+      min-width: 54px;
+      text-align: right;
+    }
+
+    .total-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg3);
+      border-radius: var(--rs);
+      padding: 12px 14px;
+      margin-top: 14px;
+    }
+
+    .total-bar .tlbl {
+      font-size: 13px;
+      color: var(--text2);
+    }
+
+    .total-bar .tval {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .result-hl {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--acc-bg);
+      border: 1px solid var(--accent);
+      border-radius: var(--rs);
+      padding: 14px 16px;
+      margin-top: 12px;
+    }
+
+    .result-hl .rhlbl {
+      font-size: 13px;
+      color: var(--text2);
+    }
+
+    .result-hl .rhval {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .tip {
+      background: var(--bg3);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--rs) var(--rs) 0;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text2);
+      margin-top: 12px;
+    }
+
+    .tip b {
+      color: var(--text);
+    }
+
+    .empty-state {
+      text-align: center;
+      color: var(--text2);
+      padding: 24px 0;
+      font-size: 13px;
+    }
+
+    .client-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--rs);
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+
+    .client-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    input.client-name {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 700;
+      flex: 1;
+      padding: 2px 0;
+      outline: none;
+    }
+
+    input.client-name:focus {
+      border-color: var(--accent);
+    }
+
+    .client-total {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--green);
+      white-space: nowrap;
+    }
+
+    .btn-del {
+      background: none;
+      border: none;
+      color: var(--text3);
+      cursor: pointer;
+      font-size: 18px;
+      padding: 0 2px;
+      line-height: 1;
+    }
+
+    .btn-del:hover {
+      color: var(--red);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 10px;
+      font-size: 12px;
+    }
+
+    .chip-x {
+      cursor: pointer;
+      color: var(--text3);
+      font-size: 14px;
+      line-height: 1;
+      margin-left: 2px;
+    }
+
+    .chip-x:hover {
+      color: var(--red);
+    }
+
+    select.svc-select {
+      background: var(--bg2);
+      border: 1px dashed var(--border);
+      border-radius: var(--rs);
+      color: var(--text2);
+      font-size: 13px;
+      padding: 6px 8px;
+      margin-top: 4px;
+      width: 100%;
+      outline: none;
+      cursor: pointer;
+    }
+
+    select.svc-select:focus {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    .btn-add-client {
+      width: 100%;
+      background: none;
+      border: 1px dashed var(--border);
+      border-radius: var(--rs);
+      color: var(--text2);
+      font-size: 14px;
+      padding: 12px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: border-color .2s, color .2s;
+    }
+
+    .btn-add-client:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .client-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg3);
+      border-radius: var(--rs);
+      padding: 12px 14px;
+      margin-top: 10px;
+    }
+
+    .cs-lbl {
+      font-size: 13px;
+      color: var(--text2);
+    }
+
+    .cs-val {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .cat-item {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--rs);
+      padding: 12px;
+    }
+
+    .cat-badge {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-bottom: 6px;
+    }
+
+    .cat-badge.mensual {
+      color: var(--green);
+    }
+
+    .cat-badge.proyecto {
+      color: var(--yellow);
+    }
+
+    .cat-name {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .cat-desc {
+      font-size: 12px;
+      color: var(--text2);
+      margin-bottom: 10px;
+      min-height: 32px;
+    }
+
+    .cat-price-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cat-price-row input[type=number] {
+      width: 95px;
+      font-weight: 700;
+    }
+
+    .cat-price-row .unit {
+      font-size: 12px;
+      color: var(--text2);
+    }
+
+    .cat-horas {
+      font-size: 11px;
+      color: var(--text3);
+      margin-top: 5px;
+    }
+
+    .sim-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .sim-card {
+      background: var(--bg3);
+      border-radius: var(--rs);
+      padding: 14px;
+    }
+
+    .sim-card.hl {
+      background: var(--acc-bg);
+      border: 1px solid var(--accent);
+    }
+
+    .sim-card.green-hl {
+      background: var(--green-bg);
+      border: 1px solid var(--green);
+    }
+
+    .sim-lbl {
+      font-size: 12px;
+      color: var(--text2);
+      margin-bottom: 5px;
+    }
+
+    .sim-val {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .sim-val.green {
+      color: var(--green);
+    }
+
+    .sim-val.red {
+      color: var(--red);
+    }
+
+    .sim-val.accent {
+      color: var(--accent);
+    }
+
+    .sim-sub {
+      font-size: 12px;
+      color: var(--text2);
+      margin-top: 4px;
+    }
+
+    .sim-tip-box {
+      background: var(--yel-bg);
+      border: 1px solid var(--yellow);
+      border-radius: var(--rs);
+      padding: 12px 14px;
+      font-size: 13px;
+      color: var(--text2);
+    }
+
+    .sim-tip-box b {
+      color: var(--text);
+    }
+
+    .sim-tip-box.ok {
+      background: var(--green-bg);
+      border-color: var(--green);
+    }
+
+    .div {
+      height: 1px;
+      background: var(--border);
+      margin: 14px 0;
+    }
+
+    /* -- Modal resumen -- */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: #000a;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-overlay.hidden {
+      display: none;
+    }
+
+    .modal-box {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      width: 100%;
+      max-width: 560px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-header h2 {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text2);
+      font-size: 22px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .modal-close:hover {
+      color: var(--text);
+    }
+
+    .modal-body {
+      padding: 18px 20px;
+    }
+
+    .resumen-block {
+      margin-bottom: 18px;
+    }
+
+    .resumen-block h3 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--text2);
+      margin-bottom: 10px;
+    }
+
+    .resumen-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .resumen-row:last-child {
+      border-bottom: none;
+    }
+
+    .resumen-row .rk {
+      color: var(--text2);
+    }
+
+    .resumen-row .rv {
+      font-weight: 600;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      padding: 14px 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn-primary {
+      flex: 1;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--rs);
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity .15s;
+    }
+
+    .btn-primary:hover {
+      opacity: .85;
+    }
+
+    .btn-secondary {
+      flex: 1;
+      background: var(--bg3);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: var(--rs);
+      padding: 10px 16px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* -- Header actions -- */
+    .header-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hbtn {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--text2);
+      font-size: 13px;
+      padding: 6px 16px;
+      cursor: pointer;
+      transition: border-color .15s, color .15s;
+    }
+
+    .hbtn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .save-indicator {
+      font-size: 11px;
+      color: var(--text3);
+      text-align: center;
+      margin-top: 6px;
+    }
+
+    @media print {
+
+      .dash,
+      .card-head,
+      .header-actions,
+      .modal-overlay,
+      .save-indicator {
+        display: none !important;
+      }
+
+      body {
+        background: #fff;
+        color: #111;
+      }
+
+      .modal-box {
+        border: none;
+        max-height: none;
+      }
+    }
+
+    /* ── Alertas inteligentes ── */
+    .alerts-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    .alert-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .alert-item:last-child {
+      border-bottom: none;
+    }
+
+    .alert-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .alert-body b {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 3px;
+      color: var(--text);
+    }
+
+    .alert-body span {
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+
+    .alert-item.warn {
+      border-left: 3px solid var(--yellow);
+    }
+
+    .alert-item.danger {
+      border-left: 3px solid var(--red);
+    }
+
+    .alert-item.ok {
+      border-left: 3px solid var(--green);
+    }
+
+    .alert-item.info {
+      border-left: 3px solid var(--accent);
+    }
+
+    .alerts-empty {
+      padding: 18px 20px;
+      font-size: 13px;
+      color: var(--text2);
+    }
+
+    /* ── Hucha de Hacienda (dashboard) ── */
+    .hacienda-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hac-item {
+      flex: 1;
+      min-width: 110px;
+      background: var(--bg3);
+      border-radius: var(--rs);
+      padding: 8px 11px;
+    }
+
+    .hac-lbl {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--text3);
+      margin-bottom: 3px;
+    }
+
+    .hac-val {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .hac-val.warn {
+      color: var(--yellow);
+    }
+
+    .hac-val.ok {
+      color: var(--green);
+    }
+
+    .hac-sub {
+      font-size: 11px;
+      color: var(--text3);
+      margin-top: 2px;
+    }
+
+    /* ── Ratio €/h en cliente ── */
+    .ratio-badge {
+      font-size: 11px;
+      border-radius: 20px;
+      padding: 2px 9px;
+      border: 1px solid;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .ratio-badge.good {
+      color: var(--green);
+      border-color: var(--green);
+      background: var(--green-bg);
+    }
+
+    .ratio-badge.med {
+      color: var(--yellow);
+      border-color: var(--yellow);
+      background: var(--yel-bg);
+    }
+
+    .ratio-badge.low {
+      color: var(--red);
+      border-color: var(--red);
+      background: var(--red-bg);
+    }
+
+    @media (max-width: 520px) {
+      .dash-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .dash-grid .dash-item:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .cat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sim-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .srow-lbl {
+        flex: 0 0 130px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="site-header">
+      <h1>¿Me salen las cuentas?</h1>
+      <p>Calculadora para agencias digitales &middot; Autónomo en España 🇪🇸 &middot; Barcelona</p>
+      <div class="header-actions">
+        <button class="hbtn" onclick="abrirResumen()">📄 Resumen para el gestor</button>
+        <button class="hbtn" onclick="borrarDatos()">🗑 Borrar datos</button>
+      </div>
+      <div class="save-indicator" id="save-indicator">Los datos se guardan automáticamente en este navegador</div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="dash" id="dashboard">
+      <div class="dash-grid">
+        <div class="dash-item">
+          <div class="di-label">Necesitas facturar</div>
+          <div class="di-val muted" id="dash-necesitas">—</div>
+          <div class="di-sub">bruto por mes</div>
+        </div>
+        <div class="dash-item">
+          <div class="di-label">Tienes ahora</div>
+          <div class="di-val green" id="dash-tienes">0 €</div>
+          <div class="di-sub">ingresos mensuales</div>
+        </div>
+        <div class="dash-item">
+          <div class="di-label" id="gap-label">Te falta</div>
+          <div class="di-val red" id="dash-gap">—</div>
+          <div class="di-sub" id="gap-sub">para cubrir tu objetivo</div>
+        </div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-fill" id="prog-bar" style="width:2%"></div>
+      </div>
+      <div class="progress-txt" id="prog-txt">Rellena el paso 1 para empezar</div>
+      <div class="hacienda-row" id="hacienda-row" style="display:none"></div>
+    </div>
+
+    <!-- PASO 1 -->
+    <div class="card" id="card-1">
+      <div class="card-head" onclick="toggle('card-1')">
+        <div class="num-badge">1</div>
+        <div>
+          <div class="card-title">¿Cuánto te cuesta ser autónomo?</div>
+          <div class="card-sub">Gastos fijos aunque no factures nada este mes</div>
+        </div>
+        <div class="caret">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="frow">
+          <div class="frow-lbl"><b>Cuota autónomo</b><s>Tarifa plana 80 € el 1er año · luego ~330 €</s></div>
+          <input type="number" id="g-cuota" value="80" min="0" oninput="recalc()">
+          <span class="cur">€/mes</span>
+        </div>
+        <div class="frow">
+          <div class="frow-lbl"><b>Gestor / asesoría</b><s>Imprescindible para los trimestres de IVA</s></div>
+          <input type="number" id="g-gestor" value="70" min="0" oninput="recalc()">
+          <span class="cur">€/mes</span>
+        </div>
+        <div class="frow">
+          <div class="frow-lbl"><b>Herramientas y software</b><s>Hosting, Figma, Adobe, dominios, etc.</s></div>
+          <input type="number" id="g-tools" value="80" min="0" oninput="recalc()">
+          <span class="cur">€/mes</span>
+        </div>
+        <div class="frow">
+          <div class="frow-lbl"><b>Teléfono / internet</b><s>Parte proporcional deducible como gasto</s></div>
+          <input type="number" id="g-telco" value="40" min="0" oninput="recalc()">
+          <span class="cur">€/mes</span>
+        </div>
+        <div class="frow">
+          <div class="frow-lbl"><b>Otros gastos</b><s>Transporte, material, formación, etc.</s></div>
+          <input type="number" id="g-otros" value="50" min="0" oninput="recalc()">
+          <span class="cur">€/mes</span>
+        </div>
+        <div class="total-bar">
+          <span class="tlbl">Total gastos fijos mensuales</span>
+          <span class="tval" id="total-gastos">320 €</span>
+        </div>
+        <div class="div"></div>
+        <div class="srow">
+          <div class="srow-lbl"><b>Sueldo neto deseado</b><s>Lo que quieres que llegue a tu banco</s></div>
+          <input type="range" id="sueldo" min="800" max="5000" step="50" value="1800" oninput="recalc()">
+          <div class="sval" id="sueldo-val">1.800 €</div>
+        </div>
+        <div class="srow">
+          <div class="srow-lbl"><b>Retención IRPF</b><s>7% primer año · 15% a partir del 2º</s></div>
+          <input type="range" id="irpf" min="7" max="30" step="1" value="7" oninput="recalc()">
+          <div class="sval" id="irpf-val">7%</div>
+        </div>
+        <div class="result-hl">
+          <span class="rhlbl">💡 Necesitas facturar como mínimo</span>
+          <span class="rhval" id="r-necesitas">—</span>
+        </div>
+        <div class="tip">
+          <b>¿Qué es la retención IRPF?</b> Cuando facturas a empresas, ellas te retienen ese % y lo pagan a Hacienda en
+          tu nombre. No es que ganes menos — es un anticipo del impuesto de la renta. El 7% aplica el primer año y medio
+          como autónomo nuevo.
+        </div>
+        <div class="tip" style="margin-top:8px">
+          <b>¿Y el IVA?</b> Añades un 21% a tus facturas, pero ese dinero no es tuyo: lo cobras, lo guardas y cada
+          trimestre se lo devuelves a Hacienda. Esta calculadora trabaja siempre en precio base sin IVA.
+        </div>
+      </div>
+    </div>
+
+    <!-- PASO 2 -->
+    <div class="card" id="card-2">
+      <div class="card-head" onclick="toggle('card-2')">
+        <div class="num-badge">2</div>
+        <div>
+          <div class="card-title">¿Cuánto tienes ahora mismo?</div>
+          <div class="card-sub">Añade tus clientes actuales y lo que les cobras</div>
+        </div>
+        <div class="caret">▼</div>
+      </div>
+      <div class="card-body">
+        <div id="clientes-list"></div>
+        <button class="btn-add-client" onclick="addCliente()">+ Añadir cliente</button>
+        <div class="client-summary">
+          <div class="cs-lbl">Total ingresos mensuales</div>
+          <div class="cs-val" id="total-clientes">0 €</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASO 3 -->
+    <div class="card" id="card-3">
+      <div class="card-head" onclick="toggle('card-3')">
+        <div class="num-badge">3</div>
+        <div>
+          <div class="card-title">¿Qué servicios puedo ofrecer y a qué precio?</div>
+          <div class="card-sub">Servicios típicos de agencia digital en Barcelona · edita los precios</div>
+        </div>
+        <div class="caret">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="cat-grid" id="cat-grid"></div>
+        <div class="tip" style="margin-top:14px">
+          <b>🔄 Recurrente vs. 📦 Proyecto:</b> Los servicios mensuales son tu base estable — garantizan sueldo cada
+          mes. Los proyectos dan dinero puntual pero no son seguros. El objetivo es que los <b>recurrentes</b> cubran
+          todos tus gastos. Los proyectos son la guinda.
+        </div>
+      </div>
+    </div>
+
+    <!-- ALERTAS -->
+    <div class="alerts-card" id="card-alertas">
+      <div class="card-head" onclick="toggle('card-alertas')">
+        <div class="num-badge" style="background:var(--yel-bg);color:var(--yellow);font-size:16px">!</div>
+        <div>
+          <div class="card-title">Avisos para tu situación</div>
+          <div class="card-sub" id="alerts-subtitle">Se actualizan con tus datos en tiempo real</div>
+        </div>
+        <div class="caret">▼</div>
+      </div>
+      <div class="card-body" id="alertas-list">
+        <div class="alerts-empty">Rellena el paso 1 para recibir avisos personalizados.</div>
+      </div>
+    </div>
+
+    <!-- PASO 4 -->
+    <div class="card" id="card-4">
+      <div class="card-head" onclick="toggle('card-4')">
+        <div class="num-badge">4</div>
+        <div>
+          <div class="card-title">¿Cuántos clientes más necesito?</div>
+          <div class="card-sub">Simulación de cómo cubrir el hueco que te falta</div>
+        </div>
+        <div class="caret">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="sim-grid" id="sim-grid"></div>
+        <div id="sim-tip"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MODAL RESUMEN -->
+  <div class="modal-overlay hidden" id="modal-resumen" onclick="if(event.target===this)cerrarResumen()">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2>📄 Resumen para el gestor</h2>
+        <button class="modal-close" onclick="cerrarResumen()">×</button>
+      </div>
+      <div class="modal-body" id="modal-contenido"></div>
+      <div class="modal-actions">
+        <button class="btn-primary" onclick="window.print()">🖨 Imprimir / Guardar PDF</button>
+        <button class="btn-secondary" onclick="copiarResumen()">📋 Copiar texto</button>
+        <button class="btn-secondary" onclick="cerrarResumen()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const SVCS = [
+      { id: 's1', nombre: 'Mantenimiento web', tipo: 'mensual', precio: 250, desc: 'Actualizaciones, backups, soporte técnico', horas: 3 },
+      { id: 's2', nombre: 'Gestión redes sociales', tipo: 'mensual', precio: 600, desc: 'Contenidos, publicación y engagement', horas: 15 },
+      { id: 's3', nombre: 'SEO mensual', tipo: 'mensual', precio: 400, desc: 'Contenidos, optimización y reporting', horas: 8 },
+      { id: 's4', nombre: 'Google / Meta Ads', tipo: 'mensual', precio: 400, desc: 'Gestión campañas (sin inversión pub.)', horas: 6 },
+      { id: 's5', nombre: 'Email marketing', tipo: 'mensual', precio: 300, desc: '4 envíos/mes + segmentación', horas: 5 },
+      { id: 's6', nombre: 'Web corporativa', tipo: 'proyecto', precio: 2500, desc: '5-8 páginas, diseño a medida', horas: 40 },
+      { id: 's7', nombre: 'Tienda online', tipo: 'proyecto', precio: 5000, desc: 'WooCommerce o Shopify completo', horas: 80 },
+      { id: 's8', nombre: 'Landing page', tipo: 'proyecto', precio: 1200, desc: 'Página de conversión única', horas: 16 },
+      { id: 's9', nombre: 'Identidad visual', tipo: 'proyecto', precio: 1200, desc: 'Logo, paleta y tipografía completa', horas: 20 },
+      { id: 's10', nombre: 'Auditoría SEO', tipo: 'proyecto', precio: 600, desc: 'Análisis completo + informe detallado', horas: 8 },
+    ];
+
+    let clientes = [];
+    let nextId = 1;
+    let _saveTimer = null;
+
+    // ── localStorage ─────────────────────────────────────────────────────────
+    const STORE_KEY = 'nodo_calc_v1';
+
+    function guardarDatos() {
+      const datos = {
+        cuota: document.getElementById('g-cuota').value,
+        gestor: document.getElementById('g-gestor').value,
+        tools: document.getElementById('g-tools').value,
+        telco: document.getElementById('g-telco').value,
+        otros: document.getElementById('g-otros').value,
+        sueldo: document.getElementById('sueldo').value,
+        irpf: document.getElementById('irpf').value,
+        clientes,
+        nextId
+      };
+      localStorage.setItem(STORE_KEY, JSON.stringify(datos));
+      const ind = document.getElementById('save-indicator');
+      ind.textContent = '✓ Guardado – ' + new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    function cargarDatos() {
+      const raw = localStorage.getItem(STORE_KEY);
+      if (!raw) return false;
+      try {
+        const d = JSON.parse(raw);
+        if (d.cuota !== undefined) document.getElementById('g-cuota').value = d.cuota;
+        if (d.gestor !== undefined) document.getElementById('g-gestor').value = d.gestor;
+        if (d.tools !== undefined) document.getElementById('g-tools').value = d.tools;
+        if (d.telco !== undefined) document.getElementById('g-telco').value = d.telco;
+        if (d.otros !== undefined) document.getElementById('g-otros').value = d.otros;
+        if (d.sueldo !== undefined) document.getElementById('sueldo').value = d.sueldo;
+        if (d.irpf !== undefined) document.getElementById('irpf').value = d.irpf;
+        if (d.clientes) { clientes = d.clientes; nextId = d.nextId || (clientes.length + 1); }
+        return true;
+      } catch (e) { return false; }
+    }
+
+    function borrarDatos() {
+      if (!confirm('¿Borrar todos los datos guardados?')) return;
+      localStorage.removeItem(STORE_KEY);
+      clientes = []; nextId = 1;
+      ['g-cuota', 'g-gestor', 'g-tools', 'g-telco', 'g-otros'].forEach(id => {
+        const defaults = { 'g-cuota': 80, 'g-gestor': 70, 'g-tools': 80, 'g-telco': 40, 'g-otros': 50 };
+        document.getElementById(id).value = defaults[id];
+      });
+      document.getElementById('sueldo').value = 1800;
+      document.getElementById('irpf').value = 7;
+      renderClientes(); recalc();
+      document.getElementById('save-indicator').textContent = 'Datos borrados';
+    }
+
+    function init() {
+      renderCatalogo();
+      const cargado = cargarDatos();
+      renderClientes();
+      recalc();
+      if (cargado) {
+        document.getElementById('save-indicator').textContent = '✓ Datos restaurados de tu última sesión';
+      }
+    }
+
+    function renderCatalogo() {
+      document.getElementById('cat-grid').innerHTML = SVCS.map(s => `
+    <div class="cat-item">
+      <div class="cat-badge ${s.tipo}">${s.tipo === 'mensual' ? '🔄 Recurrente' : '📦 Proyecto'}</div>
+      <div class="cat-name">${s.nombre}</div>
+      <div class="cat-desc">${s.desc}</div>
+      <div class="cat-price-row">
+        <input type="number" id="p-${s.id}" value="${s.precio}" min="0" step="50"
+               oninput="updateSvcPrecio('${s.id}',this.value)">
+        <span class="unit">€ ${s.tipo === 'mensual' ? '/mes' : '/proyecto'}</span>
+      </div>
+      <div class="cat-horas">~${s.horas} h de trabajo</div>
+    </div>
+  `).join('');
+    }
+
+    function updateSvcPrecio(id, val) {
+      const s = SVCS.find(x => x.id === id);
+      if (s) { s.precio = +val || 0; renderClientes(); recalc(); }
+    }
+
+    function addCliente() {
+      clientes.push({ id: nextId++, nombre: '', svcs: [] });
+      renderClientes();
+      recalc();
+    }
+
+    function delCliente(id) {
+      clientes = clientes.filter(c => c.id !== id);
+      renderClientes();
+      recalc();
+    }
+
+    function addSvcToClient(cid, sid) {
+      if (!sid) return;
+      const c = clientes.find(x => x.id === cid);
+      if (c && !c.svcs.includes(sid)) { c.svcs.push(sid); renderClientes(); recalc(); }
+    }
+
+    function delSvcFromClient(cid, sid) {
+      const c = clientes.find(x => x.id === cid);
+      if (c) { c.svcs = c.svcs.filter(s => s !== sid); renderClientes(); recalc(); }
+    }
+
+    function updateNombre(id, val) {
+      const c = clientes.find(x => x.id === id);
+      if (c) c.nombre = val;
+    }
+
+    function clienteTotal(c) {
+      return c.svcs.reduce((s, sid) => {
+        const sv = SVCS.find(x => x.id === sid);
+        return s + (sv ? sv.precio : 0);
+      }, 0);
+    }
+
+    function renderClientes() {
+      const el = document.getElementById('clientes-list');
+      if (clientes.length === 0) {
+        el.innerHTML = '<div class="empty-state">Sin clientes aún.<br>Pulsa el botón de abajo para añadir uno.</div>';
+        return;
+      }
+      el.innerHTML = clientes.map(c => {
+        const total = clienteTotal(c);
+        const totalHoras = c.svcs.reduce((s, sid) => { const sv = SVCS.find(x => x.id === sid); return s + (sv ? sv.horas : 0); }, 0);
+        const ratio = totalHoras > 0 ? total / totalHoras : 0;
+        const ratioClass = ratio >= 60 ? 'good' : ratio >= 30 ? 'med' : 'low';
+        const chips = c.svcs.map(sid => {
+          const s = SVCS.find(x => x.id === sid);
+          if (!s) return '';
+          return `<span class="chip">
+        <span style="font-size:11px">${s.tipo === 'mensual' ? '🔄' : '📦'}</span>
+        ${s.nombre} · ${fmt(s.precio)}
+        <span class="chip-x" onclick="delSvcFromClient(${c.id},'${s.id}')">×</span>
+      </span>`;
+        }).join('');
+        const opts = SVCS.filter(s => !c.svcs.includes(s.id))
+          .map(s => `<option value="${s.id}">${s.tipo === 'mensual' ? '🔄' : '📦'} ${s.nombre} — ${fmt(s.precio)}</option>`)
+          .join('');
+        const nombre = c.nombre || '';
+        return `
+      <div class="client-card">
+        <div class="client-top">
+          <input class="client-name" type="text" value="${nombre.replace(/"/g, '&quot;')}"
+            onchange="updateNombre(${c.id},this.value)"
+            onfocus="this.style.borderColor='var(--accent)'"
+            onblur="this.style.borderColor='var(--border)'"
+            placeholder="Nombre del cliente ${c.id}">
+          ${totalHoras > 0 ? `<span class="ratio-badge ${ratioClass}">${Math.round(ratio)} €/h</span>` : ''}<span class="client-total">${fmt(total)}/mes</span>
+          <button class="btn-del" onclick="delCliente(${c.id})">🗑</button>
+        </div>
+        <div class="chips">
+          ${chips || '<span style="font-size:12px;color:var(--text2)">Sin servicios — elige uno en el desplegable</span>'}
+        </div>
+        <select class="svc-select" onchange="addSvcToClient(${c.id},this.value);this.value=''">
+          <option value="">+ Asignar servicio a este cliente...</option>
+          ${opts}
+        </select>
+      </div>
+    `;
+      }).join('');
+    }
+
+    function recalc() {
+      const cuota = +document.getElementById('g-cuota').value || 0;
+      const gestor = +document.getElementById('g-gestor').value || 0;
+      const tools = +document.getElementById('g-tools').value || 0;
+      const telco = +document.getElementById('g-telco').value || 0;
+      const otros = +document.getElementById('g-otros').value || 0;
+      const sueldo = +document.getElementById('sueldo').value || 0;
+      const irpf = +document.getElementById('irpf').value || 7;
+
+      const gastos = cuota + gestor + tools + telco + otros;
+      document.getElementById('total-gastos').textContent = fmt(gastos);
+      document.getElementById('sueldo-val').textContent = fmt(sueldo);
+      document.getElementById('irpf-val').textContent = irpf + '%';
+
+      const necesitas = (gastos + sueldo) / (1 - irpf / 100);
+      document.getElementById('r-necesitas').textContent = fmt(necesitas) + ' / mes';
+      document.getElementById('dash-necesitas').textContent = fmt(necesitas);
+      document.getElementById('dash-necesitas').className = 'di-val muted';
+
+      const tienes = clientes.reduce((s, c) => s + clienteTotal(c), 0);
+      document.getElementById('total-clientes').textContent = fmt(tienes);
+      document.getElementById('dash-tienes').textContent = fmt(tienes);
+
+      const gap = necesitas - tienes;
+      const pct = necesitas > 0 ? Math.min(100, (tienes / necesitas) * 100) : 0;
+
+      const gapEl = document.getElementById('dash-gap');
+      const gapLbl = document.getElementById('gap-label');
+      const gapSub = document.getElementById('gap-sub');
+
+      if (necesitas === 0) {
+        gapEl.textContent = '—'; gapEl.className = 'di-val muted';
+      } else if (gap <= 0) {
+        gapLbl.textContent = '¡Lo consigues!';
+        gapEl.textContent = fmt(Math.abs(gap)) + ' extra';
+        gapEl.className = 'di-val green';
+        gapSub.textContent = 'Estás por encima del objetivo 🎉';
+      } else {
+        gapLbl.textContent = 'Te falta';
+        gapEl.textContent = fmt(gap);
+        gapEl.className = pct >= 70 ? 'di-val yellow' : 'di-val red';
+        gapSub.textContent = 'para cubrir gastos + sueldo';
+      }
+
+      const bar = document.getElementById('prog-bar');
+      bar.style.width = (pct || 2) + '%';
+      bar.className = 'progress-fill' + (pct >= 100 ? ' green' : pct >= 70 ? ' yellow' : '');
+      document.getElementById('prog-txt').textContent = necesitas > 0
+        ? Math.round(pct) + '% de tu objetivo cubierto'
+        : 'Rellena el paso 1 para empezar';
+
+      renderSimulador(necesitas, tienes, gap, irpf);
+      renderAlertas(necesitas, tienes, gap, irpf, gastos, sueldo);
+      updateHacienda(tienes, necesitas, irpf);
+      clearTimeout(_saveTimer);
+      _saveTimer = setTimeout(guardarDatos, 600);
+    }
+
+    function renderSimulador(necesitas, tienes, gap, irpf) {
+      const mant = SVCS.find(s => s.id === 's1');
+      const rrss = SVCS.find(s => s.id === 's2');
+      const ads = SVCS.find(s => s.id === 's4');
+      const pMant = mant ? mant.precio : 250;
+      const pRRSS = rrss ? rrss.precio : 600;
+      const pAds = ads ? ads.precio : 400;
+
+      const horasFact = 96;
+      const phMin = necesitas > 0 ? necesitas / horasFact : 0;
+      const phRec = phMin * 1.3;
+      const nMant = gap > 0 ? Math.ceil(gap / pMant) : 0;
+      const nRRSS = gap > 0 ? Math.ceil(gap / pRRSS) : 0;
+      const reached = gap <= 0 && necesitas > 0;
+
+      if (!necesitas) {
+        document.getElementById('sim-grid').innerHTML = '<div class="sim-card" style="grid-column:1/-1"><div class="sim-lbl">Completa el paso 1 para ver la simulación.</div></div>';
+        document.getElementById('sim-tip').innerHTML = '';
+        return;
+      }
+
+      // Mix sugerido
+      const mixRRSS = Math.min(1, gap > 0 ? 1 : 0) * pRRSS;
+      const mixAds = Math.min(1, gap > 0 ? 1 : 0) * pAds;
+      const mixRest = Math.max(0, gap - mixRRSS - mixAds);
+      const nMant3 = Math.ceil(mixRest / pMant);
+      const mixTotal = mixRRSS + mixAds + nMant3 * pMant;
+
+      document.getElementById('sim-grid').innerHTML = `
+    <div class="sim-card hl">
+      <div class="sim-lbl">Necesitas facturar</div>
+      <div class="sim-val accent">${fmt(necesitas)}/mes</div>
+      <div class="sim-sub">Gastos + sueldo + IRPF (${irpf}%)</div>
+    </div>
+    <div class="sim-card ${reached ? 'green-hl' : ''}">
+      <div class="sim-lbl">Tienes ahora</div>
+      <div class="sim-val ${reached ? 'green' : tienes > 0 ? '' : 'red'}">${fmt(tienes)}/mes</div>
+      <div class="sim-sub">${reached ? '¡Cubres el objetivo! 🎉' : tienes > 0 ? 'Faltan ' + fmt(gap) : 'Aún sin clientes'}</div>
+    </div>
+    <div class="sim-card">
+      <div class="sim-lbl">Precio mínimo por hora</div>
+      <div class="sim-val">${fmt(phMin)}/h</div>
+      <div class="sim-sub">Basado en ~96 h facturables/mes</div>
+    </div>
+    <div class="sim-card">
+      <div class="sim-lbl">Precio recomendado por hora</div>
+      <div class="sim-val">${fmt(phRec)}/h</div>
+      <div class="sim-sub">+30% de margen para imprevistos</div>
+    </div>
+    ${gap > 0 ? `
+    <div class="sim-card">
+      <div class="sim-lbl">Solo con mantenimiento web (${fmt(pMant)}/mes)</div>
+      <div class="sim-val">${nMant} cliente${nMant !== 1 ? 's' : ''} más</div>
+      <div class="sim-sub">para cubrir el hueco</div>
+    </div>
+    <div class="sim-card">
+      <div class="sim-lbl">Solo con redes sociales (${fmt(pRRSS)}/mes)</div>
+      <div class="sim-val">${nRRSS} cliente${nRRSS !== 1 ? 's' : ''} más</div>
+      <div class="sim-sub">para cubrir el hueco</div>
+    </div>
+    <div class="sim-card" style="grid-column:1/-1">
+      <div class="sim-lbl">💡 Mix realista para llegar al objetivo</div>
+      <div class="sim-val" style="font-size:16px;line-height:1.5">
+        1 cliente redes (${fmt(pRRSS)}) + 1 cliente Ads (${fmt(pAds)}) + ${nMant3} mantenimiento${nMant3 !== 1 ? 's' : ''} (${fmt(nMant3 * pMant)}) = <span style="color:var(--green)">${fmt(mixTotal)}/mes</span>
+      </div>
+      <div class="sim-sub">Combinación equilibrada de servicios recurrentes</div>
+    </div>
+    ` : `
+    <div class="sim-card green-hl" style="grid-column:1/-1">
+      <div class="sim-lbl">Estado</div>
+      <div class="sim-val green">¡Objetivo cumplido! 🎉</div>
+      <div class="sim-sub">Cubres todos tus gastos y sueldo con los clientes actuales</div>
+    </div>
+    `}
+  `;
+
+      document.getElementById('sim-tip').innerHTML = reached
+        ? `<div class="sim-tip-box ok"><b>🎉 ¡Felicidades!</b> Tus ingresos actuales cubren todos tus gastos y tu sueldo objetivo. El excedente (${fmt(Math.abs(gap))}/mes) lo puedes guardar para los trimestres de IVA o reinvertir en crecer.</div>`
+        : `<div class="sim-tip-box"><b>💡 Estrategia recomendada:</b> Prioriza clientes de <b>mantenimiento web</b> — son el servicio con mejor ratio esfuerzo/ingreso para empezar. Con ${nMant} cliente${nMant !== 1 ? 's' : ''} de mantenimiento más alcanzas tu objetivo. Los proyectos web (webs corporativas, tiendas) son muy rentables pero no garantizan ingreso fijo cada mes.</div>`;
+    }
+
+    function renderAlertas(necesitas, tienes, gap, irpf, gastos, sueldo) {
+      const alerts = [];
+      const cuota = +document.getElementById('g-cuota').value || 0;
+
+      // Tarifa plana
+      if (cuota <= 80) {
+        alerts.push({ tipo: 'warn', icon: '⏰', titulo: 'La tarifa plana dura solo 12 meses', desc: 'A partir del mes 13 la cuota de autónomo sube a ~<b>330 €/mes</b> (250 € más). Tenlo en cuenta antes de firmar contratos largos con esos precios.' });
+      }
+
+      // IRPF va a subir
+      if (irpf <= 7) {
+        const nuevaNecesidad = (gastos + sueldo) / (1 - 0.15);
+        alerts.push({ tipo: 'warn', icon: '📈', titulo: 'El IRPF subirá al 15% en el año 2', desc: 'Para el mismo sueldo neto, necesitarás facturar <b>' + fmt(nuevaNecesidad - necesitas) + ' más cada mes</b> cuando el IRPF pase al 15%. Súbelo ya en el slider para ver el impacto.' });
+      }
+
+      // Dependencia de clientes
+      const nC = clientes.filter(c => clienteTotal(c) > 0).length;
+      if (nC === 0 && tienes === 0 && necesitas > 0) {
+        alerts.push({ tipo: 'danger', icon: '🚨', titulo: 'Sin ingresos todavía', desc: 'Aún no tienes clientes. Necesitas <b>' + fmt(necesitas) + '/mes</b> para cubrir gastos y sueldo. Ve al paso 2 y empieza a añadir clientes o prospectos.' });
+      } else if (nC === 1) {
+        alerts.push({ tipo: 'danger', icon: '⚠️', titulo: 'Solo 1 cliente — riesgo máximo', desc: 'Si ese cliente se va, te quedas a <b>0 €</b> de ingresos. Intenta tener mínimo 3-4 clientes para no depender de uno solo.' });
+      } else if (nC === 2) {
+        alerts.push({ tipo: 'warn', icon: '⚠️', titulo: '2 clientes es frágil', desc: 'Perder uno sería quedarte al 50% de tus ingresos de un día para otro. Apunta a 4+ clientes activos.' });
+      } else if (nC >= 4) {
+        alerts.push({ tipo: 'ok', icon: '✅', titulo: 'Buena diversificación con ' + nC + ' clientes', desc: 'Con varios clientes, perder uno no es un desastre. Buen trabajo manteniendo la cartera.' });
+      }
+
+      // Mix recurrente vs proyecto
+      if (tienes > 0) {
+        const ingresoRec = clientes.reduce((sum, c) => {
+          return sum + c.svcs.reduce((s, sid) => {
+            const sv = SVCS.find(x => x.id === sid);
+            return s + (sv && sv.tipo === 'mensual' ? sv.precio : 0);
+          }, 0);
+        }, 0);
+        const pctRec = ingresoRec / tienes;
+        if (pctRec < 0.5) {
+          alerts.push({ tipo: 'warn', icon: '📦', titulo: 'Más del 50% son proyectos puntuales', desc: 'Los proyectos no garantizan ingreso fijo. Intenta que al menos el 60% venga de servicios recurrentes (mantenimiento, redes, SEO). Tu base recurrente ahora: <b>' + fmt(ingresoRec) + '/mes (' + Math.round(pctRec * 100) + '%)</b>.' });
+        } else if (ingresoRec >= necesitas && necesitas > 0) {
+          alerts.push({ tipo: 'ok', icon: '🔄', titulo: '¡Tus recurrentes ya cubren el objetivo!', desc: 'Tienes <b>' + fmt(ingresoRec) + '/mes</b> de ingresos fijos. Cualquier proyecto que cierres es beneficio sobre el objetivo. Excelente base.' });
+        }
+      }
+
+      // Precio/hora
+      const phMin = necesitas > 0 ? necesitas / 96 : 0;
+      if (phMin > 0 && phMin < 20) {
+        alerts.push({ tipo: 'danger', icon: '💸', titulo: 'Tu precio/hora está muy por debajo del mercado', desc: '<b>' + fmt(phMin) + '/h</b> es demasiado bajo para servicios digitales en España. El mercado paga 35-80 €/h. Revisa tus tarifas o reduce gastos.' });
+      } else if (phMin >= 35 && phMin <= 85) {
+        alerts.push({ tipo: 'ok', icon: '💪', titulo: 'Precio/hora en rango sano para Barcelona', desc: '<b>' + fmt(phMin) + '/h</b> es competitivo para agencias digitales en Barcelona. Bien posicionado.' });
+      }
+
+      // IVA trimestral
+      if (tienes > 0) {
+        const ivaApartar = tienes * 0.21;
+        alerts.push({ tipo: 'info', icon: '🏦', titulo: 'Aparta ' + fmt(ivaApartar) + '/mes para el IVA trimestral', desc: 'El 21% de IVA que cobras a tus clientes nunca es tuyo. Pásalo a una cuenta aparte cada mes o te pillarán los trimestres (enero, abril, julio, octubre) por sorpresa.' });
+      }
+
+      // Cheque de viabilidad
+      if (necesitas > 0 && gap <= 0) {
+        const excedente = Math.abs(gap);
+        alerts.push({ tipo: 'ok', icon: '🎉', titulo: '¡Modelo viable! Tienes ' + fmt(excedente) + ' de margen', desc: 'Cubres todos los gastos y tu sueldo. Con el excedente puedes: guardar para el IRPF anual, reinvertir en marketing o aumentar tu fondo de emergencia (recomendado: 3 meses de gastos = <b>' + fmt((gastos) * 3) + '</b>).' });
+      }
+
+      const el = document.getElementById('alertas-list');
+      const sub = document.getElementById('alerts-subtitle');
+      if (alerts.length === 0) {
+        el.innerHTML = '<div class="alerts-empty">Añade tus datos para recibir avisos personalizados.</div>';
+        sub.textContent = 'Se actualizan con tus datos en tiempo real';
+        return;
+      }
+      sub.textContent = alerts.filter(a => a.tipo === 'danger').length + ' críticos · ' + alerts.filter(a => a.tipo === 'warn').length + ' avisos · ' + alerts.filter(a => a.tipo === 'ok').length + ' positivos';
+      el.innerHTML = alerts.map(a => `<div class="alert-item ${a.tipo}"><div class="alert-icon">${a.icon}</div><div class="alert-body"><b>${a.titulo}</b><span>${a.desc}</span></div></div>`).join('');
+    }
+
+    function updateHacienda(tienes, necesitas, irpf) {
+      const row = document.getElementById('hacienda-row');
+      const base = tienes > 0 ? tienes : necesitas;
+      if (base === 0) { row.style.display = 'none'; return; }
+      const ivaApartar = base * 0.21;
+      const irpfEstim = base * (irpf / 100);
+      const total = ivaApartar + irpfEstim;
+      row.style.display = 'flex';
+      row.innerHTML = `
+        <div class="hac-item">
+          <div class="hac-lbl">💰 Aparta para IVA</div>
+          <div class="hac-val warn">${fmt(ivaApartar)}/mes</div>
+          <div class="hac-sub">21% — no es tuyo</div>
+        </div>
+        <div class="hac-item">
+          <div class="hac-lbl">📋 Retención IRPF</div>
+          <div class="hac-val warn">${fmt(irpfEstim)}/mes</div>
+          <div class="hac-sub">${irpf}% ya retenido</div>
+        </div>
+        <div class="hac-item" style="background:var(--green-bg);border:1px solid #1e3a2a">
+          <div class="hac-lbl">✅ Reserva total/mes</div>
+          <div class="hac-val ok">${fmt(total)}/mes</div>
+          <div class="hac-sub">IVA + IRPF aparte</div>
+        </div>
+      `;
+    }
+
+    function fmt(n) {
+      return Math.round(n).toLocaleString('es-ES') + ' €';
+    }
+
+    function toggle(id) {
+      document.getElementById(id).classList.toggle('closed');
+    }
+
+    // ── Resumen para gestor ───────────────────────────────────────────────────
+    function abrirResumen() {
+      const cuota = +document.getElementById('g-cuota').value || 0;
+      const gestor = +document.getElementById('g-gestor').value || 0;
+      const tools = +document.getElementById('g-tools').value || 0;
+      const telco = +document.getElementById('g-telco').value || 0;
+      const otros = +document.getElementById('g-otros').value || 0;
+      const sueldo = +document.getElementById('sueldo').value || 0;
+      const irpf = +document.getElementById('irpf').value || 7;
+      const gastos = cuota + gestor + tools + telco + otros;
+      const necesitas = (gastos + sueldo) / (1 - irpf / 100);
+      const tienes = clientes.reduce((s, c) => s + clienteTotal(c), 0);
+      const gap = necesitas - tienes;
+      const phMin = necesitas > 0 ? necesitas / 96 : 0;
+      const ivaApartar = necesitas * 0.21;
+      const fecha = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'long', year: 'numeric' });
+
+      document.getElementById('modal-contenido').innerHTML = `
+        <div class="resumen-block">
+          <h3>📋 Datos del autónomo · ${fecha}</h3>
+          <div class="resumen-row"><span class="rk">Régimen</span><span class="rv">Autónomo · módulos generales · España</span></div>
+          <div class="resumen-row"><span class="rk">Retención IRPF aplicada</span><span class="rv">${irpf}% ${irpf <= 7 ? '(tarifa primer año)' : ''}</span></div>
+        </div>
+        <div class="resumen-block">
+          <h3>💸 Estructura de costes mensuales</h3>
+          <div class="resumen-row"><span class="rk">Cuota autónomo</span><span class="rv">${fmt(cuota)}/mes</span></div>
+          <div class="resumen-row"><span class="rk">Gestor / asesoría</span><span class="rv">${fmt(gestor)}/mes</span></div>
+          <div class="resumen-row"><span class="rk">Herramientas y software</span><span class="rv">${fmt(tools)}/mes</span></div>
+          <div class="resumen-row"><span class="rk">Teléfono / internet</span><span class="rv">${fmt(telco)}/mes</span></div>
+          <div class="resumen-row"><span class="rk">Otros gastos</span><span class="rv">${fmt(otros)}/mes</span></div>
+          <div class="resumen-row" style="font-weight:700"><span class="rk">Total gastos fijos</span><span class="rv">${fmt(gastos)}/mes</span></div>
+        </div>
+        <div class="resumen-block">
+          <h3>🎯 Objetivos económicos</h3>
+          <div class="resumen-row"><span class="rk">Sueldo neto deseado</span><span class="rv">${fmt(sueldo)}/mes</span></div>
+          <div class="resumen-row"><span class="rk">Facturación mínima necesaria</span><span class="rv" style="color:var(--accent)">${fmt(necesitas)}/mes</span></div>
+          <div class="resumen-row"><span class="rk">Precio/hora mínimo viable</span><span class="rv">${fmt(phMin)}/h</span></div>
+          <div class="resumen-row"><span class="rk">Precio/hora recomendado (+30%)</span><span class="rv">${fmt(phMin * 1.3)}/h</span></div>
+        </div>
+        ${clientes.length > 0 ? `
+        <div class="resumen-block">
+          <h3>👥 Clientes actuales</h3>
+          ${clientes.map(c => {
+        const total = clienteTotal(c);
+        const svcsNombres = c.svcs.map(sid => { const s = SVCS.find(x => x.id === sid); return s ? s.nombre : ''; }).filter(Boolean).join(', ');
+        return `<div class="resumen-row"><span class="rk">${c.nombre || 'Sin nombre'}</span><span class="rv">${fmt(total)}/mes${svcsNombres ? ' · ' + svcsNombres : ''}</span></div>`;
+      }).join('')}
+          <div class="resumen-row" style="font-weight:700"><span class="rk">Total ingresos actuales</span><span class="rv" style="color:${gap <= 0 ? 'var(--green)' : 'var(--red)'}">${fmt(tienes)}/mes</span></div>
+        </div>` : ''}
+        <div class="resumen-block">
+          <h3>🏦 Reservas recomendadas (Hacienda)</h3>
+          <div class="resumen-row"><span class="rk">IVA a retener mensualmente (21%)</span><span class="rv">${fmt(necesitas * 0.21)}/mes</span></div>
+          <div class="resumen-row"><span class="rk">IRPF ya retenido en factura</span><span class="rv">${fmt(necesitas * irpf / 100)}/mes</span></div>
+          <div class="resumen-row" style="font-weight:700"><span class="rk">Total a apartar cada mes</span><span class="rv">${fmt(necesitas * 0.21 + necesitas * irpf / 100)}/mes</span></div>
+          <div class="resumen-row"><span class="rk">Fondo emergencia recomendado (3 meses)</span><span class="rv">${fmt(gastos * 3)}</span></div>
+        </div>
+        <div class="resumen-block">
+          <h3>⚠️ Alertas para el primer año</h3>
+          <div class="resumen-row"><span class="rk">Fin tarifa plana (mes 13)</span><span class="rv">+250 €/mes en cuota autónomo</span></div>
+          <div class="resumen-row"><span class="rk">IRPF año 2</span><span class="rv">Sube a 15% → facturar ${fmt((gastos + sueldo) / 0.85 - necesitas)} más/mes</span></div>
+          <div class="resumen-row"><span class="rk">Declaraciones trimestrales IVA</span><span class="rv">Enero, abril, julio, octubre</span></div>
+        </div>
+      `;
+      document.getElementById('modal-resumen').classList.remove('hidden');
+    }
+
+    function cerrarResumen() {
+      document.getElementById('modal-resumen').classList.add('hidden');
+    }
+
+    function copiarResumen() {
+      const sueldo = +document.getElementById('sueldo').value || 0;
+      const irpf = +document.getElementById('irpf').value || 7;
+      const cuota = +document.getElementById('g-cuota').value || 0;
+      const gastos = ['g-cuota', 'g-gestor', 'g-tools', 'g-telco', 'g-otros'].reduce((s, id) => s + (+document.getElementById(id).value || 0), 0);
+      const necesitas = (gastos + sueldo) / (1 - irpf / 100);
+      const tienes = clientes.reduce((s, c) => s + clienteTotal(c), 0);
+      const fecha = new Date().toLocaleDateString('es-ES');
+      let txt = `RESUMEN AUTÓNOMO · ${fecha}\n${'─'.repeat(40)}\n`;
+      txt += `Gastos fijos mensuales: ${fmt(gastos)}\n`;
+      txt += `Sueldo neto deseado: ${fmt(sueldo)}\n`;
+      txt += `IRPF aplicado: ${irpf}%\n`;
+      txt += `Facturación mínima necesaria: ${fmt(necesitas)}/mes\n`;
+      txt += `Precio/hora mínimo: ${fmt(necesitas / 96)}/h\n\n`;
+      if (clientes.length) {
+        txt += `CLIENTES ACTUALES (${fmt(tienes)}/mes)\n${'─'.repeat(40)}\n`;
+        clientes.forEach(c => {
+          const t = clienteTotal(c);
+          const svcs = c.svcs.map(sid => { const s = SVCS.find(x => x.id === sid); return s ? s.nombre : ''; }).filter(Boolean).join(', ');
+          txt += `· ${c.nombre || 'Sin nombre'}: ${fmt(t)}/mes${svcs ? ' (' + svcs + ')' : ''}\n`;
+        });
+      }
+      txt += `\nRESERVA HACIENDA: ${fmt(necesitas * 0.21)}/mes IVA + ${fmt(necesitas * irpf / 100)}/mes IRPF\n`;
+      navigator.clipboard.writeText(txt).then(() => alert('✓ Copiado al portapapeles')).catch(() => alert('No se pudo copiar. Selecciona el texto manualmente.'));
+    }
+  </script>
+</body>
+
+</html>
