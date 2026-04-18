@@ -4,9 +4,16 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('🎬 Preparando hero para animaciones...');
     
     // Ocultar elementos INMEDIATAMENTE (antes de que se vean)
-    gsap.set([".author", ".hero h1", ".hero-lead", ".hero-buttons .btn", ".hero-microcopy", ".users-count"], {
+    gsap.set([".author", ".hero h1", ".hero-lead", ".hero-buttons .btn", ".hero-microcopy"], {
         opacity: 0,
         y: 30
+    });
+    
+    // El contador debe estar invisible pero sin opacity total para evitar parpadeos
+    gsap.set(".users-count", {
+        opacity: 0,
+        y: 30,
+        pointerEvents: "none"  // Evitar interacciones durante la animación
     });
     
     // Esperar a que el loader desaparezca (4 segundos exactos)
@@ -154,17 +161,17 @@ function initHeroAnimations() {
     masterTimeline.to(".users-count", {
         opacity: 1,
         y: 0,
-        duration: 0.7,
+        duration: 0.6,
         onStart: () => console.log('7️⃣ Sección usuarios')
-    }, "-=0.3");
+    }, "0.2");  // Comienza casi inmediatamente después de que comienza la timeline
 
-    // 8. CONTADOR ANIMADO
+    // 8. CONTADOR ANIMADO - Comienza sin delay
     if (counterElement) {
         counterElement.textContent = '0';
         
         masterTimeline.to(counterElement, {
             textContent: 2141,
-            duration: 2.5,
+            duration: 2.0,  // Reducido a 2 segundos para que sea fluido
             ease: "power2.out",
             snap: { textContent: 1 },
             onStart: () => console.log('8️⃣ Contador 0 → 2.141'),
@@ -173,7 +180,7 @@ function initHeroAnimations() {
                 counterElement.textContent = value.toLocaleString('es-ES');
             },
             onComplete: () => console.log(`✅ Contador: ${counterElement.textContent}`)
-        }, "-=1.5");
+        }, "0.3");  // Comienza casi inmediatamente junto con la sección de usuarios
     }
 }
 

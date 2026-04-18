@@ -3097,23 +3097,37 @@
                     }
                 });
 
-                tl.from(beforeCard, { opacity: 0, y: 40, duration: 0.7, ease: 'power2.out' })
+                // ANTES: Animar entrada
+                tl.from(beforeCard, { opacity: 0, y: 40, duration: 0.7, ease: 'power2.out' }, 0)
                     .from(beforeBadges, { opacity: 0, y: 12, stagger: 0.05, duration: 0.35, ease: 'power1.out' }, '-=0.35')
                     .to(beforeBars, {
                         width: (i, el) => `${el.dataset.target || 0}%`,
                         duration: 0.9,
                         ease: 'power1.out'
                     }, '-=0.2')
-                    .from(afterCard, { opacity: 0, y: 40, duration: 0.7, ease: 'power2.out' }, '-=0.05')
-                    .from(afterBadges, { opacity: 0, y: 12, stagger: 0.06, duration: 0.4, ease: 'power1.out' }, '-=0.35')
+                
+                // DESPUÉS: Animar entrada simultáneamente
+                    .from(afterCard, { opacity: 0, y: 40, duration: 0.7, ease: 'power2.out' }, 0)  // Comienza junto con ANTES
+                    .from(afterBadges, { opacity: 0, y: 12, stagger: 0.06, duration: 0.4, ease: 'power1.out' }, '-=0.65')
                     .to(afterBars, {
                         width: (i, el) => `${el.dataset.target || 0}%`,
                         duration: 1,
                         ease: 'power1.out'
                     }, '-=0.2');
+                
+                // Asegurar que ambas tarjetas sean visibles al final
+                tl.set([beforeCard, afterCard], { opacity: 1, y: 0, pointerEvents: "auto" });
             } else {
-                // Fallback: si GSAP no carga, mostrar las barras al target
+                // Fallback: si GSAP no carga, mostrar las barras al target y hacer visible las cartas
                 setBarsToTarget();
+                if (beforeCard) {
+                    beforeCard.style.opacity = '1';
+                    beforeCard.style.transform = 'translateY(0)';
+                }
+                if (afterCard) {
+                    afterCard.style.opacity = '1';
+                    afterCard.style.transform = 'translateY(0)';
+                }
             }
 
             const elements = [
@@ -3173,6 +3187,25 @@
             splineViewer?.addEventListener('error', activateHero);
             window.addEventListener('load', () => setTimeout(activateHero, 600));
             setTimeout(activateHero, 4000);
+
+            // ========== SAFETY CHECK: Asegurar que before-after cards sean siempre visibles ==========
+            // Este es un fallback en caso de que GSAP no termine sus animaciones
+            setTimeout(() => {
+                const beforeCard = document.querySelector('.before-card');
+                const afterCard = document.querySelector('.after-card');
+                
+                if (beforeCard && (beforeCard.style.opacity === '0' || !beforeCard.style.opacity)) {
+                    console.log('⚠️ Before Card invisible - Forzando visibilidad');
+                    beforeCard.style.opacity = '1';
+                    beforeCard.style.transform = 'translateY(0)';
+                }
+                
+                if (afterCard && (afterCard.style.opacity === '0' || !afterCard.style.opacity)) {
+                    console.log('⚠️ After Card invisible - Forzando visibilidad');
+                    afterCard.style.opacity = '1';
+                    afterCard.style.transform = 'translateY(0)';
+                }
+            }, 8000);  // Después de 8 segundos, asegurar visibilidad
 
             // Ejecutar una vez al cargar la página (no revelará hasta heroReady)
             handleScroll();
