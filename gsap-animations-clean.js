@@ -4,16 +4,19 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('🎬 Preparando hero para animaciones...');
     
     // Ocultar elementos INMEDIATAMENTE (antes de que se vean)
-    gsap.set([".author", ".hero h1", ".hero-lead", ".hero-buttons .btn", ".hero-microcopy"], {
-        opacity: 0,
-        y: 30
-    });
+    gsap.set(".author", { opacity: 0, y: 24, scale: 0.92 });
+    gsap.set(".hero h1", { opacity: 0, y: 40 });
+    gsap.set(".hero-lead", { opacity: 0, y: 28, filter: "blur(10px)" });
+    gsap.set(".hero-buttons .btn", { opacity: 0, y: 20, scale: 0.94 });
+    gsap.set(".hero-microcopy", { opacity: 0, y: 16 });
+    // Subrayado del highlight empieza en 0
+    gsap.set(".highlight", { backgroundSize: "0% 0.58em" });
     
     // El contador debe estar invisible pero sin opacity total para evitar parpadeos
     gsap.set(".users-count", {
         opacity: 0,
         y: 30,
-        pointerEvents: "none"  // Evitar interacciones durante la animación
+        pointerEvents: "none"
     });
     
     // Esperar a que el loader desaparezca (4 segundos exactos)
@@ -37,26 +40,24 @@ function initHeroAnimations() {
     // ========== TIMELINE PRINCIPAL ==========
     const masterTimeline = gsap.timeline({
         defaults: {
-            ease: "power3.out",
-            duration: 0.8
+            ease: "expo.out",
+            force3D: true
         },
         onComplete: () => {
             console.log('✅ Timeline completado');
             initContinuousAnimations();
+            // NO se crean partículas — eliminadas por rendimiento
         }
     });
 
-    // 1. LOGO - Entrada con bounce
+    // 1. LOGO — rápido, sin rebote
     masterTimeline.to(".author", {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 1,
-        ease: "back.out(1.7)",
+        opacity: 1, y: 0, scale: 1,
+        duration: 0.7,
         onStart: () => console.log('1️⃣ Logo')
     });
 
-    // 2. TÍTULO - Efecto de palabras en cascada
+    // 2. TÍTULO — palabras en cascada, arranca antes de que termine el logo
     const h1Element = document.querySelector(".hero h1");
     if (h1Element) {
         const highlightSpan = h1Element.querySelector('.highlight');
@@ -71,71 +72,56 @@ function initHeroAnimations() {
                 wordSpan.className = 'word-span';
                 wordSpan.textContent = word;
                 wordSpan.style.display = 'inline-block';
-                wordSpan.style.opacity = '0';
-                wordSpan.style.marginRight = '0.35em'; // ESPACIO entre palabras
+                wordSpan.style.marginRight = '0.35em';
                 highlightSpan.appendChild(wordSpan);
             });
 
+            // Inicializar palabras invisibles
+            gsap.set(".word-span", { opacity: 0, y: 18, rotationX: -30, transformOrigin: "center bottom" });
+
             masterTimeline.to(".hero h1", {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-                onStart: () => console.log('2️⃣ Título container')
-            }, "-=0.5");
+                opacity: 1, y: 0,
+                duration: 0.4,
+                onStart: () => console.log('2️⃣ Título')
+            }, "-=0.45");
 
             masterTimeline.to(".word-span", {
-                opacity: 1,
-                y: 0,
-                rotationX: 0,
-                stagger: 0.08,
-                duration: 0.6,
-                ease: "back.out(1.2)",
-                onStart: () => console.log('2️⃣ Palabras animando')
-            }, "-=0.4");
+                opacity: 1, y: 0, rotationX: 0,
+                stagger: 0.045,
+                duration: 0.55,
+            }, "-=0.3");
 
-            // Animar el subrayado
+            // Subrayado
             masterTimeline.to(".highlight", {
                 backgroundSize: "100% 0.58em",
-                duration: 0.8,
-                ease: "power2.inOut"
-            }, "-=0.3");
+                duration: 0.7,
+                ease: "expo.inOut"
+            }, "-=0.35");
         }
     }
 
-    // 3. PÁRRAFO
+    // 3. PÁRRAFO — blur reveal
     masterTimeline.to(".hero-lead", {
-        opacity: 1,
-        y: 0,
+        opacity: 1, y: 0,
         filter: "blur(0px)",
-        duration: 1,
-        ease: "power2.out",
+        duration: 0.75,
         onStart: () => console.log('3️⃣ Párrafo')
-    }, "-=0.4");
+    }, "-=0.45");
 
-    // 4. BOTONES
+    // 4. BOTONES — los dos juntos casi a la vez
     masterTimeline.to(".hero-buttons .btn", {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        stagger: 0.12,
-        duration: 0.7,
-        ease: "back.out(1.5)",
-        onStart: () => console.log('4️⃣ Botones'),
-        onComplete: function() {
-            gsap.to(this.targets(), {
-                boxShadow: "0 4px 20px rgba(78, 83, 190, 0.2)",
-                duration: 0.3
-            });
-        }
-    }, "-=0.3");
-
-    // 5. MICROCOPY
-    masterTimeline.to(".hero-microcopy", {
-        opacity: 1,
-        y: 0,
+        opacity: 1, y: 0, scale: 1,
+        stagger: 0.07,
         duration: 0.6,
+        onStart: () => console.log('4️⃣ Botones'),
+    }, "-=0.45");
+
+    // 5. MICROCOPY + AVATARES + CONTADOR — todo el bloque social proof llega junto
+    masterTimeline.to(".hero-microcopy", {
+        opacity: 1, y: 0,
+        duration: 0.5,
         onStart: () => console.log('5️⃣ Microcopy')
-    }, "-=0.4");
+    }, "-=0.35");
 
     // 6. AVATARES
     const avatars = document.querySelectorAll(".users-avatars img");
@@ -145,42 +131,44 @@ function initHeroAnimations() {
         gsap.set(avatars, { scale: 0, opacity: 0 });
         
         masterTimeline.to(avatars, {
-            scale: 1,
-            opacity: 1,
-            stagger: 0.05,
-            duration: 0.5,
-            ease: "back.out(2.5)",
+            scale: 1, opacity: 1,
+            stagger: 0.03,
+            duration: 0.45,
+            ease: "back.out(2)",
             onStart: () => console.log('6️⃣ Avatares')
         }, "-=0.3");
     }
 
-    // 7. TEXTO DE USUARIOS + CONTADOR
+    // 7 + 8. USERS COUNT + CONTADOR — llegan muy pegados a los avatares
     const counterElement = document.querySelector(".users-count .count");
     console.log('🔢 Counter:', counterElement ? 'SÍ' : 'NO');
 
     masterTimeline.to(".users-count", {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        onStart: () => console.log('7️⃣ Sección usuarios')
-    }, "0.2");  // Comienza casi inmediatamente después de que comienza la timeline
+        opacity: 1, y: 0,
+        pointerEvents: "auto",
+        duration: 0.45,
+        onStart: () => {
+            if (counterElement) counterElement.textContent = '0';
+            console.log('7️⃣ Sección usuarios');
+        }
+    }, "-=0.25");
 
-    // 8. CONTADOR ANIMADO - Comienza sin delay
     if (counterElement) {
-        counterElement.textContent = '0';
-        
         masterTimeline.to(counterElement, {
             textContent: 2141,
-            duration: 2.0,  // Reducido a 2 segundos para que sea fluido
+            duration: 1.4,
             ease: "power2.out",
             snap: { textContent: 1 },
             onStart: () => console.log('8️⃣ Contador 0 → 2.141'),
             onUpdate: function() {
-                const value = Math.ceil(this.targets()[0].textContent);
+                const value = Math.ceil(parseFloat(this.targets()[0].textContent));
                 counterElement.textContent = value.toLocaleString('es-ES');
             },
-            onComplete: () => console.log(`✅ Contador: ${counterElement.textContent}`)
-        }, "0.3");  // Comienza casi inmediatamente junto con la sección de usuarios
+            onComplete: () => {
+                counterElement.textContent = '2.141';
+                console.log('✅ Contador finalizado: 2.141');
+            }
+        }, "-=0.1");
     }
 }
 
@@ -188,27 +176,17 @@ function initHeroAnimations() {
 function initContinuousAnimations() {
     console.log('🔄 Animaciones continuas...');
 
-    // GLOW del logo
+    // GLOW del logo — muy sutil, periodo largo para no cargar el hilo principal
     gsap.to(".author img", {
-        filter: "drop-shadow(0 0 20px rgba(78, 83, 190, 0.5))",
-        duration: 2,
+        filter: "drop-shadow(0 0 12px rgba(78, 83, 190, 0.45))",
+        duration: 4,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
     });
 
-    // FLOTACIÓN de avatares
-    const avatars = document.querySelectorAll(".users-avatars img");
-    avatars.forEach((avatar, i) => {
-        gsap.to(avatar, {
-            y: `random(-10, 10)`,
-            duration: `random(2.5, 3.5)`,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-            delay: i * 0.1
-        });
-    });
+    // FLOTACIÓN de avatares — eliminada (consumía tweens en loop por cada avatar)
+    // Se mantiene solo en hover
 
     // HOVER - Botones
     const buttons = document.querySelectorAll(".hero-buttons .btn");
@@ -259,96 +237,50 @@ function initContinuousAnimations() {
 
     // PARALLAX
     gsap.to("#spline-shell", {
-        y: 150,
-        opacity: 0.8,
+        y: 120,
+        opacity: 0.6,
+        ease: "none",
         scrollTrigger: {
             trigger: ".hero",
             start: "top top",
             end: "bottom top",
-            scrub: 1.5
+            scrub: 2,
+            invalidateOnRefresh: true
         }
     });
 
     gsap.to(".hero h1", {
-        y: 80,
-        opacity: 0.3,
+        y: 70,
+        opacity: 0.2,
+        ease: "none",
         scrollTrigger: {
             trigger: ".hero",
             start: "top top",
             end: "bottom top",
-            scrub: 1
+            scrub: 1.2,
+            invalidateOnRefresh: true
         }
     });
 
     gsap.to(".hero-lead", {
-        y: 50,
-        opacity: 0.5,
+        y: 45,
+        opacity: 0.3,
+        ease: "none",
         scrollTrigger: {
             trigger: ".hero",
             start: "top top",
             end: "bottom top",
-            scrub: 1.2
+            scrub: 1.5,
+            invalidateOnRefresh: true
         }
     });
 
-    // PARTÍCULAS
-    createFloatingParticles();
+    // PARTÍCULAS eliminadas — afectaban al rendimiento
 }
 
-// ========== PARTÍCULAS ==========
+// ========== PARTÍCULAS (desactivadas) ==========
 function createFloatingParticles() {
-    const hero = document.querySelector(".hero");
-    if (!hero) return;
-
-    const particleCount = window.innerWidth < 768 ? 10 : 20;
-    console.log(`🫧 ${particleCount} partículas`);
-
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement("div");
-        particle.className = "floating-particle";
-        
-        const size = Math.random() * 8 + 4;
-        const opacity = Math.random() * 0.15 + 0.05;
-        
-        Object.assign(particle.style, {
-            position: "absolute",
-            width: `${size}px`,
-            height: `${size}px`,
-            borderRadius: "50%",
-            background: `radial-gradient(circle, rgba(78, 83, 190, ${opacity * 1.5}) 0%, rgba(78, 83, 190, ${opacity}) 100%)`,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            pointerEvents: "none",
-            zIndex: "0",
-            boxShadow: `0 0 ${size * 2}px rgba(78, 83, 190, ${opacity})`
-        });
-
-        hero.appendChild(particle);
-
-        // Flotación
-        gsap.to(particle, {
-            x: `random(-120, 120)`,
-            y: `random(-180, 180)`,
-            scale: `random(0.8, 1.4)`,
-            duration: `random(10, 18)`,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-            delay: Math.random() * 3
-        });
-
-        // Fade
-        gsap.to(particle, {
-            opacity: Math.random() * 0.5 + 0.3,
-            duration: `random(4, 7)`,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-            delay: Math.random() * 2
-        });
-    }
-
-    console.log('✅ Partículas creadas');
+    // Eliminadas: consumían demasiada CPU con muchos tweens en loop
 }
 
 // ========== CONTADORES STATS ==========

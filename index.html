@@ -298,13 +298,11 @@
         </script>
         
         <div class="hero-buttons">
-            <a href="#nodo-services-section" class="btn btn-primary contacto parallax-element">Planificar
-                mi proyecto</a>
-            <a href="#before-after" class="btn btn-secondary parallax-element">Ver
-                proyectos</a>
+            <a href="#before-after" class="btn btn-primary parallax-element">Ver proyectos</a>
+            <a href="#nodo-services-section" class="btn btn-secondary contacto parallax-element">Hablar con nosotros</a>
         </div>
         <p class="hero-microcopy parallax-element">
-            Sesión breve para mapear objetivos, priorizar quick wins y alinear el roadmap.
+            Sin compromiso · Respondemos en menos de 24h
         </p>
 
         <!-- Sección de usuarios -->
@@ -3135,8 +3133,8 @@
                 document.querySelector('.hero h1'),
                 document.querySelector('.hero p'),
                 document.querySelector('.btn.contacto'),
-                document.querySelector('.hero .btn.btn-secondary'),
-                document.querySelector('.users-count')
+                document.querySelector('.hero .btn.btn-secondary')
+                // .users-count excluido: lo gestiona exclusivamente gsap-animations-clean.js
             ].filter(Boolean);
 
             elements.forEach(element => element.classList.add('parallax-element'));
@@ -3164,22 +3162,9 @@
                 heroReady = true;
                 document.body.classList.add('hero-ready');
                 splineShell?.classList.remove('loading');
-                if (!heroIntroPlayed && window.gsap) {
-                    heroIntroPlayed = true;
-                    gsap.fromTo(elements,
-                        { opacity: 0, y: 32 },
-                        {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.9,
-                            stagger: 0.08,
-                            ease: 'power3.out',
-                            onComplete: () => elements.forEach(el => el.classList.add('visible'))
-                        }
-                    );
-                } else {
-                    elements.forEach(el => el.classList.add('visible'));
-                }
+                // Las animaciones de los elementos las gestiona exclusivamente gsap-animations-clean.js
+                // Solo marcamos los elementos como visibles para el fallback CSS
+                elements.forEach(el => el.classList.add('visible'));
                 handleScroll();
             };
 

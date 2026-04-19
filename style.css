@@ -280,6 +280,16 @@
         transform-origin: bottom center;
     }
 
+    .word-span {
+        display: inline-block;
+        will-change: transform, opacity;
+        transform-origin: center bottom;
+    }
+
+    .hero-lead {
+        will-change: transform, opacity, filter;
+    }
+
     .users-avatars img {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
