@@ -260,29 +260,27 @@
     <main class="hero" id="hero">
 
         <div class="author parallax-element">
-            <img src="./img/nodedos.svg" alt="Nodo Logo">
-            <span style="font-weight: bold; text-decoration:underline; color: rgb(45, 45, 45);">Bienvenido a
-                Nodo.</span>
+            <img src="./img/nodedos.svg" alt="Nodo Logo" id="hero-label-icon">
+            <span class="hero-label-morph" style="font-weight: bold; text-decoration:underline; color: rgb(45, 45, 45); display:inline-block; position: relative; perspective: 400px;">
+                <span id="hlw-0" style="display:inline-block; position:absolute; left:0; top:0; white-space:nowrap;">Conecta</span>
+                <span id="hlw-1" style="display:inline-block; position:absolute; left:0; top:0; white-space:nowrap; opacity:0; pointer-events:none;">Nodo</span>
+                <span style="visibility:hidden; display:inline-block; pointer-events:none;">Conecta</span>
+            </span>
         </div>
 
         <h1 class="parallax-element">
-            <!-- <span class="tuhaces">Historia, cultura y tecnología.</span><br> -->
-            <span class="highlight">Nodo conecta lo físico con lo digital.</span>
-            <!-- diseñamos experiencias digitales premium.-->
+            <span class="highlight">Lo que tu proyecto necesita, existe.<br>Nosotros lo conectamos.</span>
         </h1>
         <p class="parallax-element hero-lead" style="text-align: center;" id="hero-lead-text">
-            Trabajamos con personas que quieren que su proyecto funcione con tecnología sólida, actual y bien aplicada.
-            Creamos ecosistemas digitales que perduran, comunican y generan un impacto real. Porque cada proyecto
-            conecta
-            personas a su entorno.
+            Nodo nace de la conexión. Y eso es exactamente lo que construimos: puentes que conectan situaciones y proyectos con personas.
         </p>
 
         <script>
             // Texto optimizado para mobile
             (function () {
                 const heroLeadText = document.getElementById('hero-lead-text');
-                const fullText = 'Trabajamos con personas que quieren que su proyecto funcione con tecnología sólida, actual y bien aplicada. Creamos sistemas que perduran, comunican y generan un impacto real. Porque cada proyecto conecta personas a su entorno.';
-                const mobileText = 'Creamos sistemas con tecnología sólida que perduran y generan impacto real.';
+                const fullText = 'Nodo nace de la conexión. Y eso es exactamente lo que construimos: puentes que conectan situaciones y proyectos con personas.';
+                const mobileText = 'Nodo nace de la conexión. Construimos puentes entre proyectos y personas.';
 
                 function updateHeroText() {
                     if (window.innerWidth <= 768) {
@@ -299,11 +297,11 @@
         </script>
 
         <div class="hero-buttons">
-            <a href="#before-after" class="btn btn-primary parallax-element">Ver proyectos</a>
-            <a href="#nodo-services-section" class="btn btn-secondary contacto parallax-element">Hablar con nosotros</a>
+            <a href="#before-after" class="btn btn-primary parallax-element">Ver resultados reales</a>
+            <a href="#nodo-contact-section" class="btn btn-secondary contacto parallax-element">Agenda tu diagnóstico gratuito</a>
         </div>
         <p class="hero-microcopy parallax-element">
-            Sin compromiso · Respondemos en menos de 24h
+            Sin compromiso · Sesión estratégica de 30 min · Respondemos en menos de 24h
         </p>
 
         <!-- Sección de usuarios -->
@@ -323,6 +321,7 @@
         </div>
 
     </main>
+
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.66/build/spline-viewer.js"></script>
     <div class="spline-shell loading" id="spline-shell">
         <div class="spline-loader" aria-hidden="true"></div>
@@ -365,18 +364,17 @@
         <div class="why-nodo-container">
             <div class="why-nodo-header">
                 <span class="why-nodo-badge">
-                    <span class="badge-icon">🌍</span>
-                    Barcelona → Global
+                    <span class="badge-icon">⚙️</span>
+                    El Sistema Nodo
                 </span>
                 <h2 class="why-nodo-title">
-                    Por Qué <span class="highlight-purple">Nodo</span>
+                    Tu negocio necesita un <span class="highlight-purple">sistema</span>, no una página web
                 </h2>
-                <p class="why-nodo-subtitle">Desde el corazón tecnológico de Barcelona, construimos el futuro digital
-                    con alcance mundial</p>
+                <p class="why-nodo-subtitle">Hemos construido la infraestructura digital que usan las empresas que lideran su sector. Tres piezas. Un resultado: crecimiento predecible.</p>
             </div>
 
             <div class="why-nodo-grid">
-                <!-- Card 1: Barcelona Base -->
+                <!-- Card 1: La Estructura -->
                 <div class="why-nodo-card" data-card="1">
                     <div class="card-glow"></div>
                     <div class="card-content">
@@ -388,18 +386,16 @@
                             </svg>
                         </div>
                         <div class="card-number">01</div>
-                        <h3 class="card-title">Barcelona Tech Hub</h3>
-                        <p class="card-description">Operamos desde Barcelona, epicentro del ecosistema tecnológico
-                            mediterráneo. Una ciudad donde innovación, talento internacional y visión digital convergen
-                            para crear proyectos que impactan globalmente.</p>
+                        <h3 class="card-title">La Estructura</h3>
+                        <p class="card-description">Tu Plataforma de Autoridad. Diseñamos la base digital que proyecta credibilidad internacional desde el primer clic — preparada para escalar en mercados premium sin reconstruir nada.</p>
                         <div class="card-tags">
-                            <span class="tag">🇪🇸 BCN</span>
-                            <span class="tag">🚀 Innovation</span>
+                            <span class="tag">�️ Autoridad</span>
+                            <span class="tag">🌐 Escalable</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 2: IA & LLMs (DESTACADA) -->
+                <!-- Card 2: El Combustible (DESTACADA) -->
                 <div class="why-nodo-card card-highlight" data-card="2">
                     <div class="card-glow"></div>
                     <div class="card-shine"></div>
@@ -414,24 +410,21 @@
                             </svg>
                         </div>
                         <div class="card-number special">02</div>
-                        <h3 class="card-title">IA & LLMs<br><span style="font-size: 0.7em; opacity: 0.9;">Colaboración
-                                USA</span></h3>
-                        <p class="card-description">Desarrollo activo de sistemas de inteligencia artificial con equipos
-                            de Silicon Valley. Large Language Models, automatización inteligente y soluciones de IA que
-                            transforman operaciones empresariales reales.</p>
+                        <h3 class="card-title">El Combustible<br><span style="font-size: 0.7em; opacity: 0.9;">Captura de Intención</span></h3>
+                        <p class="card-description">SEO técnico, contenido estratégico e IA aplicada para que tu negocio aparezca cuando el cliente ya está listo para comprar. Intención captada = conversión garantizada.</p>
                         <div class="card-badge">
                             <span class="badge-pulse"></span>
-                            Cutting Edge Tech
+                            ROI Medible
                         </div>
                         <div class="card-tags">
-                            <span class="tag">🇺🇸 USA Collab</span>
-                            <span class="tag">🤖 AI/ML</span>
-                            <span class="tag">⚡ LLMs</span>
+                            <span class="tag">� SEO / IA</span>
+                            <span class="tag">📈 Predictible</span>
+                            <span class="tag">⚡ 24/7</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 3: 3D Web NYC -->
+                <!-- Card 3: El Motor -->
                 <div class="why-nodo-card" data-card="3">
                     <div class="card-glow"></div>
                     <div class="card-content">
@@ -446,19 +439,17 @@
                             </svg>
                         </div>
                         <div class="card-number">03</div>
-                        <h3 class="card-title">3D Web Development<br><span
-                                style="font-size: 0.7em; opacity: 0.9;">Proyectos Nueva York</span></h3>
-                        <p class="card-description">Experiencias web inmersivas para marcas de Manhattan. Three.js,
-                            WebGL, Spline y React Three Fiber. Convertimos navegación web en experiencias 3D que
-                            cautivan y convierten.</p>
+                        <h3 class="card-title">El Motor<br><span
+                                style="font-size: 0.7em; opacity: 0.9;">Conversión Escalable</span></h3>
+                        <p class="card-description">El sistema que convierte visitas en clientes de forma automática y repetible. Embudos, experiencias premium en 3D y flujos de conversión diseñados para mercados internacionales.</p>
                         <div class="card-tags">
-                            <span class="tag">🗽 NYC</span>
-                            <span class="tag">🎨 3D/WebGL</span>
+                            <span class="tag">� Automatizado</span>
+                            <span class="tag">� Global</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 4: Experiencia Full Stack -->
+                <!-- Card 4: Credenciales -->
                 <div class="why-nodo-card" data-card="4">
                     <div class="card-glow"></div>
                     <div class="card-content">
@@ -469,13 +460,11 @@
                             </svg>
                         </div>
                         <div class="card-number">04</div>
-                        <h3 class="card-title">Full-Stack Mastery</h3>
-                        <p class="card-description">Arquitecturas escalables, backends robustos, frontends modernos.
-                            Node.js, Python, React, Next.js, bases de datos SQL/NoSQL, DevOps, CI/CD. Stack completo,
-                            dominio total, resultados medibles.</p>
+                        <h3 class="card-title">Arquitectos, no Freelancers</h3>
+                        <p class="card-description">Colaboraciones activas con equipos de USA (Silicon Valley) y proyectos en Nueva York. Somos socios estratégicos de alto nivel que construyen la infraestructura que usan los líderes de su sector.</p>
                         <div class="card-tags">
-                            <span class="tag">💻 Full Stack</span>
-                            <span class="tag">⚙️ DevOps</span>
+                            <span class="tag">🇺🇸 USA · NYC</span>
+                            <span class="tag">🏆 Premium</span>
                         </div>
                     </div>
                 </div>
@@ -484,21 +473,21 @@
             <!-- Stats mejorados -->
             <div class="why-nodo-stats">
                 <div class="stat-item">
-                    <div class="stat-icon">🌐</div>
-                    <div class="stat-number" data-stat="100">100<span class="stat-symbol">%</span></div>
-                    <div class="stat-label">Proyectos Internacionales</div>
+                    <div class="stat-icon">📈</div>
+                    <div class="stat-number" data-stat="100">ROI<span class="stat-symbol"> real</span></div>
+                    <div class="stat-label">Retorno medible en cada proyecto</div>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat-item">
                     <div class="stat-icon">🌍</div>
                     <div class="stat-number" data-stat="global">USA + EU</div>
-                    <div class="stat-label">Clientes Globales</div>
+                    <div class="stat-label">Mercados Premium</div>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat-item">
-                    <div class="stat-icon">🚀</div>
-                    <div class="stat-number" data-stat="tech">IA + 3D</div>
-                    <div class="stat-label">Tecnologías Avanzadas</div>
+                    <div class="stat-icon">⚙️</div>
+                    <div class="stat-number" data-stat="tech">Sistema</div>
+                    <div class="stat-label">No una página web. Un activo.</div>
                 </div>
             </div>
         </div>
@@ -1163,11 +1152,11 @@
     <div style="background-color: rgba(128, 128, 128, 0.052);border-radius: 30px;">
         <section class="max-w-6xl mx-auto px-6 py-20 text-center">
             <h2 class="text-4xl md:text-5xl font-bold text-black-700 mb-4 flex items-center justify-center gap-2">
-                Éxitos Recientes made in Nodo <img src="./img/nodedos.svg" alt="Logo Nodo"
+                Míranos en Acción <img src="./img/nodedos.svg" alt="Logo Nodo"
                     class="h-12 w-12 inline-block">
             </h2>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Descubre cómo hemos transformado negocios tradicionales en marcas digitales líderes dentro de su sector.
+                No vendemos promesas. Vendemos el futuro de tu negocio — respaldado por resultados reales y medibles de clientes que ya lideran su sector.
             </p>
         </section>
     </div>
@@ -1181,7 +1170,7 @@
             <div class="mb-20">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold text-gray-900 mb-4">Clínica Dental Dra. Hitachi</h2>
-                    <p class="text-lg text-gray-600">De consultorio tradicional a líder digital en su sector</p>
+                    <p class="text-lg text-gray-600">De consultorio invisible en Google a líder digital en su sector — en 3 meses</p>
                 </div>
 
                 <div class="grid lg:grid-cols-2 gap-8 items-center">
@@ -1444,19 +1433,18 @@
                     <div
                         class="text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-12 text-white h-full flex flex-col justify-center items-center">
                         <div class="max-w-2xl mx-auto">
-                            <h3 class="text-3xl font-bold mb-4">¿Listo para tu transformación digital?</h3>
-                            <p class="text-xl mb-8 opacity-90">Comienza ahora a ganar clientes gracias a una buena
-                                presencia online ¡hoy mismo!</p>
+                            <h3 class="text-3xl font-bold mb-4">¿Tu negocio merece este mismo sistema?</h3>
+                            <p class="text-xl mb-8 opacity-90">Agenda una sesión estratégica de diagnóstico gratuita. Definimos juntos el camino hacia tu próxima fase de crecimiento.</p>
                             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                                 <a href="./exitos.html"> <button
                                         class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
                                         Ver Más Casos de Éxito
                                     </button></a>
                                 <a
-                                    href="https://wa.me/+34622494800?text=Quisiera%20una%20consulta%20personalizada%20con%20Nodo">
+                                    href="https://wa.me/+34622494800?text=Quiero%20una%20sesi%C3%B3n%20estrat%C3%A9gica%20de%20diagn%C3%B3stico%20con%20Nodo">
                                     <button class=" border-2 border-white text-white px-8 py-3 rounded-lg font-semibold
                                     hover:bg-white hover:text-blue-600 transition-colors">
-                                        Solicitar Consulta Gratuita
+                                        Agenda tu Sesión Gratuita →
                                     </button></a>
                             </div>
                         </div>
@@ -2762,10 +2750,9 @@
     <!-- Sección de Contacto para Nodo Estudio Tecnológico -->
     <section class="nodo-contact-section" id="nodo-contact-section">
         <div class="nodo-contact-header">
-            <h2>Contacta con nosotros</h2>
-            <p>¿Tienes un proyecto en mente? ¿Necesitas ayuda con tu presencia digital? En <span
-                    style="text-decoration: underline; color: #471fa5; ">Nodo Estudio Tecnológico</span> estamos
-                listos para convertir tus ideas en realidad.</p>
+            <h2>Agenda tu Sesión Estratégica</h2>
+            <p>30 minutos. Sin coste. Sin compromiso. Analizamos tu situación actual y definimos el camino hacia tu próxima fase de crecimiento. En <span
+                    style="text-decoration: underline; color: #471fa5; ">Nodo</span> no cotizamos proyectos — diseñamos sistemas.</p>
         </div>
 
         <div class="nodo-contact-container">
@@ -3189,12 +3176,11 @@
             }
 
             const elements = [
-                document.querySelector('.author'),
                 document.querySelector('.hero h1'),
                 document.querySelector('.hero p'),
                 document.querySelector('.btn.contacto'),
                 document.querySelector('.hero .btn.btn-secondary')
-                // .users-count excluido: lo gestiona exclusivamente gsap-animations-clean.js
+                // Todos los elementos del hero los gestiona exclusivamente gsap-animations-clean.js
             ].filter(Boolean);
 
             elements.forEach(element => element.classList.add('parallax-element'));

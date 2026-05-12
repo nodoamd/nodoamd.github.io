@@ -302,8 +302,7 @@
     }
 
     .author img {
-        will-change: filter;
-        transition: filter 0.3s ease;
+        transition: none;
     }
 
     /* Optimización de rendimiento para animaciones */
@@ -486,12 +485,13 @@
     .parallax-element {
         opacity: 0;
         transform: translateY(20px);
-        transition: all 0.8s ease-out;
+        transition: none;
     }
 
     .parallax-element.visible {
         opacity: 1;
         transform: translateY(0);
+        transition: none;
     }
 
     /* Ajustes para el timing de las animaciones */
@@ -535,7 +535,9 @@
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
-        margin-bottom: 1rem;
+        margin: 0 auto 1rem;
+        width: 100%;
+        text-align: center;
     }
 
     .author img {

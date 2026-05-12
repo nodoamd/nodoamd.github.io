@@ -176,17 +176,73 @@ function initHeroAnimations() {
 function initContinuousAnimations() {
     console.log('🔄 Animaciones continuas...');
 
-    // GLOW del logo — muy sutil, periodo largo para no cargar el hilo principal
-    gsap.to(".author img", {
-        filter: "drop-shadow(0 0 12px rgba(78, 83, 190, 0.45))",
-        duration: 4,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-    });
+    // MORPH label Conecta ↔ Nodo — flip por carácter, aeropuerto suave
+    const hlw = [
+        document.getElementById('hlw-0'),
+        document.getElementById('hlw-1')
+    ];
+    if (hlw[0] && hlw[1]) {
 
-    // FLOTACIÓN de avatares — eliminada (consumía tweens en loop por cada avatar)
-    // Se mantiene solo en hover
+        // Pre-splitear cada palabra en chars una sola vez — sin tocar el DOM después
+        function splitToChars(el) {
+            const text = el.textContent;
+            el.innerHTML = '';
+            return text.split('').map(ch => {
+                const s = document.createElement('span');
+                s.textContent = ch === ' ' ? '\u00A0' : ch;
+                s.style.cssText = 'display:inline-block; transform-style:preserve-3d;';
+                el.appendChild(s);
+                return s;
+            });
+        }
+
+        const chars = [splitToChars(hlw[0]), splitToChars(hlw[1])];
+        let current = 0;
+        let morphing = false;
+
+        function morphLabel() {
+            if (morphing) return;
+            morphing = true;
+            const next = (current + 1) % 2;
+            const outChars = chars[current];
+            const inChars  = chars[next];
+
+            // Asegurar que los entrantes están listos en su estado inicial
+            gsap.set(inChars, { opacity: 0, rotationX: 55, filter: 'blur(2px)' });
+            gsap.set(hlw[next], { opacity: 1, pointerEvents: 'none' });
+
+            // OUT — cada char gira hacia arriba y desaparece, stagger izq→der
+            gsap.to(outChars, {
+                rotationX: -55,
+                opacity: 0,
+                filter: 'blur(2px)',
+                duration: 0.32,
+                ease: 'power2.in',
+                stagger: 0.038,
+            });
+
+            // IN — cada char llega girando desde abajo, stagger izq→der
+            // Empieza cuando el OUT lleva la mitad del camino (overlap)
+            const inDelay = outChars.length * 0.038 * 0.4;
+            gsap.to(inChars, {
+                rotationX: 0,
+                opacity: 1,
+                filter: 'blur(0px)',
+                duration: 0.38,
+                ease: 'power3.out',
+                stagger: 0.042,
+                delay: inDelay,
+                onComplete: () => {
+                    gsap.set(hlw[current], { opacity: 0, pointerEvents: 'none' });
+                    gsap.set(outChars, { rotationX: 0, opacity: 0, filter: 'blur(0px)' });
+                    current = next;
+                    morphing = false;
+                }
+            });
+        }
+
+        setInterval(morphLabel, 3400);
+    }
 
     // HOVER - Botones
     const buttons = document.querySelectorAll(".hero-buttons .btn");
