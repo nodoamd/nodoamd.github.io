@@ -3966,7 +3966,6 @@
         justify-content: center;
         gap: 10px;
     }
-
     .slider-dot {
         width: 10px;
         height: 10px;
@@ -3977,7 +3976,6 @@
         cursor: pointer;
         transition: background-color 0.3s ease;
     }
-
     .slider-dot.active {
         background-color: #4e53be;
     }
