@@ -361,11 +361,11 @@
 
         /* HERO SECTION */
         .hero {
-            min-height: 100vh;
+            min-height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 8rem 2rem 4rem;
+            padding: 8rem 2rem 3rem;
             text-align: center;
             position: relative;
         }
@@ -447,267 +447,258 @@
             justify-content: center;
         }
 
-        /* SEARCH BAR - PREMIUM */
-        .search-container {
-            max-width: 600px;
-            margin: 3rem auto;
+        /* GALLERY CONTROLS (sticky bar) */
+        .gallery-controls {
+            position: sticky;
+            top: 0;
+            z-index: 500;
+            background: rgba(10, 10, 15, 0.96);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            transition: box-shadow 0.3s;
+        }
+
+        .gallery-controls.elevated {
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        .controls-top {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 10px 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cat-tabs {
+            display: flex;
+            gap: 2px;
+            flex-shrink: 0;
+        }
+
+        .cat-tab {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.4);
+            padding: 0.5rem 1.1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .cat-tab:hover {
+            color: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .cat-tab.active {
+            color: #ffffff;
+            background: rgba(167, 135, 255, 0.15);
+        }
+
+        .cat-count {
+            font-size: 0.7rem;
+            opacity: 0.5;
+            margin-left: 3px;
+        }
+
+        .controls-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-left: auto;
+        }
+
+        .type-toggle {
+            display: flex;
+            gap: 2px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            padding: 3px;
+        }
+
+        .type-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: rgba(255, 255, 255, 0.4);
+            padding: 0.3rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .type-btn:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .type-btn.active {
+            background: rgba(167, 135, 255, 0.18);
+            border-color: rgba(167, 135, 255, 0.25);
+            color: #ffffff;
+        }
+
+        .ctrl-search {
             position: relative;
         }
 
-        .search-input {
-            width: 100%;
-            background: var(--dark-light);
-            border: 1px solid var(--border);
-            padding: 1.25rem 3.5rem 1.25rem 1.5rem;
-            border-radius: 100px;
+        .ctrl-search input {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.45rem 2rem 0.45rem 0.85rem;
+            border-radius: 8px;
             color: var(--text);
-            font-size: 1rem;
-            font-weight: 600;
-            transition: border-color 0.2s;
+            font-size: 0.82rem;
+            font-weight: 500;
+            font-family: inherit;
+            width: 200px;
+            transition: border-color 0.2s, width 0.3s;
         }
 
-        .search-input:focus {
+        .ctrl-search input:focus {
             outline: none;
             border-color: var(--accent);
+            width: 260px;
         }
 
-        .search-icon {
+        .ctrl-search input::placeholder {
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        .ctrl-search-icon {
             position: absolute;
-            right: 1.5rem;
+            right: 0.6rem;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.3);
+            pointer-events: none;
         }
 
-        /* FILTERS - ULTRA CLEAN REDESIGN */
-        .filter-section {
-            max-width: 1200px;
-            margin: 0 auto 4rem;
-            padding: 0 2rem;
-        }
-
-        .filter-container {
-            background: transparent;
-            padding: 0;
-        }
-
-        .filter-group {
-            margin-bottom: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.02);
-            transition: all 0.3s ease;
-        }
-
-        .filter-group:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.12);
-        }
-
-        .filter-group:last-child {
-            margin-bottom: 0;
-        }
-
-        .filter-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 1.5rem;
-            cursor: pointer;
-            user-select: none;
-            transition: all 0.2s ease;
-        }
-
-        .filter-header:hover {
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .filter-header:active {
-            transform: scale(0.99);
-        }
-
-        .filter-label {
-            font-size: 0.8rem;
+        .ctrl-count {
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.3);
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: rgba(255, 255, 255, 0.7);
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin: 0;
+            white-space: nowrap;
+            min-width: 70px;
+            text-align: right;
         }
 
-        .filter-label-icon {
-            font-size: 1rem;
-            opacity: 0.7;
-        }
-
-        .filter-toggle {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        .filter-count {
-            background: rgba(167, 135, 255, 0.15);
+        .ctrl-count span {
             color: var(--accent);
-            padding: 0.25rem 0.6rem;
-            border-radius: 6px;
-            font-size: 0.7rem;
-            font-weight: 600;
         }
 
-        .expand-icon {
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-            line-height: 1;
-        }
-
-        .filter-group.expanded .expand-icon {
-            transform: rotate(180deg);
-        }
-
-        .filter-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .filter-group.expanded .filter-content {
-            max-height: 500px;
-        }
-
-        .filters {
+        .sub-chips-row {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6px 2rem 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
             display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            padding: 0 1.5rem 1.5rem;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .filter-btn {
-            background: rgba(255, 255, 255, 0.03);
+        .sub-chips {
+            display: flex;
+            gap: 5px;
+            overflow-x: auto;
+            flex: 1;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .sub-chips::-webkit-scrollbar {
+            display: none;
+        }
+
+        .title-chip {
+            flex-shrink: 0;
+            background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            color: rgba(255, 255, 255, 0.6);
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
+            color: rgba(255, 255, 255, 0.45);
+            padding: 0.25rem 0.85rem;
+            border-radius: 100px;
+            font-size: 0.73rem;
             font-weight: 500;
-            font-size: 0.875rem;
+            font-family: inherit;
             cursor: pointer;
-            transition: all 0.2s ease;
-            position: relative;
-            letter-spacing: 0;
+            transition: all 0.2s;
+            white-space: nowrap;
         }
 
-        .filter-btn:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(167, 135, 255, 0.3);
-            color: rgba(255, 255, 255, 0.9);
-            transform: translateY(-1px);
-        }
-
-        .filter-btn.active {
-            background: rgba(167, 135, 255, 0.15);
+        .title-chip:hover {
             border-color: rgba(167, 135, 255, 0.4);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .title-chip.active {
+            background: rgba(167, 135, 255, 0.2);
+            border-color: var(--accent);
             color: #ffffff;
             font-weight: 600;
         }
 
-        .filter-icon {
-            display: inline-block;
-            margin-right: 0.5rem;
-            font-size: 1rem;
-            opacity: 0.8;
-        }
-
-        .filter-btn.active .filter-icon {
-            opacity: 1;
-        }
-
-        .clear-filters-btn {
+        .sub-clear-btn {
+            flex-shrink: 0;
             background: transparent;
             border: 1px solid rgba(255, 90, 90, 0.2);
-            color: rgba(255, 90, 90, 0.7);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-weight: 500;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin-left: 1rem;
-            display: none;
-        }
-
-        .clear-filters-btn.visible {
-            display: inline-block;
-        }
-
-        .clear-filters-btn:hover {
-            background: rgba(255, 90, 90, 0.1);
-            border-color: rgba(255, 90, 90, 0.4);
-            color: #ff5a5a;
-        }
-
-        @media (max-width: 768px) {
-            .filter-group {
-                margin-bottom: 2rem;
-            }
-
-            .filters {
-                gap: 0.5rem;
-            }
-
-            .filter-btn {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.8rem;
-            }
-
-            .clear-filters-btn {
-                margin-left: 0;
-                margin-top: 0.5rem;
-            }
-        }
-
-        /* FILTERS - MINIMAL */
-        .filters {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 2rem 0;
-        }
-
-        .filter-btn {
-            background: var(--dark-light);
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            padding: 0.75rem 1.5rem;
+            color: rgba(255, 90, 90, 0.6);
+            padding: 0.25rem 0.7rem;
             border-radius: 100px;
-            font-weight: 700;
-            font-size: 0.875rem;
+            font-size: 0.7rem;
+            font-weight: 500;
+            font-family: inherit;
             cursor: pointer;
             transition: all 0.2s;
         }
 
-        .filter-btn:hover {
-            border-color: var(--accent);
-            color: var(--text);
+        .sub-clear-btn:hover {
+            background: rgba(255, 90, 90, 0.1);
+            color: #ff5a5a;
+            border-color: rgba(255, 90, 90, 0.4);
         }
 
-        .filter-btn.active {
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            border-color: transparent;
-            color: var(--text);
+        @media (max-width: 768px) {
+            .controls-top {
+                padding: 10px 1rem;
+                flex-wrap: wrap;
+            }
+
+            .sub-chips-row {
+                padding: 6px 1rem 8px;
+            }
+
+            .controls-right {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .ctrl-search {
+                flex: 1;
+            }
+
+            .ctrl-search input {
+                width: 100%;
+            }
+
+            .ctrl-count {
+                display: none;
+            }
         }
 
         /* GALLERY - MASONRY */
         .gallery {
             max-width: 1400px;
-            margin: 4rem auto;
+            margin: 2.5rem auto;
             padding: 0 2rem;
         }
 
@@ -1211,15 +1202,48 @@
             .hero-content {
                 padding: 0 1rem;
             }
-
-            .search-container {
-                padding: 0 1rem;
-            }
         }
 
-        /* UTILITIES */
-        .hidden {
-            display: none !important;
+        /* COLLECTIONS SEARCH */
+        .collections-search {
+            max-width: 400px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .collections-search input {
+            width: 100%;
+            background: var(--dark-light);
+            border: 1px solid var(--border);
+            padding: 0.9rem 3rem 0.9rem 1.25rem;
+            border-radius: 100px;
+            color: var(--text);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: border-color 0.2s;
+        }
+
+        .collections-search input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .collections-search svg {
+            position: absolute;
+            right: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        /* COLLECTIONS GRID - improved */
+        .collections-grid-wrap {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        display: none !important;
         }
 
         .grid-cols-2 {
@@ -1510,7 +1534,7 @@
                 <a href="index.html#how" class="nav-item">How it works</a>
                 <a href="index.html#benefits" class="nav-item">Benefits</a>
                 <a href="galeria.html" class="nav-item active" style="color: var(--accent); font-weight: 600;">
-                    🎨 Gallery
+                    Gallery
                 </a>
             </div>
             <!-- Desktop Actions -->
@@ -1547,10 +1571,10 @@
             <a href="index.html#gallery" class="nav-item">Videos</a>
             <a href="index.html#how" class="nav-item">How it works</a>
             <a href="index.html#benefits" class="nav-item">Benefits</a>
-            <a href="galeria.html" class="nav-item active">🎨 Gallery</a>
+            <a href="galeria.html" class="nav-item active">Gallery</a>
             <a href="https://drive.google.com/drive/folders/1MuJkt_ZfpcPGAPSR5q5Q6K8aRJLgLdAE?usp=sharing"
                 target="_blank" class="nav-item">
-                🎁 Download Starter Pack
+                Download Starter Pack
             </a>
             <div class="mobile-nav-actions">
                 <div class="mobile-toggles">
@@ -1592,7 +1616,7 @@
 
             <div class="hero-stats">
                 <div class="stat">
-                    <div class="stat-number">500+</div>
+                    <div class="stat-number">1700+</div>
                     <div class="stat-label">WALLPAPERS</div>
                 </div>
                 <div class="stat">
@@ -1600,8 +1624,8 @@
                     <div class="stat-label">QUALITY</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">10+</div>
-                    <div class="stat-label">CATEGORIES</div>
+                    <div class="stat-number">35+</div>
+                    <div class="stat-label">GAMES</div>
                 </div>
             </div>
 
@@ -1615,87 +1639,45 @@
                 </a>
             </div>
 
-            <!-- SEARCH -->
-            <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="Search wallpapers...">
-                <svg class="search-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
+    </section>
+
+
+    <!-- GALLERY CONTROLS — sticky -->
+    <div class="gallery-controls" id="galleryControls">
+        <div class="controls-top">
+            <!-- Category tabs -->
+            <div class="cat-tabs">
+                <button class="cat-tab active" data-media="all">All <span class="cat-count"
+                        id="countAll"></span></button>
+                <button class="cat-tab" data-media="game">Games <span class="cat-count" id="countGames"></span></button>
+                <button class="cat-tab" data-media="movie">Movies <span class="cat-count"
+                        id="countMovies"></span></button>
+                <button class="cat-tab" data-media="collections">Collections</button>
             </div>
-
-            <!-- FILTERS - COLLAPSIBLE -->
-            <div class="filter-section">
-                <!-- Type Filters -->
-                <div class="filter-group expanded">
-                    <div class="filter-header" onclick="toggleFilterGroup(this)">
-                        <div class="filter-label">
-                            <span class="filter-label-icon">📊</span>
-                            Content Type
-                        </div>
-                        <div class="filter-toggle">
-                            <span class="expand-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="filter-content">
-                        <div class="filters">
-                            <button class="filter-btn active" data-filter="all">
-                                <span class="filter-icon">✨</span>All Content
-                            </button>
-                            <button class="filter-btn" data-filter="video">
-                                <span class="filter-icon">🎥</span>Videos
-                            </button>
-                            <button class="filter-btn" data-filter="static">
-                                <span class="filter-icon">🖼️</span>Static
-                            </button>
-                            <button class="filter-btn" data-filter="collections">
-                                <span class="filter-icon">📁</span>Collections
-                            </button>
-                        </div>
-                    </div>
+            <!-- Right controls -->
+            <div class="controls-right">
+                <div class="type-toggle">
+                    <button class="type-btn active" data-type="all">All</button>
+                    <button class="type-btn" data-type="video">Video</button>
+                    <button class="type-btn" data-type="static">Photo</button>
                 </div>
-
-                <!-- Mood Filters -->
-                <div class="filter-group">
-                    <div class="filter-header" onclick="toggleFilterGroup(this)">
-                        <div class="filter-label">
-                            <span class="filter-label-icon">🌈</span>
-                            Atmosphere & Vibe
-                        </div>
-                        <div class="filter-toggle">
-                            <span class="filter-count" id="moodFilterCount" style="display: none;">0</span>
-                            <button class="clear-filters-btn" id="clearMoodFilters" onclick="event.stopPropagation();">
-                                <span>×</span> Clear
-                            </button>
-                            <span class="expand-icon">▼</span>
-                        </div>
-                    </div>
-                    <div class="filter-content">
-                        <div class="filters">
-                            <button class="filter-btn" data-mood="rainy">
-                                <span class="filter-icon">🌧️</span>Rainy
-                            </button>
-                            <button class="filter-btn" data-mood="moody">
-                                <span class="filter-icon">🌙</span>Moody
-                            </button>
-                            <button class="filter-btn" data-mood="ambience">
-                                <span class="filter-icon">✨</span>Ambience
-                            </button>
-                            <button class="filter-btn" data-mood="landscape">
-                                <span class="filter-icon">🏔️</span>Landscape
-                            </button>
-                            <button class="filter-btn" data-mood="interiors">
-                                <span class="filter-icon">🏠</span>Interiors
-                            </button>
-                            <button class="filter-btn" data-mood="cyberpunk">
-                                <span class="filter-icon">🌆</span>Cyberpunk
-                            </button>
-                        </div>
-                    </div>
+                <div class="ctrl-search">
+                    <input type="text" id="searchInput" placeholder="Search title, game...">
+                    <svg class="ctrl-search-icon" width="14" height="14" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
                 </div>
+                <div class="ctrl-count" id="dockCount"></div>
             </div>
         </div>
-    </section>
+        <!-- Sub-chips: game or movie titles (auto-populated, hidden when "All") -->
+        <div class="sub-chips-row" id="subChipsRow" style="display:none">
+            <div class="sub-chips" id="subChips"></div>
+            <button class="sub-clear-btn" id="clearGameFilter" style="display:none">Clear</button>
+        </div>
+    </div>
 
     <!-- GALLERY VIEW -->
     <section class="gallery" id="galleryView">
@@ -1718,10 +1700,17 @@
 
     <!-- COLLECTIONS VIEW -->
     <section class="gallery collections-view" id="collectionsView">
-        <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">BROWSE COLLECTIONS</h2>
-        <div id="collectionsGrid" class="grid-cols-2 md:grid-cols-3 lg:grid-cols-4"></div>
+        <h2 class="section-title" style="text-align: center; margin-bottom: 1.5rem;">BROWSE COLLECTIONS</h2>
+        <div class="collections-search">
+            <input type="text" id="collectionsSearch" placeholder="Search game...">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+        </div>
+        <div id="collectionsGrid" class="collections-grid-wrap"></div>
         <div style="text-align: center; margin-top: 3rem;">
-            <button id="backToGallery" class="btn-primary">← BACK TO GALLERY</button>
+            <button id="backToGallery" class="btn-primary"><i class="fas fa-arrow-left"></i> BACK TO GALLERY</button>
         </div>
     </section>
 
@@ -1730,7 +1719,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 id="modalTitle" class="modal-title">WALLPAPER PREVIEW</h3>
-                <button id="closeModal" class="modal-close">×</button>
+                <button id="closeModal" class="modal-close">&times;</button>
             </div>
             <img id="modalImage" src="" alt="Preview" class="modal-image">
             <video id="modalVideo" class="modal-video" autoplay loop muted controls>
@@ -1739,7 +1728,7 @@
 
             <!-- Quality Notice -->
             <div class="modal-quality-notice">
-                <div class="modal-quality-icon">💎</div>
+                <div class="modal-quality-icon"><i class="fas fa-gem"></i></div>
                 <div class="modal-quality-content">
                     <div class="modal-quality-title">This is a low-quality preview</div>
                     <div class="modal-quality-text">
@@ -1748,16 +1737,16 @@
                     <div class="modal-quality-links">
                         <a href="https://drive.google.com/drive/folders/1MuJkt_ZfpcPGAPSR5q5Q6K8aRJLgLdAE?usp=sharing"
                             target="_blank" class="modal-quality-link free">
-                            <span>🎁</span> Free Starter (15GB)
+                            <i class="fas fa-gift"></i> Free Starter (15GB)
                         </a>
                         <a href="https://betterwlprsx.gumroad.com/l/betterwlprs2025" target="_blank"
                             class="modal-quality-link premium">
-                            <span>💎</span> 2025 Pack — $3.99 (50GB)
+                            <i class="fas fa-gem"></i> 2025 Pack &mdash; $3.99 (50GB)
                         </a>
                         <!-- Lifetime option - Coming soon
                         <a href="https://betterwlprsx.gumroad.com/l/betterwlprs-lifetime" target="_blank"
                             class="modal-quality-link lifetime">
-                            <span>♾️</span> Lifetime — $9.99
+                            <span>â™¾ï¸</span> Lifetime &mdash; $9.99
                         </a>
                         -->
                     </div>
@@ -1800,7 +1789,7 @@
                     <span class="footer-stat-label">Different Styles</span>
                 </div>
                 <div class="footer-stat">
-                    <span class="footer-stat-number">0€</span>
+                    <span class="footer-stat-number">0&euro;</span>
                     <span class="footer-stat-label">Completely Free</span>
                 </div>
             </div>
@@ -1875,111 +1864,38 @@
 
         <!-- Footer Bottom -->
         <div class="footer-bottom">
-            <div>© 2025 BetterWLPRS. All rights reserved.</div>
+            <div>&copy; 2025 BetterWLPRS. All rights reserved.</div>
             <div class="footer-love">
                 Designed with <i class="fas fa-heart heart"></i> by BetterWLPRS
             </div>
         </div>
     </footer>
 
+    <script src="netlify-wallpapers.js"></script>
     <script>
-        // Toggle filter groups
-        function toggleFilterGroup(header) {
-            const group = header.parentElement;
-            group.classList.toggle('expanded');
+        // Fallback: try .png if .jpg 404s (Netlify images can be either format)
+        function netlifyImgFallback(el, pngSrc) {
+            el.onerror = function () { el.parentElement.style.display = 'none'; };
+            el.src = pngSrc;
         }
 
-        // GALLERY DATA
-        const localImages = [
-            // BATMAN/ARKHAM
-            { src: "img/arkham.gif", title: "Arkham City Nights", category: "Batman", type: "video", game: "Batman Arkham", moods: ["moody", "rainy", "cyberpunk"] },
-            { src: "img/webp Arkham/webp Arkham-ake.webp", title: "Arkham Knight - Gotham View", category: "Batman", type: "image", game: "Batman Arkham", moods: ["moody", "landscape", "cyberpunk"] },
-            { src: "img/webp Arkham/webp Arkham-akl.webp", title: "Arkham Knight - City Patrol", category: "Batman", type: "image", game: "Batman Arkham", moods: ["moody", "ambience"] },
-            { src: "img/webp Arkham/webp Arkham-aku.webp", title: "Arkham Knight - Dark Streets", category: "Batman", type: "image", game: "Batman Arkham", moods: ["moody", "rainy"] },
-            { src: "img/webp Arkham/webp Arkham-akw.webp", title: "Arkham Knight - Batmobile", category: "Batman", type: "image", game: "Batman Arkham", moods: ["moody", "rainy"] },
-            { src: "img/OptimizedVideoWLPRS/BatmanKnight-NightWalker-VideoWLPR-web.mp4", title: "Batman Night Walker", category: "Batman", type: "video", game: "Batman Arkham", moods: ["moody", "ambience", "rainy"] },
-
-            // DEATH STRANDING
-            { src: "img/samsittedahh.gif", title: "Sam Sitting", category: "Death Stranding", type: "video", game: "Death Stranding", moods: ["ambience", "landscape"] },
-            { src: "img/samizquierdasentado.png", title: "Sam Portrait", category: "Death Stranding", type: "image", game: "Death Stranding", moods: ["moody", "interiors"] },
-            { src: "img/samsatori.gif", title: "Sam Satori", category: "Death Stranding", type: "video", game: "Death Stranding", moods: ["ambience", "landscape"] },
-            { src: "img/OptimizedVideoWLPRS/DeathStranding-SamWindy-VideoWLPR-web.mp4", title: "Sam in Windy Plains", category: "Death Stranding", type: "video", game: "Death Stranding", moods: ["landscape", "ambience"] },
-            { src: "img/webp Death Stranding/1 (1).webp", title: "DS - Lonely Journey", category: "Death Stranding", type: "image", game: "Death Stranding", moods: ["landscape", "ambience"] },
-            { src: "img/webp Death Stranding/1 (2).webp", title: "DS - Mountain Vista", category: "Death Stranding", type: "image", game: "Death Stranding", moods: ["landscape", "moody"] },
-            { src: "img/webp Death Stranding/1 (3).webp", title: "DS - Cargo Delivery", category: "Death Stranding", type: "image", game: "Death Stranding", moods: ["landscape"] },
-            { src: "img/webp Death Stranding/1 (5).webp", title: "DS - Cliff Portrait", category: "Death Stranding", type: "image", game: "Death Stranding", moods: ["moody", "interiors"] },
-
-            // WATCH DOGS 2
-            { src: "img/marcusittingfocused.jpg", title: "Marcus Focused", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", moods: ["moody", "interiors"] },
-            { src: "img/marcussittedahh.gif", title: "Marcus Sitting", category: "Watch Dogs", type: "video", game: "Watch Dogs 2", moods: ["ambience", "interiors"] },
-            { src: "img/OptimizedVideoWLPRS/WD2-Marcus-WaterHouses-Landscape-VideoWLPR-web.mp4", title: "WD2: Marcus Bay Area", category: "Watch Dogs", type: "video", game: "Watch Dogs 2", moods: ["landscape", "ambience", "cyberpunk"] },
-            { src: "img/OptimizedVideoWLPRS/WD2-Marcus-WaterHouses-VideoWLPR-web.mp4", title: "WD2: Marcus Waterfront", category: "Watch Dogs", type: "video", game: "Watch Dogs 2", moods: ["landscape", "ambience", "cyberpunk"] },
-            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122152462_12.webp", title: "WD2 - SF Golden Gate", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", moods: ["landscape", "cyberpunk"] },
-            { src: "img/webp Watch Dogs 2/webp Watch Dogs 2-1img_0702122704840_8.webp", title: "WD2 - Alcatraz Hack", category: "Watch Dogs", type: "image", game: "Watch Dogs 2", moods: ["moody", "cyberpunk"] },
-
-            // THE WITCHER 3
-            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.17.38.01-web.mp4", title: "Witcher 3: Novigrad Sunset", category: "The Witcher", type: "video", game: "The Witcher 3", moods: ["ambience", "landscape", "moody"] },
-            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.19.02.02-web.mp4", title: "Witcher 3: Skellige Isles", category: "The Witcher", type: "video", game: "The Witcher 3", moods: ["landscape", "ambience"] },
-            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.20.40.03-web.mp4", title: "Witcher 3: Velen Swamps", category: "The Witcher", type: "video", game: "The Witcher 3", moods: ["moody", "landscape", "rainy"] },
-            { src: "img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.34.02.08-web.mp4", title: "Witcher 3: Kaer Morhen", category: "The Witcher", type: "video", game: "The Witcher 3", moods: ["landscape", "moody"] },
-
-            // METRO EXODUS
-            { src: "img/lessgo.gif", title: "Metro Exodus Scene", category: "Metro", type: "video", game: "Metro Exodus", moods: ["moody", "ambience"] },
-            { src: "img/OptimizedVideoWLPRS/MetroExodus_01-web.mp4", title: "Metro Exodus: Scene 01", category: "Metro", type: "video", game: "Metro Exodus", moods: ["moody", "landscape"] },
-            { src: "img/OptimizedVideoWLPRS/MetroExodus_03-web.mp4", title: "Metro Exodus: Scene 03", category: "Metro", type: "video", game: "Metro Exodus", moods: ["moody", "ambience"] },
-            { src: "img/OptimizedVideoWLPRS/MetroExodus_04-web.mp4", title: "Metro Exodus: Scene 04", category: "Metro", type: "video", game: "Metro Exodus", moods: ["moody", "landscape"] },
-
-            // SKYRIM
-            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_04-web.mp4", title: "Skyrim: Dragon Valley", category: "Skyrim", type: "video", game: "Skyrim", moods: ["landscape", "ambience"] },
-            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_09-web.mp4", title: "Skyrim: Nordic Landscape", category: "Skyrim", type: "video", game: "Skyrim", moods: ["landscape", "moody"] },
-            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_10-web.mp4", title: "Skyrim: Mountain Vista", category: "Skyrim", type: "video", game: "Skyrim", moods: ["landscape", "ambience"] },
-            { src: "img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_12-web.mp4", title: "Skyrim: Aurora Borealis", category: "Skyrim", type: "video", game: "Skyrim", moods: ["ambience", "landscape", "moody"] },
-
-            // SPIDER-MAN
-            { src: "img/spidersky.gif", title: "Spider-Man Swinging", category: "Spider-Man", type: "video", game: "Spider-Man", moods: ["ambience", "landscape", "cyberpunk"] },
-            { src: "img/OptimizedVideoWLPRS/SM2-Rainy-RaimiBlackSuit-Church-VideoWLPR-web.mp4", title: "Spider-Man: Rainy Church", category: "Spider-Man", type: "video", game: "Spider-Man 2", moods: ["rainy", "moody", "interiors"] },
-            { src: "img/OptimizedVideoWLPRS/SM2-SkyView-VideoWLPR 2-web.mp4", title: "Spider-Man: Sky View", category: "Spider-Man", type: "video", game: "Spider-Man 2", moods: ["landscape", "ambience", "cyberpunk"] },
-
-            // MAD MAX
-            { src: "img/videowlprs/madmaxlivewlprsany.gif", title: "Mad Max Live", category: "Mad Max", type: "video", game: "Mad Max", moods: ["landscape", "moody"] },
-            { src: "img/OptimizedVideoWLPRS/Mad-Max-MoonLightHouse-VideoWLPR-web.mp4", title: "Mad Max: Moon Lighthouse", category: "Mad Max", type: "video", game: "Mad Max", moods: ["ambience", "landscape", "moody"] },
-            { src: "img/OptimizedVideoWLPRS/Mad-Max-SanFranciscoHope-VideoWLPR-web.mp4", title: "Mad Max: SF Hope", category: "Mad Max", type: "video", game: "Mad Max", moods: ["landscape", "moody", "ambience"] },
-
-            // DISHONORED
-            { src: "img/DishonoredDLC-Landscape-InsideBasement-WLPR-02.png", title: "Dishonored Basement", category: "Dishonored", type: "image", game: "Dishonored", moods: ["interiors", "moody"] },
-
-            // DISCO ELYSIUM
-            { src: "img/videowlprs/discoelysiumstart.gif", title: "Disco Elysium Start", category: "Disco Elysium", type: "video", game: "Disco Elysium", moods: ["interiors", "ambience"] },
-            { src: "img/discoelysium.webp", title: "Disco Elysium Art", category: "Disco Elysium", type: "image", game: "Disco Elysium", moods: ["ambience", "interiors"] }
-        ];
+        // GALLERY DATA &mdash; loaded async from manifest.json via netlify-wallpapers.js
+        let localImages = [];
+        let collections = [];
 
         // CONFIG
         const ITEMS_PER_PAGE = 12;
         let currentPage = 0;
-        let currentFilter = 'all';
+        let currentMedia = 'all';       // 'all' | 'game' | 'movie' | 'collection'
+        let currentTypeFilter = 'all';  // 'all' | 'video' | 'static'
+        let currentGame = null;         // selected title chip (game or movie name)
         let currentSearch = '';
-        let shuffledImages = [];
         let currentCollection = null;
+        let shuffledImages = [];
 
-        // GENERATE COLLECTIONS FROM GAMES
-        const collections = (() => {
-            const gameCollections = {};
-
-            localImages.forEach(img => {
-                const gameName = img.game;
-                if (!gameCollections[gameName]) {
-                    gameCollections[gameName] = {
-                        name: gameName,
-                        category: img.category,
-                        items: [],
-                        cover: img.src // Use first image as cover
-                    };
-                }
-                gameCollections[gameName].items.push(img);
-            });
-
-            return Object.values(gameCollections);
-        })();
+        // chip data built after load
+        let gameChipData = [];
+        let movieChipData = [];
 
         // DOM ELEMENTS
         const galleryGrid = document.getElementById('galleryGrid');
@@ -1992,7 +1908,7 @@
         const modalImage = document.getElementById('modalImage');
         const modalTitle = document.getElementById('modalTitle');
 
-        // SHUFFLE ARRAY
+        // SHUFFLE
         function shuffleArray(arr) {
             const shuffled = [...arr];
             for (let i = shuffled.length - 1; i > 0; i--) {
@@ -2006,37 +1922,18 @@
         function createGalleryItem(img) {
             const item = document.createElement('div');
             item.className = 'gallery-item';
-
+            const typeLabel = img.type === 'video' ? 'VIDEO' : 'PHOTO';
             const typeIcon = img.type === 'video' ? 'fa-video' : 'fa-image';
-            const typeLabel = img.type === 'video' ? 'VIDEO' : 'STATIC';
-
-            let mediaElement = '';
-            if (img.type === 'video') {
-                mediaElement = `<video class="gallery-image" autoplay loop muted playsinline><source src="${img.src}" type="video/mp4"></video>`;
-            } else {
-                mediaElement = `<img src="${img.src}" alt="${img.title}" class="gallery-image" loading="lazy">`;
-            }
-
-            // Create tags HTML
-            let tagsHTML = '';
-            if (img.moods && img.moods.length > 0) {
-                tagsHTML = '<div class="gallery-tags">';
-                img.moods.forEach(mood => {
-                    tagsHTML += `<span class="tag">${mood}</span>`;
-                });
-                tagsHTML += '</div>';
-            }
-
+            let mediaEl = (img.type === 'video' && !img.src.endsWith('.gif'))
+                ? `<video class="gallery-image" autoplay loop muted playsinline><source src="${img.src}" type="video/mp4"></video>`
+                : `<img src="${img.src}" alt="${img.title}" class="gallery-image" loading="lazy">`;
             item.innerHTML = `
-            ${mediaElement}
-            <div class="gallery-badge"><i class="fas ${typeIcon}"></i> ${typeLabel}</div>
-            ${tagsHTML}
-            <div class="gallery-info">
-                <div class="gallery-title">${img.title}</div>
-                <div class="gallery-category">${img.game}</div>
-            </div>
-        `;
-
+                ${mediaEl}
+                <div class="gallery-badge"><i class="fas ${typeIcon}"></i> ${typeLabel}</div>
+                <div class="gallery-info">
+                    <div class="gallery-title">${img.title}</div>
+                    <div class="gallery-category">${img.game}</div>
+                </div>`;
             item.addEventListener('click', () => openModal(img.src, img.title, img.type));
             return item;
         }
@@ -2045,102 +1942,78 @@
         function createCollectionCard(collection) {
             const card = document.createElement('div');
             card.className = 'collection-card';
-
-            let mediaElement = '';
-            if (collection.cover.endsWith('.mp4')) {
-                mediaElement = `<video class="collection-image" autoplay loop muted playsinline><source src="${collection.cover}" type="video/mp4"></video>`;
-            } else {
-                mediaElement = `<img src="${collection.cover}" alt="${collection.name}" class="collection-image" loading="lazy">`;
-            }
-
+            const cover = collection.cover.endsWith('.mp4')
+                ? `<video class="collection-image" autoplay loop muted playsinline><source src="${collection.cover}" type="video/mp4"></video>`
+                : `<img src="${collection.cover}" alt="${collection.name}" class="collection-image" loading="lazy">`;
             card.innerHTML = `
-            <div class="collection-preview">
-                ${mediaElement}
-                <div class="collection-count"><i class="fas fa-layer-group"></i> ${collection.items.length}</div>
-            </div>
-            <div class="collection-info">
-                <div class="collection-title">${collection.name}</div>
-                <div class="collection-description">${collection.category} • Videos & Images</div>
-            </div>
-        `;
-
+                <div class="collection-preview">
+                    ${cover}
+                    <div class="collection-count"><i class="fas fa-layer-group"></i> ${collection.items.length}</div>
+                </div>
+                <div class="collection-info">
+                    <div class="collection-title">${collection.name}</div>
+                    <div class="collection-description">${collection.items.length} wallpapers</div>
+                </div>`;
             card.addEventListener('click', () => openCollection(collection));
             return card;
         }
 
         // RENDER COLLECTIONS
-        function renderCollections() {
-            const collectionsGrid = document.getElementById('collectionsGrid');
-            collectionsGrid.innerHTML = '';
-
-            collections.forEach(collection => {
-                collectionsGrid.appendChild(createCollectionCard(collection));
-            });
+        function renderCollections(query) {
+            const grid = document.getElementById('collectionsGrid');
+            grid.innerHTML = '';
+            const q = (query || '').toLowerCase();
+            const filtered = q ? collections.filter(c => c.name.toLowerCase().includes(q)) : collections;
+            if (filtered.length === 0) {
+                grid.innerHTML = '<p style="color:var(--text-secondary);text-align:center;grid-column:1/-1;padding:2rem">No results.</p>';
+                return;
+            }
+            filtered.forEach(col => grid.appendChild(createCollectionCard(col)));
         }
 
-        // OPEN COLLECTION
+        // OPEN COLLECTION (from a card click)
         function openCollection(collection) {
             currentCollection = collection;
             shuffledImages = shuffleArray(collection.items);
-            currentFilter = 'collection';
+            currentMedia = 'collection';
             currentSearch = '';
-
+            currentGame = null;
             collectionsView.classList.remove('active');
             galleryView.style.display = 'block';
-
-            // Update filter buttons
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-
+            document.getElementById('subChipsRow').style.display = 'none';
             resetGallery();
         }
 
         // FILTER IMAGES
-        let currentMood = null;
-
         function getFilteredImages() {
             let filtered = shuffledImages;
-
-            // If in collection mode, use collection items
-            if (currentFilter === 'collection' && currentCollection) {
-                filtered = shuffledImages; // Already filtered by collection
-            } else if (currentFilter === 'video') {
-                filtered = filtered.filter(img => img.type === 'video');
-            } else if (currentFilter === 'static') {
-                filtered = filtered.filter(img => img.type !== 'video');
-            }
-
-            // Filter by mood
-            if (currentMood) {
-                filtered = filtered.filter(img =>
-                    img.moods && img.moods.includes(currentMood)
-                );
-            }
-
+            if (currentMedia === 'collection' && currentCollection) return filtered;
+            if (currentMedia === 'game') filtered = filtered.filter(img => img.media === 'game');
+            if (currentMedia === 'movie') filtered = filtered.filter(img => img.media === 'movie');
+            if (currentTypeFilter === 'video') filtered = filtered.filter(img => img.type === 'video');
+            if (currentTypeFilter === 'static') filtered = filtered.filter(img => img.type !== 'video');
+            if (currentGame) filtered = filtered.filter(img => img.game === currentGame);
             if (currentSearch) {
+                const q = currentSearch.toLowerCase();
                 filtered = filtered.filter(img =>
-                    img.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
-                    img.game.toLowerCase().includes(currentSearch.toLowerCase()) ||
-                    (img.moods && img.moods.some(mood => mood.toLowerCase().includes(currentSearch.toLowerCase())))
+                    img.title.toLowerCase().includes(q) || img.game.toLowerCase().includes(q)
                 );
             }
-
             return filtered;
         }
 
-        // LOAD MORE ITEMS
+        // LOAD MORE
         function loadMoreItems() {
             const filtered = getFilteredImages();
             const start = currentPage * ITEMS_PER_PAGE;
             const end = Math.min(start + ITEMS_PER_PAGE, filtered.length);
-
-            for (let i = start; i < end; i++) {
-                galleryGrid.appendChild(createGalleryItem(filtered[i]));
-            }
-
+            for (let i = start; i < end; i++) galleryGrid.appendChild(createGalleryItem(filtered[i]));
             currentPage++;
-            document.getElementById('currentCount').textContent = Math.min(currentPage * ITEMS_PER_PAGE, filtered.length);
+            const shown = Math.min(currentPage * ITEMS_PER_PAGE, filtered.length);
+            document.getElementById('currentCount').textContent = shown;
             document.getElementById('totalCount').textContent = filtered.length;
-
+            const dockCount = document.getElementById('dockCount');
+            if (dockCount) dockCount.innerHTML = `<span>${shown}</span> / ${filtered.length}`;
             if (currentPage * ITEMS_PER_PAGE >= filtered.length) {
                 loadMoreBtn.textContent = 'ALL LOADED';
                 loadMoreBtn.disabled = true;
@@ -2158,177 +2031,205 @@
 
         // MODAL
         const modalVideo = document.getElementById('modalVideo');
-
         function openModal(src, title, type) {
             modalTitle.textContent = title;
-
-            if (type === 'video' || src.endsWith('.mp4')) {
+            if ((type === 'video' && !src.endsWith('.gif')) || src.endsWith('.mp4')) {
                 modalImage.style.display = 'none';
                 modalVideo.style.display = 'block';
                 modalVideo.querySelector('source').src = src;
-                modalVideo.load();
-                modalVideo.play();
+                modalVideo.load(); modalVideo.play();
             } else {
                 modalVideo.style.display = 'none';
                 modalImage.style.display = 'block';
                 modalImage.src = src;
             }
-
             previewModal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-
         function closeModal() {
             previewModal.classList.remove('active');
             document.body.style.overflow = 'auto';
-
-            // Stop video playback
-            if (modalVideo.style.display === 'block') {
-                modalVideo.pause();
-                modalVideo.currentTime = 0;
-            }
+            if (modalVideo.style.display === 'block') { modalVideo.pause(); modalVideo.currentTime = 0; }
         }
 
-        // EVENTS
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                if (this.dataset.filter === 'collections') {
-                    // Update active state for collections
-                    document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
+        // POPULATE SUB-CHIPS (called when switching Games / Movies tab)
+        function populateSubChips(media) {
+            const subChipsEl = document.getElementById('subChips');
+            const subChipsRow = document.getElementById('subChipsRow');
+            subChipsEl.innerHTML = '';
+            const data = media === 'game' ? gameChipData : media === 'movie' ? movieChipData : [];
+            if (data.length === 0) { subChipsRow.style.display = 'none'; return; }
+            subChipsRow.style.display = 'flex';
+            data.forEach(({ name, count }) => {
+                const btn = document.createElement('button');
+                btn.className = 'title-chip';
+                btn.dataset.game = name;
+                btn.textContent = name;
+                btn.title = count + ' wallpapers';
+                btn.addEventListener('click', function () {
+                    currentGame = currentGame === name ? null : name;
+                    updateTitleChipUI();
+                    collectionsView.classList.remove('active');
+                    galleryView.style.display = 'block';
+                    shuffledImages = shuffleArray(localImages);
+                    resetGallery();
+                });
+                subChipsEl.appendChild(btn);
+            });
+            updateTitleChipUI();
+        }
 
-                    currentCollection = null;
+        function updateTitleChipUI() {
+            const clearBtn = document.getElementById('clearGameFilter');
+            if (clearBtn) clearBtn.style.display = currentGame ? 'inline-block' : 'none';
+            document.querySelectorAll('.title-chip').forEach(b =>
+                b.classList.toggle('active', b.dataset.game === currentGame)
+            );
+        }
+
+        // CATEGORY TABS
+        document.querySelectorAll('.cat-tab').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const media = this.dataset.media;
+                document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                if (media === 'collections') {
+                    currentGame = null;
+                    currentMedia = 'collections';
+                    document.getElementById('subChipsRow').style.display = 'none';
                     galleryView.style.display = 'none';
                     collectionsView.classList.add('active');
                     renderCollections();
                     return;
                 }
 
-                // Handle mood filters
-                if (this.dataset.mood) {
-                    // Toggle mood filter
-                    if (currentMood === this.dataset.mood) {
-                        currentMood = null;
-                        this.classList.remove('active');
-                    } else {
-                        document.querySelectorAll('[data-mood]').forEach(b => b.classList.remove('active'));
-                        currentMood = this.dataset.mood;
-                        this.classList.add('active');
-                    }
-                    updateClearButton();
-                    resetGallery();
-                    return;
-                }
-
-                // Handle type filters
-                document.querySelectorAll('[data-filter]').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                currentFilter = this.dataset.filter;
+                currentMedia = media;
+                currentGame = null;
                 currentCollection = null;
-                currentMood = null; // Reset mood filter
-                document.querySelectorAll('[data-mood]').forEach(b => b.classList.remove('active'));
-                updateClearButton();
+                collectionsView.classList.remove('active');
+                galleryView.style.display = 'block';
+                populateSubChips(media);
                 shuffledImages = shuffleArray(localImages);
                 resetGallery();
             });
         });
 
-        // Clear mood filters button
-        const clearMoodBtn = document.getElementById('clearMoodFilters');
-        const moodCountBadge = document.getElementById('moodFilterCount');
+        // TYPE TOGGLE (All / Video / Photo)
+        document.querySelectorAll('.type-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentTypeFilter = this.dataset.type;
+                resetGallery();
+            });
+        });
 
-        function updateClearButton() {
-            if (currentMood) {
-                clearMoodBtn.classList.add('visible');
-                moodCountBadge.style.display = 'block';
-                moodCountBadge.textContent = '1';
-            } else {
-                clearMoodBtn.classList.remove('visible');
-                moodCountBadge.style.display = 'none';
-            }
-        }
-
-        clearMoodBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            currentMood = null;
-            document.querySelectorAll('[data-mood]').forEach(b => b.classList.remove('active'));
-            updateClearButton();
+        // CLEAR TITLE FILTER
+        document.getElementById('clearGameFilter').addEventListener('click', () => {
+            currentGame = null;
+            updateTitleChipUI();
             resetGallery();
         });
 
+        // BACK TO GALLERY (from collections view)
         document.getElementById('backToGallery').addEventListener('click', () => {
             currentCollection = null;
+            currentMedia = 'all';
+            currentTypeFilter = 'all';
+            currentGame = null;
             collectionsView.classList.remove('active');
             galleryView.style.display = 'block';
-
-            // Reset to all filter
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            document.querySelector('[data-filter="all"]').classList.add('active');
-            currentFilter = 'all';
+            document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+            document.querySelector('.cat-tab[data-media="all"]').classList.add('active');
+            document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('.type-btn[data-type="all"]').classList.add('active');
+            document.getElementById('subChipsRow').style.display = 'none';
             shuffledImages = shuffleArray(localImages);
             resetGallery();
         });
 
+        // SEARCH
         document.getElementById('searchInput').addEventListener('input', function () {
             currentSearch = this.value;
             resetGallery();
+        });
+
+        // COLLECTIONS SEARCH
+        document.getElementById('collectionsSearch').addEventListener('input', function () {
+            renderCollections(this.value);
         });
 
         loadMoreBtn.addEventListener('click', loadMoreItems);
         document.getElementById('closeModal').addEventListener('click', closeModal);
         document.getElementById('downloadModal').addEventListener('click', () => {
             const link = document.createElement('a');
-            link.href = modalVideo.style.display === 'block' ?
-                modalVideo.querySelector('source').src :
-                modalImage.src;
+            link.href = modalVideo.style.display === 'block'
+                ? modalVideo.querySelector('source').src : modalImage.src;
             link.download = modalTitle.textContent;
             link.click();
         });
-
-        // Close modal on click outside
-        previewModal.addEventListener('click', (e) => {
-            if (e.target === previewModal) {
-                closeModal();
-            }
+        previewModal.addEventListener('click', e => { if (e.target === previewModal) closeModal(); });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && previewModal.classList.contains('active')) closeModal();
         });
 
-        // Close modal with ESC key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && previewModal.classList.contains('active')) {
-                closeModal();
-            }
-        });
+        // ASYNC INIT — load manifest, build data, render
+        (async () => {
+            localImages = await loadWallpapers();
 
-        // INIT
-        setTimeout(() => {
+            // Build title → items map (for collections)
+            const titleMap = {};
+            localImages.forEach(img => {
+                if (!titleMap[img.game]) {
+                    titleMap[img.game] = { name: img.game, media: img.media, items: [], cover: img.src };
+                }
+                titleMap[img.game].items.push(img);
+            });
+            collections = Object.values(titleMap).sort((a, b) => a.name.localeCompare(b.name));
+
+            // Build chip data (sorted by count desc)
+            const gameCount = {};
+            const movieCount = {};
+            localImages.forEach(img => {
+                if (img.media === 'game') gameCount[img.game] = (gameCount[img.game] || 0) + 1;
+                if (img.media === 'movie') movieCount[img.game] = (movieCount[img.game] || 0) + 1;
+            });
+            gameChipData = Object.entries(gameCount).map(([n, c]) => ({ name: n, count: c })).sort((a, b) => b.count - a.count);
+            movieChipData = Object.entries(movieCount).map(([n, c]) => ({ name: n, count: c })).sort((a, b) => b.count - a.count);
+
+            // Update category counts
+            const gCount = localImages.filter(i => i.media === 'game').length;
+            const mCount = localImages.filter(i => i.media === 'movie').length;
+            document.getElementById('countAll').textContent = localImages.length;
+            document.getElementById('countGames').textContent = gCount;
+            document.getElementById('countMovies').textContent = mCount;
+
+            // Kick off gallery
             shuffledImages = shuffleArray(localImages);
             loadingIndicator.classList.add('hidden');
             galleryGrid.classList.remove('hidden');
             loadMoreContainer.classList.remove('hidden');
             loadMoreItems();
-        }, 1000);
+        })();
 
-        // NAVBAR SCROLL
+        // NAVBAR + CONTROLS SCROLL ELEVATION
         const navbar = document.getElementById('navbar');
+        const galleryControls = document.getElementById('galleryControls');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            const scrolled = window.scrollY > 50;
+            navbar.classList.toggle('scrolled', scrolled);
+            if (galleryControls) galleryControls.classList.toggle('elevated', scrolled);
         });
 
         // MOBILE MENU
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
-
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             mobileMenu.classList.toggle('active');
             document.body.style.overflow = hamburger.classList.contains('active') ? 'hidden' : 'auto';
         });
-
-        // Close mobile menu when clicking on a link
         document.querySelectorAll('.mobile-menu .nav-item').forEach(item => {
             item.addEventListener('click', () => {
                 hamburger.classList.remove('active');
