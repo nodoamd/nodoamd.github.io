@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TaxiBCN · Transfers Aeropuerto Barcelona</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --amber:   #F0B429;
+  --amber-h: #FFD166;
+  --nav-h:   60px;
+  --r:       12px;
+  --r-lg:    20px;
+}
+[data-theme="dark"] {
+  --bg:      #090D0F;
+  --surface: #111619;
+  --card:    #161B20;
+  --border:  #1F2830;
+  --fg:      #F2F4F6;
+  --fg2:     #BDC6CF;
+  --fg3:     #617079;
+  --in-bg:   #111619;
+  --nav-bg:  rgba(9,13,15,0.88);
+  --shadow:  0 2px 20px rgba(0,0,0,0.5);
+}
+[data-theme="light"] {
+  --bg:      #F5F3EE;
+  --surface: #FFFFFF;
+  --card:    #FFFFFF;
+  --border:  #E0DBD3;
+  --fg:      #0D1117;
+  --fg2:     #3D4755;
+  --fg3:     #8C929C;
+  --in-bg:   #EDEAE4;
+  --nav-bg:  rgba(245,243,238,0.90);
+  --shadow:  0 2px 20px rgba(0,0,0,0.07);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .2s,color .2s}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:300;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 5%;background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:background .2s,border-color .2s}
+.logo{font-size:1.2rem;font-weight:700;color:var(--fg);display:flex;align-items:center;gap:7px;letter-spacing:-.2px}
+.logo-dot{width:7px;height:7px;border-radius:50%;background:var(--amber);animation:blink 2s infinite}
+.logo em{color:var(--amber);font-style:normal}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.nav-links{display:flex;gap:1.75rem;list-style:none}
+.nav-links a{font-size:.875rem;font-weight:500;color:var(--fg3);transition:color .15s}
+.nav-links a:hover{color:var(--fg)}
+.nav-right{display:flex;align-items:center;gap:.6rem}
+
+.t-btn{width:36px;height:36px;border-radius:50%;background:transparent;border:1px solid var(--border);color:var(--fg3);display:flex;align-items:center;justify-content:center;transition:border-color .15s,color .15s;flex-shrink:0}
+.t-btn:hover{border-color:var(--amber);color:var(--amber)}
+.t-btn svg{width:15px;height:15px}
+.i-sun,.i-moon{display:none}
+[data-theme="dark"]  .i-moon{display:block}
+[data-theme="light"] .i-sun {display:block}
+
+.btn-amber{background:var(--amber);color:#07090A;border:none;padding:9px 20px;border-radius:100px;font-size:.85rem;font-weight:700;white-space:nowrap;transition:background .15s,transform .1s}
+.btn-amber:hover{background:var(--amber-h);transform:translateY(-1px)}
+
+.hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px}
+.hbg span{display:block;width:22px;height:2px;background:var(--fg);border-radius:2px;transition:transform .25s,opacity .25s}
+.hbg.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hbg.open span:nth-child(2){opacity:0}
+.hbg.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.drawer{display:none;position:fixed;top:var(--nav-h);left:0;right:0;z-index:200;background:var(--surface);border-bottom:1px solid var(--border);padding:.5rem 5% 1rem;flex-direction:column;gap:.1rem;transition:background .2s}
+.drawer.open{display:flex}
+.drawer a{font-size:1rem;font-weight:500;color:var(--fg2);padding:.75rem 0;border-bottom:1px solid var(--border);transition:color .15s}
+.drawer a:last-of-type{border:none}
+.drawer a:hover{color:var(--amber)}
+
+/* HERO */
+.hero{padding:calc(var(--nav-h) + 3.5rem) 5% 3.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;min-height:100svh;position:relative;overflow:hidden}
+.hero-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 55% 60% at 72% 48%,rgba(240,180,41,.07) 0%,transparent 70%)}
+
+.badge{display:inline-flex;align-items:center;gap:7px;background:rgba(240,180,41,.1);border:1px solid rgba(240,180,41,.28);color:var(--amber);border-radius:100px;font-size:.72rem;font-weight:700;padding:5px 13px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:1.2rem}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--amber);animation:blink 1.8s infinite}
+
+.hero-title{font-size:clamp(2rem, 4vw, 3.5rem);font-weight:700;line-height:1.1;letter-spacing:-.4px;color:var(--fg);margin-bottom:1rem}
+.hero-title .hi{color:var(--amber)}
+.hero-desc{font-size:1rem;color:var(--fg2);line-height:1.75;max-width:420px;margin-bottom:1.75rem}
+
+.hero-stats{display:flex;flex-wrap:wrap;gap:1.75rem}
+.stat-n{font-size:1.4rem;font-weight:700;color:var(--fg);line-height:1.1}
+.stat-l{font-size:.7rem;font-weight:600;color:var(--fg3);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+
+/* booking card */
+.bcard{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.75rem;box-shadow:var(--shadow);position:relative;z-index:2;transition:background .2s,border-color .2s}
+.bcard-title{font-size:1rem;font-weight:700;color:var(--fg);margin-bottom:1.25rem}
+
+.flbl{display:block;font-size:.68rem;font-weight:700;color:var(--fg3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.fg-wrap{margin-bottom:.8rem}
+
+.fi{display:flex;align-items:center;gap:9px;background:var(--in-bg);border:1px solid var(--border);border-radius:10px;padding:11px 13px;transition:border-color .15s}
+.fi:focus-within{border-color:var(--amber)}
+.fi svg{width:16px;height:16px;flex-shrink:0;opacity:.55}
+.fi input,.fi select{flex:1;background:none;border:none;outline:none;color:var(--fg);font-family:'DM Sans',sans-serif;font-size:.9rem;min-width:0}
+.fi input::placeholder{color:var(--fg3)}
+.fi select option{background:var(--surface);color:var(--fg)}
+
+.rg{display:flex;gap:8px;align-items:stretch;margin-bottom:.8rem}
+.rg-pins{display:flex;flex-direction:column;align-items:center;padding-top:13px;gap:3px;flex-shrink:0}
+.rp{width:9px;height:9px;border-radius:50%;border:2px solid var(--amber);flex-shrink:0}
+.rp.f{background:var(--amber)}
+.rd{width:1.5px;flex:1;min-height:12px;background:var(--border)}
+.rg-ins{flex:1;display:flex;flex-direction:column;gap:7px;min-width:0}
+.swap-btn{background:var(--in-bg);border:1px solid var(--border);border-radius:9px;padding:0 10px;color:var(--fg3);display:flex;align-items:center;flex-shrink:0;transition:border-color .15s,color .15s}
+.swap-btn:hover{border-color:var(--amber);color:var(--amber)}
+.swap-btn svg{width:15px;height:15px}
+
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.8rem}
+
+.btn-book{width:100%;background:var(--amber);color:#07090A;border:none;border-radius:10px;padding:14px;font-size:.95rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:7px;margin-top:.9rem;transition:background .15s,transform .1s}
+.btn-book:hover{background:var(--amber-h);transform:translateY(-1px)}
+.btn-book svg{width:16px;height:16px}
+.book-hint{text-align:center;margin-top:.55rem;font-size:.75rem;color:var(--fg3)}
+.book-hint strong{color:var(--amber);font-weight:600}
+
+/* SECTIONS */
+.sec{padding:5rem 5%}
+.sec.alt{background:var(--surface);transition:background .2s}
+.slbl{font-size:.7rem;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem}
+.stit{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;letter-spacing:-.3px;color:var(--fg);margin-bottom:.75rem}
+.ssub{font-size:.95rem;color:var(--fg3);max-width:480px;line-height:1.75}
+.abar{width:40px;height:2.5px;background:var(--amber);border-radius:2px;margin:.8rem 0 1.5rem}
+
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2.5rem}
+.step{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;transition:border-color .2s,transform .2s,background .2s}
+.step:hover{border-color:rgba(240,180,41,.4);transform:translateY(-4px)}
+.step-n{width:33px;height:33px;border-radius:50%;background:rgba(240,180,41,.1);border:1px solid rgba(240,180,41,.22);color:var(--amber);font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:.9rem}
+.step-icon{font-size:1.6rem;margin-bottom:.75rem;display:block}
+.step-name{font-size:.95rem;font-weight:700;color:var(--fg);margin-bottom:.4rem}
+.step-txt{font-size:.84rem;color:var(--fg3);line-height:1.65}
+
+/* PRICES */
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2.5rem}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;position:relative;overflow:hidden;transition:border-color .2s,transform .2s,background .2s}
+.pc:hover{border-color:rgba(240,180,41,.4);transform:translateY(-3px)}
+.pc.feat{border-color:var(--amber)}
+.p-badge{position:absolute;top:.9rem;right:.9rem;background:var(--amber);color:#07090A;font-size:.62rem;font-weight:800;padding:3px 9px;border-radius:100px;text-transform:uppercase;letter-spacing:.05em}
+.p-route{font-size:.67rem;color:var(--fg3);text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-bottom:.35rem}
+.p-name{font-size:.95rem;font-weight:700;color:var(--fg);margin-bottom:1rem;line-height:1.3}
+.p-price{font-size:2rem;font-weight:700;color:var(--amber);line-height:1}
+.p-price small{font-size:.85rem;font-weight:400;color:var(--fg3)}
+.p-list{list-style:none;margin-top:1rem;display:flex;flex-direction:column;gap:.4rem}
+.p-list li{font-size:.83rem;color:var(--fg2);display:flex;align-items:center;gap:8px}
+.p-list li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--amber);flex-shrink:0}
+
+/* WHY */
+.why{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.why-txt{font-size:.92rem;color:var(--fg3);line-height:1.8;max-width:380px}
+.why-acts{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.75rem}
+.btn-ol{border:1px solid var(--border);color:var(--fg);background:transparent;padding:10px 20px;border-radius:100px;font-size:.875rem;font-weight:600;transition:border-color .15s,color .15s}
+.btn-ol:hover{border-color:rgba(240,180,41,.5);color:var(--amber)}
+.feats{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.fc{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem;display:flex;gap:.85rem;align-items:flex-start;transition:border-color .2s,background .2s,transform .2s}
+.fc:hover{border-color:rgba(240,180,41,.28);transform:translateY(-2px)}
+.fc-ic{width:38px;height:38px;flex-shrink:0;background:rgba(240,180,41,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.fc-name{font-size:.87rem;font-weight:700;color:var(--fg);margin-bottom:.25rem}
+.fc-txt{font-size:.79rem;color:var(--fg3);line-height:1.55}
+
+/* FOOTER */
+footer{background:var(--surface);border-top:1px solid var(--border);padding:2.25rem 5%;display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;justify-content:space-between;transition:background .2s}
+.ft-logo{font-size:1.1rem;font-weight:700;color:var(--fg)}
+.ft-logo em{color:var(--amber);font-style:normal}
+.ft-sub{font-size:.76rem;color:var(--fg3);margin-top:3px}
+.ft-contact{display:flex;flex-direction:column;gap:4px;font-size:.82rem;color:var(--fg2)}
+.ft-contact a{color:var(--amber)}
+.ft-legal{font-size:.75rem;color:var(--fg3);line-height:1.7;text-align:right}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s ease}
+.rv.on{opacity:1;transform:none}
+
+/* ── TABLET ≤ 900px ── */
+@media (max-width:900px){
+  .nav-links{display:none}
+  .hbg{display:flex}
+  .hero{grid-template-columns:1fr;min-height:auto;padding-top:calc(var(--nav-h) + 2rem);padding-bottom:2.5rem;gap:2.5rem}
+  .hero-desc{max-width:100%}
+  .steps{grid-template-columns:1fr 1fr}
+  .prices{grid-template-columns:1fr 1fr}
+  .why{grid-template-columns:1fr;gap:2.5rem}
+  .why-txt{max-width:100%}
+  footer{flex-direction:column;align-items:center;text-align:center}
+  .ft-legal{text-align:center}
+}
+
+/* ── MÓVIL ≤ 580px ── */
+@media (max-width:580px){
+  .sec{padding:3.5rem 5%}
+  .hero{padding-top:calc(var(--nav-h) + 1.5rem);padding-bottom:2rem;gap:2rem}
+  .hero-title{font-size:2rem}
+  .hero-stats{gap:1.5rem}
+  .steps{grid-template-columns:1fr}
+  .prices{grid-template-columns:1fr}
+  .feats{grid-template-columns:1fr}
+  .row2{grid-template-columns:1fr}
+  .rg-pins{display:none}
+  .swap-btn{width:100%;justify-content:center;padding:10px}
+  .why-acts{flex-direction:column}
+  .why-acts a{width:100%;text-align:center;display:block}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="logo">
+    <span class="logo-dot"></span>Taxi<em>BCN</em>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#como-funciona">Cómo funciona</a></li>
+    <li><a href="#precios">Tarifas</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="t-btn" id="theme-btn" aria-label="Cambiar tema">
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="i-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <a href="#reservar" class="btn-amber">Reservar</a>
+    <button class="hbg" id="hbg" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="drawer" id="drawer">
+  <a href="#como-funciona">Cómo funciona</a>
+  <a href="#precios">Tarifas</a>
+  <a href="#contacto">Contacto</a>
+  <a href="tel:+34600000000" style="color:var(--amber)">📞 +34 600 000 000</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="reservar">
+  <div class="hero-glow"></div>
+  <div>
+    <div class="badge"><span class="badge-dot"></span>Disponible 24 h</div>
+    <h1 class="hero-title">Tu transfer al<br><span class="hi">Aeropuerto</span><br>El Prat.</h1>
+    <p class="hero-desc">Precio fijo sin sorpresas. Puntualidad garantizada. Conductor profesional que conoce Barcelona de memoria.</p>
+    <div class="hero-stats">
+      <div><div class="stat-n">T1 · T2</div><div class="stat-l">Terminales</div></div>
+      <div><div class="stat-n">24 / 7</div><div class="stat-l">Disponibilidad</div></div>
+      <div><div class="stat-n">+500</div><div class="stat-l">Clientes</div></div>
+    </div>
+  </div>
+
+  <div class="bcard">
+    <div class="bcard-title">Haz tu reserva</div>
+    <span class="flbl">Ruta</span>
+    <div class="rg">
+      <div class="rg-pins">
+        <div class="rp"></div><div class="rd"></div><div class="rp f"></div>
+      </div>
+      <div class="rg-ins">
+        <div class="fi">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F0B429" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+          <input type="text" id="origen" placeholder="Dirección de recogida" value="Barcelona, centro">
+        </div>
+        <div class="fi">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F0B429" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+          <input type="text" id="destino" placeholder="Destino" value="Aeropuerto El Prat (BCN)">
+        </div>
+      </div>
+      <button class="swap-btn" onclick="swap()" type="button" title="Invertir ruta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+      </button>
+    </div>
+    <div class="row2">
+      <div class="fg-wrap">
+        <label class="flbl" for="fecha">Fecha</label>
+        <div class="fi">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F0B429" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <input type="date" id="fecha">
+        </div>
+      </div>
+      <div class="fg-wrap">
+        <label class="flbl" for="hora">Hora</label>
+        <div class="fi">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F0B429" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <input type="time" id="hora" value="08:00">
+        </div>
+      </div>
+    </div>
+    <div class="fg-wrap">
+      <label class="flbl" for="pax">Pasajeros</label>
+      <div class="fi">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F0B429" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <select id="pax">
+          <option>1 pasajero</option>
+          <option selected>2 pasajeros</option>
+          <option>3 pasajeros</option>
+          <option>4 pasajeros</option>
+          <option>Minivan (hasta 7)</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn-book" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Ver precio y reservar
+    </button>
+    <p class="book-hint">Precio fijo · <strong>Sin sorpresas</strong> · Confirmación inmediata</p>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section class="sec alt" id="como-funciona">
+  <div class="slbl">El proceso</div>
+  <div class="stit">Tan sencillo como debe ser.</div>
+  <div class="abar"></div>
+  <p class="ssub">Sin apps raras. Sin esperas. Reserva en 2 minutos y despreocúpate del resto.</p>
+  <div class="steps">
+    <div class="step rv">
+      <div class="step-n">01</div>
+      <span class="step-icon">📍</span>
+      <div class="step-name">Reserva online</div>
+      <p class="step-txt">Indica origen, destino, fecha y hora. Confirmación inmediata por WhatsApp o email.</p>
+    </div>
+    <div class="step rv">
+      <div class="step-n">02</div>
+      <span class="step-icon">🚘</span>
+      <div class="step-name">Te recogemos</div>
+      <p class="step-txt">El conductor llega puntual a tu puerta. Seguimiento en tiempo real disponible.</p>
+    </div>
+    <div class="step rv">
+      <div class="step-n">03</div>
+      <span class="step-icon">✈️</span>
+      <div class="step-name">Llegas tranquilo</div>
+      <p class="step-txt">Viaje directo sin paradas. Pagas lo acordado, sin suplementos ni sorpresas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TARIFAS -->
+<section class="sec" id="precios">
+  <div class="slbl">Tarifas fijas</div>
+  <div class="stit">Precio cerrado desde el minuto uno.</div>
+  <div class="abar"></div>
+  <p class="ssub">El contador no corre. Lo que ves es lo que pagas, independientemente del tráfico.</p>
+  <div class="prices">
+    <div class="pc rv">
+      <div class="p-route">Centro → Aeropuerto</div>
+      <div class="p-name">Barcelona ciudad · T1 o T2</div>
+      <div class="p-price">35 €<small> / trayecto</small></div>
+      <ul class="p-list">
+        <li>Hasta 4 pasajeros</li>
+        <li>Equipaje incluido</li>
+        <li>Cualquier hora del día</li>
+        <li>Confirmación inmediata</li>
+      </ul>
+    </div>
+    <div class="pc feat rv">
+      <div class="p-badge">Popular</div>
+      <div class="p-route">Ida y vuelta · Mejor precio</div>
+      <div class="p-name">Pack ida + vuelta aeropuerto</div>
+      <div class="p-price">60 €<small> / pack</small></div>
+      <ul class="p-list">
+        <li>Ahorra 10 € vs dos sueltos</li>
+        <li>Reserva con antelación</li>
+        <li>Flexible en hora de vuelta</li>
+        <li>Seguimiento de vuelo incluido</li>
+      </ul>
+    </div>
+    <div class="pc rv">
+      <div class="p-route">Grupo · Minivan</div>
+      <div class="p-name">Minivan hasta 7 pasajeros</div>
+      <div class="p-price">55 €<small> / trayecto</small></div>
+      <ul class="p-list">
+        <li>Vehículo de 7 plazas</li>
+        <li>Maletero ampliado</li>
+        <li>Ideal familias y grupos</li>
+        <li>Mismas zonas de cobertura</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ -->
+<section class="sec alt">
+  <div class="why">
+    <div>
+      <div class="slbl">Por qué elegirnos</div>
+      <div class="stit">Profesionalidad sin complicaciones.</div>
+      <div class="abar"></div>
+      <p class="why-txt">No somos una app. Somos una persona real con vehículo propio, licencia municipal y años de experiencia en transfers en Barcelona. Contactas directamente con quien te va a llevar.</p>
+      <div class="why-acts">
+        <a href="tel:+34600000000" class="btn-amber">📞 Llamar ahora</a>
+        <a href="https://wa.me/34600000000" class="btn-ol">WhatsApp</a>
+      </div>
+    </div>
+    <div class="feats">
+      <div class="fc rv">
+        <div class="fc-ic">💳</div>
+        <div><div class="fc-name">Efectivo o tarjeta</div><p class="fc-txt">Paga como prefieras, sin comisiones extra.</p></div>
+      </div>
+      <div class="fc rv">
+        <div class="fc-ic">🛡️</div>
+        <div><div class="fc-name">Licencia oficial</div><p class="fc-txt">Vehículo con licencia municipal. Autónomo registrado.</p></div>
+      </div>
+      <div class="fc rv">
+        <div class="fc-ic">⏰</div>
+        <div><div class="fc-name">Puntualidad garantizada</div><p class="fc-txt">Seguimos tu vuelo. Retraso = ajuste sin coste.</p></div>
+      </div>
+      <div class="fc rv">
+        <div class="fc-ic">💬</div>
+        <div><div class="fc-name">Trato directo</div><p class="fc-txt">Hablas con el conductor, no con un call center.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contacto">
+  <div>
+    <div class="ft-logo">Taxi<em>BCN</em></div>
+    <div class="ft-sub">Conductor autónomo · Barcelona</div>
+  </div>
+  <div class="ft-contact">
+    <span>📞 <a href="tel:+34600000000">+34 600 000 000</a></span>
+    <span>✉️ <a href="mailto:hola@taxibcn.es">hola@taxibcn.es</a></span>
+    <span>🕐 24 h · 7 días</span>
+  </div>
+  <div class="ft-legal">
+    © 2025 TaxiBCN · Licencia municipal Barcelona<br>
+    Autónomo registrado · NIF: A-0000000
+  </div>
+</footer>
+
+<script>
+const html = document.documentElement;
+const saved = localStorage.getItem('tcn-theme') || 'dark';
+html.dataset.theme = saved;
+
+document.getElementById('theme-btn').addEventListener('click', () => {
+  const t = html.dataset.theme === 'dark' ? 'light' : 'dark';
+  html.dataset.theme = t;
+  localStorage.setItem('tcn-theme', t);
+});
+
+const hbg    = document.getElementById('hbg');
+const drawer = document.getElementById('drawer');
+hbg.addEventListener('click', () => {
+  hbg.classList.toggle('open');
+  drawer.classList.toggle('open');
+});
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  hbg.classList.remove('open');
+  drawer.classList.remove('open');
+}));
+
+const d = new Date();
+const p = n => String(n).padStart(2,'0');
+const fi = document.getElementById('fecha');
+fi.value = fi.min = `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`;
+
+function swap() {
+  const o = document.getElementById('origen');
+  const t = document.getElementById('destino');
+  [o.value, t.value] = [t.value, o.value];
+}
+
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
