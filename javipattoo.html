@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javi Pato - Tatuador Realista</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.97/build/spline-viewer.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+
+        .hero-content {
+          margin-bottom: 750px;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff4444;
+        }
+
+        .hero {
+            height: 150vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        spline-viewer {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #b0b0b0;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 32px;
+            background: #ff4444;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #cc3333;
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 80px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 40px;
+            font-weight: 600;
+            margin-bottom: 50px;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+
+        .portfolio-container {
+            position: relative;
+        }
+
+        .slider {
+            display: flex;
+            gap: 20px;
+            overflow: hidden;
+        }
+
+        .slide {
+            flex: 0 0 calc(33.333% - 14px);
+            aspect-ratio: 3/4;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #1a1a1a;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 30px;
+        }
+
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            color: #e0e0e0;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 68, 68, 0.1);
+            border-color: #ff4444;
+            color: #ff4444;
+        }
+
+        .about {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 40px;
+            margin-top: 60px;
+        }
+
+        .about h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #ff4444;
+        }
+
+        .about p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #b0b0b0;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .hero-content p {
+                font-size: 14px;
+            }
+
+            .slide {
+                flex: 0 0 calc(50% - 10px);
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            section {
+                padding: 50px 1rem;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slide {
+                flex: 0 0 100%;
+            }
+
+            .hero-content h1 {
+                font-size: 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">JAVI PATO</div>
+            <ul class="nav-links">
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#about">Sobre mí</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <spline-viewer url="https://prod.spline.design/dANB0UXzKXaSHrP1/scene.splinecode"></spline-viewer>
+        <div class="hero-content">
+            <h1>Tatuaje Realista de Arte</h1>
+            <p>Cada línea es una historia. Cada trazo es precisión.</p>
+            <a href="#portfolio" class="cta-button">Ver Trabajos</a>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2 class="section-title">Portafolio</h2>
+        <div class="portfolio-container">
+            <div class="slider" id="slider">
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1590080876420-99d57a5733ce?w=400&h=600&fit=crop"
+                        alt="Tatuaje 1">
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1598974996267-25a259cc183d?w=400&h=600&fit=crop"
+                        alt="Tatuaje 2">
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1597355860697-5e3ded3ab89e?w=400&h=600&fit=crop"
+                        alt="Tatuaje 3">
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?w=400&h=600&fit=crop"
+                        alt="Tatuaje 4">
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1598974996268-f4f6c1c4ff48?w=400&h=600&fit=crop"
+                        alt="Tatuaje 5">
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=600&fit=crop"
+                        alt="Tatuaje 6">
+                </div>
+            </div>
+
+            <div class="slider-controls">
+                <button class="control-btn" id="prevBtn">←</button>
+                <button class="control-btn" id="nextBtn">→</button>
+            </div>
+        </div>
+
+        <div class="about" id="about">
+            <h3>Sobre mi trabajo</h3>
+            <p>
+                Especializado en tatuaje realista fotográfico. Cada proyecto es una colaboración única entre tu visión y
+                mi técnica.
+                Con años de experiencia, he perfeccionado el arte de capturar detalles, profundidad y vida en la piel.
+            </p>
+            <p>
+                Creo que cada tatuaje debe ser una obra maestra. Por eso cada sesión es planificada meticulosamente
+                para asegurar que el resultado no solo cumpla, sino que supere tus expectativas.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Javi Pato Realista Tattoo. Hecho con precisión y dedicación.</p>
+    </footer>
+
+    <script>
+        const slider = document.getElementById('slider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const slidesToShow = 3;
+
+        function updateSlider() {
+            const slideWidth = slides[0].offsetWidth + 20;
+            gsap.to(slider, {
+                x: -currentIndex * slideWidth,
+                duration: 0.6,
+                ease: "power2.out"
+            });
+        }
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = Math.max(0, currentIndex - 1);
+            updateSlider();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = Math.min(totalSlides - slidesToShow, currentIndex + 1);
+            updateSlider();
+        });
+
+        window.addEventListener('resize', updateSlider);
+
+        gsap.from('.hero-content', {
+            opacity: 0,
+            y: 30,
+            duration: 1,
+            delay: 0.5
+        });
+
+        gsap.from('.section-title', {
+            scrollTrigger: {
+                trigger: '#portfolio',
+                start: 'top 80%'
+            },
+            opacity: 0,
+            y: 20,
+            duration: 0.8
+        });
+    </script>
+</body>
+
+</html>
