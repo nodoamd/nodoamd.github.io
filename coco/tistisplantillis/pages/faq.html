@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es" data-barba="wrapper">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Preguntas frecuentes sobre los servicios de Nodo Studio." />
+  <title>FAQ — Nodo Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <style>
+    .faq-item { border-bottom: 1px solid var(--clr-border); }
+    .faq-item:first-child { border-top: 1px solid var(--clr-border); }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      width: 100%; padding: var(--space-6) 0;
+      font-size: var(--text-lg); font-weight: 600; color: var(--clr-white);
+      text-align: left; cursor: pointer; background: none; border: none;
+      font-family: inherit; transition: color var(--trans-fast);
+    }
+    .faq-q:hover { color: var(--clr-primary-light); }
+    .faq-q svg { flex-shrink:0; transition: transform var(--trans-base); }
+    .faq-item.open .faq-q svg { transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height var(--trans-base); }
+    .faq-item.open .faq-a { max-height: 400px; }
+    .faq-a p { padding-bottom: var(--space-6); color: var(--clr-text-muted); line-height: 1.8; }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@barba/core@2.9.7/dist/barba.umd.js" defer></script>
+</head>
+<body>
+
+  <div id="page-loader" role="status" aria-label="Cargando">
+    <div class="loader__box-wrap"><div class="loader__box"></div><div class="loader__shadow"></div></div>
+    <span class="loader__label">Nodo Studio</span>
+    <div class="loader__progress"></div>
+  </div>
+  <div id="transition-overlay" aria-hidden="true"></div>
+
+  <header class="header" role="banner">
+    <div class="header__inner">
+      <a href="../index.html" class="logo"><div class="logo__mark">N</div><span>Nodo Studio</span></a>
+      <nav class="nav" aria-label="Navegación principal">
+        <ul class="nav__list">
+          <li><a href="../index.html"    class="nav__link">Inicio</a></li>
+          <li><a href="./servicios.html" class="nav__link">Servicios</a></li>
+          <li><a href="./proyectos.html" class="nav__link">Proyectos</a></li>
+          <li><a href="./precios.html"   class="nav__link">Precios</a></li>
+          <li><a href="./faq.html"       class="nav__link active">FAQ</a></li>
+          <li class="nav__cta"><a href="./contacto.html" class="btn btn--primary">Hablemos <svg class="btn__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false"><span class="hamburger__line"></span><span class="hamburger__line"></span><span class="hamburger__line"></span></button>
+    </div>
+  </header>
+
+  <div class="mobile-menu">
+    <a href="../index.html"    class="mobile-menu__link">Inicio</a>
+    <a href="./servicios.html" class="mobile-menu__link">Servicios</a>
+    <a href="./proyectos.html" class="mobile-menu__link">Proyectos</a>
+    <a href="./precios.html"   class="mobile-menu__link">Precios</a>
+    <a href="./faq.html"       class="mobile-menu__link">FAQ</a>
+    <a href="./contacto.html"  class="mobile-menu__link">Contacto</a>
+  </div>
+
+  <main data-barba="container" data-barba-namespace="faq">
+  <div class="page-content">
+
+    <section class="section hero">
+      <div class="container">
+        <div style="max-width:640px;">
+          <span class="eyebrow hero__eyebrow">Dudas frecuentes</span>
+          <h1 class="hero__title" style="color:var(--clr-white);margin-bottom:var(--space-6);">Preguntas <span class="text-gradient">frecuentes</span>.</h1>
+          <p class="hero__subtitle" style="font-size:var(--text-lg);">Si no encuentras lo que buscas, escríbenos directamente.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div style="max-width:760px; margin-inline:auto;" class="faq-list" data-animate>
+
+          <div class="faq-item">
+            <button class="faq-q">
+              ¿Cuánto tarda un proyecto web?
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-a"><p>Depende del alcance. Una landing page puede estar lista en 7-10 días. Una web corporativa completa suele llevar 3-5 semanas. En la propuesta inicial siempre incluimos un calendario estimado.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">
+              ¿Trabajáis con CMS como WordPress?
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-a"><p>Sí, trabajamos con WordPress, pero también desarrollamos en HTML/CSS/JS puro cuando el proyecto lo justifica (rendimiento, animaciones avanzadas). Lo recomendamos según las necesidades de gestión del cliente.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">
+              ¿Qué pasa si quiero cambiar algo después de la entrega?
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-a"><p>Todos nuestros proyectos incluyen un período de revisiones. Si necesitas cambios después, tenemos tarifas de mantenimiento por horas o podemos gestionar un retainer mensual.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">
+              ¿Gestionáis el hosting y dominio?
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-a"><p>Sí, podemos gestionar hosting y dominio por ti, o trabajar sobre el hosting que ya tengas. Lo recomendamos siempre según el tráfico y necesidades del proyecto.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">
+              ¿Cuánto presupuesto necesito para Google Ads?
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-a"><p>Recomendamos un mínimo de 300-500€/mes en presupuesto de ads para ver resultados consistentes. Nuestra gestión (150€/mes) va aparte. Para negocios locales en Barcelona esto ya puede dar buenos resultados.</p></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-q">
+              ¿Tengo que pagar todo por adelantado?
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-a"><p>No. Trabajamos con un 50% al inicio del proyecto y el 50% restante en la entrega. Para proyectos grandes podemos ajustar los hitos de pago.</p></div>
+          </div>
+
+        </div>
+
+        <div style="text-align:center; margin-top:var(--space-12);" data-animate>
+          <p style="margin-bottom:var(--space-6);">¿Tienes alguna pregunta que no aparece aquí?</p>
+          <a href="./contacto.html" class="btn btn--primary">Escribirnos</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand"><a href="../index.html" class="logo"><div class="logo__mark">N</div><span>Nodo Studio</span></a><p>Diseño web, branding y estrategia digital para negocios que quieren destacar.</p></div>
+        <div class="footer__col"><h4>Servicios</h4><ul class="footer__links"><li><a href="./servicios.html">Diseño web</a></li><li><a href="./servicios.html">Branding</a></li><li><a href="./servicios.html">Google Ads</a></li><li><a href="./servicios.html">Meta Ads</a></li></ul></div>
+        <div class="footer__col"><h4>Empresa</h4><ul class="footer__links"><li><a href="./proyectos.html">Proyectos</a></li><li><a href="./precios.html">Precios</a></li><li><a href="./faq.html">FAQ</a></li><li><a href="./contacto.html">Contacto</a></li></ul></div>
+        <div class="footer__col"><h4>Legal</h4><ul class="footer__links"><li><a href="#">Aviso legal</a></li><li><a href="#">Privacidad</a></li><li><a href="#">Cookies</a></li></ul></div>
+      </div>
+      <div class="footer__bottom"><span>© 2025 Nodo Studio. Todos los derechos reservados.</span><span>Hecho con ♥ en Barcelona</span></div>
+    </div>
+  </footer>
+
+  <!-- FAQ accordion script — runs per-page, re-executes after Barba -->
+  <script>
+    function initFAQ() {
+      document.querySelectorAll('.faq-q').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = btn.closest('.faq-item');
+          const isOpen = item.classList.contains('open');
+          // Close all
+          document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+          // Toggle current
+          if (!isOpen) item.classList.add('open');
+        });
+      });
+    }
+    // Run on direct load
+    document.addEventListener('DOMContentLoaded', initFAQ);
+    // Run after Barba transition (event fired from main.js)
+    document.addEventListener('barba:after', initFAQ);
+  </script>
+
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>

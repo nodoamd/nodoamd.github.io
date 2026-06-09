@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es" data-barba="wrapper">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Precios de Nodo Studio — planes transparentes para diseño web, branding y publicidad." />
+  <title>Precios — Nodo Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@barba/core@2.9.7/dist/barba.umd.js" defer></script>
+</head>
+<body>
+
+  <div id="page-loader" role="status" aria-label="Cargando">
+    <div class="loader__box-wrap"><div class="loader__box"></div><div class="loader__shadow"></div></div>
+    <span class="loader__label">Nodo Studio</span>
+    <div class="loader__progress"></div>
+  </div>
+  <div id="transition-overlay" aria-hidden="true"></div>
+
+  <header class="header" role="banner">
+    <div class="header__inner">
+      <a href="../index.html" class="logo"><div class="logo__mark">N</div><span>Nodo Studio</span></a>
+      <nav class="nav" aria-label="Navegación principal">
+        <ul class="nav__list">
+          <li><a href="../index.html"    class="nav__link">Inicio</a></li>
+          <li><a href="./servicios.html" class="nav__link">Servicios</a></li>
+          <li><a href="./proyectos.html" class="nav__link">Proyectos</a></li>
+          <li><a href="./precios.html"   class="nav__link active">Precios</a></li>
+          <li><a href="./faq.html"       class="nav__link">FAQ</a></li>
+          <li class="nav__cta"><a href="./contacto.html" class="btn btn--primary">Hablemos <svg class="btn__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false"><span class="hamburger__line"></span><span class="hamburger__line"></span><span class="hamburger__line"></span></button>
+    </div>
+  </header>
+
+  <div class="mobile-menu">
+    <a href="../index.html"    class="mobile-menu__link">Inicio</a>
+    <a href="./servicios.html" class="mobile-menu__link">Servicios</a>
+    <a href="./proyectos.html" class="mobile-menu__link">Proyectos</a>
+    <a href="./precios.html"   class="mobile-menu__link">Precios</a>
+    <a href="./faq.html"       class="mobile-menu__link">FAQ</a>
+    <a href="./contacto.html"  class="mobile-menu__link">Contacto</a>
+  </div>
+
+  <main data-barba="container" data-barba-namespace="precios">
+  <div class="page-content">
+
+    <section class="section hero">
+      <div class="container">
+        <div style="max-width:640px;">
+          <span class="eyebrow hero__eyebrow">Sin letra pequeña</span>
+          <h1 class="hero__title" style="color:var(--clr-white);margin-bottom:var(--space-6);">Precios <span class="text-gradient">transparentes</span>.</h1>
+          <p class="hero__subtitle" style="font-size:var(--text-lg);">Sabes qué pagas antes de empezar. Sin sorpresas, sin extras ocultos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Precios web -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header section-header--center" data-animate>
+          <span class="eyebrow">Diseño web</span>
+          <h2 style="color:var(--clr-white);">Proyectos web</h2>
+        </div>
+        <div class="grid-3" data-stagger="0.1">
+          <!-- Basic -->
+          <div class="card">
+            <span class="tag" style="margin-bottom:var(--space-4);">Starter</span>
+            <div style="font-size:var(--text-4xl);font-weight:800;color:var(--clr-white);margin-bottom:var(--space-2);">1.500€</div>
+            <p style="margin-bottom:var(--space-6);">Landing page de conversión. Ideal para lanzar una propuesta o campaña rápida.</p>
+            <ul style="display:flex;flex-direction:column;gap:var(--space-3);margin-bottom:var(--space-8);">
+              <li style="font-size:var(--text-sm);color:var(--clr-text-muted);display:flex;align-items:center;gap:var(--space-2);"><span style="color:var(--clr-primary-light);">✓</span>1 página optimizada</li>
+              <li style="font-size:var(--text-sm);color:var(--clr-text-muted);display:flex;align-items:center;gap:var(--space-2);"><span style="color:var(--clr-primary-light);">✓</span>Mobile first</li>
+              <li style="font-size:var(--text-sm);color:var(--clr-text-muted);display:flex;align-items:center;gap:var(--space-2);"><span style="color:var(--clr-primary-light);">✓</span>Animaciones GSAP</li>
+              <li style="font-size:var(--text-sm);color:var(--clr-text-muted);display:flex;align-items:center;gap:var(--space-2);"><span style="color:var(--clr-primary-light);">✓</span>Entrega en 10 días</li>
+            </ul>
+            <a href="./contacto.html" class="btn btn--ghost" style="width:100%;justify-content:center;">Pedir info</a>
+          </div>
+          <!-- Pro (highlighted) -->
+          <div class="card" style="border-color:var(--clr-primary);background:linear-gradient(135deg,var(--clr-surface),rgba(78,83,190,0.1));">
+            <span class="tag" style="background:var(--clr-primary);color:white;border-color:transparent;margin-bottom:var(--space-4);">⭐ Más popular</span>
+            <div style="font-size:var(--text-4xl);font-weight:800;color:var(--clr-white);margin-bottom:var(--space-2);">3.500€</div>
+            <p style="margin-bottom:var(--space-6);">Web corporativa completa. La solución para negocios que necesitan presencia real.</p>
+            <ul style="display:flex;flex-direction:column;gap:var(--space-3);margin-bottom:var(--space-8);">
+              <li style="font-size:var(--text-sm);color:var(--clr-text-muted);display:flex;align-items:center;gap:var(--space-2);"><span style="color:var(--clr-primary-light);">✓</span>Hasta 6 páginas</li>
+              <li style="font-size:var(--text-sm);color:var(--clr-text-muted);display:flex;align-items:center;gap:var(--space-2);"><span style="color:var(--clr-primary-light);">✓</span>Barba.js + GSAP transitions</li>
+              <li style="font-size:var(--text-sm);color:var(--clr-text-muted);display:flex;align-items:center;gap:var(--space-2);"><span style="color:var(--clr-primary-light);">✓</span>SEO técnico incluido</li>
+              <li style="font-size:var(--text-sm);color:var(--clr-text-muted);display:flex;align-items:center;gap:var(--space-2);"><span style="color:var(--clr-primary-light);">✓</span>3 meses soporte</li>
+            </ul>
+            <a href="./contacto.html" class="btn btn--primary" style="width:100%;justify-content:center;">Empezar</a>
+          </div>
+          <!-- Premium -->
+          <div class="card">
+            <span class="tag" style="margin-bottom:var(--space-4);">Premium</span>
+            <div style="font-size:var(--text-4xl);font-weight:800;color:var(--clr-white);margin-bottom:var(--space-2);">6.000€+</div>
+            <p style="margin-bottom:var(--space-6);">Proyecto avanzado con 3D, animaciones personalizadas o integración compleja.</p>
+            <ul style="display:flex;flex-direction:column;gap:var(--space-3);margin-bottom:var(--space-8);">
+              <li style="font-size:var(--text-sm);color:var(--clr-text-muted);display:flex;align-items:center;gap:var(--space-2);"><span style="color:var(--clr-primary-light);">✓</span>Three.js / Spline 3D</li>
+              <li style="font-size:var(--text-sm);color:var(--clr-text-muted);display:flex;align-items:center;gap:var(--space-2);"><span style="color:var(--clr-primary-light);">✓</span>Animaciones custom</li>
+              <li style="font-size:var(--text-sm);color:var(--clr-text-muted);display:flex;align-items:center;gap:var(--space-2);"><span style="color:var(--clr-primary-light);">✓</span>Presupuesto a medida</li>
+              <li style="font-size:var(--text-sm);color:var(--clr-text-muted);display:flex;align-items:center;gap:var(--space-2);"><span style="color:var(--clr-primary-light);">✓</span>6 meses soporte</li>
+            </ul>
+            <a href="./contacto.html" class="btn btn--ghost" style="width:100%;justify-content:center;">Pedir presupuesto</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Retainers -->
+    <section class="section" style="background:var(--clr-surface);">
+      <div class="container">
+        <div class="section-header section-header--center" data-animate>
+          <span class="eyebrow">Gestión mensual</span>
+          <h2 style="color:var(--clr-white);">Retainers publicitarios</h2>
+        </div>
+        <div class="grid-2" data-stagger="0.1" style="max-width:720px;margin-inline:auto;">
+          <div class="card">
+            <span class="tag" style="margin-bottom:var(--space-4);">Google Ads</span>
+            <div style="font-size:var(--text-3xl);font-weight:800;color:var(--clr-white);margin-bottom:var(--space-2);">150€/mes</div>
+            <p style="margin-bottom:var(--space-4);">Gestión y optimización de campaña Google Search activa.</p>
+            <p style="font-size:var(--text-xs);color:var(--clr-text-muted);">+ setup inicial 300€ · Presupuesto de ads aparte</p>
+          </div>
+          <div class="card">
+            <span class="tag" style="margin-bottom:var(--space-4);">Meta Ads</span>
+            <div style="font-size:var(--text-3xl);font-weight:800;color:var(--clr-white);margin-bottom:var(--space-2);">150€/mes</div>
+            <p style="margin-bottom:var(--space-4);">Gestión de campañas Facebook + Instagram con reporting mensual.</p>
+            <p style="font-size:var(--text-xs);color:var(--clr-text-muted);">+ setup inicial 350€ · Presupuesto de ads aparte</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand"><a href="../index.html" class="logo"><div class="logo__mark">N</div><span>Nodo Studio</span></a><p>Diseño web, branding y estrategia digital para negocios que quieren destacar.</p></div>
+        <div class="footer__col"><h4>Servicios</h4><ul class="footer__links"><li><a href="./servicios.html">Diseño web</a></li><li><a href="./servicios.html">Branding</a></li><li><a href="./servicios.html">Google Ads</a></li><li><a href="./servicios.html">Meta Ads</a></li></ul></div>
+        <div class="footer__col"><h4>Empresa</h4><ul class="footer__links"><li><a href="./proyectos.html">Proyectos</a></li><li><a href="./precios.html">Precios</a></li><li><a href="./faq.html">FAQ</a></li><li><a href="./contacto.html">Contacto</a></li></ul></div>
+        <div class="footer__col"><h4>Legal</h4><ul class="footer__links"><li><a href="#">Aviso legal</a></li><li><a href="#">Privacidad</a></li><li><a href="#">Cookies</a></li></ul></div>
+      </div>
+      <div class="footer__bottom"><span>© 2025 Nodo Studio. Todos los derechos reservados.</span><span>Hecho con ♥ en Barcelona</span></div>
+    </div>
+  </footer>
+
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>

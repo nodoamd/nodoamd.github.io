@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es" data-barba="wrapper">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contacta con Nodo Studio. Cuéntanos tu proyecto y te respondemos en 24h." />
+  <meta property="og:title"       content="Contacto — Nodo Studio" />
+  <title>Contacto — Nodo Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@barba/core@2.9.7/dist/barba.umd.js" defer></script>
+</head>
+<body>
+
+  <div id="page-loader" role="status" aria-label="Cargando">
+    <div class="loader__box-wrap">
+      <div class="loader__box"></div>
+      <div class="loader__shadow"></div>
+    </div>
+    <span class="loader__label">Nodo Studio</span>
+    <div class="loader__progress"></div>
+  </div>
+
+  <div id="transition-overlay" aria-hidden="true"></div>
+
+  <header class="header" role="banner">
+    <div class="header__inner">
+      <a href="../index.html" class="logo">
+        <div class="logo__mark">N</div>
+        <span>Nodo Studio</span>
+      </a>
+      <nav class="nav" aria-label="Navegación principal">
+        <ul class="nav__list">
+          <li><a href="../index.html"    class="nav__link">Inicio</a></li>
+          <li><a href="./servicios.html" class="nav__link">Servicios</a></li>
+          <li><a href="./proyectos.html" class="nav__link">Proyectos</a></li>
+          <li><a href="./precios.html"   class="nav__link">Precios</a></li>
+          <li><a href="./faq.html"       class="nav__link">FAQ</a></li>
+          <li class="nav__cta">
+            <a href="./contacto.html" class="btn btn--primary active">
+              Hablemos
+              <svg class="btn__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu">
+    <a href="../index.html"    class="mobile-menu__link">Inicio</a>
+    <a href="./servicios.html" class="mobile-menu__link">Servicios</a>
+    <a href="./proyectos.html" class="mobile-menu__link">Proyectos</a>
+    <a href="./precios.html"   class="mobile-menu__link">Precios</a>
+    <a href="./faq.html"       class="mobile-menu__link">FAQ</a>
+    <a href="./contacto.html"  class="mobile-menu__link">Contacto</a>
+  </div>
+
+  <main data-barba="container" data-barba-namespace="contacto">
+  <div class="page-content">
+
+    <!-- Hero -->
+    <section class="section hero">
+      <div class="container">
+        <div style="max-width: 640px;">
+          <span class="eyebrow hero__eyebrow">Empecemos</span>
+          <h1 class="hero__title" style="color:var(--clr-white); margin-bottom:var(--space-6);">Cuéntanos tu <span class="text-gradient">proyecto</span>.</h1>
+          <p class="hero__subtitle" style="font-size:var(--text-lg);">Sin compromisos. En 24h tienes una respuesta y, si encajamos, una propuesta.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact layout -->
+    <section class="section">
+      <div class="container">
+        <div style="display:grid; grid-template-columns:1fr 1.4fr; gap:var(--space-16); align-items:start;">
+
+          <!-- Info -->
+          <div data-animate>
+            <h2 style="color:var(--clr-white); margin-bottom:var(--space-8);">Hablemos</h2>
+
+            <div style="display:flex;flex-direction:column;gap:var(--space-6);">
+              <div>
+                <div style="font-size:var(--text-sm);font-weight:600;color:var(--clr-white);margin-bottom:var(--space-2);">Email</div>
+                <a href="mailto:hola@nodoestudio.es" style="color:var(--clr-primary-light);font-size:var(--text-base);">hola@nodoestudio.es</a>
+              </div>
+              <div>
+                <div style="font-size:var(--text-sm);font-weight:600;color:var(--clr-white);margin-bottom:var(--space-2);">Teléfono</div>
+                <a href="tel:+34600000000" style="color:var(--clr-primary-light);font-size:var(--text-base);">+34 600 000 000</a>
+              </div>
+              <div>
+                <div style="font-size:var(--text-sm);font-weight:600;color:var(--clr-white);margin-bottom:var(--space-2);">Ubicación</div>
+                <p style="margin:0;">L'Hospitalet de Llobregat, Barcelona</p>
+              </div>
+              <div>
+                <div style="font-size:var(--text-sm);font-weight:600;color:var(--clr-white);margin-bottom:var(--space-2);">Respuesta</div>
+                <p style="margin:0;">En menos de 24h laborables.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <div class="card" data-animate="slide-right">
+            <form class="contact-form" novalidate>
+              <div style="display:flex;flex-direction:column;gap:var(--space-6);">
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+                  <div class="form-group">
+                    <label class="form-label" for="nombre">Nombre *</label>
+                    <input class="form-input" type="text" id="nombre" name="nombre" placeholder="Tu nombre" required autocomplete="given-name" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="empresa">Empresa</label>
+                    <input class="form-input" type="text" id="empresa" name="empresa" placeholder="Tu empresa" autocomplete="organization" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="email">Email *</label>
+                  <input class="form-input" type="email" id="email" name="email" placeholder="tu@email.com" required autocomplete="email" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="servicio">¿Qué necesitas?</label>
+                  <select class="form-input" id="servicio" name="servicio">
+                    <option value="">Selecciona un servicio</option>
+                    <option value="web">Diseño web</option>
+                    <option value="branding">Branding</option>
+                    <option value="ads-google">Google Ads</option>
+                    <option value="ads-meta">Meta Ads</option>
+                    <option value="otro">Otro / No sé todavía</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="mensaje">Mensaje *</label>
+                  <textarea class="form-textarea" id="mensaje" name="mensaje" placeholder="Cuéntame tu proyecto, dudas o lo que necesites..." rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn--primary btn--lg" style="width:100%;justify-content:center;">
+                  Enviar mensaje
+                  <svg class="btn__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="../index.html" class="logo">
+            <div class="logo__mark">N</div>
+            <span>Nodo Studio</span>
+          </a>
+          <p>Diseño web, branding y estrategia digital para negocios que quieren destacar.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Servicios</h4>
+          <ul class="footer__links">
+            <li><a href="./servicios.html">Diseño web</a></li>
+            <li><a href="./servicios.html">Branding</a></li>
+            <li><a href="./servicios.html">Google Ads</a></li>
+            <li><a href="./servicios.html">Meta Ads</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Empresa</h4>
+          <ul class="footer__links">
+            <li><a href="./proyectos.html">Proyectos</a></li>
+            <li><a href="./precios.html">Precios</a></li>
+            <li><a href="./faq.html">FAQ</a></li>
+            <li><a href="./contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Legal</h4>
+          <ul class="footer__links">
+            <li><a href="#">Aviso legal</a></li>
+            <li><a href="#">Privacidad</a></li>
+            <li><a href="#">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2025 Nodo Studio. Todos los derechos reservados.</span>
+        <span>Hecho con ♥ en Barcelona</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>

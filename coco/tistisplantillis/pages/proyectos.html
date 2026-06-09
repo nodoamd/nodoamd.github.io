@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es" data-barba="wrapper">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio de proyectos de Nodo Studio." />
+  <title>Proyectos — Nodo Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@barba/core@2.9.7/dist/barba.umd.js" defer></script>
+</head>
+<body>
+
+  <div id="page-loader" role="status" aria-label="Cargando">
+    <div class="loader__box-wrap"><div class="loader__box"></div><div class="loader__shadow"></div></div>
+    <span class="loader__label">Nodo Studio</span>
+    <div class="loader__progress"></div>
+  </div>
+  <div id="transition-overlay" aria-hidden="true"></div>
+
+  <header class="header" role="banner">
+    <div class="header__inner">
+      <a href="../index.html" class="logo"><div class="logo__mark">N</div><span>Nodo Studio</span></a>
+      <nav class="nav" aria-label="Navegación principal">
+        <ul class="nav__list">
+          <li><a href="../index.html"    class="nav__link">Inicio</a></li>
+          <li><a href="./servicios.html" class="nav__link">Servicios</a></li>
+          <li><a href="./proyectos.html" class="nav__link active">Proyectos</a></li>
+          <li><a href="./precios.html"   class="nav__link">Precios</a></li>
+          <li><a href="./faq.html"       class="nav__link">FAQ</a></li>
+          <li class="nav__cta"><a href="./contacto.html" class="btn btn--primary">Hablemos <svg class="btn__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false"><span class="hamburger__line"></span><span class="hamburger__line"></span><span class="hamburger__line"></span></button>
+    </div>
+  </header>
+
+  <div class="mobile-menu">
+    <a href="../index.html"    class="mobile-menu__link">Inicio</a>
+    <a href="./servicios.html" class="mobile-menu__link">Servicios</a>
+    <a href="./proyectos.html" class="mobile-menu__link">Proyectos</a>
+    <a href="./precios.html"   class="mobile-menu__link">Precios</a>
+    <a href="./faq.html"       class="mobile-menu__link">FAQ</a>
+    <a href="./contacto.html"  class="mobile-menu__link">Contacto</a>
+  </div>
+
+  <main data-barba="container" data-barba-namespace="proyectos">
+  <div class="page-content">
+
+    <section class="section hero">
+      <div class="container">
+        <div style="max-width:680px;">
+          <span class="eyebrow hero__eyebrow">Portfolio</span>
+          <h1 class="hero__title" style="color:var(--clr-white);margin-bottom:var(--space-6);">Proyectos que <span class="text-gradient">hablan por sí solos</span>.</h1>
+          <p class="hero__subtitle" style="font-size:var(--text-lg);">Selección de trabajos recientes en diseño web, branding y campañas digitales.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid-3" data-stagger="0.1">
+          <!-- Proyecto 1 -->
+          <div class="card" style="cursor:pointer;">
+            <div style="background:linear-gradient(135deg,#dc2626,#991b1b);border-radius:var(--radius-md);aspect-ratio:16/9;display:grid;place-items:center;font-size:2.5rem;margin-bottom:var(--space-6);">🦷</div>
+            <span class="tag" style="margin-bottom:var(--space-3);">Diseño web</span>
+            <h3 class="card__title">Clínica Dental Hitachi</h3>
+            <p class="card__text">Landing page de implantes con Google Ads integrado. Awwwards aesthetic, paleta roja, conversión optimizada.</p>
+          </div>
+          <!-- Proyecto 2 -->
+          <div class="card" style="cursor:pointer;">
+            <div style="background:linear-gradient(135deg,#d97706,#92400e);border-radius:var(--radius-md);aspect-ratio:16/9;display:grid;place-items:center;font-size:2.5rem;margin-bottom:var(--space-6);">🌶️</div>
+            <span class="tag" style="margin-bottom:var(--space-3);">E-commerce</span>
+            <h3 class="card__title">La Chiquitana</h3>
+            <p class="card__text">Tienda de productos latinoamericanos. Catálogo ampliado, branding cálido y estrategia de retención.</p>
+          </div>
+          <!-- Proyecto 3 -->
+          <div class="card" style="cursor:pointer;">
+            <div style="background:linear-gradient(135deg,var(--clr-primary),var(--clr-primary-light));border-radius:var(--radius-md);aspect-ratio:16/9;display:grid;place-items:center;font-size:2.5rem;margin-bottom:var(--space-6);">🔷</div>
+            <span class="tag" style="margin-bottom:var(--space-3);">3D / WebGL</span>
+            <h3 class="card__title">Javi Pato Tattoo</h3>
+            <p class="card__text">Landing page con prototipo Spline 3D para tatuador fotorrealista. Experiencia inmersiva y diferenciadora.</p>
+          </div>
+          <!-- Proyecto 4 -->
+          <div class="card" style="cursor:pointer;">
+            <div style="background:linear-gradient(135deg,#0ea5e9,#0369a1);border-radius:var(--radius-md);aspect-ratio:16/9;display:grid;place-items:center;font-size:2.5rem;margin-bottom:var(--space-6);">🚕</div>
+            <span class="tag" style="margin-bottom:var(--space-3);">Diseño web</span>
+            <h3 class="card__title">TaxiBCN</h3>
+            <p class="card__text">Landing page para servicio de traslados aeropuerto Barcelona. Conversión directa y reserva rápida.</p>
+          </div>
+          <!-- Proyecto 5 -->
+          <div class="card" style="cursor:pointer;">
+            <div style="background:linear-gradient(135deg,#059669,#065f46);border-radius:var(--radius-md);aspect-ratio:16/9;display:grid;place-items:center;font-size:2.5rem;margin-bottom:var(--space-6);">💊</div>
+            <span class="tag" style="margin-bottom:var(--space-3);">App web</span>
+            <h3 class="card__title">HealthOS</h3>
+            <p class="card__text">Web app de gestión de salud. Dashboard limpio, UI moderna y arquitectura modular.</p>
+          </div>
+          <!-- Placeholder -->
+          <div class="card" style="display:grid;place-items:center;min-height:260px;border-style:dashed;" data-animate>
+            <div style="text-align:center;color:var(--clr-text-muted);">
+              <div style="font-size:2rem;margin-bottom:var(--space-4);">✦</div>
+              <p style="margin:0;font-size:var(--text-sm);">Tu proyecto aquí</p>
+              <a href="./contacto.html" class="btn btn--ghost" style="margin-top:var(--space-4);">Hablemos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="../index.html" class="logo"><div class="logo__mark">N</div><span>Nodo Studio</span></a>
+          <p>Diseño web, branding y estrategia digital para negocios que quieren destacar.</p>
+        </div>
+        <div class="footer__col"><h4>Servicios</h4><ul class="footer__links"><li><a href="./servicios.html">Diseño web</a></li><li><a href="./servicios.html">Branding</a></li><li><a href="./servicios.html">Google Ads</a></li><li><a href="./servicios.html">Meta Ads</a></li></ul></div>
+        <div class="footer__col"><h4>Empresa</h4><ul class="footer__links"><li><a href="./proyectos.html">Proyectos</a></li><li><a href="./precios.html">Precios</a></li><li><a href="./faq.html">FAQ</a></li><li><a href="./contacto.html">Contacto</a></li></ul></div>
+        <div class="footer__col"><h4>Legal</h4><ul class="footer__links"><li><a href="#">Aviso legal</a></li><li><a href="#">Privacidad</a></li><li><a href="#">Cookies</a></li></ul></div>
+      </div>
+      <div class="footer__bottom"><span>© 2025 Nodo Studio. Todos los derechos reservados.</span><span>Hecho con ♥ en Barcelona</span></div>
+    </div>
+  </footer>
+
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>

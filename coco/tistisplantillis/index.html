@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es" data-barba="wrapper">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Nodo Studio — Diseño web, branding y soluciones digitales para negocios con identidad." />
+  <meta property="og:title" content="Nodo Studio" />
+  <meta property="og:description" content="Diseño web, branding y soluciones digitales para negocios con identidad." />
+  <meta property="og:image" content="./images/og-home.jpg" />
+  <meta property="og:url" content="https://nodoestudio.es" />
+  <title>Nodo Studio — Diseño web & branding</title>
+
+  <!-- Preload fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/components.css" />
+  <link rel="stylesheet" href="./css/animations.css" />
+  <link rel="stylesheet" href="./css/responsive.css" />
+
+  <!-- GSAP (load early) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <!-- Barba.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@barba/core@2.9.7/dist/barba.umd.js" defer></script>
+
+  <!-- Spline (solo home — cargar una vez, persiste entre transiciones Barba) -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.66/build/spline-viewer.js"></script>
+</head>
+
+<body>
+
+  <!-- ── Page Loader ──────────────────────────────────────── -->
+  <div id="page-loader" role="status" aria-label="Cargando">
+    <div class="loader__box-wrap">
+      <div class="loader__box"></div>
+      <div class="loader__shadow"></div>
+    </div>
+    <span class="loader__label">Nodo Studio</span>
+    <div class="loader__progress"></div>
+  </div>
+
+  <!-- ── Transition overlay (flash screen) ────────────────── -->
+  <div id="transition-overlay" aria-hidden="true"></div>
+
+  <!-- ── Header (persistent, NOT inside Barba container) ─── -->
+  <header class="header" role="banner">
+    <div class="header__inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="logo" aria-label="Nodo Studio — Inicio">
+        <div class="logo__mark" aria-hidden="true">N</div>
+        <span>Nodo Studio</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="nav" aria-label="Navegación principal">
+        <ul class="nav__list" role="list">
+          <li><a href="./index.html" class="nav__link active">Inicio</a></li>
+          <li><a href="./pages/servicios.html" class="nav__link">Servicios</a></li>
+          <li><a href="./pages/proyectos.html" class="nav__link">Proyectos</a></li>
+          <li><a href="./pages/precios.html" class="nav__link">Precios</a></li>
+          <li><a href="./pages/faq.html" class="nav__link">FAQ</a></li>
+          <li class="nav__cta">
+            <a href="./pages/contacto.html" class="btn btn--primary">
+              Hablemos
+              <svg class="btn__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Mobile hamburger -->
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- ── Mobile Menu ──────────────────────────────────────── -->
+  <div class="mobile-menu" role="dialog" aria-label="Menú de navegación" aria-modal="true">
+    <a href="./index.html" class="mobile-menu__link">Inicio</a>
+    <a href="./pages/servicios.html" class="mobile-menu__link">Servicios</a>
+    <a href="./pages/proyectos.html" class="mobile-menu__link">Proyectos</a>
+    <a href="./pages/precios.html" class="mobile-menu__link">Precios</a>
+    <a href="./pages/faq.html" class="mobile-menu__link">FAQ</a>
+    <a href="./pages/contacto.html" class="mobile-menu__link">Contacto</a>
+  </div>
+
+  <!-- ╔══════════════════════════════════════════════════════╗
+       ║   BARBA CONTAINER — this gets swapped on navigation  ║
+       ╚══════════════════════════════════════════════════════╝ -->
+  <main data-barba="container" data-barba-namespace="home">
+    <div class="page-content">
+
+      <!-- ── Hero ──────────────────────────────────────────── -->
+      <section class="hero section">
+        <div class="container hero__grid">
+          <div class="hero__content">
+            <span class="eyebrow hero__eyebrow">Nodo Studio · Barcelona</span>
+            <h1 class="hero__title">
+              Webs que <span class="text-gradient">generan resultados</span> reales.
+            </h1>
+            <p class="hero__subtitle">
+              Diseño, desarrollo y estrategia digital para negocios que quieren destacar online. Sin templates
+              genéricos.
+            </p>
+            <div class="flex gap-4 hero__actions">
+              <a href="./pages/proyectos.html" class="btn btn--primary btn--lg">
+                Ver proyectos
+                <svg class="btn__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </a>
+              <a href="./pages/contacto.html" class="btn btn--ghost btn--lg">Contactar</a>
+            </div>
+          </div>
+
+          <div class="hero__visual spline-shell loading" id="spline-shell" aria-hidden="true">
+            <div class="spline-loader" aria-hidden="true"></div>
+            <spline-viewer id="hero-spline" loading-anim-type="spinner-small"
+              url="https://prod.spline.design/413yij0subdFPRs9/scene.splinecode"></spline-viewer>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Servicios (preview) ───────────────────────────── -->
+      <section class="section">
+        <div class="container">
+          <div class="section-header section-header--center" data-animate>
+            <span class="eyebrow">Qué hacemos</span>
+            <h2 style="color: var(--clr-white);">Servicios que mueven el negocio</h2>
+            <p>Combinamos diseño, tecnología y estrategia en soluciones que se adaptan a tus objetivos.</p>
+          </div>
+
+          <div class="grid-3" data-stagger="0.1">
+            <!-- Card 1 -->
+            <div class="card">
+              <div class="card__icon" aria-hidden="true">⚡</div>
+              <h3 class="card__title">Diseño web</h3>
+              <p class="card__text">Sitios rápidos, accesibles y con personalidad propia. Desde landing pages hasta
+                proyectos 3D con Three.js y GSAP.</p>
+            </div>
+            <!-- Card 2 -->
+            <div class="card">
+              <div class="card__icon" aria-hidden="true">🎯</div>
+              <h3 class="card__title">Google & Meta Ads</h3>
+              <p class="card__text">Campañas de pago que generan clientes reales. Setup, optimización continua y
+                reporting claro.</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="card">
+              <div class="card__icon" aria-hidden="true">✦</div>
+              <h3 class="card__title">Branding</h3>
+              <p class="card__text">Identidad visual coherente y diferenciadora: logotipo, tipografía, paleta y sistema
+                de marca.</p>
+            </div>
+          </div>
+
+          <div style="text-align:center; margin-top: var(--space-12);" data-animate>
+            <a href="./pages/servicios.html" class="btn btn--ghost">Ver todos los servicios</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Stats ─────────────────────────────────────────── -->
+      <section class="section--sm" style="background: var(--clr-surface);">
+        <div class="container">
+          <div class="grid-3" style="text-align: center;" data-stagger="0.12">
+            <div>
+              <div style="font-size: var(--text-4xl); font-weight: 800; color: var(--clr-white);">
+                <span data-counter="24" data-suffix="+">0+</span>
+              </div>
+              <p style="margin-top: var(--space-2);">Proyectos entregados</p>
+            </div>
+            <div>
+              <div style="font-size: var(--text-4xl); font-weight: 800; color: var(--clr-white);">
+                <span data-counter="98" data-suffix="%">0%</span>
+              </div>
+              <p style="margin-top: var(--space-2);">Clientes satisfechos</p>
+            </div>
+            <div>
+              <div style="font-size: var(--text-4xl); font-weight: 800; color: var(--clr-white);">
+                <span data-counter="3" data-suffix="x">0x</span>
+              </div>
+              <p style="margin-top: var(--space-2);">ROI medio en Ads</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── CTA ───────────────────────────────────────────── -->
+      <section class="section">
+        <div class="container">
+          <div
+            style="background: var(--clr-surface); border: 1px solid var(--clr-border); border-radius: var(--radius-lg); padding: var(--space-16); text-align: center;"
+            data-animate="scale">
+            <span class="eyebrow" style="justify-content:center;">¿Listo para empezar?</span>
+            <h2 style="color:var(--clr-white); margin-bottom: var(--space-4);">Hablemos de tu proyecto</h2>
+            <p style="max-width: 480px; margin-inline: auto; margin-bottom: var(--space-8);">
+              Cuéntame qué necesitas y en 24h tienes una propuesta.
+            </p>
+            <a href="./pages/contacto.html" class="btn btn--primary btn--lg">
+              Empezar ahora
+              <svg class="btn__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ── Footer (persistent) ──────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="./index.html" class="logo">
+            <div class="logo__mark">N</div>
+            <span>Nodo Studio</span>
+          </a>
+          <p>Diseño web, branding y estrategia digital para negocios que quieren destacar.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Servicios</h4>
+          <ul class="footer__links">
+            <li><a href="./pages/servicios.html">Diseño web</a></li>
+            <li><a href="./pages/servicios.html">Branding</a></li>
+            <li><a href="./pages/servicios.html">Google Ads</a></li>
+            <li><a href="./pages/servicios.html">Meta Ads</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Empresa</h4>
+          <ul class="footer__links">
+            <li><a href="./pages/proyectos.html">Proyectos</a></li>
+            <li><a href="./pages/precios.html">Precios</a></li>
+            <li><a href="./pages/faq.html">FAQ</a></li>
+            <li><a href="./pages/contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Legal</h4>
+          <ul class="footer__links">
+            <li><a href="#">Aviso legal</a></li>
+            <li><a href="#">Privacidad</a></li>
+            <li><a href="#">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2025 Nodo Studio. Todos los derechos reservados.</span>
+        <span>Hecho con ♥ en Barcelona</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Main JS (type module) ────────────────────────────── -->
+  <script type="module" src="./js/main.js"></script>
+
+</body>
+
+</html>

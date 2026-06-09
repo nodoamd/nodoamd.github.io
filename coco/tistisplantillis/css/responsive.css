@@ -1,0 +1,139 @@
+/* ============================================================
+   RESPONSIVE.CSS — Media Queries
+   ============================================================ */
+
+/* ── Large desktop ──────────────────────────────────────────── */
+@media (max-width: 1280px) {
+  :root {
+    --text-6xl: 4.25rem;
+    --text-5xl: 3.25rem;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1.2fr 1fr 1fr;
+  }
+
+  .footer__grid > :last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ── Tablet ──────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .spline-shell {
+    max-height: 380px;
+    justify-self: center;
+  }
+  :root {
+    --text-5xl: 2.75rem;
+    --text-4xl: 2.25rem;
+    --text-3xl: 1.75rem;
+    --space-32: 6rem;
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+}
+
+/* ── Mobile ──────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  :root {
+    --text-5xl: 2.25rem;
+    --text-4xl: 2rem;
+    --text-3xl: 1.625rem;
+    --text-2xl: 1.35rem;
+    --space-32: 4rem;
+    --space-24: 3rem;
+    --space-16: 3rem;
+    --header-h: 64px;
+  }
+
+  .container {
+    padding-inline: var(--space-6);
+  }
+
+  /* Nav → hamburger */
+  .nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .grid-3,
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: var(--space-4);
+    text-align: center;
+  }
+
+  /* Hero adjustments */
+  .hero {
+    padding-block: var(--space-16) var(--space-8) !important;
+    min-height: auto !important;
+  }
+
+  .hero__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .spline-shell {
+    max-height: 300px;
+    justify-self: center;
+    order: -1;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Section header */
+  .section-header {
+    margin-bottom: var(--space-8);
+  }
+
+  /* Cards */
+  .card {
+    padding: var(--space-6);
+  }
+}
+
+/* ── Small mobile ────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  :root {
+    --text-5xl: 1.875rem;
+    --text-4xl: 1.625rem;
+  }
+
+  .container {
+    padding-inline: var(--space-4);
+  }
+}

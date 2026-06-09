@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es" data-barba="wrapper">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Servicios de Nodo Studio — diseño web, branding, Google Ads, Meta Ads y más." />
+  <meta property="og:title"       content="Servicios — Nodo Studio" />
+  <meta property="og:description" content="Servicios de diseño web, branding y publicidad digital." />
+  <title>Servicios — Nodo Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@barba/core@2.9.7/dist/barba.umd.js" defer></script>
+</head>
+<body>
+
+  <div id="page-loader" role="status" aria-label="Cargando">
+    <div class="loader__box-wrap">
+      <div class="loader__box"></div>
+      <div class="loader__shadow"></div>
+    </div>
+    <span class="loader__label">Nodo Studio</span>
+    <div class="loader__progress"></div>
+  </div>
+
+  <div id="transition-overlay" aria-hidden="true"></div>
+
+  <header class="header" role="banner">
+    <div class="header__inner">
+      <a href="../index.html" class="logo" aria-label="Nodo Studio — Inicio">
+        <div class="logo__mark">N</div>
+        <span>Nodo Studio</span>
+      </a>
+      <nav class="nav" aria-label="Navegación principal">
+        <ul class="nav__list">
+          <li><a href="../index.html"           class="nav__link">Inicio</a></li>
+          <li><a href="./servicios.html"        class="nav__link active">Servicios</a></li>
+          <li><a href="./proyectos.html"        class="nav__link">Proyectos</a></li>
+          <li><a href="./precios.html"          class="nav__link">Precios</a></li>
+          <li><a href="./faq.html"              class="nav__link">FAQ</a></li>
+          <li class="nav__cta">
+            <a href="./contacto.html" class="btn btn--primary">
+              Hablemos
+              <svg class="btn__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu">
+    <a href="../index.html"    class="mobile-menu__link">Inicio</a>
+    <a href="./servicios.html" class="mobile-menu__link">Servicios</a>
+    <a href="./proyectos.html" class="mobile-menu__link">Proyectos</a>
+    <a href="./precios.html"   class="mobile-menu__link">Precios</a>
+    <a href="./faq.html"       class="mobile-menu__link">FAQ</a>
+    <a href="./contacto.html"  class="mobile-menu__link">Contacto</a>
+  </div>
+
+  <main data-barba="container" data-barba-namespace="servicios">
+  <div class="page-content">
+
+    <!-- Hero -->
+    <section class="section hero">
+      <div class="container">
+        <div style="max-width: 680px;">
+          <span class="eyebrow hero__eyebrow">Lo que ofrecemos</span>
+          <h1 class="hero__title" style="color: var(--clr-white); margin-bottom: var(--space-6);">Servicios que mueven <span class="text-gradient">el negocio</span>.</h1>
+          <p class="hero__subtitle" style="font-size: var(--text-lg);">Cada servicio está diseñado para generar impacto real, no para rellenar un portfolio.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servicios detail -->
+    <section class="section">
+      <div class="container">
+
+        <!-- Servicio 1 -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-16); align-items:center; margin-bottom:var(--space-24);">
+          <div data-animate>
+            <span class="tag">Web</span>
+            <h2 style="color:var(--clr-white); margin-top:var(--space-4); margin-bottom:var(--space-4);">Diseño & desarrollo web</h2>
+            <p style="margin-bottom:var(--space-6);">Sitios que cargan rápido, se ven bien en todos los dispositivos y convierten visitas en clientes. Desde landing pages hasta experiencias 3D con Three.js, Spline y GSAP.</p>
+            <ul style="display:flex;flex-direction:column;gap:var(--space-3);">
+              <li style="display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);color:var(--clr-text-muted);">
+                <span style="color:var(--clr-primary-light);">✓</span> Landing pages de alto rendimiento
+              </li>
+              <li style="display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);color:var(--clr-text-muted);">
+                <span style="color:var(--clr-primary-light);">✓</span> Webs corporativas y portfolios
+              </li>
+              <li style="display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);color:var(--clr-text-muted);">
+                <span style="color:var(--clr-primary-light);">✓</span> Experiencias 3D / WebGL / Spline
+              </li>
+              <li style="display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);color:var(--clr-text-muted);">
+                <span style="color:var(--clr-primary-light);">✓</span> Animaciones GSAP + ScrollTrigger
+              </li>
+            </ul>
+            <a href="./contacto.html" class="btn btn--primary" style="margin-top:var(--space-8);">Pedir presupuesto</a>
+          </div>
+          <div data-animate="slide-right" style="background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:var(--radius-lg);aspect-ratio:4/3;display:grid;place-items:center;font-size:4rem;">🌐</div>
+        </div>
+
+        <!-- Servicio 2 -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-16); align-items:center; margin-bottom:var(--space-24);">
+          <div data-animate="slide-left" style="background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:var(--radius-lg);aspect-ratio:4/3;display:grid;place-items:center;font-size:4rem;">📣</div>
+          <div data-animate>
+            <span class="tag">Publicidad</span>
+            <h2 style="color:var(--clr-white); margin-top:var(--space-4); margin-bottom:var(--space-4);">Google Ads & Meta Ads</h2>
+            <p style="margin-bottom:var(--space-6);">Campañas orientadas a resultados con seguimiento claro. Setup, optimización continua y reporting sin humo.</p>
+            <ul style="display:flex;flex-direction:column;gap:var(--space-3);">
+              <li style="display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);color:var(--clr-text-muted);">
+                <span style="color:var(--clr-primary-light);">✓</span> Google Search, Display y PMax
+              </li>
+              <li style="display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);color:var(--clr-text-muted);">
+                <span style="color:var(--clr-primary-light);">✓</span> Meta Ads (Facebook + Instagram)
+              </li>
+              <li style="display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);color:var(--clr-text-muted);">
+                <span style="color:var(--clr-primary-light);">✓</span> Tracking y conversiones avanzadas
+              </li>
+              <li style="display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);color:var(--clr-text-muted);">
+                <span style="color:var(--clr-primary-light);">✓</span> Reporting mensual claro
+              </li>
+            </ul>
+            <a href="./contacto.html" class="btn btn--primary" style="margin-top:var(--space-8);">Pedir presupuesto</a>
+          </div>
+        </div>
+
+        <!-- Servicio 3 -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-16); align-items:center;">
+          <div data-animate>
+            <span class="tag">Marca</span>
+            <h2 style="color:var(--clr-white); margin-top:var(--space-4); margin-bottom:var(--space-4);">Branding & identidad</h2>
+            <p style="margin-bottom:var(--space-6);">Identidad visual que conecta con tu público y diferencia tu negocio. Desde logotipo hasta manual de marca completo.</p>
+            <ul style="display:flex;flex-direction:column;gap:var(--space-3);">
+              <li style="display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);color:var(--clr-text-muted);">
+                <span style="color:var(--clr-primary-light);">✓</span> Diseño de logotipo
+              </li>
+              <li style="display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);color:var(--clr-text-muted);">
+                <span style="color:var(--clr-primary-light);">✓</span> Sistema de colores y tipografía
+              </li>
+              <li style="display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);color:var(--clr-text-muted);">
+                <span style="color:var(--clr-primary-light);">✓</span> Manual de marca
+              </li>
+              <li style="display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);color:var(--clr-text-muted);">
+                <span style="color:var(--clr-primary-light);">✓</span> Aplicaciones (redes, docs, merch)
+              </li>
+            </ul>
+            <a href="./contacto.html" class="btn btn--primary" style="margin-top:var(--space-8);">Pedir presupuesto</a>
+          </div>
+          <div data-animate="slide-right" style="background:var(--clr-surface);border:1px solid var(--clr-border);border-radius:var(--radius-lg);aspect-ratio:4/3;display:grid;place-items:center;font-size:4rem;">✦</div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="../index.html" class="logo">
+            <div class="logo__mark">N</div>
+            <span>Nodo Studio</span>
+          </a>
+          <p>Diseño web, branding y estrategia digital para negocios que quieren destacar.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Servicios</h4>
+          <ul class="footer__links">
+            <li><a href="./servicios.html">Diseño web</a></li>
+            <li><a href="./servicios.html">Branding</a></li>
+            <li><a href="./servicios.html">Google Ads</a></li>
+            <li><a href="./servicios.html">Meta Ads</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Empresa</h4>
+          <ul class="footer__links">
+            <li><a href="./proyectos.html">Proyectos</a></li>
+            <li><a href="./precios.html">Precios</a></li>
+            <li><a href="./faq.html">FAQ</a></li>
+            <li><a href="./contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Legal</h4>
+          <ul class="footer__links">
+            <li><a href="#">Aviso legal</a></li>
+            <li><a href="#">Privacidad</a></li>
+            <li><a href="#">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2025 Nodo Studio. Todos los derechos reservados.</span>
+        <span>Hecho con ♥ en Barcelona</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>
