@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gallery — BetterWLPRS</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet">
+
 
   <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -20,27 +24,35 @@
 
   <style>
     /* ─── RESET & BASE ─────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --black:   #0A0A0A;
-      --black2:  #111111;
-      --surface: #181818;
-      --border:  #252525;
-      --mid:     #4A4A4A;
-      --muted:   #888888;
-      --off:     #F0EDE8;
-      --accent:  #8f6dfb;
-      --accent2: #6a46f2;
-
-      --font-display: 'Syne', sans-serif;
-      --font-body:    'Inter', sans-serif;
-
-      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-in-out:   cubic-bezier(0.76, 0, 0.24, 1);
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    html { scroll-behavior: smooth; }
+    :root {
+      --black: #0A0A0A;
+      --black2: #111111;
+      --surface: #181818;
+      --border: #252525;
+      --mid: #4A4A4A;
+      --muted: #888888;
+      --off: #F0EDE8;
+      --accent: #8f6dfb;
+      --accent2: #6a46f2;
+
+      --font-display: 'Poppins', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       background: var(--black);
@@ -49,46 +61,14 @@
       font-size: 15px;
       line-height: 1.5;
       overflow-x: hidden;
-      cursor: none;
+
     }
 
-    ::selection { background: var(--accent); color: var(--black); }
-
-    /* ─── CUSTOM CURSOR ────────────────────────────────────── */
-    #cursor {
-      position: fixed;
-      top: 0; left: 0;
-      width: 12px; height: 12px;
+    ::selection {
       background: var(--accent);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: width .2s var(--ease-out-expo),
-                  height .2s var(--ease-out-expo),
-                  background .2s ease;
-      mix-blend-mode: difference;
+      color: var(--black);
     }
 
-    #cursor-ring {
-      position: fixed;
-      top: 0; left: 0;
-      width: 36px; height: 36px;
-      border: 1px solid rgba(200, 255, 0, 0.4);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: width .4s var(--ease-out-expo),
-                  height .4s var(--ease-out-expo),
-                  border-color .3s ease;
-    }
-
-    body.cursor-hover #cursor { width: 8px; height: 8px; }
-    body.cursor-hover #cursor-ring {
-      width: 56px; height: 56px;
-      border-color: rgba(200, 255, 0, 0.8);
-    }
 
     /* ─── PAGE TRANSITION OVERLAY ──────────────────────────── */
     #page-overlay {
@@ -96,7 +76,6 @@
       inset: 0;
       background: var(--black2);
       z-index: 8888;
-      pointer-events: none;
       transform: scaleY(0);
       transform-origin: bottom;
     }
@@ -104,7 +83,9 @@
     /* ─── NAV ───────────────────────────────────────────────── */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
       padding: 0 40px;
       height: 64px;
@@ -127,7 +108,9 @@
       text-transform: uppercase;
     }
 
-    .nav-logo span { color: var(--accent); }
+    .nav-logo span {
+      color: var(--accent);
+    }
 
     .nav-links {
       display: flex;
@@ -145,8 +128,13 @@
       transition: color .2s;
     }
 
-    .nav-links a:hover { color: var(--off); }
-    .nav-links a.active { color: var(--accent); }
+    .nav-links a:hover {
+      color: var(--off);
+    }
+
+    .nav-links a.active {
+      color: var(--accent);
+    }
 
     .nav-cta {
       font-family: var(--font-display);
@@ -162,10 +150,14 @@
       transition: opacity .2s;
     }
 
-    .nav-cta:hover { opacity: 0.85; }
+    .nav-cta:hover {
+      opacity: 0.85;
+    }
 
     /* ─── MAIN WRAPPER ──────────────────────────────────────── */
-    [data-barba="wrapper"] { min-height: 100vh; }
+    [data-barba="wrapper"] {
+      min-height: 100vh;
+    }
 
     [data-barba="container"] {
       padding-top: 64px;
@@ -180,7 +172,7 @@
       gap: 40px;
     }
 
-    .gallery-hero-left h1 {
+    .gallery-hero-left h2 {
       font-family: var(--font-display);
       font-size: clamp(42px, 6vw, 80px);
       font-weight: 800;
@@ -190,7 +182,7 @@
       color: var(--off);
     }
 
-    .gallery-hero-left h1 em {
+    .gallery-hero-left h2 em {
       font-style: normal;
       color: var(--accent);
       -webkit-text-stroke: 0px;
@@ -260,7 +252,7 @@
       border: 1px solid transparent;
       padding: 8px 16px;
       border-radius: 2px;
-      cursor: none;
+
       transition: color .2s, border-color .2s, background .2s;
       position: relative;
       overflow: hidden;
@@ -277,7 +269,10 @@
       z-index: -1;
     }
 
-    .filter-tab:hover { color: var(--off); border-color: var(--border); }
+    .filter-tab:hover {
+      color: var(--off);
+      border-color: var(--border);
+    }
 
     .filter-tab.active {
       color: var(--black);
@@ -297,7 +292,10 @@
       letter-spacing: 0.05em;
     }
 
-    .count-badge strong { color: var(--accent); font-family: var(--font-display); }
+    .count-badge strong {
+      color: var(--accent);
+      font-family: var(--font-display);
+    }
 
     .layout-toggle {
       display: flex;
@@ -309,13 +307,17 @@
       border: 1px solid var(--border);
       padding: 7px 10px;
       border-radius: 2px;
-      cursor: none;
+
       color: var(--muted);
       transition: all .2s;
       line-height: 1;
     }
 
-    .layout-btn.active, .layout-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .layout-btn.active,
+    .layout-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
 
     /* ─── GALLERY GRID ──────────────────────────────────────── */
     .gallery-grid {
@@ -324,8 +326,13 @@
       column-gap: 12px;
     }
 
-    .gallery-grid.layout-3 { columns: 3 320px; }
-    .gallery-grid.layout-list { columns: 1; }
+    .gallery-grid.layout-3 {
+      columns: 3 320px;
+    }
+
+    .gallery-grid.layout-list {
+      columns: 1;
+    }
 
     /* ─── GALLERY ITEM ──────────────────────────────────────── */
     .gallery-item {
@@ -335,7 +342,7 @@
       overflow: hidden;
       border-radius: 4px;
       background: var(--surface);
-      cursor: none;
+
       display: block;
     }
 
@@ -360,7 +367,7 @@
       background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
       opacity: 0;
       transition: opacity .1s;
-      pointer-events: none;
+
       z-index: 10;
     }
 
@@ -370,8 +377,15 @@
     }
 
     @keyframes scan {
-      0%   { top: -2%; opacity: 1; }
-      100% { top: 102%; opacity: 0.4; }
+      0% {
+        top: -2%;
+        opacity: 1;
+      }
+
+      100% {
+        top: 102%;
+        opacity: 0.4;
+      }
     }
 
     .item-media img,
@@ -394,9 +408,9 @@
       position: absolute;
       inset: 0;
       background: linear-gradient(to top,
-        rgba(10, 10, 10, 0.92) 0%,
-        rgba(10, 10, 10, 0.4) 40%,
-        transparent 100%);
+          rgba(10, 10, 10, 0.92) 0%,
+          rgba(10, 10, 10, 0.4) 40%,
+          transparent 100%);
       opacity: 0;
       transition: opacity .35s ease;
       display: flex;
@@ -406,7 +420,9 @@
       z-index: 5;
     }
 
-    .gallery-item:hover .item-overlay { opacity: 1; }
+    .gallery-item:hover .item-overlay {
+      opacity: 1;
+    }
 
     .item-title {
       font-family: var(--font-display);
@@ -419,7 +435,9 @@
       margin-bottom: 4px;
     }
 
-    .gallery-item:hover .item-title { transform: translateY(0); }
+    .gallery-item:hover .item-title {
+      transform: translateY(0);
+    }
 
     .item-meta {
       display: flex;
@@ -429,7 +447,9 @@
       transition: transform .4s var(--ease-out-expo) .04s;
     }
 
-    .gallery-item:hover .item-meta { transform: translateY(0); }
+    .gallery-item:hover .item-meta {
+      transform: translateY(0);
+    }
 
     .item-cat {
       font-size: 10px;
@@ -443,10 +463,29 @@
       border: 1px solid rgba(200, 255, 0, 0.25);
     }
 
-    .item-cat.movie   { background: rgba(255, 107, 53, 0.15); color: var(--accent2); border-color: rgba(255, 107, 53, 0.25); }
-    .item-cat.series  { background: rgba(147, 112, 255, 0.15); color: #9370FF; border-color: rgba(147, 112, 255, 0.25); }
-    .item-cat.live    { background: rgba(255, 50, 50, 0.15); color: #FF5050; border-color: rgba(255, 50, 50, 0.25); }
-    .item-cat.vertical{ background: rgba(50, 200, 255, 0.15); color: #32C8FF; border-color: rgba(50, 200, 255, 0.25); }
+    .item-cat.movie {
+      background: rgba(255, 107, 53, 0.15);
+      color: var(--accent2);
+      border-color: rgba(255, 107, 53, 0.25);
+    }
+
+    .item-cat.series {
+      background: rgba(147, 112, 255, 0.15);
+      color: #9370FF;
+      border-color: rgba(147, 112, 255, 0.25);
+    }
+
+    .item-cat.live {
+      background: rgba(255, 50, 50, 0.15);
+      color: #FF5050;
+      border-color: rgba(255, 50, 50, 0.25);
+    }
+
+    .item-cat.vertical {
+      background: rgba(50, 200, 255, 0.15);
+      color: #32C8FF;
+      border-color: rgba(50, 200, 255, 0.25);
+    }
 
     /* video badge */
     .video-badge {
@@ -470,15 +509,25 @@
 
     .video-badge::before {
       content: '';
-      width: 6px; height: 6px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: white;
       animation: pulse 1.5s ease infinite;
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.7); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.7);
+      }
     }
 
     /* 4K badge */
@@ -487,7 +536,7 @@
       top: 12px;
       right: 12px;
       z-index: 6;
-      background: rgba(0,0,0,0.7);
+      background: rgba(0, 0, 0, 0.7);
       color: var(--accent);
       font-size: 9px;
       font-weight: 700;
@@ -509,7 +558,7 @@
       justify-content: center;
       padding: 40px;
       opacity: 0;
-      pointer-events: none;
+
       transition: opacity .4s ease;
     }
 
@@ -548,7 +597,7 @@
       max-height: calc(90vh - 80px);
       border-radius: 4px;
       object-fit: contain;
-      box-shadow: 0 40px 120px rgba(0,0,0,0.8);
+      box-shadow: 0 40px 120px rgba(0, 0, 0, 0.8);
     }
 
     #lightbox-info {
@@ -570,17 +619,21 @@
       background: none;
       border: 1px solid var(--border);
       color: var(--muted);
-      width: 36px; height: 36px;
+      width: 36px;
+      height: 36px;
       border-radius: 2px;
       font-size: 18px;
-      cursor: none;
+
       display: flex;
       align-items: center;
       justify-content: center;
       transition: border-color .2s, color .2s;
     }
 
-    #lightbox-close:hover { border-color: var(--off); color: var(--off); }
+    #lightbox-close:hover {
+      border-color: var(--off);
+      color: var(--off);
+    }
 
     #lightbox-nav {
       display: flex;
@@ -588,20 +641,24 @@
     }
 
     .lb-arrow {
-      background: rgba(255,255,255,0.06);
+      background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--border);
       color: var(--off);
-      width: 36px; height: 36px;
+      width: 36px;
+      height: 36px;
       border-radius: 2px;
       font-size: 16px;
-      cursor: none;
+
       display: flex;
       align-items: center;
       justify-content: center;
       transition: background .2s, border-color .2s;
     }
 
-    .lb-arrow:hover { background: rgba(200, 255, 0, 0.1); border-color: var(--accent); }
+    .lb-arrow:hover {
+      background: rgba(200, 255, 0, 0.1);
+      border-color: var(--accent);
+    }
 
     /* ─── LOADING STATE ─────────────────────────────────────── */
     .gallery-skeleton {
@@ -620,16 +677,21 @@
 
     .skeleton-shimmer {
       background: linear-gradient(90deg,
-        var(--surface) 0%,
-        var(--border) 50%,
-        var(--surface) 100%);
+          var(--surface) 0%,
+          var(--border) 50%,
+          var(--surface) 100%);
       background-size: 200% 100%;
       animation: shimmer 1.6s ease infinite;
     }
 
     @keyframes shimmer {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
+      0% {
+        background-position: 200% 0;
+      }
+
+      100% {
+        background-position: -200% 0;
+      }
     }
 
     /* ─── EMPTY STATE ───────────────────────────────────────── */
@@ -639,7 +701,9 @@
       display: none;
     }
 
-    .empty-state.show { display: block; }
+    .empty-state.show {
+      display: block;
+    }
 
     .empty-state h3 {
       font-family: var(--font-display);
@@ -649,7 +713,10 @@
       margin-bottom: 8px;
     }
 
-    .empty-state p { color: var(--muted); font-size: 14px; }
+    .empty-state p {
+      color: var(--muted);
+      font-size: 14px;
+    }
 
     /* ─── FOOTER ────────────────────────────────────────────── */
     footer {
@@ -669,7 +736,9 @@
       color: var(--off);
     }
 
-    .footer-logo span { color: var(--accent); }
+    .footer-logo span {
+      color: var(--accent);
+    }
 
     .footer-links {
       display: flex;
@@ -684,7 +753,9 @@
       transition: color .2s;
     }
 
-    .footer-links a:hover { color: var(--off); }
+    .footer-links a:hover {
+      color: var(--off);
+    }
 
     .footer-right {
       font-size: 12px;
@@ -692,10 +763,22 @@
     }
 
     /* ─── SCROLLBAR ─────────────────────────────────────────── */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--black); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--mid); }
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--black);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 2px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--mid);
+    }
 
     /* ─── BARBA TRANSITION ──────────────────────────────────── */
     .barba-leave-active,
@@ -703,35 +786,112 @@
       transition: opacity .4s ease, transform .4s var(--ease-out-expo);
     }
 
-    .barba-leave-to { opacity: 0; transform: translateY(-12px); }
-    .barba-enter-from { opacity: 0; transform: translateY(12px); }
+    .barba-leave-to {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+
+    .barba-enter-from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
 
     /* ─── RESPONSIVE ────────────────────────────────────────── */
     @media (max-width: 768px) {
-      nav { padding: 0 20px; }
-      .nav-links { display: none; }
-      .gallery-hero { padding: 48px 20px 32px; flex-direction: column; align-items: flex-start; }
-      .gallery-stats { gap: 24px; }
-      .filter-bar { padding: 0 20px; flex-wrap: wrap; }
-      .filter-tabs { flex-wrap: wrap; }
-      .gallery-grid { padding: 0 20px 60px; columns: 2 160px; }
-      footer { padding: 32px 20px; flex-direction: column; gap: 20px; text-align: center; }
+      nav {
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .gallery-hero {
+        padding: 48px 20px 32px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .gallery-stats {
+        gap: 24px;
+      }
+
+      .filter-bar {
+        padding: 0 20px;
+        flex-wrap: wrap;
+      }
+
+      .filter-tabs {
+        flex-wrap: wrap;
+      }
+
+      .gallery-grid {
+        padding: 0 20px 60px;
+        columns: 2 160px;
+      }
+
+      footer {
+        padding: 32px 20px;
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+
+      *,
+      *::before,
+      *::after {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ─── GALLERY HERO REESTRUCTURADO ───────────────────── */
+    .gallery-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      padding: 48px 0 0;
+      gap: 0;
+    }
+
+    .gallery-brand {
+      padding: 0 40px 32px;
+      text-align: center;
+    }
+
+    .gallery-spline {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .gallery-copy {
+      padding: 40px 40px 48px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-copy {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 32px 20px 40px;
+      }
+
+      .gallery-brand {
+        padding: 0 20px 24px;
       }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- Custom Cursor -->
-  <div id="cursor"></div>
-  <div id="cursor-ring"></div>
 
   <!-- Page Transition Overlay -->
   <div id="page-overlay"></div>
@@ -763,28 +923,180 @@
     <a href="#request" class="nav-cta">Request Access</a>
   </nav>
 
+  <!-- LOADER — fuera del barba wrapper, antes del </body> -->
+  <div id="page-loader">
+    <div class="loader-logo">
+      <span class="loader-line"></span>
+      Better<span>WLPRS</span>
+      <span class="loader-line"></span>
+    </div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar" id="loader-bar"></div>
+    </div>
+    <div class="loader-pct" id="loader-pct">0%</div>
+  </div>
+
+  <style>
+    /* ─── LOADER ────────────────────────────────────────── */
+    #page-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--black);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      pointer-events: none;
+    }
+
+    #page-loader .loader-logo {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #page-loader .loader-logo span:not(.loader-line) {
+      color: var(--accent);
+    }
+
+    #page-loader .loader-line {
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    #page-loader .loader-bar-wrap {
+      width: 180px;
+      height: 1px;
+      background: var(--border);
+      overflow: hidden;
+      border-radius: 1px;
+    }
+
+    #page-loader .loader-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      border-radius: 1px;
+    }
+
+    #page-loader .loader-pct {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--mid);
+    }
+  </style>
+
+  <script>// ─── LOADER ──────────────────────────────────────────
+    function runLoader(onComplete) {
+      const loader = document.getElementById('page-loader');
+      const bar = document.getElementById('loader-bar');
+      const pct = document.getElementById('loader-pct');
+      const obj = { val: 0 };
+
+      gsap.to(obj, {
+        val: 100,
+        duration: 1.4,
+        ease: 'power2.inOut',
+        onUpdate() {
+          const v = Math.round(obj.val);
+          bar.style.width = v + '%';
+          pct.textContent = v + '%';
+        },
+        onComplete() {
+          gsap.to(loader, {
+            yPercent: -100,
+            duration: 0.7,
+            ease: 'power3.inOut',
+            delay: 0.15,
+            onComplete() {
+              gsap.set(loader, { display: 'none' });
+              onComplete?.();
+            }
+          });
+        }
+      });
+    }
+
+    // Primera carga
+    window.addEventListener('DOMContentLoaded', () => runLoader());
+
+    // Integración con Barba — aparece entre páginas
+    barba.hooks.before(() => {
+      gsap.set('#page-loader', { display: 'flex', yPercent: 0 });
+      gsap.set('#loader-bar', { width: '0%' });
+      document.getElementById('loader-pct').textContent = '0%';
+    });
+
+    barba.hooks.beforeEnter(() => {
+      return new Promise(resolve => runLoader(resolve));
+    });</script>
+
   <!-- Barba wrapper -->
   <div data-barba="wrapper">
     <main data-barba="container" data-barba-namespace="gallery">
 
       <!-- ── GALLERY PAGE ─────────────────────────── -->
       <section class="gallery-hero">
-        <div class="gallery-hero-left">
-          <h1>The <em>Collection.</em></h1>
-          <p>Every frame hand-picked. Every scene captured at peak. From open-world skies to cinematic moments — these are the wallpapers your setup deserves.</p>
+        <!-- 1. Marca -->
+        <div class="gallery-brand">
+          <h1 style="
+      font-family: var(--font-display);
+      font-size: clamp(13px, 1.5vw, 18px);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    ">
+            <span style="display:inline-block; width:32px; height:1px; background:var(--border);"></span>
+            Better<span style="color:var(--accent);">WLPRS</span>
+            <span style="display:inline-block; width:32px; height:1px; background:var(--border);"></span>
+          </h1>
         </div>
-        <div class="gallery-stats">
-          <div class="stat-item">
-            <span class="stat-num" data-count="1000">0</span>
-            <span class="stat-label">Wallpapers</span>
+
+        <!-- 2. Spline -->
+        <div class="gallery-spline">
+          <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.30/build/spline-viewer.js"></script>
+          <spline-viewer url="https://prod.spline.design/OSv09dI6Uda89qXT/scene.splinecode"
+            style="width:100%; height:500px; background:transparent;"></spline-viewer>
+        </div>
+
+        <!-- 3. Título + descripción + stats -->
+        <div class="gallery-copy">
+          <div class="gallery-hero-left">
+            <h2>The <em>Collection.</em></h2>
+            <p>Every frame hand-picked. Every scene captured at peak. From open-world skies to cinematic moments — these
+              are the wallpapers your setup deserves.</p>
           </div>
-          <div class="stat-item">
-            <span class="stat-num" data-count="200">0</span>
-            <span class="stat-label">VideoWLPRS</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-num" data-count="50">0</span>
-            <span class="stat-label">GB Library</span>
+          <div class="gallery-stats">
+            <div class="stat-item">
+              <span class="stat-num" data-count="1000">0</span>
+              <span class="stat-label">Wallpapers</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num" data-count="200">0</span>
+              <span class="stat-label">VideoWLPRS</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num" data-count="50">0</span>
+              <span class="stat-label">GB Library</span>
+            </div>
           </div>
         </div>
       </section>
@@ -834,139 +1146,115 @@
   </div><!-- /barba wrapper -->
 
 
-<script>
-/* ═══════════════════════════════════════════════════════════
-   DATA  — replace src with real images/videos
-═══════════════════════════════════════════════════════════ */
-const ITEMS = [
-  // GAMES
-  { id:1,  title:"The Witcher 3 — Skellige",      cat:"games",    type:"img",   ratio:"16/9",  src:"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=85", res:"2K" },
-  { id:2,  title:"Ghost of Tsushima — Golden Hour",cat:"games",   type:"img",   ratio:"16/9",  src:"https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&q=85", res:"2K" },
-  { id:3,  title:"Red Dead 2 — Dawn",              cat:"games",    type:"img",   ratio:"4/3",   src:"https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=85", res:"2K" },
-  { id:4,  title:"Watch Dogs 2 — San Francisco",  cat:"games",    type:"video", ratio:"16/9",  src:"https://www.w3schools.com/html/mov_bbb.mp4",  res:"2K" },
-  { id:5,  title:"Cyberpunk 2077 — Neon Night",   cat:"games",    type:"img",   ratio:"21/9",  src:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&q=85", res:"4K" },
-  { id:6,  title:"Elden Ring — Erdtree",           cat:"games",    type:"img",   ratio:"16/9",  src:"https://images.unsplash.com/photo-1541726260-e6b6a6a08b27?w=800&q=85", res:"2K" },
-  { id:7,  title:"Horizon ZD — Ruins",             cat:"games",    type:"img",   ratio:"9/16",  src:"https://images.unsplash.com/photo-1569706971306-de96038a5f5d?w=600&q=85", res:"2K", vertical:true },
-  { id:8,  title:"Death Stranding — Void",         cat:"games",    type:"video", ratio:"16/9",  src:"https://www.w3schools.com/html/mov_bbb.mp4", res:"2K" },
-  { id:9,  title:"God of War — Midgard",           cat:"games",    type:"img",   ratio:"16/9",  src:"https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=800&q=85", res:"2K" },
-  { id:10, title:"Hollow Knight — Forgotten",      cat:"games",    type:"img",   ratio:"4/3",   src:"https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&q=85", res:"2K" },
-  { id:11, title:"Zelda BotW — Plateau",           cat:"games",    type:"img",   ratio:"16/9",  src:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=85", res:"2K" },
-  { id:12, title:"Dark Souls 3 — Irithyll",        cat:"games",    type:"img",   ratio:"16/9",  src:"https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=800&q=85", res:"2K" },
+  <script>
+    /* ═══════════════════════════════════════════════════════════
+       DATA  — replace src with real images/videos
+    ═══════════════════════════════════════════════════════════ */
+    const ITEMS = [
+      // GAMES
+      { id: 1, title: "The Witcher 3 — Skellige", cat: "games", type: "img", ratio: "16/9", src: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=85", res: "2K" },
+      { id: 2, title: "Ghost of Tsushima — Golden Hour", cat: "games", type: "img", ratio: "16/9", src: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&q=85", res: "2K" },
+      { id: 3, title: "Red Dead 2 — Dawn", cat: "games", type: "img", ratio: "4/3", src: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=85", res: "2K" },
+      { id: 4, title: "Watch Dogs 2 — San Francisco", cat: "games", type: "video", ratio: "16/9", src: "https://www.w3schools.com/html/mov_bbb.mp4", res: "2K" },
+      { id: 5, title: "Cyberpunk 2077 — Neon Night", cat: "games", type: "img", ratio: "21/9", src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&q=85", res: "4K" },
+      { id: 6, title: "Elden Ring — Erdtree", cat: "games", type: "img", ratio: "16/9", src: "https://images.unsplash.com/photo-1541726260-e6b6a6a08b27?w=800&q=85", res: "2K" },
+      { id: 7, title: "Horizon ZD — Ruins", cat: "games", type: "img", ratio: "9/16", src: "https://images.unsplash.com/photo-1569706971306-de96038a5f5d?w=600&q=85", res: "2K", vertical: true },
+      { id: 8, title: "Death Stranding — Void", cat: "games", type: "video", ratio: "16/9", src: "https://www.w3schools.com/html/mov_bbb.mp4", res: "2K" },
+      { id: 9, title: "God of War — Midgard", cat: "games", type: "img", ratio: "16/9", src: "https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=800&q=85", res: "2K" },
+      { id: 10, title: "Hollow Knight — Forgotten", cat: "games", type: "img", ratio: "4/3", src: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&q=85", res: "2K" },
+      { id: 11, title: "Zelda BotW — Plateau", cat: "games", type: "img", ratio: "16/9", src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=85", res: "2K" },
+      { id: 12, title: "Dark Souls 3 — Irithyll", cat: "games", type: "img", ratio: "16/9", src: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=800&q=85", res: "2K" },
 
-  // MOVIES
-  { id:13, title:"Blade Runner 2049 — Rain",       cat:"movies",   type:"img",   ratio:"21/9",  src:"https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1000&q=85", res:"4K" },
-  { id:14, title:"Dune — Desert Walk",             cat:"movies",   type:"img",   ratio:"16/9",  src:"https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=85", res:"2K" },
-  { id:15, title:"Interstellar — Tesseract",       cat:"movies",   type:"img",   ratio:"16/9",  src:"https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=85", res:"4K" },
-  { id:16, title:"The Matrix — Lobby",             cat:"movies",   type:"video", ratio:"16/9",  src:"https://www.w3schools.com/html/mov_bbb.mp4", res:"2K" },
-  { id:17, title:"Mad Max Fury Road — Wasteland",  cat:"movies",   type:"img",   ratio:"21/9",  src:"https://images.unsplash.com/photo-1473654729523-203e25dfda10?w=1000&q=85", res:"2K" },
-  { id:18, title:"Tron Legacy — Grid",             cat:"movies",   type:"img",   ratio:"16/9",  src:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85", res:"2K" },
-  { id:19, title:"Arrival — Ship",                 cat:"movies",   type:"img",   ratio:"9/16",  src:"https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&q=85", res:"2K", vertical:true },
-  { id:20, title:"2001 Space Odyssey — HAL",       cat:"movies",   type:"img",   ratio:"4/3",   src:"https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600&q=85", res:"2K" },
+      // MOVIES
+      { id: 13, title: "Blade Runner 2049 — Rain", cat: "movies", type: "img", ratio: "21/9", src: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1000&q=85", res: "4K" },
+      { id: 14, title: "Dune — Desert Walk", cat: "movies", type: "img", ratio: "16/9", src: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=85", res: "2K" },
+      { id: 15, title: "Interstellar — Tesseract", cat: "movies", type: "img", ratio: "16/9", src: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=85", res: "4K" },
+      { id: 16, title: "The Matrix — Lobby", cat: "movies", type: "video", ratio: "16/9", src: "https://www.w3schools.com/html/mov_bbb.mp4", res: "2K" },
+      { id: 17, title: "Mad Max Fury Road — Wasteland", cat: "movies", type: "img", ratio: "21/9", src: "https://images.unsplash.com/photo-1473654729523-203e25dfda10?w=1000&q=85", res: "2K" },
+      { id: 18, title: "Tron Legacy — Grid", cat: "movies", type: "img", ratio: "16/9", src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85", res: "2K" },
+      { id: 19, title: "Arrival — Ship", cat: "movies", type: "img", ratio: "9/16", src: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&q=85", res: "2K", vertical: true },
+      { id: 20, title: "2001 Space Odyssey — HAL", cat: "movies", type: "img", ratio: "4/3", src: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600&q=85", res: "2K" },
 
-  // SERIES
-  { id:21, title:"Westworld — Mesa Hub",           cat:"series",   type:"img",   ratio:"21/9",  src:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1000&q=85", res:"4K" },
-  { id:22, title:"Chernobyl — Zone",               cat:"series",   type:"img",   ratio:"16/9",  src:"https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=800&q=85", res:"2K" },
-  { id:23, title:"Dark — Caves",                   cat:"series",   type:"img",   ratio:"16/9",  src:"https://images.unsplash.com/photo-1521747116042-5a810fda9664?w=800&q=85", res:"2K" },
-  { id:24, title:"Severance — MDR Floor",          cat:"series",   type:"video", ratio:"16/9",  src:"https://www.w3schools.com/html/mov_bbb.mp4", res:"2K" },
-  { id:25, title:"Silo — The Porch",               cat:"series",   type:"img",   ratio:"9/16",  src:"https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=85", res:"2K", vertical:true },
-  { id:26, title:"The Last of Us — Cordyceps",     cat:"series",   type:"img",   ratio:"16/9",  src:"https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=85", res:"2K" },
-  { id:27, title:"Foundation — Trantor",           cat:"series",   type:"img",   ratio:"21/9",  src:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&q=85", res:"4K" },
+      // SERIES
+      { id: 21, title: "Westworld — Mesa Hub", cat: "series", type: "img", ratio: "21/9", src: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1000&q=85", res: "4K" },
+      { id: 22, title: "Chernobyl — Zone", cat: "series", type: "img", ratio: "16/9", src: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=800&q=85", res: "2K" },
+      { id: 23, title: "Dark — Caves", cat: "series", type: "img", ratio: "16/9", src: "https://images.unsplash.com/photo-1521747116042-5a810fda9664?w=800&q=85", res: "2K" },
+      { id: 24, title: "Severance — MDR Floor", cat: "series", type: "video", ratio: "16/9", src: "https://www.w3schools.com/html/mov_bbb.mp4", res: "2K" },
+      { id: 25, title: "Silo — The Porch", cat: "series", type: "img", ratio: "9/16", src: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=85", res: "2K", vertical: true },
+      { id: 26, title: "The Last of Us — Cordyceps", cat: "series", type: "img", ratio: "16/9", src: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=85", res: "2K" },
+      { id: 27, title: "Foundation — Trantor", cat: "series", type: "img", ratio: "21/9", src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1000&q=85", res: "4K" },
 
-  // LIVE
-  { id:28, title:"GTA V — Los Santos Live",        cat:"live",     type:"video", ratio:"16/9",  src:"https://www.w3schools.com/html/mov_bbb.mp4", res:"2K" },
-  { id:29, title:"RDR2 — Campfire Night",          cat:"live",     type:"video", ratio:"16/9",  src:"https://www.w3schools.com/html/mov_bbb.mp4", res:"2K" },
-  { id:30, title:"Cyberpunk — Rain Loop",          cat:"live",     type:"video", ratio:"21/9",  src:"https://www.w3schools.com/html/mov_bbb.mp4", res:"4K" },
-  { id:31, title:"Skyrim — Snow Storm",            cat:"live",     type:"video", ratio:"16/9",  src:"https://www.w3schools.com/html/mov_bbb.mp4", res:"2K" },
-  { id:32, title:"No Man's Sky — Orbit",           cat:"live",     type:"video", ratio:"16/9",  src:"https://www.w3schools.com/html/mov_bbb.mp4", res:"4K" },
-  { id:33, title:"Firewatch — Sunset Loop",        cat:"live",     type:"video", ratio:"16/9",  src:"https://www.w3schools.com/html/mov_bbb.mp4", res:"2K" },
+      // LIVE
+      { id: 28, title: "GTA V — Los Santos Live", cat: "live", type: "video", ratio: "16/9", src: "https://www.w3schools.com/html/mov_bbb.mp4", res: "2K" },
+      { id: 29, title: "RDR2 — Campfire Night", cat: "live", type: "video", ratio: "16/9", src: "https://www.w3schools.com/html/mov_bbb.mp4", res: "2K" },
+      { id: 30, title: "Cyberpunk — Rain Loop", cat: "live", type: "video", ratio: "21/9", src: "https://www.w3schools.com/html/mov_bbb.mp4", res: "4K" },
+      { id: 31, title: "Skyrim — Snow Storm", cat: "live", type: "video", ratio: "16/9", src: "https://www.w3schools.com/html/mov_bbb.mp4", res: "2K" },
+      { id: 32, title: "No Man's Sky — Orbit", cat: "live", type: "video", ratio: "16/9", src: "https://www.w3schools.com/html/mov_bbb.mp4", res: "4K" },
+      { id: 33, title: "Firewatch — Sunset Loop", cat: "live", type: "video", ratio: "16/9", src: "https://www.w3schools.com/html/mov_bbb.mp4", res: "2K" },
 
-  // VERTICAL
-  { id:34, title:"Ghost of Tsushima — Portrait",  cat:"vertical", type:"img",   ratio:"9/16",  src:"https://images.unsplash.com/photo-1526570207772-784d36084510?w=600&q=85", res:"2K", vertical:true },
-  { id:35, title:"Dune — Spice Fields",            cat:"vertical", type:"img",   ratio:"9/16",  src:"https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=600&q=85", res:"2K", vertical:true },
-  { id:36, title:"Ellie Last of Us — Vertical",   cat:"vertical", type:"img",   ratio:"9/16",  src:"https://images.unsplash.com/photo-1569706971306-de96038a5f5d?w=600&q=85", res:"2K", vertical:true },
-  { id:37, title:"Silo — Descent Portrait",        cat:"vertical", type:"img",   ratio:"9/16",  src:"https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=85", res:"2K", vertical:true },
-  { id:38, title:"Blade Runner — Vertical Rain",   cat:"vertical", type:"video", ratio:"9/16",  src:"https://www.w3schools.com/html/mov_bbb.mp4", res:"2K", vertical:true },
-];
+      // VERTICAL
+      { id: 34, title: "Ghost of Tsushima — Portrait", cat: "vertical", type: "img", ratio: "9/16", src: "https://images.unsplash.com/photo-1526570207772-784d36084510?w=600&q=85", res: "2K", vertical: true },
+      { id: 35, title: "Dune — Spice Fields", cat: "vertical", type: "img", ratio: "9/16", src: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=600&q=85", res: "2K", vertical: true },
+      { id: 36, title: "Ellie Last of Us — Vertical", cat: "vertical", type: "img", ratio: "9/16", src: "https://images.unsplash.com/photo-1569706971306-de96038a5f5d?w=600&q=85", res: "2K", vertical: true },
+      { id: 37, title: "Silo — Descent Portrait", cat: "vertical", type: "img", ratio: "9/16", src: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=85", res: "2K", vertical: true },
+      { id: 38, title: "Blade Runner — Vertical Rain", cat: "vertical", type: "video", ratio: "9/16", src: "https://www.w3schools.com/html/mov_bbb.mp4", res: "2K", vertical: true },
+    ];
 
-/* ═══════════════════════════════════════════════════════════
-   CURSOR
-═══════════════════════════════════════════════════════════ */
-(function() {
-  const cursor = document.getElementById('cursor');
-  const ring   = document.getElementById('cursor-ring');
-  let mx = 0, my = 0, rx = 0, ry = 0;
 
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    gsap.set(cursor, { x: mx, y: my });
-  });
+    /* ═══════════════════════════════════════════════════════════
+       COUNTER ANIMATION
+    ═══════════════════════════════════════════════════════════ */
+    function animateCounters() {
+      document.querySelectorAll('[data-count]').forEach(el => {
+        const target = parseInt(el.dataset.count);
+        const isBig = target > 100;
 
-  // ring follows with lag
-  (function rafLoop() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    gsap.set(ring, { x: rx, y: ry });
-    requestAnimationFrame(rafLoop);
-  })();
-
-  // hover effect on interactive elements
-  document.addEventListener('mouseover', e => {
-    if (e.target.closest('a, button, .gallery-item, .filter-tab, .layout-btn, .lb-arrow')) {
-      document.body.classList.add('cursor-hover');
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 85%',
+          once: true,
+          onEnter: () => {
+            gsap.to({ val: 0 }, {
+              val: target,
+              duration: isBig ? 1.6 : 1.2,
+              ease: 'power2.out',
+              delay: 0.2,
+              onUpdate: function () {
+                el.textContent = Math.round(this.targets()[0].val) + (isBig && target >= 50 ? '+' : '');
+              }
+            });
+          }
+        });
+      });
     }
-  });
-  document.addEventListener('mouseout', e => {
-    if (!e.target.closest('a, button, .gallery-item, .filter-tab, .layout-btn, .lb-arrow')) {
-      document.body.classList.remove('cursor-hover');
-    }
-  });
-})();
 
-/* ═══════════════════════════════════════════════════════════
-   COUNTER ANIMATION
-═══════════════════════════════════════════════════════════ */
-function animateCounters() {
-  document.querySelectorAll('[data-count]').forEach(el => {
-    const target = parseInt(el.dataset.count);
-    const isBig = target > 100;
-    gsap.to({ val: 0 }, {
-      val: target,
-      duration: isBig ? 1.6 : 1.2,
-      ease: 'power2.out',
-      delay: 0.4,
-      onUpdate: function() {
-        el.textContent = Math.round(this.targets()[0].val) + (isBig && target >= 50 ? '+' : '');
-      }
-    });
-  });
-}
 
-/* ═══════════════════════════════════════════════════════════
-   RENDER GALLERY
-═══════════════════════════════════════════════════════════ */
-function buildGallery(items) {
-  const grid = document.getElementById('gallery-grid');
-  if (!grid) return;
-  grid.innerHTML = '';
+    /* ═══════════════════════════════════════════════════════════
+       RENDER GALLERY
+    ═══════════════════════════════════════════════════════════ */
+    function buildGallery(items) {
+      const grid = document.getElementById('gallery-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
 
-  items.forEach((item, i) => {
-    const el = document.createElement('div');
-    el.className = 'gallery-item';
-    el.dataset.cat = item.cat;
-    el.dataset.id  = item.id;
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(24px)';
+      items.forEach((item, i) => {
+        const el = document.createElement('div');
+        el.className = 'gallery-item';
+        el.dataset.cat = item.cat;
+        el.dataset.id = item.id;
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(24px)';
 
-    const isVideo = item.type === 'video';
+        const isVideo = item.type === 'video';
 
-    el.innerHTML = `
+        el.innerHTML = `
       ${isVideo ? '<div class="video-badge">Live</div>' : ''}
       ${item.res === '4K' ? '<div class="res-badge">4K</div>' : '<div class="res-badge">2K</div>'}
       <div class="item-media" style="aspect-ratio:${item.ratio};">
         ${isVideo
-          ? `<video src="${item.src}" muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;"></video>`
-          : `<img src="${item.src}" alt="${item.title}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" />`
-        }
+            ? `<video src="${item.src}" muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;"></video>`
+            : `<img src="${item.src}" alt="${item.title}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;" />`
+          }
       </div>
       <div class="item-overlay">
         <div class="item-title">${item.title}</div>
@@ -978,261 +1266,262 @@ function buildGallery(items) {
       </div>
     `;
 
-    // Hover: play video
-    if (isVideo) {
-      const vid = el.querySelector('video');
-      el.addEventListener('mouseenter', () => { vid.play().catch(()=>{}); });
-      el.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
-    }
+        // Hover: play video
+        if (isVideo) {
+          const vid = el.querySelector('video');
+          el.addEventListener('mouseenter', () => { vid.play().catch(() => { }); });
+          el.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
+        }
 
-    // Click: open lightbox
-    el.addEventListener('click', () => openLightbox(item.id));
+        // Click: open lightbox
+        el.addEventListener('click', () => openLightbox(item.id));
 
-    grid.appendChild(el);
-  });
-
-  // Stagger reveal
-  gsap.to('.gallery-item', {
-    opacity: 1,
-    y: 0,
-    duration: 0.5,
-    stagger: { amount: 0.6, from: 'start' },
-    ease: 'power2.out',
-    delay: 0.1
-  });
-}
-
-/* ═══════════════════════════════════════════════════════════
-   FILTER
-═══════════════════════════════════════════════════════════ */
-let activeFilter = 'all';
-
-function applyFilter(cat) {
-  activeFilter = cat;
-  const items  = document.querySelectorAll('.gallery-item');
-  const empty  = document.getElementById('empty-state');
-  let visible  = 0;
-
-  // Fade all out first
-  gsap.to(items, {
-    opacity: 0, y: 12, duration: 0.22, stagger: 0.01, ease: 'power1.in',
-    onComplete: () => {
-      items.forEach(el => {
-        const match = cat === 'all' || el.dataset.cat === cat;
-        el.classList.toggle('hidden', !match);
-        if (match) visible++;
+        grid.appendChild(el);
       });
 
-      const countEl = document.getElementById('visible-count');
-      if (countEl) countEl.textContent = visible;
+      // Stagger reveal
+      gsap.to('.gallery-item', {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: { amount: 0.6, from: 'start' },
+        ease: 'power2.out',
+        delay: 0.1
+      });
+    }
 
-      if (visible === 0) {
-        empty && empty.classList.add('show');
+    /* ═══════════════════════════════════════════════════════════
+       FILTER
+    ═══════════════════════════════════════════════════════════ */
+    let activeFilter = 'all';
+
+    function applyFilter(cat) {
+      activeFilter = cat;
+      const items = document.querySelectorAll('.gallery-item');
+      const empty = document.getElementById('empty-state');
+      let visible = 0;
+
+      // Fade all out first
+      gsap.to(items, {
+        opacity: 0, y: 12, duration: 0.22, stagger: 0.01, ease: 'power1.in',
+        onComplete: () => {
+          items.forEach(el => {
+            const match = cat === 'all' || el.dataset.cat === cat;
+            el.classList.toggle('hidden', !match);
+            if (match) visible++;
+          });
+
+          const countEl = document.getElementById('visible-count');
+          if (countEl) countEl.textContent = visible;
+
+          if (visible === 0) {
+            empty && empty.classList.add('show');
+          } else {
+            empty && empty.classList.remove('show');
+            gsap.to('.gallery-item:not(.hidden)', {
+              opacity: 1, y: 0, duration: 0.35,
+              stagger: { amount: 0.4, from: 'start' },
+              ease: 'power2.out'
+            });
+          }
+        }
+      });
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       LAYOUT TOGGLE
+    ═══════════════════════════════════════════════════════════ */
+    function setupLayoutToggle() {
+      document.querySelectorAll('.layout-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.layout-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const grid = document.getElementById('gallery-grid');
+          if (!grid) return;
+          const layout = btn.dataset.layout;
+          grid.className = `gallery-grid layout-${layout}`;
+        });
+      });
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       LIGHTBOX
+    ═══════════════════════════════════════════════════════════ */
+    let currentLbId = null;
+    let filteredItems = [];
+
+    function openLightbox(id) {
+      filteredItems = activeFilter === 'all'
+        ? ITEMS
+        : ITEMS.filter(i => i.cat === activeFilter);
+
+      currentLbId = id;
+      renderLightbox(id);
+
+      const lb = document.getElementById('lightbox');
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const lb = document.getElementById('lightbox');
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+      // Remove media to stop video
+      const old = document.getElementById('lightbox-media');
+      if (old) old.remove();
+    }
+
+    function renderLightbox(id) {
+      const item = ITEMS.find(i => i.id === id);
+      if (!item) return;
+
+      document.getElementById('lightbox-title').textContent = item.title;
+
+      // Remove old media
+      const old = document.getElementById('lightbox-media');
+      if (old) old.remove();
+
+      let media;
+      if (item.type === 'video') {
+        media = document.createElement('video');
+        media.src = item.src;
+        media.controls = true;
+        media.autoplay = true;
+        media.loop = true;
+        media.style.maxWidth = '85vw';
+        media.style.maxHeight = 'calc(90vh - 80px)';
+        media.style.borderRadius = '4px';
       } else {
-        empty && empty.classList.remove('show');
-        gsap.to('.gallery-item:not(.hidden)', {
-          opacity: 1, y: 0, duration: 0.35,
-          stagger: { amount: 0.4, from: 'start' },
-          ease: 'power2.out'
-        });
+        media = document.createElement('img');
+        media.src = item.src;
+        media.alt = item.title;
+        media.style.maxWidth = '85vw';
+        media.style.maxHeight = 'calc(90vh - 80px)';
+        media.style.borderRadius = '4px';
+        media.style.objectFit = 'contain';
       }
+      media.id = 'lightbox-media';
+
+      const content = document.getElementById('lightbox-content');
+      const info = document.getElementById('lightbox-info');
+      content.insertBefore(media, info);
     }
-  });
-}
 
-/* ═══════════════════════════════════════════════════════════
-   LAYOUT TOGGLE
-═══════════════════════════════════════════════════════════ */
-function setupLayoutToggle() {
-  document.querySelectorAll('.layout-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.layout-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const grid = document.getElementById('gallery-grid');
-      if (!grid) return;
-      const layout = btn.dataset.layout;
-      grid.className = `gallery-grid layout-${layout}`;
-    });
-  });
-}
+    function lbNavigate(dir) {
+      const idx = filteredItems.findIndex(i => i.id === currentLbId);
+      const next = filteredItems[(idx + dir + filteredItems.length) % filteredItems.length];
+      currentLbId = next.id;
+      renderLightbox(next.id);
+    }
 
-/* ═══════════════════════════════════════════════════════════
-   LIGHTBOX
-═══════════════════════════════════════════════════════════ */
-let currentLbId = null;
-let filteredItems = [];
+    function setupLightbox() {
+      document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+      document.getElementById('lightbox-bg').addEventListener('click', closeLightbox);
+      document.getElementById('lb-prev').addEventListener('click', () => lbNavigate(-1));
+      document.getElementById('lb-next').addEventListener('click', () => lbNavigate(1));
 
-function openLightbox(id) {
-  filteredItems = activeFilter === 'all'
-    ? ITEMS
-    : ITEMS.filter(i => i.cat === activeFilter);
+      document.addEventListener('keydown', e => {
+        const lb = document.getElementById('lightbox');
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') lbNavigate(-1);
+        if (e.key === 'ArrowRight') lbNavigate(1);
+      });
+    }
 
-  currentLbId = id;
-  renderLightbox(id);
+    /* ═══════════════════════════════════════════════════════════
+       SCROLL REVEAL via ScrollTrigger
+    ═══════════════════════════════════════════════════════════ */
+    function setupScrollReveal() {
+      // Hero text
+      gsap.from('.gallery-hero-left h2', {
+        y: 40, opacity: 0, duration: 0.9,
+        ease: 'power3.out', delay: 0.1
+      });
+      gsap.from('.gallery-hero-left p', {
+        y: 24, opacity: 0, duration: 0.7,
+        ease: 'power2.out', delay: 0.3
+      });
+      gsap.from('.stat-item', {
+        y: 20, opacity: 0, duration: 0.6,
+        stagger: 0.1, ease: 'power2.out', delay: 0.4
+      });
+      gsap.from('.filter-bar', {
+        y: 16, opacity: 0, duration: 0.5,
+        ease: 'power2.out', delay: 0.5
+      });
+    }
 
-  const lb = document.getElementById('lightbox');
-  lb.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
+    /* ═══════════════════════════════════════════════════════════
+       INIT
+    ═══════════════════════════════════════════════════════════ */
+    function initPage() {
+      buildGallery(ITEMS);
+      setupScrollReveal();
+      animateCounters();
+      setupLightbox();
+      setupLayoutToggle();
 
-function closeLightbox() {
-  const lb = document.getElementById('lightbox');
-  lb.classList.remove('open');
-  document.body.style.overflow = '';
-  // Remove media to stop video
-  const old = document.getElementById('lightbox-media');
-  if (old) old.remove();
-}
-
-function renderLightbox(id) {
-  const item = ITEMS.find(i => i.id === id);
-  if (!item) return;
-
-  document.getElementById('lightbox-title').textContent = item.title;
-
-  // Remove old media
-  const old = document.getElementById('lightbox-media');
-  if (old) old.remove();
-
-  let media;
-  if (item.type === 'video') {
-    media = document.createElement('video');
-    media.src = item.src;
-    media.controls = true;
-    media.autoplay = true;
-    media.loop = true;
-    media.style.maxWidth = '85vw';
-    media.style.maxHeight = 'calc(90vh - 80px)';
-    media.style.borderRadius = '4px';
-  } else {
-    media = document.createElement('img');
-    media.src = item.src;
-    media.alt = item.title;
-    media.style.maxWidth = '85vw';
-    media.style.maxHeight = 'calc(90vh - 80px)';
-    media.style.borderRadius = '4px';
-    media.style.objectFit = 'contain';
-  }
-  media.id = 'lightbox-media';
-
-  const content = document.getElementById('lightbox-content');
-  const info = document.getElementById('lightbox-info');
-  content.insertBefore(media, info);
-}
-
-function lbNavigate(dir) {
-  const idx = filteredItems.findIndex(i => i.id === currentLbId);
-  const next = filteredItems[(idx + dir + filteredItems.length) % filteredItems.length];
-  currentLbId = next.id;
-  renderLightbox(next.id);
-}
-
-function setupLightbox() {
-  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-  document.getElementById('lightbox-bg').addEventListener('click', closeLightbox);
-  document.getElementById('lb-prev').addEventListener('click', () => lbNavigate(-1));
-  document.getElementById('lb-next').addEventListener('click', () => lbNavigate(1));
-
-  document.addEventListener('keydown', e => {
-    const lb = document.getElementById('lightbox');
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') lbNavigate(-1);
-    if (e.key === 'ArrowRight') lbNavigate(1);
-  });
-}
-
-/* ═══════════════════════════════════════════════════════════
-   SCROLL REVEAL via ScrollTrigger
-═══════════════════════════════════════════════════════════ */
-function setupScrollReveal() {
-  // Hero text
-  gsap.from('.gallery-hero-left h1', {
-    y: 40, opacity: 0, duration: 0.9,
-    ease: 'power3.out', delay: 0.1
-  });
-  gsap.from('.gallery-hero-left p', {
-    y: 24, opacity: 0, duration: 0.7,
-    ease: 'power2.out', delay: 0.3
-  });
-  gsap.from('.stat-item', {
-    y: 20, opacity: 0, duration: 0.6,
-    stagger: 0.1, ease: 'power2.out', delay: 0.4
-  });
-  gsap.from('.filter-bar', {
-    y: 16, opacity: 0, duration: 0.5,
-    ease: 'power2.out', delay: 0.5
-  });
-}
-
-/* ═══════════════════════════════════════════════════════════
-   INIT
-═══════════════════════════════════════════════════════════ */
-function initPage() {
-  buildGallery(ITEMS);
-  setupScrollReveal();
-  animateCounters();
-  setupLightbox();
-  setupLayoutToggle();
-
-  // Filter tabs
-  document.querySelectorAll('.filter-tab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      applyFilter(btn.dataset.filter);
-    });
-  });
-}
-
-/* ═══════════════════════════════════════════════════════════
-   BARBA.JS
-═══════════════════════════════════════════════════════════ */
-gsap.registerPlugin(ScrollTrigger, CustomEase);
-CustomEase.create('expo-out', '0.16, 1, 0.3, 1');
-
-barba.init({
-  transitions: [
-    {
-      name: 'gallery-transition',
-      leave(data) {
-        return gsap.to(data.current.container, {
-          opacity: 0,
-          y: -16,
-          duration: 0.4,
-          ease: 'power2.in'
+      // Filter tabs
+      document.querySelectorAll('.filter-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          applyFilter(btn.dataset.filter);
         });
-      },
-      afterLeave() {
-        ScrollTrigger.getAll().forEach(t => t.kill());
-      },
-      enter(data) {
-        gsap.set(data.next.container, { opacity: 0, y: 20 });
-        return gsap.to(data.next.container, {
-          opacity: 1,
-          y: 0,
-          duration: 0.5,
-          ease: 'expo-out',
-          delay: 0.05
-        });
-      },
-      afterEnter() {
-        window.scrollTo(0, 0);
-        initPage();
-      }
+      });
     }
-  ],
-  views: [
-    {
-      namespace: 'gallery',
-      beforeEnter() {},
-      afterEnter() {}
-    }
-  ]
-});
-// Hello !!!
-// Initial load
-document.addEventListener('DOMContentLoaded', initPage);
-</script>
+
+    /* ═══════════════════════════════════════════════════════════
+       BARBA.JS
+    ═══════════════════════════════════════════════════════════ */
+    gsap.registerPlugin(ScrollTrigger, CustomEase);
+    CustomEase.create('expo-out', '0.16, 1, 0.3, 1');
+
+    barba.init({
+      transitions: [
+        {
+          name: 'gallery-transition',
+          leave(data) {
+            return gsap.to(data.current.container, {
+              opacity: 0,
+              y: -16,
+              duration: 0.4,
+              ease: 'power2.in'
+            });
+          },
+          afterLeave() {
+            ScrollTrigger.getAll().forEach(t => t.kill());
+          },
+          enter(data) {
+            gsap.set(data.next.container, { opacity: 0, y: 20 });
+            return gsap.to(data.next.container, {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              ease: 'expo-out',
+              delay: 0.05
+            });
+          },
+          afterEnter() {
+            window.scrollTo(0, 0);
+            initPage();
+          }
+        }
+      ],
+      views: [
+        {
+          namespace: 'gallery',
+          beforeEnter() { },
+          afterEnter() { }
+        }
+      ]
+    });
+
+    // Initial load
+    document.addEventListener('DOMContentLoaded', initPage);
+  </script>
 </body>
+
 </html>
