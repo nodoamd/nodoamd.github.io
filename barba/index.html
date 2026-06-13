@@ -16,6 +16,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
   <script src="https://unpkg.com/@barba/core@2.9.7/dist/barba.umd.js"></script>
+  <!-- Lenis desactivado: scroll nativo más snappy -->
+  <!-- <script src="js/lib/lenis.js"></script> -->
 </head>
 <body class="theme-light is-loading">
 
@@ -173,70 +175,103 @@
         </div>
       </section>
 
-      <section class="section sistema-showcase" id="servicios">
+      <section class="section sistema-scroll" id="servicios">
         <div class="container">
-          <div class="sistema-showcase-header will-slide">
+          <div class="sistema-scroll-header will-slide">
             <span class="badge">Sistema Nodo</span>
             <h2 class="t-headline">Cuatro pilares.<br><span class="tg">Un solo sistema.</span></h2>
             <p class="t-body">Cada capa trabaja para que tu negocio capte clientes y transmita confianza.</p>
           </div>
+        </div>
 
-          <div class="sistema-showcase-grid">
-            <div class="sistema-showcase-visual will-slide">
-              <div class="sistema-visual-rail">
-                <figure class="sistema-visual-slide is-active" data-service="web">
-                  <img src="img/landinghitachi.webp" alt="Web Development — caso Hitachi" loading="lazy" />
-                </figure>
-                <figure class="sistema-visual-slide" data-service="branding">
-                  <img src="img/services-branding.webp" alt="Branding — identidad Nodo" loading="lazy" />
-                </figure>
-                <figure class="sistema-visual-slide" data-service="ads">
-                  <img src="img/services-ads.webp" alt="Google & Meta Ads" loading="lazy" />
-                </figure>
-                <figure class="sistema-visual-slide" data-service="3d">
-                  <img src="img/services-3d.webp" alt="3D & WebGL — Spline" loading="lazy" />
-                </figure>
+        <div class="sistema-scroll-body">
+          <div class="container sistema-scroll-layout">
+            <aside class="sistema-scroll-pin" aria-hidden="false">
+              <div class="sistema-scroll-visual">
+                <div class="sistema-visual-rail">
+                  <figure class="sistema-visual-slide is-active" data-service="web">
+                    <img src="img/landinghitachi.webp" alt="Web Development — caso Hitachi" loading="lazy" />
+                  </figure>
+                  <figure class="sistema-visual-slide" data-service="branding">
+                    <img src="img/services-branding.webp" alt="Branding — identidad Nodo" loading="lazy" />
+                  </figure>
+                  <figure class="sistema-visual-slide" data-service="ads">
+                    <img src="img/services-ads.webp" alt="Google & Meta Ads" loading="lazy" />
+                  </figure>
+                  <figure class="sistema-visual-slide" data-service="3d">
+                    <img src="img/services-3d.webp" alt="3D & WebGL — Spline" loading="lazy" />
+                  </figure>
+                </div>
+                <div class="sistema-visual-metric" aria-live="polite">
+                  <span class="sistema-metric-val">94</span>
+                  <span class="sistema-metric-lbl">Lighthouse</span>
+                </div>
+                <div class="sistema-scroll-meter" aria-hidden="true">
+                  <div class="sistema-scroll-meter-track">
+                    <div class="sistema-scroll-meter-fill"></div>
+                  </div>
+                  <span class="sistema-scroll-meter-label"><span class="sistema-meter-current">01</span> / 04</span>
+                </div>
               </div>
-              <div class="sistema-visual-metric" id="sistemaMetric" aria-live="polite">
-                <span class="sistema-metric-val">94</span>
-                <span class="sistema-metric-lbl">Lighthouse</span>
-              </div>
+            </aside>
+
+            <div class="sistema-scroll-track">
+              <article class="sistema-step is-active" data-service="web" data-step="1">
+                <div class="sistema-step-inner">
+                  <span class="sistema-step-num">01</span>
+                  <div class="sistema-step-copy">
+                    <h3>Web Development</h3>
+                    <p>Plataformas ultrarrápidas con motion design de agencia internacional.</p>
+                    <a href="work.html" class="sistema-step-link">Ver casos →</a>
+                  </div>
+                </div>
+                <figure class="sistema-step-media">
+                  <img src="img/landinghitachi.webp" alt="" loading="lazy" />
+                </figure>
+              </article>
+
+              <article class="sistema-step" data-service="branding" data-step="2">
+                <div class="sistema-step-inner">
+                  <span class="sistema-step-num">02</span>
+                  <div class="sistema-step-copy">
+                    <h3>Branding</h3>
+                    <p>Identidad visual que proyecta autoridad y coherencia en cada touchpoint.</p>
+                    <a href="about.html" class="sistema-step-link">Cómo trabajamos →</a>
+                  </div>
+                </div>
+                <figure class="sistema-step-media">
+                  <img src="img/services-branding.webp" alt="" loading="lazy" />
+                </figure>
+              </article>
+
+              <article class="sistema-step" data-service="ads" data-step="3">
+                <div class="sistema-step-inner">
+                  <span class="sistema-step-num">03</span>
+                  <div class="sistema-step-copy">
+                    <h3>Google & Meta Ads</h3>
+                    <p>Captación medida. Cada euro optimizado para generar negocio real.</p>
+                    <a href="contact.html" class="sistema-step-link">Hablemos →</a>
+                  </div>
+                </div>
+                <figure class="sistema-step-media">
+                  <img src="img/services-ads.webp" alt="" loading="lazy" />
+                </figure>
+              </article>
+
+              <article class="sistema-step" data-service="3d" data-step="4">
+                <div class="sistema-step-inner">
+                  <span class="sistema-step-num">04</span>
+                  <div class="sistema-step-copy">
+                    <h3>3D & WebGL</h3>
+                    <p>Experiencias inmersivas que elevan la percepción de marca al instante.</p>
+                    <a href="work.html" class="sistema-step-link">Ver experiencias →</a>
+                  </div>
+                </div>
+                <figure class="sistema-step-media">
+                  <img src="img/services-3d.webp" alt="" loading="lazy" />
+                </figure>
+              </article>
             </div>
-
-            <nav class="sistema-showcase-nav" id="sistemaNav" aria-label="Servicios del sistema">
-              <a href="work.html" class="sistema-nav-item is-active" data-service="web">
-                <span class="sistema-nav-num">01</span>
-                <div class="sistema-nav-copy">
-                  <h3>Web Development</h3>
-                  <p>Plataformas ultrarrápidas con motion design de agencia internacional.</p>
-                </div>
-                <span class="sistema-nav-arrow" aria-hidden="true">↗</span>
-              </a>
-              <a href="about.html" class="sistema-nav-item" data-service="branding">
-                <span class="sistema-nav-num">02</span>
-                <div class="sistema-nav-copy">
-                  <h3>Branding</h3>
-                  <p>Identidad visual que proyecta autoridad y coherencia en cada touchpoint.</p>
-                </div>
-                <span class="sistema-nav-arrow" aria-hidden="true">↗</span>
-              </a>
-              <a href="contact.html" class="sistema-nav-item" data-service="ads">
-                <span class="sistema-nav-num">03</span>
-                <div class="sistema-nav-copy">
-                  <h3>Google & Meta Ads</h3>
-                  <p>Captación medida. Cada euro optimizado para generar negocio real.</p>
-                </div>
-                <span class="sistema-nav-arrow" aria-hidden="true">↗</span>
-              </a>
-              <a href="work.html" class="sistema-nav-item" data-service="3d">
-                <span class="sistema-nav-num">04</span>
-                <div class="sistema-nav-copy">
-                  <h3>3D & WebGL</h3>
-                  <p>Experiencias inmersivas que elevan la percepción de marca al instante.</p>
-                </div>
-                <span class="sistema-nav-arrow" aria-hidden="true">↗</span>
-              </a>
-            </nav>
           </div>
         </div>
       </section>

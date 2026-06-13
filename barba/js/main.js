@@ -869,8 +869,76 @@ const Nav = (() => {
     initBurger();
   }
 
-  return { init, animateIn, setActive, initMorph, killMorph };
+  return { init, animateIn, setActive, initMorph, killMorph, updateScroll };
 })();
+
+/* ═══════════════════════════════════════════════════
+   SCROLL HELPERS — Lenis desactivado (laggy/pegajoso)
+   Para re-probar: descomentar bloque LENIS abajo + script en HTML
+═══════════════════════════════════════════════════ */
+const SmoothScroll = (() => {
+  function init() {
+    /* scroll nativo */
+  }
+
+  function kill() {}
+
+  function stop() {}
+
+  function start() {}
+
+  function resize() {
+    ScrollTrigger.refresh();
+  }
+
+  function scrollTop(immediate = false) {
+    window.scrollTo({ top: 0, left: 0, behavior: immediate ? 'auto' : 'smooth' });
+  }
+
+  function scrollTo(target, opts = {}) {
+    const offset = opts.offset ?? -80;
+    const duration = opts.duration ?? 1.2;
+
+    if (typeof ScrollToPlugin !== 'undefined') {
+      gsap.to(window, {
+        scrollTo: { y: target, offsetY: -offset },
+        duration,
+        ease: 'expo.inOut',
+      });
+      return;
+    }
+
+    const el = typeof target === 'string' ? document.querySelector(target) : target;
+    el?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  return { init, kill, stop, start, resize, scrollTop, scrollTo };
+})();
+
+/*
+const SmoothScroll = (() => {
+  let lenis = null;
+  let tickerFn = null;
+
+  function init() {
+    if (typeof Lenis === 'undefined') return;
+    kill();
+    lenis = new Lenis({
+      duration: 1.15,
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 1.15,
+    });
+    document.documentElement.classList.add('lenis', 'lenis-smooth');
+    lenis.on('scroll', ScrollTrigger.update);
+    tickerFn = time => lenis.raf(time * 1000);
+    gsap.ticker.add(tickerFn);
+    gsap.ticker.lagSmoothing(0);
+    requestAnimationFrame(time => lenis.raf(time));
+  }
+  // ...
+})();
+*/
 
 /* ═══════════════════════════════════════════════════
    SCROLL — parallax, scrub, pin (gsap.context)
@@ -1113,6 +1181,7 @@ barba.init({
   timeout: 8000,
   hooks: {
     before() {
+      SmoothScroll.stop();
       ScrollFX.kill();
       Nav.killMorph();
       MorphText.kill(document.getElementById('heroTitleMorph'));
@@ -1126,13 +1195,15 @@ barba.init({
       gsap.set(current.container, { pointerEvents: 'none' });
     },
     beforeEnter({ next }) {
-      window.scrollTo(0, 0);
+      SmoothScroll.scrollTop(true);
       setPageTheme();
       gsap.set(next.container, { opacity: 1, pointerEvents: 'none' });
     },
     afterEnter({ next }) {
       Transition.resetPanel();
       Nav.setActive();
+      SmoothScroll.resize();
+      SmoothScroll.start();
       initPointerFX(next.container);
       initSmoothScroll(next.container);
       ScrollFX.init(next.container);
@@ -1195,14 +1266,23 @@ function initSistemaShowcase(root) {
   sistemaShowcaseCtx?.revert();
   sistemaShowcaseCtx = null;
 
-  const section = (root || document).querySelector('.sistema-showcase');
+  const section = (root || document).querySelector('.sistema-scroll');
   if (!section) return;
 
-  const items = gsap.utils.toArray('.sistema-nav-item', section);
+  const pin = section.querySelector('.sistema-scroll-pin');
+  const body = section.querySelector('.sistema-scroll-body');
+  const track = section.querySelector('.sistema-scroll-track');
+  const steps = gsap.utils.toArray('.sistema-step', section);
   const slides = gsap.utils.toArray('.sistema-visual-slide', section);
   const metricVal = section.querySelector('.sistema-metric-val');
   const metricLbl = section.querySelector('.sistema-metric-lbl');
-  let activeId = 'web';
+  const meterFill = section.querySelector('.sistema-scroll-meter-fill');
+  const meterCurrent = section.querySelector('.sistema-meter-current');
+  const total = steps.length;
+  let activeIndex = 0;
+  let activeId = steps[0]?.dataset.service || 'web';
+
+  const clampIndex = i => gsap.utils.clamp(0, total - 1, i);
 
   function setMetric(id) {
     const m = SISTEMA_METRICS[id];
@@ -1211,85 +1291,184 @@ function initSistemaShowcase(root) {
     metricLbl.textContent = m.lbl;
   }
 
-  function activate(id, animate = true) {
-    if (!id || id === activeId) return;
+  function setProgress(index) {
+    const pct = ((index + 1) / total) * 100;
+    track?.style.setProperty('--sistema-progress', `${pct}%`);
+    if (meterFill) meterFill.style.width = `${pct}%`;
+    if (meterCurrent) meterCurrent.textContent = String(index + 1).padStart(2, '0');
+  }
+
+  function activate(index, { animate = false, force = false } = {}) {
+    const i = clampIndex(index);
+    const step = steps[i];
+    if (!step) return;
+    const id = step.dataset.service;
+    if (!force && i === activeIndex && id === activeId) return;
 
     const prevSlide = slides.find(s => s.dataset.service === activeId);
     const nextSlide = slides.find(s => s.dataset.service === id);
-    if (!nextSlide) return;
 
-    items.forEach(item => item.classList.toggle('is-active', item.dataset.service === id));
-    slides.forEach(slide => slide.classList.toggle('is-active', slide.dataset.service === id));
+    steps.forEach((s, idx) => s.classList.toggle('is-active', idx === i));
+    slides.forEach(s => s.classList.toggle('is-active', s.dataset.service === id));
+
+    activeIndex = i;
     activeId = id;
+    setProgress(i);
 
     if (!animate) {
       setMetric(id);
+      slides.forEach(slide => {
+        const on = slide.dataset.service === id;
+        gsap.set(slide, { opacity: on ? 1 : 0, scale: on ? 1 : 1.04 });
+      });
       return;
     }
 
     if (metricVal && metricLbl) {
       gsap.to([metricVal, metricLbl], {
         opacity: 0,
-        y: -8,
-        duration: 0.16,
+        y: -6,
+        duration: 0.14,
         ease: 'power2.in',
         onComplete: () => {
           setMetric(id);
           gsap.fromTo([metricVal, metricLbl],
-            { opacity: 0, y: 10 },
-            { opacity: 1, y: 0, duration: 0.32, ease: 'power3.out' }
+            { opacity: 0, y: 8 },
+            { opacity: 1, y: 0, duration: 0.28, ease: 'power3.out' }
           );
         },
       });
+    } else {
+      setMetric(id);
     }
 
     if (prevSlide && nextSlide) {
-      gsap.killTweensOf([prevSlide, nextSlide]);
-      gsap.set(nextSlide, { opacity: 0, scale: 1.05 });
-      gsap.to(prevSlide, { opacity: 0, scale: 0.97, duration: 0.32, ease: 'power2.in' });
-      gsap.to(nextSlide, { opacity: 1, scale: 1, duration: 0.48, ease: 'power3.out', delay: 0.04 });
+      gsap.killTweensOf(slides);
+      gsap.to(prevSlide, { opacity: 0, scale: 1.03, duration: 0.38, ease: 'power2.in' });
+      gsap.to(nextSlide, { opacity: 1, scale: 1, duration: 0.52, ease: 'power3.out' });
+    }
+  }
+
+  function scrubVisuals(progress) {
+    const raw = gsap.utils.clamp(0, total - 1, progress * (total - 1));
+    const fromIdx = Math.floor(raw);
+    const toIdx = Math.min(fromIdx + 1, total - 1);
+    const frac = raw - fromIdx;
+    const rounded = Math.round(raw);
+
+    steps.forEach((step, idx) => {
+      let opacity = 0.28;
+      if (idx === fromIdx) opacity = 1 - frac * 0.72;
+      else if (idx === toIdx) opacity = 0.28 + frac * 0.72;
+      gsap.set(step, { opacity, y: idx === rounded ? 0 : 8 });
+      step.classList.toggle('is-active', idx === rounded);
+    });
+
+    slides.forEach(slide => {
+      const idx = steps.findIndex(s => s.dataset.service === slide.dataset.service);
+      let opacity = 0;
+      let scale = 1.04;
+      if (idx === fromIdx) {
+        opacity = 1 - frac;
+        scale = 1 + frac * 0.03;
+      } else if (idx === toIdx) {
+        opacity = frac;
+        scale = 1.04 - frac * 0.04;
+      }
+      gsap.set(slide, { opacity, scale });
+      slide.classList.toggle('is-active', idx === rounded);
+    });
+
+    if (rounded !== activeIndex) {
+      activeIndex = rounded;
+      activeId = steps[rounded].dataset.service;
+      setProgress(rounded);
+      setMetric(activeId);
     }
   }
 
   sistemaShowcaseCtx = gsap.context(() => {
-    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const mm = gsap.matchMedia();
 
-    items.forEach(item => {
-      const id = item.dataset.service;
-      if (canHover) {
-        item.addEventListener('mouseenter', () => activate(id));
-      } else {
-        item.addEventListener('click', e => {
-          if (activeId !== id) {
-            e.preventDefault();
-            activate(id);
-          }
-        });
-      }
+    mm.add('(min-width: 901px)', () => {
+      const scrollDistance = () => window.innerHeight * 0.82 * Math.max(1, total - 1);
+
+      ScrollTrigger.create({
+        trigger: body,
+        start: 'top 72px',
+        end: () => `+=${scrollDistance()}`,
+        pin: pin,
+        scrub: 0.7,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        snap: total > 1 ? {
+          snapTo: value => {
+            const step = 1 / (total - 1);
+            return gsap.utils.clamp(0, 1, Math.round(value / step) * step);
+          },
+          duration: { min: 0.15, max: 0.4 },
+          delay: 0.04,
+          ease: 'power2.out',
+        } : false,
+        onUpdate(self) {
+          scrubVisuals(self.progress);
+        },
+        onLeave: () => activate(total - 1, { force: true }),
+        onEnterBack: () => activate(0, { force: true }),
+      });
+
+      activate(0, { force: true });
     });
 
-    gsap.from(section.querySelector('.sistema-showcase-visual'), {
+    mm.add('(max-width: 900px)', () => {
+      steps.forEach(step => step.classList.remove('is-active'));
+      if (steps[0]) steps[0].classList.add('is-active');
+
+      steps.forEach(step => {
+        ScrollTrigger.create({
+          trigger: step,
+          start: 'top 58%',
+          end: 'bottom 42%',
+          onEnter: () => step.classList.add('is-active'),
+          onLeave: () => step.classList.remove('is-active'),
+          onEnterBack: () => step.classList.add('is-active'),
+          onLeaveBack: () => step.classList.remove('is-active'),
+        });
+
+        gsap.from(step.querySelector('.sistema-step-copy'), {
+          opacity: 0,
+          y: 22,
+          duration: 0.75,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: step,
+            start: 'top 82%',
+            once: true,
+          },
+        });
+
+        gsap.from(step.querySelector('.sistema-step-media'), {
+          opacity: 0,
+          scale: 0.97,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: step,
+            start: 'top 78%',
+            once: true,
+          },
+        });
+      });
+    });
+
+    gsap.from(section.querySelector('.sistema-scroll-header'), {
       opacity: 0,
       y: 28,
-      scale: 0.96,
-      duration: 0.9,
+      duration: 0.85,
       ease: 'power3.out',
       scrollTrigger: {
         trigger: section,
-        start: 'top 75%',
-        once: true,
-      },
-    });
-
-    gsap.from(items, {
-      opacity: 0,
-      x: 32,
-      duration: 0.75,
-      stagger: 0.1,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 72%',
+        start: 'top 78%',
         once: true,
       },
     });
@@ -1705,11 +1884,7 @@ function initSmoothScroll(scope) {
       const target = document.querySelector(id);
       if (!target) return;
       e.preventDefault();
-      if (typeof ScrollToPlugin !== 'undefined') {
-        gsap.to(window, { scrollTo: { y: target, offsetY: 80 }, duration: 1.2, ease: 'expo.inOut' });
-      } else {
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
+      SmoothScroll.scrollTo(target, { offset: -80, duration: 1.25 });
     });
   });
 }
@@ -1726,6 +1901,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const namespace = container?.dataset.barbaNamespace || '';
 
   Nav.init();
+  SmoothScroll.init();
   setPageTheme();
   Transition.resetPanel();
   initPointerFX();
@@ -1739,6 +1915,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const startApp = (fromBarba = false) => {
     finishBoot();
     Nav.animateIn();
+    SmoothScroll.resize();
     ScrollFX.init(document);
     pageInit(namespace, container, fromBarba);
     isFirstLoad = false;
