@@ -19,7 +19,13 @@
 <body class="theme-light is-loading">
 
   <div id="nodo-loader" aria-hidden="true">
-    <div class="loader-logo">Nodo<span>.</span></div>
+    <div class="loader-brand">
+      <div class="loader-icon-wrap">
+        <span class="loader-icon-ring" aria-hidden="true"></span>
+        <img src="img/nodedos.png" alt="" class="loader-brand-icon" width="48" height="48" />
+      </div>
+      <p class="loader-word">Nodo<span class="loader-dot">.</span></p>
+    </div>
     <div class="loader-bar-track"><div class="loader-bar-fill"></div></div>
     <div class="loader-counter">0%</div>
   </div>
@@ -29,10 +35,24 @@
   </div>
 
   <nav id="nodo-nav" aria-label="Navegación principal">
-    <a href="index.html" class="nav-logo">Nodo<em>.</em></a>
+    <a href="index.html" class="nav-logo" aria-label="Nodo Studio">
+      <img src="img/nodedos.png" alt="" class="brand-mark" width="32" height="32" />
+      <span class="nav-brand-word" id="navBrandWord" aria-live="polite">
+        <span class="morph-wrap morph-wrap--nav" id="navMorph">
+          <span class="morph-track">
+            <span class="morph-item is-active" data-word="Nodo">Nodo</span>
+            <span class="morph-item" data-word="Aumenta">Aumenta</span>
+            <span class="morph-item" data-word="Mejora">Mejora</span>
+            <span class="morph-item" data-word="Conecta">Conecta</span>
+            <span class="morph-item" data-word="Transforma">Transforma</span>
+            <span class="morph-item" data-word="Crece">Crece</span>
+          </span>
+        </span>
+      </span>
+    </a>
     <ul class="nav-links" role="list">
       <li><a href="index.html">Inicio</a></li>
-      <li><a href="index.html#resultados">Resultados</a></li>
+      <li><a href="index.html#servicios">Servicios</a></li>
       <li><a href="work.html">Trabajos</a></li>
       <li><a href="index.html#precios">Precios</a></li>
       <li><a href="contact.html" class="nav-cta">Hablemos →</a></li>
