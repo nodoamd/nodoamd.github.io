@@ -879,8 +879,6 @@ function pageInit(namespace, container, fromBarba = false) {
 function initHome(container, fromBarba) {
   Spline.init(container || document);
   initSistemaPin(container || document);
-  initCasesSlider(container || document);
-  initPerfAccordion(container || document);
   if (fromBarba) return;
 
   const root = container || document;
@@ -918,7 +916,7 @@ function initSistemaPin(root) {
 
   const mm = gsap.matchMedia();
 
-  mm.add('(min-width: 768px)', () => {
+  mm.add('(min-width: 769px)', () => {
     gsap.set(section, { clearProps: 'height' });
     gsap.set(panels, { clearProps: 'transform,xPercent' });
 
@@ -983,36 +981,85 @@ function initSistemaPin(root) {
     };
   });
 
-  mm.add('(max-width: 767px)', () => {
-    if (fill) fill.style.width = '0%';
-    if (counter) counter.textContent = '01';
+  mm.add('(max-width: 768px)', () => {
+    const container = section.querySelector('.sp-container');
+    const dots = gsap.utils.toArray('.sp-m-dot', section);
+    if (!container) return;
+
+    section.classList.add('is-mobile-ready');
+    gsap.set(section, { clearProps: 'height' });
+    gsap.set(container, { clearProps: 'all' });
+    gsap.set(panels, { clearProps: 'all' });
 
     panels.forEach(panel => {
-      const items = panel.querySelectorAll('.sp-eyebrow, .sp-headline, .sp-body, .sp-tension, .sp-pills, .sp-cta');
-      gsap.set(items, { opacity: 0, y: 20 });
-
-      ScrollTrigger.create({
-        trigger: panel,
-        start: 'top 82%',
-        once: true,
-        onEnter() {
-          gsap.to(items, {
-            opacity: 1,
-            y: 0,
-            duration: 0.65,
-            stagger: 0.08,
-            ease: 'power2.out',
-          });
-        },
+      panel.querySelectorAll('.sp-eyebrow, .sp-headline, .sp-body, .sp-tension, .sp-pills, .sp-cta').forEach(el => {
+        gsap.set(el, { clearProps: 'all', opacity: 1, y: 0 });
       });
     });
 
-    return () => {
-      panels.forEach(panel => {
-        panel.querySelectorAll('.sp-eyebrow, .sp-headline, .sp-body, .sp-tension, .sp-pills, .sp-cta').forEach(el => {
-          gsap.set(el, { clearProps: 'all' });
-        });
+    const ac = new AbortController();
+    const { signal } = ac;
+    let activeIdx = 0;
+
+    function panelWidth() {
+      return container.clientWidth || window.innerWidth;
+    }
+
+    function setActive(idx) {
+      activeIdx = Math.max(0, Math.min(idx, TOTAL - 1));
+      const progress = TOTAL > 1 ? activeIdx / (TOTAL - 1) : 0;
+      if (fill) fill.style.width = `${progress * 100}%`;
+      if (counter) counter.textContent = String(activeIdx + 1).padStart(2, '0');
+      dots.forEach((dot, i) => {
+        const on = i === activeIdx;
+        dot.classList.toggle('is-active', on);
+        dot.setAttribute('aria-selected', on ? 'true' : 'false');
       });
+    }
+
+    function animatePanel(panel) {
+      const items = panel.querySelectorAll('.sp-eyebrow, .sp-headline, .sp-body, .sp-tension, .sp-pills, .sp-cta');
+      gsap.fromTo(items,
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.55, stagger: 0.07, ease: 'power2.out', overwrite: 'auto' }
+      );
+    }
+
+    function onScroll() {
+      const idx = Math.round(container.scrollLeft / panelWidth());
+      if (idx !== activeIdx) {
+        setActive(idx);
+        animatePanel(panels[idx]);
+      }
+    }
+
+    container.addEventListener('scroll', onScroll, { passive: true, signal });
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const idx = Number(dot.dataset.slide);
+        container.scrollTo({ left: idx * panelWidth(), behavior: 'smooth' });
+        setActive(idx);
+        animatePanel(panels[idx]);
+      }, { signal });
+    });
+
+    setActive(0);
+    animatePanel(panels[0]);
+
+    return () => {
+      ac.abort();
+      section.classList.remove('is-mobile-ready');
+      if (fill) fill.style.width = '0%';
+      if (counter) counter.textContent = '01';
+      dots.forEach(dot => {
+        dot.classList.remove('is-active');
+        dot.setAttribute('aria-selected', 'false');
+      });
+      if (dots[0]) {
+        dots[0].classList.add('is-active');
+        dots[0].setAttribute('aria-selected', 'true');
+      }
     };
   });
 }

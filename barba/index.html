@@ -92,12 +92,6 @@
               <button type="button" class="spline-switch-btn" data-spline-index="1" aria-pressed="false">Abstracto</button>
             </div>
           </div>
-
-        </div>
-
-        <div class="hero-e-scroll" aria-hidden="true">
-          <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
-          <span>Scroll</span>
         </div>
       </section>
 
@@ -164,7 +158,7 @@
               <span class="sp-eyebrow"><span class="sp-num">01</span> El diagnóstico</span>
               <h2 class="sp-headline">Tu negocio tiene<br>un problema.<br><em>Que no es tuyo.</em></h2>
               <p class="sp-body">El 70% de los negocios no aparece cuando sus clientes les buscan. No por falta de esfuerzo. Por falta de sistema.</p>
-              <span class="sp-scroll-hint">Scroll para continuar →</span>
+              <span class="sp-scroll-hint">Continúa <span class="sp-hint-arrow" aria-hidden="true">→</span></span>
             </div>
             <span class="sp-bg-num" aria-hidden="true">01</span>
           </div>
@@ -213,216 +207,49 @@
           </div>
 
         </div>
+
+        <!-- Móvil: swipe + dots (sin ScrollTrigger) -->
+        <div class="sp-mobile-nav" id="sistemaMobileNav">
+          <div class="sp-mobile-dots" id="sistemaDots" role="tablist" aria-label="Pasos del sistema">
+            <button type="button" class="sp-m-dot is-active" data-slide="0" role="tab" aria-selected="true" aria-label="Paso 1"></button>
+            <button type="button" class="sp-m-dot" data-slide="1" role="tab" aria-selected="false" aria-label="Paso 2"></button>
+            <button type="button" class="sp-m-dot" data-slide="2" role="tab" aria-selected="false" aria-label="Paso 3"></button>
+            <button type="button" class="sp-m-dot" data-slide="3" role="tab" aria-selected="false" aria-label="Paso 4"></button>
+            <button type="button" class="sp-m-dot" data-slide="4" role="tab" aria-selected="false" aria-label="Paso 5"></button>
+          </div>
+          <p class="sp-swipe-hint">Desliza para continuar <span aria-hidden="true">→</span></p>
+        </div>
       </section>
 
-      <!-- RESULTADOS — casos de éxito + rendimiento -->
-      <section class="section resultados-section" id="resultados">
+      <!-- PRUEBA SOCIAL — minimal -->
+      <section class="section prueba-section" id="resultados">
         <div class="container">
-          <div class="section-header will-slide">
-            <span class="badge">Resultados reales</span>
-            <h2 class="t-headline">Antes y después.<br><span class="tg">Con números.</span></h2>
-            <p class="t-body">No vendemos promesas. Medimos impresiones, clics, velocidad y negocio generado.</p>
-          </div>
-
-          <!-- CASOS DE ÉXITO -->
-          <div class="cases-wrap" id="casesSlider">
-
-            <!-- Caso 1: Hitachi -->
-            <div class="cs-card is-active" data-case="0">
-
-              <!-- Header row -->
-              <div class="cs-header">
-                <div>
-                  <span class="cs-tag">Caso 01 · Dental · SEO · Ads</span>
-                  <h3 class="cs-title">Clínica Dental Dra. Hitachi</h3>
-                </div>
-                <a href="https://clinicadentalhitachi.com" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Visitar web ↗</a>
-              </div>
-
-              <!-- Big comparison numbers -->
-              <div class="cs-compare">
-                <div class="cs-compare-col">
-                  <span class="cs-compare-label cs-label-before">Antes</span>
-                  <span class="cs-compare-num cs-num-before">5–8</span>
-                  <span class="cs-compare-unit">pacientes nuevos / mes</span>
-                </div>
-                <div class="cs-compare-mid">
-                  <div class="cs-compare-line"></div>
-                  <span class="cs-compare-time">90 días</span>
-                  <div class="cs-compare-arrow">→</div>
-                </div>
-                <div class="cs-compare-col">
-                  <span class="cs-compare-label cs-label-after">Después</span>
-                  <span class="cs-compare-num cs-num-after">15-60</span>
-                  <span class="cs-compare-unit">pacientes nuevos / mes</span>
-                </div>
-              </div>
-
-              <!-- Metrics row -->
-              <div class="cs-metrics">
-                <div class="cs-metric">
-                  <span class="cs-metric-val">+1.250%</span>
-                  <span class="cs-metric-lbl">Impresiones Google</span>
-                </div>
-                <div class="cs-metric">
-                  <span class="cs-metric-val">+890%</span>
-                  <span class="cs-metric-lbl">Clics orgánicos</span>
-                </div>
-                <div class="cs-metric">
-                  <span class="cs-metric-val">2.5%</span>
-                  <span class="cs-metric-lbl">CTR medio</span>
-                </div>
-                <div class="cs-metric cs-metric-accent">
-                  <span class="cs-metric-val">×3</span>
-                  <span class="cs-metric-lbl">Llamadas entrantes</span>
-                </div>
-              </div>
-
-              <!-- Evidence: web + quote -->
-              <div class="cs-evidence">
-                <figure class="cs-evidence-img">
-                  <img src="img/landinghitachi.webp" alt="Web Clínica Dental Hitachi" loading="lazy" width="600" height="380" />
-                  <figcaption>Web entregada · clinicadentalhitachi.com</figcaption>
-                </figure>
-                <div class="cs-quote-block">
-                  <blockquote class="cs-quote">
-                    "Desde que empezamos con Nodo, nuestras llamadas se triplicaron. La web y las campañas trabajan juntas como un equipo."
-                  </blockquote>
-                  <cite class="cs-cite">
-                    <img class="cs-cite-avatar" src="https://clinicadentalhitachi.com/images/doctorahitachi.jpg" alt="Dra. Hitachi" loading="lazy" />
-                    <div>
-                      <strong>Dra. Hitachi</strong>
-                      <span>Clínica Dental · L'Hospitalet</span>
-                    </div>
-                  </cite>
-                  <div class="cs-delivered">
-                    <span class="cs-delivered-label">Lo que hicimos</span>
-                    <ul class="cs-delivered-list">
-                      <li>Web GSAP + arquitectura de conversión</li>
-                      <li>SEO local · Top 3 en búsquedas de zona</li>
-                      <li>Google Ads · campañas de captación de pacientes</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
+          <div class="prueba-grid">
+            <div class="prueba-stat will-slide">
+              <span class="prueba-num">×10</span>
+              <span class="prueba-label">más clientes de media<br>en 90 días</span>
             </div>
-
-            <!-- Caso 2 -->
-            <div class="cs-card" data-case="1">
-              <div class="cs-header">
-                <div>
-                  <span class="cs-tag">Caso 02 · E-commerce · Branding</span>
-                  <h3 class="cs-title">La Chiquitana</h3>
-                </div>
-              </div>
-              <div class="cs-compare">
-                <div class="cs-compare-col">
-                  <span class="cs-compare-label cs-label-before">Antes</span>
-                  <span class="cs-compare-num cs-num-before">Tienda<br>básica</span>
-                  <span class="cs-compare-unit">sin identidad visual</span>
-                </div>
-                <div class="cs-compare-mid">
-                  <div class="cs-compare-line"></div>
-                  <span class="cs-compare-time">60 días</span>
-                  <div class="cs-compare-arrow">→</div>
-                </div>
-                <div class="cs-compare-col">
-                  <span class="cs-compare-label cs-label-after">Después</span>
-                  <span class="cs-compare-num cs-num-after">×4.1</span>
-                  <span class="cs-compare-unit">ventas online</span>
-                </div>
-              </div>
-              <div class="cs-metrics">
-                <div class="cs-metric"><span class="cs-metric-val">+240%</span><span class="cs-metric-lbl">Tiempo en web</span></div>
-                <div class="cs-metric"><span class="cs-metric-val">×4.1</span><span class="cs-metric-lbl">Ventas online</span></div>
-                <div class="cs-metric cs-metric-accent"><span class="cs-metric-val">0.9s</span><span class="cs-metric-lbl">LCP</span></div>
-              </div>
-              <div class="cs-coming">
-                <p>Caso completo próximamente.</p>
-                <a href="contact.html" class="btn btn-primary btn-breathe">Quiero resultados así →</a>
-              </div>
+            <div class="prueba-stat will-slide">
+              <span class="prueba-num">+890%</span>
+              <span class="prueba-label">visibilidad orgánica<br>en Google</span>
             </div>
-
-            <!-- Controls -->
-            <div class="cs-controls">
-              <div class="cs-dots">
-                <button class="cs-dot is-active" data-slide="0" aria-label="Caso 1"></button>
-                <button class="cs-dot" data-slide="1" aria-label="Caso 2"></button>
-              </div>
-              <div class="cs-nav">
-                <button class="cs-arrow" id="casesPrev" aria-label="Anterior">←</button>
-                <button class="cs-arrow" id="casesNext" aria-label="Siguiente">→</button>
-              </div>
+            <div class="prueba-stat will-slide">
+              <span class="prueba-num">48</span>
+              <span class="prueba-label">proyectos entregados<br>y funcionando</span>
             </div>
           </div>
 
-          <!-- CTA casos -->
-          <div class="cases-cta will-slide">
-            <p class="cases-cta-text">¿Tu negocio puede estar aquí?</p>
-            <a href="contact.html" class="btn btn-primary btn-breathe">Agenda tu diagnóstico gratuito →</a>
-          </div>
+          <blockquote class="prueba-quote will-slide">
+            <p>"Desde que empezamos con Nodo, nuestras llamadas se triplicaron. La web y las campañas trabajan juntas."</p>
+            <cite>
+              <img src="https://clinicadentalhitachi.com/images/doctorahitachi.jpg" alt="Dra. Hitachi" loading="lazy" />
+              <span><strong>Dra. Hitachi</strong> · Clínica Dental, L'Hospitalet</span>
+            </cite>
+          </blockquote>
 
-          <!-- RENDIMIENTO — acordeón cerrado por defecto -->
-          <div class="perf-accordion will-slide" id="perfAccordion">
-            <button class="perf-accordion-trigger" id="perfTrigger" aria-expanded="false" aria-controls="perfPanel">
-              <span class="perf-accordion-left">
-                <span class="perf-accordion-kicker">Detalle técnico</span>
-                <span class="perf-accordion-title">¿Tu web carga rápido en móvil?</span>
-              </span>
-              <span class="perf-accordion-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="perf-accordion-panel" id="perfPanel" hidden>
-              <p class="perf-accordion-intro">Comparativa orientativa: web genérica vs. una web optimizada para conversión. Lo que importa es que tus visitas no se vayan antes de contactarte.</p>
-              <div class="perf-grid">
-                <div class="perf-col perf-col-before">
-                  <span class="perf-label perf-label-before">Web típica</span>
-                  <div class="perf-score">
-                    <span class="perf-score-num" data-count="52">0</span>
-                    <span class="perf-score-max">/100</span>
-                  </div>
-                  <p class="perf-score-caption">Velocidad percibida</p>
-                  <ul class="perf-metrics">
-                    <li><span>Carga en móvil</span><strong>Lenta</strong></li>
-                    <li><span>Primera impresión</span><strong>Pesada</strong></li>
-                    <li><span>Navegación</span><strong>Con saltos</strong></li>
-                  </ul>
-                </div>
-                <div class="perf-col perf-col-after">
-                  <span class="perf-label perf-label-after">Con Nodo</span>
-                  <div class="perf-score perf-score-good">
-                    <span class="perf-score-num" data-count="94">0</span>
-                    <span class="perf-score-max">/100</span>
-                  </div>
-                  <p class="perf-score-caption">Velocidad percibida</p>
-                  <ul class="perf-metrics">
-                    <li><span>Carga en móvil</span><strong>Rápida</strong></li>
-                    <li><span>Primera impresión</span><strong>Fluida</strong></li>
-                    <li><span>Navegación</span><strong>Sin cortes</strong></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="perf-bars">
-                <div class="perf-bar-row">
-                  <span class="perf-bar-label">Velocidad de carga</span>
-                  <div class="perf-bar-track"><div class="perf-bar-fill perf-bar-before" data-width="28"></div></div>
-                  <div class="perf-bar-track perf-bar-track-after"><div class="perf-bar-fill perf-bar-after" data-width="94"></div></div>
-                </div>
-                <div class="perf-bar-row">
-                  <span class="perf-bar-label">Fluidez en móvil</span>
-                  <div class="perf-bar-track"><div class="perf-bar-fill perf-bar-before" data-width="35"></div></div>
-                  <div class="perf-bar-track perf-bar-track-after"><div class="perf-bar-fill perf-bar-after" data-width="97"></div></div>
-                </div>
-                <div class="perf-bar-row">
-                  <span class="perf-bar-label">Experiencia de marca</span>
-                  <div class="perf-bar-track"><div class="perf-bar-fill perf-bar-before" data-width="40"></div></div>
-                  <div class="perf-bar-track perf-bar-track-after"><div class="perf-bar-fill perf-bar-after" data-width="96"></div></div>
-                </div>
-              </div>
-              <a href="contact.html" class="btn btn-outline btn-sm perf-accordion-cta">Quiero una web así →</a>
-            </div>
+          <div class="prueba-cta will-slide">
+            <a href="work.html" class="btn btn-outline">Ver proyectos →</a>
           </div>
-
         </div>
       </section>
 
