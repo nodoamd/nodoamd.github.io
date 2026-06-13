@@ -24,16 +24,25 @@
     <div class="loader-counter">0%</div>
   </div>
 
-  <div class="nodo-sweep" aria-hidden="true"></div>
-  <span class="transition-label" aria-hidden="true"></span>
-  <div class="nodo-curtain curtain-1" aria-hidden="true"></div>
-  <div class="nodo-curtain curtain-2" aria-hidden="true"></div>
-  <div class="nodo-curtain curtain-3" aria-hidden="true"></div>
-  <div class="nodo-diagonal diagonal-1" aria-hidden="true"></div>
-  <div class="nodo-diagonal diagonal-2" aria-hidden="true"></div>
-  <div class="nodo-reveal" aria-hidden="true"></div>
-  <div class="nodo-split-top" aria-hidden="true"></div>
-  <div class="nodo-split-bottom" aria-hidden="true"></div>
+  <div class="nodo-transition is-idle" id="nodo-transition" aria-hidden="true">
+    <div class="nodo-transition-panel"></div>
+    <div class="nodo-transition-lead"></div>
+    <div class="nodo-transition-ui">
+      <div class="transition-row-top">
+        <span class="transition-brand">Nodo Studio</span>
+        <span class="transition-index">03</span>
+      </div>
+      <div class="transition-row-bottom">
+        <p class="transition-eyebrow">Navegando a</p>
+        <div class="transition-destination-wrap">
+          <span class="transition-destination">Nosotros</span>
+        </div>
+      </div>
+      <div class="transition-progress-track">
+        <span class="transition-progress-fill"></span>
+      </div>
+    </div>
+  </div>
 
   <nav id="nodo-nav" aria-label="Navegación principal">
     <a href="index.html" class="nav-logo">Nodo<em>.</em></a>

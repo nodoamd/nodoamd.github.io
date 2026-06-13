@@ -27,17 +27,26 @@
     <div class="loader-counter">0%</div>
   </div>
 
-  <!-- OVERLAYS TRANSICIÓN BARBA -->
-  <div class="nodo-sweep" aria-hidden="true"></div>
-  <span class="transition-label" aria-hidden="true"></span>
-  <div class="nodo-curtain curtain-1" aria-hidden="true"></div>
-  <div class="nodo-curtain curtain-2" aria-hidden="true"></div>
-  <div class="nodo-curtain curtain-3" aria-hidden="true"></div>
-  <div class="nodo-diagonal diagonal-1" aria-hidden="true"></div>
-  <div class="nodo-diagonal diagonal-2" aria-hidden="true"></div>
-  <div class="nodo-reveal" aria-hidden="true"></div>
-  <div class="nodo-split-top" aria-hidden="true"></div>
-  <div class="nodo-split-bottom" aria-hidden="true"></div>
+  <!-- TRANSICIÓN PREMIUM (persiste entre páginas) -->
+  <div class="nodo-transition is-idle" id="nodo-transition" aria-hidden="true">
+    <div class="nodo-transition-panel"></div>
+    <div class="nodo-transition-lead"></div>
+    <div class="nodo-transition-ui">
+      <div class="transition-row-top">
+        <span class="transition-brand">Nodo Studio</span>
+        <span class="transition-index">01</span>
+      </div>
+      <div class="transition-row-bottom">
+        <p class="transition-eyebrow">Navegando a</p>
+        <div class="transition-destination-wrap">
+          <span class="transition-destination">Inicio</span>
+        </div>
+      </div>
+      <div class="transition-progress-track">
+        <span class="transition-progress-fill"></span>
+      </div>
+    </div>
+  </div>
 
   <!-- NAV (persiste — fuera del container) -->
   <nav id="nodo-nav" aria-label="Navegación principal">
@@ -58,39 +67,45 @@
 
     <main data-barba="container" data-barba-namespace="home">
 
-      <!-- HERO E + SPLINE -->
+      <!-- HERO — texto arriba, Spline debajo -->
       <section class="hero-e" id="hero">
         <div class="container-wide hero-e-inner">
 
           <div class="hero-e-copy">
-            <p class="hero-e-eyebrow">Nodo Studio · Barcelona 2026</p>
+            <p class="hero-e-eyebrow">Nodo Studio · Barcelona</p>
             <h1 class="hero-e-title">
-              <span>Webs que</span>
-              <span class="tg">hablan</span>
-              <span>por solas.</span>
+              Lo que tu proyecto necesita, <span class="tg-line"><span class="tg">Nodo lo conecta.</span></span>
             </h1>
             <p class="hero-e-sub">
-              Sin templates. Sin atajos. Diseñamos experiencias digitales con Barba.js, GSAP y 3D — desde L'Hospitalet para el mundo.
+              Nodo nace de la conexión. Construimos puentes entre proyectos y personas — con Barba.js, GSAP y 3D.
             </p>
-            <div class="hero-e-ctas">
-              <a href="work.html" class="btn btn-dark magnetic">Ver proyectos →</a>
-              <a href="contact.html" class="btn btn-ghost-light magnetic">Hablemos</a>
+            <div class="hero-e-ctas" data-magnetic-group>
+              <a href="work.html" class="btn btn-dark magnetic">Ver resultados reales</a>
+              <a href="contact.html" class="btn btn-ghost-light magnetic">Agenda tu diagnóstico gratuito</a>
             </div>
-            <div class="hero-e-clients">
-              <span class="client-name">Hitachi</span>
-              <div class="client-div" aria-hidden="true"></div>
-              <span class="client-name">La Chiquitana</span>
-              <div class="client-div" aria-hidden="true"></div>
-              <span class="client-name">Dentale BCN</span>
-              <div class="client-div" aria-hidden="true"></div>
-              <span class="client-name">Studio Noir</span>
+            <div class="hero-e-social">
+              <div class="hero-e-avatars" aria-hidden="true">
+                <span class="hero-avatar" style="--hue: 250"></span>
+                <span class="hero-avatar" style="--hue: 280"></span>
+                <span class="hero-avatar" style="--hue: 220"></span>
+                <span class="hero-avatar" style="--hue: 300"></span>
+                <span class="hero-avatar" style="--hue: 265"></span>
+                <span class="hero-avatar" style="--hue: 235"></span>
+              </div>
+              <p class="hero-e-social-text"><em>2.141 emprendedores</em> confían en nosotros</p>
             </div>
           </div>
 
-          <div class="spline-shell loading" id="spline-shell">
-            <div class="spline-loader" aria-hidden="true"></div>
-            <spline-viewer id="hero-spline"
-              url="https://prod.spline.design/413yij0subdFPRs9/scene.splinecode"></spline-viewer>
+          <div class="hero-e-visual">
+            <div class="spline-switcher" role="group" aria-label="Cambiar modelo 3D">
+              <button type="button" class="spline-switch-btn is-active" data-spline-index="1" aria-pressed="true">Nodo</button>
+              <button type="button" class="spline-switch-btn" data-spline-index="0" aria-pressed="false">Abstracto</button>
+            </div>
+            <div class="spline-shell loading" id="spline-shell">
+              <div class="spline-loader" aria-hidden="true"></div>
+              <spline-viewer id="hero-spline"
+                url="https://prod.spline.design/cCCDBbMgwxIsMr8b/scene.splinecode"></spline-viewer>
+            </div>
           </div>
 
         </div>
