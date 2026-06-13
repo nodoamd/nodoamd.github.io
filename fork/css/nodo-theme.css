@@ -1,0 +1,306 @@
+/*------------------------------------------------------------------
+    Nodo Conecta — tema morado (fork Hayler)
+-------------------------------------------------------------------*/
+
+.nodo-fork {
+  --nodo-light: #ffd6ff;
+  --nodo-mid: #b24bff;
+  --nodo-bright: #9b4dff;
+  --nodo-deep: #5d00b5;
+  --nodo-ink: #0d0a14;
+  --nodo-surface: #f6f2ff;
+
+  --primary-color: var(--nodo-bright);
+  --secondary-color: var(--nodo-deep);
+  --cursor-background-color: var(--nodo-mid);
+  --cursor-border-color: var(--nodo-mid);
+  --fullscreen-menu-bg-color: var(--nodo-ink);
+}
+
+.nodo-fork #clapat-page-content[data-bgcolor="#f7f7f7"] {
+  background-color: var(--nodo-surface) !important;
+}
+
+.nodo-fork .light-section[data-bgcolor="#f7f7f7"] {
+  background-color: var(--nodo-surface) !important;
+}
+
+.nodo-fork .dark-section[data-bgcolor="#000"],
+.nodo-fork .dark-section[data-bgcolor="#000000"] {
+  background-color: var(--nodo-ink) !important;
+}
+
+.nodo-fork #clapat-logo img {
+  width: auto;
+  height: 36px;
+  object-fit: contain;
+}
+
+.nodo-fork #clapat-logo .black-logo,
+.nodo-fork #clapat-logo .white-logo {
+  width: auto;
+  height: 36px;
+}
+
+.nodo-fork .classic-menu #clapat-nav-wrapper {
+  background-color: rgba(93, 0, 181, 0.12) !important;
+}
+
+.nodo-fork #header-button .button-icon i {
+  background-color: var(--nodo-mid) !important;
+  color: #fff !important;
+}
+
+.nodo-fork .marquee-text,
+.nodo-fork .item-title span,
+.nodo-fork .big-title {
+  color: inherit;
+}
+
+.nodo-fork .animated-line,
+.nodo-fork hr.animated-line {
+  background: linear-gradient(90deg, transparent, var(--nodo-mid), transparent);
+}
+
+.nodo-fork .cylinder-lists li.is-active,
+.nodo-fork .pinned-lists li.is-active {
+  color: var(--nodo-deep);
+}
+
+.nodo-fork #clapat-footer:not(.absolute) {
+  background-color: var(--nodo-ink);
+}
+
+.nodo-fork #clapat-footer:not(.absolute)::before,
+.nodo-fork #clapat-footer:not(.absolute)::after {
+  background-color: var(--nodo-ink);
+}
+
+.nodo-fork .clock-label,
+.nodo-fork .footer-nav-lists a:hover {
+  color: var(--nodo-light);
+}
+
+.nodo-fork .preloader-percentage .number span {
+  color: var(--nodo-mid);
+}
+
+.nodo-fork .brand-wordmark {
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.nodo-fork .brand-wordmark em {
+  color: var(--nodo-mid);
+  font-style: normal;
+}
+
+/* Mapear reglas .hayler de custom.css también para .nodo-fork */
+@media (min-width: 1025px) {
+  .nodo-fork .classic-menu .nav-height {
+    background-color: transparent;
+  }
+
+  .nodo-fork .classic-menu #clapat-nav-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    border-radius: 3px;
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+    transform: translate(-50%, -50%);
+  }
+}
+
+.nodo-fork #clapat-footer:not(.absolute) {
+  overflow: visible;
+  color: var(--color-white);
+}
+
+.nodo-fork #clapat-cursor,
+.nodo-fork .clapat-rotate-device {
+  display: none !important;
+}
+
+.nodo-fork,
+.nodo-fork * {
+  cursor: auto;
+}
+
+.nodo-fork a,
+.nodo-fork button {
+  cursor: pointer;
+}
+
+.nodo-fork .marquee-image .star {
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(155, 77, 255, 0.45));
+}
+
+.nodo-fork #ball {
+  background-color: var(--nodo-mid) !important;
+  border-color: var(--nodo-mid) !important;
+}
+
+.nodo-fork .button-icon i,
+.nodo-fork [data-ball-color="primary"] {
+  --ball-color: var(--nodo-mid);
+}
+
+/* ── Hero Nodo Conecta (no título gigante encima del screenshot) ── */
+.nodo-fork #hero {
+  position: relative;
+}
+
+.nodo-fork .nodo-hero-brand {
+  position: absolute;
+  left: max(2rem, 5vw);
+  bottom: clamp(7rem, 14vh, 10rem);
+  z-index: 30;
+  max-width: min(520px, 90vw);
+  pointer-events: none;
+}
+
+.nodo-fork .nodo-hero-mark {
+  display: block;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 8px 24px rgba(155, 77, 255, 0.35));
+}
+
+.nodo-fork .nodo-hero-eyebrow {
+  margin: 0 0 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.nodo-fork .nodo-hero-title {
+  margin: 0;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  line-height: 1.02;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: #fff;
+}
+
+.nodo-fork .nodo-hero-title span {
+  color: var(--nodo-light);
+}
+
+.nodo-fork .nodo-hero-sub {
+  margin: 0.85rem 0 0;
+  max-width: 38ch;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* Ocultar título flotante del slider — chocaba con el copy de las capturas */
+.nodo-fork .clapat-slider-caption .item-title,
+.nodo-fork #hero .clapat-slide .item-caption .item-title {
+  display: none !important;
+}
+
+.nodo-fork .clapat-slider-caption .item-caption {
+  align-items: flex-end !important;
+  padding-bottom: 0.5rem;
+}
+
+.nodo-fork #hero .clapat-slide .item-caption {
+  opacity: 0.85;
+}
+
+.nodo-fork #hero .item-media-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(13, 10, 20, 0.15) 0%,
+    rgba(13, 10, 20, 0.05) 40%,
+    rgba(13, 10, 20, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+.nodo-fork #hero .item-media-wrapper {
+  position: relative;
+}
+
+/* Nav — evitar texto duplicado / overflow */
+.nodo-fork #header-container {
+  overflow: visible;
+}
+
+.nodo-fork #clapat-nav-wrapper .clapat-nav {
+  display: flex;
+  gap: 0.15rem;
+  flex-wrap: nowrap;
+}
+
+.nodo-fork #clapat-nav-wrapper .clapat-nav > li > ul {
+  display: none;
+}
+
+.nodo-fork .classic-menu #clapat-nav-wrapper {
+  background-color: rgba(93, 0, 181, 0.22) !important;
+  border: 1px solid rgba(255, 214, 255, 0.12);
+}
+
+.nodo-fork #header-buttons-wrapper {
+  position: relative;
+  z-index: 120;
+}
+
+.nodo-fork #ball-loader {
+  border-top-color: var(--nodo-light) !important;
+}
+
+/* ── Stretch Nodo / Conecta antes del footer ── */
+.nodo-fork .nodo-stretch-section {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+}
+
+.nodo-fork .nodo-stretch-section .pinned-lists li {
+  color: var(--nodo-deep);
+}
+
+.nodo-fork .nodo-stretch-section .pinned-lists.heading-1 {
+  font-size: clamp(3rem, 10vw, 7rem);
+  letter-spacing: -0.04em;
+}
+
+.nodo-fork .nodo-stretch-section .pinned-lists li .span-word span {
+  background: linear-gradient(135deg, var(--nodo-deep), var(--nodo-bright));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Footer has-slide en morado */
+.nodo-fork .big-title .has-slide .span-char {
+  color: var(--nodo-light);
+}
+
+.nodo-fork #clapat-footer .big-title {
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  letter-spacing: -0.04em;
+}
+
+@media (max-width: 1024px) {
+  .nodo-fork .nodo-hero-brand {
+    left: 1.25rem;
+    bottom: 6.5rem;
+  }
+
+  .nodo-fork .nodo-stretch-section {
+    min-height: 50vh;
+  }
+}
