@@ -14,12 +14,12 @@ const NODO_CONFIG = {
   splineScript: 'https://unpkg.com/@splinetool/viewer@1.12.97/build/spline-viewer.js',
   splineModels: [
     {
-      label: 'Abstracto',
-      url: 'https://prod.spline.design/cCCDBbMgwxIsMr8b/scene.splinecode',
-    },
-    {
       label: 'Nodo',
       url: 'https://prod.spline.design/413yij0subdFPRs9/scene.splinecode',
+    },
+    {
+      label: 'Abstracto',
+      url: 'https://prod.spline.design/cCCDBbMgwxIsMr8b/scene.splinecode',
     },
   ],
   // Pon tu endpoint real: 'https://formspree.io/f/TU_ID'
@@ -692,6 +692,7 @@ const ScrollFX = (() => {
       });
 
       root.querySelectorAll('[data-count]').forEach(el => {
+        if (el.closest('#perfPanel')) return;
         const target = parseInt(el.dataset.count, 10);
         const suffix = 'suffix' in el.dataset ? el.dataset.suffix : '';
         ScrollTrigger.create({
@@ -713,6 +714,7 @@ const ScrollFX = (() => {
       });
 
       root.querySelectorAll('.perf-bar-fill, .ba-meter-fill').forEach(el => {
+        if (el.closest('#perfPanel')) return;
         const w = parseFloat(el.dataset.width) || 0;
         gsap.set(el, { width: '0%' });
         ScrollTrigger.create({
@@ -878,6 +880,7 @@ function initHome(container, fromBarba) {
   Spline.init(container || document);
   initSistemaPin(container || document);
   initCasesSlider(container || document);
+  initPerfAccordion(container || document);
   if (fromBarba) return;
 
   const root = container || document;
@@ -907,73 +910,170 @@ function directionalSnap(increment) {
 function initSistemaPin(root) {
   const section = root.querySelector('.sistema-section');
   if (!section) return;
-  // On mobile: no horizontal scroll — CSS stacks panels vertically
-  if (window.innerWidth < 768) {
-    section.querySelectorAll('.sp-panel').forEach(p => {
-      p.querySelectorAll('.sp-eyebrow, .sp-headline, .sp-body, .sp-tension, .sp-pills, .sp-cta').forEach(el => {
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-      });
-    });
-    return;
-  }
 
   const panels = gsap.utils.toArray('.sp-panel', section);
   const fill = section.querySelector('#sistemaFill');
   const counter = section.querySelector('#sistemaCounter');
   const TOTAL = panels.length;
 
-  // Hide panel content for entrance animations (skip first panel)
-  panels.forEach((panel, i) => {
-    if (i === 0) return;
-    const items = panel.querySelectorAll('.sp-eyebrow, .sp-headline, .sp-body, .sp-tension, .sp-pills, .sp-cta');
-    gsap.set(items, { opacity: 0, y: 28 });
-  });
+  const mm = gsap.matchMedia();
 
-  // Main horizontal scroll — ease MUST be "none"
-  const scrollTween = gsap.to(panels, {
-    xPercent: -100 * (TOTAL - 1),
-    ease: 'none',
-    scrollTrigger: {
-      trigger: section,
-      pin: true,
-      anticipatePin: 1,       // prevents jump when section enters pin zone
-      scrub: 1,               // 1s to catch up → feels controlled, not slippery
-      snap: {
-        snapTo: directionalSnap(1 / (TOTAL - 1)), // always snaps in scroll direction
-        duration: { min: 0.3, max: 0.7 },
-        delay: 0.1,
-        ease: 'power1.inOut',
-      },
-      end: `+=${window.innerHeight * TOTAL}`,     // TOTAL panels worth of scroll space
-      onUpdate(self) {
-        if (fill) fill.style.width = `${self.progress * 100}%`;
-        const idx = Math.min(Math.round(self.progress * (TOTAL - 1)), TOTAL - 1);
-        if (counter) counter.textContent = String(idx + 1).padStart(2, '0');
-      },
-    },
-  });
+  mm.add('(min-width: 768px)', () => {
+    gsap.set(section, { clearProps: 'height' });
+    gsap.set(panels, { clearProps: 'transform,xPercent' });
 
-  // Animate content inside each panel as it enters horizontally
-  panels.forEach((panel, i) => {
-    if (i === 0) return; // First panel already visible
-    const items = panel.querySelectorAll('.sp-eyebrow, .sp-headline, .sp-body, .sp-tension, .sp-pills, .sp-cta');
-
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: panel,
-        containerAnimation: scrollTween,
-        start: 'left center',
-        toggleActions: 'play none none reset',
-      },
-    }).to(items, {
-      opacity: 1,
-      y: 0,
-      duration: 0.65,
-      stagger: 0.09,
-      ease: 'power2.out',
+    panels.forEach((panel, i) => {
+      if (i === 0) return;
+      const items = panel.querySelectorAll('.sp-eyebrow, .sp-headline, .sp-body, .sp-tension, .sp-pills, .sp-cta');
+      gsap.set(items, { opacity: 0, y: 28 });
     });
+
+    const scrollTween = gsap.to(panels, {
+      xPercent: -100 * (TOTAL - 1),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        pin: true,
+        anticipatePin: 1,
+        scrub: 1,
+        snap: {
+          snapTo: directionalSnap(1 / (TOTAL - 1)),
+          duration: { min: 0.3, max: 0.7 },
+          delay: 0.1,
+          ease: 'power1.inOut',
+        },
+        end: () => `+=${window.innerHeight * TOTAL}`,
+        invalidateOnRefresh: true,
+        onUpdate(self) {
+          if (fill) fill.style.width = `${self.progress * 100}%`;
+          const idx = Math.min(Math.round(self.progress * (TOTAL - 1)), TOTAL - 1);
+          if (counter) counter.textContent = String(idx + 1).padStart(2, '0');
+        },
+      },
+    });
+
+    panels.forEach((panel, i) => {
+      if (i === 0) return;
+      const items = panel.querySelectorAll('.sp-eyebrow, .sp-headline, .sp-body, .sp-tension, .sp-pills, .sp-cta');
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: panel,
+          containerAnimation: scrollTween,
+          start: 'left center',
+          toggleActions: 'play none none reset',
+        },
+      }).to(items, {
+        opacity: 1,
+        y: 0,
+        duration: 0.65,
+        stagger: 0.09,
+        ease: 'power2.out',
+      });
+    });
+
+    return () => {
+      gsap.set(panels, { clearProps: 'all' });
+      panels.forEach(panel => {
+        panel.querySelectorAll('.sp-eyebrow, .sp-headline, .sp-body, .sp-tension, .sp-pills, .sp-cta').forEach(el => {
+          gsap.set(el, { clearProps: 'all' });
+        });
+      });
+      if (fill) fill.style.width = '0%';
+      if (counter) counter.textContent = '01';
+    };
   });
+
+  mm.add('(max-width: 767px)', () => {
+    if (fill) fill.style.width = '0%';
+    if (counter) counter.textContent = '01';
+
+    panels.forEach(panel => {
+      const items = panel.querySelectorAll('.sp-eyebrow, .sp-headline, .sp-body, .sp-tension, .sp-pills, .sp-cta');
+      gsap.set(items, { opacity: 0, y: 20 });
+
+      ScrollTrigger.create({
+        trigger: panel,
+        start: 'top 82%',
+        once: true,
+        onEnter() {
+          gsap.to(items, {
+            opacity: 1,
+            y: 0,
+            duration: 0.65,
+            stagger: 0.08,
+            ease: 'power2.out',
+          });
+        },
+      });
+    });
+
+    return () => {
+      panels.forEach(panel => {
+        panel.querySelectorAll('.sp-eyebrow, .sp-headline, .sp-body, .sp-tension, .sp-pills, .sp-cta').forEach(el => {
+          gsap.set(el, { clearProps: 'all' });
+        });
+      });
+    };
+  });
+}
+
+/* ─── Acordeón rendimiento ─── */
+function initPerfAccordion(root) {
+  const accordion = root.querySelector('#perfAccordion');
+  const trigger = root.querySelector('#perfTrigger');
+  const panel = root.querySelector('#perfPanel');
+  if (!accordion || !trigger || !panel || accordion.dataset.bound) return;
+  accordion.dataset.bound = 'true';
+
+  let open = false;
+
+  function setOpen(next) {
+    open = next;
+    trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    accordion.classList.toggle('is-open', open);
+
+    if (open) {
+      panel.hidden = false;
+      gsap.fromTo(panel, { height: 0, opacity: 0 }, {
+        height: 'auto',
+        opacity: 1,
+        duration: 0.45,
+        ease: 'power2.out',
+        onComplete: () => ScrollTrigger.refresh(),
+      });
+      panel.querySelectorAll('[data-count]').forEach(el => {
+        if (el.dataset.counted) return;
+        el.dataset.counted = 'true';
+        const target = parseInt(el.dataset.count, 10);
+        gsap.to({ val: 0 }, {
+          val: target,
+          duration: 1.6,
+          ease: 'power2.out',
+          onUpdate() {
+            el.textContent = String(Math.round(this.targets()[0].val));
+          },
+        });
+      });
+      panel.querySelectorAll('.perf-bar-fill').forEach(el => {
+        const w = parseFloat(el.dataset.width) || 0;
+        gsap.fromTo(el, { width: '0%' }, { width: `${w}%`, duration: 1.2, ease: 'power2.out' });
+      });
+    } else {
+      gsap.to(panel, {
+        height: 0,
+        opacity: 0,
+        duration: 0.35,
+        ease: 'power2.in',
+        onComplete: () => {
+          panel.hidden = true;
+          gsap.set(panel, { clearProps: 'height' });
+          ScrollTrigger.refresh();
+        },
+      });
+    }
+  }
+
+  trigger.addEventListener('click', () => setOpen(!open));
 }
 
 /* ─── Casos slider ─── */

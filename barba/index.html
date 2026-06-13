@@ -85,11 +85,11 @@
             <div class="spline-shell loading" id="spline-shell">
               <div class="spline-loader" aria-hidden="true"></div>
               <spline-viewer id="hero-spline"
-                url="https://prod.spline.design/cCCDBbMgwxIsMr8b/scene.splinecode"></spline-viewer>
+                url="https://prod.spline.design/413yij0subdFPRs9/scene.splinecode"></spline-viewer>
             </div>
             <div class="spline-switcher" role="group" aria-label="Cambiar modelo 3D">
-              <button type="button" class="spline-switch-btn is-active" data-spline-index="0" aria-pressed="true">Abstracto</button>
-              <button type="button" class="spline-switch-btn" data-spline-index="1" aria-pressed="false">Nodo</button>
+              <button type="button" class="spline-switch-btn is-active" data-spline-index="0" aria-pressed="true">Nodo</button>
+              <button type="button" class="spline-switch-btn" data-spline-index="1" aria-pressed="false">Abstracto</button>
             </div>
           </div>
 
@@ -363,61 +363,63 @@
             <a href="contact.html" class="btn btn-primary btn-breathe">Agenda tu diagnóstico gratuito →</a>
           </div>
 
-          <!-- RENDIMIENTO — debajo de los casos -->
-          <div class="perf-showcase will-slide">
-            <div class="perf-showcase-head">
-              <div>
-                <h3 class="perf-showcase-title">Rendimiento técnico</h3>
-                <p class="perf-showcase-sub">Stack ligero. Barba prefetch. GSAP nativo. Sin frameworks que penalicen tu Lighthouse.</p>
-              </div>
-              <a href="contact.html" class="btn btn-outline btn-sm">Lo quiero para mi web →</a>
-            </div>
-            <div class="perf-grid">
-              <div class="perf-col perf-col-before">
-                <span class="perf-label perf-label-before">Web clásica</span>
-                <div class="perf-score">
-                  <span class="perf-score-num" data-count="52">0</span>
-                  <span class="perf-score-max">/100</span>
+          <!-- RENDIMIENTO — acordeón cerrado por defecto -->
+          <div class="perf-accordion will-slide" id="perfAccordion">
+            <button class="perf-accordion-trigger" id="perfTrigger" aria-expanded="false" aria-controls="perfPanel">
+              <span class="perf-accordion-left">
+                <span class="perf-accordion-kicker">Detalle técnico</span>
+                <span class="perf-accordion-title">¿Tu web carga rápido en móvil?</span>
+              </span>
+              <span class="perf-accordion-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="perf-accordion-panel" id="perfPanel" hidden>
+              <p class="perf-accordion-intro">Comparativa orientativa: web genérica vs. una web optimizada para conversión. Lo que importa es que tus visitas no se vayan antes de contactarte.</p>
+              <div class="perf-grid">
+                <div class="perf-col perf-col-before">
+                  <span class="perf-label perf-label-before">Web típica</span>
+                  <div class="perf-score">
+                    <span class="perf-score-num" data-count="52">0</span>
+                    <span class="perf-score-max">/100</span>
+                  </div>
+                  <p class="perf-score-caption">Velocidad percibida</p>
+                  <ul class="perf-metrics">
+                    <li><span>Carga en móvil</span><strong>Lenta</strong></li>
+                    <li><span>Primera impresión</span><strong>Pesada</strong></li>
+                    <li><span>Navegación</span><strong>Con saltos</strong></li>
+                  </ul>
                 </div>
-                <p class="perf-score-caption">Lighthouse Performance</p>
-                <ul class="perf-metrics">
-                  <li><span>LCP</span><strong>4.2s</strong></li>
-                  <li><span>Recarga completa</span><strong>Siempre</strong></li>
-                  <li><span>JS inicial</span><strong>~380 KB</strong></li>
-                  <li><span>Animaciones</span><strong>CSS básico</strong></li>
-                </ul>
-              </div>
-              <div class="perf-col perf-col-after">
-                <span class="perf-label perf-label-after">Nodo — esta web</span>
-                <div class="perf-score perf-score-good">
-                  <span class="perf-score-num" data-count="94">0</span>
-                  <span class="perf-score-max">/100</span>
+                <div class="perf-col perf-col-after">
+                  <span class="perf-label perf-label-after">Con Nodo</span>
+                  <div class="perf-score perf-score-good">
+                    <span class="perf-score-num" data-count="94">0</span>
+                    <span class="perf-score-max">/100</span>
+                  </div>
+                  <p class="perf-score-caption">Velocidad percibida</p>
+                  <ul class="perf-metrics">
+                    <li><span>Carga en móvil</span><strong>Rápida</strong></li>
+                    <li><span>Primera impresión</span><strong>Fluida</strong></li>
+                    <li><span>Navegación</span><strong>Sin cortes</strong></li>
+                  </ul>
                 </div>
-                <p class="perf-score-caption">Lighthouse Performance</p>
-                <ul class="perf-metrics">
-                  <li><span>LCP</span><strong>1.4s</strong></li>
-                  <li><span>Barba prefetch</span><strong>Activo</strong></li>
-                  <li><span>JS inicial</span><strong>~48 KB</strong></li>
-                  <li><span>Motion</span><strong>GSAP + scrub</strong></li>
-                </ul>
               </div>
-            </div>
-            <div class="perf-bars">
-              <div class="perf-bar-row">
-                <span class="perf-bar-label">Velocidad de carga</span>
-                <div class="perf-bar-track"><div class="perf-bar-fill perf-bar-before" data-width="28"></div></div>
-                <div class="perf-bar-track perf-bar-track-after"><div class="perf-bar-fill perf-bar-after" data-width="94"></div></div>
+              <div class="perf-bars">
+                <div class="perf-bar-row">
+                  <span class="perf-bar-label">Velocidad de carga</span>
+                  <div class="perf-bar-track"><div class="perf-bar-fill perf-bar-before" data-width="28"></div></div>
+                  <div class="perf-bar-track perf-bar-track-after"><div class="perf-bar-fill perf-bar-after" data-width="94"></div></div>
+                </div>
+                <div class="perf-bar-row">
+                  <span class="perf-bar-label">Fluidez en móvil</span>
+                  <div class="perf-bar-track"><div class="perf-bar-fill perf-bar-before" data-width="35"></div></div>
+                  <div class="perf-bar-track perf-bar-track-after"><div class="perf-bar-fill perf-bar-after" data-width="97"></div></div>
+                </div>
+                <div class="perf-bar-row">
+                  <span class="perf-bar-label">Experiencia de marca</span>
+                  <div class="perf-bar-track"><div class="perf-bar-fill perf-bar-before" data-width="40"></div></div>
+                  <div class="perf-bar-track perf-bar-track-after"><div class="perf-bar-fill perf-bar-after" data-width="96"></div></div>
+                </div>
               </div>
-              <div class="perf-bar-row">
-                <span class="perf-bar-label">Fluidez navegación</span>
-                <div class="perf-bar-track"><div class="perf-bar-fill perf-bar-before" data-width="35"></div></div>
-                <div class="perf-bar-track perf-bar-track-after"><div class="perf-bar-fill perf-bar-after" data-width="97"></div></div>
-              </div>
-              <div class="perf-bar-row">
-                <span class="perf-bar-label">Impacto visual</span>
-                <div class="perf-bar-track"><div class="perf-bar-fill perf-bar-before" data-width="40"></div></div>
-                <div class="perf-bar-track perf-bar-track-after"><div class="perf-bar-fill perf-bar-after" data-width="96"></div></div>
-              </div>
+              <a href="contact.html" class="btn btn-outline btn-sm perf-accordion-cta">Quiero una web así →</a>
             </div>
           </div>
 
