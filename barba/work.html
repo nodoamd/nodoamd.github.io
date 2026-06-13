@@ -26,36 +26,46 @@
 
   <div class="nodo-transition is-idle" id="nodo-transition" aria-hidden="true">
     <div class="nodo-transition-panel"></div>
-    <div class="nodo-transition-lead"></div>
-    <div class="nodo-transition-ui">
-      <div class="transition-row-top">
-        <span class="transition-brand">Nodo Studio</span>
-        <span class="transition-index">02</span>
-      </div>
-      <div class="transition-row-bottom">
-        <p class="transition-eyebrow">Navegando a</p>
-        <div class="transition-destination-wrap">
-          <span class="transition-destination">Trabajos</span>
-        </div>
-      </div>
-      <div class="transition-progress-track">
-        <span class="transition-progress-fill"></span>
-      </div>
-    </div>
   </div>
 
   <nav id="nodo-nav" aria-label="Navegación principal">
     <a href="index.html" class="nav-logo">Nodo<em>.</em></a>
     <ul class="nav-links" role="list">
       <li><a href="index.html">Inicio</a></li>
+      <li><a href="index.html#resultados">Resultados</a></li>
       <li><a href="work.html">Trabajos</a></li>
-      <li><a href="about.html">Nosotros</a></li>
+      <li><a href="index.html#precios">Precios</a></li>
       <li><a href="contact.html" class="nav-cta">Hablemos →</a></li>
     </ul>
     <button class="nav-burger" aria-label="Menú" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </nav>
+
+  <!-- Modal fuera del container — persiste con Barba -->
+  <div id="work-modal" class="work-modal" aria-hidden="true" role="dialog" aria-labelledby="work-modal-title">
+    <div class="work-modal-backdrop"></div>
+    <div class="work-modal-panel">
+      <button type="button" class="work-modal-close" aria-label="Cerrar">×</button>
+      <div class="work-modal-head">
+        <span class="work-modal-tag"></span>
+        <span class="work-modal-year"></span>
+      </div>
+      <h2 id="work-modal-title" class="work-modal-title"></h2>
+      <p class="work-modal-desc"></p>
+      <div class="work-modal-cols">
+        <div>
+          <h3 class="work-modal-label">Stack</h3>
+          <ul class="work-modal-stack"></ul>
+        </div>
+        <div>
+          <h3 class="work-modal-label">Resultados</h3>
+          <ul class="work-modal-results"></ul>
+        </div>
+      </div>
+      <a href="contact.html" class="btn btn-primary work-modal-link magnetic">Hablemos del proyecto →</a>
+    </div>
+  </div>
 
   <div data-barba="wrapper">
     <main data-barba="container" data-barba-namespace="work">
@@ -68,54 +78,60 @@
 
       <section class="container">
         <div class="work-grid">
-          <a href="#" class="work-card">
+          <button type="button" class="work-card" data-project="hitachi">
             <div class="work-card-img">01</div>
             <div class="work-card-body">
               <div class="work-card-tag">Dental · GSAP</div>
               <h2 class="work-card-title">Clínica Hitachi</h2>
               <p class="work-card-desc">Rediseño completo con animaciones scroll y campañas Google integradas.</p>
+              <span class="work-card-action">Ver caso →</span>
             </div>
-          </a>
-          <a href="#" class="work-card">
+          </button>
+          <button type="button" class="work-card" data-project="chiquitana">
             <div class="work-card-img">02</div>
             <div class="work-card-body">
               <div class="work-card-tag">E-commerce · Barba.js</div>
               <h2 class="work-card-title">La Chiquitana</h2>
               <p class="work-card-desc">Tienda online con transiciones fluidas y experiencia de marca única.</p>
+              <span class="work-card-action">Ver caso →</span>
             </div>
-          </a>
-          <a href="#" class="work-card">
+          </button>
+          <button type="button" class="work-card" data-project="dentale">
             <div class="work-card-img">03</div>
             <div class="work-card-body">
               <div class="work-card-tag">Corporate · Spline</div>
               <h2 class="work-card-title">Dentale BCN</h2>
               <p class="work-card-desc">Web corporativa premium con 3D interactivo y diseño minimalista.</p>
+              <span class="work-card-action">Ver caso →</span>
             </div>
-          </a>
-          <a href="#" class="work-card">
+          </button>
+          <button type="button" class="work-card" data-project="noir">
             <div class="work-card-img">04</div>
             <div class="work-card-body">
               <div class="work-card-tag">Branding · Web</div>
               <h2 class="work-card-title">Studio Noir</h2>
               <p class="work-card-desc">Identidad visual + web one-page con tipografía editorial y motion design.</p>
+              <span class="work-card-action">Ver caso →</span>
             </div>
-          </a>
-          <a href="#" class="work-card">
+          </button>
+          <button type="button" class="work-card" data-project="balmes">
             <div class="work-card-img">05</div>
             <div class="work-card-body">
               <div class="work-card-tag">Legal · SEO</div>
               <h2 class="work-card-title">Balmes Legal</h2>
               <p class="work-card-desc">Presencia digital para despacho boutique en Barcelona.</p>
+              <span class="work-card-action">Ver caso →</span>
             </div>
-          </a>
-          <a href="#" class="work-card">
+          </button>
+          <button type="button" class="work-card" data-project="arco">
             <div class="work-card-img">06</div>
             <div class="work-card-body">
               <div class="work-card-tag">Real Estate</div>
               <h2 class="work-card-title">Arco RE</h2>
               <p class="work-card-desc">Plataforma inmobiliaria con filtros avanzados y diseño de confianza.</p>
+              <span class="work-card-action">Ver caso →</span>
             </div>
-          </a>
+          </button>
         </div>
       </section>
 

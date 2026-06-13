@@ -14,16 +14,74 @@ const NODO_CONFIG = {
   splineScript: 'https://unpkg.com/@splinetool/viewer@1.12.97/build/spline-viewer.js',
   splineModels: [
     {
-      label: 'Nodo',
-      url: 'https://prod.spline.design/413yij0subdFPRs9/scene.splinecode',
-    },
-    {
       label: 'Abstracto',
       url: 'https://prod.spline.design/cCCDBbMgwxIsMr8b/scene.splinecode',
+    },
+    {
+      label: 'Nodo',
+      url: 'https://prod.spline.design/413yij0subdFPRs9/scene.splinecode',
     },
   ],
   // Pon tu endpoint real: 'https://formspree.io/f/TU_ID'
   formEndpoint: '',
+};
+
+/* Proyectos — edita para el modal en work.html */
+const WORK_PROJECTS = {
+  hitachi: {
+    title: 'Clínica Hitachi',
+    tag: 'Dental · GSAP · ScrollTrigger',
+    year: '2025',
+    desc: 'Rediseño completo de la presencia digital de la clínica. Animaciones scroll con intención, arquitectura de conversión y campañas Google integradas en el flujo del usuario.',
+    stack: ['WordPress', 'GSAP', 'ScrollTrigger', 'Google Ads'],
+    results: ['+38% solicitudes de cita', 'LCP < 1.8s', '100 Lighthouse SEO'],
+    link: 'contact.html',
+  },
+  chiquitana: {
+    title: 'La Chiquitana',
+    tag: 'E-commerce · Barba.js',
+    year: '2025',
+    desc: 'Tienda online con transiciones Barba entre categorías, micro-interacciones en carrito y una experiencia de marca que se siente artesanal, no genérica.',
+    stack: ['Shopify', 'Barba.js', 'GSAP', 'Meta Pixel'],
+    results: ['+22% conversión móvil', 'Transiciones sin recarga', 'Brand system unificado'],
+    link: 'contact.html',
+  },
+  dentale: {
+    title: 'Dentale BCN',
+    tag: 'Corporate · Spline 3D',
+    year: '2024',
+    desc: 'Web corporativa premium con modelo 3D interactivo en el hero, storytelling visual y formulario de contacto optimizado para leads cualificados.',
+    stack: ['HTML/CSS', 'Spline', 'GSAP', 'Formspree'],
+    results: ['Hero 3D interactivo', 'Diseño minimalista', 'Leads +45%'],
+    link: 'contact.html',
+  },
+  noir: {
+    title: 'Studio Noir',
+    tag: 'Branding · Web · Motion',
+    year: '2024',
+    desc: 'Identidad visual y one-page editorial con tipografía display, motion design sutil y una narrativa que posiciona el estudio como referente creativo.',
+    stack: ['Figma', 'GSAP', 'Barba.js', 'Custom CMS'],
+    results: ['Sistema de marca completo', 'One-page premiada', 'Scroll storytelling'],
+    link: 'contact.html',
+  },
+  balmes: {
+    title: 'Balmes Legal',
+    tag: 'Legal · SEO · Performance',
+    year: '2024',
+    desc: 'Presencia digital para despacho boutique: autoridad, claridad y SEO local sin sacrificar estética. Cada página responde a una intención de búsqueda real.',
+    stack: ['WordPress', 'SEO técnico', 'Schema.org', 'GSAP'],
+    results: ['Top 3 keywords locales', 'Core Web Vitals verdes', 'Blog automatizado'],
+    link: 'contact.html',
+  },
+  arco: {
+    title: 'Arco RE',
+    tag: 'Real Estate · Filtros avanzados',
+    year: '2023',
+    desc: 'Plataforma inmobiliaria con filtros en tiempo real, fichas de propiedad inmersivas y un diseño que transmite confianza desde el primer scroll.',
+    stack: ['React', 'GSAP', 'ScrollTrigger', 'Mapbox'],
+    results: ['Filtros < 100ms', 'Tiempo en página +60%', 'Diseño de confianza'],
+    link: 'contact.html',
+  },
 };
 
 /* ═══════════════════════════════════════════════════
@@ -34,53 +92,44 @@ if (typeof barba === 'undefined') console.error('[Nodo] Barba.js no cargado');
 
 gsap.registerPlugin(ScrollTrigger);
 if (typeof ScrollToPlugin !== 'undefined') gsap.registerPlugin(ScrollToPlugin);
+gsap.defaults({ ease: 'power2.out' });
 
 let isFirstLoad = true;
 let splineScriptPromise = null;
+let scrollCtx = null;
 
-const PAGE_META = {
-  home: { label: 'Inicio', index: '01', accent: 'home' },
-  work: { label: 'Trabajos', index: '02', accent: 'work' },
-  about: { label: 'Nosotros', index: '03', accent: 'about' },
-  contact: { label: 'Contacto', index: '04', accent: 'contact' },
+const PAGE_ACCENTS = {
+  home: 'home',
+  work: 'work',
+  about: 'about',
+  contact: 'contact',
 };
 
 /* ═══════════════════════════════════════════════════
-   TRANSICIÓN PREMIUM — panel translateY (estable)
+   TRANSICIÓN — barrido limpio, sin texto
 ═══════════════════════════════════════════════════ */
 const Transition = (() => {
+  const panelEase = 'expo.inOut';
+
   function els() {
     return {
-      root: document.getElementById('nodo-transition'),
+      root:  document.getElementById('nodo-transition'),
       panel: document.querySelector('.nodo-transition-panel'),
-      lead: document.querySelector('.nodo-transition-lead'),
-      ui: document.querySelector('.nodo-transition-ui'),
-      dest: document.querySelector('.transition-destination'),
-      destWrap: document.querySelector('.transition-destination-wrap'),
-      index: document.querySelector('.transition-index'),
-      progress: document.querySelector('.transition-progress-fill'),
     };
   }
 
-  function setMeta(namespace) {
-    const meta = PAGE_META[namespace] || PAGE_META.home;
-    const { root, dest, index } = els();
-    if (dest) dest.textContent = meta.label;
-    if (index) index.textContent = meta.index;
-    if (root) {
-      root.classList.remove('accent-home', 'accent-work', 'accent-about', 'accent-contact');
-      root.classList.add(`accent-${meta.accent}`);
-    }
+  function setAccent(namespace) {
+    const accent = PAGE_ACCENTS[namespace] || PAGE_ACCENTS.home;
+    const { root } = els();
+    if (!root) return;
+    root.classList.remove('accent-home', 'accent-work', 'accent-about', 'accent-contact');
+    root.classList.add(`accent-${accent}`);
   }
 
   function resetPanel() {
-    const { panel, lead, ui, progress, dest, root } = els();
-    gsap.killTweensOf([panel, lead, ui, progress, dest]);
+    const { panel, root } = els();
+    gsap.killTweensOf(panel);
     if (panel) gsap.set(panel, { yPercent: 100, force3D: true });
-    if (lead) gsap.set(lead, { yPercent: 100, force3D: true });
-    if (ui) gsap.set(ui, { opacity: 0, y: 0, visibility: 'hidden', clearProps: 'transform' });
-    if (progress) gsap.set(progress, { scaleX: 0, transformOrigin: 'left center' });
-    if (dest) gsap.set(dest, { yPercent: 0 });
     if (root) {
       root.classList.remove('is-active');
       root.classList.add('is-idle');
@@ -89,13 +138,12 @@ const Transition = (() => {
   }
 
   function lock() {
-    const { root, ui } = els();
+    const { root } = els();
     document.body.classList.add('is-transitioning');
     if (root) {
       root.classList.add('is-active');
       root.classList.remove('is-idle');
     }
-    if (ui) gsap.set(ui, { visibility: 'visible' });
   }
 
   function runTimeline(build) {
@@ -105,95 +153,93 @@ const Transition = (() => {
     });
   }
 
-  const panelEase = 'power4.inOut';
-  const uiEase = 'power3.out';
+  function pageEnterTargets(container) {
+    const ctx = container || document;
+    const hero = ctx.querySelector('.page-hero, .hero-e');
+    const targets = [];
 
-  /* Barba — leave */
+    if (hero) {
+      targets.push(
+        ...hero.querySelectorAll('.badge, .hero-e-eyebrow'),
+        hero.querySelector('h1, .hero-e-title, .t-display'),
+        ...hero.querySelectorAll('.t-body, .hero-e-sub, .hero-e-ctas, .hero-e-social, .hero-e-visual')
+      );
+    }
+
+    targets.push(...ctx.querySelectorAll('.work-card, .about-split, .form-section'));
+    return targets.filter(Boolean);
+  }
+
+  function prepareContent(container) {
+    const targets = pageEnterTargets(container);
+    gsap.set(targets, { opacity: 0, y: 18 });
+    return targets;
+  }
+
+  function revealContent(container, tl, position = 0.42) {
+    const targets = pageEnterTargets(container);
+    if (!targets.length) return;
+    tl.to(targets, {
+      opacity: 1,
+      y: 0,
+      duration: 0.9,
+      stagger: 0.05,
+      ease: 'power2.out',
+      clearProps: 'y',
+    }, position);
+  }
+
   function leave({ current }) {
     lock();
-    const { panel, lead, ui, progress } = els();
-    gsap.killTweensOf([current.container, panel, lead, ui, progress]);
+    const { panel } = els();
+    gsap.killTweensOf([current.container, panel]);
 
     return runTimeline(tl => {
-      tl.to(ui, { opacity: 0, y: 6, duration: 0.16, ease: 'power2.in' }, 0);
       tl.to(current.container, {
         opacity: 0,
-        y: -20,
-        duration: 0.36,
-        ease: 'power2.in',
+        scale: 0.985,
+        duration: 0.38,
+        ease: 'power2.inOut',
       }, 0);
-      tl.to(progress, { scaleX: 1, duration: 0.55, ease: 'power2.inOut' }, 0.04);
       tl.fromTo(panel,
         { yPercent: 100 },
-        { yPercent: 0, duration: 0.68, ease: panelEase, force3D: true },
+        { yPercent: 0, duration: 0.72, ease: panelEase, force3D: true },
         0.06
       );
-      tl.fromTo(lead,
-        { yPercent: 100 },
-        { yPercent: 0, duration: 0.52, ease: 'power3.in', force3D: true },
-        0.02
-      );
     });
   }
 
-  /* Barba — enter: etiqueta solo con panel cubriendo, luego revela página limpia */
   function enter({ next }) {
     lock();
-    const { panel, lead, ui, progress, dest } = els();
-    gsap.killTweensOf([next.container, panel, lead, ui, progress, dest]);
+    const { panel } = els();
+    gsap.killTweensOf([next.container, panel]);
 
-    setMeta(next.namespace);
+    setAccent(next.namespace);
     gsap.set(panel, { yPercent: 0, force3D: true });
-    gsap.set(lead, { yPercent: 0, force3D: true });
-    gsap.set(ui, { opacity: 0, y: 20, visibility: 'visible' });
-    gsap.set(progress, { scaleX: 0, transformOrigin: 'left center' });
-    gsap.set(dest, { yPercent: 100 });
-    gsap.set(next.container, { opacity: 0, y: 24, pointerEvents: 'none' });
+    gsap.set(next.container, { opacity: 1, scale: 1, pointerEvents: 'none' });
+    prepareContent(next.container);
 
     return runTimeline(tl => {
-      tl.to(ui, { opacity: 1, y: 0, duration: 0.32, ease: uiEase }, 0);
-      tl.to(dest, { yPercent: 0, duration: 0.48, ease: uiEase }, 0.06);
-      tl.to(progress, { scaleX: 1, duration: 0.38, ease: 'power2.out' }, 0.06);
-      tl.to(ui, { opacity: 0, y: -10, duration: 0.22, ease: 'power2.in' }, 0.4);
-      tl.set(ui, { visibility: 'hidden' }, 0.62);
-      tl.to(panel, { yPercent: -100, duration: 0.88, ease: panelEase, force3D: true }, 0.58);
-      tl.to(lead, { yPercent: -100, duration: 0.74, ease: 'power3.inOut', force3D: true }, 0.62);
-      tl.to(next.container, { opacity: 1, y: 0, duration: 0.72, ease: uiEase }, 0.6);
-      tl.to(progress, { scaleX: 0, transformOrigin: 'right center', duration: 0.45, ease: 'power2.in' }, 0.58);
-    }).then(() => {
-      gsap.set(next.container, { clearProps: 'y', pointerEvents: 'auto' });
-      resetPanel();
-    });
+      tl.to(panel, { yPercent: -100, duration: 0.88, ease: panelEase, force3D: true }, 0.04);
+      revealContent(next.container, tl, 0.36);
+      tl.set(next.container, { pointerEvents: 'auto' }, 0.5);
+    }).then(resetPanel);
   }
 
-  /* Primera carga en páginas secundarias */
   function initialReveal(namespace) {
     lock();
-    const { panel, lead, ui, progress, dest } = els();
+    const { panel } = els();
     const container = document.querySelector('[data-barba="container"]');
 
-    setMeta(namespace);
+    setAccent(namespace);
     gsap.set(panel, { yPercent: 0, force3D: true });
-    gsap.set(lead, { yPercent: 0, force3D: true });
-    gsap.set(ui, { opacity: 0, y: 20, visibility: 'visible' });
-    gsap.set(progress, { scaleX: 0, transformOrigin: 'left center' });
-    gsap.set(dest, { yPercent: 100 });
-    gsap.set(container, { opacity: 0, y: 24 });
+    gsap.set(container, { opacity: 1 });
+    prepareContent(container);
 
     return runTimeline(tl => {
-      tl.to(ui, { opacity: 1, y: 0, duration: 0.32, ease: uiEase }, 0.04);
-      tl.to(dest, { yPercent: 0, duration: 0.48, ease: uiEase }, 0.08);
-      tl.to(progress, { scaleX: 1, duration: 0.38, ease: 'power2.out' }, 0.08);
-      tl.to(ui, { opacity: 0, y: -10, duration: 0.22, ease: 'power2.in' }, 0.42);
-      tl.set(ui, { visibility: 'hidden' }, 0.64);
-      tl.to(panel, { yPercent: -100, duration: 0.92, ease: panelEase, force3D: true }, 0.58);
-      tl.to(lead, { yPercent: -100, duration: 0.78, ease: 'power3.inOut', force3D: true }, 0.62);
-      tl.to(container, { opacity: 1, y: 0, duration: 0.75, ease: uiEase }, 0.6);
-      tl.to(progress, { scaleX: 0, transformOrigin: 'right center', duration: 0.45 }, 0.58);
-    }).then(() => {
-      gsap.set(container, { clearProps: 'y' });
-      resetPanel();
-    });
+      tl.to(panel, { yPercent: -100, duration: 0.92, ease: panelEase, force3D: true }, 0.08);
+      revealContent(container, tl, 0.38);
+    }).then(resetPanel);
   }
 
   return { leave, enter, initialReveal, resetPanel };
@@ -393,6 +439,137 @@ const Spline = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════
+   MODAL PROYECTOS (work)
+═══════════════════════════════════════════════════ */
+const WorkModal = (() => {
+  let open = false;
+
+  const MARKUP = `
+<div id="work-modal" class="work-modal" aria-hidden="true" role="dialog" aria-labelledby="work-modal-title">
+  <div class="work-modal-backdrop"></div>
+  <div class="work-modal-panel">
+    <button type="button" class="work-modal-close" aria-label="Cerrar">×</button>
+    <div class="work-modal-head">
+      <span class="work-modal-tag"></span>
+      <span class="work-modal-year"></span>
+    </div>
+    <h2 id="work-modal-title" class="work-modal-title"></h2>
+    <p class="work-modal-desc"></p>
+    <div class="work-modal-cols">
+      <div>
+        <h3 class="work-modal-label">Stack</h3>
+        <ul class="work-modal-stack"></ul>
+      </div>
+      <div>
+        <h3 class="work-modal-label">Resultados</h3>
+        <ul class="work-modal-results"></ul>
+      </div>
+    </div>
+    <a href="contact.html" class="btn btn-primary work-modal-link magnetic">Hablemos del proyecto →</a>
+  </div>
+</div>`;
+
+  function ensure() {
+    if (!document.getElementById('work-modal')) {
+      document.body.insertAdjacentHTML('beforeend', MARKUP);
+    }
+  }
+
+  function els() {
+    ensure();
+    return {
+      modal:   document.getElementById('work-modal'),
+      backdrop: document.querySelector('.work-modal-backdrop'),
+      panel:   document.querySelector('.work-modal-panel'),
+      tag:     document.querySelector('.work-modal-tag'),
+      title:   document.querySelector('.work-modal-title'),
+      desc:    document.querySelector('.work-modal-desc'),
+      stack:   document.querySelector('.work-modal-stack'),
+      results: document.querySelector('.work-modal-results'),
+      year:    document.querySelector('.work-modal-year'),
+      link:    document.querySelector('.work-modal-link'),
+      close:   document.querySelector('.work-modal-close'),
+    };
+  }
+
+  function fill(project) {
+    const el = els();
+    if (!el.modal || !project) return;
+    if (el.tag) el.tag.textContent = project.tag;
+    if (el.title) el.title.textContent = project.title;
+    if (el.desc) el.desc.textContent = project.desc;
+    if (el.year) el.year.textContent = project.year;
+    if (el.link) el.link.href = project.link || 'contact.html';
+    if (el.stack) {
+      el.stack.innerHTML = project.stack.map(s => `<li>${s}</li>`).join('');
+    }
+    if (el.results) {
+      el.results.innerHTML = project.results.map(r => `<li>${r}</li>`).join('');
+    }
+  }
+
+  function show(id) {
+    const el = els();
+    const project = WORK_PROJECTS[id];
+    if (!el.modal || !project || open) return;
+
+    fill(project);
+    open = true;
+    el.modal.classList.add('is-open');
+    el.modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    tl.set(el.modal, { pointerEvents: 'auto' })
+      .fromTo(el.backdrop, { opacity: 0 }, { opacity: 1, duration: 0.35 }, 0)
+      .fromTo(el.panel, { opacity: 0, y: 32, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.55 }, 0.05);
+    el.close?.focus();
+  }
+
+  function hide() {
+    const el = els();
+    if (!el.modal || !open) return;
+
+    gsap.timeline({
+      defaults: { ease: 'power2.in' },
+      onComplete() {
+        open = false;
+        el.modal.classList.remove('is-open');
+        el.modal.setAttribute('aria-hidden', 'true');
+        el.modal.style.pointerEvents = '';
+        document.body.classList.remove('modal-open');
+      },
+    })
+      .to(el.panel, { opacity: 0, y: 20, scale: 0.98, duration: 0.3 }, 0)
+      .to(el.backdrop, { opacity: 0, duration: 0.28 }, 0);
+  }
+
+  function init(scope) {
+    ensure();
+    const root = scope || document;
+    const el = els();
+    if (!el.modal) return;
+
+    if (!el.modal.dataset.bound) {
+      el.modal.dataset.bound = 'true';
+      el.close?.addEventListener('click', hide);
+      el.backdrop?.addEventListener('click', hide);
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && open) hide();
+      });
+    }
+
+    root.querySelectorAll('.work-card[data-project]').forEach(card => {
+      if (card.dataset.modalBound) return;
+      card.dataset.modalBound = '1';
+      card.addEventListener('click', () => show(card.dataset.project));
+    });
+  }
+
+  return { init, hide, show };
+})();
+
+/* ═══════════════════════════════════════════════════
    NAV
 ═══════════════════════════════════════════════════ */
 const Nav = (() => {
@@ -454,63 +631,184 @@ const Nav = (() => {
 })();
 
 /* ═══════════════════════════════════════════════════
-   SCROLL ANIMATIONS
+   SCROLL — parallax, scrub, pin (gsap.context)
 ═══════════════════════════════════════════════════ */
-const ScrollAnimations = (() => {
-  function init(container) {
-    const ctx = container || document;
-
-    ctx.querySelectorAll('.will-fade').forEach(el => {
-      gsap.fromTo(el, { opacity: 0 }, {
-        opacity: 1, duration: 0.8, ease: 'expo.out',
-        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-      });
-    });
-
-    ctx.querySelectorAll('.will-slide').forEach(el => {
-      gsap.fromTo(el, { opacity: 0, y: 50 }, {
-        opacity: 1, y: 0, duration: 0.9, ease: 'expo.out',
-        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-      });
-    });
-
-    ctx.querySelectorAll('.will-scale').forEach(el => {
-      gsap.fromTo(el, { opacity: 0, scale: 0.92 }, {
-        opacity: 1, scale: 1, duration: 0.9, ease: 'expo.out',
-        scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-      });
-    });
-
-    ctx.querySelectorAll('[data-stagger]').forEach(group => {
-      gsap.fromTo(group.children, { opacity: 0, y: 35 }, {
-        opacity: 1, y: 0, duration: 0.75, ease: 'expo.out',
-        stagger: parseFloat(group.dataset.stagger) || 0.1,
-        scrollTrigger: { trigger: group, start: 'top 88%', once: true },
-      });
-    });
-
-    ctx.querySelectorAll('[data-count]').forEach(el => {
-      const target = parseInt(el.dataset.count, 10);
-      ScrollTrigger.create({
-        trigger: el,
-        start: 'top 85%',
-        once: true,
-        onEnter() {
-          gsap.to({ val: 0 }, {
-            val: target,
-            duration: 1.8,
-            ease: 'power2.out',
-            onUpdate() {
-              const v = Math.round(this.targets()[0].val);
-              el.textContent = v + (el.dataset.suffix || (target === 100 ? '%' : '+'));
-            },
-          });
-        },
-      });
-    });
+const ScrollFX = (() => {
+  function kill() {
+    scrollCtx?.revert();
+    scrollCtx = null;
   }
 
-  return { init, refresh: () => ScrollTrigger.refresh() };
+  function init(container) {
+    kill();
+    const root = container || document;
+    if (!root.querySelector) return;
+
+    scrollCtx = gsap.context(() => {
+      root.querySelectorAll('[data-scrub]').forEach(el => {
+        const dist = parseFloat(el.dataset.scrub) || 40;
+        gsap.fromTo(el,
+          { y: dist * 0.5 },
+          {
+            y: -dist * 0.5,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: parseFloat(el.dataset.scrubSmooth) || 1.4,
+            },
+          }
+        );
+      });
+
+      root.querySelectorAll('.will-fade').forEach(el => {
+        gsap.fromTo(el, { opacity: 0 }, {
+          opacity: 1, duration: 0.9, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        });
+      });
+
+      root.querySelectorAll('.will-slide').forEach(el => {
+        gsap.fromTo(el, { opacity: 0, y: 40 }, {
+          opacity: 1, y: 0, duration: 1, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        });
+      });
+
+      root.querySelectorAll('.will-scale').forEach(el => {
+        gsap.fromTo(el, { opacity: 0, scale: 0.96 }, {
+          opacity: 1, scale: 1, duration: 0.95, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        });
+      });
+
+      root.querySelectorAll('[data-stagger]').forEach(group => {
+        gsap.fromTo(group.children, { opacity: 0, y: 28 }, {
+          opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+          stagger: parseFloat(group.dataset.stagger) || 0.08,
+          scrollTrigger: { trigger: group, start: 'top 85%', once: true },
+        });
+      });
+
+      root.querySelectorAll('[data-count]').forEach(el => {
+        const target = parseInt(el.dataset.count, 10);
+        const suffix = 'suffix' in el.dataset ? el.dataset.suffix : '';
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 85%',
+          once: true,
+          onEnter() {
+            gsap.to({ val: 0 }, {
+              val: target,
+              duration: 2,
+              ease: 'power2.out',
+              onUpdate() {
+                const v = Math.round(this.targets()[0].val);
+                el.textContent = suffix ? v + suffix : String(v);
+              },
+            });
+          },
+        });
+      });
+
+      root.querySelectorAll('.perf-bar-fill, .ba-meter-fill').forEach(el => {
+        const w = parseFloat(el.dataset.width) || 0;
+        gsap.set(el, { width: '0%' });
+        ScrollTrigger.create({
+          trigger: el.closest('.perf-bars, .ba-meter, .perf-showcase, .ba-card') || el,
+          start: 'top 82%',
+          once: true,
+          onEnter() {
+            gsap.to(el, { width: `${w}%`, duration: 1.5, ease: 'power2.out' });
+          },
+        });
+      });
+
+      const gscCards = root.querySelector('.gsc-cards');
+      if (gscCards) {
+        gsap.fromTo(gscCards.children, { opacity: 0, y: 20 }, {
+          opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power2.out',
+          scrollTrigger: { trigger: gscCards, start: 'top 85%', once: true },
+        });
+      }
+
+      const marquee = root.querySelector('.marquee-track');
+      if (marquee) {
+        gsap.to(marquee, {
+          xPercent: -8,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: marquee.parentElement,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.6,
+          },
+        });
+      }
+
+      root.querySelectorAll('.work-card-img').forEach(img => {
+        gsap.fromTo(img,
+          { scale: 1.08 },
+          {
+            scale: 1,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: img,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.2,
+            },
+          }
+        );
+      });
+
+      const services = root.querySelector('#servicios .cards-grid');
+      if (services) {
+        gsap.fromTo(services.children, { y: 60 }, {
+          y: -30,
+          ease: 'none',
+          stagger: 0.08,
+          scrollTrigger: {
+            trigger: services,
+            start: 'top 90%',
+            end: 'bottom 20%',
+            scrub: 1.8,
+          },
+        });
+      }
+
+      const hero = root.querySelector('.hero-e');
+      if (hero) {
+        const visual = hero.querySelector('.hero-e-visual');
+        const copy = hero.querySelector('.hero-e-copy');
+        if (visual) {
+          gsap.fromTo(visual, { y: 20 }, {
+            y: -40,
+            ease: 'none',
+            scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: 1.8 },
+          });
+        }
+        if (copy) {
+          gsap.fromTo(copy, { y: 0 }, {
+            y: -16,
+            ease: 'none',
+            scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: 2.2 },
+          });
+        }
+      }
+
+      root.querySelectorAll('.about-img').forEach(img => {
+        gsap.to(img, {
+          yPercent: -10,
+          ease: 'none',
+          scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: 1.6 },
+        });
+      });
+    }, root);
+  }
+
+  return { init, kill, refresh: () => ScrollTrigger.refresh() };
 })();
 
 /* ═══════════════════════════════════════════════════
@@ -527,6 +825,7 @@ function finishBoot() {
 
 barba.init({
   preventRunning: true,
+  prefetch: true,
   transitions: [{
     name: 'nodo-premium',
     leave(data) {
@@ -536,11 +835,11 @@ barba.init({
       return Transition.enter(data);
     },
   }],
-  prefetchIgnore: true,
   timeout: 8000,
   hooks: {
     before() {
-      ScrollTrigger.getAll().forEach(st => st.kill());
+      ScrollFX.kill();
+      WorkModal.hide();
       document.querySelector('.nav-links')?.classList.remove('open');
     },
     beforeLeave({ current }) {
@@ -549,14 +848,14 @@ barba.init({
     beforeEnter({ next }) {
       window.scrollTo(0, 0);
       setPageTheme();
-      gsap.set(next.container, { opacity: 0, pointerEvents: 'none' });
+      gsap.set(next.container, { opacity: 1, pointerEvents: 'none' });
     },
     afterEnter({ next }) {
       Transition.resetPanel();
       Nav.setActive();
-      initMagnetic(next.container);
+      initPointerFX(next.container);
       initSmoothScroll(next.container);
-      ScrollAnimations.init(next.container);
+      ScrollFX.init(next.container);
       ScrollTrigger.refresh();
       pageInit(next.namespace, next.container, true);
     },
@@ -569,50 +868,147 @@ barba.init({
 function pageInit(namespace, container, fromBarba = false) {
   switch (namespace) {
     case 'home': initHome(container, fromBarba); break;
-    case 'work': initWork(fromBarba); break;
-    case 'about': initAbout(fromBarba); break;
+    case 'work': initWork(container, fromBarba); break;
+    case 'about': initAbout(); break;
     case 'contact': initContact(); break;
   }
 }
 
 function initHome(container, fromBarba) {
-  if (fromBarba) {
-    Spline.init(container || document);
+  Spline.init(container || document);
+  initSistemaPin(container || document);
+  initCasesSlider(container || document);
+  if (fromBarba) return;
+
+  const root = container || document;
+  const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+  if (!root.querySelector('.hero-e-eyebrow')) return;
+
+  tl.fromTo('.hero-e-eyebrow', { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.65 })
+    .fromTo('.hero-e-title', { opacity: 0, y: 32 }, { opacity: 1, y: 0, duration: 0.9 }, '-=0.35')
+    .fromTo('.hero-e-sub', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.75 }, '-=0.55')
+    .fromTo('.hero-e-ctas > *', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.55, stagger: 0.09 }, '-=0.45')
+    .fromTo('.hero-e-social', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.65 }, '-=0.35')
+    .fromTo('.hero-e-visual', { opacity: 0, y: 36 }, { opacity: 1, y: 0, duration: 0.95 }, '-=0.55')
+    .fromTo('.hero-e-scroll', { opacity: 0 }, { opacity: 0.45, duration: 0.45 }, '-=0.4');
+}
+
+/* ─── Sistema Nodo — horizontal containerAnimation ─── */
+function directionalSnap(increment) {
+  const snapFunc = gsap.utils.snap(increment);
+  return (raw, self) => {
+    const n = snapFunc(raw);
+    return Math.abs(n - raw) < 1e-4 || (n < raw) === self.direction < 0
+      ? n
+      : self.direction < 0 ? n - increment : n + increment;
+  };
+}
+
+function initSistemaPin(root) {
+  const section = root.querySelector('.sistema-section');
+  if (!section) return;
+  // On mobile: no horizontal scroll — CSS stacks panels vertically
+  if (window.innerWidth < 768) {
+    section.querySelectorAll('.sp-panel').forEach(p => {
+      p.querySelectorAll('.sp-eyebrow, .sp-headline, .sp-body, .sp-tension, .sp-pills, .sp-cta').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+    });
     return;
   }
 
-  Spline.init(container || document);
+  const panels = gsap.utils.toArray('.sp-panel', section);
+  const fill = section.querySelector('#sistemaFill');
+  const counter = section.querySelector('#sistemaCounter');
+  const TOTAL = panels.length;
 
-  const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-  if (!document.querySelector('.hero-e-eyebrow')) return;
+  // Hide panel content for entrance animations (skip first panel)
+  panels.forEach((panel, i) => {
+    if (i === 0) return;
+    const items = panel.querySelectorAll('.sp-eyebrow, .sp-headline, .sp-body, .sp-tension, .sp-pills, .sp-cta');
+    gsap.set(items, { opacity: 0, y: 28 });
+  });
 
-  tl.fromTo('.hero-e-eyebrow', { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.6 })
-    .fromTo('.hero-e-title', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.85 }, '-=0.15')
-    .fromTo('.hero-e-sub', { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.7 }, '-=0.45')
-    .fromTo('.hero-e-ctas > *', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1 }, '-=0.35')
-    .fromTo('.hero-e-social', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7 }, '-=0.25')
-    .fromTo('.hero-e-visual', { opacity: 0, y: 48 }, { opacity: 1, y: 0, duration: 1 }, '-=0.5')
-    .fromTo('.hero-e-scroll', { opacity: 0 }, { opacity: 0.45, duration: 0.5 }, '-=0.4');
-}
+  // Main horizontal scroll — ease MUST be "none"
+  const scrollTween = gsap.to(panels, {
+    xPercent: -100 * (TOTAL - 1),
+    ease: 'none',
+    scrollTrigger: {
+      trigger: section,
+      pin: true,
+      anticipatePin: 1,       // prevents jump when section enters pin zone
+      scrub: 1,               // 1s to catch up → feels controlled, not slippery
+      snap: {
+        snapTo: directionalSnap(1 / (TOTAL - 1)), // always snaps in scroll direction
+        duration: { min: 0.3, max: 0.7 },
+        delay: 0.1,
+        ease: 'power1.inOut',
+      },
+      end: `+=${window.innerHeight * TOTAL}`,     // TOTAL panels worth of scroll space
+      onUpdate(self) {
+        if (fill) fill.style.width = `${self.progress * 100}%`;
+        const idx = Math.min(Math.round(self.progress * (TOTAL - 1)), TOTAL - 1);
+        if (counter) counter.textContent = String(idx + 1).padStart(2, '0');
+      },
+    },
+  });
 
-function initWork(fromBarba) {
-  if (fromBarba) return;
-  const cards = document.querySelectorAll('.work-card');
-  if (!cards.length) return;
-  gsap.fromTo(cards, { opacity: 0, y: 50 }, {
-    opacity: 1, y: 0, duration: 0.8, ease: 'expo.out', stagger: 0.12, delay: 0.15,
+  // Animate content inside each panel as it enters horizontally
+  panels.forEach((panel, i) => {
+    if (i === 0) return; // First panel already visible
+    const items = panel.querySelectorAll('.sp-eyebrow, .sp-headline, .sp-body, .sp-tension, .sp-pills, .sp-cta');
+
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: panel,
+        containerAnimation: scrollTween,
+        start: 'left center',
+        toggleActions: 'play none none reset',
+      },
+    }).to(items, {
+      opacity: 1,
+      y: 0,
+      duration: 0.65,
+      stagger: 0.09,
+      ease: 'power2.out',
+    });
   });
 }
 
-function initAbout(fromBarba) {
-  if (fromBarba) return;
-  const img = document.querySelector('.about-img');
-  if (!img) return;
-  gsap.to(img, {
-    yPercent: -12, ease: 'none',
-    scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: 1.5 },
-  });
+/* ─── Casos slider ─── */
+function initCasesSlider(root) {
+  const wrap = root.querySelector('#casesSlider');
+  if (!wrap) return;
+
+  const slides = Array.from(wrap.querySelectorAll('.cs-card'));
+  const dots = Array.from(wrap.querySelectorAll('.cs-dot'));
+  const prev = root.querySelector('#casesPrev');
+  const next = root.querySelector('#casesNext');
+  let current = 0;
+
+  function goTo(i) {
+    slides[current].classList.remove('is-active');
+    dots[current]?.classList.remove('is-active');
+    current = (i + slides.length) % slides.length;
+    slides[current].classList.add('is-active');
+    dots[current]?.classList.add('is-active');
+    gsap.fromTo(slides[current],
+      { opacity: 0, y: 16 },
+      { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }
+    );
+  }
+
+  prev?.addEventListener('click', () => goTo(current - 1));
+  next?.addEventListener('click', () => goTo(current + 1));
+  dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
 }
+
+function initWork(container, fromBarba) {
+  WorkModal.init(container || document);
+}
+
+function initAbout() {}
 
 function initContact() {
   initContactForm();
@@ -689,101 +1085,50 @@ function initContactForm() {
 }
 
 /* ═══════════════════════════════════════════════════
-   UTILS
+   POINTER FX — botones hero + magnetic suave
 ═══════════════════════════════════════════════════ */
-function initMagnetic(scope) {
+function initPointerFX(scope) {
   const root = scope || document;
 
-  root.querySelectorAll('[data-magnetic-group]').forEach(group => {
-    if (group.dataset.magneticBound) return;
-    group.dataset.magneticBound = '1';
+  root.querySelectorAll('.btn-breathe').forEach(btn => {
+    if (btn.dataset.breathe) return;
+    btn.dataset.breathe = '1';
 
-    const items = [...group.querySelectorAll('.magnetic')];
-    if (items.length < 2) return;
+    gsap.set(btn, { transformPerspective: 900, transformStyle: 'preserve-3d' });
+    const rotX = gsap.quickTo(btn, 'rotateX', { duration: 0.85, ease: 'power3.out' });
+    const rotY = gsap.quickTo(btn, 'rotateY', { duration: 0.85, ease: 'power3.out' });
+    const lift = gsap.quickTo(btn, 'y', { duration: 0.9, ease: 'power3.out' });
 
-    const STRENGTH = 0.24;
-    const MIN_GAP = 12;
-    const offsets = items.map(() => ({ x: 0, y: 0 }));
-
-    function measure(el) {
-      const rect = el.getBoundingClientRect();
-      const x = gsap.getProperty(el, 'x') || 0;
-      const y = gsap.getProperty(el, 'y') || 0;
-      return {
-        left: rect.left - x,
-        top: rect.top - y,
-        width: rect.width,
-        height: rect.height,
-      };
-    }
-
-    function separate() {
-      for (let pass = 0; pass < 5; pass++) {
-        for (let i = 0; i < items.length; i++) {
-          for (let j = i + 1; j < items.length; j++) {
-            const a = measure(items[i]);
-            const b = measure(items[j]);
-            const aL = a.left + offsets[i].x;
-            const aR = aL + a.width;
-            const bL = b.left + offsets[j].x;
-            const bR = bL + b.width;
-            const aT = a.top + offsets[i].y;
-            const aB = aT + a.height;
-            const bT = b.top + offsets[j].y;
-            const bB = bT + b.height;
-
-            const overlapX = Math.min(aR, bR) - Math.max(aL, bL);
-            const overlapY = Math.min(aB, bB) - Math.max(aT, bT);
-
-            if (overlapX > -MIN_GAP && overlapY > 0) {
-              const push = (overlapX + MIN_GAP) * 0.55;
-              const aCenter = aL + a.width / 2;
-              const bCenter = bL + b.width / 2;
-              if (aCenter <= bCenter) {
-                offsets[i].x -= push;
-                offsets[j].x += push;
-              } else {
-                offsets[i].x += push;
-                offsets[j].x -= push;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    group.addEventListener('mousemove', e => {
-      items.forEach((el, i) => {
-        const base = measure(el);
-        const cx = base.left + base.width / 2;
-        const cy = base.top + base.height / 2;
-        offsets[i].x = (e.clientX - cx) * STRENGTH;
-        offsets[i].y = (e.clientY - cy) * STRENGTH;
-      });
-      separate();
-      items.forEach((el, i) => {
-        gsap.to(el, { x: offsets[i].x, y: offsets[i].y, duration: 0.38, ease: 'power2.out', overwrite: 'auto' });
-      });
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      rotY(px * 14);
+      rotX(-py * 10);
+      lift(-3 + py * -2);
+      btn.style.setProperty('--spot-x', `${(px + 0.5) * 100}%`);
+      btn.style.setProperty('--spot-y', `${(py + 0.5) * 100}%`);
     });
 
-    group.addEventListener('mouseleave', () => {
-      items.forEach(el => gsap.to(el, { x: 0, y: 0, duration: 0.55, ease: 'elastic.out(1, 0.55)' }));
+    btn.addEventListener('mouseleave', () => {
+      rotX(0);
+      rotY(0);
+      lift(0);
     });
   });
 
   root.querySelectorAll('.magnetic').forEach(el => {
-    if (el.closest('[data-magnetic-group]')) return;
     if (el.dataset.magnetic) return;
     el.dataset.magnetic = '1';
+    const xTo = gsap.quickTo(el, 'x', { duration: 0.7, ease: 'power3.out' });
+    const yTo = gsap.quickTo(el, 'y', { duration: 0.7, ease: 'power3.out' });
+
     el.addEventListener('mousemove', e => {
-      const rect = el.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      gsap.to(el, { x: x * 0.3, y: y * 0.3, duration: 0.4, ease: 'power2.out' });
+      const r = el.getBoundingClientRect();
+      xTo((e.clientX - r.left - r.width / 2) * 0.18);
+      yTo((e.clientY - r.top - r.height / 2) * 0.18);
     });
-    el.addEventListener('mouseleave', () => {
-      gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
-    });
+    el.addEventListener('mouseleave', () => { xTo(0); yTo(0); });
   });
 }
 
@@ -820,7 +1165,7 @@ document.addEventListener('DOMContentLoaded', () => {
   Nav.init();
   setPageTheme();
   Transition.resetPanel();
-  initMagnetic();
+  initPointerFX();
   initSmoothScroll();
 
   const loaderEl = document.getElementById('nodo-loader');
@@ -831,7 +1176,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const startApp = (fromBarba = false) => {
     finishBoot();
     Nav.animateIn();
-    ScrollAnimations.init(document);
+    ScrollFX.init(document);
     pageInit(namespace, container, fromBarba);
     isFirstLoad = false;
   };

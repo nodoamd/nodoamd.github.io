@@ -30,22 +30,6 @@
   <!-- TRANSICIÓN PREMIUM (persiste entre páginas) -->
   <div class="nodo-transition is-idle" id="nodo-transition" aria-hidden="true">
     <div class="nodo-transition-panel"></div>
-    <div class="nodo-transition-lead"></div>
-    <div class="nodo-transition-ui">
-      <div class="transition-row-top">
-        <span class="transition-brand">Nodo Studio</span>
-        <span class="transition-index">01</span>
-      </div>
-      <div class="transition-row-bottom">
-        <p class="transition-eyebrow">Navegando a</p>
-        <div class="transition-destination-wrap">
-          <span class="transition-destination">Inicio</span>
-        </div>
-      </div>
-      <div class="transition-progress-track">
-        <span class="transition-progress-fill"></span>
-      </div>
-    </div>
   </div>
 
   <!-- NAV (persiste — fuera del container) -->
@@ -53,8 +37,9 @@
     <a href="index.html" class="nav-logo" aria-label="Nodo Studio">Nodo<em>.</em></a>
     <ul class="nav-links" role="list">
       <li><a href="index.html">Inicio</a></li>
+      <li><a href="index.html#resultados">Resultados</a></li>
       <li><a href="work.html">Trabajos</a></li>
-      <li><a href="about.html">Nosotros</a></li>
+      <li><a href="index.html#precios">Precios</a></li>
       <li><a href="contact.html" class="nav-cta">Hablemos →</a></li>
     </ul>
     <button class="nav-burger" aria-label="Menú" aria-expanded="false">
@@ -74,14 +59,14 @@
           <div class="hero-e-copy">
             <p class="hero-e-eyebrow">Nodo Studio · Barcelona</p>
             <h1 class="hero-e-title">
-              Lo que tu proyecto necesita, <span class="tg-line"><span class="tg">Nodo lo conecta.</span></span>
+              Webs que generan negocio.<br><span class="tg-line"><span class="tg">No solo impresiones.</span></span>
             </h1>
             <p class="hero-e-sub">
-              Nodo nace de la conexión. Construimos puentes entre proyectos y personas — con Barba.js, GSAP y 3D.
+              Diseño con intención, rendimiento medido y campañas que convierten. Para marcas que no tienen tiempo que perder.
             </p>
-            <div class="hero-e-ctas" data-magnetic-group>
-              <a href="work.html" class="btn btn-dark magnetic">Ver resultados reales</a>
-              <a href="contact.html" class="btn btn-ghost-light magnetic">Agenda tu diagnóstico gratuito</a>
+            <div class="hero-e-ctas">
+              <a href="#resultados" class="btn btn-dark btn-breathe">Ver resultados reales</a>
+              <a href="contact.html" class="btn btn-ghost-light btn-breathe">Diagnóstico gratuito</a>
             </div>
             <div class="hero-e-social">
               <div class="hero-e-avatars" aria-hidden="true">
@@ -97,14 +82,14 @@
           </div>
 
           <div class="hero-e-visual">
-            <div class="spline-switcher" role="group" aria-label="Cambiar modelo 3D">
-              <button type="button" class="spline-switch-btn is-active" data-spline-index="1" aria-pressed="true">Nodo</button>
-              <button type="button" class="spline-switch-btn" data-spline-index="0" aria-pressed="false">Abstracto</button>
-            </div>
             <div class="spline-shell loading" id="spline-shell">
               <div class="spline-loader" aria-hidden="true"></div>
               <spline-viewer id="hero-spline"
                 url="https://prod.spline.design/cCCDBbMgwxIsMr8b/scene.splinecode"></spline-viewer>
+            </div>
+            <div class="spline-switcher" role="group" aria-label="Cambiar modelo 3D">
+              <button type="button" class="spline-switch-btn is-active" data-spline-index="0" aria-pressed="true">Abstracto</button>
+              <button type="button" class="spline-switch-btn" data-spline-index="1" aria-pressed="false">Nodo</button>
             </div>
           </div>
 
@@ -135,7 +120,7 @@
       </div>
 
       <!-- STATS -->
-      <section class="section">
+      <section class="section section-tight">
         <div class="container">
           <div class="stats-grid" data-stagger="0.08">
             <div class="stat-item">
@@ -143,53 +128,361 @@
               <div class="stat-label">Proyectos entregados</div>
             </div>
             <div class="stat-item">
-              <div class="stat-number tg" data-count="100" data-suffix="%">0</div>
-              <div class="stat-label">Satisfacción cliente</div>
+              <div class="stat-number tg" data-count="98" data-suffix="%">0</div>
+              <div class="stat-label">Retención de clientes</div>
             </div>
             <div class="stat-item">
-              <div class="stat-number tg" data-count="5">0</div>
-              <div class="stat-label">Años de experiencia</div>
+              <div class="stat-number tg" data-count="1250" data-suffix="%">0</div>
+              <div class="stat-label">Crecimiento SEO medio</div>
             </div>
             <div class="stat-item">
-              <div class="stat-number tg" data-count="12">0</div>
-              <div class="stat-label">Clientes activos</div>
+              <div class="stat-number tg" data-count="2141">0</div>
+              <div class="stat-label">Emprendedores confían en Nodo</div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- SERVICIOS -->
-      <section class="section" id="servicios">
+      <!-- EL SISTEMA NODO — horizontal containerAnimation -->
+      <section class="sistema-section" id="sistema">
+
+        <!-- Overlay: progress bar + counter (absolute, always visible) -->
+        <div class="sp-overlay" aria-hidden="true">
+          <div class="sp-topbar">
+            <div class="sp-prog-fill" id="sistemaFill"></div>
+          </div>
+          <div class="sp-counter">
+            <span id="sistemaCounter">01</span><span class="sp-counter-sep">/05</span>
+          </div>
+        </div>
+
+        <!-- Horizontal container -->
+        <div class="sp-container" id="sistemaContainer">
+
+          <div class="sp-panel" data-panel="0">
+            <div class="sp-inner">
+              <span class="sp-eyebrow"><span class="sp-num">01</span> El diagnóstico</span>
+              <h2 class="sp-headline">Tu negocio tiene<br>un problema.<br><em>Que no es tuyo.</em></h2>
+              <p class="sp-body">El 70% de los negocios no aparece cuando sus clientes les buscan. No por falta de esfuerzo. Por falta de sistema.</p>
+              <span class="sp-scroll-hint">Scroll para continuar →</span>
+            </div>
+            <span class="sp-bg-num" aria-hidden="true">01</span>
+          </div>
+
+          <div class="sp-panel" data-panel="1">
+            <div class="sp-inner">
+              <span class="sp-eyebrow"><span class="sp-num">02</span> La verdad</span>
+              <h2 class="sp-headline">No te faltan clientes.<br><em>Te faltan los que<br>ya te buscan.</em></h2>
+              <p class="sp-body">Están en Google ahora mismo. Encontrando a tu competencia, porque tu competencia aparece antes que tú.</p>
+              <div class="sp-tension">Cada semana sin sistema = clientes que se van a otro.</div>
+            </div>
+            <span class="sp-bg-num" aria-hidden="true">02</span>
+          </div>
+
+          <div class="sp-panel" data-panel="2">
+            <div class="sp-inner">
+              <span class="sp-eyebrow"><span class="sp-num">03</span> La pregunta correcta</span>
+              <h2 class="sp-headline">¿Si te consigo<br>5 clientes nuevos<br><em>al mes?</em></h2>
+              <p class="sp-body">No te pregunto si quieres más clientes. Te pregunto si esos 5 harían rentable lo que inviertes. La mayoría lo sabe en 30 días.</p>
+            </div>
+            <span class="sp-bg-num" aria-hidden="true">03</span>
+          </div>
+
+          <div class="sp-panel" data-panel="3">
+            <div class="sp-inner">
+              <span class="sp-eyebrow"><span class="sp-num">04</span> El sistema</span>
+              <h2 class="sp-headline">Un sistema que trabaja.<br><em>Aunque tú<br>no lo hagas.</em></h2>
+              <p class="sp-body">Web que convierte. Anuncios que atraen. SEO que aguanta. Todo medido, todo optimizado. Tú descansas.</p>
+              <div class="sp-pills">
+                <span>Web premium</span>
+                <span>Google & Meta Ads</span>
+                <span>SEO continuo</span>
+              </div>
+            </div>
+            <span class="sp-bg-num" aria-hidden="true">04</span>
+          </div>
+
+          <div class="sp-panel sp-panel-dark" data-panel="4">
+            <div class="sp-inner">
+              <span class="sp-eyebrow sp-eyebrow-light"><span class="sp-num">05</span> La oportunidad</span>
+              <h2 class="sp-headline sp-headline-light">Tu competencia<br>no tiene esto<br><em>todavía.</em></h2>
+              <p class="sp-body sp-body-light">La ventana no estará abierta para siempre. Los primeros en moverse se llevan el mercado. Veinte minutos. Sin compromiso. Con datos de tu sector.</p>
+              <a href="contact.html" class="btn btn-primary sp-cta btn-breathe">Agenda tu diagnóstico →</a>
+            </div>
+            <span class="sp-bg-num sp-bg-num-light" aria-hidden="true">05</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- RESULTADOS — casos de éxito + rendimiento -->
+      <section class="section resultados-section" id="resultados">
+        <div class="container">
+          <div class="section-header will-slide">
+            <span class="badge">Resultados reales</span>
+            <h2 class="t-headline">Antes y después.<br><span class="tg">Con números.</span></h2>
+            <p class="t-body">No vendemos promesas. Medimos impresiones, clics, velocidad y negocio generado.</p>
+          </div>
+
+          <!-- CASOS DE ÉXITO -->
+          <div class="cases-wrap" id="casesSlider">
+
+            <!-- Caso 1: Hitachi -->
+            <div class="cs-card is-active" data-case="0">
+
+              <!-- Header row -->
+              <div class="cs-header">
+                <div>
+                  <span class="cs-tag">Caso 01 · Dental · SEO · Ads</span>
+                  <h3 class="cs-title">Clínica Dental Dra. Hitachi</h3>
+                </div>
+                <a href="https://clinicadentalhitachi.com" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Visitar web ↗</a>
+              </div>
+
+              <!-- Big comparison numbers -->
+              <div class="cs-compare">
+                <div class="cs-compare-col">
+                  <span class="cs-compare-label cs-label-before">Antes</span>
+                  <span class="cs-compare-num cs-num-before">5–8</span>
+                  <span class="cs-compare-unit">pacientes nuevos / mes</span>
+                </div>
+                <div class="cs-compare-mid">
+                  <div class="cs-compare-line"></div>
+                  <span class="cs-compare-time">90 días</span>
+                  <div class="cs-compare-arrow">→</div>
+                </div>
+                <div class="cs-compare-col">
+                  <span class="cs-compare-label cs-label-after">Después</span>
+                  <span class="cs-compare-num cs-num-after">15-60</span>
+                  <span class="cs-compare-unit">pacientes nuevos / mes</span>
+                </div>
+              </div>
+
+              <!-- Metrics row -->
+              <div class="cs-metrics">
+                <div class="cs-metric">
+                  <span class="cs-metric-val">+1.250%</span>
+                  <span class="cs-metric-lbl">Impresiones Google</span>
+                </div>
+                <div class="cs-metric">
+                  <span class="cs-metric-val">+890%</span>
+                  <span class="cs-metric-lbl">Clics orgánicos</span>
+                </div>
+                <div class="cs-metric">
+                  <span class="cs-metric-val">2.5%</span>
+                  <span class="cs-metric-lbl">CTR medio</span>
+                </div>
+                <div class="cs-metric cs-metric-accent">
+                  <span class="cs-metric-val">×3</span>
+                  <span class="cs-metric-lbl">Llamadas entrantes</span>
+                </div>
+              </div>
+
+              <!-- Evidence: web + quote -->
+              <div class="cs-evidence">
+                <figure class="cs-evidence-img">
+                  <img src="img/landinghitachi.webp" alt="Web Clínica Dental Hitachi" loading="lazy" width="600" height="380" />
+                  <figcaption>Web entregada · clinicadentalhitachi.com</figcaption>
+                </figure>
+                <div class="cs-quote-block">
+                  <blockquote class="cs-quote">
+                    "Desde que empezamos con Nodo, nuestras llamadas se triplicaron. La web y las campañas trabajan juntas como un equipo."
+                  </blockquote>
+                  <cite class="cs-cite">
+                    <img class="cs-cite-avatar" src="https://clinicadentalhitachi.com/images/doctorahitachi.jpg" alt="Dra. Hitachi" loading="lazy" />
+                    <div>
+                      <strong>Dra. Hitachi</strong>
+                      <span>Clínica Dental · L'Hospitalet</span>
+                    </div>
+                  </cite>
+                  <div class="cs-delivered">
+                    <span class="cs-delivered-label">Lo que hicimos</span>
+                    <ul class="cs-delivered-list">
+                      <li>Web GSAP + arquitectura de conversión</li>
+                      <li>SEO local · Top 3 en búsquedas de zona</li>
+                      <li>Google Ads · campañas de captación de pacientes</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Caso 2 -->
+            <div class="cs-card" data-case="1">
+              <div class="cs-header">
+                <div>
+                  <span class="cs-tag">Caso 02 · E-commerce · Branding</span>
+                  <h3 class="cs-title">La Chiquitana</h3>
+                </div>
+              </div>
+              <div class="cs-compare">
+                <div class="cs-compare-col">
+                  <span class="cs-compare-label cs-label-before">Antes</span>
+                  <span class="cs-compare-num cs-num-before">Tienda<br>básica</span>
+                  <span class="cs-compare-unit">sin identidad visual</span>
+                </div>
+                <div class="cs-compare-mid">
+                  <div class="cs-compare-line"></div>
+                  <span class="cs-compare-time">60 días</span>
+                  <div class="cs-compare-arrow">→</div>
+                </div>
+                <div class="cs-compare-col">
+                  <span class="cs-compare-label cs-label-after">Después</span>
+                  <span class="cs-compare-num cs-num-after">×4.1</span>
+                  <span class="cs-compare-unit">ventas online</span>
+                </div>
+              </div>
+              <div class="cs-metrics">
+                <div class="cs-metric"><span class="cs-metric-val">+240%</span><span class="cs-metric-lbl">Tiempo en web</span></div>
+                <div class="cs-metric"><span class="cs-metric-val">×4.1</span><span class="cs-metric-lbl">Ventas online</span></div>
+                <div class="cs-metric cs-metric-accent"><span class="cs-metric-val">0.9s</span><span class="cs-metric-lbl">LCP</span></div>
+              </div>
+              <div class="cs-coming">
+                <p>Caso completo próximamente.</p>
+                <a href="contact.html" class="btn btn-primary btn-breathe">Quiero resultados así →</a>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="cs-controls">
+              <div class="cs-dots">
+                <button class="cs-dot is-active" data-slide="0" aria-label="Caso 1"></button>
+                <button class="cs-dot" data-slide="1" aria-label="Caso 2"></button>
+              </div>
+              <div class="cs-nav">
+                <button class="cs-arrow" id="casesPrev" aria-label="Anterior">←</button>
+                <button class="cs-arrow" id="casesNext" aria-label="Siguiente">→</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA casos -->
+          <div class="cases-cta will-slide">
+            <p class="cases-cta-text">¿Tu negocio puede estar aquí?</p>
+            <a href="contact.html" class="btn btn-primary btn-breathe">Agenda tu diagnóstico gratuito →</a>
+          </div>
+
+          <!-- RENDIMIENTO — debajo de los casos -->
+          <div class="perf-showcase will-slide">
+            <div class="perf-showcase-head">
+              <div>
+                <h3 class="perf-showcase-title">Rendimiento técnico</h3>
+                <p class="perf-showcase-sub">Stack ligero. Barba prefetch. GSAP nativo. Sin frameworks que penalicen tu Lighthouse.</p>
+              </div>
+              <a href="contact.html" class="btn btn-outline btn-sm">Lo quiero para mi web →</a>
+            </div>
+            <div class="perf-grid">
+              <div class="perf-col perf-col-before">
+                <span class="perf-label perf-label-before">Web clásica</span>
+                <div class="perf-score">
+                  <span class="perf-score-num" data-count="52">0</span>
+                  <span class="perf-score-max">/100</span>
+                </div>
+                <p class="perf-score-caption">Lighthouse Performance</p>
+                <ul class="perf-metrics">
+                  <li><span>LCP</span><strong>4.2s</strong></li>
+                  <li><span>Recarga completa</span><strong>Siempre</strong></li>
+                  <li><span>JS inicial</span><strong>~380 KB</strong></li>
+                  <li><span>Animaciones</span><strong>CSS básico</strong></li>
+                </ul>
+              </div>
+              <div class="perf-col perf-col-after">
+                <span class="perf-label perf-label-after">Nodo — esta web</span>
+                <div class="perf-score perf-score-good">
+                  <span class="perf-score-num" data-count="94">0</span>
+                  <span class="perf-score-max">/100</span>
+                </div>
+                <p class="perf-score-caption">Lighthouse Performance</p>
+                <ul class="perf-metrics">
+                  <li><span>LCP</span><strong>1.4s</strong></li>
+                  <li><span>Barba prefetch</span><strong>Activo</strong></li>
+                  <li><span>JS inicial</span><strong>~48 KB</strong></li>
+                  <li><span>Motion</span><strong>GSAP + scrub</strong></li>
+                </ul>
+              </div>
+            </div>
+            <div class="perf-bars">
+              <div class="perf-bar-row">
+                <span class="perf-bar-label">Velocidad de carga</span>
+                <div class="perf-bar-track"><div class="perf-bar-fill perf-bar-before" data-width="28"></div></div>
+                <div class="perf-bar-track perf-bar-track-after"><div class="perf-bar-fill perf-bar-after" data-width="94"></div></div>
+              </div>
+              <div class="perf-bar-row">
+                <span class="perf-bar-label">Fluidez navegación</span>
+                <div class="perf-bar-track"><div class="perf-bar-fill perf-bar-before" data-width="35"></div></div>
+                <div class="perf-bar-track perf-bar-track-after"><div class="perf-bar-fill perf-bar-after" data-width="97"></div></div>
+              </div>
+              <div class="perf-bar-row">
+                <span class="perf-bar-label">Impacto visual</span>
+                <div class="perf-bar-track"><div class="perf-bar-fill perf-bar-before" data-width="40"></div></div>
+                <div class="perf-bar-track perf-bar-track-after"><div class="perf-bar-fill perf-bar-after" data-width="96"></div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SERVICIOS — editorial rows -->
+      <section class="section svc-section" id="servicios">
         <div class="container">
           <div class="section-header will-slide">
             <span class="badge">Servicios</span>
-            <h2 class="t-headline">Lo que construimos</h2>
-            <p class="t-body">Cada proyecto empieza con una pregunta: ¿qué necesita esta marca para dejar de ser invisible?</p>
+            <h2 class="t-headline">Lo que hacemos</h2>
           </div>
-          <div class="cards-grid" data-stagger="0.1">
-            <a href="work.html" class="card card-link">
-              <div class="card-icon">🌐</div>
-              <h3 class="card-title">Web Development</h3>
-              <p class="card-body">Sites que cargan rápido, animan suave y convierten. GSAP, Barba.js, Spline cuando toca.</p>
-              <span class="card-arrow">Ver más →</span>
+          <div class="svc-list">
+            <a href="work.html" class="svc-row will-slide">
+              <span class="svc-num">01</span>
+              <div class="svc-body">
+                <h3 class="svc-title">Web Development</h3>
+                <p class="svc-desc">Barba.js, GSAP, Spline 3D. Sites que cargan en &lt;1.5s, animan como productos de agencia y convierten desde el primer scroll.</p>
+                <div class="svc-tags"><span>Barba.js</span><span>GSAP</span><span>Spline 3D</span><span>SEO técnico</span></div>
+              </div>
+              <div class="svc-metric">
+                <span class="svc-metric-val">94</span>
+                <span class="svc-metric-lbl">Lighthouse medio</span>
+              </div>
+              <span class="svc-arrow">↗</span>
             </a>
-            <a href="work.html" class="card card-link">
-              <div class="card-icon">✦</div>
-              <h3 class="card-title">Branding</h3>
-              <p class="card-body">Identidad visual que perdura. Logo, paleta, tipografía, voz de marca. Un sistema completo.</p>
-              <span class="card-arrow">Ver más →</span>
+            <a href="work.html" class="svc-row will-slide">
+              <span class="svc-num">02</span>
+              <div class="svc-body">
+                <h3 class="svc-title">Branding</h3>
+                <p class="svc-desc">Identidad visual que perdura. Marca que comunica sin tener que gritar — logo, sistema tipográfico, paleta y voz definidos.</p>
+                <div class="svc-tags"><span>Logo</span><span>Identidad</span><span>Sistema visual</span><span>Voz de marca</span></div>
+              </div>
+              <div class="svc-metric">
+                <span class="svc-metric-val">×2.8</span>
+                <span class="svc-metric-lbl">Tasa de recuerdo</span>
+              </div>
+              <span class="svc-arrow">↗</span>
             </a>
-            <a href="contact.html" class="card card-link">
-              <div class="card-icon">📈</div>
-              <h3 class="card-title">Google & Meta Ads</h3>
-              <p class="card-body">Campañas con intención. Seguimiento real, optimización constante, resultados medibles.</p>
-              <span class="card-arrow">Ver más →</span>
+            <a href="contact.html" class="svc-row will-slide">
+              <span class="svc-num">03</span>
+              <div class="svc-body">
+                <h3 class="svc-title">Google & Meta Ads</h3>
+                <p class="svc-desc">Campañas con tracking real. Cada euro controlado — sem, display, retargeting. Optimización semanal, no mensual.</p>
+                <div class="svc-tags"><span>Google Ads</span><span>Meta Ads</span><span>Conversiones</span><span>Retargeting</span></div>
+              </div>
+              <div class="svc-metric">
+                <span class="svc-metric-val">3.2×</span>
+                <span class="svc-metric-lbl">ROAS medio</span>
+              </div>
+              <span class="svc-arrow">↗</span>
             </a>
-            <a href="work.html" class="card card-link">
-              <div class="card-icon">🔮</div>
-              <h3 class="card-title">3D & WebGL</h3>
-              <p class="card-body">Experiencias inmersivas en el navegador. Spline, Three.js, modelos integrados en la web.</p>
-              <span class="card-arrow">Ver más →</span>
+            <a href="work.html" class="svc-row will-slide">
+              <span class="svc-num">04</span>
+              <div class="svc-body">
+                <h3 class="svc-title">3D & WebGL</h3>
+                <p class="svc-desc">Spline, Three.js. Experiencias inmersivas que dejan marca. Para cuando la web tiene que ser un producto de entretenimiento, no solo un folleto.</p>
+                <div class="svc-tags"><span>Spline</span><span>Three.js</span><span>WebGL</span><span>Motion design</span></div>
+              </div>
+              <div class="svc-metric">
+                <span class="svc-metric-val">+68%</span>
+                <span class="svc-metric-lbl">Tiempo en web</span>
+              </div>
+              <span class="svc-arrow">↗</span>
             </a>
           </div>
         </div>
@@ -227,16 +520,85 @@
         </div>
       </section>
 
+      <!-- PRECIOS -->
+      <section class="section" id="precios">
+        <div class="container">
+          <div class="section-header will-slide">
+            <span class="badge">Precios</span>
+            <h2 class="t-headline">Transparencia total</h2>
+            <p class="t-body">Sin letra pequeña. Sin sorpresas. Precios que reflejan el valor real del trabajo.</p>
+          </div>
+          <div class="pricing-grid" data-stagger="0.1">
+            <article class="pricing-card">
+              <div class="pricing-name">Starter</div>
+              <div class="pricing-price">
+                <span class="pricing-currency">€</span>
+                <span class="pricing-amount">1.800</span>
+              </div>
+              <p class="pricing-desc">Para marcas que empiezan y necesitan presencia profesional desde el día uno.</p>
+              <div class="pricing-divider"></div>
+              <ul class="pricing-features">
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Hasta 5 páginas</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Diseño personalizado</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Animaciones GSAP básicas</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Responsive + SEO técnico</li>
+                <li class="pricing-feature"><span class="pricing-x">–</span> Transiciones Barba.js</li>
+                <li class="pricing-feature"><span class="pricing-x">–</span> CMS integration</li>
+              </ul>
+              <a href="contact.html" class="btn btn-outline pricing-btn">Empezar →</a>
+            </article>
+            <article class="pricing-card featured">
+              <div class="pricing-tag">Más popular</div>
+              <div class="pricing-name">Studio</div>
+              <div class="pricing-price">
+                <span class="pricing-currency">€</span>
+                <span class="pricing-amount">4.500</span>
+              </div>
+              <p class="pricing-desc">El paquete completo. Para marcas que quieren destacar y convertir.</p>
+              <div class="pricing-divider"></div>
+              <ul class="pricing-features">
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Hasta 10 páginas</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Diseño premium + branding</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> GSAP full + ScrollTrigger</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Transiciones Barba.js</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> CMS integration</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> 3 meses soporte</li>
+              </ul>
+              <a href="contact.html" class="btn btn-primary pricing-btn">Empezar →</a>
+            </article>
+            <article class="pricing-card">
+              <div class="pricing-name">Premium</div>
+              <div class="pricing-price">
+                <span class="pricing-currency">€</span>
+                <span class="pricing-amount">7.500</span>
+                <span class="pricing-period">+</span>
+              </div>
+              <p class="pricing-desc">Proyectos complejos. E-commerce, 3D WebGL, plataformas a medida.</p>
+              <div class="pricing-divider"></div>
+              <ul class="pricing-features">
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Sin límite de páginas</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> 3D / WebGL / Spline</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> E-commerce o plataforma</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Campañas Ads incluidas</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Retainer mensual opcional</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Soporte prioritario 6m</li>
+              </ul>
+              <a href="contact.html" class="btn btn-outline pricing-btn">Hablemos →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <!-- CTA -->
       <section class="section">
         <div class="container">
           <div class="cta-inner will-scale">
             <span class="badge">¿Listo?</span>
-            <h2 class="t-headline">Empieza tu proyecto <span class="tg">hoy.</span></h2>
-            <p class="t-body">Una llamada de 30 minutos. Sin compromiso. Con ideas concretas.</p>
+            <h2 class="t-headline">¿Tu negocio merece <span class="tg">este sistema?</span></h2>
+            <p class="t-body">Agenda una sesión de diagnóstico gratuita. En 30 minutos ves si Nodo encaja contigo.</p>
             <div class="cta-actions">
-              <a href="contact.html" class="btn btn-primary magnetic">Hablemos →</a>
-              <a href="work.html" class="btn btn-outline">Ver trabajos</a>
+              <a href="contact.html" class="btn btn-primary btn-breathe">Agenda tu diagnóstico →</a>
+              <a href="work.html" class="btn btn-outline">Ver más casos</a>
             </div>
           </div>
         </div>
@@ -261,9 +623,8 @@
             <div>
               <div class="footer-col-title">Servicios</div>
               <ul class="footer-col-links">
-                <li><a href="#servicios">Web</a></li>
-                <li><a href="#servicios">Branding</a></li>
-                <li><a href="#servicios">3D / Spline</a></li>
+                <li><a href="#precios">Precios</a></li>
+                <li><a href="#resultados">Resultados</a></li>
               </ul>
             </div>
             <div>
