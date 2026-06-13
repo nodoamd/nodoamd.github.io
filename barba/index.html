@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nodo Studio — Diseño y desarrollo web premium en Barcelona. Barba.js, GSAP, Spline 3D." />
+  <title>Nodo Studio — Webs que hablan por solas</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="https://unpkg.com/@barba/core@2.9.7/dist/barba.umd.js"></script>
+</head>
+<body class="theme-light is-loading">
+
+  <!-- LOADER (persiste entre páginas) -->
+  <div id="nodo-loader" aria-hidden="true">
+    <div class="loader-logo">Nodo<span>.</span></div>
+    <div class="loader-bar-track">
+      <div class="loader-bar-fill"></div>
+    </div>
+    <div class="loader-counter">0%</div>
+  </div>
+
+  <!-- OVERLAYS TRANSICIÓN BARBA -->
+  <div class="nodo-sweep" aria-hidden="true"></div>
+  <span class="transition-label" aria-hidden="true"></span>
+  <div class="nodo-curtain curtain-1" aria-hidden="true"></div>
+  <div class="nodo-curtain curtain-2" aria-hidden="true"></div>
+  <div class="nodo-curtain curtain-3" aria-hidden="true"></div>
+  <div class="nodo-diagonal diagonal-1" aria-hidden="true"></div>
+  <div class="nodo-diagonal diagonal-2" aria-hidden="true"></div>
+  <div class="nodo-reveal" aria-hidden="true"></div>
+  <div class="nodo-split-top" aria-hidden="true"></div>
+  <div class="nodo-split-bottom" aria-hidden="true"></div>
+
+  <!-- NAV (persiste — fuera del container) -->
+  <nav id="nodo-nav" aria-label="Navegación principal">
+    <a href="index.html" class="nav-logo" aria-label="Nodo Studio">Nodo<em>.</em></a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="work.html">Trabajos</a></li>
+      <li><a href="about.html">Nosotros</a></li>
+      <li><a href="contact.html" class="nav-cta">Hablemos →</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- BARBA WRAPPER -->
+  <div data-barba="wrapper">
+
+    <main data-barba="container" data-barba-namespace="home">
+
+      <!-- HERO E + SPLINE -->
+      <section class="hero-e" id="hero">
+        <div class="container-wide hero-e-inner">
+
+          <div class="hero-e-copy">
+            <p class="hero-e-eyebrow">Nodo Studio · Barcelona 2026</p>
+            <h1 class="hero-e-title">
+              <span>Webs que</span>
+              <span class="tg">hablan</span>
+              <span>por solas.</span>
+            </h1>
+            <p class="hero-e-sub">
+              Sin templates. Sin atajos. Diseñamos experiencias digitales con Barba.js, GSAP y 3D — desde L'Hospitalet para el mundo.
+            </p>
+            <div class="hero-e-ctas">
+              <a href="work.html" class="btn btn-dark magnetic">Ver proyectos →</a>
+              <a href="contact.html" class="btn btn-ghost-light magnetic">Hablemos</a>
+            </div>
+            <div class="hero-e-clients">
+              <span class="client-name">Hitachi</span>
+              <div class="client-div" aria-hidden="true"></div>
+              <span class="client-name">La Chiquitana</span>
+              <div class="client-div" aria-hidden="true"></div>
+              <span class="client-name">Dentale BCN</span>
+              <div class="client-div" aria-hidden="true"></div>
+              <span class="client-name">Studio Noir</span>
+            </div>
+          </div>
+
+          <div class="spline-shell loading" id="spline-shell">
+            <div class="spline-loader" aria-hidden="true"></div>
+            <spline-viewer id="hero-spline"
+              url="https://prod.spline.design/413yij0subdFPRs9/scene.splinecode"></spline-viewer>
+          </div>
+
+        </div>
+
+        <div class="hero-e-scroll" aria-hidden="true">
+          <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+          <span>Scroll</span>
+        </div>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee-section" aria-hidden="true">
+        <div class="marquee-track">
+          <span class="marquee-item">Web Design</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">GSAP</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">Barba.js</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">Spline 3D</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">Branding</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">Barcelona</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">Web Design</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">GSAP</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">Barba.js</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">Spline 3D</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">Branding</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">Barcelona</span><span class="marquee-dot">✦</span>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <section class="section">
+        <div class="container">
+          <div class="stats-grid" data-stagger="0.08">
+            <div class="stat-item">
+              <div class="stat-number tg" data-count="48">0</div>
+              <div class="stat-label">Proyectos entregados</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number tg" data-count="100" data-suffix="%">0</div>
+              <div class="stat-label">Satisfacción cliente</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number tg" data-count="5">0</div>
+              <div class="stat-label">Años de experiencia</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number tg" data-count="12">0</div>
+              <div class="stat-label">Clientes activos</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICIOS -->
+      <section class="section" id="servicios">
+        <div class="container">
+          <div class="section-header will-slide">
+            <span class="badge">Servicios</span>
+            <h2 class="t-headline">Lo que construimos</h2>
+            <p class="t-body">Cada proyecto empieza con una pregunta: ¿qué necesita esta marca para dejar de ser invisible?</p>
+          </div>
+          <div class="cards-grid" data-stagger="0.1">
+            <a href="work.html" class="card card-link">
+              <div class="card-icon">🌐</div>
+              <h3 class="card-title">Web Development</h3>
+              <p class="card-body">Sites que cargan rápido, animan suave y convierten. GSAP, Barba.js, Spline cuando toca.</p>
+              <span class="card-arrow">Ver más →</span>
+            </a>
+            <a href="work.html" class="card card-link">
+              <div class="card-icon">✦</div>
+              <h3 class="card-title">Branding</h3>
+              <p class="card-body">Identidad visual que perdura. Logo, paleta, tipografía, voz de marca. Un sistema completo.</p>
+              <span class="card-arrow">Ver más →</span>
+            </a>
+            <a href="contact.html" class="card card-link">
+              <div class="card-icon">📈</div>
+              <h3 class="card-title">Google & Meta Ads</h3>
+              <p class="card-body">Campañas con intención. Seguimiento real, optimización constante, resultados medibles.</p>
+              <span class="card-arrow">Ver más →</span>
+            </a>
+            <a href="work.html" class="card card-link">
+              <div class="card-icon">🔮</div>
+              <h3 class="card-title">3D & WebGL</h3>
+              <p class="card-body">Experiencias inmersivas en el navegador. Spline, Three.js, modelos integrados en la web.</p>
+              <span class="card-arrow">Ver más →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIOS -->
+      <section class="section">
+        <div class="container">
+          <div class="section-header will-slide">
+            <span class="badge">Testimonios</span>
+            <h2 class="t-headline">Lo que dicen</h2>
+          </div>
+          <div class="testimonials-grid" data-stagger="0.12">
+            <blockquote class="testimonial">
+              <p class="testimonial-text">"Desde que empezamos con Nodo, nuestras llamadas entrantes se han triplicado. La web y las campañas trabajan juntas."</p>
+              <footer class="testimonial-author">
+                <div class="testimonial-avatar">H</div>
+                <div>
+                  <div class="testimonial-name">Dra. Hitachi</div>
+                  <div class="testimonial-role">Clínica Dental — L'Hospitalet</div>
+                </div>
+              </footer>
+            </blockquote>
+            <blockquote class="testimonial">
+              <p class="testimonial-text">"La web tiene vida. Las animaciones, los detalles... la gente entra y se queda. Eso antes no pasaba."</p>
+              <footer class="testimonial-author">
+                <div class="testimonial-avatar">S</div>
+                <div>
+                  <div class="testimonial-name">Silvana</div>
+                  <div class="testimonial-role">La Chiquitana — E-commerce</div>
+                </div>
+              </footer>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section">
+        <div class="container">
+          <div class="cta-inner will-scale">
+            <span class="badge">¿Listo?</span>
+            <h2 class="t-headline">Empieza tu proyecto <span class="tg">hoy.</span></h2>
+            <p class="t-body">Una llamada de 30 minutos. Sin compromiso. Con ideas concretas.</p>
+            <div class="cta-actions">
+              <a href="contact.html" class="btn btn-primary magnetic">Hablemos →</a>
+              <a href="work.html" class="btn btn-outline">Ver trabajos</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-grid">
+            <div>
+              <div class="footer-brand-name">Nodo<em>.</em></div>
+              <p class="footer-brand-desc">Webs que hablan por solas. Diseño y desarrollo digital para marcas que no necesitan gritar.</p>
+            </div>
+            <div>
+              <div class="footer-col-title">Estudio</div>
+              <ul class="footer-col-links">
+                <li><a href="work.html">Trabajos</a></li>
+                <li><a href="about.html">Nosotros</a></li>
+                <li><a href="contact.html">Contacto</a></li>
+              </ul>
+            </div>
+            <div>
+              <div class="footer-col-title">Servicios</div>
+              <ul class="footer-col-links">
+                <li><a href="#servicios">Web</a></li>
+                <li><a href="#servicios">Branding</a></li>
+                <li><a href="#servicios">3D / Spline</a></li>
+              </ul>
+            </div>
+            <div>
+              <div class="footer-col-title">Contacto</div>
+              <ul class="footer-col-links">
+                <li><a href="mailto:hola@nodostudio.es">hola@nodostudio.es</a></li>
+                <li><a href="#">L'Hospitalet, BCN</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p class="footer-copy">© 2026 <em>Nodo Studio</em>. Todos los derechos reservados.</p>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

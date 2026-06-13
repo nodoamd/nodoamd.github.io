@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio de Nodo Studio — Proyectos web premium en Barcelona." />
+  <title>Trabajos — Nodo Studio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="https://unpkg.com/@barba/core@2.9.7/dist/barba.umd.js"></script>
+</head>
+<body class="theme-light is-loading">
+
+  <div id="nodo-loader" aria-hidden="true">
+    <div class="loader-logo">Nodo<span>.</span></div>
+    <div class="loader-bar-track"><div class="loader-bar-fill"></div></div>
+    <div class="loader-counter">0%</div>
+  </div>
+
+  <div class="nodo-sweep" aria-hidden="true"></div>
+  <span class="transition-label" aria-hidden="true"></span>
+  <div class="nodo-curtain curtain-1" aria-hidden="true"></div>
+  <div class="nodo-curtain curtain-2" aria-hidden="true"></div>
+  <div class="nodo-curtain curtain-3" aria-hidden="true"></div>
+  <div class="nodo-diagonal diagonal-1" aria-hidden="true"></div>
+  <div class="nodo-diagonal diagonal-2" aria-hidden="true"></div>
+  <div class="nodo-reveal" aria-hidden="true"></div>
+  <div class="nodo-split-top" aria-hidden="true"></div>
+  <div class="nodo-split-bottom" aria-hidden="true"></div>
+
+  <nav id="nodo-nav" aria-label="Navegación principal">
+    <a href="index.html" class="nav-logo">Nodo<em>.</em></a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="work.html">Trabajos</a></li>
+      <li><a href="about.html">Nosotros</a></li>
+      <li><a href="contact.html" class="nav-cta">Hablemos →</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div data-barba="wrapper">
+    <main data-barba="container" data-barba-namespace="work">
+
+      <header class="page-hero container">
+        <span class="badge">Portfolio</span>
+        <h1 class="t-display" style="margin-top:1.5rem">Proyectos<br><span class="tg">seleccionados.</span></h1>
+        <p class="t-body">Webs con alma. Animaciones con intención. Resultados que se miden.</p>
+      </header>
+
+      <section class="container">
+        <div class="work-grid">
+          <a href="#" class="work-card">
+            <div class="work-card-img">01</div>
+            <div class="work-card-body">
+              <div class="work-card-tag">Dental · GSAP</div>
+              <h2 class="work-card-title">Clínica Hitachi</h2>
+              <p class="work-card-desc">Rediseño completo con animaciones scroll y campañas Google integradas.</p>
+            </div>
+          </a>
+          <a href="#" class="work-card">
+            <div class="work-card-img">02</div>
+            <div class="work-card-body">
+              <div class="work-card-tag">E-commerce · Barba.js</div>
+              <h2 class="work-card-title">La Chiquitana</h2>
+              <p class="work-card-desc">Tienda online con transiciones fluidas y experiencia de marca única.</p>
+            </div>
+          </a>
+          <a href="#" class="work-card">
+            <div class="work-card-img">03</div>
+            <div class="work-card-body">
+              <div class="work-card-tag">Corporate · Spline</div>
+              <h2 class="work-card-title">Dentale BCN</h2>
+              <p class="work-card-desc">Web corporativa premium con 3D interactivo y diseño minimalista.</p>
+            </div>
+          </a>
+          <a href="#" class="work-card">
+            <div class="work-card-img">04</div>
+            <div class="work-card-body">
+              <div class="work-card-tag">Branding · Web</div>
+              <h2 class="work-card-title">Studio Noir</h2>
+              <p class="work-card-desc">Identidad visual + web one-page con tipografía editorial y motion design.</p>
+            </div>
+          </a>
+          <a href="#" class="work-card">
+            <div class="work-card-img">05</div>
+            <div class="work-card-body">
+              <div class="work-card-tag">Legal · SEO</div>
+              <h2 class="work-card-title">Balmes Legal</h2>
+              <p class="work-card-desc">Presencia digital para despacho boutique en Barcelona.</p>
+            </div>
+          </a>
+          <a href="#" class="work-card">
+            <div class="work-card-img">06</div>
+            <div class="work-card-body">
+              <div class="work-card-tag">Real Estate</div>
+              <h2 class="work-card-title">Arco RE</h2>
+              <p class="work-card-desc">Plataforma inmobiliaria con filtros avanzados y diseño de confianza.</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="cta-inner will-scale">
+            <h2 class="t-headline">¿Tu proyecto aquí?</h2>
+            <p class="t-body">Cuéntanos qué necesitas y lo hacemos realidad.</p>
+            <div class="cta-actions" style="margin-top:2rem">
+              <a href="contact.html" class="btn btn-primary magnetic">Iniciar proyecto →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-bottom" style="border:none;padding:0">
+            <p class="footer-copy">© 2026 <em>Nodo Studio</em></p>
+            <a href="index.html" class="footer-col-links" style="font-size:0.8rem;color:var(--text-dim)">← Volver al inicio</a>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
