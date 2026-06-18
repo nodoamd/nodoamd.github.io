@@ -19,12 +19,12 @@ document.addEventListener('DOMContentLoaded', function() {
         pointerEvents: "none"
     });
     
-    // Esperar a que el loader desaparezca (4 segundos exactos)
+    // Esperar a que el loader desaparezca
     setTimeout(() => {
         console.log('✨ Loader desapareciendo - Iniciando animaciones');
         initHeroAnimations();
         initStatsCounters();
-    }, 4000); // Iniciar exactamente cuando empieza el fade del loader
+    }, 2200);
 });
 
 function initHeroAnimations() {
@@ -36,6 +36,8 @@ function initHeroAnimations() {
     }
 
     gsap.registerPlugin(ScrollTrigger);
+
+    gsap.set("#spline-shell", { opacity: 0, y: 20, scale: 0.97, filter: 'blur(4px)' });
 
     // ========== TIMELINE PRINCIPAL ==========
     const masterTimeline = gsap.timeline({
@@ -108,13 +110,17 @@ function initHeroAnimations() {
         onStart: () => console.log('3️⃣ Párrafo')
     }, "-=0.45");
 
-    // 4. BOTONES — los dos juntos casi a la vez
+    // 4. BOTONES + 3D — entran casi a la vez
     masterTimeline.to(".hero-buttons .btn", {
         opacity: 1, y: 0, scale: 1,
-        stagger: 0.07,
-        duration: 0.6,
+        stagger: 0.05,
+        duration: 0.45,
         onStart: () => console.log('4️⃣ Botones'),
     }, "-=0.45");
+
+    masterTimeline.add(() => {
+        revealSplineHero();
+    }, "-=0.35");
 
     // 5. MICROCOPY + AVATARES + CONTADOR — todo el bloque social proof llega junto
     masterTimeline.to(".hero-microcopy", {
@@ -156,7 +162,7 @@ function initHeroAnimations() {
     if (counterElement) {
         masterTimeline.to(counterElement, {
             textContent: 2141,
-            duration: 1.4,
+            duration: 0.85,
             ease: "power2.out",
             snap: { textContent: 1 },
             onStart: () => console.log('8️⃣ Contador 0 → 2.141'),
@@ -170,6 +176,44 @@ function initHeroAnimations() {
             }
         }, "-=0.1");
     }
+}
+
+function revealSplineHero() {
+    const shell = document.getElementById('spline-shell');
+    if (!shell || shell.dataset.revealed === 'true') return;
+
+    const finishReveal = () => {
+        if (shell.dataset.revealed === 'true') return;
+        shell.dataset.revealed = 'true';
+        shell.classList.remove('loading');
+        shell.classList.add('spline-visible');
+        document.body.classList.add('hero-ready');
+
+        const viewer = shell.querySelector('spline-viewer');
+        gsap.to(shell, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: 'blur(0px)',
+            duration: 0.55,
+            ease: 'power2.out',
+        });
+        if (viewer) {
+            gsap.to(viewer, { opacity: 1, duration: 0.45, ease: 'power2.out', delay: 0.08 });
+        }
+    };
+
+    if (window.__nodoSplineReady) {
+        finishReveal();
+        return;
+    }
+
+    const viewer = document.getElementById('hero-spline');
+    if (viewer) {
+        viewer.addEventListener('load', finishReveal, { once: true });
+        viewer.addEventListener('error', finishReveal, { once: true });
+    }
+    setTimeout(finishReveal, 800);
 }
 
 // ========== ANIMACIONES CONTINUAS ==========

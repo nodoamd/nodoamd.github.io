@@ -172,8 +172,8 @@
                 }
             };
 
-            // Ocultar después de 4 segundos
-            setTimeout(hideLoader, 4000);
+            // Ocultar después de 2.2 segundos
+            setTimeout(hideLoader, 2200);
         })();
     </script>
     <header class="header">
@@ -331,26 +331,13 @@
     </div>
     <script>
         (function initSplineShell() {
-            const shell = document.getElementById('spline-shell');
             const viewer = document.getElementById('hero-spline');
-
-            const revealSpline = () => {
-                shell?.classList.remove('loading');
-                document.body.classList.add('hero-ready');
-            };
+            window.__nodoSplineReady = false;
 
             if (viewer) {
-                viewer.addEventListener('load', revealSpline, { once: true });
-                viewer.addEventListener('error', revealSpline, { once: true });
+                viewer.addEventListener('load', () => { window.__nodoSplineReady = true; }, { once: true });
+                viewer.addEventListener('error', () => { window.__nodoSplineReady = true; }, { once: true });
             }
-
-            const whenDefined = window.customElements?.whenDefined?.('spline-viewer');
-            if (whenDefined) {
-                whenDefined.catch(revealSpline);
-            }
-
-            window.addEventListener('load', () => setTimeout(revealSpline, 1500), { once: true });
-            setTimeout(revealSpline, 4500);
         })();
     </script>
     <div class="cursor-effect"></div>

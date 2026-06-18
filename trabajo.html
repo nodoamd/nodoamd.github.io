@@ -47,6 +47,20 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'nodo-purple': '#4e53be',
+                        'nodo-blue': '#3b82f6',
+                        'nodo-light': '#f8fafc',
+                        'nodo-gray': '#64748b'
+                    }
+                }
+            }
+        }
+    </script>
 
     <!-- Font Awesome con carga optimizada -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -181,8 +195,9 @@
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-8 md:mt-0"
             style="margin-bottom: 50px;">
             <div class="mb-4 pt-8 md:pt-0">
-                <span class="inline-flex items-center text-nodo-purple font-medium text-base md:text-lg">
-                    ⚡ Nuestro Trabajo
+                <span class="inline-flex items-center gap-2 text-nodo-purple font-semibold text-base md:text-lg">
+                    <img src="./img/nodedos.svg" alt="Nodo" class="h-7 w-7 md:h-8 md:w-8">
+                    Nuestro Trabajo
                 </span>
             </div>
             <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 px-4">
@@ -200,7 +215,7 @@
             <!-- Botones con mejor espaciado móvil -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 px-4">
                 <a href="#trabajo-tabs"
-                    class="w-full sm:w-auto bg-nodo-purple hover:bg-purple-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-xl">
+                    class="w-full sm:w-auto bg-nodo-purple hover:bg-[#4348a8] text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-indigo-500/30">
                     Explorar por categoría
                 </a>
                 <a href="https://wa.me/+34622494800?text=Hola%20Nodo,%20me%20gustaría%20impulsar%20mi%20negocio%20con%20vuestros%20servicios"
