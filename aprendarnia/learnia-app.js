@@ -1,20 +1,423 @@
 /* Learnia — progreso local, sin servidor */
 (function () {
   const STORAGE_KEY = 'learnia-progress-v1';
+  const PREFS_KEY = 'learnia-prefs-v1';
   const TAB_SCREENS = ['home', 'explore', 'routes', 'profile'];
   const DETAIL_SCREENS = ['topic', 'journey-stats', 'journey', 'lesson'];
+  const FONT_MIN = 0.85;
+  const FONT_MAX = 1.35;
+  const FONT_STEP = 0.05;
 
   let state = defaultState();
+  let prefs = defaultPrefs();
   let lastTab = 'home';
   let currentTopicId = null;
   let currentLessonId = null;
   let lessonStartedAt = null;
   let quizAnswered = false;
+  let speechSpeaking = false;
+  let sheetPrimaryHandler = null;
+  let homeSearchQuery = '';
+  let exploreFilter = 'all';
+  let exploreSearchQuery = '';
+
+  const SPEECH_RATES = [0.78, 0.92, 1.08];
+
+  const EXPLORE_ROUTES = [
+    { id: 'cultura-espanola', title: 'Cultura Española', tags: ['historia', 'arte'], topics: 6, level: 'intermedio', hero: true, available: true },
+    {
+      id: 'filosofia',
+      title: 'Filosofía Moderna',
+      tags: ['filosofia'],
+      topics: 8,
+      level: 'avanzado',
+      image: 'https://images.unsplash.com/photo-1577083552431-6e5fd01988a5?q=80&w=500&auto=format&fit=crop',
+      available: false
+    },
+    {
+      id: 'arte-universal',
+      title: 'Historia del Arte Universal',
+      tags: ['arte'],
+      topics: 12,
+      level: 'intermedio',
+      image: 'https://images.unsplash.com/photo-1555993539-1732b0258235?q=80&w=500&auto=format&fit=crop',
+      available: false,
+      locked: true
+    },
+    {
+      id: 'mitologia',
+      title: 'Mitología Griega',
+      tags: ['historia'],
+      topics: 10,
+      level: 'inicial',
+      image: 'https://images.unsplash.com/photo-1564399580075-5dfe19c205f3?q=80&w=500&auto=format&fit=crop',
+      available: false,
+      badge: 'Próximamente'
+    },
+    {
+      id: 'ciencia',
+      title: 'Ciencia y Tecnología',
+      tags: ['ciencia'],
+      topics: 9,
+      level: 'avanzado',
+      image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=500&auto=format&fit=crop',
+      available: false
+    }
+  ];
 
   const allLessons = () =>
     RUTA_ESPAÑOLA.topics.flatMap((t) => t.lessons.map((l) => ({ ...l, topicId: t.id })));
 
   const totalLessons = () => allLessons().length;
+
+  function defaultPrefs() {
+    return {
+      version: 2,
+      theme: 'learnia',
+      fontScale: 1,
+      focusMode: false,
+      speechRate: 0.92,
+      hints: { fontSize: false }
+    };
+  }
+
+  function loadPrefs() {
+    try {
+      const raw = localStorage.getItem(PREFS_KEY);
+      if (!raw) return defaultPrefs();
+      const parsed = JSON.parse(raw);
+      if (!parsed) return defaultPrefs();
+      const theme = ['learnia', 'dark', 'classic'].includes(parsed.theme) ? parsed.theme : 'learnia';
+      const fontScale = Math.min(FONT_MAX, Math.max(FONT_MIN, Number(parsed.fontScale) || 1));
+      const speechRate = SPEECH_RATES.reduce(
+        (best, r) => (Math.abs(r - (Number(parsed.speechRate) || 0.92)) < Math.abs(best - (Number(parsed.speechRate) || 0.92)) ? r : best),
+        0.92
+      );
+      return {
+        ...defaultPrefs(),
+        theme,
+        fontScale,
+        speechRate,
+        focusMode: parsed.focusMode === true,
+        hints: { ...defaultPrefs().hints, ...(parsed.hints || {}) }
+      };
+    } catch {
+      return defaultPrefs();
+    }
+  }
+
+  function savePrefs() {
+    localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+    applyPrefs();
+  }
+
+  function applyPrefs() {
+    document.documentElement.setAttribute('data-theme', prefs.theme);
+    document.documentElement.style.setProperty('--font-scale', String(prefs.fontScale));
+    document.body.classList.toggle('focus-mode', !!prefs.focusMode);
+    document.querySelectorAll('[data-theme-pick]').forEach((btn) => {
+      btn.classList.toggle('active', btn.dataset.themePick === prefs.theme);
+    });
+    document.querySelectorAll('[data-speech-rate]').forEach((btn) => {
+      btn.classList.toggle('active', Number(btn.dataset.speechRate) === prefs.speechRate);
+    });
+    const focusEl = document.getElementById('pref-focus-mode');
+    if (focusEl) focusEl.checked = !!prefs.focusMode;
+    updateFontControls();
+  }
+
+  window.disableFocusMode = function () {
+    prefs.focusMode = false;
+    savePrefs();
+    renderAll();
+    toast('Modo foco desactivado');
+  };
+
+  window.togglePref = function (key, value) {
+    if (!(key in prefs)) return;
+    prefs[key] = !!value;
+    savePrefs();
+    if (key === 'focusMode') renderAll();
+    toast(value ? 'Modo enfoque activado' : 'Progreso visible de nuevo');
+  };
+
+  window.setSpeechRate = function (rate) {
+    const n = Number(rate);
+    if (!SPEECH_RATES.includes(n)) return;
+    prefs.speechRate = n;
+    savePrefs();
+  };
+
+  function fontScaleLabel(scale) {
+    if (scale <= 0.9) return 'Texto pequeño';
+    if (scale >= 1.2) return 'Texto grande';
+    return 'Tamaño normal';
+  }
+
+  function updateFontControls() {
+    const dec = document.getElementById('font-dec');
+    const inc = document.getElementById('font-inc');
+    const decS = document.getElementById('font-dec-settings');
+    const incS = document.getElementById('font-inc-settings');
+    [dec, decS].forEach((b) => {
+      if (b) b.disabled = prefs.fontScale <= FONT_MIN + 0.001;
+    });
+    [inc, incS].forEach((b) => {
+      if (b) b.disabled = prefs.fontScale >= FONT_MAX - 0.001;
+    });
+    const label = document.getElementById('font-scale-label');
+    if (label) label.textContent = fontScaleLabel(prefs.fontScale);
+  }
+
+  window.setTheme = function (theme) {
+    if (!['learnia', 'dark', 'classic'].includes(theme)) return;
+    prefs.theme = theme;
+    savePrefs();
+    toast(theme === 'classic' ? 'Tema cartográfico activado' : theme === 'dark' ? 'Modo oscuro activado' : 'Tema Learnia activado');
+  };
+
+  window.changeFontScale = function (delta) {
+    const next = Math.round((prefs.fontScale + delta * FONT_STEP) * 100) / 100;
+    prefs.fontScale = Math.min(FONT_MAX, Math.max(FONT_MIN, next));
+    if (!prefs.hints.fontSize) {
+      prefs.hints.fontSize = true;
+    }
+    savePrefs();
+  };
+
+  window.dismissFontHint = function () {
+    prefs.hints.fontSize = true;
+    savePrefs();
+    const hint = document.getElementById('font-hint');
+    if (hint) hint.remove();
+  };
+
+  function buildLessonSpeech(lesson) {
+    const parts = [lesson.title];
+    lesson.blocks.forEach((b) => parts.push(b.text));
+    if (lesson.quiz) {
+      parts.push('Pregunta. ' + lesson.quiz.question);
+      lesson.quiz.options.forEach((opt, i) => parts.push('Opción ' + (i + 1) + '. ' + opt));
+    }
+    return parts.join('. ');
+  }
+
+  function speakText(text) {
+    if (!('speechSynthesis' in window)) {
+      toast('Tu navegador no soporta lectura en voz alta');
+      return;
+    }
+    stopSpeech();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'es-ES';
+    utter.rate = prefs.speechRate || 0.92;
+    utter.onend = () => {
+      speechSpeaking = false;
+      document.querySelectorAll('.listen-btn').forEach((btn) => btn.classList.remove('speaking'));
+    };
+    utter.onerror = () => {
+      speechSpeaking = false;
+      document.querySelectorAll('.listen-btn').forEach((btn) => btn.classList.remove('speaking'));
+    };
+    speechSpeaking = true;
+    document.querySelectorAll('.listen-btn').forEach((btn) => btn.classList.add('speaking'));
+    speechSynthesis.speak(utter);
+  }
+
+  window.stopSpeech = function () {
+    if ('speechSynthesis' in window) speechSynthesis.cancel();
+    speechSpeaking = false;
+    document.querySelectorAll('.listen-btn').forEach((btn) => btn.classList.remove('speaking'));
+  };
+
+  window.toggleListen = function () {
+    if (speechSpeaking) {
+      stopSpeech();
+      return;
+    }
+    const lesson = getLesson(currentLessonId);
+    if (!lesson) return;
+    speakText(buildLessonSpeech(lesson));
+  };
+
+  window.showAppSheet = function ({ title, message, primaryLabel, onPrimary, secondaryLabel }) {
+    const sheet = document.getElementById('app-sheet');
+    document.getElementById('app-sheet-title').textContent = title;
+    document.getElementById('app-sheet-msg').textContent = message;
+    const primary = document.getElementById('app-sheet-primary');
+    primary.textContent = primaryLabel;
+    sheetPrimaryHandler = onPrimary;
+    primary.onclick = () => {
+      closeAppSheet();
+      if (sheetPrimaryHandler) sheetPrimaryHandler();
+    };
+    const secondary = document.getElementById('app-sheet-secondary');
+    secondary.textContent = secondaryLabel || 'Quedarme aquí';
+    sheet.classList.add('open');
+    sheet.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeAppSheet = function () {
+    const sheet = document.getElementById('app-sheet');
+    sheet.classList.remove('open');
+    sheet.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    sheetPrimaryHandler = null;
+  };
+
+  window.showTopicCompletePrompt = function (completedTopic, nextTopic) {
+    const firstLesson = nextTopic.lessons.find((l) => !isDone(l.id)) || nextTopic.lessons[0];
+    showAppSheet({
+      title: '¡Tema completado!',
+      message: 'Has terminado «' + completedTopic.title + '». ¿Pasamos a «' + nextTopic.title + '»?',
+      primaryLabel: 'Siguiente tema',
+      secondaryLabel: 'Quedarme aquí',
+      onPrimary: () => openLesson(firstLesson.id)
+    });
+  };
+
+  window.showRouteCompletePrompt = function () {
+    showAppSheet({
+      title: '¡Ruta completada!',
+      message: 'Has recorrido todos los temas de Cultura Española. ¡Enhorabuena!',
+      primaryLabel: 'Ver mi progreso',
+      secondaryLabel: 'Quedarme aquí',
+      onPrimary: () => showScreen('journey-stats')
+    });
+  };
+
+  window.showRouteCompletePrompt = function () {
+    showAppSheet({
+      title: '¡Ruta completada!',
+      message: 'Has recorrido todos los temas de Cultura Española. ¡Enhorabuena!',
+      primaryLabel: 'Ver mi progreso',
+      secondaryLabel: 'Quedarme aquí',
+      onPrimary: () => showScreen('journey-stats')
+    });
+  };
+
+  window.showNotifications = function () {
+    toast('No tienes notificaciones nuevas');
+  };
+
+  window.showComingSoon = function (name) {
+    toast('«' + name + '» estará disponible pronto');
+  };
+
+  window.openExploreRoute = function (id) {
+    const route = EXPLORE_ROUTES.find((r) => r.id === id);
+    if (!route) return;
+    if (route.available) showScreen('journey');
+    else showComingSoon(route.title);
+  };
+
+  window.setExploreFilter = function (filter) {
+    exploreFilter = filter;
+    document.querySelectorAll('.explore-chip').forEach((btn) => {
+      const active = btn.dataset.filter === filter;
+      btn.classList.toggle('bg-[var(--brand-700)]', active);
+      btn.classList.toggle('text-white', active);
+      btn.classList.toggle('bg-white', !active);
+      btn.classList.toggle('border', !active);
+      btn.classList.toggle('border-slate-200', !active);
+      btn.classList.toggle('text-slate-500', !active);
+    });
+    renderExplore();
+  };
+
+  function normSearch(s) {
+    return String(s || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function renderStreakUi() {
+    const show = state.streak > 0;
+    ['home-streak-badge', 'sidebar-streak-card', 'drawer-streak-card', 'stat-streak-row', 'profile-streak-box'].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) el.classList.toggle('hidden', !show);
+    });
+    const profileGrid = document.getElementById('profile-stats-grid');
+    if (profileGrid) {
+      profileGrid.classList.toggle('grid-cols-2', !show);
+      profileGrid.classList.toggle('grid-cols-3', show);
+    }
+    if (show) {
+      document.getElementById('streak-count').textContent = state.streak;
+      document.getElementById('sidebar-streak').textContent = state.streak;
+      document.getElementById('drawer-streak').textContent = state.streak;
+      document.getElementById('stat-streak').textContent = state.streak + ' días';
+      document.getElementById('profile-streak').textContent = state.streak;
+    }
+  }
+
+  function renderExplore() {
+    const grid = document.getElementById('explore-grid');
+    if (!grid) return;
+    const q = normSearch(exploreSearchQuery);
+    const items = EXPLORE_ROUTES.filter((r) => {
+      if (exploreFilter !== 'all' && !r.tags.includes(exploreFilter)) return false;
+      if (q && !normSearch(r.title).includes(q)) return false;
+      return true;
+    });
+    if (!items.length) {
+      grid.innerHTML =
+        '<p class="col-span-full text-center text-[13px] text-slate-400 font-medium py-10">No hay rutas con ese criterio.</p>';
+      return;
+    }
+    const done = completedCount();
+    const total = totalLessons();
+    const routePct = total ? Math.round((done / total) * 100) : 0;
+    grid.innerHTML = items
+      .map((r) => {
+        if (r.hero) {
+          const badge = done >= total ? 'Completada' : done > 0 ? 'En progreso' : 'Disponible';
+          return `<button type="button" onclick="openExploreRoute('${r.id}')" class="topic-card tap text-left bg-white rounded-2xl overflow-hidden soft-shadow border border-slate-100 w-full">
+            <div class="relative h-32 hero-gradient">
+              <span class="absolute top-3 right-3 bg-white/90 text-[var(--brand-700)] text-[10.5px] font-extrabold px-2.5 py-1 rounded-full">${badge}</span>
+            </div>
+            <div class="p-4">
+              <p class="text-[14px] font-bold text-slate-900">${escapeHtml(r.title)}</p>
+              <p class="text-[11.5px] text-slate-400 font-semibold mt-1">${r.topics} temas · Nivel ${r.level}</p>
+              <div class="w-full bg-slate-100 h-1.5 rounded-full mt-3 overflow-hidden">
+                <div class="bg-[var(--brand-700)] h-full rounded-full" style="width:${routePct}%"></div>
+              </div>
+            </div>
+          </button>`;
+        }
+        const lock = r.locked
+          ? '<span class="absolute inset-0 bg-white/40 flex items-center justify-center"><i data-lucide="lock" class="w-6 h-6 text-slate-600"></i></span>'
+          : '';
+        const badge = r.badge
+          ? `<span class="absolute top-3 right-3 bg-white/90 text-slate-600 text-[10.5px] font-extrabold px-2.5 py-1 rounded-full">${escapeHtml(r.badge)}</span>`
+          : '<span class="absolute top-3 right-3 bg-white/90 text-slate-500 text-[10.5px] font-extrabold px-2.5 py-1 rounded-full">Próximamente</span>';
+        return `<button type="button" onclick="openExploreRoute('${r.id}')" class="topic-card tap text-left bg-white rounded-2xl overflow-hidden soft-shadow border border-slate-100 w-full${r.locked ? ' opacity-90' : ''}">
+          <div class="relative h-32">
+            <img src="${r.image}" class="w-full h-full object-cover" alt="">
+            ${lock}
+            ${badge}
+          </div>
+          <div class="p-4">
+            <p class="text-[14px] font-bold text-slate-900">${escapeHtml(r.title)}</p>
+            <p class="text-[11.5px] text-slate-400 font-semibold mt-1">${r.topics} temas · Nivel ${r.level}</p>
+            <div class="w-full bg-slate-100 h-1.5 rounded-full mt-3 overflow-hidden">
+              <div class="bg-slate-300 h-full rounded-full" style="width:0%"></div>
+            </div>
+          </div>
+        </button>`;
+      })
+      .join('');
+    lucide.createIcons();
+  }
+
+  function fontToolbarHtml() {
+    return `<div class="font-toolbar shrink-0" aria-label="Tamaño del texto">
+      <button type="button" id="font-dec" onclick="changeFontScale(-1)" aria-label="Reducir texto">A−</button>
+      <button type="button" id="font-inc" onclick="changeFontScale(1)" aria-label="Aumentar texto">A+</button>
+    </div>`;
+  }
 
   function defaultState() {
     return {
@@ -70,6 +473,16 @@
 
   function getLesson(id) {
     return allLessons().find((l) => l.id === id);
+  }
+
+  function isTopicComplete(topicId) {
+    const topic = getTopic(topicId);
+    if (!topic) return false;
+    return topic.lessons.every((l) => isDone(l.id));
+  }
+
+  function getNextTopic() {
+    return RUTA_ESPAÑOLA.topics.find((t) => !isTopicComplete(t.id)) || null;
   }
 
   function getNextLesson() {
@@ -145,9 +558,7 @@
 
     document.getElementById('user-greeting').textContent = name;
     document.getElementById('sidebar-name').textContent = name;
-    document.getElementById('sidebar-streak').textContent = state.streak;
     document.getElementById('drawer-streak').textContent = state.streak;
-    document.getElementById('streak-count').textContent = state.streak;
     document.getElementById('hero-progress-text').textContent = done + ' / ' + total;
     document.querySelector('.hero-bar').style.width = pct + '%';
     document.getElementById('home-ring-text').textContent = done + ' / ' + total;
@@ -158,10 +569,23 @@
     document.getElementById('home-congrats-msg').classList.toggle('hidden', !complete);
     document.getElementById('home-keep-going').classList.toggle('hidden', complete);
 
-    document.getElementById('stat-streak').textContent = state.streak + ' días';
+    const intro = document.getElementById('home-progress-intro');
+    if (intro) {
+      if (done === 0) {
+        intro.textContent = 'Cuando quieras, aquí verás cómo vas. Por ahora, elige un tema y empieza a leer.';
+        intro.classList.remove('hidden');
+      } else if (complete) {
+        intro.classList.add('hidden');
+      } else {
+        intro.textContent = 'Vas bien — el progreso es solo una guía, no una carrera.';
+        intro.classList.remove('hidden');
+      }
+    }
+
     document.getElementById('stat-time').textContent = formatTime(state.studyMinutes);
     document.getElementById('stat-lessons').textContent = done;
     document.getElementById('stat-points').textContent = state.points.toLocaleString('es-ES');
+    renderStreakUi();
 
     document.getElementById('sidebar-level').textContent = level;
     document.getElementById('sidebar-level-bar').style.width = (state.points % 100) + '%';
@@ -173,38 +597,70 @@
     document.getElementById('profile-level').textContent = level;
     document.getElementById('profile-title').textContent = levelTitle(level);
     document.getElementById('profile-lessons').textContent = done;
-    document.getElementById('profile-streak').textContent = state.streak;
     document.getElementById('profile-points').textContent = state.points.toLocaleString('es-ES');
 
     renderTopicsGrid();
     renderRoutes();
+    renderExplore();
     renderAchievements();
     renderHomeAchievements();
     if (currentTopicId) renderTopic(currentTopicId);
     lucide.createIcons();
   }
 
+  function topicFooterHtml(topic, done, total, complete, isCurrent) {
+    if (prefs.focusMode) {
+      if (complete) {
+        return `<div class="topic-card__footer border-t-2 mt-3 pt-2.5 flex items-center gap-1.5" style="border-color:var(--divider)">
+          <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-[var(--green)]"></i>
+          <span class="text-[11px] font-bold text-[var(--brand-700)]">Completado</span>
+        </div>`;
+      }
+      if (isCurrent) {
+        return `<div class="topic-card__footer flex items-center justify-center">
+          <span class="text-[11px] font-bold">En curso</span>
+        </div>`;
+      }
+      return `<div class="topic-card__footer border-t-2 mt-3 pt-2.5 flex items-center gap-1.5" style="border-color:var(--divider)">
+        <span class="text-[11px] font-bold text-slate-400">Explorar</span>
+      </div>`;
+    }
+    if (complete) {
+      return `<div class="topic-card__footer border-t-2 mt-3 pt-2.5 flex items-center gap-1.5" style="border-color:var(--divider)">
+        <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-[var(--green)]"></i>
+        <span class="text-[11px] font-bold text-[var(--brand-700)]">Completado</span>
+      </div>`;
+    }
+    if (isCurrent) {
+      return `<div class="topic-card__footer flex items-center justify-center">
+        <span class="text-[11px] font-bold">${done} / ${total} lecciones</span>
+      </div>`;
+    }
+    return `<div class="topic-card__footer border-t-2 mt-3 pt-2.5 flex items-center gap-1.5" style="border-color:var(--divider)">
+      <span class="text-[11px] font-bold text-slate-400">${done} / ${total}</span>
+    </div>`;
+  }
+
   function renderTopicsGrid() {
     const grid = document.getElementById('topics-grid');
     const currentId = getCurrentTopicId();
-    grid.innerHTML = RUTA_ESPAÑOLA.topics
+    const q = normSearch(homeSearchQuery);
+    const topics = RUTA_ESPAÑOLA.topics.filter((topic) => {
+      if (!q) return true;
+      const hay = normSearch(topic.title + ' ' + topic.description);
+      return hay.includes(q);
+    });
+    if (!topics.length) {
+      grid.innerHTML = '<p class="col-span-full text-center text-[13px] text-slate-400 py-6">Ningún tema coincide con tu búsqueda.</p>';
+      return;
+    }
+    grid.innerHTML = topics
       .map((topic) => {
         const { done, total } = topicProgress(topic);
         const complete = done >= total;
         const isCurrent = topic.id === currentId && !complete;
         const activeClass = isCurrent ? ' topic-card--active' : '';
-        const footer = complete
-          ? `<div class="topic-card__footer border-t-2 mt-3 pt-2.5 flex items-center gap-1.5" style="border-color:var(--divider)">
-              <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-[var(--green)]"></i>
-              <span class="text-[11px] font-bold text-[var(--brand-700)]">Completado</span>
-            </div>`
-          : isCurrent
-            ? `<div class="topic-card__footer flex items-center justify-center">
-                <span class="text-[11px] font-bold">${done} / ${total} lecciones</span>
-              </div>`
-            : `<div class="topic-card__footer border-t-2 mt-3 pt-2.5 flex items-center gap-1.5" style="border-color:var(--divider)">
-                <span class="text-[11px] font-bold text-slate-400">${done} / ${total}</span>
-              </div>`;
+        const footer = topicFooterHtml(topic, done, total, complete, isCurrent);
         return `<div role="button" tabindex="0" onclick="openTopic('${topic.id}')" class="topic-card relative bg-white rounded-2xl border border-slate-100 soft-shadow h-full${activeClass}${isCurrent ? '' : ' p-4'}">
           <div class="relative w-12 h-12 rounded-2xl bg-[var(--brand-50)] flex items-center justify-center mb-3">
             <i data-lucide="${topic.icon}" class="w-5 h-5 text-[var(--brand-700)] stroke-[2]"></i>
@@ -223,14 +679,20 @@
     const total = totalLessons();
     const pct = total ? Math.round((done / total) * 100) : 0;
     const label = done >= total ? 'Completada' : 'En progreso';
+    const sub = prefs.focusMode
+      ? '6 módulos · Cultura Española'
+      : `${done} / ${total} lecciones · 6 módulos`;
+    const barHtml = prefs.focusMode
+      ? ''
+      : `<div class="w-full bg-white/20 h-1.5 rounded-full mt-3 overflow-hidden focus-hide">
+          <div class="bg-white h-full rounded-full" style="width:${pct}%"></div>
+        </div>`;
     document.getElementById('routes-list').innerHTML = `
       <button type="button" onclick="showScreen('journey')" class="tap text-left hero-gradient rounded-[22px] p-5 accent-shadow w-full">
         <p class="text-[11px] uppercase tracking-[0.14em] font-bold text-violet-200/85">${label}</p>
         <p class="text-[18px] font-extrabold text-white mt-1">${RUTA_ESPAÑOLA.title} ${RUTA_ESPAÑOLA.flag}</p>
-        <p class="text-[12px] text-violet-100/80 font-medium mt-1">${done} / ${total} lecciones · 6 módulos</p>
-        <div class="w-full bg-white/20 h-1.5 rounded-full mt-3 overflow-hidden">
-          <div class="bg-white h-full rounded-full" style="width:${pct}%"></div>
-        </div>
+        <p class="text-[12px] text-violet-100/80 font-medium mt-1">${sub}</p>
+        ${barHtml}
       </button>`;
   }
 
@@ -283,6 +745,17 @@
     if (!topic) return;
     const { done, total } = topicProgress(topic);
     const pct = total ? Math.round((done / total) * 100) : 0;
+    const progressHtml = prefs.focusMode
+      ? ''
+      : `<div class="mt-5">
+            <div class="flex justify-between text-[11.5px] font-bold mb-2">
+              <span class="text-slate-400 font-semibold">Progreso del tema</span>
+              <span class="text-[var(--brand-700)] font-extrabold">${done} / ${total}</span>
+            </div>
+            <div class="w-full bg-[var(--brand-50)] h-[7px] rounded-full overflow-hidden">
+              <div class="bar-progress bg-[var(--brand-700)] h-full rounded-full" style="width:${pct}%"></div>
+            </div>
+          </div>`;
     const lessonsHtml = topic.lessons
       .map((lesson) => {
         const doneL = isDone(lesson.id);
@@ -321,15 +794,7 @@
               <p class="text-[12.5px] text-slate-400 font-medium mt-1 leading-relaxed">${escapeHtml(topic.description)}</p>
             </div>
           </div>
-          <div class="mt-5">
-            <div class="flex justify-between text-[11.5px] font-bold mb-2">
-              <span class="text-slate-400 font-semibold">Progreso del tema</span>
-              <span class="text-[var(--brand-700)] font-extrabold">${done} / ${total}</span>
-            </div>
-            <div class="w-full bg-[var(--brand-50)] h-[7px] rounded-full overflow-hidden">
-              <div class="bar-progress bg-[var(--brand-700)] h-full rounded-full" style="width:${pct}%"></div>
-            </div>
-          </div>
+          ${progressHtml}
         </div>
         <div class="mt-6 flex flex-col gap-2.5">${lessonsHtml}</div>
         <div class="sticky-cta lg:static lg:mt-6">
@@ -356,7 +821,7 @@
       .join('');
 
     const quizHtml = lesson.quiz
-      ? `<div class="mt-6 bg-white rounded-2xl border border-slate-100 p-5 soft-shadow" id="quiz-box">
+      ? `<div class="mt-6 theme-card bg-white rounded-2xl border border-slate-100 p-5 soft-shadow" id="quiz-box">
           <p class="text-[13px] font-extrabold text-slate-900 mb-3">Comprueba lo aprendido</p>
           <p class="text-[13.5px] font-semibold text-slate-700 mb-3">${escapeHtml(lesson.quiz.question)}</p>
           <div class="flex flex-col gap-2" id="quiz-options">
@@ -371,11 +836,29 @@
         </div>`
       : '';
 
+    const showFontHint = !prefs.hints.fontSize;
+    const fontHintHtml = showFontHint
+      ? `<div id="font-hint" class="font-hint">
+          <span>💡 Puedes agrandar el texto con <strong>A+</strong> arriba, o en Ajustes.</span>
+          <button type="button" onclick="dismissFontHint()">Entendido</button>
+        </div>`
+      : '';
+
     document.getElementById('lesson-root').innerHTML = `
-      <button type="button" onclick="openTopic('${lesson.topicId}')" class="tap flex items-center gap-2 text-[13px] font-bold text-slate-500 mb-4">
-        <i data-lucide="arrow-left" class="w-4 h-4"></i> ${escapeHtml(topic.title)}
-      </button>
-      <div class="bg-white rounded-3xl border border-slate-100 p-5 soft-shadow-lg">
+      <div class="flex items-center justify-between gap-3 mb-4">
+        <button type="button" onclick="openTopic('${lesson.topicId}')" class="tap flex items-center gap-2 text-[13px] font-bold text-slate-500 min-w-0">
+          <i data-lucide="arrow-left" class="w-4 h-4 shrink-0"></i>
+          <span class="truncate">${escapeHtml(topic.title)}</span>
+        </button>
+        <div class="flex items-center gap-2 shrink-0">
+          ${fontToolbarHtml()}
+          <button type="button" onclick="toggleListen()" class="listen-btn tap w-[42px] h-[42px] rounded-xl flex items-center justify-center border border-slate-200 bg-white soft-shadow text-slate-600" aria-label="Escuchar lección">
+            <i data-lucide="headphones" class="w-[18px] h-[18px]"></i>
+          </button>
+        </div>
+      </div>
+      ${fontHintHtml}
+      <div class="theme-card bg-white rounded-3xl border border-slate-100 p-5 soft-shadow-lg">
         <div class="flex items-center gap-2 mb-1">
           <span class="text-[11px] font-bold text-[var(--brand-700)] uppercase tracking-wide">Lección</span>
           ${done ? '<span class="text-[10px] font-bold bg-green-50 text-green-700 px-2 py-0.5 rounded-full">Completada</span>' : ''}
@@ -391,6 +874,8 @@
 
     if (done) enableCompleteButton(true);
     lessonStartedAt = Date.now();
+    stopSpeech();
+    updateFontControls();
     lucide.createIcons();
   }
 
@@ -428,7 +913,7 @@
           <div class="flex justify-between"><span class="text-slate-500">Tiempo de estudio</span><span class="font-extrabold">${formatTime(state.studyMinutes)}</span></div>
           <div class="flex justify-between"><span class="text-slate-500">Lecciones aprendidas</span><span class="font-extrabold">${done}</span></div>
           <div class="flex justify-between"><span class="text-slate-500">Puntos</span><span class="font-extrabold">${state.points}</span></div>
-          <div class="flex justify-between"><span class="text-slate-500">Racha</span><span class="font-extrabold">${state.streak} días</span></div>
+          ${state.streak > 0 ? `<div class="flex justify-between"><span class="text-slate-500">Racha</span><span class="font-extrabold">${state.streak} días</span></div>` : ''}
         </div>
       </div>
       <button type="button" onclick="showScreen('journey')" class="tap mt-5 w-full text-[13px] font-bold text-[var(--brand-700)] flex items-center justify-center gap-1">
@@ -513,6 +998,7 @@
     if (!lesson || !lesson.quiz) return;
     const correct = lesson.quiz.correct;
     const feedback = document.getElementById('quiz-feedback');
+    if (!feedback) return;
     document.querySelectorAll('.quiz-option').forEach((btn, i) => {
       btn.classList.remove('selected', 'correct', 'wrong');
       if (i === idx) btn.classList.add(idx === correct ? 'correct' : 'wrong');
@@ -522,10 +1008,12 @@
       quizAnswered = true;
       feedback.textContent = '¡Correcto! Ya puedes completar la lección.';
       feedback.className = 'text-[12px] font-semibold mt-3 text-green-600';
+      feedback.classList.remove('hidden');
       enableCompleteButton(false);
     } else {
       feedback.textContent = 'Casi — léelo otra vez e inténtalo de nuevo.';
       feedback.className = 'text-[12px] font-semibold mt-3 text-red-500';
+      feedback.classList.remove('hidden');
     }
   };
 
@@ -540,15 +1028,19 @@
     state.completedLessons.push(currentLessonId);
     state.points += 50;
     updateStreak();
+    const completedTopicId = getLesson(currentLessonId).topicId;
     saveState();
     toast('¡Lección completada! +50 puntos');
     renderLesson(currentLessonId);
 
-    const next = getNextLesson();
-    if (next) {
-      setTimeout(() => {
-        if (confirm('¿Siguiente lección?')) openLesson(next.id);
-      }, 400);
+    const completedTopic = getTopic(completedTopicId);
+    if (!isTopicComplete(completedTopicId)) return;
+
+    const nextTopic = getNextTopic();
+    if (nextTopic && nextTopic.id !== completedTopicId) {
+      setTimeout(() => showTopicCompletePrompt(completedTopic, nextTopic), 500);
+    } else if (completedCount() >= totalLessons()) {
+      setTimeout(() => showRouteCompletePrompt(), 500);
     }
   };
 
@@ -556,7 +1048,7 @@
     const payload = {
       ...state,
       exportedAt: new Date().toISOString(),
-      app: 'Learnia',
+      app: 'Aprendarnia',
       route: RUTA_ESPAÑOLA.id
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
@@ -651,6 +1143,8 @@
   }
 
   window.showScreen = function (target) {
+    stopSpeech();
+    closeAppSheet();
     if (target === 'journey-stats') renderJourneyStats();
     if (target === 'journey') renderJourney();
 
@@ -690,12 +1184,42 @@
     e.target.value = '';
   });
 
+  const homeSearch = document.getElementById('home-search');
+  if (homeSearch) {
+    homeSearch.addEventListener('input', (e) => {
+      homeSearchQuery = e.target.value.trim();
+      renderTopicsGrid();
+    });
+  }
+
+  const exploreSearch = document.getElementById('explore-search');
+  if (exploreSearch) {
+    exploreSearch.addEventListener('input', (e) => {
+      exploreSearchQuery = e.target.value.trim();
+      renderExplore();
+    });
+  }
+
+  document.querySelectorAll('.explore-chip').forEach((btn) => {
+    btn.addEventListener('click', () => setExploreFilter(btn.dataset.filter));
+  });
+
   window.addEventListener('DOMContentLoaded', () => {
+    prefs = loadPrefs();
+    applyPrefs();
     state = loadState();
     renderAll();
 
+    document.querySelectorAll('[data-theme-pick]').forEach((btn) => {
+      btn.addEventListener('click', () => setTheme(btn.dataset.themePick));
+    });
+
+    document.querySelectorAll('[data-speech-rate]').forEach((btn) => {
+      btn.addEventListener('click', () => setSpeechRate(btn.dataset.speechRate));
+    });
+
     const hash = location.hash.replace('#', '');
-    const valid = ['home', 'explore', 'routes', 'profile', 'journey', 'journey-stats', 'topic', 'lesson', 'achievements'];
+    const valid = ['home', 'explore', 'routes', 'profile', 'settings', 'journey', 'journey-stats', 'topic', 'lesson', 'achievements'];
     if (valid.includes(hash)) showScreen(hash);
     else {
       paintSidebar('home');
