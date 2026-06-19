@@ -15,6 +15,11 @@
   let currentLessonId = null;
   let lessonStartedAt = null;
   let quizAnswered = false;
+  let currentQuizIndex = 0;
+  let quizCorrectSet = new Set();
+  let quizPickedMap = new Map();
+  let quizReviewMode = false;
+  let quizAwaitingNext = false;
   let speechSpeaking = false;
   let sheetPrimaryHandler = null;
   let homeSearchQuery = '';
@@ -192,13 +197,20 @@
     if (hint) hint.remove();
   };
 
+  function getLessonQuestions(lesson) {
+    if (!lesson) return [];
+    if (lesson.questions && lesson.questions.length) return lesson.questions;
+    if (lesson.quiz) return [lesson.quiz];
+    return [];
+  }
+
   function buildLessonSpeech(lesson) {
     const parts = [lesson.title];
     lesson.blocks.forEach((b) => parts.push(b.text));
-    if (lesson.quiz) {
-      parts.push('Pregunta. ' + lesson.quiz.question);
-      lesson.quiz.options.forEach((opt, i) => parts.push('Opción ' + (i + 1) + '. ' + opt));
-    }
+    getLessonQuestions(lesson).forEach((q, n) => {
+      parts.push('Pregunta ' + (n + 1) + '. ' + q.question);
+      q.options.forEach((opt, i) => parts.push('Opción ' + (i + 1) + '. ' + opt));
+    });
     return parts.join('. ');
   }
 
@@ -806,11 +818,125 @@
     lucide.createIcons();
   }
 
+  function quizProgressHtml(index, total) {
+    if (total <= 1) return '';
+    const dots = Array.from({ length: total }, (_, i) => {
+      let cls = 'quiz-dot';
+      const answered = quizCorrectSet.has(i) || quizPickedMap.has(i);
+      if (answered || i < index) cls += ' quiz-dot--done';
+      else if (i === index) cls += ' quiz-dot--active';
+      if (i === index) return `<span class="${cls}" aria-current="step"></span>`;
+      const canJump = quizReviewMode || quizCorrectSet.has(i) || i < index;
+      if (canJump) {
+        return `<button type="button" class="${cls} quiz-dot-btn tap" onclick="goQuizTo(${i})" aria-label="Ver pregunta ${i + 1}"></button>`;
+      }
+      return `<span class="${cls}" aria-hidden="true"></span>`;
+    }).join('');
+    return `<div class="flex items-center justify-between gap-3 mb-3">
+      <span class="text-[11px] font-bold text-slate-400">Pregunta ${index + 1} de ${total}</span>
+      <div class="quiz-dots flex gap-1.5">${dots}</div>
+    </div>`;
+  }
+
+  function buildSourcesHtml(lesson) {
+    if (!lesson.sources?.length) return '';
+    const items = lesson.sources
+      .map((s) => {
+        const label = escapeHtml(s.title || s.label || '');
+        if (s.url) {
+          return `<li><a href="${escapeHtml(s.url)}" target="_blank" rel="noopener noreferrer" class="lesson-source-link tap">${label}</a></li>`;
+        }
+        return `<li class="lesson-source-text">${label}</li>`;
+      })
+      .join('');
+    return `<details class="lesson-sources-fold">
+      <summary class="lesson-sources-summary tap">Fuentes</summary>
+      <ul class="lesson-sources-list">${items}</ul>
+    </details>`;
+  }
+
+  function buildQuizNavHtml(lesson, questionIndex) {
+    const total = getLessonQuestions(lesson).length;
+    if (total <= 1) return '';
+    const hasPrev = questionIndex > 0;
+    const hasNext = questionIndex < total - 1;
+    const solved = quizCorrectSet.has(questionIndex);
+    const showNext = hasNext && (quizReviewMode || solved);
+    if (!hasPrev && !showNext) return '';
+    return `<div class="quiz-nav">
+      ${hasPrev ? '<button type="button" onclick="goQuizPrev()" class="tap quiz-nav-btn quiz-nav-btn--ghost">← Anterior</button>' : '<span class="quiz-nav-spacer"></span>'}
+      ${showNext ? '<button type="button" onclick="confirmQuizNext()" class="tap quiz-nav-btn quiz-nav-btn--primary">Siguiente →</button>' : '<span class="quiz-nav-spacer"></span>'}
+    </div>`;
+  }
+
+  function renderQuizOptionState(q, questionIndex) {
+    const picked = quizPickedMap.get(questionIndex);
+    const solved = !quizReviewMode && quizCorrectSet.has(questionIndex);
+    const frozen = solved || (quizReviewMode && picked !== undefined);
+    const optionsHtml = q.options
+      .map((opt, i) => {
+        let extra = '';
+        if (picked !== undefined) {
+          if (i === picked) extra = picked === q.correct ? ' correct' : ' wrong';
+          else if (i === q.correct && picked !== q.correct) extra = ' correct';
+        } else if (solved && i === q.correct) {
+          extra = ' correct';
+        }
+        return `<button type="button" data-idx="${i}" onclick="pickQuiz(${i})" class="quiz-option tap text-left w-full px-4 py-3 rounded-xl border border-slate-200 text-[13px] font-medium text-slate-700${extra}"${frozen ? ' disabled' : ''}>${escapeHtml(opt)}</button>`;
+      })
+      .join('');
+    let feedback = '';
+    if (picked !== undefined) {
+      feedback = picked === q.correct ? 'Respuesta correcta ✓' : 'Respuesta incorrecta';
+    } else if (solved) {
+      feedback = 'Respuesta correcta ✓';
+    }
+    const feedbackClass =
+      picked !== undefined && picked !== q.correct
+        ? 'text-[12px] font-semibold mt-3 text-red-500'
+        : 'text-[12px] font-semibold mt-3 text-green-600';
+    return {
+      optionsHtml,
+      feedbackHtml: feedback
+        ? `<p id="quiz-feedback" class="${feedbackClass}">${feedback}</p>`
+        : '<p id="quiz-feedback" class="text-[12px] font-semibold mt-3 hidden"></p>',
+    };
+  }
+
+  function buildQuizInnerHtml(lesson, questionIndex) {
+    const questions = getLessonQuestions(lesson);
+    if (!questions.length) return '';
+    const q = questions[questionIndex];
+    if (!q) return '';
+    const total = questions.length;
+    const { optionsHtml, feedbackHtml } = renderQuizOptionState(q, questionIndex);
+    return `
+      <p class="text-[13px] font-extrabold text-slate-900 mb-1">Comprueba lo aprendido</p>
+      ${quizProgressHtml(questionIndex, total)}
+      <p class="text-[13.5px] font-semibold text-slate-700 mb-3" id="quiz-question">${escapeHtml(q.question)}</p>
+      <div class="flex flex-col gap-2" id="quiz-options">${optionsHtml}</div>
+      ${feedbackHtml}
+      ${buildQuizNavHtml(lesson, questionIndex)}`;
+  }
+
+  function updateQuizStep() {
+    const lesson = getLesson(currentLessonId);
+    const box = document.getElementById('quiz-box');
+    if (!lesson || !box) return;
+    box.innerHTML = buildQuizInnerHtml(lesson, currentQuizIndex);
+    lucide.createIcons();
+  }
+
   function renderLesson(lessonId) {
     const lesson = getLesson(lessonId);
     if (!lesson) return;
     const topic = getTopic(lesson.topicId);
     const done = isDone(lessonId);
+    currentQuizIndex = 0;
+    quizReviewMode = done;
+    quizCorrectSet = new Set();
+    quizPickedMap = new Map();
+    quizAwaitingNext = false;
     quizAnswered = done;
 
     const blocksHtml = lesson.blocks
@@ -820,19 +946,12 @@
       })
       .join('');
 
-    const quizHtml = lesson.quiz
+    const questions = getLessonQuestions(lesson);
+    const sourcesHtml = buildSourcesHtml(lesson);
+
+    const quizHtml = questions.length
       ? `<div class="mt-6 theme-card bg-white rounded-2xl border border-slate-100 p-5 soft-shadow" id="quiz-box">
-          <p class="text-[13px] font-extrabold text-slate-900 mb-3">Comprueba lo aprendido</p>
-          <p class="text-[13.5px] font-semibold text-slate-700 mb-3">${escapeHtml(lesson.quiz.question)}</p>
-          <div class="flex flex-col gap-2" id="quiz-options">
-            ${lesson.quiz.options
-              .map(
-                (opt, i) =>
-                  `<button type="button" data-idx="${i}" onclick="pickQuiz(${i})" class="quiz-option tap text-left w-full px-4 py-3 rounded-xl border border-slate-200 text-[13px] font-medium text-slate-700">${escapeHtml(opt)}</button>`
-              )
-              .join('')}
-          </div>
-          <p id="quiz-feedback" class="text-[12px] font-semibold mt-3 hidden"></p>
+          ${buildQuizInnerHtml(lesson, 0)}
         </div>`
       : '';
 
@@ -858,7 +977,7 @@
         </div>
       </div>
       ${fontHintHtml}
-      <div class="theme-card bg-white rounded-3xl border border-slate-100 p-5 soft-shadow-lg">
+      <div id="lesson-content-card" class="theme-card bg-white rounded-3xl border border-slate-100 p-5 soft-shadow-lg">
         <div class="flex items-center gap-2 mb-1">
           <span class="text-[11px] font-bold text-[var(--brand-700)] uppercase tracking-wide">Lección</span>
           ${done ? '<span class="text-[10px] font-bold bg-green-50 text-green-700 px-2 py-0.5 rounded-full">Completada</span>' : ''}
@@ -870,7 +989,8 @@
       <button type="button" id="complete-lesson-btn" onclick="completeLesson()" disabled
         class="tap mt-6 w-full bg-[var(--brand-700)] text-white font-bold text-[14px] py-3.5 pill-btn soft-shadow-lg opacity-40 cursor-not-allowed">
         ${done ? 'Lección completada ✓' : 'Completar lección'}
-      </button>`;
+      </button>
+      ${sourcesHtml}`;
 
     if (done) enableCompleteButton(true);
     lessonStartedAt = Date.now();
@@ -992,28 +1112,95 @@
     else showScreen('journey-stats');
   };
 
-  window.pickQuiz = function (idx) {
-    if (quizAnswered) return;
+  window.goQuizPrev = function () {
+    if (currentQuizIndex <= 0) return;
+    quizAwaitingNext = false;
+    currentQuizIndex -= 1;
+    updateQuizStep();
+  };
+
+  window.goQuizTo = function (index) {
     const lesson = getLesson(currentLessonId);
-    if (!lesson || !lesson.quiz) return;
-    const correct = lesson.quiz.correct;
+    if (!lesson) return;
+    const total = getLessonQuestions(lesson).length;
+    if (index < 0 || index >= total || index === currentQuizIndex) return;
+    if (!quizReviewMode && index > currentQuizIndex && !quizCorrectSet.has(index)) return;
+    quizAwaitingNext = false;
+    currentQuizIndex = index;
+    updateQuizStep();
+  };
+
+  window.confirmQuizNext = function () {
+    const lesson = getLesson(currentLessonId);
+    if (!lesson) return;
+    const total = getLessonQuestions(lesson).length;
+    if (currentQuizIndex >= total - 1) return;
+    if (!quizReviewMode && !quizCorrectSet.has(currentQuizIndex)) return;
+    quizAwaitingNext = false;
+    currentQuizIndex += 1;
+    updateQuizStep();
+  };
+
+  window.pickQuiz = function (idx) {
+    if (!quizReviewMode) {
+      if (quizAnswered) return;
+      if (quizCorrectSet.has(currentQuizIndex)) return;
+    } else if (quizPickedMap.has(currentQuizIndex)) {
+      return;
+    }
+    const lesson = getLesson(currentLessonId);
+    if (!lesson) return;
+    const questions = getLessonQuestions(lesson);
+    const q = questions[currentQuizIndex];
+    if (!q) return;
+    const correct = q.correct;
     const feedback = document.getElementById('quiz-feedback');
     if (!feedback) return;
-    document.querySelectorAll('.quiz-option').forEach((btn, i) => {
+    document.querySelectorAll('#quiz-options .quiz-option').forEach((btn, i) => {
       btn.classList.remove('selected', 'correct', 'wrong');
       if (i === idx) btn.classList.add(idx === correct ? 'correct' : 'wrong');
       else if (i === correct) btn.classList.add('correct');
     });
     if (idx === correct) {
-      quizAnswered = true;
-      feedback.textContent = '¡Correcto! Ya puedes completar la lección.';
-      feedback.className = 'text-[12px] font-semibold mt-3 text-green-600';
-      feedback.classList.remove('hidden');
-      enableCompleteButton(false);
+      quizPickedMap.set(currentQuizIndex, idx);
+      if (!quizReviewMode) {
+        quizCorrectSet.add(currentQuizIndex);
+        const allCorrect = quizCorrectSet.size >= questions.length;
+        if (allCorrect) {
+          quizAnswered = true;
+          quizAwaitingNext = false;
+          feedback.textContent = '¡Todas correctas! Ya puedes completar la lección.';
+          feedback.className = 'text-[12px] font-semibold mt-3 text-green-600';
+          feedback.classList.remove('hidden');
+          enableCompleteButton(false);
+        } else {
+          quizAwaitingNext = true;
+          feedback.textContent = '¡Correcto! Pasa a la siguiente cuando quieras.';
+          feedback.className = 'text-[12px] font-semibold mt-3 text-green-600';
+          feedback.classList.remove('hidden');
+        }
+        document.querySelectorAll('#quiz-options .quiz-option').forEach((btn) => {
+          btn.disabled = true;
+        });
+        updateQuizStep();
+      } else {
+        feedback.textContent = '¡Correcto!';
+        feedback.className = 'text-[12px] font-semibold mt-3 text-green-600';
+        feedback.classList.remove('hidden');
+        document.querySelectorAll('#quiz-options .quiz-option').forEach((btn) => {
+          btn.disabled = true;
+        });
+      }
     } else {
-      feedback.textContent = 'Casi — léelo otra vez e inténtalo de nuevo.';
+      if (quizReviewMode) quizPickedMap.set(currentQuizIndex, idx);
+      feedback.textContent = 'Casi — inténtalo de nuevo.';
       feedback.className = 'text-[12px] font-semibold mt-3 text-red-500';
       feedback.classList.remove('hidden');
+      if (quizReviewMode) {
+        document.querySelectorAll('#quiz-options .quiz-option').forEach((btn) => {
+          btn.disabled = true;
+        });
+      }
     }
   };
 

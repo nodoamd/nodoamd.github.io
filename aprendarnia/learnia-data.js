@@ -22,11 +22,38 @@ const RUTA_ESPAÑOLA = {
             { type: 'p', text: 'Es un país de contrastes: hay montañas altas como los Pirineos, llanuras como la Meseta, y más de 8.000 kilómetros de costa entre el Cantábrico, el Mediterráneo y el Atlántico.' },
             { type: 'tip', text: '💡 Curiosidad: España tiene dos ciudades en África (Ceuta y Melilla) y varias islas muy conocidas, como las Baleares y las Canarias.' }
           ],
-          quiz: {
-            question: '¿Qué separa España de África en su punto más cercano?',
-            options: ['El río Tajo', 'El estrecho de Gibraltar', 'Los Pirineos'],
-            correct: 1
-          }
+          questions: [
+            {
+              question: '¿Qué separa España de África en su punto más cercano?',
+              options: ['El río Tajo', 'El estrecho de Gibraltar', 'Los Pirineos'],
+              correct: 1
+            },
+            {
+              question: '¿Con qué país comparte España frontera terrestre en la península?',
+              options: ['Francia', 'Portugal', 'Marruecos'],
+              correct: 1
+            },
+            {
+              question: '¿Qué cordillera marca la frontera natural con Francia?',
+              options: ['Los Pirineos', 'El Sistema Central', 'La Cordillera Cantábrica'],
+              correct: 0
+            },
+            {
+              question: '¿Cuál de estas islas es española?',
+              options: ['Sicilia', 'Las Canarias', 'Cerdeña'],
+              correct: 1
+            },
+            {
+              question: '¿Cómo se llama la gran llanura central de la península ibérica?',
+              options: ['La Meseta', 'La Mancha', 'El Ebro'],
+              correct: 0
+            }
+          ],
+          sources: [
+            { title: 'Instituto Geográfico Nacional (IGN)', url: 'https://www.ign.es' },
+            { title: 'Atlas Nacional de España — IGN', url: 'https://www.ign.es/web/ign/portal/ane-ultrarrapido' },
+            { title: 'Ministerio de Asuntos Exteriores — Ficha país España', url: 'https://www.exteriores.gob.es/es/PoliticaExterior/Paginas/FichaPais.aspx' }
+          ]
         },
         {
           id: 'historia-2',
