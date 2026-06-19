@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full" data-theme="learnia">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<title>Aprendarnia by Nodo — Aprende culturas completas</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="learnia-themes.css">
+<script>
+  try {
+    var _lp = JSON.parse(localStorage.getItem('learnia-prefs-v1') || 'null');
+    if (_lp && _lp.theme) document.documentElement.setAttribute('data-theme', _lp.theme);
+    if (_lp && _lp.fontScale) document.documentElement.style.setProperty('--font-scale', String(_lp.fontScale));
+  } catch (e) {}
+</script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+  :root{
+    --brand-900:#1a1050;
+    --brand-800:#2a1890;
+    --brand-700:#3d28b8;
+    --brand-600:#4f35c1;
+    --brand-500:#5b3df0;
+    --brand-300:#a78bfa;
+    --brand-100:#ede9fe;
+    --brand-50:#f6f4ff;
+    --divider:#ddd3fb;
+    --amber:#f59e0b;
+    --green:#22c55e;
+  }
+
+  html,body{ -webkit-tap-highlight-color: transparent; }
+  body{
+    font-family:'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  .no-scrollbar::-webkit-scrollbar{ display:none; }
+  .no-scrollbar{ -ms-overflow-style:none; scrollbar-width:none; }
+
+  /* screen transitions */
+  .screen{
+    display:none;
+  }
+  .screen.active{
+    display:block;
+    animation: screenIn .38s cubic-bezier(.22,.61,.36,1) both;
+  }
+  @keyframes screenIn{
+    from{ opacity:0; transform:translateY(10px) scale(.995); }
+    to{ opacity:1; transform:translateY(0) scale(1); }
+  }
+
+  .card-rise{ animation: riseIn .5s cubic-bezier(.22,.61,.36,1) both; }
+  @keyframes riseIn{
+    from{ opacity:0; transform:translateY(14px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .hero-gradient{
+    background:
+      radial-gradient(120% 140% at 90% -10%, rgba(167,139,250,.55) 0%, transparent 55%),
+      linear-gradient(135deg, var(--brand-500) 0%, var(--brand-700) 55%, var(--brand-900) 100%);
+  }
+
+  .accent-shadow{ box-shadow: 0 22px 40px -16px rgba(46,26,167,.45); }
+  .soft-shadow{ box-shadow: 0 1px 2px rgba(15,18,34,.04), 0 8px 20px -10px rgba(46,26,167,.10); }
+  .soft-shadow-lg{ box-shadow: 0 1px 2px rgba(15,18,34,.05), 0 18px 34px -16px rgba(46,26,167,.18); }
+
+  .ring-progress{ transition: stroke-dashoffset 1.1s cubic-bezier(.22,.61,.36,1); }
+  .bar-progress{ transition: width 1s cubic-bezier(.22,.61,.36,1); }
+
+  .nav-pill{ transition: background .25s ease, color .25s ease; }
+  .tab-icon{ transition: color .2s ease, transform .2s ease; }
+  .tap{ transition: transform .15s ease; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+  .tap:active{ transform:scale(.97); }
+
+  .topic-card{ transition: transform .25s cubic-bezier(.22,.61,.36,1), box-shadow .25s ease, border-color .25s ease; cursor:pointer; }
+  .topic-card:hover{ transform: translateY(-3px); box-shadow: 0 16px 30px -14px rgba(46,26,167,.22); border-color:#ece8fb; }
+
+  .topic-card--active{
+    border:2px solid var(--brand-600) !important;
+    padding:1rem 1rem 0 !important;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .topic-card--active .topic-card__footer{
+    background:var(--brand-600);
+    margin-top:auto;
+    margin-left:-1rem;
+    margin-right:-1rem;
+    margin-bottom:-2px;
+    padding:0.625rem 1rem;
+    border-top:none;
+    border-radius:0 0 0.875rem 0.875rem;
+  }
+  .topic-card--active .topic-card__footer span,
+  .topic-card--active .topic-card__footer i{ color:#fff !important; }
+
+  .pill-btn{ border-radius:9999px; }
+  .level-track{ height:4px; border-radius:9999px; background:#e8e4f8; overflow:hidden; }
+  .level-fill{ height:100%; border-radius:9999px; background:linear-gradient(90deg,var(--brand-500),var(--brand-700)); }
+
+  .chip{ transition: background .2s ease, color .2s ease, border-color .2s ease; }
+
+  .drawer-backdrop{
+    position:fixed; inset:0; z-index:50;
+    background:rgba(15,18,34,.35);
+    display:none;
+    opacity:0;
+    transition:opacity .28s ease;
+  }
+  .drawer-backdrop.open{
+    display:block;
+    opacity:1;
+  }
+  .mobile-drawer{
+    position:fixed; top:0; left:0; bottom:0; z-index:51;
+    width:min(288px,86vw);
+    background:#fff;
+    transform:translateX(-105%);
+    transition:transform .32s cubic-bezier(.22,.61,.36,1);
+    box-shadow:18px 0 40px -12px rgba(46,26,167,.18);
+    pointer-events:none;
+  }
+  .mobile-drawer.open{
+    transform:translateX(0);
+    pointer-events:auto;
+  }
+
+  .hero-photo{
+    height:220px;
+    background-size:cover;
+    background-position:center;
+  }
+  @media(min-width:1024px){ .hero-photo{ height:260px; } }
+
+  .lesson-row{ transition: background .2s ease; }
+  .lesson-row:hover{ background:var(--brand-50); }
+
+  .sticky-cta{
+    position:sticky; bottom:0; z-index:10;
+    padding:12px 0 calc(12px + env(safe-area-inset-bottom));
+    background:linear-gradient(180deg, transparent 0%, var(--surface) 28%);
+  }
+
+  body.detail-view #mobile-tab-bar{ display:none; }
+  body.detail-view #mobile-top-bar{ display:none; }
+  body.detail-view main{ padding-bottom:1.5rem !important; }
+  body.detail-view #screen-topic,
+  body.detail-view #screen-journey-stats,
+  body.detail-view #screen-lesson{ margin-top:0; }
+
+  /* Espacio bajo contenido para que la barra inferior no tape botones en móvil */
+  .mobile-screen-pad{
+    padding-bottom:calc(6.5rem + env(safe-area-inset-bottom));
+  }
+  @media(min-width:1024px){
+    .mobile-screen-pad{ padding-bottom:2.5rem; }
+  }
+  .mobile-main-pad{
+    padding-bottom:calc(5.5rem + env(safe-area-inset-bottom));
+  }
+  @media(min-width:1024px){
+    .mobile-main-pad{ padding-bottom:2.5rem; }
+  }
+
+  .lesson-content p{ margin-bottom:1rem; line-height:1.65; color:#334155; font-size:14px; }
+  .lesson-content .lesson-tip{
+    background:var(--brand-50); border-left:3px solid var(--brand-500);
+    padding:12px 14px; border-radius:12px; font-size:13px; color:#475569; margin:1rem 0;
+  }
+  .quiz-option{ transition: border-color .2s, background .2s; }
+  .quiz-option.selected{ border-color:var(--brand-500); background:var(--brand-50); }
+  .quiz-option.correct{ border-color:var(--green); background:#ecfdf5; }
+  .quiz-option.wrong{ border-color:#ef4444; background:#fef2f2; }
+
+  #toast{
+    position:fixed; bottom:calc(80px + env(safe-area-inset-bottom)); left:50%;
+    transform:translateX(-50%) translateY(20px); z-index:60;
+    background:#1e1b4b; color:#fff; padding:12px 20px; border-radius:9999px;
+    font-size:13px; font-weight:600; opacity:0; pointer-events:none;
+    transition:opacity .3s, transform .3s; white-space:nowrap; max-width:90vw;
+  }
+  #toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+  @media(min-width:1024px){ #toast{ bottom:24px; } }
+
+  input[type="file"]{ display:none; }
+
+  ::selection{ background: var(--brand-100); }
+
+  input:focus{ outline:none; }
+
+  .brand-lockup{ text-decoration:none; color:inherit; }
+  .brand-logo{ width:36px; height:36px; object-fit:contain; flex-shrink:0; }
+  .brand-lockup--sm .brand-logo{ width:32px; height:32px; }
+  .brand-lockup--sm .brand-title{ font-size:15px; }
+  .brand-by{ font-size:10px; font-weight:600; color:#94a3b8; letter-spacing:0.04em; }
+
+  .site-footer{
+    margin-top:2.5rem;
+    padding:1.75rem 1.25rem calc(2rem + env(safe-area-inset-bottom));
+    text-align:center;
+    border-top:1px solid var(--card-border, #f1f5f9);
+  }
+  .site-footer__copy{
+    font-size:11px;
+    color:var(--text-soft, #94a3b8);
+    font-weight:600;
+    margin-bottom:1rem;
+  }
+  .site-footer__nodo{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:0.5rem;
+    text-decoration:none;
+    color:var(--text-muted, #64748b);
+    font-size:12px;
+    font-weight:600;
+    padding:0.5rem 0.875rem;
+    border-radius:999px;
+    transition:background .2s, color .2s;
+  }
+  .site-footer__nodo:hover{ background:var(--brand-50, #f6f4ff); color:var(--brand-700, #3d28b8); }
+  .site-footer__nodo img{ width:22px; height:22px; object-fit:contain; }
+  .site-footer__nodo strong{ font-weight:800; color:var(--text, #0f1222); }
+</style>
+</head>
+<body class="h-full antialiased">
+
+<div id="app-shell" class="theme-app lg:flex lg:h-screen lg:overflow-hidden">
+
+  <!-- ===================== DESKTOP SIDEBAR ===================== -->
+  <aside class="theme-sidebar hidden lg:flex lg:flex-col lg:w-[248px] lg:shrink-0 h-full bg-white border-r border-slate-100 px-5 py-6">
+    <a href="#" onclick="showScreen('home'); return false;" class="brand-lockup flex items-center gap-2.5 px-2 mb-8">
+      <img src="assets/nodo-logo.png" alt="Nodo" class="brand-logo">
+      <span class="leading-tight min-w-0">
+        <span class="brand-title block text-[17px] font-extrabold tracking-tight text-slate-900">Aprendarnia</span>
+        <span class="brand-by block">by Nodo</span>
+      </span>
+    </a>
+
+    <nav class="flex flex-col gap-1" id="sidebar-nav">
+      <button data-target="home" class="sidebar-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold">
+        <i data-lucide="home" class="w-[18px] h-[18px] stroke-[2.1]"></i> Inicio
+      </button>
+      <button data-target="explore" class="sidebar-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold">
+        <i data-lucide="compass" class="w-[18px] h-[18px] stroke-[2.1]"></i> Explorar
+      </button>
+      <button data-target="routes" class="sidebar-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold">
+        <i data-lucide="route" class="w-[18px] h-[18px] stroke-[2.1]"></i> Mis rutas
+      </button>
+      <button data-target="profile" class="sidebar-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold">
+        <i data-lucide="user" class="w-[18px] h-[18px] stroke-[2.1]"></i> Perfil
+      </button>
+      <button data-target="journey-stats" class="sidebar-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold">
+        <i data-lucide="bar-chart-3" class="w-[18px] h-[18px] stroke-[2.1]"></i> Estadísticas
+      </button>
+      <button data-target="achievements" class="sidebar-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold">
+        <i data-lucide="trophy" class="w-[18px] h-[18px] stroke-[2.1]"></i> Logros
+      </button>
+      <button data-target="settings" class="sidebar-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold">
+        <i data-lucide="settings" class="w-[18px] h-[18px] stroke-[2.1]"></i> Ajustes
+      </button>
+    </nav>
+
+    <div class="mt-auto flex flex-col gap-4">
+      <div id="sidebar-streak-card" class="hidden rounded-2xl p-4 text-white relative overflow-hidden hero-gradient soft-shadow-lg">
+        <p class="text-[13px] font-extrabold flex items-center gap-1.5">¡Racha activa! <span>🔥</span></p>
+        <p class="text-[11.5px] text-violet-100/85 font-medium mt-1 leading-snug">Llevas <span id="sidebar-streak">0</span> días seguidos</p>
+        <button type="button" onclick="showScreen('journey-stats')" class="tap mt-3 w-full bg-white text-[var(--brand-700)] text-[12.5px] font-bold py-2 rounded-lg">Ver racha</button>
+      </div>
+
+      <button data-target="profile" class="sidebar-link flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-slate-50 text-left w-full">
+        <img src="https://i.pravatar.cc/64?img=47" class="w-9 h-9 rounded-full object-cover shrink-0" alt="">
+        <span class="flex-1 min-w-0">
+          <span class="block text-[13px] font-bold text-slate-900 truncate" id="sidebar-name">Aprendiz</span>
+          <span class="block text-[11px] text-slate-400 font-semibold">Nivel <span id="sidebar-level">1</span></span>
+          <span class="level-track block mt-1.5 w-full"><span id="sidebar-level-bar" class="level-fill block" style="width:0%"></span></span>
+        </span>
+        <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 shrink-0"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ===================== MOBILE TOP BAR ===================== -->
+  <header id="mobile-top-bar" class="lg:hidden sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 px-4 py-3 grid grid-cols-[40px_1fr_40px] items-center">
+    <button id="menu-toggle" class="tap w-10 h-10 rounded-xl flex items-center justify-center hover:bg-slate-50" aria-label="Menú">
+      <i data-lucide="menu" class="w-5 h-5 text-slate-700 stroke-[2.1]"></i>
+    </button>
+    <div class="flex items-center justify-center gap-2 min-w-0">
+      <a href="#" onclick="showScreen('home'); return false;" class="brand-lockup brand-lockup--sm flex items-center gap-2 max-w-full">
+        <img src="assets/nodo-logo.png" alt="Nodo" class="brand-logo">
+        <span class="leading-tight min-w-0 truncate">
+          <span class="brand-title block font-extrabold tracking-tight text-slate-900 truncate">Aprendarnia</span>
+          <span class="brand-by block">by Nodo</span>
+        </span>
+      </a>
+    </div>
+    <button type="button" onclick="showNotifications()" class="tap relative w-10 h-10 rounded-xl flex items-center justify-center hover:bg-slate-50" aria-label="Notificaciones">
+      <i data-lucide="bell" class="w-5 h-5 text-slate-700 stroke-[2.1]"></i>
+    </button>
+  </header>
+
+  <!-- ===================== MOBILE DRAWER ===================== -->
+  <div id="drawer-backdrop" class="drawer-backdrop lg:hidden" aria-hidden="true"></div>
+  <aside id="mobile-drawer" class="theme-sidebar mobile-drawer lg:hidden flex flex-col px-5 py-6" aria-hidden="true">
+    <div class="flex items-center justify-between mb-7">
+      <a href="#" onclick="showScreen('home'); closeDrawer(); return false;" class="brand-lockup flex items-center gap-2.5">
+        <img src="assets/nodo-logo.png" alt="Nodo" class="brand-logo">
+        <span class="leading-tight">
+          <span class="brand-title block text-[17px] font-extrabold tracking-tight text-slate-900">Aprendarnia</span>
+          <span class="brand-by block">by Nodo</span>
+        </span>
+      </a>
+      <button id="menu-close" class="tap w-9 h-9 rounded-xl flex items-center justify-center hover:bg-slate-50" aria-label="Cerrar menú">
+        <i data-lucide="x" class="w-5 h-5 text-slate-600"></i>
+      </button>
+    </div>
+    <nav class="flex flex-col gap-1" id="drawer-nav">
+      <button data-target="home" class="drawer-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold text-slate-600">
+        <i data-lucide="home" class="w-[18px] h-[18px] stroke-[2.1]"></i> Inicio
+      </button>
+      <button data-target="explore" class="drawer-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold text-slate-600">
+        <i data-lucide="compass" class="w-[18px] h-[18px] stroke-[2.1]"></i> Explorar
+      </button>
+      <button data-target="routes" class="drawer-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold text-slate-600">
+        <i data-lucide="route" class="w-[18px] h-[18px] stroke-[2.1]"></i> Mis rutas
+      </button>
+      <button data-target="profile" class="drawer-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold text-slate-600">
+        <i data-lucide="user" class="w-[18px] h-[18px] stroke-[2.1]"></i> Perfil
+      </button>
+      <button data-target="journey-stats" class="drawer-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold text-slate-600">
+        <i data-lucide="bar-chart-3" class="w-[18px] h-[18px] stroke-[2.1]"></i> Estadísticas
+      </button>
+      <button data-target="achievements" class="drawer-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold text-slate-600">
+        <i data-lucide="trophy" class="w-[18px] h-[18px] stroke-[2.1]"></i> Logros
+      </button>
+      <button data-target="settings" class="drawer-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold text-slate-600">
+        <i data-lucide="settings" class="w-[18px] h-[18px] stroke-[2.1]"></i> Ajustes
+      </button>
+    </nav>
+    <div class="mt-auto">
+      <div id="drawer-streak-card" class="hidden rounded-2xl p-4 text-white relative overflow-hidden hero-gradient soft-shadow-lg">
+        <p class="text-[13px] font-extrabold flex items-center gap-1.5">¡Racha activa! <span>🔥</span></p>
+        <p class="text-[11.5px] text-violet-100/85 font-medium mt-1">Llevas <span id="drawer-streak">0</span> días seguidos</p>
+        <button type="button" onclick="showScreen('journey-stats'); closeDrawer();" class="tap mt-3 w-full bg-white text-[var(--brand-700)] text-[12.5px] font-bold py-2 rounded-lg">Ver racha</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===================== MAIN SCROLL AREA ===================== -->
+  <main class="theme-app flex-1 overflow-y-auto no-scrollbar lg:h-full mobile-main-pad relative z-[1]">
+
+    <!-- ============================================================ HOME ============================================================ -->
+    <section id="screen-home" class="screen active">
+      <div class="px-5 lg:px-10 pt-6 lg:pt-8 max-w-[1360px] mx-auto">
+
+        <!-- Greeting + search row -->
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div>
+            <h1 class="text-[22px] lg:text-[26px] font-extrabold tracking-tight text-slate-900">¡Hola, <span id="user-greeting">Aprendiz</span>! <span class="inline-block">👋</span></h1>
+            <p class="text-[13px] text-slate-400 font-semibold mt-0.5">¿Qué tema quieres aprender hoy?</p>
+          </div>
+        </div>
+
+        <div class="mt-4 flex items-center gap-2.5 lg:max-w-2xl">
+          <div class="relative flex-1">
+            <i data-lucide="search" class="w-[18px] h-[18px] text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 stroke-[2.1]"></i>
+            <input type="text" id="home-search" placeholder="Buscar temas..." class="w-full bg-white pl-11 pr-4 py-3 lg:py-3.5 rounded-2xl border border-slate-200/80 soft-shadow text-[13.5px] font-medium placeholder-slate-400 focus:border-[var(--brand-500)] focus:ring-2 focus:ring-[var(--brand-100)] transition">
+          </div>
+          <button type="button" onclick="showNotifications()" class="hidden lg:flex tap relative w-12 h-12 shrink-0 rounded-2xl bg-white border border-slate-200/80 soft-shadow items-center justify-center hover:bg-slate-50" aria-label="Notificaciones">
+            <i data-lucide="bell" class="w-5 h-5 text-slate-700 stroke-[2.1]"></i>
+          </button>
+          <div id="home-streak-badge" class="hidden tap shrink-0 bg-[var(--brand-700)] text-white font-extrabold text-[13px] h-12 px-3.5 rounded-2xl flex items-center gap-1.5 soft-shadow focus-hide">
+            <i data-lucide="flame" class="w-4 h-4 text-amber-300 fill-amber-300 stroke-amber-300"></i>
+            <span id="streak-count">0</span>
+          </div>
+        </div>
+
+        <!-- ============ MAIN: hero (left) + sidebar (right) on desktop ============ -->
+        <div class="mt-5 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-7 lg:items-start">
+
+            <!-- Hero: current journey (left col, row 1) -->
+            <div class="card-rise order-1 lg:order-none lg:col-start-1 lg:row-start-1 min-w-0">
+              <button type="button" onclick="continueLearning()" class="tap block w-full text-left hero-gradient relative overflow-hidden rounded-[26px] p-6 lg:p-8 accent-shadow">
+
+            <!-- decorative illustration -->
+            <svg class="absolute right-0 bottom-0 h-full w-[58%] max-w-[420px] opacity-90 pointer-events-none" viewBox="0 0 400 240" preserveAspectRatio="xMaxYMax slice" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="332" cy="46" r="30" fill="#fff" opacity="0.45"/>
+              <ellipse cx="220" cy="58" rx="46" ry="14" fill="#fff" opacity="0.10"/>
+              <ellipse cx="278" cy="40" rx="34" ry="11" fill="#fff" opacity="0.10"/>
+              <rect x="0" y="206" width="400" height="34" fill="#fff" opacity="0.10"/>
+              <rect x="252" y="96" width="36" height="112" fill="#fff" opacity="0.16"/>
+              <polygon points="252,96 270,72 288,96" fill="#fff" opacity="0.16"/>
+              <rect x="118" y="86" width="150" height="124" fill="#fff" opacity="0.24"/>
+              <rect x="118" y="78" width="150" height="10" fill="#fff" opacity="0.24"/>
+              <rect x="122" y="70" width="9" height="10" fill="#fff" opacity="0.24"/>
+              <rect x="140" y="70" width="9" height="10" fill="#fff" opacity="0.24"/>
+              <rect x="158" y="70" width="9" height="10" fill="#fff" opacity="0.24"/>
+              <rect x="176" y="70" width="9" height="10" fill="#fff" opacity="0.24"/>
+              <rect x="194" y="70" width="9" height="10" fill="#fff" opacity="0.24"/>
+              <rect x="212" y="70" width="9" height="10" fill="#fff" opacity="0.24"/>
+              <rect x="230" y="70" width="9" height="10" fill="#fff" opacity="0.24"/>
+              <rect x="248" y="70" width="9" height="10" fill="#fff" opacity="0.24"/>
+              <rect x="174" y="40" width="40" height="46" fill="#fff" opacity="0.30"/>
+              <polygon points="174,40 194,16 214,40" fill="#fff" opacity="0.30"/>
+              <rect x="186" y="142" width="16" height="68" rx="8" fill="#fff" opacity="0.16"/>
+              <rect x="92" y="118" width="30" height="92" fill="#fff" opacity="0.20"/>
+              <polygon points="92,118 107,96 122,118" fill="#fff" opacity="0.20"/>
+              <circle cx="68" cy="176" r="13" fill="#fff" opacity="0.18"/>
+              <rect x="64" y="186" width="8" height="24" fill="#fff" opacity="0.18"/>
+            </svg>
+
+            <span class="relative text-[11px] tracking-[0.16em] uppercase font-bold text-violet-200/85">Tu ruta actual</span>
+            <h2 class="relative text-[24px] lg:text-[28px] font-extrabold mt-2 text-white tracking-tight">Cultura Española 🇪🇸</h2>
+            <p class="relative text-[13px] text-violet-100/80 font-medium mt-2 max-w-[78%] sm:max-w-[60%] leading-relaxed">Descubre la historia, tradiciones, arte, gastronomía y mucho más sobre España.</p>
+
+            <div class="relative mt-7 max-w-[88%] sm:max-w-[62%] focus-hide">
+              <div class="flex justify-between text-[11.5px] font-bold mb-2">
+                <span class="text-violet-200/80 font-semibold">Progreso general</span>
+                <span id="hero-progress-text" class="text-white font-extrabold">0 / 18</span>
+              </div>
+              <div class="w-full bg-white/20 h-[7px] rounded-full overflow-hidden">
+                <div class="hero-bar bar-progress bg-white h-full rounded-full" style="width:0%"></div>
+              </div>
+            </div>
+
+            <span class="relative mt-6 max-w-[280px] w-full bg-white text-[var(--brand-700)] font-bold text-[13.5px] py-3 px-5 pill-btn flex justify-between items-center gap-2">
+              Continuar aprendiendo
+              <span class="w-6 h-6 rounded-full bg-[var(--brand-700)] flex items-center justify-center shrink-0">
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-white stroke-[3]"></i>
+              </span>
+            </span>
+              </button>
+            </div>
+
+          <!-- Right column (beside hero on desktop; after topics on mobile) -->
+          <div class="order-3 lg:order-none flex flex-col gap-5 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:sticky lg:top-8">
+
+            <div class="theme-card progress-panel--soft bg-white rounded-3xl border border-slate-100 p-6 soft-shadow text-center" id="home-progress-panel">
+              <h3 class="progress-panel__title font-extrabold text-slate-900 tracking-tight text-left">Tu progreso</h3>
+              <p id="home-progress-intro" class="progress-panel__sub text-left focus-hide">Cuando quieras, aquí verás cómo vas. Por ahora, elige un tema y empieza a leer.</p>
+              <div id="home-progress-ring" class="focus-hide">
+              <div class="relative w-[168px] h-[168px] mx-auto mt-4">
+                <svg class="w-full h-full -rotate-90" viewBox="0 0 160 160">
+                  <circle cx="80" cy="80" r="70" fill="none" stroke="var(--brand-50)" stroke-width="12"/>
+                  <circle id="ring-home" class="ring-progress" cx="80" cy="80" r="70" fill="none" stroke="var(--brand-700)" stroke-width="12" stroke-linecap="round" stroke-dasharray="439.8" stroke-dashoffset="439.8"/>
+                </svg>
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                  <span id="home-ring-text" class="text-[26px] font-extrabold text-slate-900 tracking-tight">0 / 18</span>
+                  <span class="text-[11px] text-slate-400 font-bold mt-0.5">Temas completados</span>
+                </div>
+              </div>
+              <p id="home-congrats" class="mt-3 text-[12.5px] font-bold text-[var(--amber)] flex items-center justify-center gap-1.5 hidden">🏆 ¡Felicidades!</p>
+              <p id="home-congrats-msg" class="text-[12px] text-slate-400 font-medium mt-2 leading-relaxed hidden">Has completado toda la ruta de Cultura Española.</p>
+              <p id="home-keep-going" class="text-[12px] text-slate-400 font-medium mt-2 leading-relaxed focus-hide">Sigue con tu ruta de Cultura Española.</p>
+              </div>
+              <div id="home-focus-block" class="mt-4 text-left">
+                <blockquote class="focus-quote">
+                  «El que lee mucho y anda mucho, ve mucho y sabe mucho.»
+                  <cite>— Miguel de Cervantes, <em>Don Quijote</em></cite>
+                </blockquote>
+                <button type="button" onclick="disableFocusMode()" class="tap mt-4 w-full border border-slate-200 text-slate-600 font-bold text-[12.5px] py-2.5 rounded-xl pill-btn hover:bg-slate-50">Desactivar modo foco</button>
+              </div>
+              <button type="button" onclick="continueLearning()" class="tap mt-5 w-full bg-[var(--brand-700)] text-white font-bold text-[13.5px] py-3 rounded-xl pill-btn">Continuar aprendiendo</button>
+            </div>
+
+            <div class="theme-card bg-white rounded-3xl border border-slate-100 p-5 soft-shadow focus-hide" id="home-stats-panel">
+              <h3 class="text-[14.5px] font-extrabold text-slate-900 tracking-tight mb-4">Estadísticas</h3>
+              <div class="flex flex-col gap-3.5">
+                <div id="stat-streak-row" class="hidden flex items-center justify-between">
+                  <span class="flex items-center gap-2.5 text-[13px] font-semibold text-slate-500"><i data-lucide="flame" class="w-4 h-4 text-[var(--brand-500)]"></i>Racha actual</span>
+                  <span id="stat-streak" class="text-[13px] font-extrabold text-slate-900">0 días</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="flex items-center gap-2.5 text-[13px] font-semibold text-slate-500"><i data-lucide="clock" class="w-4 h-4 text-[var(--brand-500)]"></i>Tiempo de estudio</span>
+                  <span id="stat-time" class="text-[13px] font-extrabold text-slate-900">0m</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="flex items-center gap-2.5 text-[13px] font-semibold text-slate-500"><i data-lucide="book-open" class="w-4 h-4 text-[var(--brand-500)]"></i>Temas aprendidos</span>
+                  <span id="stat-lessons" class="text-[13px] font-extrabold text-slate-900">0</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="flex items-center gap-2.5 text-[13px] font-semibold text-slate-500"><i data-lucide="star" class="w-4 h-4 text-[var(--brand-500)]"></i>Puntos acumulados</span>
+                  <span id="stat-points" class="text-[13px] font-extrabold text-slate-900">0</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="theme-card bg-white rounded-3xl border border-slate-100 p-5 soft-shadow focus-hide">
+              <h3 class="text-[14.5px] font-extrabold text-slate-900 tracking-tight mb-4">Logros recientes</h3>
+              <div id="home-achievements" class="flex flex-col gap-3.5 text-[12px] text-slate-400 font-medium">Aún no hay logros — ¡completa tu primera lección!</div>
+              <button type="button" onclick="showScreen('achievements')" class="tap mt-4 w-full flex items-center justify-between text-[12.5px] font-bold text-[var(--brand-700)]">Ver todos los logros <i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+            </div>
+
+          </div>
+
+          <!-- Topics + recommended (left column, below hero on desktop; before progress on mobile) -->
+          <div class="order-2 lg:order-none lg:col-start-1 lg:row-start-2 min-w-0 flex flex-col gap-7">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-[15.5px] font-extrabold text-slate-900 tracking-tight">Temas de tu ruta</h3>
+              </div>
+              <div class="grid grid-cols-2 lg:grid-cols-3 gap-3.5" id="topics-grid"></div>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-[15.5px] font-extrabold text-slate-900 tracking-tight">Recomendado para ti</h3>
+                <button type="button" onclick="showScreen('explore')" class="text-[12.5px] font-bold text-[var(--brand-700)] flex items-center gap-1">Ver más <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></button>
+              </div>
+              <div class="flex gap-4 overflow-x-auto no-scrollbar pb-2 -mx-5 px-5 lg:mx-0 lg:px-0">
+                <button onclick="showScreen('explore')" class="tap text-left min-w-[230px] sm:min-w-[250px] bg-white rounded-2xl overflow-hidden soft-shadow border border-slate-100 shrink-0">
+                  <img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?q=80&w=500&auto=format&fit=crop" class="w-full h-28 object-cover" alt="Alhambra">
+                  <div class="p-3.5">
+                    <p class="text-[13px] font-bold text-slate-900">Historia del Arte Universal</p>
+                    <p class="text-[11px] text-slate-400 font-semibold mt-1">12 temas · Nivel intermedio</p>
+                  </div>
+                </button>
+                <button onclick="showScreen('explore')" class="tap text-left min-w-[230px] sm:min-w-[250px] bg-white rounded-2xl overflow-hidden soft-shadow border border-slate-100 shrink-0">
+                  <img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?q=80&w=500&auto=format&fit=crop" class="w-full h-28 object-cover" alt="Sagrada Familia">
+                  <div class="p-3.5">
+                    <p class="text-[13px] font-bold text-slate-900">Filosofía Moderna</p>
+                    <p class="text-[11px] text-slate-400 font-semibold mt-1">8 temas · Nivel avanzado</p>
+                  </div>
+                </button>
+                <button onclick="showScreen('explore')" class="tap text-left min-w-[230px] sm:min-w-[250px] bg-white rounded-2xl overflow-hidden soft-shadow border border-slate-100 shrink-0">
+                  <img src="https://images.unsplash.com/photo-1515443961218-a51367888e4b?q=80&w=500&auto=format&fit=crop" class="w-full h-28 object-cover" alt="Gastronomía">
+                  <div class="p-3.5">
+                    <p class="text-[13px] font-bold text-slate-900">Mitología Griega</p>
+                    <p class="text-[11px] text-slate-400 font-semibold mt-1">10 temas · Nivel inicial</p>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ EXPLORE ============================================================ -->
+    <section id="screen-explore" class="screen">
+      <div class="px-5 lg:px-10 pt-6 lg:pt-8 max-w-[1100px] mx-auto">
+        <h1 class="text-[22px] lg:text-[26px] font-extrabold tracking-tight text-slate-900">Explorar</h1>
+        <p class="text-[13px] text-slate-400 font-semibold mt-0.5">Encuentra tu próxima ruta de aprendizaje</p>
+
+        <div class="relative mt-4">
+          <i data-lucide="search" class="w-[18px] h-[18px] text-slate-400 absolute left-4 top-1/2 -translate-y-1/2"></i>
+          <input type="text" id="explore-search" placeholder="Buscar culturas, historia, arte..." class="w-full bg-white pl-11 pr-4 py-3 rounded-2xl border border-slate-200/80 soft-shadow text-[13.5px] font-medium placeholder-slate-400 focus:border-[var(--brand-500)] focus:ring-2 focus:ring-[var(--brand-100)] transition">
+        </div>
+
+        <div class="flex gap-2 mt-4 overflow-x-auto no-scrollbar -mx-5 px-5" id="explore-chips">
+          <button type="button" data-filter="all" class="explore-chip chip shrink-0 px-4 py-2 rounded-full text-[12.5px] font-bold bg-[var(--brand-700)] text-white">Todas</button>
+          <button type="button" data-filter="historia" class="explore-chip chip shrink-0 px-4 py-2 rounded-full text-[12.5px] font-bold bg-white border border-slate-200 text-slate-500">Historia</button>
+          <button type="button" data-filter="arte" class="explore-chip chip shrink-0 px-4 py-2 rounded-full text-[12.5px] font-bold bg-white border border-slate-200 text-slate-500">Arte</button>
+          <button type="button" data-filter="filosofia" class="explore-chip chip shrink-0 px-4 py-2 rounded-full text-[12.5px] font-bold bg-white border border-slate-200 text-slate-500">Filosofía</button>
+          <button type="button" data-filter="ciencia" class="explore-chip chip shrink-0 px-4 py-2 rounded-full text-[12.5px] font-bold bg-white border border-slate-200 text-slate-500">Ciencia</button>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6" id="explore-grid"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================ JOURNEY STATS (mobile progress view) ============================================================ -->
+    <section id="screen-journey-stats" class="screen">
+      <div class="px-5 lg:px-10 pt-4 lg:pt-8 max-w-[640px] mx-auto pb-8" id="journey-stats-root"></div>
+    </section>
+
+    <!-- ============================================================ TOPIC DETAIL ============================================================ -->
+    <section id="screen-topic" class="screen">
+      <div class="max-w-[640px] mx-auto lg:px-10" id="topic-root"></div>
+    </section>
+
+    <!-- ============================================================ LESSON ============================================================ -->
+    <section id="screen-lesson" class="screen">
+      <div class="max-w-[640px] mx-auto px-5 lg:px-10 pt-4 pb-28 lg:pb-10" id="lesson-root"></div>
+    </section>
+
+    <!-- ============================================================ MY ROUTES ============================================================ -->
+    <section id="screen-routes" class="screen">
+      <div class="px-5 lg:px-10 pt-6 lg:pt-8 max-w-[900px] mx-auto">
+        <h1 class="text-[22px] lg:text-[26px] font-extrabold tracking-tight text-slate-900">Mis rutas</h1>
+        <p class="text-[13px] text-slate-400 font-semibold mt-0.5">Tus caminos de aprendizaje activos</p>
+
+        <div class="flex flex-col gap-4 mt-6" id="routes-list"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================ JOURNEY DETAIL ============================================================ -->
+    <section id="screen-journey" class="screen">
+      <div class="px-5 lg:px-10 pt-6 lg:pt-8 max-w-[760px] mx-auto" id="journey-root"></div>
+    </section>
+
+    <!-- ============================================================ ACHIEVEMENTS ============================================================ -->
+    <section id="screen-achievements" class="screen">
+      <div class="px-5 lg:px-10 pt-6 lg:pt-8 max-w-[1000px] mx-auto">
+        <h1 class="text-[22px] lg:text-[26px] font-extrabold tracking-tight text-slate-900">Logros</h1>
+        <p class="text-[13px] text-slate-400 font-semibold mt-0.5" id="achievements-subtitle">0 de 4 logros desbloqueados</p>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6" id="achievements-grid"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================ SETTINGS ============================================================ -->
+    <section id="screen-settings" class="screen">
+      <div class="px-5 lg:px-10 pt-6 lg:pt-8 max-w-[640px] mx-auto mobile-screen-pad">
+        <h1 class="text-[22px] lg:text-[26px] font-extrabold tracking-tight text-slate-900">Ajustes</h1>
+        <p class="text-[13px] text-slate-400 font-semibold mt-0.5">Personaliza cómo aprendes</p>
+
+        <div class="theme-card bg-white rounded-3xl border border-slate-100 soft-shadow mt-5 p-5">
+          <h3 class="text-[14px] font-extrabold text-slate-900 mb-1">Apariencia</h3>
+          <p class="text-[12px] text-slate-400 leading-relaxed mb-4">Elige el estilo que te resulte más cómodo para leer.</p>
+          <div class="grid grid-cols-3 gap-3" id="theme-picker">
+            <button type="button" data-theme-pick="learnia" class="theme-picker-btn tap rounded-2xl p-3 text-left active">
+              <span class="block w-full h-10 rounded-lg mb-2" style="background:linear-gradient(135deg,#5b3df0,#3d28b8)"></span>
+              <span class="text-[12px] font-bold text-slate-900">Learnia</span>
+              <span class="block text-[10px] text-slate-400 font-medium mt-0.5">Morado actual</span>
+            </button>
+            <button type="button" data-theme-pick="dark" class="theme-picker-btn tap rounded-2xl p-3 text-left">
+              <span class="block w-full h-10 rounded-lg mb-2" style="background:linear-gradient(135deg,#1a1828,#0e0d14)"></span>
+              <span class="text-[12px] font-bold text-slate-900">Oscuro</span>
+              <span class="block text-[10px] text-slate-400 font-medium mt-0.5">Menos luz</span>
+            </button>
+            <button type="button" data-theme-pick="classic" class="theme-picker-btn tap rounded-2xl p-3 text-left">
+              <span class="block w-full h-10 rounded-lg mb-2 border border-slate-300" style="background:linear-gradient(135deg,#f7f2e8,#6b5344)"></span>
+              <span class="text-[12px] font-bold text-slate-900">Cartográfico</span>
+              <span class="block text-[10px] text-slate-400 font-medium mt-0.5">Pergamino y mapa</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="theme-card bg-white rounded-3xl border border-slate-100 soft-shadow mt-5 p-5">
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <h3 class="text-[14px] font-extrabold text-slate-900">Tamaño del texto</h3>
+              <p class="text-[12px] text-slate-400 mt-1 leading-relaxed">Útil en lecciones largas o en pantallas pequeñas.</p>
+            </div>
+            <div class="font-toolbar shrink-0" id="settings-font-toolbar">
+              <button type="button" id="font-dec-settings" onclick="changeFontScale(-1)" aria-label="Reducir texto">A−</button>
+              <button type="button" id="font-inc-settings" onclick="changeFontScale(1)" aria-label="Aumentar texto">A+</button>
+            </div>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-3" id="font-scale-label">Tamaño normal</p>
+        </div>
+
+        <div class="theme-card bg-white rounded-3xl border border-slate-100 soft-shadow mt-5 p-5">
+          <h3 class="text-[14px] font-extrabold text-slate-900 mb-1">Modo de aprendizaje</h3>
+          <p class="text-[12px] text-slate-400 leading-relaxed mb-4">Menos presión, más lectura y escucha.</p>
+          <div class="flex flex-col gap-3">
+            <label class="flex items-center justify-between gap-4 tap cursor-pointer">
+              <span>
+                <span class="block text-[13px] font-bold text-slate-900">Modo enfoque</span>
+                <span class="block text-[11px] text-slate-400 mt-0.5">Oculta porcentajes y contadores</span>
+              </span>
+              <input type="checkbox" id="pref-focus-mode" class="pref-toggle" onchange="togglePref('focusMode', this.checked)">
+            </label>
+            <div class="rounded-2xl border border-dashed border-slate-200 bg-[var(--brand-50)] p-4">
+              <p class="text-[13px] font-bold text-slate-900">Modo solo escuchar</p>
+              <p class="text-[12px] text-slate-500 mt-1 leading-relaxed">🚧 En construcción — pronto podrás avanzar lección a lección solo con la voz.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="theme-card bg-white rounded-3xl border border-slate-100 soft-shadow mt-5 p-5">
+          <h3 class="text-[14px] font-extrabold text-slate-900 mb-1">Velocidad de voz</h3>
+          <p class="text-[12px] text-slate-400 leading-relaxed mb-4">Ajusta el ritmo del lector en las lecciones.</p>
+          <div class="flex gap-2" id="speech-rate-picker">
+            <button type="button" data-speech-rate="0.78" class="speech-rate-btn tap flex-1 py-2.5 rounded-xl text-[12px] font-bold border border-slate-200 text-slate-600">Lenta</button>
+            <button type="button" data-speech-rate="0.92" class="speech-rate-btn tap flex-1 py-2.5 rounded-xl text-[12px] font-bold border border-slate-200 text-slate-600 active">Normal</button>
+            <button type="button" data-speech-rate="1.08" class="speech-rate-btn tap flex-1 py-2.5 rounded-xl text-[12px] font-bold border border-slate-200 text-slate-600">Rápida</button>
+          </div>
+        </div>
+
+        <div class="theme-card bg-white rounded-3xl border border-slate-100 soft-shadow mt-5 p-5">
+          <h3 class="text-[14px] font-extrabold text-slate-900 mb-1">Lector de voz</h3>
+          <p class="text-[12px] text-slate-400 leading-relaxed">En cada lección verás auriculares para escuchar el contenido. El modo paso a paso llegará pronto.</p>
+        </div>
+
+        <div class="theme-card bg-white rounded-3xl border border-slate-100 soft-shadow mt-5 divide-y divide-slate-100">
+          <button type="button" onclick="showScreen('profile')" class="tap w-full flex items-center gap-3 px-5 py-4 text-left"><i data-lucide="user" class="w-[18px] h-[18px] text-slate-400"></i><span class="flex-1 text-[13.5px] font-semibold text-slate-700">Perfil y progreso</span><i data-lucide="chevron-right" class="w-4 h-4 text-slate-300"></i></button>
+        </div>
+
+        <button type="button" data-action="reset-prefs" class="tap w-full flex items-center justify-center gap-2 px-5 py-4 text-[13px] font-bold text-slate-500 mt-5 border border-slate-200 rounded-2xl bg-white">
+          Restablecer ajustes
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================================ PROFILE ============================================================ -->
+    <section id="screen-profile" class="screen">
+      <div class="px-5 lg:px-10 pt-6 lg:pt-8 max-w-[640px] mx-auto mobile-screen-pad">
+        <h1 class="text-[22px] lg:text-[26px] font-extrabold tracking-tight text-slate-900">Perfil</h1>
+
+        <div class="bg-white rounded-3xl border border-slate-100 soft-shadow p-6 mt-5 flex flex-col items-center text-center">
+          <div class="w-20 h-20 rounded-full bg-[var(--brand-100)] flex items-center justify-center text-[28px] font-extrabold text-[var(--brand-700)]" id="profile-initials">A</div>
+          <input type="text" id="profile-name-input" maxlength="24" class="mt-3 text-[16px] font-extrabold text-slate-900 text-center bg-transparent border-b-2 border-transparent focus:border-[var(--brand-300)] w-full max-w-[220px]" placeholder="Tu nombre">
+          <p class="text-[12.5px] text-slate-400 font-semibold mt-0.5">Nivel <span id="profile-level">1</span> · <span id="profile-title">Aprendiz</span></p>
+
+          <div class="grid grid-cols-3 gap-3 w-full mt-5" id="profile-stats-grid">
+            <div class="bg-[var(--brand-50)] rounded-xl py-3">
+              <p class="text-[16px] font-extrabold text-slate-900" id="profile-lessons">0</p>
+              <p class="text-[10.5px] text-slate-500 font-semibold mt-0.5">Lecciones</p>
+            </div>
+            <div id="profile-streak-box" class="hidden bg-[var(--brand-50)] rounded-xl py-3">
+              <p class="text-[16px] font-extrabold text-slate-900" id="profile-streak">0</p>
+              <p class="text-[10.5px] text-slate-500 font-semibold mt-0.5">Racha</p>
+            </div>
+            <div class="bg-[var(--brand-50)] rounded-xl py-3">
+              <p class="text-[16px] font-extrabold text-slate-900" id="profile-points">0</p>
+              <p class="text-[10.5px] text-slate-500 font-semibold mt-0.5">Puntos</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl border border-slate-100 soft-shadow mt-5 p-5">
+          <h3 class="text-[14px] font-extrabold text-slate-900 mb-1">Tus datos, en tu dispositivo</h3>
+          <p class="text-[12px] text-slate-400 leading-relaxed mb-4">Aprendarnia guarda el progreso solo en este navegador. Puedes descargarlo como archivo y recuperarlo en otro ordenador o tablet. No hay cuentas ni servidores.</p>
+          <div class="flex flex-col gap-2.5">
+            <button type="button" onclick="exportProgress()" class="tap w-full flex items-center justify-center gap-2 bg-[var(--brand-700)] text-white font-bold text-[13px] py-3 rounded-xl">
+              <i data-lucide="download" class="w-4 h-4"></i> Descargar mi progreso
+            </button>
+            <button type="button" onclick="document.getElementById('import-file').click()" class="tap w-full flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 font-bold text-[13px] py-3 rounded-xl">
+              <i data-lucide="upload" class="w-4 h-4"></i> Importar progreso
+            </button>
+            <input type="file" id="import-file" accept=".json,application/json">
+          </div>
+        </div>
+
+        <div class="theme-card bg-white rounded-3xl border border-slate-100 soft-shadow mt-5 divide-y divide-slate-100">
+          <button type="button" onclick="showScreen('settings')" class="tap w-full flex items-center gap-3 px-5 py-4 text-left"><i data-lucide="settings" class="w-[18px] h-[18px] text-slate-400"></i><span class="flex-1 text-[13.5px] font-semibold text-slate-700">Ajustes</span><i data-lucide="chevron-right" class="w-4 h-4 text-slate-300"></i></button>
+          <button type="button" onclick="showScreen('journey-stats')" class="tap w-full flex items-center gap-3 px-5 py-4 text-left"><i data-lucide="bar-chart-3" class="w-[18px] h-[18px] text-slate-400"></i><span class="flex-1 text-[13.5px] font-semibold text-slate-700">Estadísticas</span><i data-lucide="chevron-right" class="w-4 h-4 text-slate-300"></i></button>
+          <button type="button" onclick="showScreen('achievements')" class="tap w-full flex items-center gap-3 px-5 py-4 text-left"><i data-lucide="trophy" class="w-[18px] h-[18px] text-slate-400"></i><span class="flex-1 text-[13.5px] font-semibold text-slate-700">Logros</span><i data-lucide="chevron-right" class="w-4 h-4 text-slate-300"></i></button>
+        </div>
+
+        <button type="button" data-action="reset-progress" class="tap w-full flex items-center justify-center gap-2 px-5 py-4 text-[13px] font-bold text-red-500 mt-5 border border-red-100 rounded-2xl bg-red-50/50">
+          <i data-lucide="trash-2" class="w-4 h-4"></i> Borrar progreso local
+        </button>
+      </div>
+    </section>
+
+    <footer class="site-footer theme-app hidden lg:block">
+      <p class="site-footer__copy">Aprendarnia · Aprende culturas completas</p>
+      <a href="https://nodo.digital" target="_blank" rel="noopener noreferrer" class="site-footer__nodo">
+        <span>Hecho por</span>
+        <img src="assets/nodo-logo.png" alt="Nodo">
+        <strong>Nodo</strong>
+      </a>
+    </footer>
+
+  </main>
+
+  <!-- ===================== MOBILE BOTTOM TAB BAR ===================== -->
+  <nav id="mobile-tab-bar" class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-100 flex items-stretch" style="padding-bottom:env(safe-area-inset-bottom)">
+    <button data-target="home" class="bottom-link flex-1 flex flex-col items-center justify-center gap-1 py-2.5">
+      <i data-lucide="home" class="tab-icon w-[22px] h-[22px]"></i>
+      <span class="tab-label text-[10.5px] font-bold">Inicio</span>
+    </button>
+    <button data-target="explore" class="bottom-link flex-1 flex flex-col items-center justify-center gap-1 py-2.5">
+      <i data-lucide="compass" class="tab-icon w-[22px] h-[22px]"></i>
+      <span class="tab-label text-[10.5px] font-bold">Explorar</span>
+    </button>
+    <button data-target="routes" class="bottom-link flex-1 flex flex-col items-center justify-center gap-1 py-2.5">
+      <i data-lucide="route" class="tab-icon w-[22px] h-[22px]"></i>
+      <span class="tab-label text-[10.5px] font-bold">Mis rutas</span>
+    </button>
+    <button data-target="profile" class="bottom-link flex-1 flex flex-col items-center justify-center gap-1 py-2.5">
+      <i data-lucide="user" class="tab-icon w-[22px] h-[22px]"></i>
+      <span class="tab-label text-[10.5px] font-bold">Perfil</span>
+    </button>
+  </nav>
+
+</div>
+
+<div id="toast" role="status"></div>
+
+<div id="app-sheet" class="app-sheet" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="app-sheet__backdrop" onclick="closeAppSheet()"></div>
+  <div class="app-sheet__panel theme-card">
+    <div class="app-sheet__handle"></div>
+    <p id="app-sheet-title" class="text-[17px] font-extrabold text-slate-900 tracking-tight"></p>
+    <p id="app-sheet-msg" class="text-[13px] text-slate-500 font-medium mt-2 leading-relaxed"></p>
+    <div class="flex flex-col gap-2.5 mt-6">
+      <button type="button" id="app-sheet-primary" class="tap w-full bg-[var(--brand-700)] text-white font-bold text-[14px] py-3.5 rounded-xl pill-btn"></button>
+      <button type="button" id="app-sheet-secondary" class="tap w-full border border-slate-200 text-slate-600 font-bold text-[13px] py-3 rounded-xl" onclick="closeAppSheet()">Quedarme aquí</button>
+    </div>
+  </div>
+</div>
+
+<script src="learnia-data.js"></script>
+<script src="learnia-app.js"></script>
+
+</body>
+</html>
