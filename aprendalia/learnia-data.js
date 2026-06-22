@@ -12,6 +12,52 @@ const RUTA_ESPAÑOLA = {
       icon: 'landmark',
       description: 'Desde la Prehistoria hasta la actualidad.',
       image: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?q=80&w=1200&auto=format&fit=crop',
+      exam: {
+        title: 'Examen: Historia de España',
+        intro: 'Repasa lo aprendido en las tres lecciones. Necesitas acertar todas las preguntas para certificar el tema.',
+        questions: [
+          {
+            question: '¿Qué estrecho separa España de África en su punto más cercano?',
+            options: ['El Bósforo', 'El estrecho de Gibraltar', 'El canal de la Mancha'],
+            correct: 1
+          },
+          {
+            question: '¿Qué reyes unieron Castilla y Aragón de forma definitiva?',
+            options: ['Carlos V y Felipe II', 'Isabel y Fernando', 'Juana la Loca y Felipe'],
+            correct: 1
+          },
+          {
+            question: '¿Qué ciudad fue la última en manos musulmanas en la península?',
+            options: ['Córdoba', 'Granada', 'Sevilla'],
+            correct: 1
+          },
+          {
+            question: '¿En qué año llegó Cristóbal Colón a América con apoyo español?',
+            options: ['1492', '1500', '1519'],
+            correct: 0
+          },
+          {
+            question: '¿Quién escribió la primera gramática del castellano en 1492?',
+            options: ['Cervantes', 'Antonio de Nebrija', 'Quevedo'],
+            correct: 1
+          },
+          {
+            question: '¿En qué año se aprobó la Constitución española actual?',
+            options: ['1975', '1978', '1982'],
+            correct: 1
+          },
+          {
+            question: '¿Cuántas comunidades autónomas tiene España hoy?',
+            options: ['15', '17', '19'],
+            correct: 1
+          },
+          {
+            question: '¿Cómo se llama la gran llanura central de la península ibérica?',
+            options: ['La Meseta', 'La Mancha', 'El Guadalquivir'],
+            correct: 0
+          }
+        ]
+      },
       lessons: [
         {
           id: 'historia-1',
@@ -64,11 +110,37 @@ const RUTA_ESPAÑOLA = {
             { type: 'p', text: 'También en 1492 Cristóbal Colón, con el apoyo de la Corona española, llegó a América. Fue el inicio de un intercambio enorme entre Europa y el Nuevo Mundo.' },
             { type: 'tip', text: '💡 En 1492 se publicó la primera gramática de la lengua castellana, escrita por Antonio de Nebrija.' }
           ],
-          quiz: {
-            question: '¿Qué ciudad fue la última en manos musulmanas en la península?',
-            options: ['Toledo', 'Granada', 'Córdoba'],
-            correct: 1
-          }
+          questions: [
+            {
+              question: '¿Qué ciudad fue la última en manos musulmanas en la península?',
+              options: ['Toledo', 'Granada', 'Córdoba'],
+              correct: 1
+            },
+            {
+              question: '¿Qué monarcas unieron definitivamente Castilla y Aragón?',
+              options: ['Isabel y Fernando', 'Carlos V y Felipe II', 'Alfonso X y Sancho IV'],
+              correct: 0
+            },
+            {
+              question: '¿En qué año llegó Colón a América con apoyo de la Corona española?',
+              options: ['1492', '1504', '1516'],
+              correct: 0
+            },
+            {
+              question: '¿Quién escribió la primera gramática del castellano?',
+              options: ['Antonio de Nebrija', 'Lope de Vega', 'Garcilaso de la Vega'],
+              correct: 0
+            },
+            {
+              question: '¿Qué acontecimiento marcó el fin del reino nazarí en la península?',
+              options: ['La batalla de Lepanto', 'La conquista de Granada', 'La expulsión de los moriscos'],
+              correct: 1
+            }
+          ],
+          sources: [
+            { title: 'Real Academia de la Historia', url: 'https://dbe.rah.es' },
+            { title: 'Biblioteca Nacional de España — 1492', url: 'https://www.bne.es' }
+          ]
         },
         {
           id: 'historia-3',
@@ -79,11 +151,37 @@ const RUTA_ESPAÑOLA = {
             { type: 'p', text: 'Hoy España tiene 17 comunidades autónomas y 2 ciudades autónomas. Cada una conserva tradiciones, lengua y gastronomía propias, además del castellano común.' },
             { type: 'tip', text: '💡 El 12 de octubre se celebra la Fiesta Nacional de España, aunque en muchas familias también es el Día de la Hispanidad.' }
           ],
-          quiz: {
-            question: '¿En qué año se aprobó la Constitución española actual?',
-            options: ['1975', '1978', '1982'],
-            correct: 1
-          }
+          questions: [
+            {
+              question: '¿En qué año se aprobó la Constitución española actual?',
+              options: ['1975', '1978', '1982'],
+              correct: 1
+            },
+            {
+              question: '¿Cuántas comunidades autónomas tiene España?',
+              options: ['15', '17', '20'],
+              correct: 1
+            },
+            {
+              question: '¿Qué periodo siguió a la Guerra Civil antes de la democracia?',
+              options: ['La Restauración', 'La dictadura de Franco', 'El Sexenio Democrático'],
+              correct: 1
+            },
+            {
+              question: '¿Qué modelo político estableció la Constitución de 1978?',
+              options: ['Estado unitario', 'Estado de las Autonomías', 'Confederación de reinos'],
+              correct: 1
+            },
+            {
+              question: 'Además de las comunidades autónomas, ¿qué territorios especiales tiene España?',
+              options: ['2 ciudades autónomas', '3 provincias ultramarinas', '5 regiones históricas'],
+              correct: 0
+            }
+          ],
+          sources: [
+            { title: 'Congreso de los Diputados — Constitución', url: 'https://www.congreso.es/constitucion' },
+            { title: 'Ministerio de la Presidencia — Administración territorial', url: 'https://www.mpr.gob.es' }
+          ]
         }
       ]
     },

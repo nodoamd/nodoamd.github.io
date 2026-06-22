@@ -1,9 +1,9 @@
-/* Learnia — progreso local, sin servidor */
+/* Aprendalia — progreso local, sin servidor */
 (function () {
   const STORAGE_KEY = 'learnia-progress-v1';
   const PREFS_KEY = 'learnia-prefs-v1';
   const TAB_SCREENS = ['home', 'explore', 'routes', 'profile'];
-  const DETAIL_SCREENS = ['topic', 'journey-stats', 'journey', 'lesson'];
+  const DETAIL_SCREENS = ['topic', 'topic-exam', 'journey-stats', 'journey', 'lesson'];
   const FONT_MIN = 0.85;
   const FONT_MAX = 1.35;
   const FONT_STEP = 0.05;
@@ -13,6 +13,8 @@
   let lastTab = 'home';
   let currentTopicId = null;
   let currentLessonId = null;
+  let currentExamTopicId = null;
+  let quizContext = 'lesson';
   let lessonStartedAt = null;
   let quizAnswered = false;
   let currentQuizIndex = 0;
@@ -82,7 +84,7 @@
       fontScale: 1,
       focusMode: false,
       speechRate: 0.92,
-      hints: { fontSize: false }
+      hints: { fontSize: false, onboarding: false }
     };
   }
 
@@ -178,7 +180,7 @@
     if (!['learnia', 'dark', 'classic'].includes(theme)) return;
     prefs.theme = theme;
     savePrefs();
-    toast(theme === 'classic' ? 'Tema cartográfico activado' : theme === 'dark' ? 'Modo oscuro activado' : 'Tema Learnia activado');
+    toast(theme === 'classic' ? 'Tema cartográfico activado' : theme === 'dark' ? 'Modo oscuro activado' : 'Tema Aprendalia activado');
   };
 
   window.changeFontScale = function (delta) {
@@ -197,11 +199,159 @@
     if (hint) hint.remove();
   };
 
+  let onboardingSlide = 0;
+  const ONBOARDING_SLIDES = 2;
+
+  function paintOnboarding() {
+    document.querySelectorAll('[data-onboarding-slide]').forEach((el) => {
+      el.classList.toggle('onboarding__slide--active', Number(el.dataset.onboardingSlide) === onboardingSlide);
+    });
+    document.querySelectorAll('[data-onboarding-dot]').forEach((dot) => {
+      dot.classList.toggle('onboarding__dot--active', Number(dot.dataset.onboardingDot) === onboardingSlide);
+    });
+    const back = document.getElementById('onboarding-back');
+    const next = document.getElementById('onboarding-next');
+    if (back) back.disabled = onboardingSlide <= 0;
+    if (next) next.textContent = onboardingSlide >= ONBOARDING_SLIDES - 1 ? 'Empezar' : 'Siguiente';
+  }
+
+  function finishOnboarding() {
+    prefs.hints.onboarding = true;
+    savePrefs();
+    closeOnboarding(false);
+  }
+
+  window.closeOnboarding = function (markSkipped) {
+    const el = document.getElementById('onboarding');
+    if (!el || !el.classList.contains('open')) return;
+    if (markSkipped !== false) {
+      prefs.hints.onboarding = true;
+      savePrefs();
+    }
+    el.classList.add('closing');
+    el.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      el.classList.remove('open', 'closing');
+    }, 280);
+  };
+
+  window.showOnboarding = function (fromStart) {
+    const el = document.getElementById('onboarding');
+    if (!el) return;
+    onboardingSlide = fromStart ? 0 : onboardingSlide;
+    paintOnboarding();
+    el.classList.add('open');
+    el.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    lucide.createIcons();
+    document.getElementById('onboarding-next')?.focus();
+  };
+
+  window.replayOnboarding = function () {
+    onboardingSlide = 0;
+    showOnboarding(true);
+  };
+
+  function maybeShowOnboarding() {
+    if (prefs.hints.onboarding) return;
+    setTimeout(() => showOnboarding(true), 420);
+  }
+
+  function bindOnboarding() {
+    document.getElementById('onboarding-back')?.addEventListener('click', () => {
+      if (onboardingSlide > 0) {
+        onboardingSlide -= 1;
+        paintOnboarding();
+      }
+    });
+    document.getElementById('onboarding-next')?.addEventListener('click', () => {
+      if (onboardingSlide < ONBOARDING_SLIDES - 1) {
+        onboardingSlide += 1;
+        paintOnboarding();
+      } else {
+        finishOnboarding();
+      }
+    });
+  }
+
   function getLessonQuestions(lesson) {
     if (!lesson) return [];
     if (lesson.questions && lesson.questions.length) return lesson.questions;
     if (lesson.quiz) return [lesson.quiz];
     return [];
+  }
+
+  function getTopicExam(topic) {
+    if (!topic?.exam?.questions?.length) return null;
+    return topic.exam;
+  }
+
+  function getActiveQuestions() {
+    if (quizContext === 'exam') {
+      const topic = getTopic(currentExamTopicId);
+      return topic?.exam?.questions || [];
+    }
+    const lesson = getLesson(currentLessonId);
+    return getLessonQuestions(lesson);
+  }
+
+  function isExamPassed(topicId) {
+    return state.passedTopicExams.includes(topicId);
+  }
+
+  function topicHasExam(topicId) {
+    return !!getTopicExam(getTopic(topicId));
+  }
+
+  function isTopicLessonsComplete(topicId) {
+    const topic = getTopic(topicId);
+    if (!topic) return false;
+    return topic.lessons.every((l) => isDone(l.id));
+  }
+
+  function isTopicFullyComplete(topicId) {
+    if (!isTopicLessonsComplete(topicId)) return false;
+    if (topicHasExam(topicId)) return isExamPassed(topicId);
+    return true;
+  }
+
+  function countLessonFacts(lessonId) {
+    const lesson = getLesson(lessonId);
+    return lesson ? getLessonQuestions(lesson).length : 0;
+  }
+
+  function countFactsLearned() {
+    return state.completedLessons.reduce((sum, id) => sum + countLessonFacts(id), 0);
+  }
+
+  function countTopicFacts(topic) {
+    if (!topic) return 0;
+    return topic.lessons.reduce((sum, l) => sum + getLessonQuestions(l).length, 0);
+  }
+
+  function daysSince(dateStr) {
+    if (!dateStr) return 999;
+    const then = new Date(dateStr + 'T12:00:00');
+    const now = new Date();
+    return Math.floor((now - then) / 86400000);
+  }
+
+  function getReviewLessons() {
+    return state.completedLessons
+      .map((id) => ({ id, lesson: getLesson(id), days: daysSince(state.lessonStudiedAt[id]) }))
+      .filter((x) => x.lesson && x.days >= 2)
+      .sort((a, b) => b.days - a.days)
+      .slice(0, 2);
+  }
+
+  function resetQuizState(reviewMode) {
+    currentQuizIndex = 0;
+    quizCorrectSet = new Set();
+    quizPickedMap = new Map();
+    quizAwaitingNext = false;
+    quizReviewMode = !!reviewMode;
+    quizAnswered = !!reviewMode;
   }
 
   function buildLessonSpeech(lesson) {
@@ -280,9 +430,10 @@
 
   window.showTopicCompletePrompt = function (completedTopic, nextTopic) {
     const firstLesson = nextTopic.lessons.find((l) => !isDone(l.id)) || nextTopic.lessons[0];
+    const facts = countTopicFacts(completedTopic);
     showAppSheet({
-      title: '¡Tema completado!',
-      message: 'Has terminado «' + completedTopic.title + '». ¿Pasamos a «' + nextTopic.title + '»?',
+      title: '¡Tema certificado!',
+      message: 'Has dominado «' + completedTopic.title + '» (' + facts + ' datos). ¿Pasamos a «' + nextTopic.title + '»?',
       primaryLabel: 'Siguiente tema',
       secondaryLabel: 'Quedarme aquí',
       onPrimary: () => openLesson(firstLesson.id)
@@ -292,17 +443,7 @@
   window.showRouteCompletePrompt = function () {
     showAppSheet({
       title: '¡Ruta completada!',
-      message: 'Has recorrido todos los temas de Cultura Española. ¡Enhorabuena!',
-      primaryLabel: 'Ver mi progreso',
-      secondaryLabel: 'Quedarme aquí',
-      onPrimary: () => showScreen('journey-stats')
-    });
-  };
-
-  window.showRouteCompletePrompt = function () {
-    showAppSheet({
-      title: '¡Ruta completada!',
-      message: 'Has recorrido todos los temas de Cultura Española. ¡Enhorabuena!',
+      message: 'Has recorrido y certificado todos los temas de Cultura Española. ¡Enhorabuena!',
       primaryLabel: 'Ver mi progreso',
       secondaryLabel: 'Quedarme aquí',
       onPrimary: () => showScreen('journey-stats')
@@ -436,6 +577,8 @@
       version: 1,
       name: 'Aprendiz',
       completedLessons: [],
+      passedTopicExams: [],
+      lessonStudiedAt: {},
       studyMinutes: 0,
       points: 0,
       lastStudyDate: null,
@@ -455,7 +598,13 @@
       if (!parsed || parsed.version !== 1 || !Array.isArray(parsed.completedLessons)) {
         return defaultState();
       }
-      return { ...defaultState(), ...parsed, completedLessons: [...parsed.completedLessons] };
+      return {
+        ...defaultState(),
+        ...parsed,
+        completedLessons: [...(parsed.completedLessons || [])],
+        passedTopicExams: [...(parsed.passedTopicExams || [])],
+        lessonStudiedAt: { ...(parsed.lessonStudiedAt || {}) }
+      };
     } catch {
       return defaultState();
     }
@@ -488,13 +637,11 @@
   }
 
   function isTopicComplete(topicId) {
-    const topic = getTopic(topicId);
-    if (!topic) return false;
-    return topic.lessons.every((l) => isDone(l.id));
+    return isTopicFullyComplete(topicId);
   }
 
   function getNextTopic() {
-    return RUTA_ESPAÑOLA.topics.find((t) => !isTopicComplete(t.id)) || null;
+    return RUTA_ESPAÑOLA.topics.find((t) => !isTopicFullyComplete(t.id)) || null;
   }
 
   function getNextLesson() {
@@ -573,10 +720,11 @@
     document.getElementById('drawer-streak').textContent = state.streak;
     document.getElementById('hero-progress-text').textContent = done + ' / ' + total;
     document.querySelector('.hero-bar').style.width = pct + '%';
-    document.getElementById('home-ring-text').textContent = done + ' / ' + total;
-    document.getElementById('ring-home').setAttribute('stroke-dashoffset', ringOffset(done, total));
+    const topicsCertified = RUTA_ESPAÑOLA.topics.filter((t) => isTopicFullyComplete(t.id)).length;
+    document.getElementById('home-ring-text').textContent = topicsCertified + ' / ' + RUTA_ESPAÑOLA.topics.length;
+    document.getElementById('ring-home').setAttribute('stroke-dashoffset', ringOffset(topicsCertified, RUTA_ESPAÑOLA.topics.length));
 
-    const complete = done >= total;
+    const complete = RUTA_ESPAÑOLA.topics.every((t) => isTopicFullyComplete(t.id));
     document.getElementById('home-congrats').classList.toggle('hidden', !complete);
     document.getElementById('home-congrats-msg').classList.toggle('hidden', !complete);
     document.getElementById('home-keep-going').classList.toggle('hidden', complete);
@@ -589,7 +737,7 @@
       } else if (complete) {
         intro.classList.add('hidden');
       } else {
-        intro.textContent = 'Vas bien — el progreso es solo una guía, no una carrera.';
+        intro.textContent = 'Vas bien — ' + countFactsLearned() + ' datos aprendidos hasta ahora.';
         intro.classList.remove('hidden');
       }
     }
@@ -597,13 +745,14 @@
     document.getElementById('stat-time').textContent = formatTime(state.studyMinutes);
     document.getElementById('stat-lessons').textContent = done;
     document.getElementById('stat-points').textContent = state.points.toLocaleString('es-ES');
+    const factsEl = document.getElementById('stat-facts');
+    if (factsEl) factsEl.textContent = String(countFactsLearned());
     renderStreakUi();
+    renderHomeReview();
 
     document.getElementById('sidebar-level').textContent = level;
     document.getElementById('sidebar-level-bar').style.width = (state.points % 100) + '%';
 
-    const initials = name.trim().charAt(0).toUpperCase() || 'A';
-    document.getElementById('profile-initials').textContent = initials;
     const nameInput = document.getElementById('profile-name-input');
     if (document.activeElement !== nameInput) nameInput.value = name;
     document.getElementById('profile-level').textContent = level;
@@ -620,7 +769,13 @@
     lucide.createIcons();
   }
 
-  function topicFooterHtml(topic, done, total, complete, isCurrent) {
+  function topicFooterHtml(topic, done, total, complete, isCurrent, examPending) {
+    if (examPending) {
+      return `<div class="topic-card__footer border-t-2 mt-3 pt-2.5 flex items-center gap-1.5" style="border-color:var(--divider)">
+        <i data-lucide="clipboard-list" class="w-3.5 h-3.5 text-[var(--amber)]"></i>
+        <span class="text-[11px] font-bold text-[var(--amber)]">Examen pendiente</span>
+      </div>`;
+    }
     if (prefs.focusMode) {
       if (complete) {
         return `<div class="topic-card__footer border-t-2 mt-3 pt-2.5 flex items-center gap-1.5" style="border-color:var(--divider)">
@@ -669,10 +824,11 @@
     grid.innerHTML = topics
       .map((topic) => {
         const { done, total } = topicProgress(topic);
-        const complete = done >= total;
+        const complete = isTopicFullyComplete(topic.id);
+        const examPending = isTopicLessonsComplete(topic.id) && topicHasExam(topic.id) && !isExamPassed(topic.id);
         const isCurrent = topic.id === currentId && !complete;
         const activeClass = isCurrent ? ' topic-card--active' : '';
-        const footer = topicFooterHtml(topic, done, total, complete, isCurrent);
+        const footer = topicFooterHtml(topic, done, total, complete, isCurrent, examPending);
         return `<div role="button" tabindex="0" onclick="openTopic('${topic.id}')" class="topic-card relative bg-white rounded-2xl border border-slate-100 soft-shadow h-full${activeClass}${isCurrent ? '' : ' p-4'}">
           <div class="relative w-12 h-12 rounded-2xl bg-[var(--brand-50)] flex items-center justify-center mb-3">
             <i data-lucide="${topic.icon}" class="w-5 h-5 text-[var(--brand-700)] stroke-[2]"></i>
@@ -712,8 +868,37 @@
     { id: 'first', icon: 'sparkles', title: 'Primer paso', desc: 'Completa tu primera lección', test: () => completedCount() >= 1 },
     { id: 'five', icon: 'shield', title: 'Explorador', desc: 'Completa 5 lecciones', test: () => completedCount() >= 5 },
     { id: 'streak3', icon: 'flame', title: 'Racha de fuego', desc: '3 días seguidos', test: () => state.streak >= 3 },
-    { id: 'route', icon: 'landmark', title: 'Maestro cultural', desc: 'Termina Cultura Española', test: () => completedCount() >= totalLessons() }
+    { id: 'exam1', icon: 'graduation-cap', title: 'Primera certificación', desc: 'Aprueba tu primer examen de tema', test: () => state.passedTopicExams.length >= 1 },
+    { id: 'facts15', icon: 'brain', title: 'Memoria viva', desc: 'Aprende 15 datos o más', test: () => countFactsLearned() >= 15 },
+    { id: 'route', icon: 'landmark', title: 'Maestro cultural', desc: 'Termina Cultura Española', test: () => RUTA_ESPAÑOLA.topics.every((t) => isTopicFullyComplete(t.id)) }
   ];
+
+  function renderHomeReview() {
+    const panel = document.getElementById('home-review-panel');
+    if (!panel) return;
+    const items = getReviewLessons();
+    if (!items.length) {
+      panel.classList.add('hidden');
+      return;
+    }
+    panel.classList.remove('hidden');
+    panel.innerHTML = `
+      <h3 class="text-[14.5px] font-extrabold text-slate-900 tracking-tight mb-1">Repasar</h3>
+      <p class="text-[12px] text-slate-400 leading-relaxed mb-4">Retomar lo aprendido ayuda a fijarlo en la memoria.</p>
+      <div class="flex flex-col gap-2.5">
+        ${items
+          .map(
+            (x) => `<button type="button" onclick="openLesson('${x.id}')" class="tap w-full text-left bg-[var(--brand-50)] rounded-xl px-4 py-3 flex items-center justify-between gap-3">
+              <span>
+                <span class="block text-[13px] font-bold text-slate-900">${escapeHtml(x.lesson.title)}</span>
+                <span class="block text-[11px] text-slate-500 font-semibold mt-0.5">Hace ${x.days} días</span>
+              </span>
+              <i data-lucide="rotate-ccw" class="w-4 h-4 text-[var(--brand-700)] shrink-0"></i>
+            </button>`
+          )
+          .join('')}
+      </div>`;
+  }
 
   function renderHomeAchievements() {
     const el = document.getElementById('home-achievements');
@@ -788,6 +973,32 @@
       })
       .join('');
 
+    const examPending = isTopicLessonsComplete(topicId) && topicHasExam(topicId) && !isExamPassed(topicId);
+    const examPassed = topicHasExam(topicId) && isExamPassed(topicId);
+    const examHtml = examPending
+      ? `<button type="button" onclick="openTopicExam('${topic.id}')" class="tap w-full text-left mt-6 bg-[var(--brand-700)] text-white rounded-2xl border border-[var(--brand-700)] p-4 soft-shadow-lg flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center shrink-0">
+            <i data-lucide="graduation-cap" class="w-[18px] h-[18px] text-white"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-[13.5px] font-bold">Examen del tema</p>
+            <p class="text-[11px] text-violet-100 font-semibold mt-0.5">Certifica lo que has aprendido</p>
+          </div>
+          <i data-lucide="chevron-right" class="w-5 h-5 text-white/80 shrink-0"></i>
+        </button>`
+      : examPassed
+        ? `<div class="mt-6 bg-green-50 border border-green-100 rounded-2xl p-4 flex items-center gap-3">
+            <i data-lucide="badge-check" class="w-5 h-5 text-green-600 shrink-0"></i>
+            <p class="text-[13px] font-bold text-green-700">Tema certificado · ${countTopicFacts(topic)} datos aprendidos</p>
+          </div>`
+        : '';
+    const ctaLabel = examPending
+      ? 'Hacer el examen'
+      : done >= total
+        ? 'Repasar tema'
+        : 'Continuar tema';
+    const ctaAction = examPending ? `openTopicExam('${topic.id}')` : `openNextInTopic('${topic.id}')`;
+
     document.getElementById('topic-root').innerHTML = `
       <div class="relative hero-photo" style="background-image:url('${topic.image}')">
         <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/10"></div>
@@ -809,9 +1020,10 @@
           ${progressHtml}
         </div>
         <div class="mt-6 flex flex-col gap-2.5">${lessonsHtml}</div>
+        ${examHtml}
         <div class="sticky-cta lg:static lg:mt-6">
-          <button type="button" onclick="openNextInTopic('${topic.id}')" class="tap w-full bg-[var(--brand-700)] text-white font-bold text-[14px] py-3.5 pill-btn soft-shadow-lg">
-            ${done >= total ? 'Repasar tema' : 'Continuar tema'}
+          <button type="button" onclick="${ctaAction}" class="tap w-full bg-[var(--brand-700)] text-white font-bold text-[14px] py-3.5 pill-btn soft-shadow-lg">
+            ${ctaLabel}
           </button>
         </div>
       </div>`;
@@ -855,8 +1067,8 @@
     </details>`;
   }
 
-  function buildQuizNavHtml(lesson, questionIndex) {
-    const total = getLessonQuestions(lesson).length;
+  function buildQuizNavHtml(questionIndex) {
+    const total = getActiveQuestions().length;
     if (total <= 1) return '';
     const hasPrev = questionIndex > 0;
     const hasNext = questionIndex < total - 1;
@@ -903,28 +1115,80 @@
     };
   }
 
-  function buildQuizInnerHtml(lesson, questionIndex) {
-    const questions = getLessonQuestions(lesson);
+  function buildQuizInnerHtml(questionIndex) {
+    const questions = getActiveQuestions();
     if (!questions.length) return '';
     const q = questions[questionIndex];
     if (!q) return '';
     const total = questions.length;
     const { optionsHtml, feedbackHtml } = renderQuizOptionState(q, questionIndex);
+    const heading = quizContext === 'exam' ? 'Examen del tema' : 'Comprueba lo aprendido';
     return `
-      <p class="text-[13px] font-extrabold text-slate-900 mb-1">Comprueba lo aprendido</p>
+      <p class="text-[13px] font-extrabold text-slate-900 mb-1">${heading}</p>
       ${quizProgressHtml(questionIndex, total)}
       <p class="text-[13.5px] font-semibold text-slate-700 mb-3" id="quiz-question">${escapeHtml(q.question)}</p>
       <div class="flex flex-col gap-2" id="quiz-options">${optionsHtml}</div>
       ${feedbackHtml}
-      ${buildQuizNavHtml(lesson, questionIndex)}`;
+      ${buildQuizNavHtml(questionIndex)}`;
   }
 
   function updateQuizStep() {
-    const lesson = getLesson(currentLessonId);
     const box = document.getElementById('quiz-box');
-    if (!lesson || !box) return;
-    box.innerHTML = buildQuizInnerHtml(lesson, currentQuizIndex);
+    if (!box) return;
+    if (!getActiveQuestions().length) return;
+    box.innerHTML = buildQuizInnerHtml(currentQuizIndex);
     lucide.createIcons();
+  }
+
+  function renderTopicExam(topicId) {
+    const topic = getTopic(topicId);
+    const exam = getTopicExam(topic);
+    if (!topic || !exam) return;
+    quizContext = 'exam';
+    currentExamTopicId = topicId;
+    currentTopicId = topicId;
+    resetQuizState(isExamPassed(topicId));
+
+    const quizHtml = `<div class="theme-card bg-white rounded-2xl border border-slate-100 p-5 soft-shadow" id="quiz-box">
+      ${buildQuizInnerHtml(0)}
+    </div>`;
+
+    document.getElementById('topic-exam-root').innerHTML = `
+      <div class="flex items-center justify-between gap-3 mb-4">
+        <button type="button" onclick="openTopic('${topicId}')" class="tap flex items-center gap-2 text-[13px] font-bold text-slate-500 min-w-0">
+          <i data-lucide="arrow-left" class="w-4 h-4 shrink-0"></i>
+          <span class="truncate">${escapeHtml(topic.title)}</span>
+        </button>
+      </div>
+      <div class="theme-card bg-white rounded-3xl border border-slate-100 p-5 soft-shadow-lg">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="text-[11px] font-bold text-[var(--brand-700)] uppercase tracking-wide">Examen del tema</span>
+          ${isExamPassed(topicId) ? '<span class="text-[10px] font-bold bg-green-50 text-green-700 px-2 py-0.5 rounded-full">Aprobado</span>' : ''}
+        </div>
+        <h1 class="text-[22px] font-extrabold text-slate-900 tracking-tight">${escapeHtml(exam.title)}</h1>
+        <p class="text-[13px] text-slate-500 mt-3 leading-relaxed">${escapeHtml(exam.intro)}</p>
+      </div>
+      ${quizHtml}
+      <button type="button" id="complete-exam-btn" onclick="completeExam()" disabled
+        class="tap mt-6 w-full bg-[var(--brand-700)] text-white font-bold text-[14px] py-3.5 pill-btn soft-shadow-lg opacity-40 cursor-not-allowed">
+        ${isExamPassed(topicId) ? 'Examen aprobado ✓' : 'Certificar tema'}
+      </button>`;
+
+    if (isExamPassed(topicId)) enableExamButton(true);
+    lucide.createIcons();
+  }
+
+  function enableExamButton(passed) {
+    const btn = document.getElementById('complete-exam-btn');
+    if (!btn) return;
+    btn.disabled = !quizAnswered && !passed;
+    btn.classList.toggle('opacity-40', btn.disabled);
+    btn.classList.toggle('cursor-not-allowed', btn.disabled);
+    if (passed) {
+      btn.textContent = 'Examen aprobado ✓';
+      btn.classList.remove('opacity-40', 'cursor-not-allowed');
+      btn.disabled = true;
+    }
   }
 
   function renderLesson(lessonId) {
@@ -932,12 +1196,9 @@
     if (!lesson) return;
     const topic = getTopic(lesson.topicId);
     const done = isDone(lessonId);
-    currentQuizIndex = 0;
-    quizReviewMode = done;
-    quizCorrectSet = new Set();
-    quizPickedMap = new Map();
-    quizAwaitingNext = false;
-    quizAnswered = done;
+    quizContext = 'lesson';
+    currentLessonId = lessonId;
+    resetQuizState(done);
 
     const blocksHtml = lesson.blocks
       .map((b) => {
@@ -950,10 +1211,12 @@
     const sourcesHtml = buildSourcesHtml(lesson);
 
     const quizHtml = questions.length
-      ? `<div class="mt-6 theme-card bg-white rounded-2xl border border-slate-100 p-5 soft-shadow" id="quiz-box">
-          ${buildQuizInnerHtml(lesson, 0)}
+      ? `<div class="theme-card bg-white rounded-2xl md:rounded-3xl border border-slate-100 p-5 soft-shadow lesson-quiz-card" id="quiz-box">
+          ${buildQuizInnerHtml(0)}
         </div>`
       : '';
+
+    const layoutClass = questions.length ? 'lesson-layout lesson-layout--split' : 'lesson-layout';
 
     const showFontHint = !prefs.hints.fontSize;
     const fontHintHtml = showFontHint
@@ -977,17 +1240,21 @@
         </div>
       </div>
       ${fontHintHtml}
-      <div id="lesson-content-card" class="theme-card bg-white rounded-3xl border border-slate-100 p-5 soft-shadow-lg">
-        <div class="flex items-center gap-2 mb-1">
-          <span class="text-[11px] font-bold text-[var(--brand-700)] uppercase tracking-wide">Lección</span>
-          ${done ? '<span class="text-[10px] font-bold bg-green-50 text-green-700 px-2 py-0.5 rounded-full">Completada</span>' : ''}
+      <div class="${layoutClass}">
+        <div class="lesson-layout__main">
+          <div id="lesson-content-card" class="theme-card bg-white rounded-3xl border border-slate-100 p-5 soft-shadow-lg h-full">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-[11px] font-bold text-[var(--brand-700)] uppercase tracking-wide">Lección</span>
+              ${done ? '<span class="text-[10px] font-bold bg-green-50 text-green-700 px-2 py-0.5 rounded-full">Completada</span>' : ''}
+            </div>
+            <h1 class="text-[22px] font-extrabold text-slate-900 tracking-tight">${escapeHtml(lesson.title)}</h1>
+            <div class="lesson-content mt-4">${blocksHtml}</div>
+          </div>
         </div>
-        <h1 class="text-[22px] font-extrabold text-slate-900 tracking-tight">${escapeHtml(lesson.title)}</h1>
-        <div class="lesson-content mt-4">${blocksHtml}</div>
+        ${questions.length ? `<div class="lesson-layout__quiz">${quizHtml}</div>` : ''}
       </div>
-      ${quizHtml}
       <button type="button" id="complete-lesson-btn" onclick="completeLesson()" disabled
-        class="tap mt-6 w-full bg-[var(--brand-700)] text-white font-bold text-[14px] py-3.5 pill-btn soft-shadow-lg opacity-40 cursor-not-allowed">
+        class="tap mt-6 w-full md:max-w-md md:mx-auto block bg-[var(--brand-700)] text-white font-bold text-[14px] py-3.5 pill-btn soft-shadow-lg opacity-40 cursor-not-allowed">
         ${done ? 'Lección completada ✓' : 'Completar lección'}
       </button>
       ${sourcesHtml}`;
@@ -1048,11 +1315,13 @@
     const items = RUTA_ESPAÑOLA.topics
       .map((topic) => {
         const p = topicProgress(topic);
-        const complete = p.done >= p.total;
+        const complete = isTopicFullyComplete(topic.id);
+        const examPending = isTopicLessonsComplete(topic.id) && topicHasExam(topic.id) && !isExamPassed(topic.id);
+        const status = complete ? ' · Certificado' : examPending ? ' · Examen pendiente' : '';
         return `<button type="button" onclick="openTopic('${topic.id}')" class="tap w-full bg-white rounded-2xl border border-slate-100 soft-shadow p-4 flex items-center justify-between text-left">
           <div>
             <p class="text-[13.5px] font-bold text-slate-900">${escapeHtml(topic.title)}</p>
-            <p class="text-[11.5px] text-slate-400 font-semibold mt-0.5">${p.done} / ${p.total} lecciones${complete ? ' · Completado' : ''}</p>
+            <p class="text-[11.5px] text-slate-400 font-semibold mt-0.5">${p.done} / ${p.total} lecciones${status}</p>
           </div>
           <i data-lucide="${topic.icon}" class="w-5 h-5 text-[var(--brand-700)]"></i>
         </button>`;
@@ -1100,6 +1369,16 @@
     showScreen('lesson');
   };
 
+  window.openTopicExam = function (topicId) {
+    if (!isTopicLessonsComplete(topicId)) {
+      toast('Completa todas las lecciones primero');
+      return;
+    }
+    if (!topicHasExam(topicId)) return;
+    renderTopicExam(topicId);
+    showScreen('topic-exam');
+  };
+
   window.openNextInTopic = function (topicId) {
     const topic = getTopic(topicId);
     const next = topic.lessons.find((l) => !isDone(l.id));
@@ -1120,9 +1399,7 @@
   };
 
   window.goQuizTo = function (index) {
-    const lesson = getLesson(currentLessonId);
-    if (!lesson) return;
-    const total = getLessonQuestions(lesson).length;
+    const total = getActiveQuestions().length;
     if (index < 0 || index >= total || index === currentQuizIndex) return;
     if (!quizReviewMode && index > currentQuizIndex && !quizCorrectSet.has(index)) return;
     quizAwaitingNext = false;
@@ -1131,9 +1408,7 @@
   };
 
   window.confirmQuizNext = function () {
-    const lesson = getLesson(currentLessonId);
-    if (!lesson) return;
-    const total = getLessonQuestions(lesson).length;
+    const total = getActiveQuestions().length;
     if (currentQuizIndex >= total - 1) return;
     if (!quizReviewMode && !quizCorrectSet.has(currentQuizIndex)) return;
     quizAwaitingNext = false;
@@ -1148,12 +1423,11 @@
     } else if (quizPickedMap.has(currentQuizIndex)) {
       return;
     }
-    const lesson = getLesson(currentLessonId);
-    if (!lesson) return;
-    const questions = getLessonQuestions(lesson);
+    const questions = getActiveQuestions();
     const q = questions[currentQuizIndex];
     if (!q) return;
     const correct = q.correct;
+    const isExam = quizContext === 'exam';
     const feedback = document.getElementById('quiz-feedback');
     if (!feedback) return;
     document.querySelectorAll('#quiz-options .quiz-option').forEach((btn, i) => {
@@ -1169,10 +1443,13 @@
         if (allCorrect) {
           quizAnswered = true;
           quizAwaitingNext = false;
-          feedback.textContent = '¡Todas correctas! Ya puedes completar la lección.';
+          feedback.textContent = isExam
+            ? '¡Todas correctas! Ya puedes certificar el tema.'
+            : '¡Todas correctas! Ya puedes completar la lección.';
           feedback.className = 'text-[12px] font-semibold mt-3 text-green-600';
           feedback.classList.remove('hidden');
-          enableCompleteButton(false);
+          if (isExam) enableExamButton(false);
+          else enableCompleteButton(false);
         } else {
           quizAwaitingNext = true;
           feedback.textContent = '¡Correcto! Pasa a la siguiente cuando quieras.';
@@ -1204,6 +1481,36 @@
     }
   };
 
+  window.showTopicExamPrompt = function (topic) {
+    showAppSheet({
+      title: '¡Lecciones completadas!',
+      message: 'Has terminado «' + topic.title + '». Haz el examen para certificar lo que aprendiste.',
+      primaryLabel: 'Hacer el examen',
+      secondaryLabel: 'Más tarde',
+      onPrimary: () => openTopicExam(topic.id)
+    });
+  };
+
+  window.completeExam = function () {
+    if (quizContext !== 'exam' || !currentExamTopicId || !quizAnswered) return;
+    if (isExamPassed(currentExamTopicId)) return;
+    state.passedTopicExams.push(currentExamTopicId);
+    state.points += 100;
+    updateStreak();
+    saveState();
+    const topic = getTopic(currentExamTopicId);
+    const facts = countTopicFacts(topic);
+    toast('¡Tema certificado! +100 puntos · ' + facts + ' datos dominados');
+    renderTopicExam(currentExamTopicId);
+
+    const nextTopic = getNextTopic();
+    if (nextTopic) {
+      setTimeout(() => showTopicCompletePrompt(topic, nextTopic), 600);
+    } else if (RUTA_ESPAÑOLA.topics.every((t) => isTopicFullyComplete(t.id))) {
+      setTimeout(() => showRouteCompletePrompt(), 600);
+    }
+  };
+
   window.completeLesson = function () {
     if (!currentLessonId || !quizAnswered) return;
     if (isDone(currentLessonId)) return;
@@ -1212,21 +1519,27 @@
       const mins = Math.max(1, Math.round((Date.now() - lessonStartedAt) / 60000));
       state.studyMinutes += Math.min(mins, 15);
     }
+    const facts = countLessonFacts(currentLessonId);
     state.completedLessons.push(currentLessonId);
+    state.lessonStudiedAt[currentLessonId] = todayStr();
     state.points += 50;
     updateStreak();
     const completedTopicId = getLesson(currentLessonId).topicId;
     saveState();
-    toast('¡Lección completada! +50 puntos');
+    toast('¡Lección completada! +50 puntos · ' + facts + ' datos nuevos');
     renderLesson(currentLessonId);
 
     const completedTopic = getTopic(completedTopicId);
-    if (!isTopicComplete(completedTopicId)) return;
+    if (isTopicLessonsComplete(completedTopicId) && topicHasExam(completedTopicId) && !isExamPassed(completedTopicId)) {
+      setTimeout(() => showTopicExamPrompt(completedTopic), 500);
+      return;
+    }
+    if (!isTopicFullyComplete(completedTopicId)) return;
 
     const nextTopic = getNextTopic();
     if (nextTopic && nextTopic.id !== completedTopicId) {
       setTimeout(() => showTopicCompletePrompt(completedTopic, nextTopic), 500);
-    } else if (completedCount() >= totalLessons()) {
+    } else if (RUTA_ESPAÑOLA.topics.every((t) => isTopicFullyComplete(t.id))) {
       setTimeout(() => showRouteCompletePrompt(), 500);
     }
   };
@@ -1235,14 +1548,14 @@
     const payload = {
       ...state,
       exportedAt: new Date().toISOString(),
-      app: 'Aprendarnia',
+      app: 'Aprendalia',
       route: RUTA_ESPAÑOLA.id
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
     const safeName = (state.name || 'aprendiz').replace(/[^a-z0-9áéíóúñ]/gi, '_').toLowerCase();
-    a.download = 'learnia-progreso-' + safeName + '.json';
+    a.download = 'aprendalia-progreso-' + safeName + '.json';
     a.click();
     URL.revokeObjectURL(a.href);
     toast('Progreso descargado');
@@ -1292,6 +1605,8 @@
           ...defaultState(),
           name: typeof data.name === 'string' ? data.name.slice(0, 24) : 'Aprendiz',
           completedLessons: data.completedLessons.filter((id) => validIds.has(id)),
+          passedTopicExams: Array.isArray(data.passedTopicExams) ? data.passedTopicExams : [],
+          lessonStudiedAt: data.lessonStudiedAt && typeof data.lessonStudiedAt === 'object' ? data.lessonStudiedAt : {},
           studyMinutes: Math.max(0, Number(data.studyMinutes) || 0),
           points: Math.max(0, Number(data.points) || 0),
           streak: Math.max(0, Number(data.streak) || 0),
@@ -1356,6 +1671,7 @@
     closeAppSheet();
     if (target === 'journey-stats') renderJourneyStats();
     if (target === 'journey') renderJourney();
+    if (target === 'topic-exam' && currentExamTopicId) renderTopicExam(currentExamTopicId);
 
     document.querySelectorAll('.screen').forEach((s) => s.classList.remove('active'));
     const screen = document.getElementById('screen-' + target);
@@ -1436,7 +1752,7 @@
     });
 
     const hash = location.hash.replace('#', '');
-    const valid = ['home', 'explore', 'routes', 'profile', 'settings', 'journey', 'journey-stats', 'topic', 'lesson', 'achievements'];
+    const valid = ['home', 'explore', 'routes', 'profile', 'settings', 'journey', 'journey-stats', 'topic', 'topic-exam', 'lesson', 'achievements'];
     if (valid.includes(hash)) showScreen(hash);
     else {
       paintSidebar('home');
@@ -1444,5 +1760,7 @@
       paintBottomNav('home');
     }
     lucide.createIcons();
+    bindOnboarding();
+    maybeShowOnboarding();
   });
 })();

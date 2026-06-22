@@ -25,8 +25,8 @@ html {
   --green: #22c55e;
   --hero-overlay: rgba(167, 139, 250, 0.55);
   --shadow-tint: rgba(46, 26, 167, 0.1);
-  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-display: 'Poppins', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
   --toast-bg: #1e1b4b;
   --toast-text: #fff;
   --sidebar-bg: #ffffff;
@@ -53,8 +53,8 @@ html {
   --green: #34d399;
   --hero-overlay: rgba(133, 112, 245, 0.35);
   --shadow-tint: rgba(0, 0, 0, 0.35);
-  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-display: 'Poppins', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
   --toast-bg: #2a2545;
   --toast-text: #eeedf4;
   --sidebar-bg: #12101a;
@@ -81,8 +81,8 @@ html {
   --green: #5a7a52;
   --hero-overlay: rgba(201, 162, 39, 0.2);
   --shadow-tint: rgba(26, 26, 26, 0.08);
-  --font-display: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
-  --font-body: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  --font-display: 'Poppins', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
   --toast-bg: #3d3228;
   --toast-text: #f7f2e8;
   --sidebar-bg: #f7f2e8;
@@ -93,6 +93,7 @@ body {
   background: var(--surface) !important;
   color: var(--text);
   font-family: var(--font-body);
+  font-weight: 500;
 }
 
 html {
@@ -114,7 +115,10 @@ main.theme-app {
   backdrop-filter: blur(12px);
 }
 
-h1, h2, h3, h4, .font-display { font-family: var(--font-display); }
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
 
 .theme-card {
   background: var(--card) !important;
@@ -173,14 +177,51 @@ h1, h2, h3, h4, .font-display { font-family: var(--font-display); }
 }
 
 .lesson-content p {
-  color: var(--text-muted);
-  font-size: calc(0.875rem * var(--font-scale));
+  color: var(--text);
+  font-size: calc(0.9375rem * var(--font-scale));
+  font-weight: 500;
+  line-height: 1.72;
 }
 .lesson-content .lesson-tip {
   background: var(--brand-50);
   border-left-color: var(--brand-500);
   color: var(--text-muted);
-  font-size: calc(0.8125rem * var(--font-scale));
+  font-size: calc(0.875rem * var(--font-scale));
+  font-weight: 500;
+}
+
+.stat-pill {
+  background: var(--brand-50);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 12px 8px;
+  text-align: center;
+}
+.stat-pill__value {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+}
+.stat-pill__label {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.streak-card-btn {
+  background: #fff;
+  color: var(--brand-700);
+}
+[data-theme="dark"] .streak-card-btn {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--brand-800);
+}
+[data-theme="classic"] .streak-card-btn {
+  background: var(--card);
+  color: var(--brand-700);
+  border: 1px solid var(--card-border);
 }
 
 #toast {
@@ -282,6 +323,34 @@ h1, h2, h3, h4, .font-display { font-family: var(--font-display); }
 .lesson-source-text {
   font-size: 12px;
   color: var(--text-muted);
+}
+
+[data-theme="dark"] .user-avatar {
+  background: linear-gradient(145deg, rgba(91, 61, 240, 0.22) 0%, rgba(61, 40, 184, 0.12) 100%) !important;
+  border-color: var(--card-border) !important;
+  color: var(--brand-300) !important;
+}
+
+[data-theme="dark"] .hero-route-card__overlay {
+  background: linear-gradient(
+    105deg,
+    rgba(10, 8, 18, 0.94) 0%,
+    rgba(20, 16, 36, 0.88) 30%,
+    rgba(35, 28, 64, 0.55) 52%,
+    rgba(50, 40, 90, 0.22) 72%,
+    transparent 100%
+  );
+}
+
+[data-theme="classic"] .hero-route-card__overlay {
+  background: linear-gradient(
+    105deg,
+    rgba(58, 42, 28, 0.93) 0%,
+    rgba(88, 62, 40, 0.82) 32%,
+    rgba(120, 88, 52, 0.45) 55%,
+    rgba(140, 110, 70, 0.15) 78%,
+    transparent 100%
+  );
 }
 
 [data-theme="dark"] .bg-slate-50,
