@@ -459,9 +459,15 @@
     display:none;
     align-items:center;
     justify-content:center;
-    padding:1.25rem;
+    padding:max(0.75rem, env(safe-area-inset-top)) max(0.75rem, env(safe-area-inset-right)) max(0.75rem, env(safe-area-inset-bottom)) max(0.75rem, env(safe-area-inset-left));
   }
   .onboarding.open{ display:flex; }
+  @media(max-width:639px){
+    .onboarding{
+      align-items:flex-end;
+      padding:0;
+    }
+  }
   .onboarding__backdrop{
     position:absolute;
     inset:0;
@@ -471,13 +477,34 @@
   [data-theme="dark"] .onboarding__backdrop{ background:rgba(0,0,0,0.72); }
   .onboarding__dialog{
     position:relative;
+    display:flex;
+    flex-direction:column;
     width:100%;
     max-width:520px;
-    max-height:min(90vh, 640px);
+    max-height:min(90dvh, 640px);
     overflow:hidden;
     border-radius:24px;
-    padding:1.5rem 1.5rem 1.25rem;
+    padding:0;
     animation:onboardingPopIn .4s cubic-bezier(.22,.61,.36,1) both;
+  }
+  @media(max-width:639px){
+    .onboarding__dialog{
+      max-width:none;
+      max-height:min(94dvh, 100%);
+      border-radius:20px 20px 0 0;
+    }
+  }
+  .onboarding__content{
+    flex:1 1 auto;
+    min-height:0;
+    overflow-x:hidden;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior:contain;
+    padding:1.5rem 1.5rem 0.5rem;
+  }
+  @media(max-width:639px){
+    .onboarding__content{ padding:1.25rem 1.25rem 0.5rem; }
   }
   .onboarding__slide{
     display:none;
@@ -554,14 +581,22 @@
     border-radius:999px;
     padding:.35rem .65rem;
   }
+  @media(max-width:639px){
+    .onboarding__mock-card{ padding:.7rem; font-size:.74rem; }
+    .onboarding__mock-card strong{ font-size:.78rem; }
+    .onboarding__tools{ margin-top:.75rem; }
+    .onboarding__tool{ font-size:.68rem; padding:.3rem .55rem; }
+  }
   .onboarding__footer{
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:.75rem;
-    margin-top:1.25rem;
-    padding-top:1rem;
+    flex-shrink:0;
+    margin-top:0;
+    padding:0.85rem 1.25rem max(0.85rem, env(safe-area-inset-bottom));
     border-top:1px solid var(--card-border);
+    background:var(--card);
   }
   .onboarding__dots{
     display:flex;
@@ -590,6 +625,10 @@
     border:1px solid var(--card-border);
     background:var(--card);
     color:var(--text-muted);
+    min-height:44px;
+  }
+  @media(max-width:639px){
+    .onboarding__btn{ padding:.65rem 1.15rem; font-size:.85rem; }
   }
   .onboarding__btn--primary{
     background:var(--brand-700);
@@ -1167,6 +1206,7 @@
 <div id="onboarding" class="onboarding" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="onboarding-title">
   <div class="onboarding__backdrop" onclick="closeOnboarding()"></div>
   <div class="onboarding__dialog theme-card soft-shadow-lg">
+    <div class="onboarding__content">
     <div class="onboarding__slide onboarding__slide--active" data-onboarding-slide="0">
       <p class="text-[11px] font-bold uppercase tracking-wider text-[var(--brand-600)] mb-1">Bienvenido/a a Aprendalia</p>
       <h2 id="onboarding-title" class="onboarding__title">Aprende sin presión</h2>
@@ -1195,6 +1235,7 @@
         <span class="onboarding__tool"><span class="font-extrabold">A−</span> / <span class="font-extrabold">A+</span> Tamaño del texto</span>
         <span class="onboarding__tool"><i data-lucide="headphones" class="w-3.5 h-3.5"></i> Escuchar preguntas</span>
       </div>
+    </div>
     </div>
     <div class="onboarding__footer">
       <div class="onboarding__dots" aria-hidden="true">
