@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Aprendalia">
+  <defs>
+    <linearGradient id="bg" x1="5" y1="3" x2="27" y2="29" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5b3df0"/>
+      <stop offset="1" stop-color="#3d28b8"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="8.5" fill="url(#bg)"/>
+  <path fill="#fff" fill-rule="evenodd" d="M11 8.5c0-.55.45-1 1-1h8c.55 0 1 .45 1 1v15c0 .55-.45 1-1 1h-8c-.55 0-1-.45-1-1v-15zm2 1.5v12h6v-12h-6z"/>
+  <path fill="#c4b5fd" d="M14.5 12.5h3v1.5h-3v-1.5zm0 3h2.2v1.5h-2.2v-1.5z"/>
+  <circle cx="23.5" cy="8.5" r="2.2" fill="#ede9fe"/>
+</svg>

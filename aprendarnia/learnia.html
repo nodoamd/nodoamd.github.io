@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-<title>Aprendarnia by Nodo — Aprende culturas completas</title>
+<title>Aprendalia by Nodo — Aprende culturas completas</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="assets/favicon.svg">
+<meta name="theme-color" content="#3d28b8">
+<meta name="apple-mobile-web-app-title" content="Aprendalia">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <link rel="stylesheet" href="learnia-themes.css">
@@ -15,26 +19,13 @@
   } catch (e) {}
 </script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
-
-  :root{
-    --brand-900:#1a1050;
-    --brand-800:#2a1890;
-    --brand-700:#3d28b8;
-    --brand-600:#4f35c1;
-    --brand-500:#5b3df0;
-    --brand-300:#a78bfa;
-    --brand-100:#ede9fe;
-    --brand-50:#f6f4ff;
-    --divider:#ddd3fb;
-    --amber:#f59e0b;
-    --green:#22c55e;
-  }
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap');
 
   html,body{ -webkit-tap-highlight-color: transparent; }
   body{
-    font-family:'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family:'DM Sans', system-ui, sans-serif;
+    font-weight:500;
   }
 
   .no-scrollbar::-webkit-scrollbar{ display:none; }
@@ -65,6 +56,36 @@
       linear-gradient(135deg, var(--brand-500) 0%, var(--brand-700) 55%, var(--brand-900) 100%);
   }
 
+  .hero-route-card{
+    min-height:220px;
+    border:none;
+    background:var(--brand-700);
+  }
+  @media(min-width:1024px){ .hero-route-card{ min-height:248px; } }
+  .hero-route-card__photo{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:72% center;
+    pointer-events:none;
+  }
+  .hero-route-card__overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+      105deg,
+      rgba(26, 16, 80, 0.94) 0%,
+      rgba(45, 28, 140, 0.88) 28%,
+      rgba(61, 40, 184, 0.62) 48%,
+      rgba(79, 53, 193, 0.28) 68%,
+      rgba(91, 61, 240, 0.08) 82%,
+      transparent 100%
+    );
+    pointer-events:none;
+  }
+
   .accent-shadow{ box-shadow: 0 22px 40px -16px rgba(46,26,167,.45); }
   .soft-shadow{ box-shadow: 0 1px 2px rgba(15,18,34,.04), 0 8px 20px -10px rgba(46,26,167,.10); }
   .soft-shadow-lg{ box-shadow: 0 1px 2px rgba(15,18,34,.05), 0 18px 34px -16px rgba(46,26,167,.18); }
@@ -74,7 +95,7 @@
 
   .nav-pill{ transition: background .25s ease, color .25s ease; }
   .tab-icon{ transition: color .2s ease, transform .2s ease; }
-  .tap{ transition: transform .15s ease; }
+  .tap{ transition: transform .15s ease; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
   .tap:active{ transform:scale(.97); }
 
   .topic-card{ transition: transform .25s cubic-bezier(.22,.61,.36,1), box-shadow .25s ease, border-color .25s ease; cursor:pointer; }
@@ -100,6 +121,161 @@
   .topic-card--active .topic-card__footer span,
   .topic-card--active .topic-card__footer i{ color:#fff !important; }
 
+  .route-accordion{
+    background:#fff;
+    border:1px solid #eef2f7;
+    border-radius:1.125rem;
+    overflow:hidden;
+    box-shadow:0 1px 2px rgba(46,26,167,.05), 0 4px 16px -6px rgba(46,26,167,.08);
+    transition:border-color .25s ease, box-shadow .25s ease;
+  }
+  .route-accordion--open{
+    border-color:#e8e4f8;
+    box-shadow:0 2px 4px rgba(46,26,167,.06), 0 10px 28px -10px rgba(46,26,167,.14);
+  }
+  .route-accordion__header{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:.875rem;
+    padding:1rem 1.125rem;
+    text-align:left;
+    background:transparent;
+    border:none;
+    cursor:pointer;
+    transition:background .22s ease;
+  }
+  @media(min-width:1024px){
+    .route-accordion{ border-radius:1.25rem; }
+    .route-accordion__header{
+      padding:1.125rem 1.35rem;
+      gap:1rem;
+    }
+    .route-accordion__header:hover{ background:rgba(245,243,255,.65); }
+    .route-accordion__title{ font-size:1rem; }
+    .route-accordion__sub{ font-size:.75rem; }
+  }
+  .route-accordion__flag{
+    font-size:1.35rem;
+    line-height:1;
+    flex-shrink:0;
+  }
+  .route-accordion__meta{ flex:1; min-width:0; }
+  .route-accordion__title{
+    font-size:.9375rem;
+    font-weight:800;
+    color:#0f172a;
+    letter-spacing:-.01em;
+    line-height:1.25;
+  }
+  .route-accordion__sub{
+    font-size:.72rem;
+    font-weight:600;
+    color:#94a3b8;
+    margin-top:.2rem;
+  }
+  .route-accordion__chevron{
+    flex-shrink:0;
+    color:#94a3b8;
+    transition:transform .38s cubic-bezier(.22,.61,.36,1), color .22s ease;
+  }
+  .route-accordion--open .route-accordion__chevron{
+    transform:rotate(180deg);
+    color:var(--brand-700);
+  }
+  .route-accordion__bar{
+    height:4px;
+    border-radius:9999px;
+    background:#f1f5f9;
+    margin:0 1.125rem;
+    overflow:hidden;
+    transition:opacity .28s ease;
+  }
+  @media(min-width:1024px){ .route-accordion__bar{ margin:0 1.35rem; } }
+  .route-accordion__bar > span{
+    display:block;
+    height:100%;
+    border-radius:9999px;
+    background:linear-gradient(90deg,var(--brand-500),var(--brand-700));
+    transition:width .5s cubic-bezier(.22,.61,.36,1);
+  }
+  .route-accordion__collapse{
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .42s cubic-bezier(.22,.61,.36,1);
+  }
+  .route-accordion--open .route-accordion__collapse{ grid-template-rows:1fr; }
+  .route-accordion__body{
+    overflow:hidden;
+    min-height:0;
+    padding:0 1rem;
+    opacity:0;
+    border-top:1px solid transparent;
+    transition:
+      opacity .34s cubic-bezier(.22,.61,.36,1) .04s,
+      padding .42s cubic-bezier(.22,.61,.36,1),
+      border-color .28s ease;
+  }
+  .route-accordion--open .route-accordion__body{
+    opacity:1;
+    padding:.5rem 1rem 1.125rem;
+    border-top-color:#f8fafc;
+  }
+  @media(min-width:1024px){
+    .route-accordion--open .route-accordion__body{
+      padding:.65rem 1.35rem 1.25rem;
+    }
+  }
+  .route-accordion__topics{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:.875rem;
+  }
+  @media(min-width:1024px){
+    .route-accordion__topics{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+  }
+  .route-accordion__list{
+    display:flex;
+    flex-direction:column;
+    gap:.625rem;
+  }
+  .route-accordion__list-item{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:.75rem;
+    padding:.875rem 1rem;
+    text-align:left;
+    background:#fff;
+    border:1px solid #f1f5f9;
+    border-radius:.875rem;
+    box-shadow:0 1px 2px rgba(46,26,167,.04);
+  }
+  .route-accordion__open-route{
+    margin-top:.75rem;
+    width:100%;
+    font-size:.8125rem;
+    font-weight:700;
+    color:var(--brand-700);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:.25rem;
+    padding:.625rem;
+    border:none;
+    background:var(--brand-50);
+    border-radius:.75rem;
+    cursor:pointer;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .route-accordion__collapse,
+    .route-accordion__body,
+    .route-accordion__chevron,
+    .route-accordion__bar > span{ transition:none; }
+  }
+
   .pill-btn{ border-radius:9999px; }
   .level-track{ height:4px; border-radius:9999px; background:#e8e4f8; overflow:hidden; }
   .level-fill{ height:100%; border-radius:9999px; background:linear-gradient(90deg,var(--brand-500),var(--brand-700)); }
@@ -109,10 +285,14 @@
   .drawer-backdrop{
     position:fixed; inset:0; z-index:50;
     background:rgba(15,18,34,.35);
-    opacity:0; pointer-events:none;
+    display:none;
+    opacity:0;
     transition:opacity .28s ease;
   }
-  .drawer-backdrop.open{ opacity:1; pointer-events:auto; }
+  .drawer-backdrop.open{
+    display:block;
+    opacity:1;
+  }
   .mobile-drawer{
     position:fixed; top:0; left:0; bottom:0; z-index:51;
     width:min(288px,86vw);
@@ -120,8 +300,12 @@
     transform:translateX(-105%);
     transition:transform .32s cubic-bezier(.22,.61,.36,1);
     box-shadow:18px 0 40px -12px rgba(46,26,167,.18);
+    pointer-events:none;
   }
-  .mobile-drawer.open{ transform:translateX(0); }
+  .mobile-drawer.open{
+    transform:translateX(0);
+    pointer-events:auto;
+  }
 
   .hero-photo{
     height:220px;
@@ -143,13 +327,40 @@
   body.detail-view #mobile-top-bar{ display:none; }
   body.detail-view main{ padding-bottom:1.5rem !important; }
   body.detail-view #screen-topic,
+  body.detail-view #screen-topic-exam,
   body.detail-view #screen-journey-stats,
   body.detail-view #screen-lesson{ margin-top:0; }
 
-  .lesson-content p{ margin-bottom:1rem; line-height:1.65; color:#334155; font-size:14px; }
+  /* Espacio bajo contenido para que la barra inferior no tape botones en móvil */
+  .mobile-screen-pad{
+    padding-bottom:calc(6.5rem + env(safe-area-inset-bottom));
+  }
+  @media(min-width:1024px){
+    .mobile-screen-pad{ padding-bottom:2.5rem; }
+  }
+  .mobile-main-pad{
+    padding-bottom:calc(5.5rem + env(safe-area-inset-bottom));
+  }
+  @media(min-width:1024px){
+    .mobile-main-pad{ padding-bottom:2.5rem; }
+  }
+
+  .lesson-content p{
+    margin-bottom:1rem;
+    line-height:1.72;
+    color:var(--text, #0f1222);
+    font-size:15px;
+    font-weight:500;
+  }
   .lesson-content .lesson-tip{
-    background:var(--brand-50); border-left:3px solid var(--brand-500);
-    padding:12px 14px; border-radius:12px; font-size:13px; color:#475569; margin:1rem 0;
+    background:var(--brand-50);
+    border-left:3px solid var(--brand-500);
+    padding:12px 14px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:500;
+    color:var(--text-muted, #475569);
+    margin:1rem 0;
   }
   .quiz-option{ transition: border-color .2s, background .2s; }
   .quiz-option.selected{ border-color:var(--brand-500); background:var(--brand-50); }
@@ -177,6 +388,39 @@
   .brand-lockup--sm .brand-logo{ width:32px; height:32px; }
   .brand-lockup--sm .brand-title{ font-size:15px; }
   .brand-by{ font-size:10px; font-weight:600; color:#94a3b8; letter-spacing:0.04em; }
+
+  .user-avatar{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(145deg, var(--brand-100, #ede9fe) 0%, var(--brand-50, #f6f4ff) 100%);
+    border:1px solid var(--card-border, #ece8fb);
+    color:var(--brand-600, #4f35c1);
+    overflow:hidden;
+    flex-shrink:0;
+  }
+  .user-avatar__icon{ width:18px; height:18px; stroke-width:2.1; }
+  .user-avatar--sm{ width:36px; height:36px; border-radius:999px; }
+  .user-avatar--lg{ width:80px; height:80px; border-radius:999px; }
+  .user-avatar--lg .user-avatar__icon{ width:34px; height:34px; }
+
+  .lesson-layout{
+    display:flex;
+    flex-direction:column;
+    gap:1.25rem;
+  }
+  @media(min-width:768px){
+    .lesson-layout--split{
+      display:grid;
+      grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);
+      gap:1.5rem;
+      align-items:start;
+    }
+    .lesson-layout--split .lesson-layout__quiz{
+      position:sticky;
+      top:1rem;
+    }
+  }
 
   .site-footer{
     margin-top:2.5rem;
@@ -206,6 +450,169 @@
   .site-footer__nodo:hover{ background:var(--brand-50, #f6f4ff); color:var(--brand-700, #3d28b8); }
   .site-footer__nodo img{ width:22px; height:22px; object-fit:contain; }
   .site-footer__nodo strong{ font-weight:800; color:var(--text, #0f1222); }
+
+  /* ——— Onboarding ——— */
+  .onboarding{
+    position:fixed;
+    inset:0;
+    z-index:90;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:1.25rem;
+  }
+  .onboarding.open{ display:flex; }
+  .onboarding__backdrop{
+    position:absolute;
+    inset:0;
+    background:rgba(15,18,34,0.55);
+    animation:onboardingFadeIn .35s ease both;
+  }
+  [data-theme="dark"] .onboarding__backdrop{ background:rgba(0,0,0,0.72); }
+  .onboarding__dialog{
+    position:relative;
+    width:100%;
+    max-width:520px;
+    max-height:min(90vh, 640px);
+    overflow:hidden;
+    border-radius:24px;
+    padding:1.5rem 1.5rem 1.25rem;
+    animation:onboardingPopIn .4s cubic-bezier(.22,.61,.36,1) both;
+  }
+  .onboarding__slide{
+    display:none;
+    animation:onboardingSlideIn .32s ease both;
+  }
+  .onboarding__slide--active{ display:block; }
+  .onboarding__title{
+    font-family:var(--font-display, 'Poppins', sans-serif);
+    font-size:1.35rem;
+    font-weight:800;
+    color:var(--text);
+    letter-spacing:-0.02em;
+    line-height:1.25;
+  }
+  .onboarding__text{
+    margin-top:.75rem;
+    font-size:.9rem;
+    line-height:1.65;
+    color:var(--text-muted);
+    font-weight:500;
+  }
+  .onboarding__text strong{ color:var(--text); font-weight:700; }
+  .onboarding__mock{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:.75rem;
+    margin-top:1rem;
+  }
+  @media(min-width:480px){
+    .onboarding__mock{ grid-template-columns:1fr 1fr; }
+  }
+  .onboarding__mock-card{
+    background:var(--brand-50);
+    border:1px solid var(--card-border);
+    border-radius:16px;
+    padding:.85rem;
+    font-size:.78rem;
+    line-height:1.55;
+    color:var(--text-muted);
+    font-weight:500;
+  }
+  .onboarding__mock-card strong{
+    display:block;
+    color:var(--text);
+    font-weight:700;
+    margin-bottom:.35rem;
+    font-size:.82rem;
+  }
+  .onboarding__mock-q{
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:12px;
+    padding:.55rem .65rem;
+    margin-top:.35rem;
+    font-size:.75rem;
+    color:var(--text);
+    font-weight:600;
+  }
+  .onboarding__tools{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.5rem;
+    margin-top:1rem;
+  }
+  .onboarding__tool{
+    display:inline-flex;
+    align-items:center;
+    gap:.35rem;
+    font-size:.72rem;
+    font-weight:700;
+    color:var(--text-muted);
+    background:var(--brand-50);
+    border:1px solid var(--card-border);
+    border-radius:999px;
+    padding:.35rem .65rem;
+  }
+  .onboarding__footer{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:.75rem;
+    margin-top:1.25rem;
+    padding-top:1rem;
+    border-top:1px solid var(--card-border);
+  }
+  .onboarding__dots{
+    display:flex;
+    gap:.4rem;
+  }
+  .onboarding__dot{
+    width:7px;
+    height:7px;
+    border-radius:999px;
+    background:var(--card-border);
+    transition:width .2s, background .2s;
+  }
+  .onboarding__dot--active{
+    width:18px;
+    background:var(--brand-600);
+  }
+  .onboarding__nav{
+    display:flex;
+    gap:.5rem;
+  }
+  .onboarding__btn{
+    font-size:.8rem;
+    font-weight:700;
+    padding:.55rem 1rem;
+    border-radius:999px;
+    border:1px solid var(--card-border);
+    background:var(--card);
+    color:var(--text-muted);
+  }
+  .onboarding__btn--primary{
+    background:var(--brand-700);
+    border-color:var(--brand-700);
+    color:#fff;
+  }
+  .onboarding__btn:disabled{ opacity:.4; cursor:not-allowed; }
+  @keyframes onboardingFadeIn{ from{opacity:0} to{opacity:1} }
+  @keyframes onboardingPopIn{
+    from{ opacity:0; transform:translateY(12px) scale(.98); }
+    to{ opacity:1; transform:translateY(0) scale(1); }
+  }
+  @keyframes onboardingSlideIn{
+    from{ opacity:0; transform:translateX(8px); }
+    to{ opacity:1; transform:translateX(0); }
+  }
+  .onboarding.closing .onboarding__backdrop{ animation:onboardingFadeOut .28s ease both; }
+  .onboarding.closing .onboarding__dialog{ animation:onboardingPopOut .28s ease both; }
+  @keyframes onboardingFadeOut{ from{opacity:1} to{opacity:0} }
+  @keyframes onboardingPopOut{
+    from{ opacity:1; transform:translateY(0) scale(1); }
+    to{ opacity:0; transform:translateY(8px) scale(.98); }
+  }
 </style>
 </head>
 <body class="h-full antialiased">
@@ -217,7 +624,7 @@
     <a href="#" onclick="showScreen('home'); return false;" class="brand-lockup flex items-center gap-2.5 px-2 mb-8">
       <img src="assets/nodo-logo.png" alt="Nodo" class="brand-logo">
       <span class="leading-tight min-w-0">
-        <span class="brand-title block text-[17px] font-extrabold tracking-tight text-slate-900">Aprendarnia</span>
+        <span class="brand-title block text-[17px] font-extrabold tracking-tight text-slate-900">Aprendalia</span>
         <span class="brand-by block">by Nodo</span>
       </span>
     </a>
@@ -226,11 +633,11 @@
       <button data-target="home" class="sidebar-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold">
         <i data-lucide="home" class="w-[18px] h-[18px] stroke-[2.1]"></i> Inicio
       </button>
-      <button data-target="explore" class="sidebar-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold">
-        <i data-lucide="compass" class="w-[18px] h-[18px] stroke-[2.1]"></i> Explorar
-      </button>
       <button data-target="routes" class="sidebar-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold">
         <i data-lucide="route" class="w-[18px] h-[18px] stroke-[2.1]"></i> Mis rutas
+      </button>
+      <button data-target="explore" class="sidebar-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold">
+        <i data-lucide="compass" class="w-[18px] h-[18px] stroke-[2.1]"></i> Explorar
       </button>
       <button data-target="profile" class="sidebar-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold">
         <i data-lucide="user" class="w-[18px] h-[18px] stroke-[2.1]"></i> Perfil
@@ -250,11 +657,13 @@
       <div id="sidebar-streak-card" class="hidden rounded-2xl p-4 text-white relative overflow-hidden hero-gradient soft-shadow-lg">
         <p class="text-[13px] font-extrabold flex items-center gap-1.5">¡Racha activa! <span>🔥</span></p>
         <p class="text-[11.5px] text-violet-100/85 font-medium mt-1 leading-snug">Llevas <span id="sidebar-streak">0</span> días seguidos</p>
-        <button type="button" onclick="showScreen('journey-stats')" class="tap mt-3 w-full bg-white text-[var(--brand-700)] text-[12.5px] font-bold py-2 rounded-lg">Ver racha</button>
+        <button type="button" onclick="showScreen('journey-stats')" class="tap mt-3 w-full streak-card-btn text-[12.5px] font-bold py-2 rounded-lg">Ver racha</button>
       </div>
 
       <button data-target="profile" class="sidebar-link flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-slate-50 text-left w-full">
-        <img src="https://i.pravatar.cc/64?img=47" class="w-9 h-9 rounded-full object-cover shrink-0" alt="">
+        <span class="user-avatar user-avatar--sm" aria-hidden="true">
+          <i data-lucide="user-round" class="user-avatar__icon"></i>
+        </span>
         <span class="flex-1 min-w-0">
           <span class="block text-[13px] font-bold text-slate-900 truncate" id="sidebar-name">Aprendiz</span>
           <span class="block text-[11px] text-slate-400 font-semibold">Nivel <span id="sidebar-level">1</span></span>
@@ -274,7 +683,7 @@
       <a href="#" onclick="showScreen('home'); return false;" class="brand-lockup brand-lockup--sm flex items-center gap-2 max-w-full">
         <img src="assets/nodo-logo.png" alt="Nodo" class="brand-logo">
         <span class="leading-tight min-w-0 truncate">
-          <span class="brand-title block font-extrabold tracking-tight text-slate-900 truncate">Aprendarnia</span>
+          <span class="brand-title block font-extrabold tracking-tight text-slate-900 truncate">Aprendalia</span>
           <span class="brand-by block">by Nodo</span>
         </span>
       </a>
@@ -291,7 +700,7 @@
       <a href="#" onclick="showScreen('home'); closeDrawer(); return false;" class="brand-lockup flex items-center gap-2.5">
         <img src="assets/nodo-logo.png" alt="Nodo" class="brand-logo">
         <span class="leading-tight">
-          <span class="brand-title block text-[17px] font-extrabold tracking-tight text-slate-900">Aprendarnia</span>
+          <span class="brand-title block text-[17px] font-extrabold tracking-tight text-slate-900">Aprendalia</span>
           <span class="brand-by block">by Nodo</span>
         </span>
       </a>
@@ -303,11 +712,11 @@
       <button data-target="home" class="drawer-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold text-slate-600">
         <i data-lucide="home" class="w-[18px] h-[18px] stroke-[2.1]"></i> Inicio
       </button>
-      <button data-target="explore" class="drawer-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold text-slate-600">
-        <i data-lucide="compass" class="w-[18px] h-[18px] stroke-[2.1]"></i> Explorar
-      </button>
       <button data-target="routes" class="drawer-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold text-slate-600">
         <i data-lucide="route" class="w-[18px] h-[18px] stroke-[2.1]"></i> Mis rutas
+      </button>
+      <button data-target="explore" class="drawer-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold text-slate-600">
+        <i data-lucide="compass" class="w-[18px] h-[18px] stroke-[2.1]"></i> Explorar
       </button>
       <button data-target="profile" class="drawer-link nav-pill flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[14px] font-semibold text-slate-600">
         <i data-lucide="user" class="w-[18px] h-[18px] stroke-[2.1]"></i> Perfil
@@ -326,13 +735,13 @@
       <div id="drawer-streak-card" class="hidden rounded-2xl p-4 text-white relative overflow-hidden hero-gradient soft-shadow-lg">
         <p class="text-[13px] font-extrabold flex items-center gap-1.5">¡Racha activa! <span>🔥</span></p>
         <p class="text-[11.5px] text-violet-100/85 font-medium mt-1">Llevas <span id="drawer-streak">0</span> días seguidos</p>
-        <button type="button" onclick="showScreen('journey-stats'); closeDrawer();" class="tap mt-3 w-full bg-white text-[var(--brand-700)] text-[12.5px] font-bold py-2 rounded-lg">Ver racha</button>
+        <button type="button" onclick="showScreen('journey-stats'); closeDrawer();" class="tap mt-3 w-full streak-card-btn text-[12.5px] font-bold py-2 rounded-lg">Ver racha</button>
       </div>
     </div>
   </aside>
 
   <!-- ===================== MAIN SCROLL AREA ===================== -->
-  <main class="theme-app flex-1 overflow-y-auto no-scrollbar lg:h-full pb-24 lg:pb-10">
+  <main class="theme-app flex-1 overflow-y-auto no-scrollbar lg:h-full mobile-main-pad relative z-[1]">
 
     <!-- ============================================================ HOME ============================================================ -->
     <section id="screen-home" class="screen active">
@@ -365,40 +774,16 @@
 
             <!-- Hero: current journey (left col, row 1) -->
             <div class="card-rise order-1 lg:order-none lg:col-start-1 lg:row-start-1 min-w-0">
-              <button type="button" onclick="continueLearning()" class="tap block w-full text-left hero-gradient relative overflow-hidden rounded-[26px] p-6 lg:p-8 accent-shadow">
+              <button type="button" onclick="continueLearning()" class="tap block w-full text-left hero-route-card relative overflow-hidden rounded-[26px] p-6 lg:p-8 accent-shadow">
 
-            <!-- decorative illustration -->
-            <svg class="absolute right-0 bottom-0 h-full w-[58%] max-w-[420px] opacity-90 pointer-events-none" viewBox="0 0 400 240" preserveAspectRatio="xMaxYMax slice" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="332" cy="46" r="30" fill="#fff" opacity="0.45"/>
-              <ellipse cx="220" cy="58" rx="46" ry="14" fill="#fff" opacity="0.10"/>
-              <ellipse cx="278" cy="40" rx="34" ry="11" fill="#fff" opacity="0.10"/>
-              <rect x="0" y="206" width="400" height="34" fill="#fff" opacity="0.10"/>
-              <rect x="252" y="96" width="36" height="112" fill="#fff" opacity="0.16"/>
-              <polygon points="252,96 270,72 288,96" fill="#fff" opacity="0.16"/>
-              <rect x="118" y="86" width="150" height="124" fill="#fff" opacity="0.24"/>
-              <rect x="118" y="78" width="150" height="10" fill="#fff" opacity="0.24"/>
-              <rect x="122" y="70" width="9" height="10" fill="#fff" opacity="0.24"/>
-              <rect x="140" y="70" width="9" height="10" fill="#fff" opacity="0.24"/>
-              <rect x="158" y="70" width="9" height="10" fill="#fff" opacity="0.24"/>
-              <rect x="176" y="70" width="9" height="10" fill="#fff" opacity="0.24"/>
-              <rect x="194" y="70" width="9" height="10" fill="#fff" opacity="0.24"/>
-              <rect x="212" y="70" width="9" height="10" fill="#fff" opacity="0.24"/>
-              <rect x="230" y="70" width="9" height="10" fill="#fff" opacity="0.24"/>
-              <rect x="248" y="70" width="9" height="10" fill="#fff" opacity="0.24"/>
-              <rect x="174" y="40" width="40" height="46" fill="#fff" opacity="0.30"/>
-              <polygon points="174,40 194,16 214,40" fill="#fff" opacity="0.30"/>
-              <rect x="186" y="142" width="16" height="68" rx="8" fill="#fff" opacity="0.16"/>
-              <rect x="92" y="118" width="30" height="92" fill="#fff" opacity="0.20"/>
-              <polygon points="92,118 107,96 122,118" fill="#fff" opacity="0.20"/>
-              <circle cx="68" cy="176" r="13" fill="#fff" opacity="0.18"/>
-              <rect x="64" y="186" width="8" height="24" fill="#fff" opacity="0.18"/>
-            </svg>
+            <img src="assets/castillo.webp" alt="" class="hero-route-card__photo" aria-hidden="true">
+            <div class="hero-route-card__overlay" aria-hidden="true"></div>
 
-            <span class="relative text-[11px] tracking-[0.16em] uppercase font-bold text-violet-200/85">Tu ruta actual</span>
-            <h2 class="relative text-[24px] lg:text-[28px] font-extrabold mt-2 text-white tracking-tight">Cultura Española 🇪🇸</h2>
-            <p class="relative text-[13px] text-violet-100/80 font-medium mt-2 max-w-[78%] sm:max-w-[60%] leading-relaxed">Descubre la historia, tradiciones, arte, gastronomía y mucho más sobre España.</p>
+            <span class="relative z-[1] text-[11px] tracking-[0.16em] uppercase font-bold text-violet-200/85">Tu ruta actual</span>
+            <h2 id="hero-route-title" class="relative z-[1] text-[24px] lg:text-[28px] font-extrabold mt-2 text-white tracking-tight">Historia de España 🇪🇸</h2>
+            <p id="hero-route-desc" class="relative z-[1] text-[13px] text-violet-100/80 font-medium mt-2 max-w-[72%] sm:max-w-[52%] leading-relaxed">Un recorrido completo por la historia de la Península Ibérica.</p>
 
-            <div class="relative mt-7 max-w-[88%] sm:max-w-[62%] focus-hide">
+            <div class="relative z-[1] mt-7 max-w-[82%] sm:max-w-[56%] focus-hide">
               <div class="flex justify-between text-[11.5px] font-bold mb-2">
                 <span class="text-violet-200/80 font-semibold">Progreso general</span>
                 <span id="hero-progress-text" class="text-white font-extrabold">0 / 18</span>
@@ -408,7 +793,7 @@
               </div>
             </div>
 
-            <span class="relative mt-6 max-w-[280px] w-full bg-white text-[var(--brand-700)] font-bold text-[13.5px] py-3 px-5 pill-btn flex justify-between items-center gap-2">
+            <span class="relative z-[1] mt-6 max-w-[280px] w-full bg-white text-[var(--brand-700)] font-bold text-[13.5px] py-3 px-5 pill-btn flex justify-between items-center gap-2">
               Continuar aprendiendo
               <span class="w-6 h-6 rounded-full bg-[var(--brand-700)] flex items-center justify-center shrink-0">
                 <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-white stroke-[3]"></i>
@@ -460,8 +845,12 @@
                   <span id="stat-time" class="text-[13px] font-extrabold text-slate-900">0m</span>
                 </div>
                 <div class="flex items-center justify-between">
-                  <span class="flex items-center gap-2.5 text-[13px] font-semibold text-slate-500"><i data-lucide="book-open" class="w-4 h-4 text-[var(--brand-500)]"></i>Temas aprendidos</span>
+                  <span class="flex items-center gap-2.5 text-[13px] font-semibold text-slate-500"><i data-lucide="book-open" class="w-4 h-4 text-[var(--brand-500)]"></i>Lecciones</span>
                   <span id="stat-lessons" class="text-[13px] font-extrabold text-slate-900">0</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="flex items-center gap-2.5 text-[13px] font-semibold text-slate-500"><i data-lucide="brain" class="w-4 h-4 text-[var(--brand-500)]"></i>Datos aprendidos</span>
+                  <span id="stat-facts" class="text-[13px] font-extrabold text-slate-900">0</span>
                 </div>
                 <div class="flex items-center justify-between">
                   <span class="flex items-center gap-2.5 text-[13px] font-semibold text-slate-500"><i data-lucide="star" class="w-4 h-4 text-[var(--brand-500)]"></i>Puntos acumulados</span>
@@ -469,6 +858,8 @@
                 </div>
               </div>
             </div>
+
+            <div id="home-review-panel" class="theme-card bg-white rounded-3xl border border-slate-100 p-5 soft-shadow focus-hide hidden"></div>
 
             <div class="theme-card bg-white rounded-3xl border border-slate-100 p-5 soft-shadow focus-hide">
               <h3 class="text-[14.5px] font-extrabold text-slate-900 tracking-tight mb-4">Logros recientes</h3>
@@ -482,9 +873,9 @@
           <div class="order-2 lg:order-none lg:col-start-1 lg:row-start-2 min-w-0 flex flex-col gap-7">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <h3 class="text-[15.5px] font-extrabold text-slate-900 tracking-tight">Temas de tu ruta</h3>
+                <h3 class="text-[15.5px] font-extrabold text-slate-900 tracking-tight">Temas de tus rutas</h3>
               </div>
-              <div class="grid grid-cols-2 lg:grid-cols-3 gap-3.5" id="topics-grid"></div>
+              <div class="flex flex-col gap-3" id="topics-grid"></div>
             </div>
 
             <div>
@@ -554,9 +945,14 @@
       <div class="max-w-[640px] mx-auto lg:px-10" id="topic-root"></div>
     </section>
 
+    <!-- ============================================================ TOPIC EXAM ============================================================ -->
+    <section id="screen-topic-exam" class="screen">
+      <div class="max-w-[640px] mx-auto px-5 lg:px-10 pt-4 pb-28 lg:pb-10" id="topic-exam-root"></div>
+    </section>
+
     <!-- ============================================================ LESSON ============================================================ -->
     <section id="screen-lesson" class="screen">
-      <div class="max-w-[640px] mx-auto px-5 lg:px-10 pt-4 pb-28 lg:pb-10" id="lesson-root"></div>
+      <div class="max-w-[640px] md:max-w-[980px] lg:max-w-[1120px] mx-auto px-5 lg:px-10 pt-4 pb-28 lg:pb-10" id="lesson-root"></div>
     </section>
 
     <!-- ============================================================ MY ROUTES ============================================================ -->
@@ -578,7 +974,7 @@
     <section id="screen-achievements" class="screen">
       <div class="px-5 lg:px-10 pt-6 lg:pt-8 max-w-[1000px] mx-auto">
         <h1 class="text-[22px] lg:text-[26px] font-extrabold tracking-tight text-slate-900">Logros</h1>
-        <p class="text-[13px] text-slate-400 font-semibold mt-0.5" id="achievements-subtitle">0 de 4 logros desbloqueados</p>
+        <p class="text-[13px] text-slate-400 font-semibold mt-0.5" id="achievements-subtitle">0 de 6 logros desbloqueados</p>
 
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6" id="achievements-grid"></div>
       </div>
@@ -586,7 +982,7 @@
 
     <!-- ============================================================ SETTINGS ============================================================ -->
     <section id="screen-settings" class="screen">
-      <div class="px-5 lg:px-10 pt-6 lg:pt-8 max-w-[640px] mx-auto pb-4">
+      <div class="px-5 lg:px-10 pt-6 lg:pt-8 max-w-[640px] mx-auto mobile-screen-pad">
         <h1 class="text-[22px] lg:text-[26px] font-extrabold tracking-tight text-slate-900">Ajustes</h1>
         <p class="text-[13px] text-slate-400 font-semibold mt-0.5">Personaliza cómo aprendes</p>
 
@@ -596,7 +992,7 @@
           <div class="grid grid-cols-3 gap-3" id="theme-picker">
             <button type="button" data-theme-pick="learnia" class="theme-picker-btn tap rounded-2xl p-3 text-left active">
               <span class="block w-full h-10 rounded-lg mb-2" style="background:linear-gradient(135deg,#5b3df0,#3d28b8)"></span>
-              <span class="text-[12px] font-bold text-slate-900">Learnia</span>
+              <span class="text-[12px] font-bold text-slate-900">Aprendalia</span>
               <span class="block text-[10px] text-slate-400 font-medium mt-0.5">Morado actual</span>
             </button>
             <button type="button" data-theme-pick="dark" class="theme-picker-btn tap rounded-2xl p-3 text-left">
@@ -637,10 +1033,6 @@
               </span>
               <input type="checkbox" id="pref-focus-mode" class="pref-toggle" onchange="togglePref('focusMode', this.checked)">
             </label>
-            <div class="rounded-2xl border border-dashed border-slate-200 bg-[var(--brand-50)] p-4">
-              <p class="text-[13px] font-bold text-slate-900">Modo solo escuchar</p>
-              <p class="text-[12px] text-slate-500 mt-1 leading-relaxed">🚧 En construcción — pronto podrás avanzar lección a lección solo con la voz.</p>
-            </div>
           </div>
         </div>
 
@@ -660,40 +1052,47 @@
         </div>
 
         <div class="theme-card bg-white rounded-3xl border border-slate-100 soft-shadow mt-5 divide-y divide-slate-100">
+          <button type="button" onclick="replayOnboarding()" class="tap w-full flex items-center gap-3 px-5 py-4 text-left"><i data-lucide="sparkles" class="w-[18px] h-[18px] text-slate-400"></i><span class="flex-1 text-[13.5px] font-semibold text-slate-700">Ver tutorial de nuevo</span><i data-lucide="chevron-right" class="w-4 h-4 text-slate-300"></i></button>
           <button type="button" onclick="showScreen('profile')" class="tap w-full flex items-center gap-3 px-5 py-4 text-left"><i data-lucide="user" class="w-[18px] h-[18px] text-slate-400"></i><span class="flex-1 text-[13.5px] font-semibold text-slate-700">Perfil y progreso</span><i data-lucide="chevron-right" class="w-4 h-4 text-slate-300"></i></button>
         </div>
+
+        <button type="button" data-action="reset-prefs" class="tap w-full flex items-center justify-center gap-2 px-5 py-4 text-[13px] font-bold text-slate-500 mt-5 border border-slate-200 rounded-2xl bg-white">
+          Restablecer ajustes
+        </button>
       </div>
     </section>
 
     <!-- ============================================================ PROFILE ============================================================ -->
     <section id="screen-profile" class="screen">
-      <div class="px-5 lg:px-10 pt-6 lg:pt-8 max-w-[640px] mx-auto pb-4">
+      <div class="px-5 lg:px-10 pt-6 lg:pt-8 max-w-[640px] mx-auto mobile-screen-pad">
         <h1 class="text-[22px] lg:text-[26px] font-extrabold tracking-tight text-slate-900">Perfil</h1>
 
-        <div class="bg-white rounded-3xl border border-slate-100 soft-shadow p-6 mt-5 flex flex-col items-center text-center">
-          <div class="w-20 h-20 rounded-full bg-[var(--brand-100)] flex items-center justify-center text-[28px] font-extrabold text-[var(--brand-700)]" id="profile-initials">A</div>
+        <div class="theme-card bg-white rounded-3xl border border-slate-100 soft-shadow p-6 mt-5 flex flex-col items-center text-center">
+          <div class="user-avatar user-avatar--lg" aria-hidden="true">
+            <i data-lucide="user-round" class="user-avatar__icon"></i>
+          </div>
           <input type="text" id="profile-name-input" maxlength="24" class="mt-3 text-[16px] font-extrabold text-slate-900 text-center bg-transparent border-b-2 border-transparent focus:border-[var(--brand-300)] w-full max-w-[220px]" placeholder="Tu nombre">
           <p class="text-[12.5px] text-slate-400 font-semibold mt-0.5">Nivel <span id="profile-level">1</span> · <span id="profile-title">Aprendiz</span></p>
 
           <div class="grid grid-cols-3 gap-3 w-full mt-5" id="profile-stats-grid">
-            <div class="bg-[var(--brand-50)] rounded-xl py-3">
-              <p class="text-[16px] font-extrabold text-slate-900" id="profile-lessons">0</p>
-              <p class="text-[10.5px] text-slate-500 font-semibold mt-0.5">Lecciones</p>
+            <div class="stat-pill">
+              <p class="stat-pill__value" id="profile-lessons">0</p>
+              <p class="stat-pill__label">Lecciones</p>
             </div>
-            <div id="profile-streak-box" class="hidden bg-[var(--brand-50)] rounded-xl py-3">
-              <p class="text-[16px] font-extrabold text-slate-900" id="profile-streak">0</p>
-              <p class="text-[10.5px] text-slate-500 font-semibold mt-0.5">Racha</p>
+            <div id="profile-streak-box" class="hidden stat-pill">
+              <p class="stat-pill__value" id="profile-streak">0</p>
+              <p class="stat-pill__label">Racha</p>
             </div>
-            <div class="bg-[var(--brand-50)] rounded-xl py-3">
-              <p class="text-[16px] font-extrabold text-slate-900" id="profile-points">0</p>
-              <p class="text-[10.5px] text-slate-500 font-semibold mt-0.5">Puntos</p>
+            <div class="stat-pill">
+              <p class="stat-pill__value" id="profile-points">0</p>
+              <p class="stat-pill__label">Puntos</p>
             </div>
           </div>
         </div>
 
         <div class="bg-white rounded-3xl border border-slate-100 soft-shadow mt-5 p-5">
           <h3 class="text-[14px] font-extrabold text-slate-900 mb-1">Tus datos, en tu dispositivo</h3>
-          <p class="text-[12px] text-slate-400 leading-relaxed mb-4">Aprendarnia guarda el progreso solo en este navegador. Puedes descargarlo como archivo y recuperarlo en otro ordenador o tablet. No hay cuentas ni servidores.</p>
+          <p class="text-[12px] text-slate-400 leading-relaxed mb-4">Aprendalia guarda el progreso solo en este navegador. Puedes descargarlo como archivo y recuperarlo en otro ordenador o tablet. No hay cuentas ni servidores.</p>
           <div class="flex flex-col gap-2.5">
             <button type="button" onclick="exportProgress()" class="tap w-full flex items-center justify-center gap-2 bg-[var(--brand-700)] text-white font-bold text-[13px] py-3 rounded-xl">
               <i data-lucide="download" class="w-4 h-4"></i> Descargar mi progreso
@@ -711,14 +1110,14 @@
           <button type="button" onclick="showScreen('achievements')" class="tap w-full flex items-center gap-3 px-5 py-4 text-left"><i data-lucide="trophy" class="w-[18px] h-[18px] text-slate-400"></i><span class="flex-1 text-[13.5px] font-semibold text-slate-700">Logros</span><i data-lucide="chevron-right" class="w-4 h-4 text-slate-300"></i></button>
         </div>
 
-        <button type="button" onclick="resetProgress()" class="tap w-full flex items-center justify-center gap-2 px-5 py-4 text-[13px] font-bold text-red-500 mt-5 border border-red-100 rounded-2xl bg-red-50/50">
+        <button type="button" data-action="reset-progress" class="tap w-full flex items-center justify-center gap-2 px-5 py-4 text-[13px] font-bold text-red-500 mt-5 border border-red-100 rounded-2xl bg-red-50/50">
           <i data-lucide="trash-2" class="w-4 h-4"></i> Borrar progreso local
         </button>
       </div>
     </section>
 
-    <footer class="site-footer theme-app">
-      <p class="site-footer__copy">Aprendarnia · Aprende culturas completas</p>
+    <footer class="site-footer theme-app hidden lg:block">
+      <p class="site-footer__copy">Aprendalia · Aprende culturas completas</p>
       <a href="https://nodo.digital" target="_blank" rel="noopener noreferrer" class="site-footer__nodo">
         <span>Hecho por</span>
         <img src="assets/nodo-logo.png" alt="Nodo">
@@ -734,13 +1133,13 @@
       <i data-lucide="home" class="tab-icon w-[22px] h-[22px]"></i>
       <span class="tab-label text-[10.5px] font-bold">Inicio</span>
     </button>
-    <button data-target="explore" class="bottom-link flex-1 flex flex-col items-center justify-center gap-1 py-2.5">
-      <i data-lucide="compass" class="tab-icon w-[22px] h-[22px]"></i>
-      <span class="tab-label text-[10.5px] font-bold">Explorar</span>
-    </button>
     <button data-target="routes" class="bottom-link flex-1 flex flex-col items-center justify-center gap-1 py-2.5">
       <i data-lucide="route" class="tab-icon w-[22px] h-[22px]"></i>
       <span class="tab-label text-[10.5px] font-bold">Mis rutas</span>
+    </button>
+    <button data-target="explore" class="bottom-link flex-1 flex flex-col items-center justify-center gap-1 py-2.5">
+      <i data-lucide="compass" class="tab-icon w-[22px] h-[22px]"></i>
+      <span class="tab-label text-[10.5px] font-bold">Explorar</span>
     </button>
     <button data-target="profile" class="bottom-link flex-1 flex flex-col items-center justify-center gap-1 py-2.5">
       <i data-lucide="user" class="tab-icon w-[22px] h-[22px]"></i>
@@ -765,7 +1164,53 @@
   </div>
 </div>
 
+<div id="onboarding" class="onboarding" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="onboarding-title">
+  <div class="onboarding__backdrop" onclick="closeOnboarding()"></div>
+  <div class="onboarding__dialog theme-card soft-shadow-lg">
+    <div class="onboarding__slide onboarding__slide--active" data-onboarding-slide="0">
+      <p class="text-[11px] font-bold uppercase tracking-wider text-[var(--brand-600)] mb-1">Bienvenido/a a Aprendalia</p>
+      <h2 id="onboarding-title" class="onboarding__title">Aprende sin presión</h2>
+      <p class="onboarding__text">Aquí lo importante es <strong>aprender de verdad</strong>: cultura, historia, ideas. Sin rankings ni obsesión por la puntuación.</p>
+      <p class="onboarding__text"><strong>Tú marcas el ritmo.</strong> Lo que cuenta es lo que vas entendiendo — y solo tú sabes cuándo algo ya te ha quedado claro.</p>
+      <p class="onboarding__text text-[12px] mt-3">Usa <strong>Atrás</strong> y <strong>Siguiente</strong> para recorrer este tutorial.</p>
+    </div>
+    <div class="onboarding__slide" data-onboarding-slide="1">
+      <p class="text-[11px] font-bold uppercase tracking-wider text-[var(--brand-600)] mb-1">Así funciona una lección</p>
+      <h2 class="onboarding__title">Leer, pensar, comprobar</h2>
+      <div class="onboarding__mock">
+        <div class="onboarding__mock-card">
+          <strong>Porque nadie nace sabiendo</strong>
+          A la izquierda lees el contenido con calma. Recuerda: aprender lleva tiempo.
+          <p class="mt-2 italic text-[11px] leading-snug">«El que lee mucho y anda mucho, ve mucho y sabe mucho.»</p>
+          <p class="text-[10px] mt-1 opacity-80">— Cervantes, <em>Don Quijote</em></p>
+        </div>
+        <div class="onboarding__mock-card">
+          <strong>Comprueba lo aprendido</strong>
+          A la derecha, la pregunta y las respuestas. Avanza con <strong>Anterior</strong> y <strong>Siguiente</strong> cuando quieras.
+          <div class="onboarding__mock-q">¿Qué ciudad fue la última en manos musulmanas?</div>
+          <div class="onboarding__mock-q opacity-70">Granada · Toledo · Córdoba</div>
+        </div>
+      </div>
+      <div class="onboarding__tools">
+        <span class="onboarding__tool"><span class="font-extrabold">A−</span> / <span class="font-extrabold">A+</span> Tamaño del texto</span>
+        <span class="onboarding__tool"><i data-lucide="headphones" class="w-3.5 h-3.5"></i> Escuchar preguntas</span>
+      </div>
+    </div>
+    <div class="onboarding__footer">
+      <div class="onboarding__dots" aria-hidden="true">
+        <span class="onboarding__dot onboarding__dot--active" data-onboarding-dot="0"></span>
+        <span class="onboarding__dot" data-onboarding-dot="1"></span>
+      </div>
+      <div class="onboarding__nav">
+        <button type="button" id="onboarding-back" class="onboarding__btn" disabled>Atrás</button>
+        <button type="button" id="onboarding-next" class="onboarding__btn onboarding__btn--primary">Siguiente</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="learnia-data.js"></script>
+<script src="ruta-historia-espana.js"></script>
 <script src="learnia-app.js"></script>
 
 </body>
