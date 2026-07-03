@@ -3,7 +3,7 @@
 let heroInitialized = false;
 let morphSplit = null;
 
-document.addEventListener('DOMContentLoaded', function () {
+function bootHeroAnimations() {
     if (typeof gsap !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
         if (typeof SplitText !== 'undefined') {
@@ -19,12 +19,33 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     document.addEventListener('nodo:loader:done', startAfterLoader, { once: true });
-    setTimeout(startAfterLoader, 6000);
-});
+
+    const loader = document.getElementById('loader-nodo');
+    const loaderDone = !loader
+        || loader.style.display === 'none'
+        || loader.getAttribute('aria-hidden') === 'true';
+
+    if (loaderDone) {
+        startAfterLoader();
+    } else {
+        setTimeout(startAfterLoader, 6000);
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootHeroAnimations);
+} else {
+    bootHeroAnimations();
+}
 
 function initHeroAnimations() {
     if (typeof gsap === 'undefined') return;
 
+    document.body.classList.add('hero-animating');
+
+    gsap.set(['.author', '.hero h1', '.hero-lead', '.hero-buttons', '.hero-microcopy', '.users-count'], {
+        visibility: 'visible'
+    });
     gsap.set('.author', { opacity: 0, y: 20, scale: 0.94 });
     gsap.set('.hero h1', { opacity: 0, y: 36 });
     gsap.set('.hero-lead', { opacity: 0, y: 24, filter: 'blur(8px)' });
@@ -39,10 +60,6 @@ function initHeroAnimations() {
         defaults: { ease: 'expo.out', force3D: true },
         onComplete: () => {
             document.body.classList.add('hero-ready');
-            gsap.set(['.author', '.hero h1', '.hero-lead', '.hero-buttons', '.hero-microcopy', '.users-count'], {
-                visibility: 'visible',
-                clearProps: 'visibility'
-            });
             initContinuousAnimations();
             initHeroMorphWord();
         }
