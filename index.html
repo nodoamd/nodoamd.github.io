@@ -75,6 +75,7 @@
             opacity: 0;
             visibility: hidden;
         }
+        #pricing-container details summary::-webkit-details-marker { display: none; }
     </style>
 </head>
 
@@ -1529,8 +1530,8 @@
                     <div class="made-in-nodo__steps">
                         <article class="made-in-step is-active" data-scene="0">
                             <p class="made-in-step__num">00 · CONTEXTO</p>
-                            <h3 class="made-in-step__title">Miles de webs. Pocas elevan la experiencia.</h3>
-                            <p class="made-in-step__text">La mayoría se queda en plantillas. Nosotros construimos experiencias digitales con el mismo rigor que usan equipos internacionales — desde Barcelona, para negocios que quieren destacar de verdad.</p>
+                            <h3 class="made-in-step__title">Miles de webs. Pocas elevan tu experiencia.</h3>
+                            <p class="made-in-step__text">La mayoría se queda en plantillas. Nosotros construimos experiencias desde cero, con el mismo rigor por lo que somos — desde Barcelona, para negocios que quieren destacar de verdad.</p>
                             <div class="made-in-step__tags">
                                 <span class="made-in-step__tag">Barcelona</span>
                                 <span class="made-in-step__tag">España · Europa</span>
@@ -1576,7 +1577,7 @@
                     </div>
 
                     <div class="made-in-nodo__demo-col">
-                        <div class="made-in-demo" id="made-in-demo" aria-hidden="true">
+                        <div class="made-in-demo" id="made-in-demo">
                             <div class="made-in-demo__chrome">
                                 <span class="made-in-demo__dot"></span>
                                 <span class="made-in-demo__dot"></span>
@@ -1584,9 +1585,16 @@
                             </div>
 
                             <div class="made-in-demo__scene is-active" data-scene="0">
-                                <span class="made-in-scene-intro__pin" aria-hidden="true">📍</span>
-                                <p class="made-in-scene-intro__city">Barcelona</p>
-                                <p class="made-in-scene-intro__sub">Nivel internacional</p>
+                                <div class="made-in-scene-barcelona">
+                                    <div class="made-in-scene-barcelona__reveal" id="made-in-barcelona-reveal">
+                                        <img src="./img/sagrada.jpg"
+                                            alt="Webs de nivel internacional — proyecto Nodo" class="made-in-scene-barcelona__img" loading="lazy">
+                                    </div>
+                                    <div class="made-in-scene-barcelona__caption" id="made-in-barcelona-caption">
+                                        <p class="made-in-scene-barcelona__city">Barcelona</p>
+                                        <p class="made-in-scene-barcelona__sub">Nivel Nacional</p>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="made-in-demo__scene" data-scene="1">
@@ -2062,581 +2070,144 @@
 
 
 
-    <section class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 py-16" id="pricing-container">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-sm font-semibold text-indigo-600 tracking-wide uppercase">Precios</h2>
-                <h1 class="mt-2 text-4xl font-extrabold text-gray-900 sm:text-5xl">Elige el plan perfecto para ti</h1>
-                <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-                    Creamos y gestionamos tu presencia online para que consigas más clientes sin perder tiempo en
-                    marketing.
+    <section class="py-16 md:py-24 bg-gradient-to-b from-white to-indigo-50/60" id="pricing-container">
+        <div class="max-w-4xl mx-auto px-4">
+
+            <!-- Cabecera -->
+            <header class="text-center max-w-xl mx-auto mb-12 md:mb-16">
+                <span class="text-xs font-bold tracking-widest uppercase text-indigo-600">Inversión</span>
+                <h2 class="mt-3 text-3xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+                    Un proyecto.<br>
+                    <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Bien hecho.</span>
+                </h2>
+                <p class="mt-4 text-lg text-gray-500 leading-relaxed">
+                    No hay planes baratos ni plantillas. Construimos webs a medida para negocios que buscan calidad — no el precio más bajo.
                 </p>
+            </header>
+
+            <!-- Oferta principal -->
+            <div class="bg-white rounded-2xl border border-indigo-100 shadow-xl shadow-indigo-100/50 p-6 md:p-10 grid md:grid-cols-[1fr_260px] gap-8 md:gap-10 mb-10">
+                <div>
+                    <p class="text-xs font-bold tracking-widest uppercase text-indigo-600 mb-2">Lo que hacemos</p>
+                    <h3 class="text-2xl font-extrabold text-gray-900 mb-5">Proyecto web completo</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
+                            <span class="text-indigo-500 font-bold mt-0.5 flex-shrink-0">✓</span>
+                            Diseño exclusivo, sin plantillas ni temas comprados
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
+                            <span class="text-indigo-500 font-bold mt-0.5 flex-shrink-0">✓</span>
+                            Animaciones, scroll narratives y experiencias 3D
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
+                            <span class="text-indigo-500 font-bold mt-0.5 flex-shrink-0">✓</span>
+                            Navegación fluida entre páginas, sin recargas
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
+                            <span class="text-indigo-500 font-bold mt-0.5 flex-shrink-0">✓</span>
+                            SEO técnico, rendimiento y responsive en todos los dispositivos
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
+                            <span class="text-indigo-500 font-bold mt-0.5 flex-shrink-0">✓</span>
+                            Entrega por fases con feedback en cada etapa
+                        </li>
+                    </ul>
+                </div>
+                <aside class="bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-xl p-6 text-center text-white flex flex-col justify-center">
+                    <p class="text-3xl font-extrabold leading-none">desde 3.500€</p>
+                    <p class="text-sm text-indigo-200 mt-2 mb-6 leading-relaxed">Proyecto único.<br>Presupuesto cerrado antes de empezar.</p>
+                    <a href="https://wa.me/+34622494800?text=Hola%20Nodo%2C%20quiero%20hablar%20de%20mi%20proyecto%20web.%20%C2%BFPodemos%20agendar%20una%20llamada%3F"
+                        target="_blank" rel="noopener"
+                        class="block w-full py-3 px-4 bg-white text-indigo-700 font-bold rounded-lg hover:bg-indigo-50 transition text-sm">
+                        Hablar del proyecto
+                    </a>
+                    <a href="#before-after" class="mt-3 text-xs text-indigo-200 hover:text-white transition">Ver proyectos reales →</a>
+                </aside>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
-                <!-- Plan Nodo Start -->
-                <div
-                    class="bg-white rounded-2xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 flex flex-col">
-                    <div class="p-8">
-                        <div class="flex items-center">
-                            <span class="p-2 rounded-lg bg-green-100 text-green-600">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                </svg>
-                            </span>
-                            <h3 class="ml-3 text-xl font-bold text-gray-900">Nodo Start</h3>
-                        </div>
-                        <p class="mt-2 text-gray-500 text-sm">Todo lo esencial para despegar.<br> Escala fácilmente
-                            tu negocio.</p>
-                        <div class="mt-6">
-                            <div class="bg-green-50 rounded-lg p-4 mb-4">
-                                <div class="flex items-baseline">
-                                    <span class="text-4xl font-extrabold text-gray-900">249€</span>
-                                    <span class="text-base font-medium text-gray-500">/mes</span>
-                                </div>
-                                <p class="text-sm text-green-700 font-semibold mt-1">Total: 747€ (3 meses mínimos)</p>
-                                <p class="text-xs text-green-600 mt-1">Los primeros 3 meses trabajamos en lanzamiento,
-                                    posicionamiento y contenidos. Luego puedes seguir mes a mes o cancelar.</p>
-                            </div>
-                        </div>
-                        <ul class="mt-8 space-y-4">
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-3 text-sm text-gray-500">Incluye todo lo de Web Go: web rápida, segura y
-                                    lista para captar clientes</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-3 text-sm text-gray-500">1 artículo mensual optimizado que atrae
-                                    clientes desde Google</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-3 text-sm text-gray-500">Ahorra en materiales impresos con descuentos
-                                    exclusivos</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-3 text-sm text-gray-500">Plantillas, diseños y recursos exclusivos que
-                                    no ofrecemos en otros planes</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-3 text-sm text-gray-500">Controla estadísticas, solicitudes y contenidos
-                                    desde un panel fácil de usar</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="px-6 py-4 bg-gray-50 mt-auto">
-                        <button
-                            onclick="window.open('https://wa.me/+34622494800?text=Me%20interesa%20el%20Plan%20Nodo%20Start%20por%20249€/mes.%20¿Podemos%20hablar%20de%20los%20detalles?', '_blank')"
-                            class="block w-full py-3 px-4 rounded-md shadow bg-green-600 text-white font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                            Empezar a captar clientes
-                        </button>
-                        <p class="mt-2 text-xs text-center text-gray-500">
-                            <span class="font-semibold text-green-600">¡Nuevo!</span> Llévate hasta 3 meses gratis si
-                            traes a un amigo*
-                        </p>
-                    </div>
+            <!-- Pilares -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
+                <div class="bg-white rounded-xl border border-gray-100 p-4 text-center">
+                    <p class="text-sm font-bold text-gray-900 mb-1">Diseño a medida</p>
+                    <p class="text-xs text-gray-400 leading-snug">UI/UX exclusivo para tu marca</p>
                 </div>
-
-                <!-- Plan Nodo Run -->
-                <div
-                    class="bg-white rounded-2xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 flex flex-col">
-                    <div class="p-8">
-                        <div class="flex items-center">
-                            <span class="p-2 rounded-lg bg-orange-100 text-orange-600">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 10V3L4 14h7v7l9-11h-7M16 3h5v5M4 20l5-5" />
-                                </svg>
-                            </span>
-                            <h3 class="ml-3 text-xl font-bold text-gray-900">Nodo Run</h3>
-                        </div>
-                        <p class="mt-2 text-gray-500 text-sm">Te ayudamos a que te encuentren en Google y destaques
-                            entre tu competencia</p>
-                        <div class="mt-6">
-                            <div class="bg-green-50 rounded-lg p-4 mb-4">
-                                <div class="flex items-baseline">
-                                    <span class="text-4xl font-extrabold text-gray-900">349€</span>
-                                    <span class="text-base font-medium text-gray-500">/mes</span>
-                                </div>
-                                <p class="text-sm text-green-700 font-semibold mt-1">Total: 1.047€ (3 meses mínimos)</p>
-                                <p class="text-xs text-green-600 mt-1">Los primeros 3 meses trabajamos en lanzamiento,
-                                    posicionamiento y contenidos. Luego puedes seguir mes a mes o cancelar.</p>
-                            </div>
-                        </div>
-                        <ul class="mt-8 space-y-4">
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-3 text-sm text-gray-500">Todo lo del plan Start</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <span class="ml-3 text-sm text-gray-500">Tu web empieza a escalar posiciones en Google
-                                    en 2 semanas</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <span class="ml-3 text-sm text-gray-500">Publicaciones y anuncios que atraen clientes
-                                    cada mes</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <span class="ml-3 text-sm text-gray-500">Identidad visual clara que te diferencia y
-                                    vende más</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <span class="ml-3 text-sm text-gray-500">Sin costes técnicos: hosting y dominio
-                                    incluidos</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="px-6 py-4 bg-gray-50 mt-auto">
-                        <button
-                            onclick="window.open('https://wa.me/+34622494800?text=Me%20interesa%20el%20Plan%20Nodo%20Run%20por%20349€/mes.%20¿Podemos%20hablar%20de%20los%20detalles?', '_blank')"
-                            class="block w-full py-3 px-4 rounded-md shadow bg-orange-600 text-white font-medium hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
-                            Quiero impulsar mi negocio
-                        </button>
-                        <a href="#before-after"
-                            class="block w-full mt-2 py-3 px-4 rounded-md border border-orange-200 text-orange-700 font-medium text-center hover:bg-orange-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-200">
-                            Ver proyectos
-                        </a>
-                        <p class="mt-2 text-xs text-center text-gray-500">SEO Web + Marketing en tiempo récord</p>
-                    </div>
+                <div class="bg-white rounded-xl border border-gray-100 p-4 text-center">
+                    <p class="text-sm font-bold text-gray-900 mb-1">Motion & 3D</p>
+                    <p class="text-xs text-gray-400 leading-snug">Animaciones que diferencian</p>
                 </div>
-
-                <!-- Plan Nodo Pro -->
-                <div
-                    class="relative bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-2xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 flex flex-col">
-                    <div class="absolute top-0 right-0 mt-4 mr-4">
-                        <span
-                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-200 text-indigo-800">
-                            Popular
-                        </span>
-                    </div>
-                    <div class="p-8">
-                        <div class="flex items-center">
-                            <span class="p-2 rounded-lg bg-white text-indigo-600">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                </svg>
-                            </span>
-                            <h3 class="ml-3 text-xl font-bold text-white">Nodo Pro</h3>
-                        </div>
-                        <p class="mt-2 text-indigo-100 text-sm">Para marcas en crecimiento que necesitan presencia
-                            digital potente.</p>
-                        <!-- Reemplazar el div de precio en el plan Nodo Pro -->
-                        <div class="mt-6">
-                            <div class="flex items-baseline">
-                                <span class="text-4xl font-extrabold text-white">Desde 449€</span>
-                                <span class="text-base font-medium text-indigo-100">/mes*</span>
-                            </div>
-                            <p class="text-sm text-indigo-200 font-medium mt-1">Personalizable según necesidades</p>
-                            <p class="text-xs text-indigo-200 mt-1">Normalmente entre 449€ y 749€/mes según
-                                personalización.</p>
-                            <div class="mt-2 bg-indigo-800/30 rounded-lg p-3">
-                                <p class="text-xs text-indigo-200">
-                                    * El precio final se ajusta según:
-                                    <br>• Complejidad del proyecto
-                                    <br>• Volumen de contenido
-                                    <br>• Funcionalidades especiales
-                                </p>
-                            </div>
-                        </div>
-                        <ul class="mt-8 space-y-4">
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-indigo-200" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-3 text-sm text-indigo-100">Todo lo del plan Start</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-indigo-200" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-3 text-sm text-indigo-100">Branding completo que te diferencia y vende
-                                    más</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-indigo-200" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-3 text-sm text-indigo-100">Posicionamiento técnico y seguimiento con
-                                    Google Search Console</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-indigo-200" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-3 text-sm text-indigo-100">Modelos 3D de producto o espacio para
-                                    destacar</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-indigo-200" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-3 text-sm text-indigo-100">Campañas en Meta o Google Ads que generan
-                                    clientes</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="px-6 py-4 bg-indigo-800 mt-auto">
-                        <button
-                            onclick="window.open('https://wa.me/+34622494800?text=Me%20interesa%20el%20Plan%20Nodo%20Pro.%20¿Podemos%20hablar%20de%20los%20detalles%20y%20el%20precio%20personalizado?', '_blank')"
-                            class="block w-full py-3 px-4 rounded-md shadow bg-white text-indigo-600 font-medium hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Quiero impulsar mi negocio
-                        </button>
-                        <a href="#before-after"
-                            class="block w-full mt-2 py-3 px-4 rounded-md border border-white text-white font-medium text-center hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300">
-                            Ver proyectos
-                        </a>
-                        <p class="mt-2 text-xs text-center text-indigo-200">Incluye soporte prioritario</p>
-                    </div>
+                <div class="bg-white rounded-xl border border-gray-100 p-4 text-center">
+                    <p class="text-sm font-bold text-gray-900 mb-1">Rendimiento</p>
+                    <p class="text-xs text-gray-400 leading-snug">Rápida, segura, optimizada</p>
                 </div>
-
-                <!-- Plan Nodo Web Go -->
-                <div
-                    class="bg-white rounded-2xl shadow-xl overflow-hidden transform transition duration-500 hover:scale-105 flex flex-col">
-                    <div class="p-8">
-                        <div class="flex items-center">
-                            <span class="p-2 rounded-lg bg-purple-100 text-purple-600">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                                </svg>
-                            </span>
-                            <h3 class="ml-3 text-xl font-bold text-gray-900">Nodo Web Go</h3>
-                        </div>
-                        <p class="mt-2 text-gray-500 text-sm">Empieza con Nodo Web Go y escala cuando tu negocio lo
-                            pida.</p>
-
-                        <!-- Precios actualizados -->
-                        <div class="mt-6 space-y-4">
-                            <!-- Opción con compromiso -->
-                            <div class="p-4 bg-green-50 rounded-lg">
-                                <div class="flex items-baseline">
-                                    <span class="text-4xl font-extrabold text-gray-900">45€</span>
-                                    <span class="text-base font-medium text-gray-500">/mes</span>
-                                </div>
-                                <p class="text-sm text-green-600 font-medium">Total: 270€ (6 meses de compromiso)</p>
-
-                            </div>
-
-                            <!-- Opción sin compromiso -->
-                            <div class="p-4 bg-gray-50 rounded-lg">
-                                <div class="flex items-baseline">
-                                    <span class="text-3xl font-bold text-gray-700">450€</span>
-                                    <span class="text-base font-medium text-gray-500">/ pago único</span>
-                                </div>
-                                <p class="text-sm text-green-600 font-medium">Sin compromiso de permanencia</p>
-                            </div>
-                        </div>
-
-                        <div
-                            class="mt-2 p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-green-100">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span
-                                        class="flex-shrink-0 h-10 w-10 rounded-full bg-green-100 flex items-center justify-center">
-                                        <i class="fas fa-gift text-green-600"></i>
-                                    </span>
-                                    <div class="ml-3">
-                                        <p class="text-sm font-medium text-green-800">¡Prueba sin riesgo!</p>
-                                        <p class="text-xs text-green-600 font-medium">Incluye auditoría SEO gratuita
-                                            (valor
-                                            90€)
-                                        </p>
-                                    </div>
-                                </div>
-                                <span
-                                    class="flex-shrink-0 inline-flex items-center justify-center px-3 py-1 text-sm font-medium rounded-full bg-green-100 text-green-800">
-                                    GRATIS
-                                </span>
-                            </div>
-                        </div>
-
-                        <!-- Resto del contenido del plan -->
-                        <ul class="mt-8 space-y-4">
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-3 text-sm text-gray-500">SEO Web Posicionada en Google</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-3 text-sm text-gray-500">Soporte técnico Incluido</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-3 text-sm text-gray-500">Certificado SSL Incluido</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-3 text-sm text-gray-500">Acceso a descuentos en Impresiones Físicas
-                                </span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="ml-3 text-sm text-gray-500">Optimización para móviles</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="px-6 py-4 bg-gray-50 mt-auto">
-                        <button
-                            onclick="window.open('https://wa.me/+34622494800?text=Me%20interesa%20el%20Plan%20Nodo%20Web%20Go%20por%2045€/mes.%20¿Podemos%20hablar%20de%20los%20detalles?', '_blank')"
-                            class="block w-full py-3 px-4 rounded-md shadow bg-purple-600 text-white font-medium hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                            Lanzar mi web ahora
-                        </button>
-                        <p class="mt-2 text-xs text-center text-gray-500">Panel de control compartido en Notion</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Servicios a medida -->
-            <div class="mt-20">
-                <h2 class="text-2xl font-bold text-center text-gray-900 mb-12">Servicios a medida (One-shot)</h2>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Servicio
-                                </th>
-                                <th scope="col"
-                                    class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Desde (€)
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-8 w-8 text-indigo-600">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                                            </svg>
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">Diseño web a medida</div>
-                                            <div class="text-sm text-gray-500">Incluye desarrollo + web posicionada en
-                                                Google</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 text-right text-sm text-gray-900 font-medium">650</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-8 w-8 text-purple-600">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                                            </svg>
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">Logotipo + brandbook</div>
-                                            <div class="text-sm text-gray-500">Manual de marca completo</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 text-right text-sm text-gray-900 font-medium">350</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-8 w-8 text-blue-600">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
-                                            </svg>
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">Modelo 3D para producto</div>
-                                            <div class="text-sm text-gray-500">Visualización + animación básica</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 text-right text-sm text-gray-900 font-medium">200</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-8 w-8 text-pink-600">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
-                                            </svg>
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">Campaña Meta o Google Ads
-                                            </div>
-                                            <div class="text-sm text-gray-500">1 mes + optimización</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 text-right text-sm text-gray-900 font-medium">% en función de
-                                    campaña</td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-8 w-8 text-green-600">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                                            </svg>
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">Sistema de chatbot IA</div>
-                                            <div class="text-sm text-gray-500">Personalizado para tu negocio</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 text-right text-sm text-gray-900 font-medium">300</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <!-- Nota informativa -->
-                    <div class="px-8 py-6 bg-gradient-to-r from-indigo-50 to-purple-50">
-                        <div class="text-center">
-                            <p class="text-sm text-gray-600 mb-4">
-                                Los precios son orientativos y pueden variar según requisitos específicos.
-                            </p>
-                            <div class="inline-flex flex-col items-center">
-                                <span class="text-lg font-semibold text-indigo-800 mb-3">¿Necesitas un presupuesto
-                                    personalizado?</span>
-                                <a href="https://wa.me/+34622494800?text=Quisiera%20una%20consulta%20para%20un%20presupuesto%20personalizado%20con%20Nodo"
-                                    rel="noopener noreferrer" target="_blank"
-                                    class="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium transition duration-300 ease-out border-2 border-indigo-600 rounded-md shadow-md text-indigo-600 hover:text-white">
-                                    <span
-                                        class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-indigo-600 group-hover:translate-x-0 ease">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                        </svg>
-                                    </span>
-                                    <span
-                                        class="absolute flex items-center justify-center w-full h-full text-indigo-600 transition-all duration-300 transform group-hover:translate-x-full ease">
-                                        Contactar ahora
-                                    </span>
-                                    <span class="relative invisible">Contactar ahora</span>
-                                </a>
-                                <p class="mt-3 text-xs text-gray-500">Respuesta en menos de 24 horas</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="bg-white rounded-xl border border-gray-100 p-4 text-center">
+                    <p class="text-sm font-bold text-gray-900 mb-1">Conversión</p>
+                    <p class="text-xs text-gray-400 leading-snug">Cada detalle, con intención</p>
                 </div>
             </div>
 
+            <!-- Proceso -->
+            <div class="grid md:grid-cols-3 gap-6 mb-10 text-center">
+                <div>
+                    <div class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 text-sm font-extrabold mb-3">1</div>
+                    <p class="text-sm font-bold text-gray-900 mb-1">Videollamada</p>
+                    <p class="text-xs text-gray-400 leading-relaxed">Entendemos tu negocio y definimos alcance</p>
+                </div>
+                <div>
+                    <div class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 text-sm font-extrabold mb-3">2</div>
+                    <p class="text-sm font-bold text-gray-900 mb-1">Propuesta cerrada</p>
+                    <p class="text-xs text-gray-400 leading-relaxed">Precio, plazos y entregas acordados</p>
+                </div>
+                <div>
+                    <div class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 text-sm font-extrabold mb-3">3</div>
+                    <p class="text-sm font-bold text-gray-900 mb-1">Proyecto por fases</p>
+                    <p class="text-xs text-gray-400 leading-relaxed">Avances semanales hasta el lanzamiento</p>
+                </div>
+            </div>
 
+            <!-- Filtro -->
+            <p class="text-center text-sm text-gray-400 italic max-w-md mx-auto mb-8 leading-relaxed">
+                Si buscas comparar planes para pagar menos, probablemente no encajamos. Si quieres una web a la altura de tu negocio, sigue leyendo.
+            </p>
+
+            <!-- Planes mensuales (secundario) -->
+            <details class="bg-white rounded-xl border border-gray-100 overflow-hidden mb-6 group">
+                <summary class="px-5 py-4 text-sm font-semibold text-gray-600 cursor-pointer list-none flex items-center justify-between gap-4 select-none">
+                    ¿Ya tienes tu web y quieres que sigamos creciendo contigo?
+                    <span class="text-indigo-500 text-xl font-light flex-shrink-0 group-open:rotate-45 transition-transform">+</span>
+                </summary>
+                <div class="px-5 pb-5 border-t border-gray-50">
+                    <p class="text-xs text-gray-400 pt-4 pb-3 leading-relaxed">Planes mensuales opcionales para mantenimiento, SEO y contenido. Solo para clientes Nodo o webs ya lanzadas con nosotros. Mínimo 3 meses.</p>
+                    <div class="divide-y divide-gray-50">
+                        <div class="flex items-center justify-between gap-4 py-3">
+                            <div>
+                                <p class="text-sm font-bold text-gray-900">Nodo Start</p>
+                                <p class="text-xs text-gray-400 mt-0.5">Hosting, mantenimiento y 1 artículo SEO al mes</p>
+                            </div>
+                            <p class="text-sm font-bold text-indigo-600 whitespace-nowrap">349€<span class="font-normal text-gray-400">/mes</span></p>
+                        </div>
+                        <div class="flex items-center justify-between gap-4 py-3">
+                            <div>
+                                <p class="text-sm font-bold text-gray-900">Nodo Run</p>
+                                <p class="text-xs text-gray-400 mt-0.5">Todo lo de Start + informes, 2 artículos SEO y mejoras técnicas</p>
+                            </div>
+                            <p class="text-sm font-bold text-indigo-600 whitespace-nowrap">449€<span class="font-normal text-gray-400">/mes</span></p>
+                        </div>
+                        <div class="flex items-center justify-between gap-4 py-3">
+                            <div>
+                                <p class="text-sm font-bold text-gray-900">Nodo Pro</p>
+                                <p class="text-xs text-gray-400 mt-0.5">Branding, campañas Ads, 3D y soporte prioritario</p>
+                            </div>
+                            <p class="text-sm font-bold text-indigo-600 whitespace-nowrap">desde 649€<span class="font-normal text-gray-400">/mes</span></p>
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <p class="text-center text-xs text-gray-400 leading-relaxed">
+                También hacemos branding, escenas 3D, campañas y chatbots como encargos puntuales.
+                <a href="https://wa.me/+34622494800?text=Quiero%20informaci%C3%B3n%20sobre%20servicios%20puntuales%20con%20Nodo"
+                    target="_blank" rel="noopener" class="text-indigo-600 font-semibold hover:underline">Pregúntanos →</a>
+            </p>
 
         </div>
     </section>
@@ -2655,9 +2226,7 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="nodo-faq-answer">
-                        <p>Puedes empezar desde 45€/mes con nuestro plan Web Go, que incluye todo lo necesario: web
-                            profesional, hosting, mantenimiento y soporte. Sin costes ocultos ni sorpresas. Y si te
-                            comprometes a 6 meses, te ahorras casi la mitad del precio mensual.</p>
+                        <p>Hacemos proyectos web completos a medida desde <strong>3.500€</strong>. En la primera llamada definimos alcance y te damos un presupuesto cerrado. Si después quieres mantenimiento y SEO continuo, tenemos planes mensuales opcionales — pero el proyecto web siempre va primero.</p>
                     </div>
                 </div>
 
@@ -2667,9 +2236,7 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="nodo-faq-answer">
-                        <p>Una web básica puede estar lista en 2-3 semanas. Para proyectos más complejos necesitamos 4-8
-                            semanas. Lo importante es que trabajamos con entregas parciales - verás avances desde la
-                            primera semana y podrás dar feedback durante todo el proceso.</p>
+                        <p>Para proyectos web completos, entre 4 y 8 semanas según complejidad. Trabajamos por fases — verás avances desde la primera semana y podrás dar feedback en todo el proceso.</p>
                     </div>
                 </div>
 
@@ -2679,9 +2246,7 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="nodo-faq-answer">
-                        <p>No. Aunque ofrecemos mejores precios por permanencia, puedes cancelar cuando quieras sin
-                            penalizaciones. Queremos que te quedes por los resultados que conseguimos juntos, no por un
-                            contrato.</p>
+                        <p>No. Aunque ofrecemos mejores precios por permanencia, puedes cancelar cuando quieras sin penalizaciones. Queremos que te quedes por los resultados que conseguimos juntos, no por un contrato.</p>
                     </div>
                 </div>
 
@@ -2691,9 +2256,7 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="nodo-faq-answer">
-                        <p>Te ahorramos tiempo, dolores de cabeza y dinero a largo plazo. Nos encargamos de todo lo
-                            técnico (hosting, mantenimiento, seguridad, SEO) mientras tú te centras en tu negocio. Y lo
-                            más importante: construimos algo que realmente atrae clientes, no solo una web bonita.</p>
+                        <p>Te ahorramos tiempo, dolores de cabeza y dinero a largo plazo. Nos encargamos de todo lo técnico (hosting, mantenimiento, seguridad, SEO) mientras tú te centras en tu negocio. Y lo más importante: construimos algo que realmente atrae clientes, no solo una web bonita.</p>
                     </div>
                 </div>
 
@@ -2703,9 +2266,7 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="nodo-faq-answer">
-                        <p>Todos nuestros planes incluyen mantenimiento y actualizaciones mensuales. Si necesitas
-                            cambios pequeños, los hacemos sin coste adicional. Para cambios mayores, te damos prioridad
-                            y precios especiales por ser cliente.</p>
+                        <p>Todos nuestros planes incluyen mantenimiento y actualizaciones mensuales. Si necesitas cambios pequeños, los hacemos sin coste adicional. Para cambios mayores, te damos prioridad y precios especiales por ser cliente.</p>
                     </div>
                 </div>
 
@@ -2727,9 +2288,7 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="nodo-faq-answer">
-                        <p>No. Trabajamos con negocios de todos los tamaños, desde autónomos que empiezan hasta empresas
-                            establecidas. Nuestros planes son escalables y crecen contigo. Lo importante es que quieras
-                            hacer crecer tu negocio online.</p>
+                        <p>No. Trabajamos con negocios de todos los tamaños, desde autónomos que empiezan hasta empresas establecidas. Nuestros planes son escalables y crecen contigo. Lo importante es que quieras hacer crecer tu negocio online.</p>
                     </div>
                 </div>
 
@@ -2739,9 +2298,7 @@
                         <i class="fas fa-plus"></i>
                     </button>
                     <div class="nodo-faq-answer">
-                        <p>Puedes subir de plan o añadir servicios en cualquier momento. Empezamos con lo básico y vamos
-                            creciendo según tus necesidades y resultados. Muchos clientes empiezan con una web básica y
-                            luego añaden SEO, marketing o e-commerce cuando ven resultados.</p>
+                        <p>Puedes subir de plan mensual o añadir servicios cuando lo necesites. Lo habitual: lanzamos el proyecto web y, si encaja, activamos Start, Run o Pro para seguir creciendo.</p>
                     </div>
                 </div>
             </div>

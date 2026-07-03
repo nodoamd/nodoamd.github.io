@@ -12,8 +12,18 @@ function initMadeInNodo() {
     const scenes = section.querySelectorAll('.made-in-demo__scene');
     const eventRows = section.querySelectorAll('[data-event-row]');
     const designSwatches = section.querySelectorAll('.made-in-design__swatch');
+    const barcelonaReveal = section.querySelector('#made-in-barcelona-reveal');
+    const barcelonaCaption = section.querySelector('#made-in-barcelona-caption');
 
-    let activeIndex = 0;
+    let activeIndex = -1;
+
+    function updateBarcelonaReveal(amount) {
+        if (!barcelonaReveal) return;
+        const t = Math.max(0, Math.min(1, amount));
+        const inset = 100 - t * 100;
+        barcelonaReveal.style.clipPath = `inset(${inset}% 0 0 0)`;
+        barcelonaCaption?.classList.toggle('is-visible', t > 0.35);
+    }
 
     function setActive(index) {
         if (index === activeIndex) return;
@@ -45,6 +55,17 @@ function initMadeInNodo() {
         }
     }
 
+    function handleStoryProgress(progress) {
+        const scaled = progress * steps.length;
+        const idx = Math.min(steps.length - 1, Math.floor(scaled));
+        const within = scaled - idx;
+
+        setActive(idx);
+
+        if (idx === 0) updateBarcelonaReveal(within);
+        else if (barcelonaCaption) barcelonaCaption.classList.remove('is-visible');
+    }
+
     gsap.from(section.querySelector('.made-in-nodo__intro'), {
         opacity: 0,
         y: 36,
@@ -68,9 +89,13 @@ function initMadeInNodo() {
             pin: pinTarget,
             scrub: 0.45,
             anticipatePin: 1,
-            onUpdate: (self) => {
-                const idx = Math.min(steps.length - 1, Math.floor(self.progress * steps.length));
-                setActive(idx);
+            invalidateOnRefresh: true,
+            onUpdate: (self) => handleStoryProgress(self.progress)
+        });
+
+        ScrollTrigger.addEventListener('refreshInit', () => {
+            if (pinTarget) {
+                pinTarget.style.width = `${pinTarget.parentElement?.offsetWidth || pinTarget.offsetWidth}px`;
             }
         });
     } else {
@@ -79,10 +104,26 @@ function initMadeInNodo() {
                 trigger: step,
                 start: 'top 65%',
                 end: 'bottom 35%',
-                onEnter: () => setActive(index),
-                onEnterBack: () => setActive(index)
+                onEnter: () => {
+                    setActive(index);
+                    if (index === 0) updateBarcelonaReveal(1);
+                },
+                onEnterBack: () => {
+                    setActive(index);
+                    if (index === 0) updateBarcelonaReveal(1);
+                }
             });
         });
+
+        if (barcelonaReveal) {
+            ScrollTrigger.create({
+                trigger: barcelonaReveal,
+                start: 'top 85%',
+                end: 'top 40%',
+                scrub: 0.6,
+                onUpdate: (self) => updateBarcelonaReveal(self.progress)
+            });
+        }
     }
 
     section.querySelectorAll('.made-in-sector').forEach((card, i) => {
@@ -110,6 +151,10 @@ function initMadeInNodo() {
             ease: 'none'
         });
     }
+
+    setActive(0);
+    updateBarcelonaReveal(0);
+    ScrollTrigger.refresh();
 }
 
 if (document.readyState === 'loading') {
