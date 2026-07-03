@@ -49,6 +49,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="./dist/js/SplitText.min.js"></script>
 
     <!-- Font Awesome con carga optimizada -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -62,120 +63,64 @@
 
     <!-- Estilos -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nodo-loader.css">
+    <style>
+        /* Evita flash del hero antes del loader + animación GSAP */
+        body:not(.hero-ready) .hero .author,
+        body:not(.hero-ready) .hero h1,
+        body:not(.hero-ready) .hero-lead,
+        body:not(.hero-ready) .hero-buttons,
+        body:not(.hero-ready) .hero-microcopy,
+        body:not(.hero-ready) .users-count {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
 </head>
 
 
 
 <body>
-    <!-- Loader Fullpage -->
-    <div id="loader-nodo"
-        style="position:fixed;z-index:99999;inset:0;display:flex;align-items:center;justify-content:center;background:#4e53be;will-change:opacity;">
-        <div id="loader">
-            <div id="shadow"></div>
-            <div id="box"></div>
+    <!-- Loader Nodo Conecta -->
+    <div id="loader-nodo" class="nodo-connect-loader" role="status" aria-live="polite" aria-label="Cargando Nodo">
+        <div class="nodo-connect-loader__bg" aria-hidden="true"></div>
+        <div class="nodo-connect-loader__inner">
+            <svg class="nodo-connect-loader__network" viewBox="0 0 240 240" aria-hidden="true">
+                <g class="nodo-connect-loader__lines">
+                    <line x1="53" y1="34" x2="120" y2="120"></line>
+                    <line x1="187" y1="24" x2="120" y2="120"></line>
+                    <line x1="43" y1="187" x2="120" y2="120"></line>
+                    <line x1="192" y1="197" x2="120" y2="120"></line>
+                    <line x1="14" y1="115" x2="120" y2="120"></line>
+                    <line x1="226" y1="125" x2="120" y2="120"></line>
+                </g>
+            </svg>
+            <div class="nodo-connect-loader__people" aria-hidden="true">
+                <span class="nodo-connect-loader__person nodo-connect-loader__person--1"></span>
+                <span class="nodo-connect-loader__person nodo-connect-loader__person--2"></span>
+                <span class="nodo-connect-loader__person nodo-connect-loader__person--3"></span>
+                <span class="nodo-connect-loader__person nodo-connect-loader__person--4"></span>
+                <span class="nodo-connect-loader__person nodo-connect-loader__person--5"></span>
+                <span class="nodo-connect-loader__person nodo-connect-loader__person--6"></span>
+            </div>
+            <div class="nodo-connect-loader__glow" aria-hidden="true"></div>
+            <div class="nodo-connect-loader__logo-wrap">
+                <svg class="nodo-connect-loader__logo" viewBox="118 82 47 106" aria-hidden="true">
+                    <path class="nodo-connect-loader__piece" fill="#510FA7" d="M127.508 138.783C130.403 140.934 132.712 143.733 135.206 146.313C139.696 150.957 145.318 156.14 150.993 159.255C150.999 164.748 151.239 170.366 150.756 175.837C150.483 178.925 149.3 181.912 149.296 185.021C148.903 185.922 148.293 186.806 147.797 187.659C144.661 184.091 142.732 179.828 140.43 175.714C138.768 172.742 136.886 169.772 135.587 166.62C134.195 163.239 133.562 159.126 132.524 155.575C130.909 150.048 128.512 144.424 127.508 138.783Z"></path>
+                    <path class="nodo-connect-loader__piece" fill="#EE0AFC" d="M118.934 109.058C118.935 107.469 118.998 105.888 119.391 104.339C120.323 100.667 127.063 88.9964 130.224 87.2871C131.74 86.4675 137.647 88.4372 139.382 89.0349C141.177 89.6534 142.812 90.5383 144.284 91.7411C148.144 94.8948 153.299 102.257 155.469 106.724C156.107 107.779 156.629 108.929 156.841 110.152C157.365 113.177 157.482 116.345 157.789 119.406L159.4 134.643C159.844 139.182 160.169 143.742 160.671 148.273C161.062 151.791 161.68 155.306 161.932 158.834C162.053 160.527 162.302 162.781 161.877 164.427C160.038 171.562 152.991 178.565 149.296 185.021C148.903 185.922 148.293 186.806 147.797 187.659C144.661 184.091 142.732 179.828 140.43 175.714C138.768 172.742 136.886 169.772 135.587 166.62C134.195 163.239 133.562 159.126 132.524 155.575C130.909 150.048 128.512 144.424 127.508 138.783C126.497 135.839 125.921 132.693 125 129.71C123.626 125.26 119.067 113.247 118.934 109.058Z"></path>
+                    <path class="nodo-connect-loader__piece" fill="#FDD9FE" d="M118.934 109.058C118.935 107.469 118.998 105.888 119.391 104.339C120.323 100.667 127.063 88.9964 130.224 87.2871C131.74 86.4675 137.647 88.4372 139.382 89.0349C141.177 89.6534 142.812 90.5383 144.284 91.7411C148.144 94.8948 153.299 102.257 155.469 106.724C154.807 107.664 154.228 108.714 153.511 109.605C151.581 112.005 149.335 114.072 147.877 116.821C147.747 121.079 149.207 125.078 148.936 129.438C148.138 130.392 147.16 131.794 145.825 131.934C144.752 132.047 143.467 131.488 142.436 131.245C139.677 130.596 136.524 132.272 133.979 133.229C132.684 132.222 131.619 131.134 130.609 129.84C133.319 127.473 146.143 119.587 146.213 116.647C146.283 113.685 143.267 110.415 141.203 108.503C140.222 107.594 139.285 106.847 137.871 106.929C136.497 107.009 135.176 107.794 133.975 108.411L133.99 112.056C130.758 112.022 121.636 110.472 118.934 109.058Z"></path>
+                </svg>
+            </div>
+            <div class="nodo-connect-loader__copy">
+                <p class="nodo-connect-loader__brand"><span class="name">Nodo</span> <span class="nodo-connect-loader__verb verb">Conecta</span></p>
+                <p class="nodo-connect-loader__tag">Personas · Proyectos · Conexión</p>
+            </div>
+            <div class="nodo-connect-loader__progress" aria-hidden="true">
+                <span class="nodo-connect-loader__progress-fill"></span>
+            </div>
         </div>
     </div>
-    <style>
-        /* Forzar aceleración GPU desde el inicio */
-        #loader-nodo {
-            transform: translateZ(0);
-            backface-visibility: hidden;
-        }
-
-        #loader {
-            position: relative;
-            width: 78px;
-            height: 78px;
-        }
-
-        #box {
-            width: 78px;
-            height: 78px;
-            background: #fff;
-            position: absolute;
-            top: 0;
-            left: 0;
-            border-radius: 6px;
-            transform: translateZ(0) rotate(0deg);
-            animation: animate .7s ease-in-out infinite;
-        }
-
-        @keyframes animate {
-            0% {
-                transform: translateZ(0) translateY(0) rotate(0deg);
-            }
-
-            17% {
-                border-bottom-right-radius: 3px;
-            }
-
-            25% {
-                transform: translateZ(0) translateY(12px) rotate(22.5deg);
-            }
-
-            50% {
-                transform: translateZ(0) translateY(24px) scale(1, .9) rotate(45deg);
-                border-bottom-right-radius: 48px;
-            }
-
-            75% {
-                transform: translateZ(0) translateY(12px) rotate(67.5deg);
-            }
-
-            100% {
-                transform: translateZ(0) translateY(0) rotate(90deg);
-            }
-        }
-
-        #shadow {
-            width: 78px;
-            height: 8px;
-            background: #000;
-            opacity: 0.12;
-            position: absolute;
-            top: 90px;
-            left: 0;
-            border-radius: 50%;
-            animation: shadow .7s ease-in-out infinite;
-            filter: blur(1px);
-            transform: translateZ(0);
-        }
-
-        @keyframes shadow {
-
-            0%,
-            100% {
-                transform: translateZ(0) scale(1, 1);
-                opacity: 0.12;
-            }
-
-            50% {
-                transform: translateZ(0) scale(1.25, 1);
-                opacity: 0.18;
-            }
-        }
-    </style>
-    <script>
-        // Loader optimizado: 2.5 segundos exactos
-        (function () {
-            let loaderHidden = false;
-            const hideLoader = () => {
-                if (loaderHidden) return;
-                loaderHidden = true;
-                const loader = document.getElementById('loader-nodo');
-                if (loader) {
-                    loader.style.opacity = '0';
-                    loader.style.transition = 'opacity 0.4s ease';
-                    setTimeout(() => {
-                        loader.style.display = 'none';
-                    }, 400);
-                }
-            };
-
-            // Ocultar después de 2.2 segundos
-            setTimeout(hideLoader, 2200);
-        })();
-    </script>
+    <script src="nodo-loader.js"></script>
     <header class="header">
         <a href="https://nodoamd.github.io/" class="flex items-center group">
             <span class="mr-2 relative">
@@ -187,7 +132,7 @@
                 class="transform group-hover:rotate-12 transition-all duration-300">
         </a>
         <nav class="nav-links">
-            <a href="#nodo-services-section">Servicios</a>
+            <a href="#made-in-nodo">Servicios</a>
             <a href="#before-after">Proyectos</a> <!-- Actualizado -->
             <a href="#pricing-container">Precios</a>
             <a href="#nodo-faq-section">FAQ</a>
@@ -205,7 +150,7 @@
     <div class="scroll-menu">
         <a href="#hero" class="scroll-link active">Inicio</a>
         <a href="#before-after" class="scroll-link">Proyectos</a> <!-- Actualizado -->
-        <a href="#nodo-services-section" class="scroll-link">Servicios</a>
+        <a href="#made-in-nodo" class="scroll-link">Servicios</a>
         <a href="#pricing-container" class="scroll-link">Precios</a>
         <a href="#nodo-faq-section" class="scroll-link">FAQ</a>
         <a href="#nodo-contact-section" class="scroll-link">Contacto</a>
@@ -259,19 +204,21 @@
 
     <main class="hero" id="hero">
 
-        <div class="author parallax-element">
+        <div class="author">
             <img src="./img/nodedos.svg" alt="Nodo Logo" id="hero-label-icon">
-            <span class="hero-label-morph" style="font-weight: bold; text-decoration:underline; color: rgb(45, 45, 45); display:inline-block; position: relative; perspective: 400px;">
-                <span id="hlw-0" style="display:inline-block; position:absolute; left:0; top:0; white-space:nowrap;">Conecta</span>
-                <span id="hlw-1" style="display:inline-block; position:absolute; left:0; top:0; white-space:nowrap; opacity:0; pointer-events:none;">Nodo</span>
-                <span style="visibility:hidden; display:inline-block; pointer-events:none;">Conecta</span>
+            <span class="hero-brand-morph-wrap">
+                <span id="hero-brand-morph" class="hero-brand-morph" aria-live="polite">Nodo</span>
+                
             </span>
         </div>
 
-        <h1 class="parallax-element">
-            <span class="highlight">Lo que tu proyecto necesita,<br>Nodo lo conecta.</span>
+        <h1>
+            <span class="highlight hero-headline">
+                Lo que tu proyecto necesita,<br>
+                Nodo lo conecta.
+            </span>
         </h1>
-        <p class="parallax-element hero-lead" style="text-align: center;" id="hero-lead-text">
+        <p class="hero-lead" style="text-align: center;" id="hero-lead-text">
             Transformación digital visual profesional para negocios que quieren evolucionar.
         </p>
 
@@ -297,15 +244,15 @@
         </script>
 
         <div class="hero-buttons">
-            <a href="#before-after" class="btn btn-primary parallax-element">Ver resultados reales</a>
-            <a href="#nodo-contact-section" class="btn btn-secondary contacto parallax-element">Agenda tu diagnóstico gratuito</a>
+            <a href="#before-after" class="btn btn-primary">Ver resultados reales</a>
+            <a href="#nodo-contact-section" class="btn btn-secondary contacto">Agenda tu diagnóstico gratuito</a>
         </div>
-        <p class="hero-microcopy parallax-element">
+        <p class="hero-microcopy">
             Sin compromiso · Sesión estratégica de 30 min · Respondemos en menos de 24h
         </p>
 
         <!-- Sección de usuarios -->
-        <div class="users-count parallax-element">
+        <div class="users-count">
             <div class="users-avatars">
                 <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Usuario">
                 <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Usuario">
@@ -343,201 +290,470 @@
     <div class="cursor-effect"></div>
 
     <style>
-        .nodo-project-card {
+        /* ========== PORTFOLIO CAROUSEL ========== */
+        .nodo-portfolio {
+            padding: 5rem 0 5.5rem;
             background: #fff;
-            border-radius: 1.25rem;
             overflow: hidden;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 4px 24px rgba(78, 83, 190, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nodo-portfolio__container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        @media (min-width: 1024px) {
+            .nodo-portfolio__container { padding: 0 2rem; }
+        }
+
+        .nodo-portfolio__header {
+            display: grid;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 900px) {
+            .nodo-portfolio__header {
+                grid-template-columns: 1.1fr 0.9fr;
+                align-items: end;
+                gap: 2.5rem;
+                margin-bottom: 2.25rem;
+            }
+        }
+
+        .nodo-portfolio__eyebrow {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #6c72e5;
+            margin-bottom: 0.65rem;
+        }
+
+        .nodo-portfolio__title {
+            font-size: clamp(1.85rem, 4vw, 2.65rem);
+            font-weight: 800;
+            line-height: 1.12;
+            letter-spacing: -0.03em;
+            color: #0f1222;
+        }
+
+        .nodo-portfolio__highlight {
+            color: #6c72e5;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .nodo-portfolio__highlight::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0.05em;
+            height: 0.34em;
+            background: linear-gradient(90deg, rgba(108, 114, 229, 0.35), rgba(108, 114, 229, 0.12));
+            border-radius: 999px;
+            z-index: -1;
+        }
+
+        .nodo-portfolio__lede {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #64748b;
+            max-width: 34rem;
+        }
+
+        .nodo-portfolio__toolbar {
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .nodo-portfolio__filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+        }
+
+        .nodo-portfolio__filter {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 0.85rem;
+            border-radius: 999px;
+            border: 1px solid #e8eaf6;
+            background: #fff;
+            color: #64748b;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.22s, color 0.22s, border-color 0.22s, transform 0.22s;
+        }
+
+        .nodo-portfolio__filter:hover {
+            border-color: #c7c9f5;
+            color: #4e53be;
+        }
+
+        .nodo-portfolio__filter.is-active {
+            background: linear-gradient(135deg, #6c72e5, #4e53be);
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(78, 83, 190, 0.28);
+        }
+
+        .nodo-portfolio__filter-icon {
+            width: 15px;
+            height: 15px;
+            display: inline-flex;
+        }
+
+        .nodo-portfolio__filter-icon svg {
+            width: 100%;
             height: 100%;
         }
 
-        .nodo-project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(78, 83, 190, 0.15);
+        .nodo-portfolio__arrows {
+            display: flex;
+            gap: 0.5rem;
+            flex-shrink: 0;
         }
 
-        .nodo-project-thumb {
-            height: 200px;
+        .nodo-portfolio__arrow {
+            width: 42px;
+            height: 42px;
+            border-radius: 999px;
+            border: 1px solid #e8eaf6;
+            background: #fff;
+            color: #4e53be;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+        }
+
+        .nodo-portfolio__arrow svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .nodo-portfolio__arrow:hover {
+            background: #f6f4ff;
+            transform: scale(1.06);
+            box-shadow: 0 6px 18px rgba(78, 83, 190, 0.15);
+        }
+
+        .nodo-portfolio__arrow--prev svg {
+            transform: rotate(180deg);
+        }
+
+        .nodo-portfolio__viewport {
+            position: relative;
+            overflow: hidden;
+            margin: 0 -1.25rem;
+            padding: 0.5rem 0 1.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            .nodo-portfolio__viewport { margin: 0 -2rem; }
+        }
+
+        .nodo-portfolio__track {
+            display: flex;
+            will-change: transform;
+        }
+
+        .nodo-portfolio__slide {
+            flex-shrink: 0;
+            transform-origin: center center;
+            transition: opacity 0.3s;
+        }
+
+        .nodo-portfolio__card {
+            display: grid;
+            grid-template-columns: 1fr;
+            background: #fff;
+            border-radius: 1.35rem;
+            overflow: hidden;
+            border: 1px solid #eceef8;
+            box-shadow: 0 18px 50px rgba(78, 83, 190, 0.12);
+            min-height: 420px;
+        }
+
+        @media (min-width: 768px) {
+            .nodo-portfolio__card {
+                grid-template-columns: 1.05fr 0.95fr;
+                min-height: 360px;
+            }
+        }
+
+        .nodo-portfolio__visual {
+            position: relative;
+            min-height: 220px;
             background-size: cover;
             background-position: center;
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.25rem;
         }
 
-        .nodo-project-badge {
+        @media (min-width: 768px) {
+            .nodo-portfolio__visual { min-height: 100%; }
+        }
+
+        .nodo-portfolio__visual::before {
+            content: '';
             position: absolute;
-            top: 12px;
-            left: 12px;
-            background: rgba(255, 255, 255, 0.95);
+            inset: 0;
+            background: linear-gradient(180deg, rgba(15, 18, 34, 0.08) 0%, rgba(15, 18, 34, 0.72) 100%);
+        }
+
+        .nodo-portfolio__badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.94);
             color: #4e53be;
-            font-size: 0.7rem;
-            font-weight: 700;
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 4px 10px;
+            padding: 5px 10px;
             border-radius: 999px;
         }
 
-        .nodo-project-body {
-            padding: 1.25rem 1.5rem 1.5rem;
-            flex: 1;
+        .nodo-portfolio__visual-inner {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+        }
+
+        .nodo-portfolio__visual-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+        }
+
+        .nodo-portfolio__visual-sub {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-bottom: 0.85rem;
+        }
+
+        .nodo-portfolio__visual-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            color: #fff;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 0.5rem 0.85rem;
+            border-radius: 999px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .nodo-portfolio__visual-cta svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .nodo-portfolio__visual-cta:hover {
+            background: rgba(255, 255, 255, 0.28);
+            transform: translateX(2px);
+        }
+
+        .nodo-portfolio__detail {
+            padding: 1.35rem 1.35rem 1.5rem;
             display: flex;
             flex-direction: column;
+            gap: 0.85rem;
         }
 
-        .nodo-project-metric {
-            color: #471fa5;
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
+        @media (min-width: 768px) {
+            .nodo-portfolio__detail { padding: 1.5rem 1.65rem; }
         }
 
-        .nodo-project-links {
-            margin-top: auto;
-            padding-top: 1rem;
+        .nodo-portfolio__detail-head {
             display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
             gap: 0.75rem;
-            flex-wrap: wrap;
         }
 
-        .nodo-project-links a {
-            font-size: 0.85rem;
+        .nodo-portfolio__detail-head h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #0f1222;
+            line-height: 1.2;
+        }
+
+        .nodo-portfolio__detail-head span {
+            display: block;
+            margin-top: 0.2rem;
+            font-size: 0.78rem;
+            color: #94a3b8;
             font-weight: 600;
-            color: #4e53be;
-            text-decoration: none;
         }
 
-        .nodo-project-links a:hover {
+        .nodo-portfolio__detail-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            border: 1px solid #e8eaf6;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #4e53be;
+            flex-shrink: 0;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .nodo-portfolio__detail-icon svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .nodo-portfolio__detail-icon:hover {
+            background: #f6f4ff;
+            transform: scale(1.06);
+        }
+
+        .nodo-portfolio__stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.65rem;
+        }
+
+        .nodo-portfolio__stat {
+            background: #f8f9ff;
+            border: 1px solid #eceef8;
+            border-radius: 0.85rem;
+            padding: 0.65rem 0.75rem;
+        }
+
+        .nodo-portfolio__stat strong {
+            display: block;
+            font-size: 1rem;
+            font-weight: 800;
             color: #6c72e5;
-            text-decoration: underline;
+            line-height: 1.1;
+        }
+
+        .nodo-portfolio__stat span {
+            display: block;
+            margin-top: 0.15rem;
+            font-size: 0.68rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .nodo-portfolio__desc {
+            font-size: 0.84rem;
+            line-height: 1.65;
+            color: #64748b;
+            flex: 1;
+        }
+
+        .nodo-portfolio__tech-label {
+            display: block;
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #94a3b8;
+            margin-bottom: 0.45rem;
+        }
+
+        .nodo-portfolio__tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .nodo-portfolio__tech-pill {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: #4e53be;
+            background: #f0f1ff;
+            border: 1px solid #e0e3ff;
+            padding: 0.28rem 0.55rem;
+            border-radius: 999px;
+        }
+
+        .nodo-portfolio__foot {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .nodo-portfolio__all {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #4e53be;
+            transition: gap 0.2s, color 0.2s;
+        }
+
+        .nodo-portfolio__all:hover {
+            color: #6c72e5;
+            gap: 0.55rem;
+        }
+
+        .nodo-portfolio__progress {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            flex: 1;
+            max-width: 280px;
+            margin-left: auto;
+        }
+
+        .nodo-portfolio__progress-seg {
+            display: block;
+            height: 4px;
+            flex: 1;
+            border-radius: 999px;
+            background: #e8eaf6;
+            transition: background 0.3s, flex 0.35s;
+        }
+
+        .nodo-portfolio__progress-seg.is-active {
+            flex: 2.2;
+            background: linear-gradient(90deg, #6c72e5, #4e53be);
+        }
+
+        .nodo-portfolio__cta {
+            margin-top: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #4e53be, #7c3aed);
+            border-radius: 1.25rem;
+            padding: 2.5rem 1.5rem;
+            color: #fff;
+        }
+
+        @media (min-width: 768px) {
+            .nodo-portfolio__cta { padding: 3rem 2.5rem; }
         }
     </style>
 
-    <div style="background-color: rgba(128, 128, 128, 0.052);border-radius: 30px;">
-        <section class="max-w-6xl mx-auto px-6 py-20 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold text-black-700 mb-4 flex items-center justify-center gap-2">
-                Míranos en Acción <img src="./img/nodedos.svg" alt="Logo Nodo"
-                    class="h-12 w-12 inline-block">
-            </h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                No vendemos promesas. Vendemos el futuro de tu negocio — respaldado por resultados reales y medibles de clientes que ya lideran su sector.
-            </p>
-        </section>
-    </div>
-
-
-
-    <!-- Proyectos destacados -->
-    <section class="py-20 bg-white relative" id="before-after">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-14">
-                <span class="inline-block text-sm font-bold uppercase tracking-widest text-[#4e53be] mb-3">Portfolio Nodo</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Solo hecho en Nodo</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Proyectos reales con diseño premium, rendimiento extremo y resultados medibles. Sin relleno — solo experiencia que habla por sí misma.</p>
-            </div>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
-                <article class="nodo-project-card">
-                    <div class="nodo-project-thumb" style="background-image: url('./img/landinghitachi.webp');">
-                        <span class="nodo-project-badge">Web · Salud</span>
-                    </div>
-                    <div class="nodo-project-body">
-                        <h3 class="text-lg font-bold text-gray-900 mb-1">Clínica Dental Hitachi</h3>
-                        <p class="nodo-project-metric">+890% clics orgánicos</p>
-                        <p class="text-sm text-gray-600 flex-1">De invisible en Google a líder digital con reservas 24/7 y 60-80 pacientes nuevos al mes.</p>
-                        <div class="nodo-project-links">
-                            <a href="https://clinicadentalhitachi.com" target="_blank" rel="noopener">Visitar web →</a>
-                            <a href="./trabajo.html#hitachi">Caso completo</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="nodo-project-card">
-                    <div class="nodo-project-thumb" style="background-image: url('./img/llarunica.webp');">
-                        <span class="nodo-project-badge">Web · Inmobiliaria</span>
-                    </div>
-                    <div class="nodo-project-body">
-                        <h3 class="text-lg font-bold text-gray-900 mb-1">LlarÚnica</h3>
-                        <p class="nodo-project-metric">+1.250% impresiones Google</p>
-                        <p class="text-sm text-gray-600 flex-1">Reformas y servicios inmobiliarios con presencia digital que convierte búsquedas en clientes.</p>
-                        <div class="nodo-project-links">
-                            <a href="./trabajo.html#llarunica">Ver caso →</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="nodo-project-card">
-                    <div class="nodo-project-thumb" style="background-image: url('./chiquitana/img/ala6.webp');">
-                        <span class="nodo-project-badge">Web · Gastronomía</span>
-                    </div>
-                    <div class="nodo-project-body">
-                        <h3 class="text-lg font-bold text-gray-900 mb-1">La Chiquitana</h3>
-                        <p class="nodo-project-metric">E-commerce + blog SEO</p>
-                        <p class="text-sm text-gray-600 flex-1">Marca gastronómica con catálogo, storytelling y animaciones GSAP de nivel editorial.</p>
-                        <div class="nodo-project-links">
-                            <a href="./chiquitana/" target="_blank" rel="noopener">Visitar web →</a>
-                            <a href="./trabajo.html#webs">Más webs</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="nodo-project-card">
-                    <div class="nodo-project-thumb" style="background-image: url('./img/booth.webp');">
-                        <span class="nodo-project-badge">3D · Webapp</span>
-                    </div>
-                    <div class="nodo-project-body">
-                        <h3 class="text-lg font-bold text-gray-900 mb-1">BetterWallpapers</h3>
-                        <p class="nodo-project-metric">Experiencia Spline 3D</p>
-                        <p class="text-sm text-gray-600 flex-1">Webapp interactiva con escenas 3D en tiempo real — el nivel visual que separa a Nodo del resto.</p>
-                        <div class="nodo-project-links">
-                            <a href="./betterwlprs/" target="_blank" rel="noopener">Ver demo →</a>
-                            <a href="./trabajo.html#3d">Más 3D</a>
-                        </div>
-                    </div>
-                </article>
-            </div>
-
-            <div class="text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-10 md:p-12 text-white">
-                <h3 class="text-2xl md:text-3xl font-bold mb-4">¿Tu negocio merece estar en este nivel?</h3>
-                <p class="text-lg mb-8 opacity-90 max-w-2xl mx-auto">Explora todo nuestro trabajo — webs, 3D, apps y audiovisual — o agenda tu diagnóstico gratuito.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="./trabajo.html" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-block">Ver todo el trabajo</a>
-                    <a href="https://wa.me/+34622494800?text=Quiero%20una%20sesi%C3%B3n%20estrat%C3%A9gica%20de%20diagn%C3%B3stico%20con%20Nodo" target="_blank" rel="noopener" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors inline-block">Agenda tu sesión gratuita →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const target = document.querySelector(this.getAttribute('href'));
-                if (!target) return;
-                e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.nodo-project-card').forEach((card, index) => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-            observer.observe(card);
-        });
-    </script>
+    <!-- ========== WHY NODO + MADE IN NODO + PORTFOLIO (narrativa) ========== -->
 
     <style>
         /* ========== WHY NODO SECTION - VERSIÓN MEJORADA ========== */
@@ -1295,238 +1511,222 @@
 
 
 
-    <section class="nodo-services-section" id="nodo-services-section">
-        <div class="nodo-services-container">
-            <!-- <header class="nodo-services-header" style="text-align: center;">
-                <span class="nodo-section-subtitle" style="margin-bottom: 25px;">Servicios Made In</span>
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
-                    <img src="./img/nodedos.svg" alt="Logo de Nodo" style="height: 120px; margin: 0 auto;">
-                    <h2 class="nodo-section-title"
-                        style="margin-top: 0; margin-bottom: 20px; text-decoration: underline #8855ff;">Nodo</h2>
-                </div>
-                <h2 class="nodo-section-title">Impulsamos tu negocio al siguiente nivel.</h2>
-                <p class="nodo-section-description">
-                    Combinamos estrategia, tecnología y creatividad para transformar tu empresa.
+    <section class="nodo-made-section" id="made-in-nodo">
+        <div class="nodo-made__container">
+            <header class="made-in-nodo__intro">
+                <span class="made-in-nodo__eyebrow">Servicios Made in Nodo</span>
+                <h2 class="made-in-nodo__title">
+                    Webs de nivel internacional.<br>
+                    <span class="made-in-nodo__title-accent">Hechas en Barcelona.</span>
+                </h2>
+                <p class="made-in-nodo__lede">
+                    3D para elevar la experiencia, control total de cada interacción y diseño afinado para que tu negocio innove a su máximo exponencial.
                 </p>
-            </header> -->
+            </header>
 
-            <!-- <div class="nodo-services-grid">
-                <article class="nodo-service-card">
-                    <div class="nodo-service-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Transformación Digital</h3>
-                    <ul class="nodo-service-features">
-                        <li>Desarrollo web profesional</li>
-                        <li>Presencia digital optimizada</li>
-                        <li>Mantenimiento continuo</li>
-                    </ul>
-                    <div class="nodo-service-cta">
-                        <a href="#pricing-container" class="nodo-btn-service">Descubrir planes</a>
-                    </div>
-                </article>
+            <div class="made-in-nodo__story" id="made-in-story">
+                <div class="made-in-nodo__story-pin">
+                    <div class="made-in-nodo__steps">
+                        <article class="made-in-step is-active" data-scene="0">
+                            <p class="made-in-step__num">00 · CONTEXTO</p>
+                            <h3 class="made-in-step__title">Miles de webs. Pocas elevan la experiencia.</h3>
+                            <p class="made-in-step__text">La mayoría se queda en plantillas. Nosotros construimos experiencias digitales con el mismo rigor que usan equipos internacionales — desde Barcelona, para negocios que quieren destacar de verdad.</p>
+                            <div class="made-in-step__tags">
+                                <span class="made-in-step__tag">Barcelona</span>
+                                <span class="made-in-step__tag">España · Europa</span>
+                                <span class="made-in-step__tag">Made in Nodo</span>
+                            </div>
+                        </article>
 
-                <article class="nodo-service-card">
-                    <div class="nodo-service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Analítica de Mercado</h3>
-                    <ul class="nodo-service-features">
-                        <li>Estudios de competencia</li>
-                        <li>Análisis de datos y KPIs</li>
-                        <li>Estrategias de crecimiento</li>
-                    </ul>
-                    <div class="nodo-service-cta">
-                        <a href="#pricing-container" class="nodo-btn-service">Descubrir planes</a>
-                    </div>
-                </article>
+                        <article class="made-in-step" data-scene="1">
+                            <p class="made-in-step__num">01 · EXPERIENCIA 3D</p>
+                            <p class="made-in-step__hook">No es decoración. Es diferenciación.</p>
+                            <h3 class="made-in-step__title">3D que eleva cada visita</h3>
+                            <p class="made-in-step__text">Integramos Spline, WebGL y motion avanzado para que tu web no se parezca a ninguna otra. Tecnología de vanguardia al servicio de la conversión — no del postureo.</p>
+                            <div class="made-in-step__tags">
+                                <span class="made-in-step__tag">Spline</span>
+                                <span class="made-in-step__tag">WebGL</span>
+                                <span class="made-in-step__tag">GSAP</span>
+                            </div>
+                        </article>
 
-                <article class="nodo-service-card">
-                    <div class="nodo-service-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>Gestión de Proyectos</h3>
-                    <ul class="nodo-service-features">
-                        <li>Gestión ágil de proyectos</li>
-                        <li>Implementación y seguimiento</li>
-                        <li>Resultados medibles</li>
-                    </ul>
-                    <div class="nodo-service-cta">
-                        <a href="#pricing-container" class="nodo-btn-service">Descubrir planes</a>
-                    </div>
-                </article>
-            </div> -->
+                        <article class="made-in-step" data-scene="2">
+                            <p class="made-in-step__num">02 · CONTROL TOTAL</p>
+                            <p class="made-in-step__hook">Nada ocurre por casualidad.</p>
+                            <h3 class="made-in-step__title">Cada evento, bajo control</h3>
+                            <p class="made-in-step__text">Scroll, hover, carga, clic, conversión — orquestamos cada micro-interacción para guiar al usuario con precisión. Tu web responde como un producto, no como un folleto.</p>
+                            <div class="made-in-step__tags">
+                                <span class="made-in-step__tag">ScrollTrigger</span>
+                                <span class="made-in-step__tag">Micro-interacciones</span>
+                                <span class="made-in-step__tag">Conversión</span>
+                            </div>
+                        </article>
 
-            <!-- Añadir después de la grid una sección de beneficios -->
-            <!-- <div class="nodo-benefits-banner">
-                <div class="nodo-benefit-item">
-                    <i class="fas fa-gift"></i>
-                    <p><b><i style="font-size: 1.3rem;">Tarjetas De Visita / Merchandising </i><i
-                                style="font-size: 1.3rem;">de Regalo</i> al comenzar tu <i
-                                style="font-size: 1.3rem;">Plan
-                                Estandard</i> <span style="font-size: smaller;">(o superior)</span>
-                            con <i style="font-size: 1.3rem;">Nodo</i>.</b></p>
-                    <i class="fas fa-gift"></i>
-
-                </div>
-            </div> -->
-
-
-
-
-
-
-
-
-
-            <div class="container">
-                <!-- Main Solutions Section -->
-                <div class="section-header">
-                    <h2 class="section-title">Soluciones Made in Nodo <img src="./img/nodedos.svg" alt="Logo de Nodo"
-                            style="height: 120px; margin: 0 auto;">
-                    </h2>
-                    <p class="section-description">Nodo ofrece la credibilidad que proporciona un diseño profesional,
-                        con un trato personalizado, respuesta inmediata, garantía, creatividad
-                        y la capacidad de atraer más clientes en el momento preciso.</p>
-                </div>
-
-                <div class="solutions-container">
-                    <!-- Solution 1: Hostelería -->
-                    <div class="solution-card">
-                        <div class="solution-info">
-                            <h3 class="solution-title">Autónomos y Negocios</h3>
-                            <ul class="solution-features">
-                                <li>Sistemas optimizados para reservaciones, menús digitales y gestión eficiente.</li>
-                                <li>Presencia destacada en Google Maps y redes sociales para mayor visibilidad.</li>
-                                <li>Plataformas intuitivas para servicios de delivery y pedidos para llevar.</li>
-                                <li>Estrategias locales de marketing digital para aumentar el tráfico físico y online.
-                                </li>
-                            </ul>
-                            <a href="./trabajo.html" class="solution-link">VER EJEMPLOS</a>
-                        </div>
-                        <div class="solution-image">
-                            <img src="./img/treshitachi.webp" alt="Soluciones para Empresas">
-                        </div>
+                        <article class="made-in-step" data-scene="3">
+                            <p class="made-in-step__num">03 · DISEÑO AFINADO</p>
+                            <p class="made-in-step__hook">Tu negocio, al máximo exponencial.</p>
+                            <h3 class="made-in-step__title">Estilo que innova tu marca</h3>
+                            <p class="made-in-step__text">Tipografía, color, ritmo visual y copy — cada detalle calibrado para proyectar autoridad y diferenciarte en tu sector. No adaptamos plantillas: diseñamos identidad digital a medida.</p>
+                            <div class="made-in-step__tags">
+                                <span class="made-in-step__tag">Identidad</span>
+                                <span class="made-in-step__tag">UI/UX</span>
+                                <span class="made-in-step__tag">Branding digital</span>
+                            </div>
+                        </article>
                     </div>
 
-                    <!-- Solution 2: Tiendas & Comercios -->
-                    <div class="solution-card">
-                        <div class="solution-info">
-                            <h3 class="solution-title">Tiendas & Comercios</h3>
-                            <ul class="solution-features">
-                                <li>Catálogos digitales responsivos con fotografías profesionales de productos.</li>
-                                <li>Sistemas de gestión digital para ventas e inventario en tiempo real.</li>
-                                <li>Automatización de alertas de stock y comunicaciones con clientes.</li>
-                                <li>Estrategias geotargetizadas para incrementar ventas en tu zona de influencia.</li>
-                            </ul>
-                            <a href="./trabajo.html" class="solution-link">VER EJEMPLOS</a>
-                        </div>
-                        <div class="solution-image">
-                            <img src="./img/cinco.webp" alt="Soluciones para Tiendas y Comercios">
-                        </div>
-                    </div>
+                    <div class="made-in-nodo__demo-col">
+                        <div class="made-in-demo" id="made-in-demo" aria-hidden="true">
+                            <div class="made-in-demo__chrome">
+                                <span class="made-in-demo__dot"></span>
+                                <span class="made-in-demo__dot"></span>
+                                <span class="made-in-demo__dot"></span>
+                            </div>
 
-                    <!-- Solution 3: Artesanía & Servicios -->
-                    <div class="solution-card">
-                        <div class="solution-info">
-                            <h3 class="solution-title">Artesanías & Servicios</h3>
-                            <ul class="solution-features">
-                                <li>Portfolios digitales que destacan tu trabajo, proceso creativo y especialización.
-                                </li>
-                                <li>Copywriting estratégico para atraer a tu cliente ideal y comunicar tu valor único.
-                                </li>
-                                <li>Posicionamiento SEO especializado para captar clientes de alta conversión.</li>
-                                <li>Campañas locales personalizadas para incrementar visibilidad y ventas en tu área.
-                                </li>
-                            </ul>
-                            <a href="./trabajo.html" class="solution-link">VER EJEMPLOS</a>
-                        </div>
-                        <div class="solution-image">
-                            <img src="./img/todos2.webp" alt="Soluciones para Artesanía y Servicios"><span
-                                class="made-in-nodo">Made in Nodo</span>
+                            <div class="made-in-demo__scene is-active" data-scene="0">
+                                <span class="made-in-scene-intro__pin" aria-hidden="true">📍</span>
+                                <p class="made-in-scene-intro__city">Barcelona</p>
+                                <p class="made-in-scene-intro__sub">Nivel internacional</p>
+                            </div>
 
+                            <div class="made-in-demo__scene" data-scene="1">
+                                <div class="made-in-prism-wrap">
+                                    <div class="made-in-prism" aria-hidden="true">
+                                        <div class="made-in-prism__face made-in-prism__face--1"></div>
+                                        <div class="made-in-prism__face made-in-prism__face--2"></div>
+                                        <div class="made-in-prism__face made-in-prism__face--3"></div>
+                                        <div class="made-in-prism__face made-in-prism__face--4"></div>
+                                    </div>
+                                </div>
+                                <p class="made-in-scene-3d__label">Spline · WebGL · Experiencia inmersiva</p>
+                            </div>
+
+                            <div class="made-in-demo__scene" data-scene="2">
+                                <div class="made-in-events">
+                                    <div class="made-in-events__row is-hot" data-event-row>
+                                        <span class="made-in-events__dot"></span>
+                                        <span class="made-in-events__key">on:load</span>
+                                        <span class="made-in-events__val">hero.enter</span>
+                                    </div>
+                                    <div class="made-in-events__row is-hot" data-event-row>
+                                        <span class="made-in-events__dot"></span>
+                                        <span class="made-in-events__key">on:scroll</span>
+                                        <span class="made-in-events__val">section.pin</span>
+                                    </div>
+                                    <div class="made-in-events__row" data-event-row>
+                                        <span class="made-in-events__dot"></span>
+                                        <span class="made-in-events__key">on:hover</span>
+                                        <span class="made-in-events__val">card.lift</span>
+                                    </div>
+                                    <div class="made-in-events__row" data-event-row>
+                                        <span class="made-in-events__dot"></span>
+                                        <span class="made-in-events__key">on:click</span>
+                                        <span class="made-in-events__val">cta.convert</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="made-in-demo__scene" data-scene="3">
+                                <div class="made-in-design">
+                                    <p class="made-in-design__type">Tu marca.</p>
+                                    <p class="made-in-design__sub">Tipografía · color · ritmo visual</p>
+                                    <div class="made-in-design__swatches">
+                                        <span class="made-in-design__swatch" style="background:#4e53be"></span>
+                                        <span class="made-in-design__swatch" style="background:#7c3aed"></span>
+                                        <span class="made-in-design__swatch" style="background:#1a1a2e"></span>
+                                        <span class="made-in-design__swatch" style="background:#f8f9ff;border-color:rgba(0,0,0,0.08)"></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-
-                <!-- <div class="custom-solutions">
-                    <div class="section-header">
-                        <h2 class="section-title">Son Soluciones Pensadas Para Ti</h2>
-                        <p class="section-description">En Nodo desarrollamos propuestas a medida de lo que tu marca
-                            necesita,
-                            combinando personalización, funcionalidad, posicionamiento SEO y estrategias de marketing
-                            que preservan la esencia única de tu negocio.</p>
-                    </div>
-
-
-                </div> -->
             </div>
 
-        </div>
-        </div>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Solution cards hover effect
-                const solutionLinks = document.querySelectorAll('.solution-link');
-                solutionLinks.forEach(link => {
-                    link.addEventListener('mouseenter', function () {
-                        this.style.transform = 'translateY(-3px)';
-                    });
-
-                    link.addEventListener('mouseleave', function () {
-                        this.style.transform = 'translateY(0)';
-                    });
-                });
-
-                // Slider functionality for solution boxes
-                const dots = document.querySelectorAll('.slider-dot');
-                const boxes = document.querySelectorAll('.solution-box');
-
-                // Initially show all boxes for desktop
-                function setupResponsive() {
-                    if (window.innerWidth <= 900) {
-                        // Mobile view - show only active box
-                        const activeIndex = Array.from(dots).findIndex(dot => dot.classList.contains('active'));
-                        boxes.forEach((box, index) => {
-                            box.style.display = index === activeIndex ? 'flex' : 'none';
-                        });
-                    } else {
-                        // Desktop view - show all
-                        boxes.forEach(box => {
-                            box.style.display = 'flex';
-                        });
-                    }
-                }
-
-                // Initial setup
-                setupResponsive();
-
-                // Update on resize
-                window.addEventListener('resize', setupResponsive);
-
-
-                // Dot click handlers
-                dots.forEach((dot, index) => {
-                    dot.addEventListener('click', function () {
-                        // Update active dot
-                        dots.forEach(d => d.classList.remove('active'));
-                        this.classList.add('active');
-
-                        // Show corresponding box on mobile
-                        if (window.innerWidth <= 900) {
-                            boxes.forEach((box, boxIndex) => {
-                                box.style.display = boxIndex === index ? 'flex' : 'none';
-                            });
-                        }
-                    });
-                });
-            });
-        </script>
-
+            <div class="made-in-sectors">
+                <header class="made-in-sectors__header">
+                    <h3 class="made-in-sectors__title">Así lo aplicamos en tu sector</h3>
+                    <p class="made-in-sectors__sub">Misma tecnología. Mismo rigor. Adaptado a tu negocio.</p>
+                </header>
+                <div class="made-in-sectors__grid">
+                    <a href="./trabajo.html" class="made-in-sector">
+                        <div class="made-in-sector__img">
+                            <img src="./img/treshitachi.webp" alt="Autónomos y negocios" loading="lazy">
+                        </div>
+                        <div class="made-in-sector__body">
+                            <h4 class="made-in-sector__title">Autónomos y negocios</h4>
+                            <p class="made-in-sector__text">Reservas, menús digitales y presencia local que convierte.</p>
+                            <span class="made-in-sector__link">Ver ejemplos →</span>
+                        </div>
+                    </a>
+                    <a href="./trabajo.html" class="made-in-sector">
+                        <div class="made-in-sector__img">
+                            <img src="./img/cinco.webp" alt="Tiendas y comercios" loading="lazy">
+                        </div>
+                        <div class="made-in-sector__body">
+                            <h4 class="made-in-sector__title">Tiendas y comercios</h4>
+                            <p class="made-in-sector__text">Catálogos digitales, stock y ventas geolocalizadas.</p>
+                            <span class="made-in-sector__link">Ver ejemplos →</span>
+                        </div>
+                    </a>
+                    <a href="./trabajo.html" class="made-in-sector">
+                        <div class="made-in-sector__img">
+                            <img src="./img/todos2.webp" alt="Artesanía y servicios" loading="lazy">
+                        </div>
+                        <div class="made-in-sector__body">
+                            <h4 class="made-in-sector__title">Artesanía y servicios</h4>
+                            <p class="made-in-sector__text">Portfolio premium, SEO y copy que atrae a tu cliente ideal.</p>
+                            <span class="made-in-sector__link">Ver ejemplos →</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
+
+    <!-- Proyectos destacados — prueba después del cómo -->
+    <section class="nodo-portfolio relative" id="before-after">
+        <div class="nodo-portfolio__container">
+            <header class="nodo-portfolio__header">
+                <div>
+                    <span class="nodo-portfolio__eyebrow">Portfolio Nodo</span>
+                    <h2 class="nodo-portfolio__title">Proyectos de persona <span class="nodo-portfolio__highlight">a persona</span></h2>
+                </div>
+                <p class="nodo-portfolio__lede">Proyectos reales con diseño premium, rendimiento extremo y resultados medibles. Sin relleno — solo experiencia que habla por sí misma.</p>
+            </header>
+
+            <div class="nodo-portfolio__toolbar">
+                <div class="nodo-portfolio__filters" id="portfolio-filters" role="tablist" aria-label="Filtrar proyectos"></div>
+                <div class="nodo-portfolio__arrows">
+                    <button type="button" class="nodo-portfolio__arrow nodo-portfolio__arrow--prev" id="portfolio-prev" aria-label="Proyecto anterior">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </button>
+                    <button type="button" class="nodo-portfolio__arrow" id="portfolio-next" aria-label="Siguiente proyecto">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="nodo-portfolio__viewport" id="portfolio-viewport">
+                <div class="nodo-portfolio__track" id="portfolio-track"></div>
+            </div>
+
+            <footer class="nodo-portfolio__foot">
+                <a href="./trabajo.html" class="nodo-portfolio__all">Ver todos los proyectos <span aria-hidden="true">↗</span></a>
+                <div class="nodo-portfolio__progress" id="portfolio-progress" aria-hidden="true"></div>
+            </footer>
+
+            <div class="nodo-portfolio__cta text-white">
+                <h3 class="text-2xl md:text-3xl font-bold mb-4">¿Tu negocio merece estar en este nivel?</h3>
+                <p class="text-lg mb-8 opacity-90 max-w-2xl mx-auto">Explora todo nuestro trabajo — webs, 3D, apps y audiovisual — o agenda tu diagnóstico gratuito.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="./trabajo.html" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-block">Ver todo el trabajo</a>
+                    <a href="https://wa.me/+34622494800?text=Quiero%20una%20sesi%C3%B3n%20estrat%C3%A9gica%20de%20diagn%C3%B3stico%20con%20Nodo" target="_blank" rel="noopener" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors inline-block">Agenda tu sesión gratuita →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
 
 
@@ -1796,7 +1996,7 @@
                             Triplicamos nuestras reservas online y el tráfico web se multiplicó por 100. La facilidad
                             con la que los pacientes pueden agendar citas ahora es incomparable."</p>
                         <div class="testimonial-author">
-                            <img src="./img/doctorahitachi.webp" alt="Cliente">
+                            <img src="./img/doctorahitachi.jpg" alt="Cliente">
                             <div class="author-info">
                                 <h4>Dra. Hitachi A.</h4>
                                 <span>Clínica Dra. Hitachi</span>
@@ -2671,7 +2871,7 @@
                 </div>
                 <!-- Enlaces -->
                 <nav style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; margin: 16px 0;">
-                    <a href="#nodo-services-section"
+                    <a href="#made-in-nodo"
                         style="color: #bdbdfc; text-decoration: none; font-weight: 500; transition: color 0.2s;"
                         onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">Servicios</a>
                     <a href="#before-after"
@@ -2808,68 +3008,6 @@
 
 
 
-        // CONTADORES STATS CON GSAP - Funciona cuando son visibles
-        function initStatsCounters() {
-            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-                console.error('GSAP o ScrollTrigger no están cargados');
-                return;
-            }
-
-            // Contador de Servicios (+50)
-            const servicesCounter = document.getElementById('services-counter');
-            if (servicesCounter) {
-                gsap.from(servicesCounter, {
-                    textContent: 0,
-                    duration: 2,
-                    ease: "power1.out",
-                    snap: { textContent: 1 },
-                    scrollTrigger: {
-                        trigger: ".nodo-stats-section",
-                        start: "top 80%",
-                        once: true
-                    },
-                    onUpdate: function () {
-                        servicesCounter.textContent = '+' + Math.ceil(this.targets()[0].textContent);
-                    }
-                });
-            }
-
-            // Contador de Retención (100%)
-            const retentionCounter = document.getElementById('retention-counter');
-            if (retentionCounter) {
-                gsap.from(retentionCounter, {
-                    textContent: 0,
-                    duration: 2,
-                    ease: "power1.out",
-                    snap: { textContent: 1 },
-                    scrollTrigger: {
-                        trigger: ".nodo-stats-section",
-                        start: "top 80%",
-                        once: true
-                    },
-                    onUpdate: function () {
-                        retentionCounter.textContent = Math.ceil(this.targets()[0].textContent) + '%';
-                    }
-                });
-            }
-        }
-
-        // Inicializar contadores stats después de que GSAP esté listo
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                setTimeout(initStatsCounters, 100);
-            });
-        } else {
-            setTimeout(initStatsCounters, 100);
-        }
-
-
-
-
-
-
-
-
         const cursor = document.querySelector(".custom-cursor");
         let cursorX = 0, cursorY = 0;
         let targetX = 0, targetY = 0;
@@ -2964,42 +3102,7 @@
 
                 tl.set([beforeCard, afterCard], { opacity: 1, y: 0, pointerEvents: "auto" });
             }
-
-            const elements = [
-                document.querySelector('.hero h1'),
-                document.querySelector('.hero p'),
-                document.querySelector('.btn.contacto'),
-                document.querySelector('.hero .btn.btn-secondary')
-            ].filter(Boolean);
-
-            elements.forEach(element => element.classList.add('parallax-element'));
-
-            const handleScroll = () => {
-                elements.forEach(element => {
-                    const rect = element.getBoundingClientRect();
-                    const windowHeight = window.innerHeight;
-
-                    if (rect.top < windowHeight * 0.8) {
-                        element.classList.add('visible');
-                    }
-                });
-            };
-
-            handleScroll();
-
-            let isScrolling = false;
-            window.addEventListener('scroll', () => {
-                if (!isScrolling) {
-                    window.requestAnimationFrame(() => {
-                        handleScroll();
-                        isScrolling = false;
-                    });
-                    isScrolling = true;
-                }
-            });
         });
-
-
 
         document.addEventListener("DOMContentLoaded", function () {
             const cards = document.querySelectorAll(".nodo-service-card");
@@ -3115,8 +3218,10 @@
     </script>
 
     <!-- ==================== GSAP ANIMATIONS ==================== -->
+    <script src="./made-in-nodo.js"></script>
     <script src="./gsap-animations-clean.js"></script>
     <script src="./why-nodo-animations.js"></script>
+    <script src="./portfolio-carousel.js"></script>
 
 </body>
 

@@ -1,181 +1,157 @@
-// ==================== GSAP HERO ANIMATIONS - VERSIÓN PROFESIONAL ====================
+// ==================== GSAP HERO ANIMATIONS ====================
 
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🎬 Preparando hero para animaciones...');
-    
-    // Ocultar elementos INMEDIATAMENTE (antes de que se vean)
-    gsap.set(".author", { opacity: 0, y: 24, scale: 0.92 });
-    gsap.set(".hero h1", { opacity: 0, y: 40 });
-    gsap.set(".hero-lead", { opacity: 0, y: 28, filter: "blur(10px)" });
-    gsap.set(".hero-buttons .btn", { opacity: 0, y: 20, scale: 0.94 });
-    gsap.set(".hero-microcopy", { opacity: 0, y: 16 });
-    // Subrayado del highlight empieza en 0
-    gsap.set(".highlight", { backgroundSize: "0% 0.58em" });
-    
-    // El contador debe estar invisible pero sin opacity total para evitar parpadeos
-    gsap.set(".users-count", {
-        opacity: 0,
-        y: 30,
-        pointerEvents: "none"
-    });
-    
-    // Esperar a que el loader desaparezca
-    setTimeout(() => {
-        console.log('✨ Loader desapareciendo - Iniciando animaciones');
+let heroInitialized = false;
+let morphSplit = null;
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (typeof gsap !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+        if (typeof SplitText !== 'undefined') {
+            try { gsap.registerPlugin(SplitText); } catch (e) { /* SplitText opcional */ }
+        }
+    }
+
+    function startAfterLoader() {
+        if (heroInitialized) return;
+        heroInitialized = true;
         initHeroAnimations();
         initStatsCounters();
-    }, 2200);
+    }
+
+    document.addEventListener('nodo:loader:done', startAfterLoader, { once: true });
+    setTimeout(startAfterLoader, 6000);
 });
 
 function initHeroAnimations() {
-    console.log('✨ initHeroAnimations ejecutándose...');
-    
-    if (typeof gsap === 'undefined') {
-        console.error('❌ GSAP no disponible');
-        return;
-    }
+    if (typeof gsap === 'undefined') return;
 
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.set('.author', { opacity: 0, y: 20, scale: 0.94 });
+    gsap.set('.hero h1', { opacity: 0, y: 36 });
+    gsap.set('.hero-lead', { opacity: 0, y: 24, filter: 'blur(8px)' });
+    gsap.set('.hero-buttons .btn', { opacity: 0, y: 16, scale: 0.96 });
+    gsap.set('.hero-microcopy', { opacity: 0, y: 12 });
+    gsap.set('.users-count', { opacity: 0, y: 24, pointerEvents: 'none' });
+    gsap.set('.highlight', { backgroundSize: '0% 0.58em' });
 
-    gsap.set("#spline-shell", { opacity: 0, y: 20, scale: 0.97, filter: 'blur(4px)' });
+    gsap.set('#spline-shell', { opacity: 0, y: 20, scale: 0.97, filter: 'blur(4px)' });
 
-    // ========== TIMELINE PRINCIPAL ==========
     const masterTimeline = gsap.timeline({
-        defaults: {
-            ease: "expo.out",
-            force3D: true
-        },
+        defaults: { ease: 'expo.out', force3D: true },
         onComplete: () => {
-            console.log('✅ Timeline completado');
-            initContinuousAnimations();
-            // NO se crean partículas — eliminadas por rendimiento
-        }
-    });
-
-    // 1. LOGO — rápido, sin rebote
-    masterTimeline.to(".author", {
-        opacity: 1, y: 0, scale: 1,
-        duration: 0.7,
-        onStart: () => console.log('1️⃣ Logo')
-    });
-
-    // 2. TÍTULO — palabras en cascada, arranca antes de que termine el logo
-    const h1Element = document.querySelector(".hero h1");
-    if (h1Element) {
-        const highlightSpan = h1Element.querySelector('.highlight');
-        if (highlightSpan) {
-            const text = highlightSpan.textContent;
-            highlightSpan.innerHTML = '';
-            
-            // Dividir en palabras
-            const words = text.split(' ');
-            words.forEach((word, index) => {
-                const wordSpan = document.createElement('span');
-                wordSpan.className = 'word-span';
-                wordSpan.textContent = word;
-                wordSpan.style.display = 'inline-block';
-                wordSpan.style.marginRight = '0.35em';
-                highlightSpan.appendChild(wordSpan);
+            document.body.classList.add('hero-ready');
+            gsap.set(['.author', '.hero h1', '.hero-lead', '.hero-buttons', '.hero-microcopy', '.users-count'], {
+                visibility: 'visible',
+                clearProps: 'visibility'
             });
-
-            // Inicializar palabras invisibles
-            gsap.set(".word-span", { opacity: 0, y: 18, rotationX: -30, transformOrigin: "center bottom" });
-
-            masterTimeline.to(".hero h1", {
-                opacity: 1, y: 0,
-                duration: 0.4,
-                onStart: () => console.log('2️⃣ Título')
-            }, "-=0.45");
-
-            masterTimeline.to(".word-span", {
-                opacity: 1, y: 0, rotationX: 0,
-                stagger: 0.045,
-                duration: 0.55,
-            }, "-=0.3");
-
-            // Subrayado
-            masterTimeline.to(".highlight", {
-                backgroundSize: "100% 0.58em",
-                duration: 0.7,
-                ease: "expo.inOut"
-            }, "-=0.35");
+            initContinuousAnimations();
+            initHeroMorphWord();
         }
-    }
+    });
 
-    // 3. PÁRRAFO — blur reveal
-    masterTimeline.to(".hero-lead", {
-        opacity: 1, y: 0,
-        filter: "blur(0px)",
-        duration: 0.75,
-        onStart: () => console.log('3️⃣ Párrafo')
-    }, "-=0.45");
+    masterTimeline
+        .to('.author', { opacity: 1, y: 0, scale: 1, duration: 0.65 })
+        .to('.hero h1', { opacity: 1, y: 0, duration: 0.55 }, '-=0.4')
+        .to('.highlight', { backgroundSize: '100% 0.58em', duration: 0.65, ease: 'expo.inOut' }, '-=0.35')
+        .to('.hero-lead', { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.7 }, '-=0.4')
+        .to('.hero-buttons .btn', { opacity: 1, y: 0, scale: 1, stagger: 0.06, duration: 0.45 }, '-=0.45')
+        .add(() => revealSplineHero(), '-=0.3')
+        .to('.hero-microcopy', { opacity: 1, y: 0, duration: 0.45 }, '-=0.3');
 
-    // 4. BOTONES + 3D — entran casi a la vez
-    masterTimeline.to(".hero-buttons .btn", {
-        opacity: 1, y: 0, scale: 1,
-        stagger: 0.05,
-        duration: 0.45,
-        onStart: () => console.log('4️⃣ Botones'),
-    }, "-=0.45");
-
-    masterTimeline.add(() => {
-        revealSplineHero();
-    }, "-=0.35");
-
-    // 5. MICROCOPY + AVATARES + CONTADOR — todo el bloque social proof llega junto
-    masterTimeline.to(".hero-microcopy", {
-        opacity: 1, y: 0,
-        duration: 0.5,
-        onStart: () => console.log('5️⃣ Microcopy')
-    }, "-=0.35");
-
-    // 6. AVATARES
-    const avatars = document.querySelectorAll(".users-avatars img");
-    console.log(`👥 ${avatars.length} avatares`);
-    
-    if (avatars.length > 0) {
+    const avatars = document.querySelectorAll('.users-avatars img');
+    if (avatars.length) {
         gsap.set(avatars, { scale: 0, opacity: 0 });
-        
-        masterTimeline.to(avatars, {
-            scale: 1, opacity: 1,
-            stagger: 0.03,
-            duration: 0.45,
-            ease: "back.out(2)",
-            onStart: () => console.log('6️⃣ Avatares')
-        }, "-=0.3");
+        masterTimeline
+            .to('.users-count', { opacity: 1, y: 0, pointerEvents: 'auto', duration: 0.45 }, '-=0.25')
+            .to(avatars, { scale: 1, opacity: 1, stagger: 0.03, duration: 0.4, ease: 'back.out(2)' }, '-=0.3');
     }
 
-    // 7 + 8. USERS COUNT + CONTADOR — llegan muy pegados a los avatares
-    const counterElement = document.querySelector(".users-count .count");
-    console.log('🔢 Counter:', counterElement ? 'SÍ' : 'NO');
-
-    masterTimeline.to(".users-count", {
-        opacity: 1, y: 0,
-        pointerEvents: "auto",
-        duration: 0.45,
-        onStart: () => {
-            if (counterElement) counterElement.textContent = '0';
-            console.log('7️⃣ Sección usuarios');
-        }
-    }, "-=0.25");
-
+    const counterElement = document.querySelector('.users-count .count');
     if (counterElement) {
         masterTimeline.to(counterElement, {
             textContent: 2141,
             duration: 0.85,
-            ease: "power2.out",
+            ease: 'power2.out',
             snap: { textContent: 1 },
-            onStart: () => console.log('8️⃣ Contador 0 → 2.141'),
-            onUpdate: function() {
+            onUpdate: function () {
                 const value = Math.ceil(parseFloat(this.targets()[0].textContent));
                 counterElement.textContent = value.toLocaleString('es-ES');
             },
             onComplete: () => {
                 counterElement.textContent = '2.141';
-                console.log('✅ Contador finalizado: 2.141');
             }
-        }, "-=0.1");
+        }, '-=0.15');
     }
+}
+
+function initHeroMorphWord() {
+    const el = document.getElementById('hero-brand-morph');
+    if (!el || typeof gsap === 'undefined') return;
+
+    const words = ['Nodo', 'Conecta'];
+    let index = 0;
+    let busy = false;
+
+    if (typeof SplitText === 'undefined') {
+        setInterval(() => {
+            index = (index + 1) % words.length;
+            el.textContent = words[index];
+        }, 3400);
+        return;
+    }
+
+    function splitChars() {
+        morphSplit?.revert();
+        morphSplit = new SplitText(el, { type: 'chars' });
+        gsap.set(morphSplit.chars, { display: 'inline-block', transformOrigin: '50% 100%' });
+        return morphSplit.chars;
+    }
+
+    splitChars();
+
+    function morphNext() {
+        if (busy) return;
+        busy = true;
+        const nextIndex = (index + 1) % words.length;
+        const nextWord = words[nextIndex];
+        const outChars = morphSplit?.chars || [];
+
+        gsap.to(outChars, {
+            yPercent: -110,
+            opacity: 0,
+            rotationX: -72,
+            filter: 'blur(3px)',
+            duration: 0.34,
+            stagger: 0.028,
+            ease: 'power2.in',
+            onComplete: () => {
+                morphSplit?.revert();
+                el.textContent = nextWord;
+                const inChars = splitChars();
+                gsap.fromTo(
+                    inChars,
+                    { yPercent: 90, opacity: 0, rotationX: 64, filter: 'blur(3px)' },
+                    {
+                        yPercent: 0,
+                        opacity: 1,
+                        rotationX: 0,
+                        filter: 'blur(0px)',
+                        duration: 0.42,
+                        stagger: 0.032,
+                        ease: 'back.out(2)',
+                        onComplete: () => {
+                            index = nextIndex;
+                            busy = false;
+                        }
+                    }
+                );
+            }
+        });
+    }
+
+    gsap.delayedCall(1.8, () => {
+        morphNext();
+        setInterval(morphNext, 3600);
+    });
 }
 
 function revealSplineHero() {
@@ -187,8 +163,6 @@ function revealSplineHero() {
         shell.dataset.revealed = 'true';
         shell.classList.remove('loading');
         shell.classList.add('spline-visible');
-        document.body.classList.add('hero-ready');
-
         const viewer = shell.querySelector('spline-viewer');
         gsap.to(shell, {
             opacity: 1,
@@ -196,11 +170,9 @@ function revealSplineHero() {
             scale: 1,
             filter: 'blur(0px)',
             duration: 0.55,
-            ease: 'power2.out',
+            ease: 'power2.out'
         });
-        if (viewer) {
-            gsap.to(viewer, { opacity: 1, duration: 0.45, ease: 'power2.out', delay: 0.08 });
-        }
+        if (viewer) gsap.to(viewer, { opacity: 1, duration: 0.45, ease: 'power2.out', delay: 0.08 });
     };
 
     if (window.__nodoSplineReady) {
@@ -216,214 +188,103 @@ function revealSplineHero() {
     setTimeout(finishReveal, 800);
 }
 
-// ========== ANIMACIONES CONTINUAS ==========
 function initContinuousAnimations() {
-    console.log('🔄 Animaciones continuas...');
-
-    // MORPH label Conecta ↔ Nodo — flip por carácter, aeropuerto suave
-    const hlw = [
-        document.getElementById('hlw-0'),
-        document.getElementById('hlw-1')
-    ];
-    if (hlw[0] && hlw[1]) {
-
-        // Pre-splitear cada palabra en chars una sola vez — sin tocar el DOM después
-        function splitToChars(el) {
-            const text = el.textContent;
-            el.innerHTML = '';
-            return text.split('').map(ch => {
-                const s = document.createElement('span');
-                s.textContent = ch === ' ' ? '\u00A0' : ch;
-                s.style.cssText = 'display:inline-block; transform-style:preserve-3d;';
-                el.appendChild(s);
-                return s;
-            });
-        }
-
-        const chars = [splitToChars(hlw[0]), splitToChars(hlw[1])];
-        let current = 0;
-        let morphing = false;
-
-        function morphLabel() {
-            if (morphing) return;
-            morphing = true;
-            const next = (current + 1) % 2;
-            const outChars = chars[current];
-            const inChars  = chars[next];
-
-            // Asegurar que los entrantes están listos en su estado inicial
-            gsap.set(inChars, { opacity: 0, rotationX: 55, filter: 'blur(2px)' });
-            gsap.set(hlw[next], { opacity: 1, pointerEvents: 'none' });
-
-            // OUT — cada char gira hacia arriba y desaparece, stagger izq→der
-            gsap.to(outChars, {
-                rotationX: -55,
-                opacity: 0,
-                filter: 'blur(2px)',
-                duration: 0.32,
-                ease: 'power2.in',
-                stagger: 0.038,
-            });
-
-            // IN — cada char llega girando desde abajo, stagger izq→der
-            // Empieza cuando el OUT lleva la mitad del camino (overlap)
-            const inDelay = outChars.length * 0.038 * 0.4;
-            gsap.to(inChars, {
-                rotationX: 0,
-                opacity: 1,
-                filter: 'blur(0px)',
-                duration: 0.38,
-                ease: 'power3.out',
-                stagger: 0.042,
-                delay: inDelay,
-                onComplete: () => {
-                    gsap.set(hlw[current], { opacity: 0, pointerEvents: 'none' });
-                    gsap.set(outChars, { rotationX: 0, opacity: 0, filter: 'blur(0px)' });
-                    current = next;
-                    morphing = false;
-                }
-            });
-        }
-
-        setInterval(morphLabel, 3400);
-    }
-
-    // HOVER - Botones
-    const buttons = document.querySelectorAll(".hero-buttons .btn");
-    buttons.forEach(btn => {
-        btn.addEventListener("mouseenter", () => {
-            gsap.to(btn, {
-                scale: 1.08,
-                y: -3,
-                boxShadow: "0 15px 40px rgba(78, 83, 190, 0.4)",
-                duration: 0.3,
-                ease: "power2.out"
-            });
+    const buttons = document.querySelectorAll('.hero-buttons .btn');
+    buttons.forEach((btn) => {
+        btn.addEventListener('mouseenter', () => {
+            gsap.to(btn, { scale: 1.06, y: -2, duration: 0.28, ease: 'power2.out' });
         });
-
-        btn.addEventListener("mouseleave", () => {
-            gsap.to(btn, {
-                scale: 1,
-                y: 0,
-                boxShadow: "0 4px 20px rgba(78, 83, 190, 0.2)",
-                duration: 0.3
-            });
+        btn.addEventListener('mouseleave', () => {
+            gsap.to(btn, { scale: 1, y: 0, duration: 0.28 });
         });
     });
 
-    // HOVER - Avatares
-    avatars.forEach(avatar => {
-        avatar.addEventListener("mouseenter", () => {
-            gsap.to(avatar, {
-                scale: 1.2,
-                y: -12,
-                rotation: 5,
-                boxShadow: "0 10px 25px rgba(0, 0, 0, 0.2)",
-                duration: 0.3,
-                ease: "back.out(1.7)"
-            });
+    const avatars = document.querySelectorAll('.users-avatars img');
+    avatars.forEach((avatar) => {
+        avatar.addEventListener('mouseenter', () => {
+            gsap.to(avatar, { scale: 1.15, y: -8, duration: 0.28, ease: 'back.out(2)' });
         });
-
-        avatar.addEventListener("mouseleave", () => {
-            gsap.to(avatar, {
-                scale: 1,
-                y: 0,
-                rotation: 0,
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                duration: 0.3
-            });
+        avatar.addEventListener('mouseleave', () => {
+            gsap.to(avatar, { scale: 1, y: 0, duration: 0.28 });
         });
     });
 
-    // PARALLAX
-    gsap.to("#spline-shell", {
+    gsap.to('#spline-shell', {
         y: 120,
         opacity: 0.6,
-        ease: "none",
+        ease: 'none',
         scrollTrigger: {
-            trigger: ".hero",
-            start: "top top",
-            end: "bottom top",
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
             scrub: 2,
             invalidateOnRefresh: true
         }
     });
 
-    gsap.to(".hero h1", {
+    gsap.to('.hero h1', {
         y: 70,
-        opacity: 0.2,
-        ease: "none",
+        opacity: 0.25,
+        ease: 'none',
         scrollTrigger: {
-            trigger: ".hero",
-            start: "top top",
-            end: "bottom top",
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
             scrub: 1.2,
             invalidateOnRefresh: true
         }
     });
 
-    gsap.to(".hero-lead", {
+    gsap.to('.hero-lead', {
         y: 45,
-        opacity: 0.3,
-        ease: "none",
+        opacity: 0.35,
+        ease: 'none',
         scrollTrigger: {
-            trigger: ".hero",
-            start: "top top",
-            end: "bottom top",
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
             scrub: 1.5,
             invalidateOnRefresh: true
         }
     });
-
-    // PARTÍCULAS eliminadas — afectaban al rendimiento
 }
 
-// ========== PARTÍCULAS (desactivadas) ==========
-function createFloatingParticles() {
-    // Eliminadas: consumían demasiada CPU con muchos tweens en loop
-}
-
-// ========== CONTADORES STATS ==========
 function initStatsCounters() {
-    console.log('📊 Stats counters...');
-    
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-        return;
-    }
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
-    // Servicios
     const servicesCounter = document.getElementById('services-counter');
-    if (servicesCounter) {
+    if (servicesCounter && !servicesCounter.dataset.animated) {
+        servicesCounter.dataset.animated = '1';
         gsap.from(servicesCounter, {
             textContent: 0,
             duration: 2,
-            ease: "power1.out",
+            ease: 'power1.out',
             snap: { textContent: 1 },
             scrollTrigger: {
-                trigger: ".nodo-stats-section",
-                start: "top 80%",
+                trigger: '.nodo-stats-section',
+                start: 'top 80%',
                 once: true
             },
-            onUpdate: function() {
+            onUpdate: function () {
                 servicesCounter.textContent = '+' + Math.ceil(this.targets()[0].textContent);
             }
         });
     }
 
-    // Retención
     const retentionCounter = document.getElementById('retention-counter');
-    if (retentionCounter) {
+    if (retentionCounter && !retentionCounter.dataset.animated) {
+        retentionCounter.dataset.animated = '1';
         gsap.from(retentionCounter, {
             textContent: 0,
             duration: 2,
-            ease: "power1.out",
+            ease: 'power1.out',
             snap: { textContent: 1 },
             scrollTrigger: {
-                trigger: ".nodo-stats-section",
-                start: "top 80%",
+                trigger: '.nodo-stats-section',
+                start: 'top 80%',
                 once: true
             },
-            onUpdate: function() {
+            onUpdate: function () {
                 retentionCounter.textContent = Math.ceil(this.targets()[0].textContent) + '%';
             }
         });
