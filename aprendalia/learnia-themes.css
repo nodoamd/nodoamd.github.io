@@ -38,8 +38,8 @@ html {
   --card: #181622;
   --card-border: #2a2838;
   --text: #eeedf4;
-  --text-muted: #9b97ad;
-  --text-soft: #6b667c;
+  --text-muted: #c8c4d8;
+  --text-soft: #a39eb5;
   --brand-900: #2d1f6e;
   --brand-800: #3d2a9e;
   --brand-700: #5b45d6;
@@ -568,3 +568,33 @@ body.focus-mode #home-focus-block { display: block; }
 [data-theme="dark"] .quiz-option.wrong { background: rgba(239, 68, 68, 0.12) !important; }
 [data-theme="dark"] aside.hidden.lg\:flex { background: var(--sidebar-bg) !important; }
 [data-theme="dark"] .placeholder-slate-400::placeholder { color: var(--text-soft) !important; }
+
+[data-theme="dark"] .sidebar-link,
+[data-theme="dark"] .drawer-link {
+  color: var(--text-muted) !important;
+}
+[data-theme="dark"] .sidebar-link i,
+[data-theme="dark"] .drawer-link i {
+  color: var(--text-soft) !important;
+}
+[data-theme="dark"] .font-hint {
+  color: var(--text-muted) !important;
+  border-color: var(--divider) !important;
+}
+[data-theme="dark"] .font-hint button {
+  color: var(--brand-500) !important;
+}
+[data-theme="dark"] .brand-by { color: var(--text-soft) !important; }
+[data-theme="dark"] .route-accordion__sub { color: var(--text-soft) !important; }
+[data-theme="dark"] .route-accordion__title { color: var(--text) !important; }
+[data-theme="dark"] .lesson-content .lesson-tip { color: var(--text-muted) !important; }
+[data-theme="dark"] .text-slate-800 { color: var(--text) !important; }
+[data-theme="dark"] .listen-btn {
+  background: var(--card) !important;
+  border-color: var(--card-border) !important;
+  color: var(--text-muted) !important;
+}
+[data-theme="dark"] .font-toolbar button {
+  color: var(--text-muted) !important;
+  border-color: var(--card-border) !important;
+}

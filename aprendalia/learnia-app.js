@@ -27,11 +27,49 @@
   let homeSearchQuery = '';
   let exploreFilter = 'all';
   let exploreSearchQuery = '';
+  let expandedRouteIds = new Set();
+  let historySync = false;
+
+  const HISTORY_SCREENS = [
+    'home',
+    'explore',
+    'routes',
+    'profile',
+    'settings',
+    'journey',
+    'journey-stats',
+    'topic',
+    'topic-exam',
+    'lesson',
+    'achievements'
+  ];
 
   const SPEECH_RATES = [0.78, 0.92, 1.08];
 
+  const ROUTES = {};
+  if (typeof RUTA_ESPAÑOLA !== 'undefined') ROUTES[RUTA_ESPAÑOLA.id] = RUTA_ESPAÑOLA;
+  if (typeof RUTA_HISTORIA_ESPANA !== 'undefined') ROUTES[RUTA_HISTORIA_ESPANA.id] = RUTA_HISTORIA_ESPANA;
+
+  let currentRouteId = null;
+
   const EXPLORE_ROUTES = [
-    { id: 'cultura-espanola', title: 'Cultura Española', tags: ['historia', 'arte'], topics: 6, level: 'intermedio', hero: true, available: true },
+    {
+      id: 'historia-espana',
+      title: 'Historia de España',
+      tags: ['historia'],
+      topics: 13,
+      level: 'intermedio',
+      hero: true,
+      available: true
+    },
+    {
+      id: 'cultura-espanola',
+      title: 'Cultura Española',
+      tags: ['arte', 'cultura'],
+      topics: 6,
+      level: 'intermedio',
+      available: true
+    },
     {
       id: 'filosofia',
       title: 'Filosofía Moderna',
@@ -72,10 +110,102 @@
     }
   ];
 
-  const allLessons = () =>
-    RUTA_ESPAÑOLA.topics.flatMap((t) => t.lessons.map((l) => ({ ...l, topicId: t.id })));
+  function allRouteIds() {
+    return Object.keys(ROUTES);
+  }
 
-  const totalLessons = () => allLessons().length;
+  function getRoute(id) {
+    return ROUTES[id] || null;
+  }
+
+  function getCurrentRoute() {
+    return getRoute(currentRouteId) || getRoute(allRouteIds()[0]);
+  }
+
+  function getPublishedRoutes() {
+    return EXPLORE_ROUTES.filter((r) => r.available && ROUTES[r.id]);
+  }
+
+  function routeLessons(routeId) {
+    const route = getRoute(routeId);
+    if (!route) return [];
+    return route.topics.flatMap((t) => t.lessons.map((l) => ({ ...l, topicId: t.id, routeId })));
+  }
+
+  function routeProgress(routeId) {
+    const lessons = routeLessons(routeId);
+    const done = lessons.filter((l) => isDone(l.id)).length;
+    const total = lessons.length;
+    return { done, total, pct: total ? Math.round((done / total) * 100) : 0 };
+  }
+
+  function isRouteComplete(routeId) {
+    const route = getRoute(routeId);
+    if (!route) return false;
+    return route.topics.every((t) => isTopicFullyComplete(t.id));
+  }
+
+  function pickDefaultRouteId() {
+    let bestId = null;
+    let bestDate = '';
+    for (const routeId of allRouteIds()) {
+      for (const lesson of routeLessons(routeId)) {
+        const studiedAt = state.lessonStudiedAt[lesson.id];
+        if (studiedAt && studiedAt > bestDate) {
+          bestDate = studiedAt;
+          bestId = routeId;
+        }
+      }
+    }
+    if (bestId) return bestId;
+    if (ROUTES['historia-espana']) return 'historia-espana';
+    return allRouteIds()[0] || null;
+  }
+
+  function setActiveRoute(id, { render = true } = {}) {
+    if (!ROUTES[id]) return;
+    currentRouteId = id;
+    prefs.activeRouteId = id;
+    expandedRouteIds.add(id);
+    localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+    if (render) renderAll();
+  }
+
+  function syncRouteAccordionOpen(routeId, open) {
+    document.querySelectorAll(`.route-accordion[data-route-id="${routeId}"]`).forEach((accordion) => {
+      accordion.classList.toggle('route-accordion--open', open);
+      const header = accordion.querySelector('.route-accordion__header');
+      if (header) header.setAttribute('aria-expanded', String(open));
+    });
+  }
+
+  window.toggleRouteAccordion = function (routeId) {
+    const willOpen = !expandedRouteIds.has(routeId);
+    if (willOpen) expandedRouteIds.add(routeId);
+    else expandedRouteIds.delete(routeId);
+
+    let updated = 0;
+    document.querySelectorAll(`.route-accordion[data-route-id="${routeId}"]`).forEach((accordion) => {
+      accordion.classList.toggle('route-accordion--open', willOpen);
+      const header = accordion.querySelector('.route-accordion__header');
+      if (header) header.setAttribute('aria-expanded', String(willOpen));
+      updated += 1;
+    });
+
+    if (!updated) {
+      renderTopicsGrid();
+      renderRoutes();
+      lucide.createIcons();
+    }
+  };
+
+  const allLessons = () => routeLessons(currentRouteId);
+
+  const totalLessons = () => routeLessons(currentRouteId).length;
+
+  function allLessonsGlobal() {
+    return allRouteIds().flatMap((routeId) => routeLessons(routeId));
+  }
 
   function defaultPrefs() {
     return {
@@ -84,7 +214,8 @@
       fontScale: 1,
       focusMode: false,
       speechRate: 0.92,
-      hints: { fontSize: false, onboarding: false }
+      hints: { fontSize: false, onboarding: false },
+      activeRouteId: null
     };
   }
 
@@ -106,6 +237,7 @@
         fontScale,
         speechRate,
         focusMode: parsed.focusMode === true,
+        activeRouteId: typeof parsed.activeRouteId === 'string' ? parsed.activeRouteId : null,
         hints: { ...defaultPrefs().hints, ...(parsed.hints || {}) }
       };
     } catch {
@@ -354,9 +486,29 @@
     quizAnswered = !!reviewMode;
   }
 
+  function blockSpeechText(block) {
+    if (!block) return '';
+    switch (block.type) {
+      case 'timeline':
+        if (!block.events?.length) return '';
+        return block.events.map((ev) => `${ev.date}. ${ev.title}. ${ev.text || ''}`).join('. ');
+      case 'keydate':
+        return `${block.date}. ${block.title}. ${block.text || ''}`;
+      case 'quote':
+        return block.author ? `${block.text}. ${block.author}` : block.text || '';
+      case 'image':
+        return block.caption || block.alt || '';
+      default:
+        return block.text || '';
+    }
+  }
+
   function buildLessonSpeech(lesson) {
     const parts = [lesson.title];
-    lesson.blocks.forEach((b) => parts.push(b.text));
+    lesson.blocks.forEach((b) => {
+      const t = blockSpeechText(b);
+      if (t) parts.push(t);
+    });
     getLessonQuestions(lesson).forEach((q, n) => {
       parts.push('Pregunta ' + (n + 1) + '. ' + q.question);
       q.options.forEach((opt, i) => parts.push('Opción ' + (i + 1) + '. ' + opt));
@@ -441,9 +593,10 @@
   };
 
   window.showRouteCompletePrompt = function () {
+    const route = getCurrentRoute();
     showAppSheet({
       title: '¡Ruta completada!',
-      message: 'Has recorrido y certificado todos los temas de Cultura Española. ¡Enhorabuena!',
+      message: 'Has recorrido y certificado todos los temas de «' + route.title + '». ¡Enhorabuena!',
       primaryLabel: 'Ver mi progreso',
       secondaryLabel: 'Quedarme aquí',
       onPrimary: () => showScreen('journey-stats')
@@ -461,8 +614,10 @@
   window.openExploreRoute = function (id) {
     const route = EXPLORE_ROUTES.find((r) => r.id === id);
     if (!route) return;
-    if (route.available) showScreen('journey');
-    else showComingSoon(route.title);
+    if (route.available && ROUTES[id]) {
+      setActiveRoute(id, { render: false });
+      showScreen('journey', { mode: 'push' });
+    } else showComingSoon(route.title);
   };
 
   window.setExploreFilter = function (filter) {
@@ -520,22 +675,21 @@
         '<p class="col-span-full text-center text-[13px] text-slate-400 font-medium py-10">No hay rutas con ese criterio.</p>';
       return;
     }
-    const done = completedCount();
-    const total = totalLessons();
-    const routePct = total ? Math.round((done / total) * 100) : 0;
     grid.innerHTML = items
       .map((r) => {
+        const progress = routeProgress(r.id);
+        const pct = progress.pct;
         if (r.hero) {
-          const badge = done >= total ? 'Completada' : done > 0 ? 'En progreso' : 'Disponible';
+          const badge = progress.done >= progress.total && progress.total ? 'Completada' : progress.done > 0 ? 'En progreso' : 'Disponible';
           return `<button type="button" onclick="openExploreRoute('${r.id}')" class="topic-card tap text-left bg-white rounded-2xl overflow-hidden soft-shadow border border-slate-100 w-full">
             <div class="relative h-32 hero-gradient">
               <span class="absolute top-3 right-3 bg-white/90 text-[var(--brand-700)] text-[10.5px] font-extrabold px-2.5 py-1 rounded-full">${badge}</span>
             </div>
             <div class="p-4">
               <p class="text-[14px] font-bold text-slate-900">${escapeHtml(r.title)}</p>
-              <p class="text-[11.5px] text-slate-400 font-semibold mt-1">${r.topics} temas · Nivel ${r.level}</p>
+              <p class="text-[11.5px] text-slate-400 font-semibold mt-1">${(ROUTES[r.id]?.topics.length || r.topics)} temas · Nivel ${r.level}</p>
               <div class="w-full bg-slate-100 h-1.5 rounded-full mt-3 overflow-hidden">
-                <div class="bg-[var(--brand-700)] h-full rounded-full" style="width:${routePct}%"></div>
+                <div class="bg-[var(--brand-700)] h-full rounded-full" style="width:${pct}%"></div>
               </div>
             </div>
           </button>`;
@@ -554,7 +708,7 @@
           </div>
           <div class="p-4">
             <p class="text-[14px] font-bold text-slate-900">${escapeHtml(r.title)}</p>
-            <p class="text-[11.5px] text-slate-400 font-semibold mt-1">${r.topics} temas · Nivel ${r.level}</p>
+            <p class="text-[11.5px] text-slate-400 font-semibold mt-1">${(ROUTES[r.id]?.topics.length || r.topics)} temas · Nivel ${r.level}</p>
             <div class="w-full bg-slate-100 h-1.5 rounded-full mt-3 overflow-hidden">
               <div class="bg-slate-300 h-full rounded-full" style="width:0%"></div>
             </div>
@@ -629,11 +783,19 @@
   }
 
   function getTopic(id) {
-    return RUTA_ESPAÑOLA.topics.find((t) => t.id === id);
+    for (const routeId of allRouteIds()) {
+      const topic = ROUTES[routeId].topics.find((t) => t.id === id);
+      if (topic) return topic;
+    }
+    return null;
   }
 
   function getLesson(id) {
-    return allLessons().find((l) => l.id === id);
+    for (const routeId of allRouteIds()) {
+      const lesson = routeLessons(routeId).find((l) => l.id === id);
+      if (lesson) return lesson;
+    }
+    return null;
   }
 
   function isTopicComplete(topicId) {
@@ -641,18 +803,23 @@
   }
 
   function getNextTopic() {
-    return RUTA_ESPAÑOLA.topics.find((t) => !isTopicFullyComplete(t.id)) || null;
+    const route = getCurrentRoute();
+    if (!route) return null;
+    return route.topics.find((t) => !isTopicFullyComplete(t.id)) || null;
   }
 
   function getNextLesson() {
-    return allLessons().find((l) => !isDone(l.id)) || null;
+    return routeLessons(currentRouteId).find((l) => !isDone(l.id)) || null;
   }
 
   function getCurrentTopicId() {
     const next = getNextLesson();
     if (next) return next.topicId;
-    const last = allLessons().filter((l) => isDone(l.id)).pop();
-    return last ? last.topicId : RUTA_ESPAÑOLA.topics[0].id;
+    const route = getCurrentRoute();
+    if (!route) return null;
+    const doneLessons = routeLessons(currentRouteId).filter((l) => isDone(l.id));
+    const last = doneLessons.pop();
+    return last ? last.topicId : route.topics[0].id;
   }
 
   function updateStreak() {
@@ -709,22 +876,30 @@
   /* ——— Render ——— */
 
   function renderAll() {
-    const done = completedCount();
-    const total = totalLessons();
-    const pct = total ? Math.round((done / total) * 100) : 0;
+    const route = getCurrentRoute();
+    const progress = routeProgress(currentRouteId);
+    const done = progress.done;
+    const total = progress.total;
+    const pct = progress.pct;
     const level = calcLevel();
     const name = state.name || 'Aprendiz';
+
+    const heroTitle = document.getElementById('hero-route-title');
+    const heroDesc = document.getElementById('hero-route-desc');
+    if (heroTitle && route) heroTitle.textContent = route.title + ' ' + route.flag;
+    if (heroDesc && route) heroDesc.textContent = route.description;
 
     document.getElementById('user-greeting').textContent = name;
     document.getElementById('sidebar-name').textContent = name;
     document.getElementById('drawer-streak').textContent = state.streak;
     document.getElementById('hero-progress-text').textContent = done + ' / ' + total;
     document.querySelector('.hero-bar').style.width = pct + '%';
-    const topicsCertified = RUTA_ESPAÑOLA.topics.filter((t) => isTopicFullyComplete(t.id)).length;
-    document.getElementById('home-ring-text').textContent = topicsCertified + ' / ' + RUTA_ESPAÑOLA.topics.length;
-    document.getElementById('ring-home').setAttribute('stroke-dashoffset', ringOffset(topicsCertified, RUTA_ESPAÑOLA.topics.length));
+    const topicsCertified = route ? route.topics.filter((t) => isTopicFullyComplete(t.id)).length : 0;
+    const topicTotal = route ? route.topics.length : 0;
+    document.getElementById('home-ring-text').textContent = topicsCertified + ' / ' + topicTotal;
+    document.getElementById('ring-home').setAttribute('stroke-dashoffset', ringOffset(topicsCertified, topicTotal));
 
-    const complete = RUTA_ESPAÑOLA.topics.every((t) => isTopicFullyComplete(t.id));
+    const complete = route ? isRouteComplete(currentRouteId) : false;
     document.getElementById('home-congrats').classList.toggle('hidden', !complete);
     document.getElementById('home-congrats-msg').classList.toggle('hidden', !complete);
     document.getElementById('home-keep-going').classList.toggle('hidden', complete);
@@ -743,7 +918,7 @@
     }
 
     document.getElementById('stat-time').textContent = formatTime(state.studyMinutes);
-    document.getElementById('stat-lessons').textContent = done;
+    document.getElementById('stat-lessons').textContent = completedCount();
     document.getElementById('stat-points').textContent = state.points.toLocaleString('es-ES');
     const factsEl = document.getElementById('stat-facts');
     if (factsEl) factsEl.textContent = String(countFactsLearned());
@@ -757,7 +932,7 @@
     if (document.activeElement !== nameInput) nameInput.value = name;
     document.getElementById('profile-level').textContent = level;
     document.getElementById('profile-title').textContent = levelTitle(level);
-    document.getElementById('profile-lessons').textContent = done;
+    document.getElementById('profile-lessons').textContent = completedCount();
     document.getElementById('profile-points').textContent = state.points.toLocaleString('es-ES');
 
     renderTopicsGrid();
@@ -808,60 +983,129 @@
     </div>`;
   }
 
+  function getCurrentTopicIdForRoute(routeId) {
+    const route = getRoute(routeId);
+    if (!route) return null;
+    const lessons = routeLessons(routeId);
+    const next = lessons.find((l) => !isDone(l.id));
+    if (next) return next.topicId;
+    const doneLessons = lessons.filter((l) => isDone(l.id));
+    const last = doneLessons.pop();
+    return last ? last.topicId : route.topics[0].id;
+  }
+
+  function filterRouteTopics(route, query) {
+    if (!query) return route.topics;
+    return route.topics.filter((topic) => {
+      const hay = normSearch(topic.title + ' ' + topic.description);
+      return hay.includes(query);
+    });
+  }
+
+  function buildTopicCardHtml(topic, routeId) {
+    const currentId = getCurrentTopicIdForRoute(routeId);
+    const { done, total } = topicProgress(topic);
+    const complete = isTopicFullyComplete(topic.id);
+    const examPending = isTopicLessonsComplete(topic.id) && topicHasExam(topic.id) && !isExamPassed(topic.id);
+    const isCurrent = routeId === currentRouteId && topic.id === currentId && !complete;
+    const activeClass = isCurrent ? ' topic-card--active' : '';
+    const footer = topicFooterHtml(topic, done, total, complete, isCurrent, examPending);
+    return `<div role="button" tabindex="0" onclick="openTopic('${topic.id}')" class="topic-card relative bg-white rounded-2xl border border-slate-100 soft-shadow h-full${activeClass}${isCurrent ? '' : ' p-4'}">
+      <div class="relative w-12 h-12 rounded-2xl bg-[var(--brand-50)] flex items-center justify-center mb-3">
+        <i data-lucide="${topic.icon}" class="w-5 h-5 text-[var(--brand-700)] stroke-[2]"></i>
+        <span class="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-[var(--brand-700)] text-white text-[11px] font-extrabold flex items-center justify-center ring-2 ring-white">${topic.num}</span>
+      </div>
+      <h4 class="text-[13.5px] font-bold text-slate-900 leading-tight">${escapeHtml(topic.title)}</h4>
+      <p class="text-[11.5px] text-slate-400 font-medium mt-1 leading-snug">${escapeHtml(topic.description)}</p>
+      ${footer}
+    </div>`;
+  }
+
+  function buildRouteTopicListItemHtml(topic) {
+    const p = topicProgress(topic);
+    const complete = isTopicFullyComplete(topic.id);
+    const examPending = isTopicLessonsComplete(topic.id) && topicHasExam(topic.id) && !isExamPassed(topic.id);
+    const status = complete ? ' · Certificado' : examPending ? ' · Examen pendiente' : '';
+    return `<button type="button" onclick="openTopic('${topic.id}')" class="route-accordion__list-item tap">
+      <div class="min-w-0">
+        <p class="text-[13.5px] font-bold text-slate-900 truncate">${escapeHtml(topic.title)}</p>
+        <p class="text-[11.5px] text-slate-400 font-semibold mt-0.5">${p.done} / ${p.total} lecciones${status}</p>
+      </div>
+      <i data-lucide="${topic.icon}" class="w-5 h-5 text-[var(--brand-700)] shrink-0"></i>
+    </button>`;
+  }
+
+  function buildRouteAccordionHtml(meta, { variant = 'cards', searchQuery = '' } = {}) {
+    const routeId = meta.id;
+    const route = ROUTES[routeId];
+    if (!route) return '';
+    const progress = routeProgress(routeId);
+    const certified = route.topics.filter((t) => isTopicFullyComplete(t.id)).length;
+    const q = normSearch(searchQuery);
+    const topics = filterRouteTopics(route, q);
+    const isOpen = expandedRouteIds.has(routeId) || (!!q && topics.length > 0);
+    const barHtml = prefs.focusMode
+      ? ''
+      : `<div class="route-accordion__bar focus-hide"><span style="width:${progress.pct}%"></span></div>`;
+    const sub = prefs.focusMode
+      ? `${route.topics.length} módulos`
+      : `${certified} / ${route.topics.length} temas · ${progress.done} / ${progress.total} lecciones`;
+
+    let bodyHtml = '';
+    if (!topics.length) {
+      bodyHtml = '<p class="text-[12.5px] text-slate-400 font-medium py-3 text-center">Ningún tema coincide con tu búsqueda.</p>';
+    } else if (variant === 'list') {
+      bodyHtml = `<div class="route-accordion__list">${topics.map(buildRouteTopicListItemHtml).join('')}</div>
+        <button type="button" onclick="openExploreRoute('${routeId}')" class="route-accordion__open-route tap">Ver ruta completa <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i></button>`;
+    } else {
+      bodyHtml = `<div class="route-accordion__topics">${topics.map((t) => buildTopicCardHtml(t, routeId)).join('')}</div>`;
+    }
+
+    return `<div class="route-accordion${isOpen ? ' route-accordion--open' : ''}" data-route-id="${routeId}">
+      <button type="button" class="route-accordion__header tap" onclick="toggleRouteAccordion('${routeId}')" aria-expanded="${isOpen}">
+        <span class="route-accordion__flag" aria-hidden="true">${route.flag}</span>
+        <span class="route-accordion__meta">
+          <span class="route-accordion__title">${escapeHtml(route.title)}</span>
+          <span class="route-accordion__sub">${sub}</span>
+        </span>
+        <i data-lucide="chevron-down" class="route-accordion__chevron w-5 h-5"></i>
+      </button>
+      ${barHtml}
+      <div class="route-accordion__collapse">
+        <div class="route-accordion__body">${bodyHtml}</div>
+      </div>
+    </div>`;
+  }
+
   function renderTopicsGrid() {
     const grid = document.getElementById('topics-grid');
-    const currentId = getCurrentTopicId();
+    if (!grid) return;
     const q = normSearch(homeSearchQuery);
-    const topics = RUTA_ESPAÑOLA.topics.filter((topic) => {
-      if (!q) return true;
-      const hay = normSearch(topic.title + ' ' + topic.description);
-      return hay.includes(q);
-    });
-    if (!topics.length) {
-      grid.innerHTML = '<p class="col-span-full text-center text-[13px] text-slate-400 py-6">Ningún tema coincide con tu búsqueda.</p>';
+    if (q) {
+      getPublishedRoutes().forEach((meta) => {
+        if (filterRouteTopics(ROUTES[meta.id], q).length) expandedRouteIds.add(meta.id);
+      });
+    }
+    const routes = getPublishedRoutes();
+    if (!routes.length) {
+      grid.innerHTML = '<p class="text-center text-[13px] text-slate-400 py-6">No hay rutas disponibles.</p>';
       return;
     }
-    grid.innerHTML = topics
-      .map((topic) => {
-        const { done, total } = topicProgress(topic);
-        const complete = isTopicFullyComplete(topic.id);
-        const examPending = isTopicLessonsComplete(topic.id) && topicHasExam(topic.id) && !isExamPassed(topic.id);
-        const isCurrent = topic.id === currentId && !complete;
-        const activeClass = isCurrent ? ' topic-card--active' : '';
-        const footer = topicFooterHtml(topic, done, total, complete, isCurrent, examPending);
-        return `<div role="button" tabindex="0" onclick="openTopic('${topic.id}')" class="topic-card relative bg-white rounded-2xl border border-slate-100 soft-shadow h-full${activeClass}${isCurrent ? '' : ' p-4'}">
-          <div class="relative w-12 h-12 rounded-2xl bg-[var(--brand-50)] flex items-center justify-center mb-3">
-            <i data-lucide="${topic.icon}" class="w-5 h-5 text-[var(--brand-700)] stroke-[2]"></i>
-            <span class="absolute -top-2 -left-2 w-6 h-6 rounded-full bg-[var(--brand-700)] text-white text-[11px] font-extrabold flex items-center justify-center ring-2 ring-white">${topic.num}</span>
-          </div>
-          <h4 class="text-[13.5px] font-bold text-slate-900 leading-tight">${escapeHtml(topic.title)}</h4>
-          <p class="text-[11.5px] text-slate-400 font-medium mt-1 leading-snug">${escapeHtml(topic.description)}</p>
-          ${footer}
-        </div>`;
-      })
-      .join('');
+    const accordions = routes.map((meta) => buildRouteAccordionHtml(meta, { variant: 'cards', searchQuery: homeSearchQuery }));
+    const anyVisible = routes.some((meta) => filterRouteTopics(ROUTES[meta.id], q).length > 0 || !q);
+    if (q && !anyVisible) {
+      grid.innerHTML = '<p class="text-center text-[13px] text-slate-400 py-6">Ningún tema coincide con tu búsqueda.</p>';
+      return;
+    }
+    grid.innerHTML = accordions.join('');
   }
 
   function renderRoutes() {
-    const done = completedCount();
-    const total = totalLessons();
-    const pct = total ? Math.round((done / total) * 100) : 0;
-    const label = done >= total ? 'Completada' : 'En progreso';
-    const sub = prefs.focusMode
-      ? '6 módulos · Cultura Española'
-      : `${done} / ${total} lecciones · 6 módulos`;
-    const barHtml = prefs.focusMode
-      ? ''
-      : `<div class="w-full bg-white/20 h-1.5 rounded-full mt-3 overflow-hidden focus-hide">
-          <div class="bg-white h-full rounded-full" style="width:${pct}%"></div>
-        </div>`;
-    document.getElementById('routes-list').innerHTML = `
-      <button type="button" onclick="showScreen('journey')" class="tap text-left hero-gradient rounded-[22px] p-5 accent-shadow w-full">
-        <p class="text-[11px] uppercase tracking-[0.14em] font-bold text-violet-200/85">${label}</p>
-        <p class="text-[18px] font-extrabold text-white mt-1">${RUTA_ESPAÑOLA.title} ${RUTA_ESPAÑOLA.flag}</p>
-        <p class="text-[12px] text-violet-100/80 font-medium mt-1">${sub}</p>
-        ${barHtml}
-      </button>`;
+    const list = document.getElementById('routes-list');
+    if (!list) return;
+    list.innerHTML = getPublishedRoutes()
+      .map((meta) => buildRouteAccordionHtml(meta, { variant: 'list' }))
+      .join('');
   }
 
   const ACHIEVEMENTS = [
@@ -870,7 +1114,8 @@
     { id: 'streak3', icon: 'flame', title: 'Racha de fuego', desc: '3 días seguidos', test: () => state.streak >= 3 },
     { id: 'exam1', icon: 'graduation-cap', title: 'Primera certificación', desc: 'Aprueba tu primer examen de tema', test: () => state.passedTopicExams.length >= 1 },
     { id: 'facts15', icon: 'brain', title: 'Memoria viva', desc: 'Aprende 15 datos o más', test: () => countFactsLearned() >= 15 },
-    { id: 'route', icon: 'landmark', title: 'Maestro cultural', desc: 'Termina Cultura Española', test: () => RUTA_ESPAÑOLA.topics.every((t) => isTopicFullyComplete(t.id)) }
+    { id: 'route-cultura', icon: 'landmark', title: 'Maestro cultural', desc: 'Termina Cultura Española', test: () => isRouteComplete('cultura-espanola') },
+    { id: 'route-historia', icon: 'scroll-text', title: 'Historiador', desc: 'Termina Historia de España', test: () => isRouteComplete('historia-espana') }
   ];
 
   function renderHomeReview() {
@@ -937,6 +1182,27 @@
     }).join('');
   }
 
+  function buildTopicLearnHtml(topic) {
+    const items = (topic.lessons || [])
+      .map((lesson) => {
+        const summary = lesson.learnSummary || lesson.summary;
+        if (!summary) return '';
+        return `<li class="topic-learn__item">
+          <span class="topic-learn__bullet" aria-hidden="true"></span>
+          <span><strong>${escapeHtml(lesson.title)}</strong> — ${escapeHtml(summary)}</span>
+        </li>`;
+      })
+      .filter(Boolean)
+      .join('');
+    const intro = topic.learnIntro || topic.voice;
+    if (!intro && !items) return '';
+    return `<div id="topic-learn" class="topic-learn mt-5">
+      <p class="topic-learn__heading">Qué vas a aprender</p>
+      ${intro ? `<p class="topic-learn__intro">${escapeHtml(intro)}</p>` : ''}
+      ${items ? `<ul class="topic-learn__list">${items}</ul>` : ''}
+    </div>`;
+  }
+
   function renderTopic(topicId) {
     const topic = getTopic(topicId);
     if (!topic) return;
@@ -956,13 +1222,14 @@
     const lessonsHtml = topic.lessons
       .map((lesson) => {
         const doneL = isDone(lesson.id);
+        const statusText = doneL ? 'Completado' : lesson.learnSummary || lesson.summary || 'Pendiente';
         return `<button type="button" onclick="openLesson('${lesson.id}')" class="lesson-row tap w-full text-left bg-white rounded-2xl border border-slate-100 p-4 soft-shadow flex items-center gap-3">
           <div class="w-10 h-10 rounded-xl bg-[var(--brand-50)] flex items-center justify-center shrink-0">
             <i data-lucide="${lesson.icon}" class="w-[18px] h-[18px] text-[var(--brand-700)]"></i>
           </div>
           <div class="flex-1 min-w-0">
             <p class="text-[13.5px] font-bold text-slate-900">${escapeHtml(lesson.title)}</p>
-            <p class="text-[11px] text-slate-400 font-semibold">${doneL ? 'Completado' : 'Pendiente'}</p>
+            <p class="text-[11px] text-slate-400 font-semibold mt-0.5 leading-snug">${escapeHtml(statusText)}</p>
           </div>
           ${
             doneL
@@ -1003,7 +1270,7 @@
       <div class="relative hero-photo" style="background-image:url('${topic.image}')">
         <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/10"></div>
         <div class="relative px-5 pt-5 flex items-center justify-between" style="padding-top:max(20px, env(safe-area-inset-top))">
-          <button type="button" onclick="showScreen('home')" class="tap w-10 h-10 rounded-full bg-white/90 backdrop-blur flex items-center justify-center">
+          <button type="button" onclick="goBack()" class="tap w-10 h-10 rounded-full bg-white/90 backdrop-blur flex items-center justify-center">
             <i data-lucide="arrow-left" class="w-5 h-5 text-slate-800"></i>
           </button>
         </div>
@@ -1019,6 +1286,7 @@
           </div>
           ${progressHtml}
         </div>
+        ${buildTopicLearnHtml(topic)}
         <div class="mt-6 flex flex-col gap-2.5">${lessonsHtml}</div>
         ${examHtml}
         <div class="sticky-cta lg:static lg:mt-6">
@@ -1028,6 +1296,8 @@
         </div>
       </div>`;
     lucide.createIcons();
+    const learnEl = document.getElementById('topic-learn');
+    if (learnEl && window.AprendaliaMotion) AprendaliaMotion.enterTopicVoice(learnEl);
   }
 
   function quizProgressHtml(index, total) {
@@ -1155,7 +1425,7 @@
 
     document.getElementById('topic-exam-root').innerHTML = `
       <div class="flex items-center justify-between gap-3 mb-4">
-        <button type="button" onclick="openTopic('${topicId}')" class="tap flex items-center gap-2 text-[13px] font-bold text-slate-500 min-w-0">
+        <button type="button" onclick="goBack()" class="tap flex items-center gap-2 text-[13px] font-bold text-slate-500 min-w-0">
           <i data-lucide="arrow-left" class="w-4 h-4 shrink-0"></i>
           <span class="truncate">${escapeHtml(topic.title)}</span>
         </button>
@@ -1200,12 +1470,15 @@
     currentLessonId = lessonId;
     resetQuizState(done);
 
-    const blocksHtml = lesson.blocks
-      .map((b) => {
-        if (b.type === 'tip') return `<div class="lesson-tip">${escapeHtml(b.text)}</div>`;
-        return `<p>${escapeHtml(b.text)}</p>`;
-      })
-      .join('');
+    const blocksHtml =
+      typeof LearniaBlocks !== 'undefined'
+        ? LearniaBlocks.renderBlocks(lesson.blocks)
+        : lesson.blocks
+            .map((b) => {
+              if (b.type === 'tip') return `<div class="lesson-tip">${escapeHtml(b.text)}</div>`;
+              return `<p>${escapeHtml(b.text)}</p>`;
+            })
+            .join('');
 
     const questions = getLessonQuestions(lesson);
     const sourcesHtml = buildSourcesHtml(lesson);
@@ -1228,7 +1501,7 @@
 
     document.getElementById('lesson-root').innerHTML = `
       <div class="flex items-center justify-between gap-3 mb-4">
-        <button type="button" onclick="openTopic('${lesson.topicId}')" class="tap flex items-center gap-2 text-[13px] font-bold text-slate-500 min-w-0">
+        <button type="button" onclick="goBack()" class="tap flex items-center gap-2 text-[13px] font-bold text-slate-500 min-w-0">
           <i data-lucide="arrow-left" class="w-4 h-4 shrink-0"></i>
           <span class="truncate">${escapeHtml(topic.title)}</span>
         </button>
@@ -1264,18 +1537,22 @@
     stopSpeech();
     updateFontControls();
     lucide.createIcons();
+    const lessonContent = document.querySelector('#lesson-root .lesson-content');
+    if (lessonContent && window.AprendaliaMotion) AprendaliaMotion.enterLesson(lessonContent);
   }
 
   function renderJourneyStats() {
-    const done = completedCount();
-    const total = totalLessons();
-    const complete = done >= total;
+    const route = getCurrentRoute();
+    const progress = routeProgress(currentRouteId);
+    const done = progress.done;
+    const total = progress.total;
+    const complete = total > 0 && done >= total;
     document.getElementById('journey-stats-root').innerHTML = `
       <div class="flex items-center justify-between">
-        <button type="button" onclick="showScreen('home')" class="tap w-10 h-10 rounded-xl flex items-center justify-center hover:bg-white soft-shadow border border-slate-100">
+        <button type="button" onclick="goBack()" class="tap w-10 h-10 rounded-xl flex items-center justify-center hover:bg-white soft-shadow border border-slate-100">
           <i data-lucide="arrow-left" class="w-5 h-5 text-slate-700"></i>
         </button>
-        <h1 class="text-[16px] font-extrabold text-slate-900 tracking-tight">${RUTA_ESPAÑOLA.title} ${RUTA_ESPAÑOLA.flag}</h1>
+        <h1 class="text-[16px] font-extrabold text-slate-900 tracking-tight">${escapeHtml(route.title)} ${route.flag}</h1>
         <span class="w-10"></span>
       </div>
       <div class="bg-white rounded-3xl border border-slate-100 p-6 soft-shadow text-center mt-6">
@@ -1310,9 +1587,11 @@
   }
 
   function renderJourney() {
-    const done = completedCount();
-    const total = totalLessons();
-    const items = RUTA_ESPAÑOLA.topics
+    const route = getCurrentRoute();
+    const progress = routeProgress(currentRouteId);
+    const done = progress.done;
+    const total = progress.total;
+    const items = route.topics
       .map((topic) => {
         const p = topicProgress(topic);
         const complete = isTopicFullyComplete(topic.id);
@@ -1329,12 +1608,12 @@
       .join('');
 
     document.getElementById('journey-root').innerHTML = `
-      <button type="button" onclick="showScreen('home')" class="tap flex items-center gap-2 text-[13px] font-bold text-slate-500">
+      <button type="button" onclick="goBack()" class="tap flex items-center gap-2 text-[13px] font-bold text-slate-500">
         <i data-lucide="arrow-left" class="w-4 h-4"></i> Volver
       </button>
       <div class="hero-gradient rounded-[26px] p-6 mt-4 accent-shadow">
         <span class="text-[11px] tracking-[0.16em] uppercase font-bold text-violet-200/85">Ruta completa</span>
-        <h1 class="text-[24px] font-extrabold text-white mt-1.5">${RUTA_ESPAÑOLA.title} ${RUTA_ESPAÑOLA.flag}</h1>
+        <h1 class="text-[24px] font-extrabold text-white mt-1.5">${escapeHtml(route.title)} ${route.flag}</h1>
         <p class="text-[13px] text-violet-100/80 font-medium mt-1.5">${done} de ${total} lecciones completadas</p>
       </div>
       <div class="flex flex-col gap-3 mt-6 mb-8">${items}</div>`;
@@ -1357,14 +1636,33 @@
   /* ——— Actions ——— */
 
   window.openTopic = function (topicId) {
+    for (const routeId of allRouteIds()) {
+      if (ROUTES[routeId].topics.some((t) => t.id === topicId)) {
+        if (routeId !== currentRouteId) {
+          currentRouteId = routeId;
+          prefs.activeRouteId = routeId;
+          localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+        }
+        expandedRouteIds.add(routeId);
+        syncRouteAccordionOpen(routeId, true);
+        break;
+      }
+    }
     currentTopicId = topicId;
     renderTopic(topicId);
     showScreen('topic');
   };
 
   window.openLesson = function (lessonId) {
+    const lesson = getLesson(lessonId);
+    if (!lesson) return;
+    if (lesson.routeId && lesson.routeId !== currentRouteId) {
+      currentRouteId = lesson.routeId;
+      prefs.activeRouteId = lesson.routeId;
+      localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+    }
     currentLessonId = lessonId;
-    currentTopicId = getLesson(lessonId).topicId;
+    currentTopicId = lesson.topicId;
     renderLesson(lessonId);
     showScreen('lesson');
   };
@@ -1500,13 +1798,14 @@
     saveState();
     const topic = getTopic(currentExamTopicId);
     const facts = countTopicFacts(topic);
+    if (window.AprendaliaMotion) AprendaliaMotion.celebrateExam();
     toast('¡Tema certificado! +100 puntos · ' + facts + ' datos dominados');
     renderTopicExam(currentExamTopicId);
 
     const nextTopic = getNextTopic();
     if (nextTopic) {
       setTimeout(() => showTopicCompletePrompt(topic, nextTopic), 600);
-    } else if (RUTA_ESPAÑOLA.topics.every((t) => isTopicFullyComplete(t.id))) {
+    } else if (isRouteComplete(currentRouteId)) {
       setTimeout(() => showRouteCompletePrompt(), 600);
     }
   };
@@ -1526,6 +1825,7 @@
     updateStreak();
     const completedTopicId = getLesson(currentLessonId).topicId;
     saveState();
+    if (window.AprendaliaMotion) AprendaliaMotion.celebrateLesson();
     toast('¡Lección completada! +50 puntos · ' + facts + ' datos nuevos');
     renderLesson(currentLessonId);
 
@@ -1539,7 +1839,7 @@
     const nextTopic = getNextTopic();
     if (nextTopic && nextTopic.id !== completedTopicId) {
       setTimeout(() => showTopicCompletePrompt(completedTopic, nextTopic), 500);
-    } else if (RUTA_ESPAÑOLA.topics.every((t) => isTopicFullyComplete(t.id))) {
+    } else if (isRouteComplete(currentRouteId)) {
       setTimeout(() => showRouteCompletePrompt(), 500);
     }
   };
@@ -1549,7 +1849,8 @@
       ...state,
       exportedAt: new Date().toISOString(),
       app: 'Aprendalia',
-      route: RUTA_ESPAÑOLA.id
+      activeRouteId: currentRouteId,
+      routes: allRouteIds()
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
     const a = document.createElement('a');
@@ -1600,7 +1901,7 @@
           toast('Archivo no válido');
           return;
         }
-        const validIds = new Set(allLessons().map((l) => l.id));
+        const validIds = new Set(allLessonsGlobal().map((l) => l.id));
         state = {
           ...defaultState(),
           name: typeof data.name === 'string' ? data.name.slice(0, 24) : 'Aprendiz',
@@ -1612,6 +1913,12 @@
           streak: Math.max(0, Number(data.streak) || 0),
           lastStudyDate: data.lastStudyDate || null
         };
+        const importedRoute = data.activeRouteId || data.route;
+        if (importedRoute && ROUTES[importedRoute]) {
+          currentRouteId = importedRoute;
+          prefs.activeRouteId = importedRoute;
+          localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+        }
         saveState();
         toast('Progreso importado correctamente');
         showScreen('home');
@@ -1629,7 +1936,7 @@
       if (!btn.dataset.target) return;
       const isActive = btn.dataset.target === target;
       btn.style.background = isActive ? 'var(--brand-50)' : '';
-      btn.style.color = isActive ? 'var(--brand-700)' : '#475569';
+      btn.style.color = isActive ? 'var(--brand-500)' : 'var(--text-muted)';
     });
   }
 
@@ -1637,7 +1944,7 @@
     document.querySelectorAll('.drawer-link').forEach((btn) => {
       const isActive = btn.dataset.target === target;
       btn.style.background = isActive ? 'var(--brand-50)' : '';
-      btn.style.color = isActive ? 'var(--brand-700)' : '#475569';
+      btn.style.color = isActive ? 'var(--brand-500)' : 'var(--text-muted)';
     });
   }
 
@@ -1647,8 +1954,8 @@
       const isActive = btn.dataset.target === navTarget;
       const icon = btn.querySelector('.tab-icon');
       const label = btn.querySelector('.tab-label');
-      icon.style.color = isActive ? 'var(--brand-700)' : '#94a3b8';
-      label.style.color = isActive ? 'var(--brand-700)' : '#94a3b8';
+      icon.style.color = isActive ? 'var(--brand-500)' : 'var(--text-soft)';
+      label.style.color = isActive ? 'var(--brand-500)' : 'var(--text-soft)';
       icon.style.transform = isActive ? 'translateY(-1px) scale(1.06)' : 'none';
     });
   }
@@ -1666,11 +1973,43 @@
     lucide.createIcons();
   }
 
-  window.showScreen = function (target) {
+  function buildHistoryState(screen) {
+    return {
+      screen,
+      topicId: currentTopicId,
+      lessonId: currentLessonId,
+      examTopicId: currentExamTopicId,
+      routeId: currentRouteId,
+      lastTab
+    };
+  }
+
+  function restoreHistoryState(st) {
+    if (!st || !st.screen) return;
+    historySync = true;
+    if (st.routeId && ROUTES[st.routeId]) {
+      currentRouteId = st.routeId;
+      prefs.activeRouteId = st.routeId;
+    }
+    currentTopicId = st.topicId || null;
+    currentLessonId = st.lessonId || null;
+    currentExamTopicId = st.examTopicId || null;
+    if (st.lastTab) lastTab = st.lastTab;
+    paintScreen(st.screen);
+    historySync = false;
+  }
+
+  window.goBack = function () {
+    history.back();
+  };
+
+  function paintScreen(target) {
     stopSpeech();
     closeAppSheet();
     if (target === 'journey-stats') renderJourneyStats();
     if (target === 'journey') renderJourney();
+    if (target === 'topic' && currentTopicId) renderTopic(currentTopicId);
+    if (target === 'lesson' && currentLessonId) renderLesson(currentLessonId);
     if (target === 'topic-exam' && currentExamTopicId) renderTopicExam(currentExamTopicId);
 
     document.querySelectorAll('.screen').forEach((s) => s.classList.remove('active'));
@@ -1684,8 +2023,17 @@
     paintBottomNav(target);
     document.querySelector('main').scrollTo({ top: 0, behavior: 'instant' });
     closeDrawer();
-    history.replaceState(null, '', '#' + target);
     lucide.createIcons();
+  };
+
+  window.showScreen = function (target, opts = {}) {
+    const mode = opts.mode || (TAB_SCREENS.includes(target) ? 'tab' : 'push');
+    paintScreen(target);
+    if (historySync) return;
+    const st = buildHistoryState(target);
+    const hash = '#' + target;
+    if (mode === 'push') history.pushState(st, '', hash);
+    else history.replaceState(st, '', hash);
   };
 
   /* ——— Init ——— */
@@ -1739,8 +2087,10 @@
 
   window.addEventListener('DOMContentLoaded', () => {
     prefs = loadPrefs();
-    applyPrefs();
     state = loadState();
+    currentRouteId =
+      prefs.activeRouteId && ROUTES[prefs.activeRouteId] ? prefs.activeRouteId : pickDefaultRouteId();
+    applyPrefs();
     renderAll();
 
     document.querySelectorAll('[data-theme-pick]').forEach((btn) => {
@@ -1752,13 +2102,29 @@
     });
 
     const hash = location.hash.replace('#', '');
-    const valid = ['home', 'explore', 'routes', 'profile', 'settings', 'journey', 'journey-stats', 'topic', 'topic-exam', 'lesson', 'achievements'];
-    if (valid.includes(hash)) showScreen(hash);
-    else {
+    const valid = HISTORY_SCREENS;
+    if (valid.includes(hash)) {
+      paintScreen(hash);
+      history.replaceState(buildHistoryState(hash), '', '#' + hash);
+    } else {
+      paintScreen('home');
+      history.replaceState(buildHistoryState('home'), '', '#home');
       paintSidebar('home');
       paintDrawer('home');
       paintBottomNav('home');
     }
+
+    window.addEventListener('popstate', (e) => {
+      if (e.state && e.state.screen) {
+        restoreHistoryState(e.state);
+        return;
+      }
+      const fromHash = location.hash.replace('#', '');
+      if (HISTORY_SCREENS.includes(fromHash)) {
+        restoreHistoryState({ screen: fromHash });
+      }
+    });
+
     lucide.createIcons();
     bindOnboarding();
     maybeShowOnboarding();

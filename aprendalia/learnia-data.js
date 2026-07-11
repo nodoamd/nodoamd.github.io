@@ -1,20 +1,20 @@
-/** Contenido de la ruta Cultura Española — solo datos, sin progreso del usuario */
+/** Contenido de la ruta Cultura Española — arte, tradiciones y vida cotidiana (sin duplicar Historia de España) */
 const RUTA_ESPAÑOLA = {
   id: 'cultura-espanola',
   title: 'Cultura Española',
   flag: '🇪🇸',
-  description: 'Descubre la historia, tradiciones, arte, gastronomía y mucho más sobre España.',
+  description: 'Arte, tradiciones, gastronomía, música y costumbres. Para la historia completa, usa la ruta Historia de España.',
   topics: [
     {
-      id: 'historia',
+      id: 'territorio',
       num: 1,
-      title: 'Historia de España',
-      icon: 'landmark',
-      description: 'Desde la Prehistoria hasta la actualidad.',
+      title: 'Territorio y lenguas',
+      icon: 'map',
+      description: 'Geografía, islas y la riqueza lingüística del país.',
       image: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?q=80&w=1200&auto=format&fit=crop',
       exam: {
-        title: 'Examen: Historia de España',
-        intro: 'Repasa lo aprendido en las tres lecciones. Necesitas acertar todas las preguntas para certificar el tema.',
+        title: 'Examen: Territorio y lenguas',
+        intro: 'Repasa geografía y diversidad lingüística de España. Necesitas acertar todas las preguntas para certificar el tema.',
         questions: [
           {
             question: '¿Qué estrecho separa España de África en su punto más cercano?',
@@ -22,33 +22,23 @@ const RUTA_ESPAÑOLA = {
             correct: 1
           },
           {
-            question: '¿Qué reyes unieron Castilla y Aragón de forma definitiva?',
-            options: ['Carlos V y Felipe II', 'Isabel y Fernando', 'Juana la Loca y Felipe'],
+            question: '¿Con qué país comparte España frontera terrestre en la península?',
+            options: ['Francia', 'Portugal', 'Marruecos'],
             correct: 1
           },
           {
-            question: '¿Qué ciudad fue la última en manos musulmanas en la península?',
-            options: ['Córdoba', 'Granada', 'Sevilla'],
-            correct: 1
-          },
-          {
-            question: '¿En qué año llegó Cristóbal Colón a América con apoyo español?',
-            options: ['1492', '1500', '1519'],
-            correct: 0
-          },
-          {
-            question: '¿Quién escribió la primera gramática del castellano en 1492?',
-            options: ['Cervantes', 'Antonio de Nebrija', 'Quevedo'],
-            correct: 1
-          },
-          {
-            question: '¿En qué año se aprobó la Constitución española actual?',
-            options: ['1975', '1978', '1982'],
+            question: '¿Qué lengua cooficial se habla en Cataluña?',
+            options: ['Gallego', 'Catalán', 'Euskera'],
             correct: 1
           },
           {
             question: '¿Cuántas comunidades autónomas tiene España hoy?',
             options: ['15', '17', '19'],
+            correct: 1
+          },
+          {
+            question: '¿Cuál de estas islas es española?',
+            options: ['Sicilia', 'Las Canarias', 'Cerdeña'],
             correct: 1
           },
           {
@@ -60,13 +50,13 @@ const RUTA_ESPAÑOLA = {
       },
       lessons: [
         {
-          id: 'historia-1',
+          id: 'territorio-1',
           title: 'España en el mapa',
-          icon: 'map',
+          icon: 'map-pin',
           blocks: [
             { type: 'p', text: 'España ocupa la mayor parte de la Península Ibérica. Comparte frontera con Portugal y está muy cerca de África, separada por el estrecho de Gibraltar.' },
-            { type: 'p', text: 'Es un país de contrastes: hay montañas altas como los Pirineos, llanuras como la Meseta, y más de 8.000 kilómetros de costa entre el Cantábrico, el Mediterráneo y el Atlántico.' },
-            { type: 'tip', text: '💡 Curiosidad: España tiene dos ciudades en África (Ceuta y Melilla) y varias islas muy conocidas, como las Baleares y las Canarias.' }
+            { type: 'p', text: 'Es un país de contrastes: montañas como los Pirineos, la Meseta Central y más de 8.000 kilómetros de costa entre Cantábrico, Mediterráneo y Atlántico.' },
+            { type: 'tip', text: '💡 España tiene dos ciudades en África (Ceuta y Melilla) y archipiélagos como Baleares y Canarias. Para el relato histórico completo, abre la ruta Historia de España en Mis rutas.' }
           ],
           questions: [
             {
@@ -97,90 +87,89 @@ const RUTA_ESPAÑOLA = {
           ],
           sources: [
             { title: 'Instituto Geográfico Nacional (IGN)', url: 'https://www.ign.es' },
-            { title: 'Atlas Nacional de España — IGN', url: 'https://www.ign.es/web/ign/portal/ane-ultrarrapido' },
             { title: 'Ministerio de Asuntos Exteriores — Ficha país España', url: 'https://www.exteriores.gob.es/es/PoliticaExterior/Paginas/FichaPais.aspx' }
           ]
         },
         {
-          id: 'historia-2',
-          title: '1492: un año clave',
-          icon: 'crown',
+          id: 'territorio-2',
+          title: 'Lenguas de España',
+          icon: 'languages',
           blocks: [
-            { type: 'p', text: 'En 1492 los Reyes Católicos (Isabel y Fernando) unieron definitivamente los reinos de Castilla y Aragón. Ese mismo año se conquistó Granada, el último reino musulmán de la península.' },
-            { type: 'p', text: 'También en 1492 Cristóbal Colón, con el apoyo de la Corona española, llegó a América. Fue el inicio de un intercambio enorme entre Europa y el Nuevo Mundo.' },
-            { type: 'tip', text: '💡 En 1492 se publicó la primera gramática de la lengua castellana, escrita por Antonio de Nebrija.' }
+            { type: 'p', text: 'El castellano es la lengua oficial común, pero España es plurilingüe: en Galicia se habla gallego, en Cataluña y Baleares catalán, en Valencia valenciano, en el País Vasco euskera y en Asturias bable, entre otras.' },
+            { type: 'p', text: 'Muchas señales, carteles y medios locales usan la lengua propia de cada territorio. Conviven sin problema con el español en la vida diaria.' },
+            { type: 'tip', text: '💡 El euskera no tiene parentesco conocido con las lenguas indoeuropeas: es una de las lenguas más antiguas de Europa aún vivas.' }
           ],
           questions: [
             {
-              question: '¿Qué ciudad fue la última en manos musulmanas en la península?',
-              options: ['Toledo', 'Granada', 'Córdoba'],
+              question: '¿Qué lengua cooficial se habla en Galicia?',
+              options: ['Catalán', 'Gallego', 'Valenciano'],
               correct: 1
             },
             {
-              question: '¿Qué monarcas unieron definitivamente Castilla y Aragón?',
-              options: ['Isabel y Fernando', 'Carlos V y Felipe II', 'Alfonso X y Sancho IV'],
+              question: '¿En qué comunidad es lengua cooficial el euskera?',
+              options: ['Navarra y País Vasco', 'Aragón', 'Extremadura'],
               correct: 0
             },
             {
-              question: '¿En qué año llegó Colón a América con apoyo de la Corona española?',
-              options: ['1492', '1504', '1516'],
-              correct: 0
+              question: '¿Cuál es la lengua común oficial en todo el Estado?',
+              options: ['Catalán', 'Castellano', 'Gallego'],
+              correct: 1
             },
             {
-              question: '¿Quién escribió la primera gramática del castellano?',
-              options: ['Antonio de Nebrija', 'Lope de Vega', 'Garcilaso de la Vega'],
-              correct: 0
+              question: '¿Qué lengua destaca por no ser indoeuropea?',
+              options: ['Gallego', 'Euskera', 'Castellano'],
+              correct: 1
             },
             {
-              question: '¿Qué acontecimiento marcó el fin del reino nazarí en la península?',
-              options: ['La batalla de Lepanto', 'La conquista de Granada', 'La expulsión de los moriscos'],
+              question: '¿Dónde es habitual ver carteles bilingües en la calle?',
+              options: ['Solo en Madrid', 'En comunidades con lengua propia', 'Solo en los aeropuertos'],
               correct: 1
             }
           ],
           sources: [
-            { title: 'Real Academia de la Historia', url: 'https://dbe.rah.es' },
-            { title: 'Biblioteca Nacional de España — 1492', url: 'https://www.bne.es' }
+            { title: 'Instituto Cervantes — Lenguas de España', url: 'https://www.cervantes.es' },
+            { title: 'Gobierno de España — Lenguas cooficiales', url: 'https://www.lamoncloa.gob.es' }
           ]
         },
         {
-          id: 'historia-3',
-          title: 'La España de hoy',
-          icon: 'flag',
+          id: 'territorio-3',
+          title: 'Un país de autonomías',
+          icon: 'layout-grid',
           blocks: [
-            { type: 'p', text: 'Tras la Guerra Civil (1936-1939) y la dictadura de Franco, España vivió una Transición pacífica hacia la democracia. La Constitución de 1978 estableció un Estado de las Autonomías.' },
-            { type: 'p', text: 'Hoy España tiene 17 comunidades autónomas y 2 ciudades autónomas. Cada una conserva tradiciones, lengua y gastronomía propias, además del castellano común.' },
-            { type: 'tip', text: '💡 El 12 de octubre se celebra la Fiesta Nacional de España, aunque en muchas familias también es el Día de la Hispanidad.' }
+            { type: 'p', text: 'España se organiza en 17 comunidades autónomas y 2 ciudades autónomas (Ceuta y Melilla). Cada territorio conserva tradiciones, fiestas, gastronomía y, en muchos casos, lengua propia.' },
+            { type: 'p', text: 'Esa diversidad es parte del carácter español: no es un país uniforme, sino un mosaico de paisajes y culturas que comparten el mismo Estado.' },
+            { type: 'tip', text: '💡 Andalucía, Cataluña, País Vasco o Galicia suenan a identidades muy distintas, pero todas forman parte del mismo país.' }
           ],
           questions: [
-            {
-              question: '¿En qué año se aprobó la Constitución española actual?',
-              options: ['1975', '1978', '1982'],
-              correct: 1
-            },
             {
               question: '¿Cuántas comunidades autónomas tiene España?',
               options: ['15', '17', '20'],
               correct: 1
             },
             {
-              question: '¿Qué periodo siguió a la Guerra Civil antes de la democracia?',
-              options: ['La Restauración', 'La dictadura de Franco', 'El Sexenio Democrático'],
+              question: '¿Cómo se llaman los territorios españoles en el norte de África?',
+              options: ['Provincias ultramarinas', 'Ciudades autónomas', 'Departamentos'],
               correct: 1
             },
             {
-              question: '¿Qué modelo político estableció la Constitución de 1978?',
-              options: ['Estado unitario', 'Estado de las Autonomías', 'Confederación de reinos'],
+              question: '¿Qué describe mejor a España en clave cultural?',
+              options: ['Un país sin diferencias regionales', 'Un mosaico de territorios con tradiciones propias', 'Un único estilo en todo el mapa'],
+              correct: 1
+            },
+            {
+              question: '¿Qué elementos suelen variar entre comunidades?',
+              options: ['Solo el clima', 'Fiestas, gastronomía y lengua', 'Únicamente el horario escolar'],
               correct: 1
             },
             {
               question: 'Además de las comunidades autónomas, ¿qué territorios especiales tiene España?',
-              options: ['2 ciudades autónomas', '3 provincias ultramarinas', '5 regiones históricas'],
+              options: ['2 ciudades autónomas', '3 provincias francesas', '5 repúblicas'],
               correct: 0
             }
           ],
           sources: [
-            { title: 'Congreso de los Diputados — Constitución', url: 'https://www.congreso.es/constitucion' },
-            { title: 'Ministerio de la Presidencia — Administración territorial', url: 'https://www.mpr.gob.es' }
+            { title: 'Ministerio de la Presidencia — Administración territorial', url: 'https://www.mpr.gob.es' },
+            { title: 'Instituto Nacional de Estadística — Comunidades autónomas', url: 'https://www.ine.es' }
           ]
         }
       ]
@@ -191,7 +180,7 @@ const RUTA_ESPAÑOLA = {
       title: 'Arte y Arquitectura',
       icon: 'palette',
       description: 'Un recorrido por el arte y la arquitectura española.',
-      image: 'https://images.unsplash.com/photo-1583422409516-2895a77efded?q=80&w=1200&auto=format&fit=crop',
+      image: 'assets/sagrada-familia.jpeg',
       lessons: [
         {
           id: 'arte-1',
@@ -301,7 +290,7 @@ const RUTA_ESPAÑOLA = {
       title: 'Gastronomía',
       icon: 'utensils',
       description: 'Platos típicos, ingredientes y costumbres.',
-      image: 'https://images.unsplash.com/photo-1515443961218-a51367888e4b?q=80&w=1200&auto=format&fit=crop',
+      image: 'assets/gastronomia-espanola.jpg',
       lessons: [
         {
           id: 'gastronomia-1',
