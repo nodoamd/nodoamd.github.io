@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es" data-style="realismo">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Javi Pato Tattoo — Realismo · Anime · Oriental</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Cinzel:wght@500;700&family=Inter:wght@400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="transition-overlay"></div>
+
+<header class="site-header">
+  <a href="index.html" class="logo">
+    <span class="mark">JAVI PATO</span>
+    <span class="script">tattoo</span>
+  </a>
+  <nav class="main-nav">
+    <a href="index.html">Home</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="header-actions">
+    <a href="contact.html" class="btn-book">Book Now</a>
+    <span class="lang">ES ⌄</span>
+    <div class="burger"><span></span></div>
+  </div>
+</header>
+
+<div data-barba="wrapper">
+<div data-barba="container" data-barba-namespace="home">
+
+  <!-- ============================================================
+       CINEMATIC HOME STAGE
+       Arm stays fixed in viewport.
+       Scroll = video scrub + hero UI exits up + reveal fades in.
+       ============================================================ -->
+  <section class="home-stage">
+    <div class="stage-bg" aria-hidden="true"></div>
+
+    <!-- FIXED LAYER: arm never moves in screen space -->
+    <div class="stage-arm" aria-hidden="true">
+      <div class="stage-arm-stage">
+        <video
+          class="hero-video"
+          src="./img/kiki-reverse.mp4"
+          muted
+          playsinline
+          preload="auto"
+          autoplay
+        ></video>
+        <div class="stage-arm-vignette"></div>
+      </div>
+    </div>
+
+    <!-- EXIT LAYER: current hero content — scrolls up + fades out -->
+    <div class="stage-exit">
+      <div class="hero-content">
+        <h1>Javi<br>Pato</h1>
+
+        <div class="hero-styles">
+          <button data-mood="realismo" class="is-active">Realismo</button>
+          <span class="sep">·</span>
+          <button data-mood="anime">Anime</button>
+          <span class="sep">·</span>
+          <button data-mood="oriental">Oriental</button>
+        </div>
+
+        <p>Tatuajes personalizados con precisión, creatividad y pasión. Cada diseño cuenta una historia, cada trazo deja huella.</p>
+
+        <a href="gallery.html" class="btn-outline">
+          Ver galería
+          <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5H15M15 5L11 1M15 5L11 9" stroke="currentColor" stroke-width="1.3"/></svg>
+        </a>
+      </div>
+
+      <div class="hero-slide-cue" style="scale: 1.3;">
+        <div class="slide-cue-circle">Desliza<br>para ver más</div>
+        <div class="slide-cue-line"></div>
+      </div>
+
+      <div class="thumb-strip">
+        <div class="thumb is-active"><img src="./img/tatu4.png" alt="Realismo"></div>
+        <div class="thumb"><img src="./img/tatu3.png" alt="Oriental"></div>
+        <div class="thumb"><img src="./img/tatuanime.png" alt="Anime"></div>
+        <div class="thumb"><img src="./img/tatu2.png" alt="Realismo"></div>
+      </div>
+
+      <div class="hero-follow">
+        <span>Sígueme</span>
+        <div class="social-dot">IG</div>
+        <div class="social-dot">YT</div>
+        <div class="social-dot">TT</div>
+      </div>
+    </div>
+
+    <!-- ENTER LAYER: style showcase (skips current mood) -->
+    <div class="stage-enter">
+      <div class="style-showcase is-primary" data-reveal-slot="0">
+        <div class="showcase-featured">
+          <img src="./img/tatu3.png" alt="" data-showcase-img="featured">
+          <span class="showcase-tag">Estilo</span>
+        </div>
+        <div class="showcase-body">
+          <span class="reveal-kicker">Descubre</span>
+          <h2 class="reveal-title">Oriental</h2>
+          <p class="reveal-lead">Tradición, budismo y composición japonesa. Piezas con peso simbólico y flujo.</p>
+          <a href="gallery.html" class="btn-outline reveal-cta">Explorar estilo</a>
+          <div class="showcase-secondary">
+            <div class="showcase-shot"><img src="./img/tatu1.png" alt="" data-showcase-img="shot-0"></div>
+            <div class="showcase-shot"><img src="./img/tatu2.png" alt="" data-showcase-img="shot-1"></div>
+          </div>
+          <div class="showcase-steps" aria-hidden="true">
+            <span class="showcase-dot is-active"></span>
+            <span class="showcase-dot"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="style-showcase is-secondary" data-reveal-slot="1">
+        <div class="showcase-featured">
+          <img src="./img/tatuanime.png" alt="" data-showcase-img="featured">
+          <span class="showcase-tag">Estilo</span>
+        </div>
+        <div class="showcase-body">
+          <span class="reveal-kicker">Descubre</span>
+          <h2 class="reveal-title">Anime</h2>
+          <p class="reveal-lead">Personajes, color y línea limpia. Energía pop con acabado de estudio.</p>
+          <a href="gallery.html" class="btn-outline reveal-cta">Explorar estilo</a>
+          <div class="showcase-secondary">
+            <div class="showcase-shot"><img src="./img/tatuanime.png" alt="" data-showcase-img="shot-0"></div>
+            <div class="showcase-shot"><img src="./img/tatu4.png" alt="" data-showcase-img="shot-1"></div>
+          </div>
+          <div class="showcase-steps" aria-hidden="true">
+            <span class="showcase-dot"></span>
+            <span class="showcase-dot is-active"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final act: curated portfolio as arm dissolves -->
+    <div class="stage-gallery" aria-hidden="true">
+      <div class="stage-gallery-inner">
+        <div class="portfolio-block">
+          <div class="portfolio-row-head">
+            <h3 class="portfolio-style">Realismo</h3>
+            <a href="gallery.html" class="portfolio-see">Ver →</a>
+          </div>
+          <div class="portfolio-bento">
+            <a href="gallery.html" class="bento-tile bento-tall">
+              <img src="./img/tatu4.png" alt="Retrato realista" loading="lazy">
+            </a>
+            <a href="gallery.html" class="bento-tile">
+              <img src="./img/tatu2.png" alt="León realista" loading="lazy">
+            </a>
+            <a href="gallery.html" class="bento-tile">
+              <img src="./img/tatu3.png" alt="Faraón realista" loading="lazy">
+            </a>
+            <a href="gallery.html" class="bento-tile bento-wide">
+              <img src="./img/kiki.png" alt="Detalle de brazo" loading="lazy">
+            </a>
+          </div>
+        </div>
+
+        <div class="portfolio-block">
+          <div class="portfolio-row-head">
+            <h3 class="portfolio-style">Anime</h3>
+            <a href="gallery.html" class="portfolio-see">Ver →</a>
+          </div>
+          <div class="portfolio-bento portfolio-bento--compact">
+            <a href="gallery.html" class="bento-tile bento-feature">
+              <img src="./img/tatuanime.png" alt="Pieza anime" loading="lazy">
+            </a>
+            <a href="gallery.html" class="bento-tile">
+              <img src="./img/tatu1.png" alt="Lettering y figura" loading="lazy">
+            </a>
+            <a href="gallery.html" class="bento-tile">
+              <img src="./img/javipato.png" alt="Javi Pato en el estudio" loading="lazy">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Continues naturally after the pinned stage -->
+  <section class="home-flow">
+    <div class="home-flow-head">
+      <span class="eyebrow">Explora</span>
+      <h2>El estudio</h2>
+    </div>
+    <div class="home-flow-grid">
+      <a href="gallery.html" class="home-flow-card">
+        <span class="home-flow-num">01</span>
+        <span class="home-flow-title">Gallery</span>
+        <span class="home-flow-desc">Trabajos recientes en realismo, anime y oriental.</span>
+        <span class="home-flow-arrow">→</span>
+      </a>
+      <a href="about.html" class="home-flow-card">
+        <span class="home-flow-num">02</span>
+        <span class="home-flow-title">About</span>
+        <span class="home-flow-desc">La historia y el enfoque detrás de cada pieza.</span>
+        <span class="home-flow-arrow">→</span>
+      </a>
+      <a href="services.html" class="home-flow-card">
+        <span class="home-flow-num">03</span>
+        <span class="home-flow-title">Services</span>
+        <span class="home-flow-desc">Proceso, estilos y lo que incluye cada sesión.</span>
+        <span class="home-flow-arrow">→</span>
+      </a>
+      <a href="contact.html" class="home-flow-card">
+        <span class="home-flow-num">04</span>
+        <span class="home-flow-title">Contact</span>
+        <span class="home-flow-desc">Reserva tu cita y cuéntame tu idea.</span>
+        <span class="home-flow-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/@barba/core@2.10.3/dist/barba.umd.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

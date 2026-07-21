@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es" data-style="realismo">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto — Javi Pato Tattoo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Cinzel:wght@500;700&family=Inter:wght@400;500;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="transition-overlay"></div>
+
+<header class="site-header">
+  <a href="index.html" class="logo">
+    <span class="mark">JAVI PATO</span>
+    <span class="script">tattoo</span>
+  </a>
+  <nav class="main-nav">
+    <a href="index.html">Home</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="header-actions">
+    <a href="contact.html" class="btn-book">Book Now</a>
+    <span class="lang">ES ⌄</span>
+    <div class="burger"><span></span></div>
+  </div>
+</header>
+
+<div data-barba="wrapper">
+<div data-barba="container" data-barba-namespace="contact">
+
+  <section class="page-wrap">
+    <div class="page-head">
+      <span class="eyebrow">Reserva tu cita</span>
+      <h1>Contacto</h1>
+      <p>Cuéntame la idea, la zona del cuerpo y el tamaño aproximado. Te responderé con disponibilidad y presupuesto.</p>
+    </div>
+
+    <form class="contact-form" onsubmit="return false;">
+      <div class="field">
+        <label for="name">Nombre</label>
+        <input id="name" type="text" placeholder="Tu nombre">
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" placeholder="tu@email.com">
+      </div>
+      <div class="field">
+        <label for="style">Estilo</label>
+        <input id="style" type="text" placeholder="Realismo, Anime, Oriental…">
+      </div>
+      <div class="field">
+        <label for="msg">Mensaje</label>
+        <textarea id="msg" rows="4" placeholder="Describe tu idea…"></textarea>
+      </div>
+      <button type="submit" class="btn-outline">
+        Enviar
+        <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5H15M15 5L11 1M15 5L11 9" stroke="currentColor" stroke-width="1.3"/></svg>
+      </button>
+    </form>
+  </section>
+
+  <footer class="site-footer">
+    <span>© 2026 Javi Pato Tattoo</span>
+    <span>L'Hospitalet de Llobregat, Barcelona</span>
+  </footer>
+
+</div>
+</div>
+
+<script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/@barba/core@2.10.3/dist/barba.umd.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
