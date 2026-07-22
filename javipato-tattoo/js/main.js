@@ -14,20 +14,20 @@ const STYLE_SHOWCASE = {
   realismo: {
     title: 'Realismo',
     lead: 'Piezas con profundidad, luz y detalle. El estilo que define el estudio.',
-    featured: './img/tatu4.png',
-    shots: ['./img/tatu2.png', './img/tatu3.png']
+    featured: './img/starwarspato.jpg',
+    shots: ['./img/espaldapato.jpg', './img/patopierna.jpg']
   },
   oriental: {
     title: 'Oriental',
     lead: 'Tradición, budismo y composición japonesa. Piezas con peso simbólico y flujo.',
     featured: './img/tatu3.png',
-    shots: ['./img/tatu1.png', './img/kiki.png']
+    shots: ['./img/tatu1.png', './img/espaldapato.jpg']
   },
   anime: {
     title: 'Anime',
     lead: 'Personajes, color y línea limpia. Energía pop con acabado de estudio.',
     featured: './img/tatuanime.png',
-    shots: ['./img/tatuanime.png', './img/tatu4.png']
+    shots: ['./img/tatuanime.png', './img/tatu2.png']
   }
 };
 
@@ -98,7 +98,6 @@ function initHeroVideoScroll(scope = document){
   const enterLayer = scope.querySelector('.stage-enter');
   if(!stage || !video || !exitLayer || !enterLayer) return;
 
-  const slideCue = exitLayer.querySelector('.hero-slide-cue');
   const panelA = enterLayer.querySelector('.style-showcase.is-primary');
   const panelB = enterLayer.querySelector('.style-showcase.is-secondary');
   const galleryLayer = stage.querySelector('.stage-gallery');
@@ -111,6 +110,11 @@ function initHeroVideoScroll(scope = document){
   video.playsInline = true;
   video.pause();
 
+  function setActivePanel(panel){
+    if(panelA) panelA.classList.toggle('is-active', panelA === panel);
+    if(panelB) panelB.classList.toggle('is-active', panelB === panel);
+  }
+
   function buildTimeline(){
     const dur = video.duration;
     if(!dur || !Number.isFinite(dur)) return;
@@ -118,15 +122,16 @@ function initHeroVideoScroll(scope = document){
     video.pause();
     video.currentTime = 0;
 
-    gsap.set(enterLayer, { opacity: 0, y: 48 });
-    gsap.set(exitLayer, { opacity: 1, y: 0 });
-    if(armLayer) gsap.set(armLayer, { opacity: 1, filter: 'blur(0px)' });
-    if(panelA) gsap.set(panelA, { opacity: 0, y: 28 });
-    if(panelB) gsap.set(panelB, { opacity: 0, y: 28 });
-    if(galleryLayer) gsap.set(galleryLayer, { opacity: 0, y: 40 });
-    if(galleryTiles.length) gsap.set(galleryTiles, { opacity: 0, y: 24, scale: 0.97 });
+    // Single owner of these layers — no parallel scroll tweens elsewhere
+    gsap.set(enterLayer, { autoAlpha: 0, y: 48 });
+    gsap.set(exitLayer, { autoAlpha: 1, y: 0 });
+    if(armLayer) gsap.set(armLayer, { autoAlpha: 1, filter: 'blur(0px)' });
+    if(panelA) gsap.set(panelA, { autoAlpha: 0, y: 28 });
+    if(panelB) gsap.set(panelB, { autoAlpha: 0, y: 28 });
+    if(galleryLayer) gsap.set(galleryLayer, { autoAlpha: 0, y: 40 });
+    if(galleryTiles.length) gsap.set(galleryTiles, { autoAlpha: 0, y: 24, scale: 0.97 });
+    setActivePanel(null);
 
-    // Extra room for gallery beat
     const scrollLength = () => Math.round(Math.max(window.innerHeight * 6.4, 5600));
 
     heroScrollTl = gsap.timeline({
@@ -141,100 +146,109 @@ function initHeroVideoScroll(scope = document){
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate(self){
-          const videoProgress = gsap.utils.clamp(0, 1, self.progress / 0.48);
+          // Video scrub only in hero → early styles (settles before holds)
+          const videoProgress = gsap.utils.clamp(0, 1, self.progress / 0.38);
           const t = videoProgress * Math.max(dur - 0.05, 0);
           if(Math.abs(video.currentTime - t) > 0.04){
             video.currentTime = t;
           }
-          if(slideCue){
-            gsap.set(slideCue, { opacity: Math.max(0, 1 - self.progress * 10) });
-          }
-          enterLayer.classList.toggle('is-live', self.progress > 0.16 && self.progress < 0.72);
+
+          const inStyles = self.progress > 0.14 && self.progress < 0.7;
+          const inGallery = self.progress > 0.72;
+          enterLayer.classList.toggle('is-live', inStyles);
+          stage.classList.toggle('is-styles', inStyles);
+          stage.classList.toggle('is-gallery', inGallery);
           if(galleryLayer){
-            galleryLayer.classList.toggle('is-live', self.progress > 0.74);
-            galleryLayer.setAttribute('aria-hidden', self.progress > 0.74 ? 'false' : 'true');
+            galleryLayer.classList.toggle('is-live', inGallery);
+            galleryLayer.setAttribute('aria-hidden', inGallery ? 'false' : 'true');
           }
+
+          // Only one style panel “owns” the beat (avoids ghost overlap)
+          if(self.progress < 0.4) setActivePanel(panelA);
+          else if(self.progress < 0.7) setActivePanel(panelB);
+          else setActivePanel(null);
         }
       }
     });
 
-    /* ACT 1 — hero lifts, arm stays */
+    /* ACT 1 — hero leaves completely (incl. thumbs / socials above styles) */
     heroScrollTl.to(exitLayer, {
-      y: () => -(window.innerHeight * 0.78),
-      opacity: 0,
-      duration: 0.18
+      y: () => -(window.innerHeight * 0.82),
+      autoAlpha: 0,
+      duration: 0.16
     }, 0);
 
-    /* ACT 2 — first style (Oriental if on Realismo) */
+    /* Arm pulls back AS styles enter — not still full-bright behind them */
+    if(armLayer){
+      heroScrollTl.to(armLayer, {
+        autoAlpha: 0.18,
+        filter: 'blur(10px)',
+        duration: 0.18
+      }, 0.06);
+    }
+
+    /* ACT 2 — first style only (after hero is mostly gone) */
     heroScrollTl.to(enterLayer, {
       y: 0,
-      opacity: 1,
+      autoAlpha: 1,
       duration: 0.14
-    }, 0.1);
+    }, 0.14);
 
     if(panelA){
       heroScrollTl.to(panelA, {
-        opacity: 1,
+        autoAlpha: 1,
         y: 0,
         duration: 0.14
-      }, 0.12);
+      }, 0.15);
     }
 
-    /* HOLD oriental */
+    /* HOLD first style — arm stays dim ghost only */
     heroScrollTl.to({}, { duration: 0.16 }, 0.26);
 
-    /* ACT 3 — crossfade to anime + arm starts dissolving */
+    /* ACT 3 — clean handoff: A fully out before B peaks */
     if(panelA && panelB){
       heroScrollTl.to(panelA, {
-        opacity: 0,
-        y: -36,
-        duration: 0.12
+        autoAlpha: 0,
+        y: -28,
+        duration: 0.1
       }, 0.42);
 
       heroScrollTl.to(panelB, {
-        opacity: 1,
+        autoAlpha: 1,
         y: 0,
-        duration: 0.14
-      }, 0.42);
+        duration: 0.12
+      }, 0.48);
     }
 
     if(armLayer){
       heroScrollTl.to(armLayer, {
-        opacity: 0.55,
-        filter: 'blur(6px)',
-        duration: 0.16
+        autoAlpha: 0.06,
+        filter: 'blur(16px)',
+        duration: 0.14
       }, 0.44);
     }
 
-    /* HOLD anime while arm keeps fading */
-    heroScrollTl.to({}, { duration: 0.12 }, 0.56);
+    /* HOLD second style */
+    heroScrollTl.to({}, { duration: 0.12 }, 0.58);
 
-    if(armLayer){
-      heroScrollTl.to(armLayer, {
-        opacity: 0.18,
-        filter: 'blur(14px)',
-        duration: 0.12
-      }, 0.58);
-    }
-
-    /* ACT 4 — styles out, arm gone, gallery in */
+    /* ACT 4 — styles + arm out, curated gallery in */
     heroScrollTl.to(enterLayer, {
-      opacity: 0,
-      y: -40,
+      autoAlpha: 0,
+      y: -36,
       duration: 0.1
     }, 0.68);
 
     if(armLayer){
       heroScrollTl.to(armLayer, {
-        opacity: 0,
+        autoAlpha: 0,
         filter: 'blur(22px)',
-        duration: 0.12
+        duration: 0.1
       }, 0.68);
     }
 
     if(galleryLayer){
       heroScrollTl.to(galleryLayer, {
-        opacity: 1,
+        autoAlpha: 1,
         y: 0,
         duration: 0.14
       }, 0.72);
@@ -242,7 +256,7 @@ function initHeroVideoScroll(scope = document){
 
     if(galleryTiles.length){
       heroScrollTl.to(galleryTiles, {
-        opacity: 1,
+        autoAlpha: 1,
         y: 0,
         scale: 1,
         duration: 0.14,
@@ -250,7 +264,7 @@ function initHeroVideoScroll(scope = document){
       }, 0.74);
     }
 
-    /* HOLD curated gallery */
+    /* HOLD gallery */
     heroScrollTl.to({}, { duration: 0.16 }, 0.88);
 
     requestAnimationFrame(() => ScrollTrigger.refresh());
@@ -324,6 +338,40 @@ function initHeroThumbs(scope = document){
   }));
 }
 
+/* ---------- 2b. Hover → play tattoo video (poster on leave) ---------- */
+function initMediaHover(scope = document){
+  const tiles = scope.querySelectorAll('.media-tile.has-video');
+  if(!tiles.length) return;
+
+  tiles.forEach(tile => {
+    const video = tile.querySelector('video');
+    if(!video) return;
+
+    video.muted = true;
+    video.playsInline = true;
+    video.loop = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+
+    const play = () => {
+      tile.classList.add('is-playing');
+      const p = video.play();
+      if(p && typeof p.catch === 'function') p.catch(() => {});
+    };
+
+    const stop = () => {
+      tile.classList.remove('is-playing');
+      video.pause();
+      try{ video.currentTime = 0; }catch(e){ /* ignore seek errors */ }
+    };
+
+    tile.addEventListener('pointerenter', play);
+    tile.addEventListener('pointerleave', stop);
+    tile.addEventListener('focusin', play);
+    tile.addEventListener('focusout', stop);
+  });
+}
+
 /* ---------- 3. GALLERY filter ---------- */
 function initGalleryFilter(scope = document){
   const cards = scope.querySelectorAll('.gallery-grid .card');
@@ -368,8 +416,7 @@ function collectEntranceTargets(container){
   const hero = container.querySelector('.hero-content');
   if(hero) push(hero.querySelectorAll('.hero-styles, h1, p, .btn-outline'));
 
-  const cue = container.querySelector('.hero-slide-cue');
-  if(cue) targets.push(cue);
+  // .hero-slide-cue is opacity-only — its CSS transform (scale) must not be touched
 
   push(container.querySelectorAll('.stage-exit .thumb'));
 
@@ -383,28 +430,48 @@ function collectEntranceTargets(container){
   if(aboutCopy) push(aboutCopy.children);
 
   push(container.querySelectorAll('.gallery-grid .card'));
-  push(container.querySelectorAll('.home-flow-card'));
   push(container.querySelectorAll('.style-filter'));
+  // home-flow-card: only via scroll reveal (entrance was leaving them stuck at opacity 0)
 
   return targets;
 }
 
 function playEntrance(container){
   const targets = collectEntranceTargets(container);
-  if(!targets.length) return null;
+  const cue = container.querySelector('.hero-slide-cue');
+  if(!targets.length && !cue) return null;
 
-  gsap.killTweensOf(targets);
-  gsap.set(targets, { opacity: 0, y: 22 });
+  const tl = gsap.timeline({ overwrite: true });
 
-  return gsap.to(targets, {
-    opacity: 1,
-    y: 0,
-    duration: 0.7,
-    stagger: 0.05,
-    ease: 'power3.out',
-    clearProps: 'opacity,transform',
-    overwrite: true
-  });
+  if(targets.length){
+    gsap.killTweensOf(targets);
+    // Use yPercent-safe translate via y only on elements without layout transforms
+    gsap.set(targets, { opacity: 0, y: 22 });
+    tl.to(targets, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      stagger: 0.05,
+      ease: 'power3.out',
+      // Never clear transform on nodes that rely on CSS transform (parent hero-content is fine;
+      // children get inline translate cleared so we don't leave stale GSAP transforms)
+      clearProps: 'opacity,transform'
+    }, 0);
+  }
+
+  if(cue){
+    gsap.killTweensOf(cue);
+    // Opacity only — preserves translateY(-50%) scale(1.3) from CSS
+    gsap.set(cue, { opacity: 0 });
+    tl.to(cue, {
+      opacity: 1,
+      duration: 0.7,
+      ease: 'power3.out',
+      clearProps: 'opacity'
+    }, 0.1);
+  }
+
+  return tl;
 }
 
 /* ---------- 5. Init page (logic vs entrance separated) ---------- */
@@ -418,6 +485,7 @@ function cleanupPage(){
 function initPageLogic(container){
   initStyleSwitcher(container);
   initHeroThumbs(container);
+  initMediaHover(container);
   initHeroVideoScroll(container);
   initGalleryFilter(container);
   initHomeFlowReveal(container);
@@ -447,8 +515,9 @@ function initHomeFlowReveal(scope = document){
       clearProps: 'opacity,transform',
       scrollTrigger: {
         trigger: flow,
-        start: 'top 78%',
-        once: true
+        start: 'top 85%',
+        once: true,
+        invalidateOnRefresh: true
       }
     }
   );
@@ -477,6 +546,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   const firstContainer = document.querySelector('[data-barba="container"]') || document;
 
   await whenFontsReady();
+
+  // Hide before revealing fonts — prevents 1-frame FOUT / layout pop
+  const bootTargets = collectEntranceTargets(firstContainer);
+  const bootCue = firstContainer.querySelector('.hero-slide-cue');
+  if(bootTargets.length) gsap.set(bootTargets, { opacity: 0, y: 22 });
+  if(bootCue) gsap.set(bootCue, { opacity: 0 });
+
   document.documentElement.classList.add('is-fonts-ready');
 
   initPageLogic(firstContainer);

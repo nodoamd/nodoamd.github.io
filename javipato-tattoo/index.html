@@ -48,7 +48,7 @@
       <div class="stage-arm-stage">
         <video
           class="hero-video"
-          src="./img/kiki-reverse.mp4"
+          src="./img/kiki.mp4"
           muted
           playsinline
           preload="auto"
@@ -77,18 +77,28 @@
           Ver galería
           <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5H15M15 5L11 1M15 5L11 9" stroke="currentColor" stroke-width="1.3"/></svg>
         </a>
+
+        <div class="thumb-strip">
+          <div class="thumb media-tile has-video is-active" data-mood="realismo">
+            <img src="./img/starwarspato.jpg" alt="Pieza realista Star Wars">
+            <video src="./img/starwarspato.mp4" muted playsinline loop preload="metadata"></video>
+          </div>
+          <div class="thumb media-tile has-video" data-mood="realismo">
+            <img src="./img/patopierna.jpg" alt="Pieza en pierna">
+            <video src="./img/patopierna.mp4" muted playsinline loop preload="metadata"></video>
+          </div>
+          <div class="thumb media-tile" data-mood="realismo">
+            <img src="./img/espaldapato.jpg" alt="Espalda completa">
+          </div>
+          <div class="thumb media-tile" data-mood="anime">
+            <img src="./img/tatuanime.png" alt="Anime">
+          </div>
+        </div>
       </div>
 
-      <div class="hero-slide-cue" style="scale: 1.3;">
+      <div class="hero-slide-cue">
         <div class="slide-cue-circle">Desliza<br>para ver más</div>
         <div class="slide-cue-line"></div>
-      </div>
-
-      <div class="thumb-strip">
-        <div class="thumb is-active"><img src="./img/tatu4.png" alt="Realismo"></div>
-        <div class="thumb"><img src="./img/tatu3.png" alt="Oriental"></div>
-        <div class="thumb"><img src="./img/tatuanime.png" alt="Anime"></div>
-        <div class="thumb"><img src="./img/tatu2.png" alt="Realismo"></div>
       </div>
 
       <div class="hero-follow">
@@ -153,17 +163,19 @@
             <a href="gallery.html" class="portfolio-see">Ver →</a>
           </div>
           <div class="portfolio-bento">
-            <a href="gallery.html" class="bento-tile bento-tall">
+            <a href="gallery.html" class="bento-tile media-tile has-video">
+              <img src="./img/starwarspato.jpg" alt="Pieza realista" loading="lazy">
+              <video src="./img/starwarspato.mp4" muted playsinline loop preload="metadata"></video>
+            </a>
+            <a href="gallery.html" class="bento-tile media-tile has-video">
+              <img src="./img/patopierna.jpg" alt="Pieza en pierna" loading="lazy">
+              <video src="./img/patopierna.mp4" muted playsinline loop preload="metadata"></video>
+            </a>
+            <a href="gallery.html" class="bento-tile media-tile">
+              <img src="./img/espaldapato.jpg" alt="Espalda" loading="lazy">
+            </a>
+            <a href="gallery.html" class="bento-tile media-tile">
               <img src="./img/tatu4.png" alt="Retrato realista" loading="lazy">
-            </a>
-            <a href="gallery.html" class="bento-tile">
-              <img src="./img/tatu2.png" alt="León realista" loading="lazy">
-            </a>
-            <a href="gallery.html" class="bento-tile">
-              <img src="./img/tatu3.png" alt="Faraón realista" loading="lazy">
-            </a>
-            <a href="gallery.html" class="bento-tile bento-wide">
-              <img src="./img/kiki.png" alt="Detalle de brazo" loading="lazy">
             </a>
           </div>
         </div>
@@ -174,14 +186,14 @@
             <a href="gallery.html" class="portfolio-see">Ver →</a>
           </div>
           <div class="portfolio-bento portfolio-bento--compact">
-            <a href="gallery.html" class="bento-tile bento-feature">
+            <a href="gallery.html" class="bento-tile media-tile">
               <img src="./img/tatuanime.png" alt="Pieza anime" loading="lazy">
             </a>
-            <a href="gallery.html" class="bento-tile">
-              <img src="./img/tatu1.png" alt="Lettering y figura" loading="lazy">
+            <a href="gallery.html" class="bento-tile media-tile">
+              <img src="./img/tatu2.png" alt="León y flor" loading="lazy">
             </a>
-            <a href="gallery.html" class="bento-tile">
-              <img src="./img/javipato.png" alt="Javi Pato en el estudio" loading="lazy">
+            <a href="gallery.html" class="bento-tile media-tile">
+              <img src="./img/javipatoo.jpg" alt="Javi Pato en el estudio" loading="lazy">
             </a>
           </div>
         </div>
@@ -222,6 +234,11 @@
       </a>
     </div>
   </section>
+
+  <footer class="site-footer">
+    <span>© 2026 Javi Pato Tattoo</span>
+    <span>L'Hospitalet de Llobregat, Barcelona</span>
+  </footer>
 
 </div>
 </div>
