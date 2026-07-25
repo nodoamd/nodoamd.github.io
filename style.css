@@ -326,6 +326,20 @@
         visibility: visible;
     }
 
+    /* Cubre el watermark "Built with Spline" (shadow DOM; no se puede quitar en plan free) */
+    .spline-shell::after {
+        content: '';
+        position: absolute;
+        right: 1rem;
+        bottom: 0;
+        width: 220px;
+        height: 56px;
+        background: #fff;
+        border-radius: 0 0 24px 0;
+        z-index: 3;
+        pointer-events: none;
+    }
+
     #metrics-accordion {
         overflow: hidden;
         transition: max-height 0.4s ease;
@@ -432,11 +446,16 @@
             padding: 0 0.5rem;
         }
 
+        .spline-shell::after {
+            display: none;
+        }
+
         .spline-shell spline-viewer,
         .spline-shell .spline-placeholder {
             border-radius: 18px;
         }
 
+        
         .hero h1 {
             font-size: 1.85rem;
             line-height: 1.25;

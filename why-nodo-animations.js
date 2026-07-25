@@ -106,24 +106,6 @@ function initWhyNodoAnimations() {
             });
         }
 
-        // Animación de los tags
-        const tags = card.querySelectorAll('.tag');
-        if (tags.length > 0) {
-            gsap.from(tags, {
-                opacity: 0,
-                x: -20,
-                stagger: 0.1,
-                duration: 0.5,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 80%",
-                    once: true
-                },
-                delay: index * 0.15 + 0.5
-            });
-        }
-
         // ========== ANIMACIÓN HOVER EN SCROLL (MÓVIL) ==========
         if (isMobile) {
             ScrollTrigger.create({
@@ -301,54 +283,36 @@ function initWhyNodoAnimations() {
     // Animación individual de cada stat
     const statItems = document.querySelectorAll(".stat-item");
     statItems.forEach((stat, index) => {
-        const icon = stat.querySelector('.stat-icon');
         const number = stat.querySelector('.stat-number');
         const label = stat.querySelector('.stat-label');
-
-        if (icon) {
-            gsap.from(icon, {
-                opacity: 0,
-                scale: 0,
-                rotation: 180,
-                duration: 0.8,
-                ease: "back.out(2)",
-                scrollTrigger: {
-                    trigger: ".why-nodo-stats",
-                    start: "top 85%",
-                    once: true
-                },
-                delay: index * 0.2
-            });
-        }
 
         if (number) {
             gsap.from(number, {
                 opacity: 0,
-                y: 30,
-                scale: 0.5,
-                duration: 0.8,
-                ease: "back.out(1.7)",
-                scrollTrigger: {
-                    trigger: ".why-nodo-stats",
-                    start: "top 85%",
-                    once: true
-                },
-                delay: index * 0.2 + 0.2
-            });
-        }
-
-        if (label) {
-            gsap.from(label, {
-                opacity: 0,
-                y: 20,
-                duration: 0.6,
+                y: 24,
+                duration: 0.7,
                 ease: "power2.out",
                 scrollTrigger: {
                     trigger: ".why-nodo-stats",
                     start: "top 85%",
                     once: true
                 },
-                delay: index * 0.2 + 0.4
+                delay: index * 0.12
+            });
+        }
+
+        if (label) {
+            gsap.from(label, {
+                opacity: 0,
+                y: 12,
+                duration: 0.55,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: ".why-nodo-stats",
+                    start: "top 85%",
+                    once: true
+                },
+                delay: index * 0.12 + 0.15
             });
         }
     });
@@ -364,26 +328,6 @@ function initWhyNodoAnimations() {
             yoyo: true,
             ease: "sine.inOut",
             delay: i * 0.2
-        });
-    });
-
-    // Rotación del ícono del badge
-    gsap.to('.badge-icon', {
-        rotation: 360,
-        duration: 10,
-        repeat: -1,
-        ease: "none"
-    });
-
-    // Animación de los stat icons
-    document.querySelectorAll('.stat-icon').forEach((icon, i) => {
-        gsap.to(icon, {
-            y: -10,
-            duration: 2 + i * 0.3,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-            delay: i * 0.3
         });
     });
 
