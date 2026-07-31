@@ -1,5 +1,5 @@
 /* Nodo Reader — service worker: la app entera queda disponible sin conexión */
-const CACHE = 'nodo-reader-v4';
+const CACHE = 'nodo-reader-v5';
 
 const SHELL = [
   './',

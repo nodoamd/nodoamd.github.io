@@ -596,6 +596,7 @@ async function openBook(id) {
   await idbPut('books', book);
 
   state.navToken += 1;
+  setPanel(false);
   await renderPages();
   updateDockChrome();
   fadePages();
@@ -879,14 +880,15 @@ function renderEpubInto(host, html) {
 }
 
 function fadePages() {
+  // Al abrir el libro, un fundido mínimo; al pasar página no se llama (cambio seco)
   if (!window.gsap || document.visibilityState !== 'visible') return;
   const el = $('#pages');
   if (!el) return;
   gsap.killTweensOf(el);
   gsap.fromTo(
     el,
-    { opacity: 0.82 },
-    { opacity: 1, duration: 0.2, ease: 'power1.out', overwrite: 'auto', clearProps: 'opacity' }
+    { opacity: 0.96 },
+    { opacity: 1, duration: 0.14, ease: 'none', overwrite: 'auto', clearProps: 'opacity' }
   );
 }
 
@@ -971,7 +973,7 @@ async function goPage(next) {
   queuePersistPage();
   await renderPages();
   if (nav !== state.navToken) return;
-  fadePages();
+  // Sin fade: el canvas se pinta fuera de pantalla y el cambio debe ser seco
   await loadNoteForPage();
 }
 
@@ -1363,13 +1365,8 @@ function bindUi() {
   $('#btn-prefs').addEventListener('click', () => setPrefsSheet(true));
   $('#btn-close-prefs').addEventListener('click', () => setPrefsSheet(false));
   $('#prefs-backdrop').addEventListener('click', () => setPrefsSheet(false));
-  $('#btn-book-notes').addEventListener('click', async () => {
-    const id = state.currentId;
-    await backToLibrary();
-    state.notesFilter = id;
-    renderNotesPane();
-    setPane('notes');
-  });
+  // Mientras lees: abre el panel de la página actual (antes te sacaba a la biblioteca)
+  $('#btn-book-notes').addEventListener('click', () => setPanel(true));
 
   $('#audio-list').addEventListener('click', async (e) => {
     const btn = e.target.closest('[data-del-audio]');
