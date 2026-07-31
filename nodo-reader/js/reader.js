@@ -6,6 +6,15 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = './vendor/pdf.worker.min.js';
 const DB_NAME = 'nodo-reader-v1';
 const DB_VER = 2;
 const PREFS_KEY = 'nodo-reader-prefs';
+const SAMPLE_KEY = 'nodo-reader-sample';
+const WELCOME_KEY = 'nodo-reader-welcome';
+// Libro de dominio público que viene con la app para poder leer desde el primer minuto
+const SAMPLE_BOOK = {
+  id: 'sample-lazarillo',
+  url: './books/lazarillo-de-tormes.pdf',
+  title: 'La vida de Lazarillo de Tormes',
+  fileName: 'lazarillo-de-tormes.pdf'
+};
 const ZOOM_STEPS = [0.6, 0.75, 0.9, 1, 1.15, 1.35, 1.6, 1.9, 2.3];
 // Ancho cómodo de lectura: sin tope, en monitores anchos la página sale gigante
 const MAX_PAGE_W = 1040;
@@ -241,6 +250,7 @@ async function boot() {
   loadPrefs();
   bindUi();
   watchOfflineState();
+  await seedSampleBook();
   await refreshData();
   state.panelOpen = false;
   updateDockChrome();
@@ -271,6 +281,45 @@ async function boot() {
       bootEl.remove();
     }
   }, 520);
+}
+
+// Solo la primera vez: si el usuario lo borra no vuelve a aparecer, y si falla
+// (por ejemplo sin conexión en la primera visita) se reintenta en el siguiente arranque.
+async function seedSampleBook() {
+  if (localStorage.getItem(SAMPLE_KEY)) return;
+  try {
+    if (await idbGet('books', SAMPLE_BOOK.id)) {
+      localStorage.setItem(SAMPLE_KEY, 'done');
+      return;
+    }
+    const res = await fetch(SAMPLE_BOOK.url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.arrayBuffer();
+    // pdf.js se queda con el buffer que le pasas, así que va una copia
+    let pageCount = 1;
+    try {
+      const doc = await pdfjsLib.getDocument({ data: data.slice(0) }).promise;
+      pageCount = doc.numPages;
+      doc.destroy();
+    } catch { /* el recuento real se calcula al abrirlo */ }
+    await idbPut('files', { id: SAMPLE_BOOK.id, data });
+    await idbPut('books', {
+      id: SAMPLE_BOOK.id,
+      title: SAMPLE_BOOK.title,
+      titleV2: true,
+      fileName: SAMPLE_BOOK.fileName,
+      kind: 'pdf',
+      sample: true,
+      lastPage: 1,
+      pageCount,
+      cover: null,
+      createdAt: Date.now(),
+      updatedAt: Date.now()
+    });
+    localStorage.setItem(SAMPLE_KEY, 'done');
+  } catch (err) {
+    console.warn('No se pudo preparar el libro de ejemplo', err);
+  }
 }
 
 async function refreshData() {
@@ -310,7 +359,38 @@ function coverArt(book) {
   return book.cover ? `<img src="${coverUrl(book)}" alt="" decoding="async">` : blankCover(book);
 }
 
+function renderWelcome() {
+  const host = $('#welcome-host');
+  if (!host) return;
+  if (localStorage.getItem(WELCOME_KEY)) {
+    host.innerHTML = '';
+    return;
+  }
+  const sample = state.books.find((b) => b.id === SAMPLE_BOOK.id);
+  host.innerHTML = `
+    <section class="welcome">
+      <button type="button" class="welcome__close" data-welcome-close aria-label="Cerrar la bienvenida">×</button>
+      <div class="welcome__text">
+        <h3>Bienvenido a Nodo Reader</h3>
+        <p>${sample
+          ? 'Te hemos dejado <strong>El Lazarillo de Tormes</strong> en la biblioteca para que pruebes a leer y a tomar notas ahora mismo.'
+          : 'Añade un PDF o un EPUB y empieza a leer. Cada página tiene su hueco para escribir y para grabar tu voz.'}</p>
+      </div>
+      <div class="welcome__actions">
+        ${sample ? `<button type="button" class="btn btn--primary tap" data-open="${sample.id}">Empezar a leer</button>` : ''}
+        <button type="button" class="btn btn--ghost tap" data-goto-guide>Ver la guía de uso</button>
+      </div>
+    </section>`;
+}
+
 function renderLibrary() {
+  renderWelcome();
+  const startBtn = $('#guide-start');
+  if (startBtn) {
+    startBtn.textContent = state.books.some((b) => b.id === SAMPLE_BOOK.id)
+      ? 'Abrir el libro de ejemplo'
+      : 'Añadir mi primer libro';
+  }
   const grid = $('#book-grid');
   const host = $('#continue-host');
   const count = $('#library-count');
@@ -435,7 +515,8 @@ function setPane(pane) {
   });
   $$('.side-link[data-pane]').forEach((b) => b.classList.toggle('is-on', b.dataset.pane === pane));
   $$('#tabbar button[data-pane]').forEach((b) => b.classList.toggle('is-on', b.dataset.pane === pane));
-  $('#greeting').textContent = pane === 'notes' ? 'Mis notas' : 'Tu biblioteca';
+  const titles = { notes: 'Mis notas', guia: 'Guía de uso' };
+  $('#greeting').textContent = titles[pane] || 'Tu biblioteca';
   if (window.gsap) {
     gsap.fromTo(`[data-pane-body="${pane}"]`, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' });
   }
@@ -1219,7 +1300,20 @@ function bindUi() {
   $('#side-prefs').addEventListener('click', () => setPrefsSheet(true));
   $('#tab-prefs').addEventListener('click', () => setPrefsSheet(true));
 
+  $('#guide-start').addEventListener('click', async () => {
+    const sample = state.books.find((b) => b.id === SAMPLE_BOOK.id) || state.books[0];
+    if (sample) return openBook(sample.id);
+    setPane('library');
+    $('#file-input').click();
+  });
+
   $('.main').addEventListener('click', async (e) => {
+    if (e.target.closest('[data-welcome-close]')) {
+      localStorage.setItem(WELCOME_KEY, 'done');
+      return renderWelcome();
+    }
+    if (e.target.closest('[data-goto-guide]')) return setPane('guia');
+
     const del = e.target.closest('[data-del]');
     if (del) return deleteBook(del.dataset.del);
 

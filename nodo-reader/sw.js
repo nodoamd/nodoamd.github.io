@@ -1,5 +1,5 @@
 /* Nodo Reader — service worker: la app entera queda disponible sin conexión */
-const CACHE = 'nodo-reader-v3';
+const CACHE = 'nodo-reader-v4';
 
 const SHELL = [
   './',
@@ -17,7 +17,13 @@ const SHELL = [
   './img/icon.svg',
   './img/icon-192.png',
   './img/icon-512.png',
-  './img/apple-touch-icon.png'
+  './img/apple-touch-icon.png',
+  './img/guia/paso-1.webp',
+  './img/guia/paso-2.webp',
+  './img/guia/paso-3.webp',
+  './img/guia/paso-4.webp',
+  './img/guia/paso-5.webp',
+  './books/lazarillo-de-tormes.pdf'
 ];
 
 self.addEventListener('install', (event) => {
