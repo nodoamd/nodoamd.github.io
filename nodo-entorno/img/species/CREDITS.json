@@ -1,0 +1,263 @@
+[
+  {
+    "id": "platano-sombra",
+    "file": "./img/species/platano-sombra.jpg",
+    "commons": "File:Bark of London Plane, Ibaraki, Japan 01.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "小石川人晃",
+    "page": "https://commons.wikimedia.org/wiki/File%3ABark_of_London_Plane%2C_Ibaraki%2C_Japan_01.jpg",
+    "search": "Platanus acerifolia OR Platanus hispanica bark OR trunk"
+  },
+  {
+    "id": "almez",
+    "file": "./img/species/almez.jpg",
+    "commons": "File:Celtis australis, Castelnau-de-Guers, Hérault.jpg",
+    "license": "CC BY-SA 3.0",
+    "artist": "Christian Ferrer",
+    "page": "https://commons.wikimedia.org/wiki/File%3ACeltis_australis%2C_Castelnau-de-Guers%2C_H%C3%A9rault.jpg",
+    "search": "Celtis australis"
+  },
+  {
+    "id": "tipuana",
+    "file": "./img/species/tipuana.jpg",
+    "commons": "File:Tipuana Tipu (Pride Of Bolivia, Rosewood) (28817933281).jpg",
+    "license": "CC BY 2.0",
+    "artist": "Treeworld Wholesale",
+    "page": "https://commons.wikimedia.org/wiki/File%3ATipuana_Tipu_%28Pride_Of_Bolivia%2C_Rosewood%29_%2828817933281%29.jpg",
+    "search": "Tipuana tipu"
+  },
+  {
+    "id": "jacaranda",
+    "file": "./img/species/jacaranda.jpg",
+    "commons": "File:Jacaranda mimosifolia (2).JPG",
+    "license": "CC BY-SA 3.0",
+    "artist": "Prenn",
+    "page": "https://commons.wikimedia.org/wiki/File%3AJacaranda_mimosifolia_%282%29.JPG",
+    "search": "Jacaranda mimosifolia flowers purple"
+  },
+  {
+    "id": "olivo",
+    "file": "./img/species/olivo.jpg",
+    "commons": "File:(MHNT) Olea europaea - Inflorescence and leaves.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Didier Descouens",
+    "page": "https://commons.wikimedia.org/wiki/File%3A%28MHNT%29_Olea_europaea_-_Inflorescence_and_leaves.jpg",
+    "search": "Olea europaea"
+  },
+  {
+    "id": "laurel",
+    "file": "./img/species/laurel.jpg",
+    "commons": "File:Fruits of Laurus nobilis-2024-09-28.jpg",
+    "license": "CC BY 4.0",
+    "artist": "Harlock81",
+    "page": "https://commons.wikimedia.org/wiki/File%3AFruits_of_Laurus_nobilis-2024-09-28.jpg",
+    "search": "Laurus nobilis"
+  },
+  {
+    "id": "palmera-canaria",
+    "file": "./img/species/palmera-canaria.jpg",
+    "commons": "File:Haria - Phoenix canariensis 01.jpg",
+    "license": "CC BY-SA 3.0",
+    "artist": "H. Zell",
+    "page": "https://commons.wikimedia.org/wiki/File%3AHaria_-_Phoenix_canariensis_01.jpg",
+    "search": "Phoenix canariensis"
+  },
+  {
+    "id": "pino-alepo",
+    "file": "./img/species/pino-alepo.jpg",
+    "commons": "File:Aleppo Pines grove, Pinet, Hérault 02.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Christian Ferrer",
+    "page": "https://commons.wikimedia.org/wiki/File%3AAleppo_Pines_grove%2C_Pinet%2C_H%C3%A9rault_02.jpg",
+    "search": "Pinus halepensis"
+  },
+  {
+    "id": "hiedra",
+    "file": "./img/species/hiedra.jpg",
+    "commons": "File:(MHNT) Hedera helix - immature inflorescences.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Didier Descouens",
+    "page": "https://commons.wikimedia.org/wiki/File%3A%28MHNT%29_Hedera_helix_-_immature_inflorescences.jpg",
+    "search": "Hedera helix"
+  },
+  {
+    "id": "romero",
+    "file": "./img/species/romero.jpg",
+    "commons": "File:Jardín Botánico Olarizu 25.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Basotxerri",
+    "page": "https://commons.wikimedia.org/wiki/File%3AJard%C3%ADn_Bot%C3%A1nico_Olarizu_25.jpg",
+    "search": "Salvia rosmarinus"
+  },
+  {
+    "id": "buganvilla",
+    "file": "./img/species/buganvilla.jpg",
+    "commons": "File:Bougainvillea, Sanchi, Madhya Pradesh, India.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Yann (talk)",
+    "page": "https://commons.wikimedia.org/wiki/File%3ABougainvillea%2C_Sanchi%2C_Madhya_Pradesh%2C_India.jpg",
+    "search": "Bougainvillea"
+  },
+  {
+    "id": "lavanda",
+    "file": "./img/species/lavanda.jpg",
+    "commons": "File:Lavandula angustifolia - lavender - Lavendel - 01.jpg",
+    "license": "CC BY-SA 3.0",
+    "artist": "Norbert Nagel",
+    "page": "https://commons.wikimedia.org/wiki/File%3ALavandula_angustifolia_-_lavender_-_Lavendel_-_01.jpg",
+    "search": "Lavandula"
+  },
+  {
+    "id": "gordolobo",
+    "file": "./img/species/gordolobo.jpg",
+    "commons": "File:00 2263 Kleinblütige Königskerze (Verbascum thapsus).jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "W. Bulach",
+    "page": "https://commons.wikimedia.org/wiki/File%3A00_2263_Kleinbl%C3%BCtige_K%C3%B6nigskerze_%28Verbascum_thapsus%29.jpg",
+    "search": "Verbascum thapsus"
+  },
+  {
+    "id": "gorrion",
+    "file": "./img/species/gorrion.jpg",
+    "commons": "File:House sparrow male in Prospect Park (53532).jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Rhododendrites",
+    "page": "https://commons.wikimedia.org/wiki/File%3AHouse_sparrow_male_in_Prospect_Park_%2853532%29.jpg",
+    "search": "Passer domesticus"
+  },
+  {
+    "id": "paloma-brava",
+    "file": "./img/species/paloma-brava.jpg",
+    "commons": "File:Columba livia Luc Viatour.jpg",
+    "license": "CC BY-SA 3.0",
+    "artist": "Luc Viatour",
+    "page": "https://commons.wikimedia.org/wiki/File%3AColumba_livia_Luc_Viatour.jpg",
+    "search": "Columba livia"
+  },
+  {
+    "id": "urraca",
+    "file": "./img/species/urraca.jpg",
+    "commons": "File:Eurasian magpie 2024 03 03 02.jpg",
+    "license": "CC BY 4.0",
+    "artist": "Alexis Lours",
+    "page": "https://commons.wikimedia.org/wiki/File%3AEurasian_magpie_2024_03_03_02.jpg",
+    "search": "Pica pica Eurasian magpie"
+  },
+  {
+    "id": "cotorra-argentina",
+    "file": "./img/species/cotorra-argentina.jpg",
+    "commons": "File:Monk parakeet (71262).jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Rhododendrites",
+    "page": "https://commons.wikimedia.org/wiki/File%3AMonk_parakeet_%2871262%29.jpg",
+    "search": "Myiopsitta monachus"
+  },
+  {
+    "id": "mirlo",
+    "file": "./img/species/mirlo.jpg",
+    "commons": "File:Blackbird female.jpg",
+    "license": "CC BY-SA 2.5",
+    "artist": "Andreas Trepte",
+    "page": "https://commons.wikimedia.org/wiki/File%3ABlackbird_female.jpg",
+    "search": "Turdus merula"
+  },
+  {
+    "id": "carbonero-comun",
+    "file": "./img/species/carbonero-comun.jpg",
+    "commons": "File:029 Great tit standing on flowering Wisteria in Glâne District Photo by Giles Laurent.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Giles Laurent",
+    "page": "https://commons.wikimedia.org/wiki/File%3A029_Great_tit_standing_on_flowering_Wisteria_in_Gl%C3%A2ne_District_Photo_by_Giles_Laurent.jpg",
+    "search": "Parus major"
+  },
+  {
+    "id": "verdecillo",
+    "file": "./img/species/verdecillo.jpg",
+    "commons": "File:European serin (Serinus serinus) female.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Charles J. Sharp",
+    "page": "https://commons.wikimedia.org/wiki/File%3AEuropean_serin_%28Serinus_serinus%29_female.jpg",
+    "search": "Serinus serinus"
+  },
+  {
+    "id": "golondrina-comun",
+    "file": "./img/species/golondrina-comun.jpg",
+    "commons": "File:2013.06.23.-08-Wesenberg-Rauchschwalben.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Andreas Eichler",
+    "page": "https://commons.wikimedia.org/wiki/File%3A2013.06.23.-08-Wesenberg-Rauchschwalben.jpg",
+    "search": "Hirundo rustica"
+  },
+  {
+    "id": "cernicalo",
+    "file": "./img/species/cernicalo.jpg",
+    "commons": "File:Common kestrel (Falco tinnunculus) female (IMGP1648r2-DNA).jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Alexey V. Kurochkin",
+    "page": "https://commons.wikimedia.org/wiki/File%3ACommon_kestrel_%28Falco_tinnunculus%29_female_%28IMGP1648r2-DNA%29.jpg",
+    "search": "Falco tinnunculus"
+  },
+  {
+    "id": "ruisenor",
+    "file": "./img/species/ruisenor.jpg",
+    "commons": "File:Luscinia megarhynchos MHNT 232 HdB Bouzareah Algérie.jpg",
+    "license": "CC BY-SA 3.0",
+    "artist": "Didier Descouens",
+    "page": "https://commons.wikimedia.org/wiki/File%3ALuscinia_megarhynchos_MHNT_232_HdB_Bouzareah_Alg%C3%A9rie.jpg",
+    "search": "Luscinia megarhynchos"
+  },
+  {
+    "id": "lagartija-catalana",
+    "file": "./img/species/lagartija-catalana.jpg",
+    "commons": "File:Catalonian Wall Lizard (Podarcis liolepis) female ... (44557593155).jpg",
+    "license": "CC BY-SA 2.0",
+    "artist": "Bernard DUPONT from FRANCE",
+    "page": "https://commons.wikimedia.org/wiki/File%3ACatalonian_Wall_Lizard_%28Podarcis_liolepis%29_female_..._%2844557593155%29.jpg",
+    "search": "Podarcis liolepis"
+  },
+  {
+    "id": "erizo-europeo",
+    "file": "./img/species/erizo-europeo.jpg",
+    "commons": "File:Erinaceus europaeus 3.JPG",
+    "license": "CC BY-SA 3.0",
+    "artist": "kallerna",
+    "page": "https://commons.wikimedia.org/wiki/File%3AErinaceus_europaeus_3.JPG",
+    "search": "Erinaceus europaeus"
+  },
+  {
+    "id": "murcielago-enano",
+    "file": "./img/species/murcielago-enano.jpg",
+    "commons": "File:Pipistrellus pipistrellus (5933130195).jpg",
+    "license": "CC BY-SA 2.0",
+    "artist": "Gilles San Martin from Namur, Belgium",
+    "page": "https://commons.wikimedia.org/wiki/File%3APipistrellus_pipistrellus_%285933130195%29.jpg",
+    "search": "Pipistrellus pipistrellus"
+  },
+  {
+    "id": "abeja-miel",
+    "file": "./img/species/abeja-miel.jpg",
+    "commons": "File:Apis mellifera - Brassica napus - Valingu.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Ivar Leidus",
+    "page": "https://commons.wikimedia.org/wiki/File%3AApis_mellifera_-_Brassica_napus_-_Valingu.jpg",
+    "search": "Apis mellifera"
+  },
+  {
+    "id": "mariposa-blanca-col",
+    "file": "./img/species/mariposa-blanca-col.jpg",
+    "commons": "File:Pieris rapae Dol.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Yerpo",
+    "page": "https://commons.wikimedia.org/wiki/File%3APieris_rapae_Dol.jpg",
+    "search": "Pieris rapae"
+  },
+  {
+    "id": "caracol-comun",
+    "file": "./img/species/caracol-comun.jpg",
+    "commons": "File:Helix aspersa hanging on a leaf.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Grendelkhan",
+    "page": "https://commons.wikimedia.org/wiki/File%3AHelix_aspersa_hanging_on_a_leaf.jpg",
+    "search": "Cornu aspersum"
+  }
+]

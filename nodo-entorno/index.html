@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Entorno · Conecta con lo que vive a tu lado</title>
+  <meta name="description" content="Aprende a nombrar la fauna y flora de tu ciudad. Barcelona metropolitana — piloto Nodo.">
+  <meta name="theme-color" content="#0c0f0c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Entorno">
+  <link rel="stylesheet" href="./css/entorno.css">
+  <script>
+    (function () {
+      var desk = window.matchMedia('(min-width: 900px)').matches;
+      var force = /(?:\?|&)app=1(?:&|$)/.test(location.search) || sessionStorage.getItem('entorno-in-app') === '1';
+      document.documentElement.classList.add(desk && !force ? 'show-landing' : 'show-app');
+    })();
+  </script>
+</head>
+<body>
+  <!-- Desktop show — atmósfera del mockup, datos reales -->
+  <div class="landing hidden" id="landing">
+    <header class="landing__nav">
+      <a class="landing__brand" href="./">
+        <span class="landing__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c4 4 6 7.5 6 11a6 6 0 1 1-12 0c0-3.5 2-7 6-11z"/><path d="M12 14v4"/></svg>
+        </span>
+        <span>Entorno <small>by Nodo</small></span>
+      </a>
+      <nav class="landing__links" aria-label="Secciones">
+        <a href="#land-explora">Explorar</a>
+        <a href="#land-explora">Atlas</a>
+        <a href="#land-explora">Reto</a>
+        <a href="#land-explora">Cuaderno</a>
+        <a href="../">Nodo</a>
+      </nav>
+      <div class="landing__nav-actions">
+        <button type="button" class="btn btn--primary" data-enter-app>Empieza gratis</button>
+        <span class="landing__avatar" aria-hidden="true">E</span>
+      </div>
+    </header>
+
+    <section class="landing__hero">
+      <div class="landing__copy">
+        <p class="landing__kicker">Tu entorno, tu aula</p>
+        <h1>Aprende a nombrar <em>lo vivo</em> que te rodea.</h1>
+        <p class="landing__lead">Descubre la fauna y flora de tu barrio. Observa, nombra y guarda encuentros en tu cuaderno — sin cuentas, en este dispositivo.</p>
+        <div class="landing__ctas">
+          <button type="button" class="store-btn" data-enter-app>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 3.5 18.5 12 8 20.5V3.5Z"/></svg>
+            <span><small>Webapp</small><strong>Aprender ya</strong></span>
+          </button>
+          <a class="store-btn" href="../">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            <span><small>Portfolio</small><strong>Conocer Nodo</strong></span>
+          </a>
+        </div>
+
+        <div class="landing__stats" aria-label="Datos del piloto">
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3c4 4 6 7.5 6 11a6 6 0 1 1-12 0c0-3.5 2-7 6-11z"/></svg>
+            <strong id="land-stat-species">29</strong>
+            <span>Especies por descubrir</span>
+          </div>
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>
+            <strong>20</strong>
+            <span>Reto a nombrar</span>
+          </div>
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M10 17h4"/></svg>
+            <strong>Local</strong>
+            <span>Sin cuentas</span>
+          </div>
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <strong>100%</strong>
+            <span>Hecha en Barcelona</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="landing__stage" aria-hidden="true">
+        <div class="landing__glow"></div>
+        <img class="landing__bird" src="./img/species/gorrion.jpg" alt="">
+        <img class="landing__lav" src="./img/species/lavanda.jpg" alt="">
+        <aside class="float-card float-card--radar">
+          <span class="float-dot"></span>
+          <div>
+            <strong>Cerca de ti</strong>
+            <p><span id="land-near-count">29</span> especies por descubrir</p>
+          </div>
+        </aside>
+        <aside class="float-card float-card--quote">
+          <span class="float-card__leaf">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c4 4 6 7.5 6 11a6 6 0 1 1-12 0c0-3.5 2-7 6-11z"/></svg>
+          </span>
+          <p>“No es solo aprender. Es reconocer tu hogar. Es conectar con lo vivo.”</p>
+          <cite>— <em>Nodo</em></cite>
+        </aside>
+      </div>
+    </section>
+
+    <section class="landing__explore" id="land-explora">
+      <div class="landing__explore-head">
+        <h2>Explora tu entorno</h2>
+        <div class="landing__explore-nav" aria-hidden="true">
+          <span></span><span></span>
+        </div>
+      </div>
+      <div class="landing__tiles">
+        <button type="button" class="tile" data-enter-app data-enter-screen="atlas">
+          <img src="./img/species/gorrion.jpg" alt="">
+          <div>
+            <h3>Explorar</h3>
+            <p>Descubre especies cerca de ti</p>
+          </div>
+        </button>
+        <button type="button" class="tile" data-enter-app data-enter-screen="home">
+          <img src="./img/species/pino-alepo.jpg" alt="">
+          <div>
+            <h3>Hoy</h3>
+            <p>La ficha del día en tu zona</p>
+          </div>
+        </button>
+        <button type="button" class="tile" data-enter-app data-enter-screen="profile">
+          <img src="./img/species/hiedra.jpg" alt="">
+          <div>
+            <h3>Reto</h3>
+            <p>Nombra 20 y guarda tu progreso</p>
+          </div>
+        </button>
+        <button type="button" class="tile" data-enter-app data-enter-screen="log">
+          <img src="./img/species/lavanda.jpg" alt="">
+          <div>
+            <h3>Cuaderno</h3>
+            <p>Fotos y encuentros en el dispositivo</p>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <footer class="landing__foot">
+      <p>Entorno by Nodo · piloto Barcelona / L'Hospitalet</p>
+      <button type="button" class="btn btn--primary" data-enter-app>Abrir la app</button>
+    </footer>
+  </div>
+
+  <div class="app-root hidden" id="app-root">
+    <div class="boot" id="boot" aria-hidden="false">
+      <div>
+        <div class="boot__mark">E</div>
+        <h1>Entorno</h1>
+        <p>Antes de otro logo, el nombre del árbol de tu calle.</p>
+      </div>
+    </div>
+
+    <div class="app hidden" id="screen-onboard">
+      <div class="ob screen-enter">
+        <p class="eyebrow">Nodo · Entorno</p>
+        <h2>¿Dónde suena tu barrio?</h2>
+        <p class="ob__lead">Elige tu sitio. Te cargamos lo que suele vivir por aquí — no un zoo del planeta.</p>
+        <div class="place-list" id="place-list"></div>
+        <div class="ob__cp">
+          <label for="postal">Código postal (opcional)</label>
+          <input id="postal" inputmode="numeric" maxlength="5" placeholder="ej. 08901 · Hospitalet" autocomplete="postal-code">
+        </div>
+        <p class="ob__hint">El atlas piloto cubre Barcelona metropolitana: ciudad, Hospitalet, Collserola al borde.</p>
+        <button type="button" class="btn btn--primary btn--block" id="btn-start">Empezar a nombrar</button>
+      </div>
+    </div>
+
+    <div class="app hidden" id="screen-home">
+      <header class="topbar screen-enter">
+        <div class="topbar__brand">
+          <span class="landing__mark landing__mark--sm" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c4 4 6 7.5 6 11a6 6 0 1 1-12 0c0-3.5 2-7 6-11z"/><path d="M12 14v4"/></svg>
+          </span>
+          <div>
+            <strong>Entorno</strong>
+            <small>by Nodo</small>
+          </div>
+        </div>
+        <div class="topbar__actions">
+          <button type="button" class="icon-btn" id="btn-place" title="Cambiar lugar" aria-label="Cambiar lugar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          </button>
+          <button type="button" class="avatar-btn" data-screen-jump="profile" aria-label="Perfil" id="btn-avatar">
+            <span id="avatar-letter">A</span>
+          </button>
+        </div>
+      </header>
+
+      <header class="home-head">
+        <div>
+          <h1 id="home-hi">¡Hola, aprendiz!</h1>
+          <p id="home-sub">¿Qué quieres explorar hoy?</p>
+        </div>
+        <p class="place-chip" id="home-place-label"></p>
+      </header>
+
+      <div class="search-row">
+        <label class="search" for="search-input">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="search-input" type="search" placeholder="Buscar especies…" autocomplete="off">
+        </label>
+      </div>
+
+      <section class="section">
+        <button type="button" class="feature" id="today-card"></button>
+      </section>
+
+      <section class="section">
+        <div class="section__head">
+          <h3>Especies cerca de ti</h3>
+          <button type="button" class="text-link" data-go-atlas>Ver todas</button>
+        </div>
+        <div class="rail" id="home-rail"></div>
+      </section>
+
+      <section class="section">
+        <div class="section__head"><h3>Tu progreso</h3></div>
+        <div class="progress-card" id="progress-card">
+          <div class="progress-card__top">
+            <strong id="progress-level">Nivel 1 · Mirando la acera</strong>
+            <span id="progress-xp">0 / 20</span>
+          </div>
+          <div class="progress-card__bar"><i id="hero-bar"></i></div>
+          <p id="hero-lead" class="progress-card__lead"></p>
+          <p class="progress-card__hint">En Perfil puedes descargar y volver a subir tu progreso.</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="app hidden" id="screen-atlas">
+      <header class="home-head">
+        <div>
+          <p class="eyebrow">Atlas</p>
+          <h1>Lo de aquí</h1>
+        </div>
+        <p class="place-chip" id="atlas-count"></p>
+      </header>
+      <div class="search-row">
+        <label class="search" for="atlas-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="atlas-search" type="search" placeholder="Buscar en el atlas…" autocomplete="off">
+        </label>
+      </div>
+      <div class="filters" id="filters"></div>
+      <div class="grid" id="species-grid"></div>
+    </div>
+
+    <div class="app hidden" id="screen-log">
+      <header class="home-head">
+        <div>
+          <p class="eyebrow">Cuaderno</p>
+          <h1>Tus encuentros</h1>
+        </div>
+      </header>
+      <p class="lede">Fotos y marcas de tu barrio. Sin cuentas: vive en este dispositivo.</p>
+      <div class="log" id="log-list"></div>
+      <button type="button" class="btn btn--primary btn--block log-add" id="btn-log-add">Registrar encuentro +</button>
+    </div>
+
+    <div class="app hidden" id="screen-profile">
+      <header class="home-head">
+        <div>
+          <p class="eyebrow">Perfil</p>
+          <h1>Tu barrio, tu copia</h1>
+        </div>
+      </header>
+      <div class="progress-card" id="profile-card">
+        <div class="progress-card__top">
+          <strong id="profile-level">Nivel 1</strong>
+          <span id="profile-xp">0 / 20</span>
+        </div>
+        <div class="progress-card__bar"><i id="profile-bar"></i></div>
+        <p id="profile-lead" class="progress-card__lead"></p>
+        <p class="profile-place" id="profile-place"></p>
+      </div>
+
+      <section class="profile-block">
+        <h3>Guardar progreso</h3>
+        <p>Descarga un JSON con lo que ya conoces (y fotos). En otro móvil o si limpias el navegador, súbelo aquí.</p>
+        <div class="challenge__row">
+          <button type="button" class="btn btn--primary" id="btn-export">Descargar progreso</button>
+          <label class="btn btn--soft">
+            Subir progreso
+            <input type="file" id="import-file" accept="application/json,.json" hidden>
+          </label>
+        </div>
+      </section>
+
+      <section class="profile-block">
+        <h3>El reto</h3>
+        <p>Nombrar 20 seres de tu entorno. Copia el texto y mándalo por WhatsApp o Stories.</p>
+        <button type="button" class="btn btn--soft" id="btn-share">Copiar el reto</button>
+      </section>
+
+      <section class="profile-block">
+        <h3>Lugar</h3>
+        <button type="button" class="btn btn--ghost" id="btn-place-profile">Cambiar barrio</button>
+        <a class="btn btn--ghost" href="../">Nodo ↗</a>
+      </section>
+    </div>
+
+    <nav class="tabbar hidden" id="tabbar">
+      <button type="button" class="is-on" data-screen="home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1z"/></svg>
+        Inicio
+      </button>
+      <button type="button" data-screen="atlas">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+        Atlas
+      </button>
+      <button type="button" class="tabbar__cam" id="btn-register" aria-label="Añadir foto al cuaderno">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+        </span>
+      </button>
+      <button type="button" data-screen="log">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 0-3 3z"/><path d="M5 4v16"/></svg>
+        Cuaderno
+      </button>
+      <button type="button" data-screen="profile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3.5"/><path d="M5.5 19.5a6.5 6.5 0 0 1 13 0"/></svg>
+        Perfil
+      </button>
+    </nav>
+
+    <div class="sheet hidden" id="detail" aria-hidden="true">
+      <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+        <div class="sheet__top">
+          <div>
+            <p class="sheet__guild" id="detail-guild"></p>
+            <h2 id="detail-title"></h2>
+            <p class="sheet__alias" id="detail-alias"></p>
+            <p class="sheet__latin" id="detail-latin"></p>
+          </div>
+          <button type="button" class="icon-btn" id="detail-close" aria-label="Cerrar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="sheet__photo hidden" id="detail-photo-wrap">
+          <img id="detail-photo" alt="">
+        </div>
+        <p class="sheet__credit hidden" id="detail-credit"></p>
+        <p class="sheet__hook" id="detail-hook"></p>
+        <div class="meta">
+          <div><strong>Dónde</strong><span id="detail-where"></span></div>
+          <div><strong>Cuándo</strong><span id="detail-season"></span></div>
+        </div>
+        <p class="mark-title">Cómo pillarlo</p>
+        <ul class="signals" id="detail-signals"></ul>
+        <p class="tip" id="detail-tip"></p>
+        <p class="tip tip--local" id="detail-local"></p>
+        <p class="mark-title">¿Te cruzaste con él?</p>
+        <div class="mark-row" id="detail-marks"></div>
+        <p class="toast-line" id="detail-toast"></p>
+
+        <div class="sighting hidden" id="sighting-box">
+          <p class="mark-title">Tu encuentro</p>
+          <div class="sighting__preview hidden" id="sighting-preview-wrap">
+            <img id="sighting-preview" alt="Tu foto del encuentro">
+            <button type="button" class="sighting__remove" id="sighting-remove" aria-label="Quitar foto">×</button>
+          </div>
+          <div class="sighting__actions">
+            <label class="btn btn--soft sighting__file">
+              Hacer / subir foto
+              <input type="file" id="sighting-file" accept="image/*" capture="environment" hidden>
+            </label>
+            <button type="button" class="btn btn--primary" id="btn-tell">Contarlo</button>
+          </div>
+          <p class="sighting__hint">La foto se queda en este dispositivo. Contarlo genera una carta para Stories o WhatsApp · #EntornoNodo</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet hidden" id="register" aria-hidden="true">
+      <div class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="register-title">
+        <div class="sheet__top">
+          <div>
+            <p class="sheet__guild">Cuaderno</p>
+            <h2 id="register-title">Registrar encuentro</h2>
+          </div>
+          <button type="button" class="icon-btn" id="register-close" aria-label="Cerrar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <label class="reg-photo" for="register-file">
+          <img id="register-preview" class="hidden" alt="Vista previa">
+          <span id="register-photo-hint">
+            <strong>Foto</strong>
+            Hacer o subir una imagen del encuentro
+          </span>
+          <input type="file" id="register-file" accept="image/*" capture="environment" hidden>
+        </label>
+
+        <label class="reg-field">
+          <span>¿Qué es?</span>
+          <input type="search" id="register-search" placeholder="Buscar en el atlas…" autocomplete="off">
+        </label>
+        <div class="reg-picks" id="register-picks"></div>
+        <p class="reg-picked hidden" id="register-picked"></p>
+
+        <label class="reg-field">
+          <span>¿Dónde lo viste? (opcional)</span>
+          <input type="text" id="register-where" placeholder="ej. Parque de la Remunta, acacia de la esquina…" autocomplete="off">
+        </label>
+
+        <p class="reg-hint">Se guarda en tu cuaderno de este dispositivo. Luego puedes descargar el progreso desde Perfil.</p>
+        <button type="button" class="btn btn--primary btn--block" id="register-save" disabled>Guardar en el cuaderno</button>
+      </div>
+    </div>
+
+    <div class="sheet hidden" id="tell-sheet" aria-hidden="true">
+      <div class="sheet__panel tell-panel" role="dialog" aria-modal="true" aria-labelledby="tell-title">
+        <div class="sheet__top">
+          <div>
+            <p class="sheet__guild">Contarlo</p>
+            <h2 id="tell-title">Tu carta del barrio</h2>
+          </div>
+          <button type="button" class="icon-btn" id="tell-close" aria-label="Cerrar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <canvas id="tell-canvas" width="1080" height="1350" class="tell-canvas"></canvas>
+        <div class="challenge__row" style="margin-top:1rem">
+          <button type="button" class="btn btn--primary" id="tell-share">Compartir</button>
+          <button type="button" class="btn btn--ghost" id="tell-download">Descargar</button>
+          <button type="button" class="btn btn--soft" id="tell-copy">Copiar texto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/species.js"></script>
+  <script src="./js/credits.js"></script>
+  <script src="./js/entorno.js"></script>
+</body>
+</html>
