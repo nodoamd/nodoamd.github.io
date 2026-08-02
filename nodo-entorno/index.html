@@ -20,6 +20,28 @@
 <body>
   <!-- Desktop show — atmósfera del mockup, datos reales -->
   <div class="landing hidden" id="landing">
+    <div class="landing__scene" aria-hidden="true">
+      <img class="landing__scene-img" src="./img/hero/bird-lavender.png" alt="">
+      <div class="landing__scene-veil"></div>
+      <div class="landing__glow"></div>
+    </div>
+
+      <aside class="float-card float-card--radar" aria-hidden="true">
+        <span class="float-dot"></span>
+        <div>
+          <strong>Cerca de ti</strong>
+          <p><span id="land-near-count">29</span> especies por descubrir</p>
+        </div>
+      </aside>
+      <aside class="float-card float-card--quote" aria-hidden="true">
+        <span class="float-card__leaf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c4 4 6 7.5 6 11a6 6 0 1 1-12 0c0-3.5 2-7 6-11z"/></svg>
+        </span>
+        <p>“No es solo aprender. Es reconocer tu hogar. Es conectar con lo vivo.”</p>
+        <cite>— <em>Nodo</em></cite>
+      </aside>
+
+
     <header class="landing__nav">
       <a class="landing__brand" href="./">
         <span class="landing__mark" aria-hidden="true">
@@ -80,25 +102,6 @@
         </div>
       </div>
 
-      <div class="landing__stage" aria-hidden="true">
-        <div class="landing__glow"></div>
-        <img class="landing__bird" src="./img/species/gorrion.jpg" alt="">
-        <img class="landing__lav" src="./img/species/lavanda.jpg" alt="">
-        <aside class="float-card float-card--radar">
-          <span class="float-dot"></span>
-          <div>
-            <strong>Cerca de ti</strong>
-            <p><span id="land-near-count">29</span> especies por descubrir</p>
-          </div>
-        </aside>
-        <aside class="float-card float-card--quote">
-          <span class="float-card__leaf">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c4 4 6 7.5 6 11a6 6 0 1 1-12 0c0-3.5 2-7 6-11z"/></svg>
-          </span>
-          <p>“No es solo aprender. Es reconocer tu hogar. Es conectar con lo vivo.”</p>
-          <cite>— <em>Nodo</em></cite>
-        </aside>
-      </div>
     </section>
 
     <section class="landing__explore" id="land-explora">

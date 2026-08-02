@@ -750,7 +750,7 @@ html.show-app #app-root { display: block; }
 .landing {
   position: relative;
   min-height: 100dvh;
-  overflow-x: clip;
+  overflow-x: hidden;
   background: #000;
   color: #fff;
 }
@@ -830,10 +830,71 @@ html.show-app #app-root { display: block; }
   margin: 0 auto;
   padding: 1.25rem clamp(1.5rem, 5vw, 4rem) 2.5rem;
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  grid-template-columns: minmax(0, 34rem) minmax(0, 1fr);
   gap: clamp(1.5rem, 4vw, 3.5rem);
   align-items: center;
-  min-height: min(78dvh, 760px);
+  min-height: min(86dvh, 820px);
+  isolation: isolate;
+}
+
+/* Escena full-bleed (fuera del max-width del hero) */
+.landing__scene {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: min(100dvh, 920px);
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.landing__scene-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 82% 38%;
+  filter: saturate(1.15) contrast(1.1) brightness(1.18);
+  animation: atmosIn 0.9s var(--ease) both;
+}
+.landing__scene-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #000 0%, #000 26%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.2) 58%, transparent 74%),
+    linear-gradient(180deg, rgba(0,0,0,0.25) 0%, transparent 16%, transparent 78%, rgba(0,0,0,0.88) 100%);
+  z-index: 1;
+}
+/* Rellena el hueco negro entre pájaro y lavanda sin tapar sujetos */
+.landing__scene::after {
+  content: "";
+  position: absolute;
+  right: 8%;
+  top: 28%;
+  width: min(42vw, 520px);
+  height: min(48vh, 420px);
+  background:
+    radial-gradient(ellipse at 55% 40%, rgba(90, 120, 40, 0.45), transparent 62%),
+    radial-gradient(ellipse at 40% 70%, rgba(50, 70, 25, 0.35), transparent 58%);
+  filter: blur(28px);
+  z-index: 1;
+  pointer-events: none;
+}
+.landing__glow {
+  position: absolute;
+  width: 55%;
+  height: 70%;
+  right: -5%;
+  top: -10%;
+  background:
+    radial-gradient(circle at 55% 40%, rgba(180, 210, 70, 0.2), transparent 58%),
+    radial-gradient(circle at 70% 20%, rgba(217, 237, 106, 0.1), transparent 45%);
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .landing__copy {
@@ -841,6 +902,7 @@ html.show-app #app-root { display: block; }
   z-index: 2;
   max-width: 34rem;
   animation: rise 0.65s var(--ease) both;
+  grid-column: 1;
 }
 .landing__kicker {
   font-size: 0.74rem;
@@ -943,54 +1005,11 @@ html.show-app #app-root { display: block; }
 
 /* Stage = collage anclado a la columna derecha */
 .landing__stage {
-  position: relative;
-  min-height: 560px;
-  height: min(68dvh, 640px);
-  isolation: isolate;
+  display: none;
 }
-.landing__glow {
-  position: absolute;
-  width: 120%;
-  height: 90%;
-  right: -18%;
-  top: -18%;
-  background:
-    radial-gradient(circle at 55% 40%, rgba(180, 210, 70, 0.42), transparent 55%),
-    radial-gradient(circle at 70% 20%, rgba(217, 237, 106, 0.22), transparent 45%);
-  filter: blur(40px);
-  z-index: 0;
-  pointer-events: none;
-}
-.landing__bird {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: min(100%, 520px);
-  height: 78%;
-  object-fit: cover;
-  object-position: 55% 35%;
-  border-radius: 32px;
-  z-index: 1;
-  box-shadow: 0 40px 80px -28px rgba(0, 0, 0, 0.85);
-  filter: saturate(1.08) contrast(1.04);
-  animation: atmosIn 0.9s var(--ease) both;
-}
+.landing__bird,
 .landing__lav {
-  position: absolute;
-  left: 0;
-  bottom: 6%;
-  width: 42%;
-  max-width: 230px;
-  aspect-ratio: 3 / 4;
-  height: auto;
-  object-fit: cover;
-  object-position: center 30%;
-  border-radius: 26px;
-  z-index: 3;
-  border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: 0 28px 55px -18px rgba(0, 0, 0, 0.95);
-  filter: saturate(1.15);
-  animation: atmosIn 1s 0.1s var(--ease) both;
+  display: none;
 }
 
 .float-card {
@@ -1008,17 +1027,20 @@ html.show-app #app-root { display: block; }
   box-shadow: 0 20px 48px -20px rgba(0, 0, 0, 0.75);
   animation: rise 0.75s 0.18s var(--ease) both;
 }
+/* Debajo del pájaro */
 .float-card--radar {
-  top: 7%;
-  left: 4%;
-  max-width: 230px;
+  top: clamp(8.5rem, 26vh, 15rem);
+  right: clamp(1.5rem, 9vw, 8rem);
+  max-width: 240px;
 }
+/* Junto a la lavanda */
 .float-card--quote {
-  right: 4%;
-  bottom: 2%;
+  right: clamp(9rem, 22vw, 20rem);
+  top: clamp(20rem, 54vh, 34rem);
+  bottom: auto;
   display: grid;
   gap: 0.4rem;
-  max-width: 270px;
+  max-width: 280px;
   align-items: start;
 }
 .float-dot {
@@ -1176,13 +1198,21 @@ html.show-app #app-root { display: block; }
   .landing__nav { grid-template-columns: 1fr auto; }
   .landing__hero {
     grid-template-columns: 1fr;
-    min-height: auto;
+    min-height: min(88dvh, 820px);
     gap: 2rem;
   }
-  .landing__stage {
-    order: -1;
-    height: 480px;
-    min-height: 480px;
+  .landing__scene-img { object-position: 88% 40%; }
+  .landing__scene-veil {
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.22) 42%, rgba(0,0,0,0.88) 100%),
+      linear-gradient(90deg, #000 0%, rgba(0,0,0,0.45) 36%, transparent 72%);
+  }
+  .float-card--radar { top: clamp(8rem, 24vh, 14rem); right: 5vw; }
+  .float-card--quote {
+    top: auto;
+    bottom: clamp(8rem, 18vh, 14rem);
+    right: 4vw;
+    max-width: 240px;
   }
   .landing__copy h1 { max-width: 14ch; }
   .landing__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
