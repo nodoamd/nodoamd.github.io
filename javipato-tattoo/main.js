@@ -125,14 +125,14 @@ function initHeroVideoScroll(scope = document){
     // Single owner of these layers — no parallel scroll tweens elsewhere
     gsap.set(enterLayer, { autoAlpha: 0, y: 48 });
     gsap.set(exitLayer, { autoAlpha: 1, y: 0 });
-    if(armLayer) gsap.set(armLayer, { autoAlpha: 1, filter: 'blur(0px)' });
+    if(armLayer) gsap.set(armLayer, { autoAlpha: 1, clearProps: 'filter' });
     if(panelA) gsap.set(panelA, { autoAlpha: 0, y: 28 });
     if(panelB) gsap.set(panelB, { autoAlpha: 0, y: 28 });
     if(galleryLayer) gsap.set(galleryLayer, { autoAlpha: 0, y: 40 });
     if(galleryTiles.length) gsap.set(galleryTiles, { autoAlpha: 0, y: 24, scale: 0.97 });
     setActivePanel(null);
 
-    const scrollLength = () => Math.round(Math.max(window.innerHeight * 6.4, 5600));
+    const scrollLength = () => Math.round(Math.max(window.innerHeight * 3.05, 2400));
 
     heroScrollTl = gsap.timeline({
       defaults: { ease: 'none' },
@@ -142,19 +142,19 @@ function initHeroVideoScroll(scope = document){
         end: () => `+=${scrollLength()}`,
         pin: true,
         pinSpacing: true,
-        scrub: 1.15,
+        scrub: 0.55,
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate(self){
           // Video scrub only in hero → early styles (settles before holds)
-          const videoProgress = gsap.utils.clamp(0, 1, self.progress / 0.38);
+          const videoProgress = gsap.utils.clamp(0, 1, self.progress / 0.28);
           const t = videoProgress * Math.max(dur - 0.05, 0);
           if(Math.abs(video.currentTime - t) > 0.04){
             video.currentTime = t;
           }
 
-          const inStyles = self.progress > 0.14 && self.progress < 0.7;
-          const inGallery = self.progress > 0.72;
+          const inStyles = self.progress > 0.1 && self.progress < 0.72;
+          const inGallery = self.progress > 0.74;
           enterLayer.classList.toggle('is-live', inStyles);
           stage.classList.toggle('is-styles', inStyles);
           stage.classList.toggle('is-gallery', inGallery);
@@ -164,94 +164,90 @@ function initHeroVideoScroll(scope = document){
           }
 
           // Only one style panel “owns” the beat (avoids ghost overlap)
-          if(self.progress < 0.4) setActivePanel(panelA);
-          else if(self.progress < 0.7) setActivePanel(panelB);
+          if(self.progress < 0.38) setActivePanel(panelA);
+          else if(self.progress < 0.72) setActivePanel(panelB);
           else setActivePanel(null);
         }
       }
     });
 
-    /* ACT 1 — hero leaves completely (incl. thumbs / socials above styles) */
+    /* ACT 1 — hero leaves */
     heroScrollTl.to(exitLayer, {
-      y: () => -(window.innerHeight * 0.82),
+      y: () => -(window.innerHeight * 0.72),
       autoAlpha: 0,
-      duration: 0.16
+      duration: 0.12
     }, 0);
 
-    /* Arm pulls back AS styles enter — not still full-bright behind them */
     if(armLayer){
       heroScrollTl.to(armLayer, {
-        autoAlpha: 0.18,
-        filter: 'blur(10px)',
-        duration: 0.18
-      }, 0.06);
+        autoAlpha: 0.28,
+        duration: 0.12
+      }, 0.04);
     }
 
-    /* ACT 2 — first style only (after hero is mostly gone) */
+    /* ACT 2 — first style (Oriental con mood Realismo) entra pronto */
     heroScrollTl.to(enterLayer, {
       y: 0,
       autoAlpha: 1,
-      duration: 0.14
-    }, 0.14);
+      duration: 0.1
+    }, 0.1);
 
     if(panelA){
       heroScrollTl.to(panelA, {
         autoAlpha: 1,
         y: 0,
-        duration: 0.14
-      }, 0.15);
+        duration: 0.1
+      }, 0.11);
     }
 
-    /* HOLD first style — arm stays dim ghost only */
-    heroScrollTl.to({}, { duration: 0.16 }, 0.26);
+    /* HOLD corto primer estilo */
+    heroScrollTl.to({}, { duration: 0.1 }, 0.2);
 
-    /* ACT 3 — clean handoff: A fully out before B peaks */
+    /* ACT 3 — handoff al segundo estilo */
     if(panelA && panelB){
       heroScrollTl.to(panelA, {
         autoAlpha: 0,
-        y: -28,
-        duration: 0.1
-      }, 0.42);
+        y: -24,
+        duration: 0.08
+      }, 0.32);
 
       heroScrollTl.to(panelB, {
         autoAlpha: 1,
         y: 0,
-        duration: 0.12
-      }, 0.48);
+        duration: 0.1
+      }, 0.36);
     }
 
     if(armLayer){
       heroScrollTl.to(armLayer, {
-        autoAlpha: 0.06,
-        filter: 'blur(16px)',
-        duration: 0.14
-      }, 0.44);
+        autoAlpha: 0.12,
+        duration: 0.1
+      }, 0.34);
     }
 
-    /* HOLD second style */
-    heroScrollTl.to({}, { duration: 0.12 }, 0.58);
+    /* HOLD corto segundo estilo */
+    heroScrollTl.to({}, { duration: 0.1 }, 0.46);
 
-    /* ACT 4 — styles + arm out, curated gallery in */
+    /* ACT 4 — galería */
     heroScrollTl.to(enterLayer, {
       autoAlpha: 0,
-      y: -36,
-      duration: 0.1
-    }, 0.68);
+      y: -28,
+      duration: 0.08
+    }, 0.56);
 
     if(armLayer){
       heroScrollTl.to(armLayer, {
         autoAlpha: 0,
-        filter: 'blur(22px)',
-        duration: 0.1
-      }, 0.68);
+        duration: 0.08
+      }, 0.56);
     }
 
     if(galleryLayer){
       heroScrollTl.to(galleryLayer, {
         autoAlpha: 1,
         y: 0,
-        duration: 0.14
-      }, 0.72);
+        duration: 0.1
+      }, 0.6);
     }
 
     if(galleryTiles.length){
@@ -259,13 +255,13 @@ function initHeroVideoScroll(scope = document){
         autoAlpha: 1,
         y: 0,
         scale: 1,
-        duration: 0.14,
-        stagger: 0.02
-      }, 0.74);
+        duration: 0.1,
+        stagger: 0.015
+      }, 0.62);
     }
 
-    /* HOLD gallery */
-    heroScrollTl.to({}, { duration: 0.16 }, 0.88);
+    /* HOLD galería */
+    heroScrollTl.to({}, { duration: 0.12 }, 0.74);
 
     requestAnimationFrame(() => ScrollTrigger.refresh());
   }
@@ -298,7 +294,7 @@ function initStyleSwitcher(scope = document){
   if(!buttons.length) return;
 
   const fadeTargets = scope.querySelectorAll(
-    '.hero-content h1, .hero-content p, .hero-styles, .page-head h1, .page-head p, .split h2, .split p'
+    '.hero-content h1, .hero-tattoo, .hero-lead, .hero-styles, .page-head h1, .page-head p, .split h2, .split p'
   );
 
   function setActive(mood){

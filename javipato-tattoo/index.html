@@ -19,14 +19,14 @@
     <span class="script">tattoo</span>
   </a>
   <nav class="main-nav">
-    <a href="index.html">Home</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="contact.html">Contact</a>
+    <a href="index.html" class="active">Inicio</a>
+    <a href="gallery.html">Galería</a>
+    <a href="about.html">Sobre mí</a>
+    <a href="services.html">Servicios</a>
+    <a href="contact.html">Contacto</a>
   </nav>
   <div class="header-actions">
-    <a href="contact.html" class="btn-book">Book Now</a>
+    <a href="contact.html" class="btn-book">Reservar</a>
     <span class="lang">ES ⌄</span>
     <div class="burger"><span></span></div>
   </div>
@@ -62,50 +62,51 @@
     <div class="stage-exit">
       <div class="hero-content">
         <h1>Javi<br>Pato</h1>
+        <p class="hero-tattoo">Tattoo</p>
 
-        <div class="hero-styles">
-          <button data-mood="realismo" class="is-active">Realismo</button>
-          <span class="sep">·</span>
-          <button data-mood="anime">Anime</button>
-          <span class="sep">·</span>
-          <button data-mood="oriental">Oriental</button>
+        <div class="hero-styles" aria-label="Estilos">
+          <button type="button" data-mood="realismo" class="is-active">Realismo</button>
+          <span class="sep" aria-hidden="true">·</span>
+          <button type="button" data-mood="anime">Anime</button>
+          <span class="sep" aria-hidden="true">·</span>
+          <button type="button" data-mood="oriental">Oriental</button>
         </div>
 
-        <p>Tatuajes personalizados con precisión, creatividad y pasión. Cada diseño cuenta una historia, cada trazo deja huella.</p>
+        <p class="hero-lead">Tatuajes personalizados con precisión, creatividad y pasión. Cada diseño cuenta una historia, cada trazo deja huella.</p>
 
         <a href="gallery.html" class="btn-outline">
           Ver galería
-          <svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 5H15M15 5L11 1M15 5L11 9" stroke="currentColor" stroke-width="1.3"/></svg>
+          <svg width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true"><path d="M1 5H15M15 5L11 1M15 5L11 9" stroke="currentColor" stroke-width="1.3"/></svg>
         </a>
+      </div>
 
-        <div class="thumb-strip">
-          <div class="thumb media-tile has-video is-active" data-mood="realismo">
-            <img src="./img/starwarspato.jpg" alt="Pieza realista Star Wars">
-            <video src="./img/starwarspato.mp4" muted playsinline loop preload="metadata"></video>
-          </div>
-          <div class="thumb media-tile has-video" data-mood="realismo">
-            <img src="./img/patopierna.jpg" alt="Pieza en pierna">
-            <video src="./img/patopierna.mp4" muted playsinline loop preload="metadata"></video>
-          </div>
-          <div class="thumb media-tile" data-mood="realismo">
-            <img src="./img/espaldapato.jpg" alt="Espalda completa">
-          </div>
-          <div class="thumb media-tile" data-mood="anime">
-            <img src="./img/tatuanime.png" alt="Anime">
-          </div>
+      <div class="thumb-strip" aria-label="Trabajos destacados">
+        <div class="thumb media-tile has-video is-active" data-mood="realismo">
+          <img src="./img/starwarspato.jpg" alt="Pieza realista Star Wars">
+          <video src="./img/starwarspato.mp4" muted playsinline loop preload="metadata"></video>
+        </div>
+        <div class="thumb media-tile has-video" data-mood="realismo">
+          <img src="./img/patopierna.jpg" alt="Pieza en pierna">
+          <video src="./img/patopierna.mp4" muted playsinline loop preload="metadata"></video>
+        </div>
+        <div class="thumb media-tile" data-mood="realismo">
+          <img src="./img/espaldapato.jpg" alt="Espalda completa">
+        </div>
+        <div class="thumb media-tile has-stack" data-mood="anime">
+          <img src="./img/tatuanime.png" alt="Anime">
         </div>
       </div>
 
-      <div class="hero-slide-cue">
+      <div class="hero-slide-cue" aria-hidden="true">
         <div class="slide-cue-circle">Desliza<br>para ver más</div>
         <div class="slide-cue-line"></div>
       </div>
 
       <div class="hero-follow">
         <span>Sígueme</span>
-        <div class="social-dot">IG</div>
-        <div class="social-dot">YT</div>
-        <div class="social-dot">TT</div>
+        <a class="social-dot" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+        <a class="social-dot" href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube">YT</a>
+        <a class="social-dot" href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok">TT</a>
       </div>
     </div>
 
@@ -210,25 +211,25 @@
     <div class="home-flow-grid">
       <a href="gallery.html" class="home-flow-card">
         <span class="home-flow-num">01</span>
-        <span class="home-flow-title">Gallery</span>
+        <span class="home-flow-title">Galería</span>
         <span class="home-flow-desc">Trabajos recientes en realismo, anime y oriental.</span>
         <span class="home-flow-arrow">→</span>
       </a>
       <a href="about.html" class="home-flow-card">
         <span class="home-flow-num">02</span>
-        <span class="home-flow-title">About</span>
+        <span class="home-flow-title">Sobre mí</span>
         <span class="home-flow-desc">La historia y el enfoque detrás de cada pieza.</span>
         <span class="home-flow-arrow">→</span>
       </a>
       <a href="services.html" class="home-flow-card">
         <span class="home-flow-num">03</span>
-        <span class="home-flow-title">Services</span>
+        <span class="home-flow-title">Servicios</span>
         <span class="home-flow-desc">Proceso, estilos y lo que incluye cada sesión.</span>
         <span class="home-flow-arrow">→</span>
       </a>
       <a href="contact.html" class="home-flow-card">
         <span class="home-flow-num">04</span>
-        <span class="home-flow-title">Contact</span>
+        <span class="home-flow-title">Contacto</span>
         <span class="home-flow-desc">Reserva tu cita y cuéntame tu idea.</span>
         <span class="home-flow-arrow">→</span>
       </a>
