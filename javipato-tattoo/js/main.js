@@ -119,21 +119,63 @@ function initHeroVideoScroll(scope = document){
     const dur = video.duration;
     if(!dur || !Number.isFinite(dur)) return;
 
+    const mobile = window.matchMedia('(max-width: 900px)').matches;
+
     video.pause();
-    // Skip near-black opening frames so the arm is visible at rest
+    // Stable visible frame — avoid black opening
     video.currentTime = Math.min(0.22, Math.max(dur * 0.04, 0.08));
 
-    // Single owner of these layers — no parallel scroll tweens elsewhere
-    gsap.set(enterLayer, { autoAlpha: 0, y: 48 });
+    gsap.set(enterLayer, { autoAlpha: 0, y: mobile ? 24 : 48 });
     gsap.set(exitLayer, { autoAlpha: 1, y: 0 });
     if(armLayer) gsap.set(armLayer, { autoAlpha: 1, clearProps: 'filter' });
-    if(panelA) gsap.set(panelA, { autoAlpha: 0, y: 28 });
-    if(panelB) gsap.set(panelB, { autoAlpha: 0, y: 28 });
+    if(panelA) gsap.set(panelA, { autoAlpha: 0, y: mobile ? 16 : 28 });
+    if(panelB) gsap.set(panelB, { autoAlpha: 0, y: mobile ? 16 : 28 });
     if(galleryLayer) gsap.set(galleryLayer, { autoAlpha: 0, y: 40 });
     if(galleryTiles.length) gsap.set(galleryTiles, { autoAlpha: 0, y: 24, scale: 0.97 });
     setActivePanel(null);
+    stage.classList.remove('is-arm-clear', 'is-styles', 'is-gallery');
 
-    const scrollLength = () => Math.round(Math.max(window.innerHeight * 3.05, 2400));
+    // Mobile: short pin so the page actually moves on (not stuck scrubbing)
+    const scrollLength = () => mobile
+      ? Math.round(Math.max(window.innerHeight * 1.85, 1400))
+      : Math.round(Math.max(window.innerHeight * 3.05, 2400));
+
+    const beats = mobile
+      ? {
+          // No video scrub on mobile — frame stays put (no sudden enlarge)
+          videoEnd: null,
+          stylesStart: 0.2,
+          galleryStart: 0.62,
+          exit: 0.06,
+          armFade: 0.1,
+          enter: 0.14,
+          panelA: 0.16,
+          holdA: 0.28,
+          panelAOut: 0.36,
+          panelB: 0.38,
+          holdB: 0.48,
+          enterOut: 0.54,
+          gallery: 0.56,
+          galleryTiles: 0.58,
+          holdGallery: 0.7
+        }
+      : {
+          videoEnd: 0.28,
+          stylesStart: 0.1,
+          galleryStart: 0.74,
+          exit: 0,
+          armFade: 0.04,
+          enter: 0.1,
+          panelA: 0.11,
+          holdA: 0.2,
+          panelAOut: 0.32,
+          panelB: 0.36,
+          holdB: 0.46,
+          enterOut: 0.56,
+          gallery: 0.6,
+          galleryTiles: 0.62,
+          holdGallery: 0.74
+        };
 
     heroScrollTl = gsap.timeline({
       defaults: { ease: 'none' },
@@ -143,20 +185,26 @@ function initHeroVideoScroll(scope = document){
         end: () => `+=${scrollLength()}`,
         pin: true,
         pinSpacing: true,
-        scrub: 0.55,
+        scrub: mobile ? 0.3 : 0.55,
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate(self){
-          // Video scrub only in hero → early styles (settles before holds)
-          const videoProgress = gsap.utils.clamp(0, 1, self.progress / 0.28);
-          const startT = Math.min(0.22, Math.max(dur * 0.04, 0.08));
-          const t = startT + videoProgress * Math.max(dur - startT - 0.05, 0);
-          if(Math.abs(video.currentTime - t) > 0.04){
-            video.currentTime = t;
+          const p = self.progress;
+
+          // Desktop only: scrub video. Mobile keeps a still frame.
+          if(beats.videoEnd != null){
+            const videoProgress = gsap.utils.clamp(0, 1, p / beats.videoEnd);
+            const startT = Math.min(0.22, Math.max(dur * 0.04, 0.08));
+            const t = startT + videoProgress * Math.max(dur - startT - 0.05, 0);
+            if(Math.abs(video.currentTime - t) > 0.04){
+              video.currentTime = t;
+            }
           }
 
-          const inStyles = self.progress > 0.1 && self.progress < 0.72;
-          const inGallery = self.progress > 0.74;
+          stage.classList.remove('is-arm-clear');
+
+          const inStyles = p > beats.stylesStart && p < beats.galleryStart;
+          const inGallery = p > beats.galleryStart;
           enterLayer.classList.toggle('is-live', inStyles);
           stage.classList.toggle('is-styles', inStyles);
           stage.classList.toggle('is-gallery', inGallery);
@@ -165,91 +213,82 @@ function initHeroVideoScroll(scope = document){
             galleryLayer.setAttribute('aria-hidden', inGallery ? 'false' : 'true');
           }
 
-          // Only one style panel “owns” the beat (avoids ghost overlap)
-          if(self.progress < 0.38) setActivePanel(panelA);
-          else if(self.progress < 0.72) setActivePanel(panelB);
+          const mid = (beats.panelAOut + beats.panelB) / 2;
+          if(p < mid) setActivePanel(panelA);
+          else if(p < beats.galleryStart) setActivePanel(panelB);
           else setActivePanel(null);
         }
       }
     });
 
-    /* ACT 1 — hero leaves */
+    /* ACT 1 — hero fades up & out */
     heroScrollTl.to(exitLayer, {
-      y: () => -(window.innerHeight * 0.72),
+      y: () => -(window.innerHeight * (mobile ? 0.3 : 0.72)),
       autoAlpha: 0,
-      duration: 0.12
-    }, 0);
+      duration: mobile ? 0.18 : 0.12
+    }, beats.exit);
 
     if(armLayer){
-      heroScrollTl.to(armLayer, {
-        autoAlpha: 0.28,
-        duration: 0.12
-      }, 0.04);
+      // Smooth black fade between states — never pop-clear the vignette
+      if(mobile){
+        heroScrollTl.to(armLayer, {
+          autoAlpha: 0,
+          duration: 0.24
+        }, beats.armFade);
+      } else {
+        heroScrollTl.to(armLayer, { autoAlpha: 0.28, duration: 0.12 }, beats.armFade);
+        heroScrollTl.to(armLayer, { autoAlpha: 0.12, duration: 0.1 }, beats.panelAOut);
+        heroScrollTl.to(armLayer, { autoAlpha: 0, duration: 0.08 }, beats.enterOut);
+      }
     }
 
-    /* ACT 2 — first style (Oriental con mood Realismo) entra pronto */
+    /* ACT 2 — first style fades in (crossfade with arm) */
     heroScrollTl.to(enterLayer, {
       y: 0,
       autoAlpha: 1,
-      duration: 0.1
-    }, 0.1);
+      duration: mobile ? 0.2 : 0.1
+    }, beats.enter);
 
     if(panelA){
       heroScrollTl.to(panelA, {
         autoAlpha: 1,
         y: 0,
-        duration: 0.1
-      }, 0.11);
+        duration: mobile ? 0.2 : 0.1
+      }, beats.panelA);
     }
 
-    /* HOLD corto primer estilo */
-    heroScrollTl.to({}, { duration: 0.1 }, 0.2);
+    heroScrollTl.to({}, { duration: mobile ? 0.06 : 0.1 }, beats.holdA);
 
-    /* ACT 3 — handoff al segundo estilo */
+    /* ACT 3 — crossfade to second style */
     if(panelA && panelB){
       heroScrollTl.to(panelA, {
         autoAlpha: 0,
-        y: -24,
-        duration: 0.08
-      }, 0.32);
+        y: mobile ? -10 : -24,
+        duration: mobile ? 0.14 : 0.08
+      }, beats.panelAOut);
 
       heroScrollTl.to(panelB, {
         autoAlpha: 1,
         y: 0,
-        duration: 0.1
-      }, 0.36);
+        duration: mobile ? 0.18 : 0.1
+      }, beats.panelB);
     }
 
-    if(armLayer){
-      heroScrollTl.to(armLayer, {
-        autoAlpha: 0.12,
-        duration: 0.1
-      }, 0.34);
-    }
+    heroScrollTl.to({}, { duration: mobile ? 0.06 : 0.1 }, beats.holdB);
 
-    /* HOLD corto segundo estilo */
-    heroScrollTl.to({}, { duration: 0.1 }, 0.46);
-
-    /* ACT 4 — galería */
+    /* ACT 4 — gallery */
     heroScrollTl.to(enterLayer, {
       autoAlpha: 0,
-      y: -28,
-      duration: 0.08
-    }, 0.56);
-
-    if(armLayer){
-      heroScrollTl.to(armLayer, {
-        autoAlpha: 0,
-        duration: 0.08
-      }, 0.56);
-    }
+      y: mobile ? -12 : -28,
+      duration: mobile ? 0.14 : 0.08
+    }, beats.enterOut);
 
     if(galleryLayer){
       heroScrollTl.to(galleryLayer, {
         autoAlpha: 1,
         y: 0,
-        duration: 0.1
-      }, 0.6);
+        duration: mobile ? 0.16 : 0.1
+      }, beats.gallery);
     }
 
     if(galleryTiles.length){
@@ -258,12 +297,11 @@ function initHeroVideoScroll(scope = document){
         y: 0,
         scale: 1,
         duration: 0.1,
-        stagger: 0.015
-      }, 0.62);
+        stagger: mobile ? 0.01 : 0.015
+      }, beats.galleryTiles);
     }
 
-    /* HOLD galería */
-    heroScrollTl.to({}, { duration: 0.12 }, 0.74);
+    heroScrollTl.to({}, { duration: 0.1 }, beats.holdGallery);
 
     requestAnimationFrame(() => ScrollTrigger.refresh());
   }
@@ -288,6 +326,21 @@ function initHeroVideoScroll(scope = document){
   else video.addEventListener('loadedmetadata', primeVideo, { once: true });
 
   video.load();
+
+  // Rebuild cinematic beats when crossing mobile ↔ desktop
+  const mq = window.matchMedia('(max-width: 900px)');
+  let lastMobile = mq.matches;
+  const onModeChange = () => {
+    if(mq.matches === lastMobile) return;
+    lastMobile = mq.matches;
+    if(video.readyState < 2) return;
+    destroyHeroVideoScroll();
+    syncRevealPanels(scope);
+    refreshRevealSequence = () => syncRevealPanels(scope);
+    buildTimeline();
+  };
+  if(typeof mq.addEventListener === 'function') mq.addEventListener('change', onModeChange);
+  else if(typeof mq.addListener === 'function') mq.addListener(onModeChange);
 }
 
 /* ---------- 1. STYLE MOOD SWITCHER (Realismo / Anime / Oriental) ---------- */
