@@ -1,0 +1,122 @@
+{
+  "viewBox": [
+    0,
+    0,
+    817.53,
+    610.77
+  ],
+  "stops": {
+    "taller-barques": {
+      "x": 782.35,
+      "y": 42.76,
+      "t": 0.02,
+      "lat": 42.500482,
+      "city": "Polilles, Rossell\u00f3"
+    },
+    "anxova-sal": {
+      "x": 599.04,
+      "y": 82.61,
+      "t": 0.2208,
+      "lat": 42.1257489,
+      "city": "L'Escala"
+    },
+    "mediterrania": {
+      "x": 611.5,
+      "y": 132.89,
+      "t": 0.2661,
+      "lat": 42.041217,
+      "city": "Torroella de Montgr\u00ed"
+    },
+    "pesca": {
+      "x": 557.26,
+      "y": 201.55,
+      "t": 0.3712,
+      "lat": 41.8451067,
+      "city": "Palam\u00f3s"
+    },
+    "historia-guixols": {
+      "x": 519.03,
+      "y": 221.47,
+      "t": 0.4051,
+      "lat": 41.7818145,
+      "city": "Sant Feliu de Gu\u00edxols"
+    },
+    "mar-lloret": {
+      "x": 471.8,
+      "y": 237.75,
+      "t": 0.4491,
+      "lat": 41.6996477,
+      "city": "Lloret de Mar"
+    },
+    "mataro": {
+      "x": 387.38,
+      "y": 275.08,
+      "t": 0.5346,
+      "lat": 41.5400831,
+      "city": "Matar\u00f3"
+    },
+    "nautica-masnou": {
+      "x": 379.35,
+      "y": 296.34,
+      "t": 0.5654,
+      "lat": 41.48276600000001,
+      "city": "El Masnou"
+    },
+    "maritim-bcn": {
+      "x": 345.87,
+      "y": 324.29,
+      "t": 0.6226,
+      "lat": 41.3758504,
+      "city": "Barcelona"
+    },
+    "sitges": {
+      "x": 290.96,
+      "y": 396.49,
+      "t": 0.6979,
+      "lat": 41.2355101,
+      "city": "Sitges"
+    },
+    "espai-far": {
+      "x": 291.94,
+      "y": 398.21,
+      "t": 0.7078,
+      "lat": 41.2169592,
+      "city": "Vilanova i la Geltr\u00fa"
+    },
+    "confraria": {
+      "x": 290.99,
+      "y": 405.94,
+      "t": 0.7225,
+      "lat": 41.1895011,
+      "city": "Calafell"
+    },
+    "port-tarragona": {
+      "x": 327.17,
+      "y": 452.04,
+      "t": 0.765,
+      "lat": 41.1101845,
+      "city": "Tarragona"
+    },
+    "historia-cambrils": {
+      "x": 333.06,
+      "y": 467.44,
+      "t": 0.789,
+      "lat": 41.0654029,
+      "city": "Cambrils"
+    },
+    "terres-ebre": {
+      "x": 179.71,
+      "y": 582.9,
+      "t": 0.98,
+      "lat": 40.7089757,
+      "city": "Amposta"
+    },
+    "maritim-mallorca": {
+      "x": 560,
+      "y": 480,
+      "t": null,
+      "lat": 39.7976464,
+      "city": "Mallorca"
+    }
+  }
+}

@@ -1,0 +1,146 @@
+[
+  {
+    "id": "espai-far",
+    "title": "Espai Far",
+    "city": "Vilanova i la Geltrú",
+    "lat": 41.2169592,
+    "lng": 1.7371307,
+    "img": "assets/img/vilanovafaro.jpg",
+    "link": "https://museusmaritims.mmb.cat/museus/espai-far-vilanova-i-la-geltru/"
+  },
+  {
+    "id": "mediterrania",
+    "title": "Museu de la Mediterrània",
+    "city": "Torroella de Montgrí",
+    "lat": 42.041217,
+    "lng": 3.1246622,
+    "img": "https://museusmaritims.mmb.cat/wp-content/uploads/2024/04/museu-torroella-01.jpg",
+    "link": "https://museusmaritims.mmb.cat/museus/museu-de-la-mediterrania/"
+  },
+  {
+    "id": "port-tarragona",
+    "title": "Museu del Port de Tarragona",
+    "city": "Tarragona",
+    "lat": 41.1101845,
+    "lng": 1.2447124,
+    "img": "https://museusmaritims.mmb.cat/wp-content/uploads/2024/04/20220514_195946.jpg",
+    "link": "https://museusmaritims.mmb.cat/museus/museu-del-port-de-tarragona/"
+  },
+  {
+    "id": "historia-guixols",
+    "title": "Museu d’Història",
+    "city": "Sant Feliu de Guíxols",
+    "lat": 41.7818145,
+    "lng": 3.0277828,
+    "img": "https://museusmaritims.mmb.cat/wp-content/uploads/2024/04/museu-st-feliu-guixols-01.jpg",
+    "link": "https://museusmaritims.mmb.cat/museus/museu-dhistoria-de-sant-feliu-de-guixols/"
+  },
+  {
+    "id": "taller-barques",
+    "title": "Taller de les barques",
+    "city": "Polilles, Rosselló",
+    "lat": 42.500482,
+    "lng": 3.126231,
+    "img": "https://museusmaritims.mmb.cat/wp-content/uploads/2024/04/museu-polilles-01.jpg",
+    "link": "https://museusmaritims.mmb.cat/museus/taller-de-les-barques-a-polilles/"
+  },
+  {
+    "id": "pesca",
+    "title": "Museu de la Pesca",
+    "city": "Palamós",
+    "lat": 41.8451067,
+    "lng": 3.1270225,
+    "img": "https://museusmaritims.mmb.cat/wp-content/uploads/2024/04/museu-palamos-01.jpg",
+    "link": "https://museusmaritims.mmb.cat/museus/museu-de-la-pesca/"
+  },
+  {
+    "id": "sitges",
+    "title": "Museus de Sitges",
+    "city": "Sitges",
+    "lat": 41.2355101,
+    "lng": 1.8126867,
+    "img": "https://museusmaritims.mmb.cat/wp-content/uploads/2024/04/museu-sitges-01.jpg",
+    "link": "https://museusmaritims.mmb.cat/museus/consorci-del-patrimoni-de-sitges/"
+  },
+  {
+    "id": "maritim-bcn",
+    "title": "Museu Marítim de Barcelona",
+    "city": "Barcelona",
+    "lat": 41.3758504,
+    "lng": 2.1761781,
+    "img": "https://museusmaritims.mmb.cat/wp-content/uploads/2024/04/mmb-01.jpg",
+    "link": "https://museusmaritims.mmb.cat/museus/museu-maritim-de-barcelona/"
+  },
+  {
+    "id": "mataro",
+    "title": "Museu de Mataró",
+    "city": "Mataró",
+    "lat": 41.5400831,
+    "lng": 2.4452878,
+    "img": "https://museusmaritims.mmb.cat/wp-content/uploads/2024/04/museu-mataro-01.jpg",
+    "link": "https://museusmaritims.mmb.cat/museus/can-serra-museu-de-mataro/"
+  },
+  {
+    "id": "maritim-mallorca",
+    "title": "Museu Marítim de Mallorca",
+    "city": "Mallorca",
+    "lat": 39.7976464,
+    "lng": 2.6914643,
+    "img": "https://museusmaritims.mmb.cat/wp-content/uploads/2024/04/museu-mallorca-01.jpg",
+    "link": "https://museusmaritims.mmb.cat/museus/museu-maritim-de-mallorca/"
+  },
+  {
+    "id": "mar-lloret",
+    "title": "Museu del Mar",
+    "city": "Lloret de Mar",
+    "lat": 41.6996477,
+    "lng": 2.8507256,
+    "img": "https://museusmaritims.mmb.cat/wp-content/uploads/2024/04/museu-lloret-01.jpg",
+    "link": "https://museusmaritims.mmb.cat/museus/museu-del-mar/"
+  },
+  {
+    "id": "anxova-sal",
+    "title": "Museu de l’Anxova i de la Sal",
+    "city": "L'Escala",
+    "lat": 42.1257489,
+    "lng": 3.1261837,
+    "img": "https://museusmaritims.mmb.cat/wp-content/uploads/2024/04/museu-anxova-escala-01.jpg",
+    "link": "https://museusmaritims.mmb.cat/museus/museu-de-lanxova-i-de-la-sal-lescala/"
+  },
+  {
+    "id": "nautica-masnou",
+    "title": "Museu Municipal de Nàutica del Masnou",
+    "city": "El Masnou",
+    "lat": 41.48276600000001,
+    "lng": 2.3157119,
+    "img": "https://museusmaritims.mmb.cat/wp-content/uploads/2024/04/museu-nautica-masnou-01.jpg",
+    "link": "https://museusmaritims.mmb.cat/museus/museu-municipal-de-nautica-del-masnou/"
+  },
+  {
+    "id": "terres-ebre",
+    "title": "Museu de les Terres de L’Ebre",
+    "city": "Amposta",
+    "lat": 40.7089757,
+    "lng": 0.5771674999999999,
+    "img": "https://museusmaritims.mmb.cat/wp-content/uploads/2024/04/museu-ebre-01.jpg",
+    "link": "https://museusmaritims.mmb.cat/museus/museu-de-les-terres-de-lebre/"
+  },
+  {
+    "id": "historia-cambrils",
+    "title": "Museu d’Història de Cambrils",
+    "city": "Cambrils",
+    "lat": 41.0654029,
+    "lng": 1.060037,
+    "img": "https://museusmaritims.mmb.cat/wp-content/uploads/2024/03/museu-historia-cambrils-01.jpg",
+    "link": "https://museusmaritims.mmb.cat/museus/museu-dhistoria-de-cambrils/"
+  },
+  {
+    "id": "confraria",
+    "title": "Centre d’Interpretació ’’La Confraria’’",
+    "city": "Calafell",
+    "lat": 41.1895011,
+    "lng": 1.5989685,
+    "img": "https://museusmaritims.mmb.cat/wp-content/uploads/2024/03/museu-confraria-calafell-01.jpg",
+    "link": "https://museusmaritims.mmb.cat/museus/centre-dinterpretacio-del-calafell-pescador-la-confraria/"
+  }
+]

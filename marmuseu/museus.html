@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Museus | La Mar de Museus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div data-barba="wrapper">
+    <header class="header" role="banner">
+      <nav class="nav-main">
+        <div class="logo">
+          <a href="index.html" class="logo-link">La Mar de Museus</a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Inici</a></li>
+          <li><a href="index.html#mapa" class="nav-link">Mapa</a></li>
+          <li><a href="museus.html" class="nav-link active">Museus</a></li>
+          <li><a href="index.html#senyals" class="nav-link">Senyals</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main data-barba="container" data-barba-namespace="museus">
+      <section class="hero-secondary">
+        <div class="container">
+          <h1 class="page-title" data-anim-scroll>Museus de la xarxa</h1>
+          <p class="page-subtitle" data-anim-scroll>
+            16 equipaments museístics dedicats al patrimoni marítim de parla catalana
+          </p>
+        </div>
+      </section>
+
+      <section class="section section-museums">
+        <div class="container">
+          <div class="museums-list" id="llista-museus"></div>
+        </div>
+      </section>
+
+      <section class="section section-visit" id="visita">
+        <div class="container">
+          <div class="section-content">
+            <h2 class="section-title" data-anim-scroll>Visita la xarxa</h2>
+            <p class="section-text" data-anim-scroll>
+              Explora el mapa interactiu per seguir la costa museu a museu, o obre la fitxa
+              de cada equipament (pàgines placeholder de moment).
+            </p>
+            <a href="index.html#mapa" class="btn btn-primary" data-anim-scroll>Obrir el mapa</a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container">
+          <p>&copy; <span data-year>2026</span> La Mar de Museus. Xarxa de museus marítims de la Mediterrània.</p>
+          <ul class="footer-links">
+            <li><a href="index.html#mapa">Mapa</a></li>
+            <li><a href="#">Contacte</a></li>
+            <li><a href="#">Crèdits</a></li>
+          </ul>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@barba/core@2.10.3/dist/barba.umd.js"></script>
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      const list = document.getElementById("llista-museus");
+      if (!list || typeof MUSEUMS === "undefined") return;
+      list.innerHTML = MUSEUMS.map(
+        (m) => `
+        <article class="museum-item" data-anim-scroll>
+          <h3 class="museum-name"><a href="museus/${m.id}.html" data-barba-prevent>${m.name}</a></h3>
+          <p class="museum-location">${m.place}</p>
+          <p class="museum-desc">${m.desc}</p>
+        </article>`
+      ).join("");
+    })();
+  </script>
+</body>
+</html>
