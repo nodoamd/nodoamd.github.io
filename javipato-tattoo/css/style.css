@@ -487,7 +487,7 @@ html:not(.is-fonts-ready) .logo .mark{
 
 .showcase-featured{
   position:relative;
-  height:min(62vh, 560px);
+  height:min(82vh, 560px);
   border-radius:4px;
   overflow:hidden;
   border:1px solid rgba(255,255,255,.08);
