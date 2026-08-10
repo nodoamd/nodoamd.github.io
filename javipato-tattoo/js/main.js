@@ -15,19 +15,19 @@ const STYLE_SHOWCASE = {
     title: 'Realismo',
     lead: 'Piezas con profundidad, luz y detalle. El estilo que define el estudio.',
     featured: './img/starwarspato.jpg',
-    shots: ['./img/espaldapato.jpg', './img/patopierna.jpg']
+    shots: ['./img/javivalkiria.jpg', './img/javipatoazteca.jpg']
   },
   oriental: {
     title: 'Oriental',
     lead: 'Tradición, budismo y composición japonesa. Piezas con peso simbólico y flujo.',
-    featured: './img/tatu3.png',
-    shots: ['./img/tatu1.png', './img/espaldapato.jpg']
+    featured: './img/javimanovalkiria.jpg',
+    shots: ['./img/javipatoazteca.jpg', './img/javioriental.jpg']
   },
   anime: {
     title: 'Anime',
     lead: 'Personajes, color y línea limpia. Energía pop con acabado de estudio.',
-    featured: './img/tatuanime.png',
-    shots: ['./img/tatuanime.png', './img/tatu2.png']
+    featured: './img/espaldapato.jpg',
+    shots: ['./img/javigatosamurai.jpg', './img/starwarspato.jpg']
   }
 };
 
@@ -94,8 +94,10 @@ function initHeroVideoScroll(scope = document){
   const stage = scope.querySelector('.home-stage');
   const video = scope.querySelector('.hero-video');
   const armLayer = scope.querySelector('.stage-arm');
+  const armStage = scope.querySelector('.stage-arm-stage');
   const exitLayer = scope.querySelector('.stage-exit');
   const enterLayer = scope.querySelector('.stage-enter');
+  const slideCue = scope.querySelector('.hero-slide-cue');
   if(!stage || !video || !exitLayer || !enterLayer) return;
 
   const panelA = enterLayer.querySelector('.style-showcase.is-primary');
@@ -123,17 +125,38 @@ function initHeroVideoScroll(scope = document){
 
     video.pause();
     // Stable visible frame — avoid black opening
-    video.currentTime = Math.min(0.22, Math.max(dur * 0.04, 0.08));
+    const frameStart = Math.min(0.22, Math.max(dur * 0.04, 0.08));
+    // En móvil el scrub parte desde aquí (tras el nudge de entrada)
+    const mobileHold = frameStart + Math.min(Math.max(dur * 0.12, 0.55), Math.max(dur * 0.22, 0.7));
+    video.currentTime = frameStart;
 
+    // Móvil: al entrar, avanza un poco el vídeo para que el brazo gire de verdad
+    if(mobile){
+      gsap.fromTo(video,
+        { currentTime: frameStart },
+        { currentTime: mobileHold, duration: 1.5, ease: 'power1.out', overwrite: true }
+      );
+    }
     gsap.set(enterLayer, { autoAlpha: 0, y: mobile ? 24 : 48 });
     gsap.set(exitLayer, { autoAlpha: 1, y: 0 });
-    if(armLayer) gsap.set(armLayer, { autoAlpha: 1, clearProps: 'filter' });
+    if(armLayer){
+      // No pisar la entrada si aún está fading in
+      if(!gsap.isTweening(armLayer)){
+        gsap.set(armLayer, { autoAlpha: 1, clearProps: 'filter' });
+      } else {
+        gsap.set(armLayer, { clearProps: 'filter' });
+      }
+    }
+    if(armStage && !mobile){
+      gsap.set(armStage, { clearProps: 'transform' });
+    }
     if(panelA) gsap.set(panelA, { autoAlpha: 0, y: mobile ? 16 : 28 });
     if(panelB) gsap.set(panelB, { autoAlpha: 0, y: mobile ? 16 : 28 });
     if(galleryLayer) gsap.set(galleryLayer, { autoAlpha: 0, y: 40 });
     if(galleryTiles.length) gsap.set(galleryTiles, { autoAlpha: 0, y: 24, scale: 0.97 });
     setActivePanel(null);
     stage.classList.remove('is-arm-clear', 'is-styles', 'is-gallery');
+    // is-alive lo activa playEntrance al terminar el fade del cue
 
     // Mobile: short pin so the page actually moves on (not stuck scrubbing)
     const scrollLength = () => mobile
@@ -142,8 +165,8 @@ function initHeroVideoScroll(scope = document){
 
     const beats = mobile
       ? {
-          // No video scrub on mobile — frame stays put (no sudden enlarge)
-          videoEnd: null,
+          // Scrub corto: el brazo gira un poco como en el vídeo (sin alargar el pin)
+          videoEnd: 0.2,
           stylesStart: 0.2,
           galleryStart: 0.62,
           exit: 0.06,
@@ -191,17 +214,25 @@ function initHeroVideoScroll(scope = document){
         onUpdate(self){
           const p = self.progress;
 
-          // Desktop only: scrub video. Mobile keeps a still frame.
+          // Scrub del vídeo: en móvil solo un tramo corto (giro del brazo)
           if(beats.videoEnd != null){
             const videoProgress = gsap.utils.clamp(0, 1, p / beats.videoEnd);
-            const startT = Math.min(0.22, Math.max(dur * 0.04, 0.08));
-            const t = startT + videoProgress * Math.max(dur - startT - 0.05, 0);
+            const startT = mobile ? mobileHold : frameStart;
+            const span = mobile
+              ? Math.min(Math.max(dur * 0.28, 0.7), Math.max(dur - startT - 0.05, 0.5))
+              : Math.max(dur - startT - 0.05, 0);
+            const t = startT + videoProgress * span;
             if(Math.abs(video.currentTime - t) > 0.04){
               video.currentTime = t;
             }
           }
 
           stage.classList.remove('is-arm-clear');
+
+          // Fantasma “Desliza”: se apaga en cuanto empiezas a deslizar
+          if(slideCue){
+            slideCue.classList.toggle('is-alive', p < 0.04);
+          }
 
           const inStyles = p > beats.stylesStart && p < beats.galleryStart;
           const inGallery = p > beats.galleryStart;
@@ -373,20 +404,223 @@ function initStyleSwitcher(scope = document){
       { filter: 'saturate(1.4)', duration: .3, yoyo: true, repeat: 1, ease: 'sine.inOut' });
   }
 
-  buttons.forEach(btn => btn.addEventListener('click', () => applyMood(btn.dataset.mood)));
+  buttons.forEach(btn => {
+    if(btn.dataset.moodBound === '1') return;
+    btn.dataset.moodBound = '1';
+    btn.addEventListener('click', () => applyMood(btn.dataset.mood));
+  });
   setActive(document.documentElement.getAttribute('data-style') || 'realismo');
 }
 
 /* ---------- 2. HERO thumbnail strip ---------- */
-function initHeroThumbs(scope = document){
-  const thumbs = scope.querySelectorAll('.thumb');
-  if(!thumbs.length) return;
+let thumbLightboxBound = false;
+let thumbLightboxIndex = 0;
+let thumbLightboxItems = [];
 
-  thumbs.forEach(t => t.addEventListener('click', () => {
-    thumbs.forEach(o => o.classList.remove('is-active'));
-    t.classList.add('is-active');
-    gsap.fromTo(t, { scale: .96 }, { scale: 1, duration: .35, ease: 'power2.out' });
-  }));
+function getThumbLightboxEl(){
+  return document.getElementById('media-lightbox');
+}
+
+function collectThumbLightboxItems(scope = document){
+  const thumbs = scope.querySelectorAll('.thumb-strip .thumb');
+  return Array.from(thumbs).map(thumb => {
+    const img = thumb.querySelector('img');
+    const video = thumb.querySelector('video');
+    return {
+      alt: (img && img.alt) || '',
+      poster: img ? img.getAttribute('src') : '',
+      video: video ? video.getAttribute('src') : ''
+    };
+  }).filter(item => item.poster || item.video);
+}
+
+function showThumbLightboxItem(index){
+  const lb = getThumbLightboxEl();
+  if(!lb || !thumbLightboxItems.length) return;
+
+  thumbLightboxIndex = (index + thumbLightboxItems.length) % thumbLightboxItems.length;
+  const item = thumbLightboxItems[thumbLightboxIndex];
+  const img = lb.querySelector('.lb-img');
+  const video = lb.querySelector('.lb-video');
+  if(!img || !video) return;
+
+  video.pause();
+  video.removeAttribute('src');
+  video.load();
+
+  if(item.video){
+    img.hidden = true;
+    img.removeAttribute('src');
+    video.hidden = false;
+    video.poster = item.poster || '';
+    video.src = item.video;
+    video.muted = true;
+    video.playsInline = true;
+    video.loop = true;
+    const p = video.play();
+    if(p && typeof p.catch === 'function') p.catch(() => {});
+  } else {
+    video.hidden = true;
+    img.hidden = false;
+    img.alt = item.alt;
+    img.src = item.poster;
+  }
+}
+
+function closeThumbLightbox(){
+  const lb = getThumbLightboxEl();
+  if(!lb) return;
+  const video = lb.querySelector('.lb-video');
+  if(video){
+    video.pause();
+    video.removeAttribute('src');
+    video.load();
+  }
+  lb.classList.remove('is-open');
+  lb.setAttribute('hidden', '');
+  lb.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('is-lightbox-open');
+}
+
+function openMediaLightbox(items, index = 0){
+  const lb = getThumbLightboxEl();
+  if(!lb || !items || !items.length) return;
+
+  thumbLightboxItems = items;
+  lb.removeAttribute('hidden');
+  lb.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('is-lightbox-open');
+  void lb.offsetWidth;
+  lb.classList.add('is-open');
+  showThumbLightboxItem(index);
+}
+
+function openThumbLightbox(index, scope = document){
+  openMediaLightbox(collectThumbLightboxItems(scope), index);
+}
+
+const SHOWCASE_VIDEO_BY_POSTER = {
+  './img/javimanovalkiria.jpg': './img/javimanovalkiria.mp4',
+  './img/javivalkiria.jpg': './img/javimanovalkiria.mp4',
+  './img/javipatoazteca.jpg': './img/javiazteca.mp4',
+  './img/javioriental.jpg': './img/javioriental.mp4',
+  './img/javigatosamurai.jpg': './img/javigatosamurai.mp4',
+  './img/starwarspato.jpg': './img/starwarspato.mp4',
+  './img/patopierna.jpg': './img/patopierna.mp4',
+  './img/javisamuraibrazo.jpeg': './img/javisamuraibrazo.mp4',
+  './img/espaldapato.jpg': ''
+};
+
+function collectShowcaseLightboxItems(panel){
+  if(!panel) return [];
+  const nodes = panel.querySelectorAll('[data-showcase-img]');
+  return Array.from(nodes).map(img => {
+    const poster = img.getAttribute('src') || '';
+    return {
+      alt: img.alt || '',
+      poster,
+      video: SHOWCASE_VIDEO_BY_POSTER[poster] || ''
+    };
+  }).filter(item => item.poster);
+}
+
+function initShowcaseLightbox(scope = document){
+  // Roles a11y; el click va por delegación global (una sola vez)
+  scope.querySelectorAll('.style-showcase').forEach(panel => {
+    [panel.querySelector('.showcase-featured'), ...panel.querySelectorAll('.showcase-shot')]
+      .filter(Boolean)
+      .forEach(el => {
+        el.setAttribute('role', 'button');
+        el.setAttribute('tabindex', '0');
+        el.setAttribute('aria-label', 'Ver imagen');
+      });
+  });
+}
+
+function bindThumbLightboxChrome(){
+  if(thumbLightboxBound) return;
+  const lb = getThumbLightboxEl();
+  if(!lb) return;
+  thumbLightboxBound = true;
+
+  const closeBtn = lb.querySelector('.lb-close');
+  const prevBtn = lb.querySelector('.lb-prev');
+  const nextBtn = lb.querySelector('.lb-next');
+
+  if(closeBtn) closeBtn.addEventListener('click', closeThumbLightbox);
+  if(prevBtn) prevBtn.addEventListener('click', () => showThumbLightboxItem(thumbLightboxIndex - 1));
+  if(nextBtn) nextBtn.addEventListener('click', () => showThumbLightboxItem(thumbLightboxIndex + 1));
+
+  lb.addEventListener('click', (e) => {
+    if(e.target === lb) closeThumbLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(!lb.classList.contains('is-open')) return;
+    if(e.key === 'Escape') closeThumbLightbox();
+    if(e.key === 'ArrowLeft') showThumbLightboxItem(thumbLightboxIndex - 1);
+    if(e.key === 'ArrowRight') showThumbLightboxItem(thumbLightboxIndex + 1);
+  });
+
+  let touchX = null;
+  lb.addEventListener('touchstart', (e) => {
+    touchX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  lb.addEventListener('touchend', (e) => {
+    if(touchX == null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    touchX = null;
+    if(Math.abs(dx) < 50) return;
+    if(dx > 0) showThumbLightboxItem(thumbLightboxIndex - 1);
+    else showThumbLightboxItem(thumbLightboxIndex + 1);
+  }, { passive: true });
+
+  // Delegación: thumbs + showcase (sobrevive a Barba sin duplicar listeners)
+  document.addEventListener('click', (e) => {
+    const thumb = e.target.closest('.thumb-strip .thumb');
+    if(thumb){
+      const strip = thumb.closest('.thumb-strip');
+      const thumbs = strip ? [...strip.querySelectorAll('.thumb')] : [];
+      const i = thumbs.indexOf(thumb);
+      thumbs.forEach(o => o.classList.remove('is-active'));
+      thumb.classList.add('is-active');
+      if(typeof gsap !== 'undefined'){
+        gsap.fromTo(thumb, { scale: .96 }, { scale: 1, duration: .35, ease: 'power2.out' });
+      }
+      if(window.matchMedia('(max-width: 900px)').matches && i >= 0){
+        openThumbLightbox(i, document);
+      }
+      return;
+    }
+
+    const shot = e.target.closest('.showcase-featured, .showcase-shot');
+    if(shot){
+      const panel = shot.closest('.style-showcase');
+      if(!panel) return;
+      e.preventDefault();
+      const targets = [
+        panel.querySelector('.showcase-featured'),
+        ...panel.querySelectorAll('.showcase-shot')
+      ].filter(Boolean);
+      const i = targets.indexOf(shot);
+      const items = collectShowcaseLightboxItems(panel);
+      if(items.length && i >= 0) openMediaLightbox(items, i);
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key !== 'Enter' && e.key !== ' ') return;
+    const shot = e.target.closest('.showcase-featured, .showcase-shot');
+    if(!shot) return;
+    e.preventDefault();
+    shot.click();
+  });
+}
+
+function initHeroThumbs(scope = document){
+  // Thumbs se manejan por delegación en bindThumbLightboxChrome
+  if(!scope.querySelector('.thumb-strip')) return;
+  bindThumbLightboxChrome();
 }
 
 /* ---------- 2b. Hover → play tattoo video (poster on leave) ---------- */
@@ -395,6 +629,9 @@ function initMediaHover(scope = document){
   if(!tiles.length) return;
 
   tiles.forEach(tile => {
+    if(tile.dataset.hoverBound === '1') return;
+    tile.dataset.hoverBound = '1';
+
     const video = tile.querySelector('video');
     if(!video) return;
 
@@ -455,6 +692,8 @@ function initGalleryFilter(scope = document){
   }
 
   filterBtns.forEach(btn => {
+    if(btn.dataset.filterBound === '1') return;
+    btn.dataset.filterBound = '1';
     btn.addEventListener('click', () => filterTo(btn.dataset.mood));
   });
 }
@@ -490,36 +729,47 @@ function collectEntranceTargets(container){
 function playEntrance(container){
   const targets = collectEntranceTargets(container);
   const cue = container.querySelector('.hero-slide-cue');
-  if(!targets.length && !cue) return null;
+  const armLayer = container.querySelector('.stage-arm');
+  if(!targets.length && !cue && !armLayer) return null;
 
+  const mobile = window.matchMedia('(max-width: 900px)').matches;
   const tl = gsap.timeline({ overwrite: true });
+
+  if(armLayer){
+    gsap.killTweensOf(armLayer);
+    gsap.set(armLayer, { autoAlpha: 0 });
+    tl.to(armLayer, {
+      autoAlpha: 1,
+      duration: 1.15,
+      ease: 'power2.out'
+    }, 0);
+  }
 
   if(targets.length){
     gsap.killTweensOf(targets);
-    // Use yPercent-safe translate via y only on elements without layout transforms
-    gsap.set(targets, { opacity: 0, y: 22 });
+    gsap.set(targets, { opacity: 0, y: mobile ? 16 : 22 });
     tl.to(targets, {
       opacity: 1,
       y: 0,
-      duration: 0.7,
-      stagger: 0.05,
+      duration: mobile ? 0.78 : 0.7,
+      stagger: mobile ? 0.045 : 0.05,
       ease: 'power3.out',
-      // Never clear transform on nodes that rely on CSS transform (parent hero-content is fine;
-      // children get inline translate cleared so we don't leave stale GSAP transforms)
       clearProps: 'opacity,transform'
-    }, 0);
+    }, mobile ? 0.12 : 0.08);
   }
 
   if(cue){
     gsap.killTweensOf(cue);
-    // Opacity only — preserves translateY(-50%) scale(1.3) from CSS
+    cue.classList.remove('is-alive');
+    // Opacity only — CSS lleva el transform + ghost loop
     gsap.set(cue, { opacity: 0 });
     tl.to(cue, {
       opacity: 1,
-      duration: 0.7,
-      ease: 'power3.out',
-      clearProps: 'opacity'
-    }, 0.1);
+      duration: 0.85,
+      ease: 'power2.out',
+      clearProps: 'opacity',
+      onComplete: () => cue.classList.add('is-alive')
+    }, mobile ? 0.28 : 0.18);
   }
 
   return tl;
@@ -528,6 +778,7 @@ function playEntrance(container){
 /* ---------- 5. Init page (logic vs entrance separated) ---------- */
 function cleanupPage(){
   destroyHeroVideoScroll();
+  closeThumbLightbox();
   if(typeof ScrollTrigger !== 'undefined'){
     ScrollTrigger.getAll().forEach(st => st.kill());
   }
@@ -536,15 +787,12 @@ function cleanupPage(){
 function initPageLogic(container){
   initStyleSwitcher(container);
   initHeroThumbs(container);
+  initShowcaseLightbox(container);
   initMediaHover(container);
   initHeroVideoScroll(container);
   initGalleryFilter(container);
   initHomeFlowReveal(container);
-
-  const path = location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.main-nav a').forEach(a => {
-    a.classList.toggle('active', a.getAttribute('href') === path);
-  });
+  syncNavActive();
 }
 
 function initHomeFlowReveal(scope = document){
@@ -577,6 +825,9 @@ function initHomeFlowReveal(scope = document){
 function onceComplete(tween){
   return new Promise(resolve => {
     if(!tween) return resolve();
+    if(typeof tween.totalProgress === 'function' && tween.totalProgress() >= 1){
+      return resolve();
+    }
     tween.eventCallback('onComplete', resolve);
   });
 }
@@ -592,13 +843,21 @@ async function whenFontsReady(){
   }catch(e){ /* ignore */ }
 }
 
-/* ---------- 6. BARBA — white curtain bottom → top ---------- */
+function syncNavActive(){
+  const path = (location.pathname.split('/').pop() || 'index.html').replace(/^\//, '');
+  const file = path || 'index.html';
+  document.querySelectorAll('.main-nav a').forEach(a => {
+    const href = (a.getAttribute('href') || '').split('/').pop();
+    a.classList.toggle('active', href === file);
+  });
+}
+
+/* ---------- 6. BARBA — cortina cream bottom → top ---------- */
 document.addEventListener('DOMContentLoaded', async () => {
   const firstContainer = document.querySelector('[data-barba="container"]') || document;
 
   await whenFontsReady();
 
-  // Hide before revealing fonts — prevents 1-frame FOUT / layout pop
   const bootTargets = collectEntranceTargets(firstContainer);
   const bootCue = firstContainer.querySelector('.hero-slide-cue');
   if(bootTargets.length) gsap.set(bootTargets, { opacity: 0, y: 22 });
@@ -606,23 +865,31 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.documentElement.classList.add('is-fonts-ready');
 
+  bindThumbLightboxChrome();
   initPageLogic(firstContainer);
-  playEntrance(firstContainer);
+  const entranceTl = playEntrance(firstContainer);
+  if(entranceTl){
+    entranceTl.eventCallback('onComplete', () => {
+      if(typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+    });
+  } else if(typeof ScrollTrigger !== 'undefined'){
+    ScrollTrigger.refresh();
+  }
 
   if(typeof barba === 'undefined') return;
 
   const overlay = document.querySelector('.transition-overlay');
   if(!overlay) return;
 
-  gsap.set(overlay, { yPercent: 100, autoAlpha: 0 });
+  gsap.set(overlay, { yPercent: 100, autoAlpha: 0, force3D: true });
 
-  // file:// breaks Barba fetch — warn once in console
   if(location.protocol === 'file:'){
     console.warn('[JaviPato] Abre el sitio con un servidor local. Con file:// Barba no puede hacer PJAX y la cortina falla.');
   }
 
   barba.init({
     preventRunning: true,
+    timeout: 8000,
     transitions: [{
       name: 'curtain-wipe',
       sync: false,
@@ -631,9 +898,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.documentElement.classList.add('is-changing');
         cleanupPage();
 
-        // Curtain rises from bottom and fully covers (including header)
         await onceComplete(
-          gsap.timeline()
+          gsap.timeline({ defaults: { force3D: true } })
             .set(overlay, {
               autoAlpha: 1,
               yPercent: 100,
@@ -642,35 +908,37 @@ document.addEventListener('DOMContentLoaded', async () => {
             })
             .to(overlay, {
               yPercent: 0,
-              duration: 0.68,
+              duration: 0.62,
               ease: 'power4.inOut'
             })
         );
 
-        // Hide leaving page under the curtain so it cannot ghost with the next one
         gsap.set(data.current.container, { autoAlpha: 0 });
       },
 
       async enter(data){
         window.scrollTo(0, 0);
 
-        // Next page is ready under the curtain — single visible container
         gsap.set(data.next.container, {
           autoAlpha: 1,
           clearProps: 'transform'
         });
-        gsap.set(collectEntranceTargets(data.next.container), {
-          clearProps: 'opacity,transform'
-        });
+
+        // Prep entrance under the curtain (no flash)
+        const nextTargets = collectEntranceTargets(data.next.container);
+        const nextCue = data.next.container.querySelector('.hero-slide-cue');
+        const nextArm = data.next.container.querySelector('.stage-arm');
+        if(nextTargets.length) gsap.set(nextTargets, { opacity: 0, y: 18 });
+        if(nextCue) gsap.set(nextCue, { opacity: 0 });
+        if(nextArm) gsap.set(nextArm, { autoAlpha: 0 });
 
         initPageLogic(data.next.container);
 
-        // Curtain continues upward and reveals the new page
         await onceComplete(
-          gsap.timeline()
+          gsap.timeline({ defaults: { force3D: true } })
             .to(overlay, {
               yPercent: -100,
-              duration: 0.72,
+              duration: 0.68,
               ease: 'power4.inOut'
             })
             .set(overlay, {
@@ -683,6 +951,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.documentElement.classList.remove('is-changing');
         gsap.set(data.next.container, { clearProps: 'position,top,left,width,minHeight' });
 
+        const tl = playEntrance(data.next.container);
+        if(tl){
+          await onceComplete(tl);
+        }
         if(typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
       }
     }]

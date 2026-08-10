@@ -15,19 +15,19 @@ const STYLE_SHOWCASE = {
     title: 'Realismo',
     lead: 'Piezas con profundidad, luz y detalle. El estilo que define el estudio.',
     featured: './img/starwarspato.jpg',
-    shots: ['./img/espaldapato.jpg', './img/patopierna.jpg']
+    shots: ['./img/javivalkiria.jpg', './img/javipatoazteca.jpg']
   },
   oriental: {
     title: 'Oriental',
     lead: 'Tradición, budismo y composición japonesa. Piezas con peso simbólico y flujo.',
-    featured: './img/tatu3.png',
-    shots: ['./img/tatu1.png', './img/espaldapato.jpg']
+    featured: './img/javimanovalkiria.jpg',
+    shots: ['./img/javipatoazteca.jpg', './img/javioriental.jpg']
   },
   anime: {
     title: 'Anime',
     lead: 'Personajes, color y línea limpia. Energía pop con acabado de estudio.',
-    featured: './img/tatuanime.png',
-    shots: ['./img/tatuanime.png', './img/tatu2.png']
+    featured: './img/espaldapato.jpg',
+    shots: ['./img/javigatosamurai.jpg', './img/starwarspato.jpg']
   }
 };
 

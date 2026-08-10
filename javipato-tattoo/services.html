@@ -42,27 +42,103 @@
       <p>Cada sesión incluye diseño personalizado, material de un solo uso y una guía de cuidados post-tatuaje.</p>
     </div>
 
-    <div class="style-filter" style="pointer-events:none;">
-      <button class="is-active" style="pointer-events:auto;" onclick="event.preventDefault()">Realismo</button>
-    </div>
-
-    <div class="gallery-grid">
-      <div class="card is-visible"><div class="placeholder-art" data-label="Sesión — pequeño"></div><span class="tag">Desde 80€</span></div>
-      <div class="card is-visible"><div class="placeholder-art" data-label="Sesión — mediano"></div><span class="tag">Desde 220€</span></div>
-      <div class="card is-visible"><div class="placeholder-art" data-label="Sesión — manga completa"></div><span class="tag">Por sesión — 100€/h</span></div>
+    <div class="services-grid">
+      <article class="service-card">
+        <div class="service-media media-tile has-video">
+          <img src="./img/javivalkiria.jpg" alt="Sesión de realismo" loading="lazy">
+          <video src="./img/javimanovalkiria.mp4" muted playsinline loop preload="metadata"></video>
+        </div>
+        <div class="service-body">
+          <h2>Pieza pequeña</h2>
+          <p>Detalles, lettering o piezas compactas. Ideal para primera sesión.</p>
+          <span class="service-price">Desde 80€</span>
+        </div>
+      </article>
+      <article class="service-card">
+        <div class="service-media media-tile has-video">
+          <img src="./img/patopierna.jpg" alt="Sesión mediana" loading="lazy">
+          <video src="./img/patopierna.mp4" muted playsinline loop preload="metadata"></video>
+        </div>
+        <div class="service-body">
+          <h2>Pieza mediana</h2>
+          <p>Composiciones con más peso visual. Diseño a medida incluido.</p>
+          <span class="service-price">Desde 220€</span>
+        </div>
+      </article>
+      <article class="service-card">
+        <div class="service-media media-tile has-video">
+          <img src="./img/javisamuraibrazo.jpeg" alt="Manga completa" loading="lazy">
+          <video src="./img/javisamuraibrazo.mp4" muted playsinline loop preload="metadata"></video>
+        </div>
+        <div class="service-body">
+          <h2>Manga / gran formato</h2>
+          <p>Proyectos por sesiones. Planificamos flujo, anatomía y continuidad.</p>
+          <span class="service-price">100€/h · por sesión</span>
+        </div>
+      </article>
     </div>
   </section>
 
   <footer class="site-footer">
-    <span>© 2026 Javi Pato Tattoo</span>
-    <span>L'Hospitalet de Llobregat, Barcelona</span>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <span class="mark">JAVI PATO</span>
+            <span class="script">tattoo</span>
+          </a>
+          <p class="footer-tagline">Realismo, anime y oriental.<br>Piezas a medida en Barcelona.</p>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-label">Explorar</span>
+          <nav class="footer-nav" aria-label="Enlaces del pie">
+            <a href="gallery.html">Galería</a>
+            <a href="about.html">Sobre mí</a>
+            <a href="services.html">Servicios</a>
+            <a href="contact.html">Contacto</a>
+          </nav>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-label">Estudio</span>
+          <p class="footer-meta">Barcelona</p>
+          <p class="footer-meta">Cita previa</p>
+          <a href="contact.html" class="footer-cta">Reservar sesión →</a>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-label">Sígueme</span>
+          <div class="footer-social">
+            <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://youtube.com" target="_blank" rel="noopener">YouTube</a>
+            <a href="https://tiktok.com" target="_blank" rel="noopener">TikTok</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Javi Pato Tattoo</span>
+        <a class="footer-nodo" href="https://nodoamd.github.io/" target="_blank" rel="noopener">Hecho por Nodo · con cariño</a>
+      </div>
+    </div>
   </footer>
 
 </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<div class="media-lightbox" id="media-lightbox" hidden aria-hidden="true">
+  <button type="button" class="lb-close" aria-label="Cerrar">×</button>
+  <button type="button" class="lb-prev" aria-label="Anterior">‹</button>
+  <button type="button" class="lb-next" aria-label="Siguiente">›</button>
+  <div class="lb-frame">
+    <img class="lb-img" alt="" hidden>
+    <video class="lb-video" muted playsinline loop hidden></video>
+  </div>
+</div>
+
+<script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/@barba/core@2.10.3/dist/barba.umd.js"></script>
 <script src="js/main.js"></script>
 </body>

@@ -45,17 +45,17 @@
     <div class="about-split">
       <figure class="about-portrait">
         <img src="./img/javipatoo.jpg" alt="Javi Pato concentrado tatuando en el estudio" width="720" height="1280">
-        <figcaption>En el estudio — L'Hospitalet de Llobregat</figcaption>
+        <figcaption>En el estudio</figcaption>
       </figure>
 
       <div class="about-copy">
         <h2>Más de 10 años tatuando</h2>
         <p>Especializado en realismo en blanco y negro, retratos de anime y composiciones de estilo oriental. Cada pieza se diseña a medida, pensando en la anatomía y en la historia que el cliente quiere llevar en la piel.</p>
-        <p>Trabajo con cita previa en el estudio de L'Hospitalet de Llobregat, Barcelona, con materiales de un solo uso y protocolos de higiene estrictos.</p>
+        <p>Trabajo con cita previa en Barcelona, con materiales de un solo uso y protocolos de higiene estrictos.</p>
 
         <ul class="about-credits">
           <li><span>Estilos</span>Realismo · Anime · Oriental</li>
-          <li><span>Estudio</span>L'Hospitalet de Llobregat, Barcelona</li>
+          <li><span>Ubicación</span>Barcelona · cita previa</li>
           <li><span>Enfoque</span>Diseño personalizado, sesión a sesión</li>
         </ul>
 
@@ -68,15 +68,65 @@
   </section>
 
   <footer class="site-footer">
-    <span>© 2026 Javi Pato Tattoo</span>
-    <span>L'Hospitalet de Llobregat, Barcelona</span>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <span class="mark">JAVI PATO</span>
+            <span class="script">tattoo</span>
+          </a>
+          <p class="footer-tagline">Realismo, anime y oriental.<br>Piezas a medida en Barcelona.</p>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-label">Explorar</span>
+          <nav class="footer-nav" aria-label="Enlaces del pie">
+            <a href="gallery.html">Galería</a>
+            <a href="about.html">Sobre mí</a>
+            <a href="services.html">Servicios</a>
+            <a href="contact.html">Contacto</a>
+          </nav>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-label">Estudio</span>
+          <p class="footer-meta">Barcelona</p>
+          <p class="footer-meta">Cita previa</p>
+          <a href="contact.html" class="footer-cta">Reservar sesión →</a>
+        </div>
+
+        <div class="footer-col">
+          <span class="footer-label">Sígueme</span>
+          <div class="footer-social">
+            <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://youtube.com" target="_blank" rel="noopener">YouTube</a>
+            <a href="https://tiktok.com" target="_blank" rel="noopener">TikTok</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Javi Pato Tattoo</span>
+        <a class="footer-nodo" href="https://nodoamd.github.io/" target="_blank" rel="noopener">Hecho por Nodo · con cariño</a>
+      </div>
+    </div>
   </footer>
 
 </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<div class="media-lightbox" id="media-lightbox" hidden aria-hidden="true">
+  <button type="button" class="lb-close" aria-label="Cerrar">×</button>
+  <button type="button" class="lb-prev" aria-label="Anterior">‹</button>
+  <button type="button" class="lb-next" aria-label="Siguiente">›</button>
+  <div class="lb-frame">
+    <img class="lb-img" alt="" hidden>
+    <video class="lb-video" muted playsinline loop hidden></video>
+  </div>
+</div>
+
+<script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/@barba/core@2.10.3/dist/barba.umd.js"></script>
 <script src="js/main.js"></script>
 </body>
