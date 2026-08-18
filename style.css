@@ -320,22 +320,62 @@
         visibility: hidden;
         transform: translateY(20px) scale(0.97);
         will-change: transform, opacity, filter;
+        overflow: hidden;
+        /* Difumina el corte superior/inferior del viewer contra el fondo */
+        -webkit-mask-image: linear-gradient(
+            to bottom,
+            transparent 0%,
+            #000 12%,
+            #000 72%,
+            transparent 100%
+        );
+        mask-image: linear-gradient(
+            to bottom,
+            transparent 0%,
+            #000 12%,
+            #000 72%,
+            transparent 100%
+        );
     }
 
     .spline-shell.spline-visible {
         visibility: visible;
     }
 
-    /* Cubre el watermark "Built with Spline" (shadow DOM; no se puede quitar en plan free) */
+    /* Velo blanco extra arriba: la línea del medio se funde con el hero */
+    .spline-shell::before {
+        content: '';
+        position: absolute;
+        left: 1rem;
+        right: 1rem;
+        top: 0;
+        height: 110px;
+        background: linear-gradient(
+            to bottom,
+            #ffffff 0%,
+            rgba(255, 255, 255, 0.85) 35%,
+            rgba(255, 255, 255, 0) 100%
+        );
+        z-index: 2;
+        pointer-events: none;
+        border-radius: 24px 24px 0 0;
+    }
+
+    /* Cubre watermark Spline + difumina el borde inferior */
     .spline-shell::after {
         content: '';
         position: absolute;
+        left: 1rem;
         right: 1rem;
         bottom: 0;
-        width: 220px;
-        height: 56px;
-        background: #fff;
-        border-radius: 0 0 24px 0;
+        height: 120px;
+        background: linear-gradient(
+            to top,
+            #ffffff 0%,
+            rgba(255, 255, 255, 0.9) 28%,
+            rgba(255, 255, 255, 0) 100%
+        );
+        border-radius: 0;
         z-index: 3;
         pointer-events: none;
     }
@@ -349,10 +389,32 @@
         width: 100%;
         height: 100%;
         min-height: 320px;
-        border-radius: 24px;
+        border-radius: 0;
         opacity: 0;
         transition: opacity 0.45s ease;
         display: block;
+        --spline-viewer-logo-display: none;
+    }
+
+    spline-viewer::part(logo) {
+        display: none !important;
+    }
+
+    /* Tapa física del badge “Built with Spline” (esquina inferior derecha) */
+    .spline-watermark-cover {
+        position: absolute;
+        right: 0.85rem;
+        bottom: 0;
+        width: clamp(148px, 18vw, 188px);
+        height: 52px;
+        z-index: 12;
+        pointer-events: none;
+        background: linear-gradient(
+            to left,
+            #ffffff 0%,
+            #ffffff 72%,
+            rgba(255, 255, 255, 0) 100%
+        );
     }
 
     .spline-shell.loading spline-viewer {
@@ -444,15 +506,51 @@
             height: 320px;
             margin-top: -24px;
             padding: 0 0.5rem;
+            -webkit-mask-image: linear-gradient(
+                to bottom,
+                transparent 0%,
+                #000 10%,
+                #000 70%,
+                transparent 100%
+            );
+            mask-image: linear-gradient(
+                to bottom,
+                transparent 0%,
+                #000 10%,
+                #000 70%,
+                transparent 100%
+            );
+        }
+
+        .spline-shell::before {
+            left: 0.5rem;
+            right: 0.5rem;
+            height: 72px;
+            border-radius: 0;
         }
 
         .spline-shell::after {
-            display: none;
+            left: 0.5rem;
+            right: 0.5rem;
+            width: auto;
+            height: 88px;
+            background: linear-gradient(
+                to top,
+                #ffffff 0%,
+                rgba(255, 255, 255, 0.85) 30%,
+                rgba(255, 255, 255, 0) 100%
+            );
+        }
+
+        .spline-watermark-cover {
+            right: 0.35rem;
+            width: clamp(136px, 42vw, 168px);
+            height: 46px;
         }
 
         .spline-shell spline-viewer,
         .spline-shell .spline-placeholder {
-            border-radius: 18px;
+            border-radius: 0;
         }
 
         

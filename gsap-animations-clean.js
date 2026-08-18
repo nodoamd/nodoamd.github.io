@@ -2,6 +2,7 @@
 
 let heroInitialized = false;
 let morphSplit = null;
+let splineScrollInitialized = false;
 
 function bootHeroAnimations() {
     if (typeof gsap !== 'undefined') {
@@ -187,7 +188,11 @@ function revealSplineHero() {
             scale: 1,
             filter: 'blur(0px)',
             duration: 0.55,
-            ease: 'power2.out'
+            ease: 'power2.out',
+            onComplete: () => {
+                initSplineScroll();
+                if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+            }
         });
         if (viewer) gsap.to(viewer, { opacity: 1, duration: 0.45, ease: 'power2.out', delay: 0.08 });
     };
@@ -203,6 +208,56 @@ function revealSplineHero() {
         viewer.addEventListener('error', finishReveal, { once: true });
     }
     setTimeout(finishReveal, 800);
+}
+
+function initSplineScroll() {
+    const shell = document.getElementById('spline-shell');
+    if (!shell || splineScrollInitialized || typeof ScrollTrigger === 'undefined') return;
+    splineScrollInitialized = true;
+
+    gsap.set(shell, { opacity: 1, y: 0, clearProps: 'filter' });
+
+    // Parallax suave mientras el 3D está en viewport — sin tocar opacity
+    gsap.fromTo(
+        shell,
+        { y: 0 },
+        {
+            y: -56,
+            ease: 'none',
+            immediateRender: false,
+            scrollTrigger: {
+                id: 'spline-parallax',
+                trigger: shell,
+                start: 'top 88%',
+                end: 'bottom 12%',
+                scrub: 1.1,
+                invalidateOnRefresh: true
+            }
+        }
+    );
+
+    // Fundido solo al entrar la sección siguiente (no mientras lees el hero)
+    const nextSection = document.getElementById('before-after');
+    if (nextSection) {
+        gsap.fromTo(
+            shell,
+            { opacity: 1 },
+            {
+                opacity: 0,
+                ease: 'none',
+                immediateRender: false,
+                scrollTrigger: {
+                    id: 'spline-exit',
+                    trigger: nextSection,
+                    start: 'top 92%',
+                    end: 'top 38%',
+                    scrub: 0.85,
+                    invalidateOnRefresh: true,
+                    onLeaveBack: () => gsap.set(shell, { opacity: 1 })
+                }
+            }
+        );
+    }
 }
 
 function initContinuousAnimations() {
@@ -224,19 +279,6 @@ function initContinuousAnimations() {
         avatar.addEventListener('mouseleave', () => {
             gsap.to(avatar, { scale: 1, y: 0, duration: 0.28 });
         });
-    });
-
-    gsap.to('#spline-shell', {
-        y: 120,
-        opacity: 0.6,
-        ease: 'none',
-        scrollTrigger: {
-            trigger: '.hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 2,
-            invalidateOnRefresh: true
-        }
     });
 
     gsap.to('.hero h1', {
