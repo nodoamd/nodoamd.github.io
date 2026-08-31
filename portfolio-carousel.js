@@ -40,7 +40,7 @@
         { value: 'E-commerce', label: 'Catálogo online' },
         { value: 'GSAP', label: 'Animación editorial' }
       ],
-      desc: 'Marca gastronómica con catálogo, storytelling y animaciones GSAP de nivel editorial.',
+      desc: 'Marca gastronómica con catálogo, historia y una web hecha a mano.',
       tech: ['HTML', 'GSAP', 'E-commerce'],
       links: [
         { label: 'Visitar web', href: './chiquitana/', external: true },
@@ -59,11 +59,49 @@
         { value: 'Spline', label: 'Escenas 3D' },
         { value: 'WebGL', label: 'Tiempo real' }
       ],
-      desc: 'Webapp interactiva con escenas 3D en tiempo real — el nivel visual que separa a Nodo del resto.',
+      desc: 'Webapp con escenas 3D en tiempo real. Para ver el oficio, no solo la ficha.',
       tech: ['Spline', 'Three.js', 'WebGL'],
       links: [
         { label: 'Ver demo', href: './betterwlprs/', external: true },
         { label: 'Más 3D', href: './trabajo.html#3d' }
+      ]
+    },
+    {
+      id: 'javipato',
+      categories: ['web'],
+      tag: 'Web · Tatuaje',
+      title: 'Javi Pato Tattoo',
+      subtitle: 'Realismo, anime, oriental',
+      image: './javipato-tattoo/img/javipatoazteca.jpg',
+      type: 'Sitio web',
+      stats: [
+        { value: 'Galería', label: 'Obra a la vista' },
+        { value: 'BCN', label: 'Estudio' }
+      ],
+      desc: 'Web del estudio. Clara a la primera. Quien busca tatuaje, llega a la obra.',
+      tech: ['HTML', 'CSS', 'JS'],
+      links: [
+        { label: 'Visitar web', href: './javipato-tattoo/', external: true },
+        { label: 'Más webs', href: './trabajo.html#webs' }
+      ]
+    },
+    {
+      id: 'entorno',
+      categories: ['web'],
+      tag: 'Web · Educación',
+      title: 'Entorno',
+      subtitle: 'Aprende lo que vive a tu lado',
+      image: './nodo-entorno/img/species/buganvilla.jpg',
+      type: 'Hecho en Nodo',
+      stats: [
+        { value: 'Local', label: 'Fauna y flora' },
+        { value: 'Sin cuenta', label: 'Entra y usa' }
+      ],
+      desc: 'Una pieza Nodo: el entorno de tu comunidad, a mano, para aprender.',
+      tech: ['HTML', 'JS', 'GSAP'],
+      links: [
+        { label: 'Abrir Entorno', href: './nodo-entorno/', external: true },
+        { label: 'Más proyectos', href: './trabajo.html' }
       ]
     },
     {

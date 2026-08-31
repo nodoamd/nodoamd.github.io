@@ -1,2691 +1,486 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nodo — Una web que conecta con quien te busca</title>
-    <meta name="description" content="Nodo. Estudio digital en Barcelona. Una web que conecta con quien te busca. Hecha a mano.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nodo Studio — Sistema digital para dueños de negocio y startups en Barcelona. Diseño, 3D y desarrollo que trabaja para ti." />
+  <title>Nodo Studio — Un sistema digital que trabaja por ti</title>
+  <link rel="icon" href="img/nodedos.png" type="image/png" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nodoamd.github.io/">
-    <meta property="og:title" content="Nodo — Una web que conecta con quien te busca">
-    <meta property="og:description" content="Estudio digital en Barcelona. Una web hecha a mano. Te ven a la primera.">
-    <meta property="og:image" content="https://nodoamd.github.io/phone_mockup_1.png">
-    <meta property="og:image:alt" content="Mockup de teléfono mostrando el sitio de Nodo">
-    <meta property="og:site_name" content="Nodo">
-    <meta property="og:locale" content="es_ES">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta property="twitter:domain" content="nodoamd.github.io">
-    <meta property="twitter:url" content="https://nodoamd.github.io/">
-    <meta name="twitter:title" content="Nodo — Una web que conecta con quien te busca">
-    <meta name="twitter:description" content="Estudio digital en Barcelona. Una web hecha a mano. Te ven a la primera.">
-    <meta name="twitter:image" content="https://nodoamd.github.io/phone_mockup_1.png">
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="./img/nodedos.svg">
-    <link rel="icon" type="image/x-icon" href="./img/nodedos.svg">
-    <link rel="apple-touch-icon" href="./img/nodedos.svg">
-
-
-    <!-- Apple Touch Icons -->
-    <link rel="apple-touch-icon" href="./img/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
-    <link rel="mask-icon" href="./img/safari-pinned-tab.svg" color="#4e53be">
-
-    <!-- Meta Tags para Apple -->
-    <meta name="apple-mobile-web-app-title" content="Nodo">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="purple">
-
-    <!-- Precargar recursos críticos -->
-    <link rel="preload" href="style.css" as="style">
-    <link rel="preload" href="./img/nodedos.svg" as="image">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="./dist/js/SplitText.min.js"></script>
-
-    <!-- Font Awesome con carga optimizada -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        media="print" onload="this.media='all'">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <meta name="theme-color" content="#4e53be">
-
-    <!-- Estilos -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="nodo-loader.css">
-    <style>
-        /* Evita flash del hero antes del loader; GSAP toma el control con .hero-animating */
-        body:not(.hero-animating) .hero .author,
-        body:not(.hero-animating) .hero h1,
-        body:not(.hero-animating) .hero-lead,
-        body:not(.hero-animating) .hero-buttons,
-        body:not(.hero-animating) .hero-microcopy,
-        body:not(.hero-animating) .users-count {
-            opacity: 0;
-        }
-        #pricing-container details summary::-webkit-details-marker { display: none; }
-    </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="https://unpkg.com/@barba/core@2.9.7/dist/barba.umd.js"></script>
+  <!-- Lenis desactivado: scroll nativo más snappy -->
+  <!-- <script src="js/lib/lenis.js"></script> -->
 </head>
+<body class="theme-light is-loading">
 
-
-
-<body>
-    <!-- Loader Nodo Conecta -->
-    <div id="loader-nodo" class="nodo-connect-loader" role="status" aria-live="polite" aria-label="Cargando Nodo">
-        <div class="nodo-connect-loader__bg" aria-hidden="true"></div>
-        <div class="nodo-connect-loader__inner">
-            <svg class="nodo-connect-loader__network" viewBox="0 0 240 240" aria-hidden="true">
-                <g class="nodo-connect-loader__lines">
-                    <line x1="53" y1="34" x2="120" y2="120"></line>
-                    <line x1="187" y1="24" x2="120" y2="120"></line>
-                    <line x1="43" y1="187" x2="120" y2="120"></line>
-                    <line x1="192" y1="197" x2="120" y2="120"></line>
-                    <line x1="14" y1="115" x2="120" y2="120"></line>
-                    <line x1="226" y1="125" x2="120" y2="120"></line>
-                </g>
-            </svg>
-            <div class="nodo-connect-loader__people" aria-hidden="true">
-                <span class="nodo-connect-loader__person nodo-connect-loader__person--1"></span>
-                <span class="nodo-connect-loader__person nodo-connect-loader__person--2"></span>
-                <span class="nodo-connect-loader__person nodo-connect-loader__person--3"></span>
-                <span class="nodo-connect-loader__person nodo-connect-loader__person--4"></span>
-                <span class="nodo-connect-loader__person nodo-connect-loader__person--5"></span>
-                <span class="nodo-connect-loader__person nodo-connect-loader__person--6"></span>
-            </div>
-            <div class="nodo-connect-loader__glow" aria-hidden="true"></div>
-            <div class="nodo-connect-loader__logo-wrap">
-                <svg class="nodo-connect-loader__logo" viewBox="118 82 47 106" aria-hidden="true">
-                    <path class="nodo-connect-loader__piece" fill="#510FA7" d="M127.508 138.783C130.403 140.934 132.712 143.733 135.206 146.313C139.696 150.957 145.318 156.14 150.993 159.255C150.999 164.748 151.239 170.366 150.756 175.837C150.483 178.925 149.3 181.912 149.296 185.021C148.903 185.922 148.293 186.806 147.797 187.659C144.661 184.091 142.732 179.828 140.43 175.714C138.768 172.742 136.886 169.772 135.587 166.62C134.195 163.239 133.562 159.126 132.524 155.575C130.909 150.048 128.512 144.424 127.508 138.783Z"></path>
-                    <path class="nodo-connect-loader__piece" fill="#EE0AFC" d="M118.934 109.058C118.935 107.469 118.998 105.888 119.391 104.339C120.323 100.667 127.063 88.9964 130.224 87.2871C131.74 86.4675 137.647 88.4372 139.382 89.0349C141.177 89.6534 142.812 90.5383 144.284 91.7411C148.144 94.8948 153.299 102.257 155.469 106.724C156.107 107.779 156.629 108.929 156.841 110.152C157.365 113.177 157.482 116.345 157.789 119.406L159.4 134.643C159.844 139.182 160.169 143.742 160.671 148.273C161.062 151.791 161.68 155.306 161.932 158.834C162.053 160.527 162.302 162.781 161.877 164.427C160.038 171.562 152.991 178.565 149.296 185.021C148.903 185.922 148.293 186.806 147.797 187.659C144.661 184.091 142.732 179.828 140.43 175.714C138.768 172.742 136.886 169.772 135.587 166.62C134.195 163.239 133.562 159.126 132.524 155.575C130.909 150.048 128.512 144.424 127.508 138.783C126.497 135.839 125.921 132.693 125 129.71C123.626 125.26 119.067 113.247 118.934 109.058Z"></path>
-                    <path class="nodo-connect-loader__piece" fill="#FDD9FE" d="M118.934 109.058C118.935 107.469 118.998 105.888 119.391 104.339C120.323 100.667 127.063 88.9964 130.224 87.2871C131.74 86.4675 137.647 88.4372 139.382 89.0349C141.177 89.6534 142.812 90.5383 144.284 91.7411C148.144 94.8948 153.299 102.257 155.469 106.724C154.807 107.664 154.228 108.714 153.511 109.605C151.581 112.005 149.335 114.072 147.877 116.821C147.747 121.079 149.207 125.078 148.936 129.438C148.138 130.392 147.16 131.794 145.825 131.934C144.752 132.047 143.467 131.488 142.436 131.245C139.677 130.596 136.524 132.272 133.979 133.229C132.684 132.222 131.619 131.134 130.609 129.84C133.319 127.473 146.143 119.587 146.213 116.647C146.283 113.685 143.267 110.415 141.203 108.503C140.222 107.594 139.285 106.847 137.871 106.929C136.497 107.009 135.176 107.794 133.975 108.411L133.99 112.056C130.758 112.022 121.636 110.472 118.934 109.058Z"></path>
-                </svg>
-            </div>
-            <div class="nodo-connect-loader__copy">
-                <p class="nodo-connect-loader__brand"><span class="name">Nodo</span> <span class="nodo-connect-loader__verb verb">Conecta</span></p>
-                <p class="nodo-connect-loader__tag">Hecha a mano · Barcelona</p>
-            </div>
-            <div class="nodo-connect-loader__progress" aria-hidden="true">
-                <span class="nodo-connect-loader__progress-fill"></span>
-            </div>
-        </div>
+  <div id="nodo-loader" aria-hidden="true">
+    <div class="loader-brand">
+      <div class="loader-icon-wrap">
+        <span class="loader-icon-ring" aria-hidden="true"></span>
+        <img src="img/nodedos.png" alt="" class="loader-brand-icon" width="48" height="48" />
+      </div>
+      <p class="loader-word">Nodo<span class="loader-dot">.</span></p>
     </div>
-    <script src="nodo-loader.js"></script>
-    <header class="header">
-        <a href="https://nodoamd.github.io/" class="flex items-center group">
-            <span class="mr-2 relative">
-                <span class="text-xl font-extrabold tracking-tight text-[#4e53be]">Nodo</span>
-                <span
-                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#6c72e5] group-hover:w-full transition-all duration-300"></span>
-            </span>
-            <img src="./img/nodedos.svg" height="25" width="25" alt="Nodo Logo"
-                class="transform group-hover:rotate-12 transition-all duration-300">
-        </a>
-        <nav class="nav-links">
-            <a href="#made-in-nodo">Servicios</a>
-            <a href="#before-after">Proyectos</a> <!-- Actualizado -->
-            <a href="#pricing-container">Precios</a>
-            <a href="#nodo-faq-section">FAQ</a>
-        </nav>
-        <div class="buttons">
-            <a href="https://wa.me/+34622494800?text=Hola.%20Quiero%20una%20web%20Nodo." target="_blank"
-                class="btn btn-primary">Contacto</a>
-            <a href="#before-after" class="btn btn-secondary">Ver proyectos</a>
-        </div>
-    </header>
-
-
-
-
-    <div class="scroll-menu">
-        <a href="#hero" class="scroll-link active">Inicio</a>
-        <a href="#before-after" class="scroll-link">Proyectos</a> <!-- Actualizado -->
-        <a href="#made-in-nodo" class="scroll-link">Servicios</a>
-        <a href="#pricing-container" class="scroll-link">Precios</a>
-        <a href="#nodo-faq-section" class="scroll-link">FAQ</a>
-        <a href="#nodo-contact-section" class="scroll-link">Contacto</a>
+    <div class="loader-bar-track">
+      <div class="loader-bar-fill"></div>
     </div>
+    <div class="loader-counter">0%</div>
+  </div>
 
+  <div class="nodo-transition is-idle" id="nodo-transition" aria-hidden="true">
+    <div class="nodo-transition-panel"></div>
+  </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const scrollMenu = document.querySelector('.scroll-menu');
-            let lastScrollY = window.scrollY;
+  <nav id="nodo-nav" aria-label="Navegación principal">
+    <a href="index.html" class="nav-logo" aria-label="Nodo Studio">
+      <img src="img/nodedos.png" alt="" class="brand-mark" width="32" height="32" />
+      <span class="nav-brand-word" id="navBrandWord" aria-live="polite">
+        <span class="morph-wrap morph-wrap--nav" id="navMorph">
+          <span class="morph-track">
+            <span class="morph-item is-active" data-word="Nodo">Nodo</span>
+            <span class="morph-item" data-word="Aumenta">Aumenta</span>
+            <span class="morph-item" data-word="Mejora">Mejora</span>
+            <span class="morph-item" data-word="Conecta">Conecta</span>
+            <span class="morph-item" data-word="Transforma">Transforma</span>
+            <span class="morph-item" data-word="Crece">Crece</span>
+          </span>
+        </span>
+      </span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="work.html">Trabajos</a></li>
+      <li><a href="#precios">Precios</a></li>
+      <li><a href="contact.html" class="nav-cta">Hablemos →</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-            // Mostrar/ocultar el menú según el scroll
-            window.addEventListener('scroll', () => {
-                const currentScrollY = window.scrollY;
+  <div data-barba="wrapper">
 
-                if (currentScrollY > lastScrollY) {
-                    // Usuario está haciendo scroll hacia abajo: Ocultar menú
-                    scrollMenu.classList.add('hidden');
-                } else {
-                    // Usuario está haciendo scroll hacia arriba: Mostrar menú
-                    scrollMenu.classList.remove('hidden');
-                }
+    <main data-barba="container" data-barba-namespace="home">
 
-                lastScrollY = currentScrollY;
-            });
+      <section class="hero-e" id="hero">
+        <div class="container hero-e-inner">
 
-            // Actualizar el enlace activo según la sección visible
-            const sections = document.querySelectorAll('section, .hero');
-            const menuLinks = document.querySelectorAll('.scroll-link');
+          <div class="hero-e-copy">
+            
+            <h1 class="hero-e-title" aria-label="Un sistema digital que trabaja para ti, atrae miradas y genera confianza">
+              <span class="hero-title-line">Un sistema digital</span>
+              <span class="hero-title-line hero-title-line--shift">
+                <span class="morph-wrap morph-wrap--hero" id="heroTitleMorph">
+                  <span class="morph-track">
+                    <span class="morph-item is-active" data-word="que trabaja para ti">que trabaja para ti.</span>
+                    <span class="morph-item" data-word="que atrae miradas">que atrae miradas.</span>
+                    <span class="morph-item" data-word="que genera confianza">que genera confianza.</span>
+                  </span>
+                </span>
+              </span>
+            </h1>
 
-            const updateActiveLink = () => {
-                let currentSection = null;
+            <p class="hero-e-sub">
+              Para dueños de negocio y startups que necesitan captar clientes de calidad y transmitir confianza — sin montar un departamento digital.
+            </p>
 
-                sections.forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-                        currentSection = section.id;
-                    }
-                });
+            <div class="hero-e-ctas">
+              <a href="#resultados" class="btn btn-primary btn-breathe">Ver cómo funciona</a>
+              <a href="contact.html" class="btn btn-outline btn-breathe">¿Encaja en tu negocio? →</a>
+            </div>
 
-                menuLinks.forEach(link => {
-                    link.classList.toggle('active', link.getAttribute('href').substring(1) === currentSection);
-                });
-            };
+            <p class="hero-e-trust">Sin compromiso · Sesión estratégica de 30 min · Respondemos en menos de 24h</p>
 
-            window.addEventListener('scroll', updateActiveLink);
-            updateActiveLink(); // Ejecutar al cargar la página
-        });
-    </script>
+            <div class="hero-e-social">
+              <div class="hero-e-avatars" aria-hidden="true">
+                <span class="hero-avatar" style="--hue: 250"></span>
+                <span class="hero-avatar" style="--hue: 280"></span>
+                <span class="hero-avatar" style="--hue: 220"></span>
+                <span class="hero-avatar" style="--hue: 300"></span>
+                <span class="hero-avatar" style="--hue: 265"></span>
+                <span class="hero-avatar" style="--hue: 235"></span>
+                <span class="hero-avatar" style="--hue: 270"></span>
+                <span class="hero-avatar" style="--hue: 245"></span>
+              </div>
+              <p class="hero-e-social-text"><em>Dueños de negocio y startups</em> en Barcelona</p>
+            </div>
+          </div>
 
+          <div class="hero-e-visual">
+            <div class="spline-shell loading" id="spline-shell">
+              <div class="spline-loader" aria-hidden="true"></div>
+              <spline-viewer id="hero-spline"
+                url="https://prod.spline.design/413yij0subdFPRs9/scene.splinecode"></spline-viewer>
+            </div>
+            <div class="spline-switcher" role="group" aria-label="Cambiar modelo 3D">
+              <button type="button" class="spline-switch-btn is-active" data-spline-index="0" aria-pressed="true">Nodo</button>
+              <button type="button" class="spline-switch-btn" data-spline-index="1" aria-pressed="false">Abstracto</button>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <main class="hero" id="hero">
+      <div class="marquee-section" aria-hidden="true">
+        <div class="marquee-track">
+          <span class="marquee-item">Web Design</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">GSAP</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">Branding</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">Google Ads</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">Spline 3D</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">Barcelona</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">Web Design</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">GSAP</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">Branding</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">Google Ads</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">Spline 3D</span><span class="marquee-dot">✦</span>
+          <span class="marquee-item">Barcelona</span><span class="marquee-dot">✦</span>
+        </div>
+      </div>
 
-        <div class="author">
-            <img src="./img/nodedos.svg" alt="Nodo Logo" id="hero-label-icon">
-            <span class="hero-brand-morph-wrap">
-                <span id="hero-brand-morph" class="hero-brand-morph" aria-live="polite">Nodo</span>
-                
-            </span>
+      <section class="nc-reveal" id="sistema-reveal">
+        <div class="nc-reveal-pin">
+          <div class="nc-reveal-lines">
+            <p class="nc-reveal-line">Un</p>
+            <p class="nc-reveal-line">sistema</p>
+            <p class="nc-reveal-line">digital</p>
+            <p class="nc-reveal-line">que</p>
+            <p class="nc-reveal-line">trabaja</p>
+            <p class="nc-reveal-line">para</p>
+            <p class="nc-reveal-line">ti.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="problem-section section-tight" id="problema">
+        <div class="container">
+          <p class="problem-lead will-slide">Mientras lees esto, alguien busca exactamente lo que ofreces.</p>
+          <p class="problem-punch will-slide">La pregunta no es si necesitas una web.<br>Es si te van a encontrar <em>a tiempo</em>.</p>
+        </div>
+      </section>
+
+      <section class="section section-tight" id="resultados">
+        <div class="container">
+          <div class="stats-grid" data-stagger="0.08">
+            <div class="stat-item">
+              <div class="stat-number tg" data-count="48">0</div>
+              <div class="stat-label">Proyectos completados</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number tg" data-count="98" data-suffix="%">0</div>
+              <div class="stat-label">Retención de clientes</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number tg">×10</div>
+              <div class="stat-label">Crecimiento medio</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number tg" data-count="2141">0</div>
+              <div class="stat-label">Confían en Nodo</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="nodo-cylinder" id="nodo-conecta" aria-label="Nodo Conecta">
+        <div class="container nodo-cylinder-layout">
+          <div class="nodo-cylinder-kicker-slot">
+            <p class="nodo-cylinder-kicker">Nodo <em>Conecta</em></p>
+          </div>
+          <ul class="nodo-cylinder-list">
+            <li>Diseño web premium</li>
+            <li>Branding &amp; identidad</li>
+            <li>Google Ads</li>
+            <li>Meta Ads</li>
+            <li>Spline 3D</li>
+            <li>GSAP &amp; ScrollTrigger</li>
+            <li>SEO &amp; rendimiento</li>
+            <li>Copy &amp; contenidos</li>
+            <li>E-commerce</li>
+            <li>Nodo Care</li>
+            <li>Barcelona</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section sistema-scroll" id="servicios">
+        <div class="container">
+          <div class="sistema-scroll-header">
+            <span class="badge">Sistema Nodo</span>
+            <h2 class="t-headline">Cuatro pilares.<br><span class="tg">Un solo sistema.</span></h2>
+            <p class="t-body">Cada capa trabaja para que tu negocio capte clientes y transmita confianza.</p>
+          </div>
         </div>
 
-        <h1>
-            <span class="highlight hero-headline">
-                Una web que conecta con quien te busca.
-            </span>
-        </h1>
-        <p class="hero-lead" style="text-align: center;" id="hero-lead-text">
-            Hecha a mano. Te ven a la primera.
-        </p>
+        <div class="sistema-scroll-body">
+          <div class="container sistema-scroll-layout">
+            <aside class="sistema-scroll-pin" aria-hidden="false">
+              <div class="sistema-scroll-visual">
+                <div class="sistema-visual-rail">
+                  <figure class="sistema-visual-slide is-active" data-service="web">
+                    <img src="img/landinghitachi.webp" alt="Web Development — caso Hitachi" loading="lazy" />
+                  </figure>
+                  <figure class="sistema-visual-slide" data-service="branding">
+                    <img src="img/services-branding.webp" alt="Branding — identidad Nodo" loading="lazy" />
+                  </figure>
+                  <figure class="sistema-visual-slide" data-service="ads">
+                    <img src="img/services-ads.webp" alt="Google & Meta Ads" loading="lazy" />
+                  </figure>
+                  <figure class="sistema-visual-slide" data-service="3d">
+                    <img src="img/services-3d.webp" alt="3D & WebGL — Spline" loading="lazy" />
+                  </figure>
+                </div>
+                <div class="sistema-visual-metric" aria-live="polite">
+                  <span class="sistema-metric-val">94</span>
+                  <span class="sistema-metric-lbl">Lighthouse</span>
+                </div>
+                <div class="sistema-scroll-meter" aria-hidden="true">
+                  <div class="sistema-scroll-meter-track">
+                    <div class="sistema-scroll-meter-fill"></div>
+                  </div>
+                  <span class="sistema-scroll-meter-label"><span class="sistema-meter-current">01</span> / 04</span>
+                </div>
+              </div>
+            </aside>
 
-        <div class="hero-buttons">
-            <a href="#before-after" class="btn btn-primary">Ver el trabajo</a>
-            <a href="#nodo-contact-section" class="btn btn-secondary contacto">Hablemos</a>
-        </div>
-        <p class="hero-microcopy">
-            30 min · Respuesta en 24h · Barcelona
-        </p>
+            <div class="sistema-scroll-track">
+              <article class="sistema-step is-active" data-service="web" data-step="1">
+                <div class="sistema-step-inner">
+                  <span class="sistema-step-num">01</span>
+                  <div class="sistema-step-copy">
+                    <h3>Web Development</h3>
+                    <p>Plataformas ultrarrápidas con motion design de agencia internacional.</p>
+                    <a href="work.html" class="sistema-step-link">Ver casos →</a>
+                  </div>
+                </div>
+                <figure class="sistema-step-media">
+                  <img src="img/landinghitachi.webp" alt="" loading="lazy" />
+                </figure>
+              </article>
 
-        <div class="users-count">
-            <p style="font-style: italic; letter-spacing: 0.02em;">Estudio digital. Barcelona.</p>
+              <article class="sistema-step" data-service="branding" data-step="2">
+                <div class="sistema-step-inner">
+                  <span class="sistema-step-num">02</span>
+                  <div class="sistema-step-copy">
+                    <h3>Branding</h3>
+                    <p>Identidad visual que proyecta autoridad y coherencia en cada touchpoint.</p>
+                    <a href="about.html" class="sistema-step-link">Cómo trabajamos →</a>
+                  </div>
+                </div>
+                <figure class="sistema-step-media">
+                  <img src="img/services-branding.webp" alt="" loading="lazy" />
+                </figure>
+              </article>
+
+              <article class="sistema-step" data-service="ads" data-step="3">
+                <div class="sistema-step-inner">
+                  <span class="sistema-step-num">03</span>
+                  <div class="sistema-step-copy">
+                    <h3>Google & Meta Ads</h3>
+                    <p>Captación medida. Cada euro optimizado para generar negocio real.</p>
+                    <a href="contact.html" class="sistema-step-link">Hablemos →</a>
+                  </div>
+                </div>
+                <figure class="sistema-step-media">
+                  <img src="img/services-ads.webp" alt="" loading="lazy" />
+                </figure>
+              </article>
+
+              <article class="sistema-step" data-service="3d" data-step="4">
+                <div class="sistema-step-inner">
+                  <span class="sistema-step-num">04</span>
+                  <div class="sistema-step-copy">
+                    <h3>3D & WebGL</h3>
+                    <p>Experiencias inmersivas que elevan la percepción de marca al instante.</p>
+                    <a href="work.html" class="sistema-step-link">Ver experiencias →</a>
+                  </div>
+                </div>
+                <figure class="sistema-step-media">
+                  <img src="img/services-3d.webp" alt="" loading="lazy" />
+                </figure>
+              </article>
+            </div>
+          </div>
         </div>
+      </section>
+
+      <section class="section" id="testimonios">
+        <div class="container">
+          <div class="section-header will-slide">
+            <span class="badge">Testimonios</span>
+            <h2 class="t-headline">Lo que dicen</h2>
+            <p class="t-body">No lo decimos nosotros.</p>
+          </div>
+          <div class="testimonials-grid" data-stagger="0.12">
+            <blockquote class="testimonial will-slide">
+              <p class="testimonial-text">"Desde que empezamos con Nodo, nuestras llamadas se triplicaron. La web y las campañas trabajan juntas."</p>
+              <footer class="testimonial-author">
+                <div class="testimonial-avatar">H</div>
+                <div>
+                  <div class="testimonial-name">Dra. Hitachi</div>
+                  <div class="testimonial-role">Clínica Dental — L'Hospitalet</div>
+                </div>
+              </footer>
+            </blockquote>
+            <blockquote class="testimonial will-slide">
+              <p class="testimonial-text">"La web tiene vida. La gente entra y se queda. Eso antes no pasaba."</p>
+              <footer class="testimonial-author">
+                <div class="testimonial-avatar">S</div>
+                <div>
+                  <div class="testimonial-name">Silvana</div>
+                  <div class="testimonial-role">La Chiquitana — E-commerce</div>
+                </div>
+              </footer>
+            </blockquote>
+          </div>
+          <p class="section-more will-slide">
+            <a href="work.html" class="btn btn-outline btn-sm">Ver casos completos →</a>
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="precios">
+        <div class="container">
+          <div class="section-header will-slide">
+            <span class="badge">Inversión</span>
+            <h2 class="t-headline">Lo que cuesta <span class="tg">vs.</span> lo que devuelve</h2>
+            <p class="t-body">Con un ticket medio de €1.200, bastan pocos clientes nuevos al mes para que el sistema se pague solo.</p>
+          </div>
+          <div class="pricing-grid" data-stagger="0.1">
+            <article class="pricing-card will-slide">
+              <div class="pricing-name">Starter</div>
+              <div class="pricing-price">
+                <span class="pricing-currency">€</span>
+                <span class="pricing-amount">1.800</span>
+              </div>
+              <p class="pricing-desc">Tu negocio deja de parecer amateur. Presencia profesional desde el día uno.</p>
+              <div class="pricing-divider"></div>
+              <ul class="pricing-features">
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Hasta 5 páginas</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Diseño + identidad básica</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Animaciones premium</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Responsive + SEO</li>
+              </ul>
+              <a href="contact.html" class="btn btn-outline pricing-btn">Empezar →</a>
+            </article>
+            <article class="pricing-card featured will-slide">
+              <div class="pricing-tag">Más elegido</div>
+              <div class="pricing-name">Studio</div>
+              <div class="pricing-price">
+                <span class="pricing-currency">€</span>
+                <span class="pricing-amount">4.500</span>
+              </div>
+              <p class="pricing-desc">El sistema completo para convertir visitas en clientes de calidad.</p>
+              <div class="pricing-divider"></div>
+              <ul class="pricing-features">
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Hasta 10 páginas</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Branding + diseño premium</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Motion + transiciones</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> 3 meses soporte incluido</li>
+              </ul>
+              <a href="contact.html" class="btn btn-primary pricing-btn">Empezar →</a>
+            </article>
+            <article class="pricing-card will-slide">
+              <div class="pricing-name">Premium</div>
+              <div class="pricing-price">
+                <span class="pricing-currency">€</span>
+                <span class="pricing-amount">7.500</span>
+                <span class="pricing-period">+</span>
+              </div>
+              <p class="pricing-desc">Para startups y negocios que compiten sin techo. 3D, e-commerce, a medida.</p>
+              <div class="pricing-divider"></div>
+              <ul class="pricing-features">
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Sin límite de páginas</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> 3D / WebGL / Spline</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Campañas Ads incluidas</li>
+                <li class="pricing-feature"><span class="pricing-check">✦</span> Soporte prioritario</li>
+              </ul>
+              <a href="contact.html" class="btn btn-outline pricing-btn">Hablemos →</a>
+            </article>
+          </div>
+         
+          <p class="section-more will-slide">
+            <a href="about.html" class="btn btn-outline btn-sm">Más detalle en Nosotros →</a>
+          </p>
+        </div>
+      </section>
+
+      <section class="nodo-stretch" aria-hidden="true">
+        <div class="nodo-stretch-pin">
+          <div class="nodo-stretch-row">Nodo</div>
+          <div class="nodo-stretch-row is-end">Conecta</div>
+        </div>
+      </section>
+
+      <section class="section" id="cta">
+        <div class="container">
+          <div class="cta-inner will-scale">
+            <span class="badge">Siguiente paso</span>
+            <h2 class="t-headline">¿Encajaría en tu negocio un sistema que <span class="tg">trabaje para ti</span>?</h2>
+            <p class="t-body">30 minutos. Te decimos si encaja o no. Sin compromiso. Con datos de tu sector.</p>
+            <div class="cta-actions">
+              <a href="contact.html" class="btn btn-primary btn-breathe">Agenda tu diagnóstico →</a>
+              <a href="work.html" class="btn btn-outline">Ver trabajos</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer footer--stage">
+        <div class="container">
+          <div class="footer-stage">
+            <p class="footer-word">Nodo</p>
+            <div class="footer-clock" data-clock data-timezone="Europe/Madrid" data-format="12h">
+              <span class="footer-clock-label">CEST Barcelona</span>
+              <span class="footer-clock-time" data-clock-time></span>
+            </div>
+          </div>
+          <div class="footer-grid">
+            <div>
+              <a href="index.html" class="footer-brand-name" aria-label="Nodo Studio">
+                <img src="img/nodedos.png" alt="" class="brand-mark brand-mark--footer" width="36" height="36" />
+              </a>
+              <p class="footer-brand-desc">Sistema digital para dueños de negocio y startups. Barcelona.</p>
+            </div>
+            <div>
+              <div class="footer-col-title">Estudio</div>
+              <ul class="footer-col-links">
+                <li><a href="work.html">Trabajos</a></li>
+                <li><a href="about.html">Nosotros</a></li>
+                <li><a href="contact.html">Contacto</a></li>
+              </ul>
+            </div>
+            <div>
+              <div class="footer-col-title">Servicios</div>
+              <ul class="footer-col-links">
+                <li><a href="#precios">Precios</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+              </ul>
+            </div>
+            <div>
+              <div class="footer-col-title">Contacto</div>
+              <ul class="footer-col-links">
+                <li><a href="mailto:hola@nodostudio.es">hola@nodostudio.es</a></li>
+                <li><a href="#">L'Hospitalet, BCN</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p class="footer-copy">© 2026 <em>Nodo Studio</em>. Todos los derechos reservados.</p>
+          </div>
+        </div>
+      </footer>
 
     </main>
+  </div>
 
-    <script src="./gsap-animations-clean.js"></script>
-
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.97/build/spline-viewer.js"></script>
-    <div class="spline-shell loading" id="spline-shell">
-        <div class="spline-loader" aria-hidden="true"></div>
-        <spline-viewer id="hero-spline" loading-anim-type="none"
-            url="https://prod.spline.design/413yij0subdFPRs9/scene.splinecode"
-            style="width:100%;height:100%;min-height:320px;background:transparent;"></spline-viewer>
-    </div>
-    <script>
-        (function initSplineShell() {
-            const viewer = document.getElementById('hero-spline');
-            window.__nodoSplineReady = false;
-
-            if (viewer) {
-                viewer.addEventListener('load', () => { window.__nodoSplineReady = true; }, { once: true });
-                viewer.addEventListener('error', () => { window.__nodoSplineReady = true; }, { once: true });
-            }
-        })();
-    </script>
-    <div class="cursor-effect"></div>
-
-    <style>
-        /* ========== PORTFOLIO CAROUSEL ========== */
-        .nodo-portfolio {
-            padding: 5rem 0 5.5rem;
-            background: #fff;
-            overflow: hidden;
-        }
-
-        .nodo-portfolio__container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 1.25rem;
-        }
-
-        @media (min-width: 1024px) {
-            .nodo-portfolio__container { padding: 0 2rem; }
-        }
-
-        .nodo-portfolio__header {
-            display: grid;
-            gap: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        @media (min-width: 900px) {
-            .nodo-portfolio__header {
-                grid-template-columns: 1.1fr 0.9fr;
-                align-items: end;
-                gap: 2.5rem;
-                margin-bottom: 2.25rem;
-            }
-        }
-
-        .nodo-portfolio__eyebrow {
-            display: inline-block;
-            font-size: 0.72rem;
-            font-weight: 800;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: #6c72e5;
-            margin-bottom: 0.65rem;
-        }
-
-        .nodo-portfolio__title {
-            font-size: clamp(1.85rem, 4vw, 2.65rem);
-            font-weight: 800;
-            line-height: 1.12;
-            letter-spacing: -0.03em;
-            color: #0f1222;
-        }
-
-        .nodo-portfolio__highlight {
-            color: #6c72e5;
-            position: relative;
-            white-space: nowrap;
-        }
-
-        .nodo-portfolio__highlight::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0.05em;
-            height: 0.34em;
-            background: linear-gradient(90deg, rgba(108, 114, 229, 0.35), rgba(108, 114, 229, 0.12));
-            border-radius: 999px;
-            z-index: -1;
-        }
-
-        .nodo-portfolio__lede {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: #64748b;
-            max-width: 34rem;
-        }
-
-        .nodo-portfolio__toolbar {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .nodo-portfolio__filters {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.45rem;
-        }
-
-        .nodo-portfolio__filter {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.5rem 0.85rem;
-            border-radius: 999px;
-            border: 1px solid #e8eaf6;
-            background: #fff;
-            color: #64748b;
-            font-size: 0.78rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background 0.22s, color 0.22s, border-color 0.22s, transform 0.22s;
-        }
-
-        .nodo-portfolio__filter:hover {
-            border-color: #c7c9f5;
-            color: #4e53be;
-        }
-
-        .nodo-portfolio__filter.is-active {
-            background: linear-gradient(135deg, #6c72e5, #4e53be);
-            border-color: transparent;
-            color: #fff;
-            box-shadow: 0 8px 24px rgba(78, 83, 190, 0.28);
-        }
-
-        .nodo-portfolio__filter-icon {
-            width: 15px;
-            height: 15px;
-            display: inline-flex;
-        }
-
-        .nodo-portfolio__filter-icon svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .nodo-portfolio__arrows {
-            display: flex;
-            gap: 0.5rem;
-            flex-shrink: 0;
-        }
-
-        .nodo-portfolio__arrow {
-            width: 42px;
-            height: 42px;
-            border-radius: 999px;
-            border: 1px solid #e8eaf6;
-            background: #fff;
-            color: #4e53be;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
-        }
-
-        .nodo-portfolio__arrow svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .nodo-portfolio__arrow:hover {
-            background: #f6f4ff;
-            transform: scale(1.06);
-            box-shadow: 0 6px 18px rgba(78, 83, 190, 0.15);
-        }
-
-        .nodo-portfolio__arrow--prev svg {
-            transform: rotate(180deg);
-        }
-
-        .nodo-portfolio__viewport {
-            position: relative;
-            overflow: hidden;
-            margin: 0 -1.25rem;
-            padding: 0.5rem 0 1.5rem;
-        }
-
-        @media (min-width: 1024px) {
-            .nodo-portfolio__viewport { margin: 0 -2rem; }
-        }
-
-        .nodo-portfolio__track {
-            display: flex;
-            will-change: transform;
-        }
-
-        .nodo-portfolio__slide {
-            flex-shrink: 0;
-            transform-origin: center center;
-            transition: opacity 0.3s;
-        }
-
-        .nodo-portfolio__card {
-            display: grid;
-            grid-template-columns: 1fr;
-            background: #fff;
-            border-radius: 1.35rem;
-            overflow: hidden;
-            border: 1px solid #eceef8;
-            box-shadow: 0 18px 50px rgba(78, 83, 190, 0.12);
-            min-height: 420px;
-        }
-
-        @media (min-width: 768px) {
-            .nodo-portfolio__card {
-                grid-template-columns: 1.05fr 0.95fr;
-                min-height: 360px;
-            }
-        }
-
-        .nodo-portfolio__visual {
-            position: relative;
-            min-height: 220px;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 1.25rem;
-        }
-
-        @media (min-width: 768px) {
-            .nodo-portfolio__visual { min-height: 100%; }
-        }
-
-        .nodo-portfolio__visual::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(15, 18, 34, 0.08) 0%, rgba(15, 18, 34, 0.72) 100%);
-        }
-
-        .nodo-portfolio__badge {
-            position: absolute;
-            top: 14px;
-            left: 14px;
-            z-index: 1;
-            background: rgba(255, 255, 255, 0.94);
-            color: #4e53be;
-            font-size: 0.65rem;
-            font-weight: 800;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            padding: 5px 10px;
-            border-radius: 999px;
-        }
-
-        .nodo-portfolio__visual-inner {
-            position: relative;
-            z-index: 1;
-            color: #fff;
-        }
-
-        .nodo-portfolio__visual-title {
-            font-size: 1.35rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 0.25rem;
-        }
-
-        .nodo-portfolio__visual-sub {
-            font-size: 0.85rem;
-            opacity: 0.9;
-            margin-bottom: 0.85rem;
-        }
-
-        .nodo-portfolio__visual-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            background: rgba(255, 255, 255, 0.16);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.28);
-            color: #fff;
-            font-size: 0.78rem;
-            font-weight: 700;
-            padding: 0.5rem 0.85rem;
-            border-radius: 999px;
-            transition: background 0.2s, transform 0.2s;
-        }
-
-        .nodo-portfolio__visual-cta svg {
-            width: 14px;
-            height: 14px;
-        }
-
-        .nodo-portfolio__visual-cta:hover {
-            background: rgba(255, 255, 255, 0.28);
-            transform: translateX(2px);
-        }
-
-        .nodo-portfolio__detail {
-            padding: 1.35rem 1.35rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.85rem;
-        }
-
-        @media (min-width: 768px) {
-            .nodo-portfolio__detail { padding: 1.5rem 1.65rem; }
-        }
-
-        .nodo-portfolio__detail-head {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 0.75rem;
-        }
-
-        .nodo-portfolio__detail-head h3 {
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: #0f1222;
-            line-height: 1.2;
-        }
-
-        .nodo-portfolio__detail-head span {
-            display: block;
-            margin-top: 0.2rem;
-            font-size: 0.78rem;
-            color: #94a3b8;
-            font-weight: 600;
-        }
-
-        .nodo-portfolio__detail-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 999px;
-            border: 1px solid #e8eaf6;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: #4e53be;
-            flex-shrink: 0;
-            transition: background 0.2s, transform 0.2s;
-        }
-
-        .nodo-portfolio__detail-icon svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        .nodo-portfolio__detail-icon:hover {
-            background: #f6f4ff;
-            transform: scale(1.06);
-        }
-
-        .nodo-portfolio__stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.65rem;
-        }
-
-        .nodo-portfolio__stat {
-            background: #f8f9ff;
-            border: 1px solid #eceef8;
-            border-radius: 0.85rem;
-            padding: 0.65rem 0.75rem;
-        }
-
-        .nodo-portfolio__stat strong {
-            display: block;
-            font-size: 1rem;
-            font-weight: 800;
-            color: #6c72e5;
-            line-height: 1.1;
-        }
-
-        .nodo-portfolio__stat span {
-            display: block;
-            margin-top: 0.15rem;
-            font-size: 0.68rem;
-            color: #64748b;
-            font-weight: 600;
-        }
-
-        .nodo-portfolio__desc {
-            font-size: 0.84rem;
-            line-height: 1.65;
-            color: #64748b;
-            flex: 1;
-        }
-
-        .nodo-portfolio__tech-label {
-            display: block;
-            font-size: 0.68rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: #94a3b8;
-            margin-bottom: 0.45rem;
-        }
-
-        .nodo-portfolio__tech-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-        }
-
-        .nodo-portfolio__tech-pill {
-            font-size: 0.68rem;
-            font-weight: 700;
-            color: #4e53be;
-            background: #f0f1ff;
-            border: 1px solid #e0e3ff;
-            padding: 0.28rem 0.55rem;
-            border-radius: 999px;
-        }
-
-        .nodo-portfolio__foot {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .nodo-portfolio__all {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: #4e53be;
-            transition: gap 0.2s, color 0.2s;
-        }
-
-        .nodo-portfolio__all:hover {
-            color: #6c72e5;
-            gap: 0.55rem;
-        }
-
-        .nodo-portfolio__progress {
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            flex: 1;
-            max-width: 280px;
-            margin-left: auto;
-        }
-
-        .nodo-portfolio__progress-seg {
-            display: block;
-            height: 4px;
-            flex: 1;
-            border-radius: 999px;
-            background: #e8eaf6;
-            transition: background 0.3s, flex 0.35s;
-        }
-
-        .nodo-portfolio__progress-seg.is-active {
-            flex: 2.2;
-            background: linear-gradient(90deg, #6c72e5, #4e53be);
-        }
-
-        .nodo-portfolio__cta {
-            margin-top: 3rem;
-            text-align: center;
-            background: linear-gradient(135deg, #4e53be, #7c3aed);
-            border-radius: 1.25rem;
-            padding: 2.5rem 1.5rem;
-            color: #fff;
-        }
-
-        @media (min-width: 768px) {
-            .nodo-portfolio__cta { padding: 3rem 2.5rem; }
-        }
-    </style>
-
-    <!-- ========== WHY NODO + MADE IN NODO + PORTFOLIO (narrativa) ========== -->
-
-    <style>
-        /* ========== WHY NODO SECTION - VERSIÓN MEJORADA ========== */
-        .why-nodo-section {
-            padding: 140px 24px;
-            background: linear-gradient(180deg, #fafbff 0%, #f8f9ff 50%, #ffffff 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Orbes flotantes de fondo */
-        .why-nodo-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .floating-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.15;
-            animation: float-orb 20s infinite ease-in-out;
-        }
-
-        .orb-1 {
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, #4e53be, transparent);
-            top: -200px;
-            left: -100px;
-            animation-delay: 0s;
-        }
-
-        .orb-2 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, #7c3aed, transparent);
-            top: 30%;
-            right: -150px;
-            animation-delay: -7s;
-        }
-
-        .orb-3 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, #6366f1, transparent);
-            bottom: -100px;
-            left: 50%;
-            animation-delay: -14s;
-        }
-
-        @keyframes float-orb {
-
-            0%,
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            33% {
-                transform: translate(50px, -30px) scale(1.1);
-            }
-
-            66% {
-                transform: translate(-30px, 40px) scale(0.9);
-            }
-        }
-
-        .why-nodo-container {
-            max-width: 1300px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Header */
-        .why-nodo-header {
-            text-align: center;
-            margin-bottom: 90px;
-        }
-
-        .why-nodo-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 24px;
-            background: linear-gradient(135deg, #4e53be 0%, #6366f1 100%);
-            color: white;
-            border-radius: 50px;
-            font-size: 15px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 28px;
-            box-shadow: 0 4px 20px rgba(78, 83, 190, 0.4);
-            animation: badge-pulse 3s infinite;
-        }
-
-        @keyframes badge-pulse {
-
-            0%,
-            100% {
-                box-shadow: 0 4px 20px rgba(78, 83, 190, 0.4);
-            }
-
-            50% {
-                box-shadow: 0 8px 30px rgba(78, 83, 190, 0.6);
-            }
-        }
-
-        .badge-icon {
-            font-size: 18px;
-            animation: spin-slow 10s linear infinite;
-        }
-
-        @keyframes spin-slow {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .why-nodo-title {
-            font-size: clamp(2.8rem, 6vw, 4.5rem);
-            font-weight: 900;
-            color: #0f172a;
-            margin-bottom: 20px;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-        }
-
-        .highlight-purple {
-            background: linear-gradient(135deg, #4e53be 0%, #7c3aed 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-        }
-
-        .why-nodo-subtitle {
-            font-size: 1.35rem;
-            color: #475569;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.6;
-            font-weight: 400;
-        }
-
-        /* Grid de Cards */
-        .why-nodo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 28px;
-            margin-bottom: 90px;
-        }
-
-        /* Cards */
-        .why-nodo-card {
-            background: white;
-            border-radius: 28px;
-            border: 2px solid #e2e8f0;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            --border-scale: 0;
-        }
-
-        /* Solo cursor pointer en desktop */
-        @media (hover: hover) and (pointer: fine) {
-            .why-nodo-card {
-                cursor: pointer;
-            }
-        }
-
-        /* Desactivar todos los eventos touch en móvil */
-        @media (max-width: 768px) {
-            .why-nodo-card {
-                pointer-events: none;
-                -webkit-tap-highlight-color: transparent;
-                -webkit-touch-callout: none;
-                user-select: none;
-            }
-
-            /* Permitir scroll pero no touch en las cards */
-            .why-nodo-card * {
-                pointer-events: none;
-                -webkit-tap-highlight-color: transparent;
-            }
-        }
-
-        .card-content {
-            padding: 44px 36px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Efecto glow en hover - SOLO DESKTOP */
-        .card-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(78, 83, 190, 0.15), transparent 70%);
-            transform: translate(-50%, -50%) scale(0);
-            transition: transform 0.6s ease;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            .why-nodo-card:hover .card-glow {
-                transform: translate(-50%, -50%) scale(2.5);
-            }
-        }
-
-        /* Borde animado superior */
-        .why-nodo-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #4e53be 0%, #7c3aed 50%, #6366f1 100%);
-            transform: scaleX(var(--border-scale, 0));
-            transform-origin: left;
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        /* Hover SOLO en desktop */
-        @media (hover: hover) and (pointer: fine) {
-            .why-nodo-card:hover::before {
-                --border-scale: 1;
-                transform: scaleX(1);
-            }
-
-            .why-nodo-card:hover {
-                transform: translateY(-12px) scale(1.02);
-                border-color: #c7d2fe;
-                box-shadow:
-                    0 25px 70px rgba(78, 83, 190, 0.2),
-                    0 10px 30px rgba(78, 83, 190, 0.15);
-            }
-        }
-
-        /* Card Destacada (IA & LLMs) */
-        .card-highlight {
-            background: linear-gradient(135deg, #4e53be 0%, #6366f1 100%);
-            border: none;
-            color: white;
-            box-shadow: 0 20px 50px rgba(78, 83, 190, 0.3);
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            .card-highlight:hover {
-                box-shadow:
-                    0 30px 80px rgba(78, 83, 190, 0.4),
-                    0 15px 40px rgba(78, 83, 190, 0.3);
-            }
-        }
-
-        .card-highlight .card-title,
-        .card-highlight .card-description {
-            color: white;
-        }
-
-        .card-highlight .card-number {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .card-highlight .card-icon {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            backdrop-filter: blur(10px);
-        }
-
-        /* Efecto shine en card destacada */
-        .card-shine {
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(90deg,
-                    transparent,
-                    rgba(255, 255, 255, 0.2),
-                    transparent);
-            transform: skewX(-25deg);
-            animation: shine 6s infinite;
-        }
-
-        @keyframes shine {
-
-            0%,
-            100% {
-                left: -100%;
-            }
-
-            50% {
-                left: 150%;
-            }
-        }
-
-        /* Iconos */
-        .card-icon {
-            width: 72px;
-            height: 72px;
-            background: linear-gradient(135deg, #f1f5ff 0%, #e0e7ff 100%);
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 28px;
-            color: #4e53be;
-            transition: all 0.4s ease;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            .why-nodo-card:hover .card-icon {
-                transform: scale(1.1) rotate(5deg);
-                box-shadow: 0 10px 25px rgba(78, 83, 190, 0.2);
-            }
-        }
-
-        /* Número de card */
-        .card-number {
-            position: absolute;
-            top: 32px;
-            right: 32px;
-            font-size: 4rem;
-            font-weight: 900;
-            color: rgba(78, 83, 190, 0.08);
-            line-height: 1;
-            transition: all 0.4s ease;
-        }
-
-        .card-number.special {
-            color: rgba(255, 255, 255, 0.15);
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            .why-nodo-card:hover .card-number {
-                transform: scale(1.2);
-                color: rgba(78, 83, 190, 0.12);
-            }
-
-            .card-highlight:hover .card-number {
-                color: rgba(255, 255, 255, 0.2);
-            }
-        }
-
-        /* Títulos y descripciones */
-        .card-title {
-            font-size: 1.65rem;
-            font-weight: 800;
-            color: #0f172a;
-            margin-bottom: 16px;
-            line-height: 1.3;
-        }
-
-        .card-description {
-            font-size: 1.05rem;
-            color: #64748b;
-            line-height: 1.75;
-            margin-bottom: 20px;
-        }
-
-        /* Tags */
-        .card-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 20px;
-        }
-
-        .tag {
-            padding: 6px 14px;
-            background: rgba(78, 83, 190, 0.08);
-            color: #4e53be;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .card-highlight .tag {
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-            .tag:hover {
-                transform: scale(1.05);
-                background: rgba(78, 83, 190, 0.15);
-            }
-
-            .card-highlight .tag:hover {
-                background: rgba(255, 255, 255, 0.25);
-            }
-        }
-
-        /* Badge Cutting Edge */
-        .card-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 20px;
-            padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            backdrop-filter: blur(10px);
-        }
-
-        .badge-pulse {
-            width: 8px;
-            height: 8px;
-            background: #22c55e;
-            border-radius: 50%;
-            animation: pulse-dot 2s infinite;
-        }
-
-        @keyframes pulse-dot {
-
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-            50% {
-                opacity: 0.5;
-                transform: scale(1.3);
-            }
-        }
-
-        /* Stats Section */
-        .why-nodo-stats {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            background: white;
-            padding: 56px 40px;
-            border-radius: 28px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
-            border: 2px solid #e2e8f0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .why-nodo-stats::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #4e53be, #7c3aed, #6366f1, #4e53be);
-            background-size: 200% 100%;
-            animation: gradient-shift 3s linear infinite;
-        }
-
-        @keyframes gradient-shift {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            100% {
-                background-position: 200% 50%;
-            }
-        }
-
-        .stat-item {
-            text-align: center;
-            flex: 1;
-        }
-
-        .stat-icon {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
-            display: block;
-            animation: bounce-soft 3s infinite;
-        }
-
-        @keyframes bounce-soft {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-8px);
-            }
-        }
-
-        .stat-number {
-            font-size: 1.75rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #4e53be 0%, #7c3aed 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 12px;
-            line-height: 1.15;
-            display: inline-block;
-            letter-spacing: -0.02em;
-        }
-
-        .stat-symbol {
-            font-size: 2rem;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: #64748b;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-        }
-
-        .stat-divider {
-            width: 2px;
-            height: 80px;
-            background: linear-gradient(180deg,
-                    transparent 0%,
-                    #e2e8f0 20%,
-                    #cbd5e1 50%,
-                    #e2e8f0 80%,
-                    transparent 100%);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .why-nodo-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .why-nodo-section {
-                padding: 100px 20px;
-            }
-
-            .why-nodo-header {
-                margin-bottom: 60px;
-            }
-
-            .why-nodo-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-                margin-bottom: 60px;
-            }
-
-            .card-content {
-                padding: 36px 28px;
-            }
-
-            .card-number {
-                font-size: 3rem;
-                top: 24px;
-                right: 24px;
-            }
-
-            /* DESACTIVAR COMPLETAMENTE TRANSICIONES EN MÓVIL */
-            .why-nodo-card {
-                transition: none !important;
-                -webkit-tap-highlight-color: transparent !important;
-                -webkit-touch-callout: none !important;
-                touch-action: pan-y !important;
-            }
-
-            .card-icon,
-            .card-number,
-            .card-glow,
-            .tag {
-                transition: none !important;
-                -webkit-tap-highlight-color: transparent !important;
-            }
-
-            /* Forzar reset de todos los efectos */
-            .why-nodo-card::before {
-                transition: none !important;
-            }
-
-            .why-nodo-stats {
-                flex-direction: column;
-                gap: 40px;
-                padding: 44px 28px;
-            }
-
-            .stat-divider {
-                width: 80px;
-                height: 2px;
-            }
-
-            .stat-icon {
-                font-size: 2rem;
-            }
-
-            .stat-number {
-                font-size: 1.45rem;
-            }
-        }
-    </style>
-
-    <!-- Por Qué Nodo Section -->
-    <section class="why-nodo-section" id="why-nodo">
-        <div class="why-nodo-background">
-            <div class="floating-orb orb-1"></div>
-            <div class="floating-orb orb-2"></div>
-            <div class="floating-orb orb-3"></div>
-        </div>
-
-        <div class="why-nodo-container">
-            <div class="why-nodo-header">
-                <span class="why-nodo-badge">
-                    Estudio digital
-                </span>
-                <h2 class="why-nodo-title">
-                    Hablas con quien <span class="highlight-purple">diseña y pica el código</span>.
-                </h2>
-                <p class="why-nodo-subtitle">No competimos por ser baratos. Competimos por el nivel de tu web. Tres cosas que la plantilla no sostiene.</p>
-            </div>
-
-            <div class="why-nodo-grid">
-                <!-- Card 1 -->
-                <div class="why-nodo-card" data-card="1">
-                    <div class="card-glow"></div>
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                            </svg>
-                        </div>
-                        <div class="card-number">01</div>
-                        <h3 class="card-title">Pieza única</h3>
-                        <p class="card-description">Si tu web se parece a la del de al lado, ya perdiste. Cada detalle nace de tu proyecto — no de una plantilla.</p>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="why-nodo-card card-highlight" data-card="2">
-                    <div class="card-glow"></div>
-                    <div class="card-shine"></div>
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <rect x="3" y="3" width="7" height="7" rx="1"></rect>
-                                <rect x="14" y="3" width="7" height="7" rx="1"></rect>
-                                <rect x="14" y="14" width="7" height="7" rx="1"></rect>
-                                <rect x="3" y="14" width="7" height="7" rx="1"></rect>
-                            </svg>
-                        </div>
-                        <div class="card-number special">02</div>
-                        <h3 class="card-title">Criterio humano</h3>
-                        <p class="card-description">La IA genera. Nodo decide, afila y responde por el resultado. Motion, 3D y velocidad solo cuando elevan — nunca de adorno.</p>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="why-nodo-card" data-card="3">
-                    <div class="card-glow"></div>
-                    <div class="card-content">
-                        <div class="card-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path
-                                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
-                                </path>
-                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                            </svg>
-                        </div>
-                        <div class="card-number">03</div>
-                        <h3 class="card-title">Que funciona</h3>
-                        <p class="card-description">Rápida. Clara. Hecha para que el visitante entienda y actúe. Belleza al servicio del proyecto — no al revés.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-
-    <section class="nodo-made-section" id="made-in-nodo">
-        <div class="nodo-made__container">
-            <header class="made-in-nodo__intro">
-                <span class="made-in-nodo__eyebrow">Estudio digital</span>
-                <h2 class="made-in-nodo__title">
-                    Una web hecha a mano.<br>
-                    <span class="made-in-nodo__title-accent">Hecha en Barcelona.</span>
-                </h2>
-                <p class="made-in-nodo__lede">
-                    Llega desde el primer vistazo. Está cuidada. Es solo de tu negocio.
-                </p>
-            </header>
-
-            <div class="made-in-nodo__story" id="made-in-story">
-                <div class="made-in-nodo__story-pin">
-                    <div class="made-in-nodo__steps">
-                        <article class="made-in-step is-active" data-scene="0">
-                            <p class="made-in-step__num">00 · CONTEXTO</p>
-                            <h3 class="made-in-step__title">Miles de webs. Pocas se entienden a la primera.</h3>
-                            <p class="made-in-step__text">La mayoría es plantilla. Nodo construye la web a mano, desde Barcelona, para negocios que quieren destacarse con claridad.</p>
-                            <div class="made-in-step__tags">
-                                <span class="made-in-step__tag">Barcelona</span>
-                                <span class="made-in-step__tag">España · Europa</span>
-                                <span class="made-in-step__tag">Made in Nodo</span>
-                            </div>
-                        </article>
-
-                        <article class="made-in-step" data-scene="1">
-                            <p class="made-in-step__num">01 · EXPERIENCIA 3D</p>
-                            <p class="made-in-step__hook">No es decoración. Es diferenciación.</p>
-                            <h3 class="made-in-step__title">3D que eleva cada visita</h3>
-                            <p class="made-in-step__text">Integramos Spline, WebGL y motion avanzado para que tu web no se parezca a ninguna otra. Tecnología de vanguardia al servicio de la conversión — no del postureo.</p>
-                            <div class="made-in-step__tags">
-                                <span class="made-in-step__tag">Spline</span>
-                                <span class="made-in-step__tag">WebGL</span>
-                                <span class="made-in-step__tag">GSAP</span>
-                            </div>
-                        </article>
-
-                        <article class="made-in-step" data-scene="2">
-                            <p class="made-in-step__num">02 · CONTROL TOTAL</p>
-                            <p class="made-in-step__hook">Nada ocurre por casualidad.</p>
-                            <h3 class="made-in-step__title">Cada evento, bajo control</h3>
-                            <p class="made-in-step__text">Scroll, hover, carga, clic, conversión — orquestamos cada micro-interacción para guiar al usuario con precisión. Tu web responde como un producto, no como un folleto.</p>
-                            <div class="made-in-step__tags">
-                                <span class="made-in-step__tag">ScrollTrigger</span>
-                                <span class="made-in-step__tag">Micro-interacciones</span>
-                                <span class="made-in-step__tag">Conversión</span>
-                            </div>
-                        </article>
-
-                        <article class="made-in-step" data-scene="3">
-                            <p class="made-in-step__num">03 · DISEÑO AFINADO</p>
-                            <p class="made-in-step__hook">Tu negocio, claro a la primera.</p>
-                            <h3 class="made-in-step__title">Estilo que innova tu marca</h3>
-                            <p class="made-in-step__text">Tipografía, color, ritmo visual y copy — cada detalle calibrado para proyectar autoridad y diferenciarte en tu sector. No adaptamos plantillas: diseñamos identidad digital a medida.</p>
-                            <div class="made-in-step__tags">
-                                <span class="made-in-step__tag">Identidad</span>
-                                <span class="made-in-step__tag">UI/UX</span>
-                                <span class="made-in-step__tag">Branding digital</span>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="made-in-nodo__demo-col">
-                        <div class="made-in-demo" id="made-in-demo">
-                            <div class="made-in-demo__chrome">
-                                <span class="made-in-demo__dot"></span>
-                                <span class="made-in-demo__dot"></span>
-                                <span class="made-in-demo__dot"></span>
-                            </div>
-
-                            <div class="made-in-demo__scene is-active" data-scene="0">
-                                <div class="made-in-scene-barcelona">
-                                    <div class="made-in-scene-barcelona__reveal" id="made-in-barcelona-reveal">
-                                        <img src="./img/sagrada.jpg"
-                                            alt="Hechas en Barcelona — Nodo" class="made-in-scene-barcelona__img" loading="lazy">
-                                    </div>
-                                    <div class="made-in-scene-barcelona__caption" id="made-in-barcelona-caption">
-                                        <p class="made-in-scene-barcelona__city">Barcelona</p>
-                                        <p class="made-in-scene-barcelona__sub">Nivel Nacional</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="made-in-demo__scene" data-scene="1">
-                                <div class="made-in-prism-wrap">
-                                    <div class="made-in-prism" aria-hidden="true">
-                                        <div class="made-in-prism__face made-in-prism__face--1"></div>
-                                        <div class="made-in-prism__face made-in-prism__face--2"></div>
-                                        <div class="made-in-prism__face made-in-prism__face--3"></div>
-                                        <div class="made-in-prism__face made-in-prism__face--4"></div>
-                                    </div>
-                                </div>
-                                <p class="made-in-scene-3d__label">Spline · WebGL · Experiencia inmersiva</p>
-                            </div>
-
-                            <div class="made-in-demo__scene" data-scene="2">
-                                <div class="made-in-events">
-                                    <div class="made-in-events__row is-hot" data-event-row>
-                                        <span class="made-in-events__dot"></span>
-                                        <span class="made-in-events__key">on:load</span>
-                                        <span class="made-in-events__val">hero.enter</span>
-                                    </div>
-                                    <div class="made-in-events__row is-hot" data-event-row>
-                                        <span class="made-in-events__dot"></span>
-                                        <span class="made-in-events__key">on:scroll</span>
-                                        <span class="made-in-events__val">section.pin</span>
-                                    </div>
-                                    <div class="made-in-events__row" data-event-row>
-                                        <span class="made-in-events__dot"></span>
-                                        <span class="made-in-events__key">on:hover</span>
-                                        <span class="made-in-events__val">card.lift</span>
-                                    </div>
-                                    <div class="made-in-events__row" data-event-row>
-                                        <span class="made-in-events__dot"></span>
-                                        <span class="made-in-events__key">on:click</span>
-                                        <span class="made-in-events__val">cta.convert</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="made-in-demo__scene" data-scene="3">
-                                <div class="made-in-design">
-                                    <p class="made-in-design__type">Tu marca.</p>
-                                    <p class="made-in-design__sub">Tipografía · color · ritmo visual</p>
-                                    <div class="made-in-design__swatches">
-                                        <span class="made-in-design__swatch" style="background:#4e53be"></span>
-                                        <span class="made-in-design__swatch" style="background:#7c3aed"></span>
-                                        <span class="made-in-design__swatch" style="background:#1a1a2e"></span>
-                                        <span class="made-in-design__swatch" style="background:#f8f9ff;border-color:rgba(0,0,0,0.08)"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="made-in-sectors">
-                <header class="made-in-sectors__header">
-                    <h3 class="made-in-sectors__title">Así lo aplicamos en tu sector</h3>
-                    <p class="made-in-sectors__sub">Misma tecnología. Mismo rigor. Adaptado a tu negocio.</p>
-                </header>
-                <div class="made-in-sectors__grid">
-                    <a href="./trabajo.html" class="made-in-sector">
-                        <div class="made-in-sector__img">
-                            <img src="./img/treshitachi.webp" alt="Autónomos y negocios" loading="lazy">
-                        </div>
-                        <div class="made-in-sector__body">
-                            <h4 class="made-in-sector__title">Autónomos y negocios</h4>
-                            <p class="made-in-sector__text">Reservas, menús digitales y presencia local que convierte.</p>
-                            <span class="made-in-sector__link">Ver ejemplos →</span>
-                        </div>
-                    </a>
-                    <a href="./trabajo.html" class="made-in-sector">
-                        <div class="made-in-sector__img">
-                            <img src="./img/cinco.webp" alt="Tiendas y comercios" loading="lazy">
-                        </div>
-                        <div class="made-in-sector__body">
-                            <h4 class="made-in-sector__title">Tiendas y comercios</h4>
-                            <p class="made-in-sector__text">Catálogos digitales, stock y ventas geolocalizadas.</p>
-                            <span class="made-in-sector__link">Ver ejemplos →</span>
-                        </div>
-                    </a>
-                    <a href="./trabajo.html" class="made-in-sector">
-                        <div class="made-in-sector__img">
-                            <img src="./img/todos2.webp" alt="Artesanía y servicios" loading="lazy">
-                        </div>
-                        <div class="made-in-sector__body">
-                            <h4 class="made-in-sector__title">Artesanía y servicios</h4>
-                            <p class="made-in-sector__text">Portfolio premium, SEO y copy que atrae a tu cliente ideal.</p>
-                            <span class="made-in-sector__link">Ver ejemplos →</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Proyectos destacados — prueba después del cómo -->
-    <section class="nodo-portfolio relative" id="before-after">
-        <div class="nodo-portfolio__container">
-            <header class="nodo-portfolio__header">
-                <div>
-                    <span class="nodo-portfolio__eyebrow">Trabajo</span>
-                    <h2 class="nodo-portfolio__title">Webs que <span class="nodo-portfolio__highlight">conectan</span></h2>
-                </div>
-                <p class="nodo-portfolio__lede">Trabajo real. Hecho a mano. Hitachi, Chiquitana, Javipato y más.</p>
-            </header>
-
-            <div class="nodo-portfolio__toolbar">
-                <div class="nodo-portfolio__filters" id="portfolio-filters" role="tablist" aria-label="Filtrar proyectos"></div>
-                <div class="nodo-portfolio__arrows">
-                    <button type="button" class="nodo-portfolio__arrow nodo-portfolio__arrow--prev" id="portfolio-prev" aria-label="Proyecto anterior">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                    </button>
-                    <button type="button" class="nodo-portfolio__arrow" id="portfolio-next" aria-label="Siguiente proyecto">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                    </button>
-                </div>
-            </div>
-
-            <div class="nodo-portfolio__viewport" id="portfolio-viewport">
-                <div class="nodo-portfolio__track" id="portfolio-track"></div>
-            </div>
-
-            <footer class="nodo-portfolio__foot">
-                <a href="./trabajo.html" class="nodo-portfolio__all">Ver todos los proyectos <span aria-hidden="true">↗</span></a>
-                <div class="nodo-portfolio__progress" id="portfolio-progress" aria-hidden="true"></div>
-            </footer>
-
-            <div class="nodo-portfolio__cta text-white">
-                <h3 class="text-2xl md:text-3xl font-bold mb-4">¿Quieres una web Nodo?</h3>
-                <p class="text-lg mb-8 opacity-90 max-w-2xl mx-auto">Mira el trabajo. Si encaja, lo hacemos. Si no, lo comprobamos al momento.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="./trabajo.html" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-block">Ver todo el trabajo</a>
-                    <a href="https://wa.me/+34622494800?text=Hola.%20Quiero%20una%20web%20Nodo." target="_blank" rel="noopener" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors inline-block">Hablemos por WhatsApp →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-
-
-
-    <!--
-
-    <section class="services-grid">
-        <h2 class="services-title">Sitios web, apps, branding y más.</h2>
-        <div class="services-container" class="nomark">
-            <div class="service-item">
-                <a href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Sitios%20Web">
-                    <h3>Sitios Web</h3>
-                    <div class="service-line"></div>
-                </a>
-            </div>
-            <div class="service-item">
-                <a href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Flyers">
-                    <h3>Flyers</h3>
-                    <div class="service-line"></div>
-                </a>
-            </div>
-            <div class="service-item">
-                <a
-                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Gr%C3%A1ficos%20para%20Email">
-                    <h3>Gráficos para Email</h3>
-                    <div class="service-line"></div>
-                </a>
-            </div>
-            <div class="service-item">
-                <a
-                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Apps%20Web%20/%20M%C3%B3vil">
-                    <h3>Apps Web / Móvil</h3>
-                    <div class="service-line"></div>
-                </a>
-            </div>
-            <div class="service-item">
-                <a href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20SAAS">
-                    <h3>SAAS</h3>
-                    <div class="service-line"></div>
-                </a>
-            </div>
-            <div class="service-item">
-                <a
-                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Banners%20para%20Negocios">
-                    <h3>Banners para Negocios</h3>
-                    <div class="service-line"></div>
-                </a>
-            </div>
-            <div class="service-item">
-                <a
-                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Big%20Data%20/%20SEO">
-                    <h3>Big Data / SEO</h3>
-                    <div class="service-line"></div>
-                </a>
-            </div>
-            <div class="service-item">
-                <a
-                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Presentaciones">
-                    <h3>Presentaciones</h3>
-                    <div class="service-line"></div>
-                </a>
-            </div>
-            <div class="service-item">
-                <a
-                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Tarjetas%20de%20Visita">
-                    <h3>Tarjetas de Visita</h3>
-                    <div class="service-line"></div>
-                </a>
-            </div>
-            <div class="service-item">
-                <a
-                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Branding%20Completo">
-                    <h3>Branding Completo</h3>
-                    <div class="service-line"></div>
-                </a>
-            </div>
-            <div class="service-item">
-                <a
-                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Fotograf%C3%ADas%20de%20Stock%20ilimitadas">
-                    <h3>Fotografías de Stock ilimitadas</h3>
-                    <div class="service-line"></div>
-                </a>
-            </div>
-            <div class="service-item">
-                <a
-                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Flyers%20/%20Tarjetas">
-                    <h3>Flyers / Tarjetas</h3>
-                    <div class="service-line"></div>
-                </a>
-            </div>
-            <div class="service-item">
-                <a href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Logos">
-                    <h3>Logos</h3>
-                    <div class="service-line"></div>
-                </a>
-            </div>
-            <div class="service-item">
-                <a
-                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20Gr%C3%A1ficos%20para%20Redes">
-                    <h3>Gráficos para Redes</h3>
-                    <div class="service-line"></div>
-                </a>
-            </div>
-            <div class="service-item">
-                <a
-                    href="https://wa.me/+34622494800?text=Estoy%20interesado%20en%20sus%20servicios%20de%20An%C3%A1lisis%20de%20Mercado%20%26%20SEM/SEO">
-                    <h3>Análisis de Mercado & SEM/SEO</h3>
-                    <div class="service-line"></div>
-                </a>
-            </div>
-        </div>
-    </section> -->
-
-
-    <style>
-        .services-grid a {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-
-        .service-item {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .pricing-card {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .pricing-content {
-            flex: 1;
-        }
-
-        .pricing-footer {
-            margin-top: auto;
-        }
-    </style>
-
-    <style>
-        .services-grid {
-            padding: 80px 0;
-            background-color: white;
-        }
-
-        .services-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #333;
-
-        }
-
-        .services-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .service-item {
-            padding: 15px 0;
-            position: relative;
-            text-align: left;
-            /* Alinea el texto a la izquierda */
-            display: block;
-            /* Cambiado a block para mantener alineación natural */
-            list-style-type: none;
-            /* Elimina los bullets si es una lista */
-        }
-
-        /* Asegurarse de que .service-item no reciba los guiones de .features-list */
-        .service-item::before {
-            content: none !important;
-            /* Anula cualquier contenido before */
-            margin-top: 0;
-        }
-
-        .service-item h3 {
-            color: #333;
-            font-size: 1rem;
-            font-weight: 500;
-            margin: 0;
-        }
-
-        .service-line {
-            width: 100%;
-            height: 1px;
-            background-color: #E5E5E5;
-            margin-top: 15px;
-        }
-
-
-        .service-item:hover h3 {
-            color: #8855ff;
-        }
-
-        /* Media Queries */
-        @media (max-width: 1024px) {
-            .services-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .services-container {
-                grid-template-columns: 1fr;
-            }
-
-            .services-title {
-                font-size: 2rem;
-                padding: 0 20px;
-            }
-        }
-
-        /* Animaciones */
-        .service-item {
-            transition: transform 0.3s ease;
-        }
-
-        .service-item:hover {
-            transform: translateX(10px);
-        }
-
-        /* Asegurarse de que el contenedor principal tenga padding */
-        @media (max-width: 1200px) {
-            .services-container {
-                margin: 0 20px;
-            }
-        }
-
-        .transition-all {
-            transition-property: all;
-        }
-
-        .duration-500 {
-            transition-duration: 500ms;
-        }
-
-        .ease-in-out {
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        #before-image,
-        #after-image {
-            pointer-events: none;
-        }
-    </style>
-
-    <!--
-    <section class="testimonials">
-        <h2>Lo que dicen nuestros clientes</h2>
-        <div class="testimonials-slider">
-            <div class="testimonials-track">
-                <div class="testimonial-slide">
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">"La transformación digital de mi clínica ha sido extraordinaria.
-                            Triplicamos nuestras reservas online y el tráfico web se multiplicó por 100. La facilidad
-                            con la que los pacientes pueden agendar citas ahora es incomparable."</p>
-                        <div class="testimonial-author">
-                            <img src="./img/doctorahitachi.jpg" alt="Cliente">
-                            <div class="author-info">
-                                <h4>Dra. Hitachi A.</h4>
-                                <span>Clínica Dra. Hitachi</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-slide">
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">"Desde que implementé las nuevas estrategias digitales, mis
-                            visitas y solicitudes se duplicaron. Lo mejor es que mantenemos la
-                            satisfacción del cliente, algo crucial en mi sector."</p>
-                        <div class="testimonial-author">
-                            <img src="./img/llarunica.webp" alt="Cliente">
-                            <div class="author-info">
-                                <h4>LlarUnica</h4>
-                                <span>Inmobiliaria</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-slide">
-                    <div class="testimonial-content">
-                        <p class="testimonial-text">"El impacto en nuestro negocio ha sido tremendo. Aumentamos las
-                            membresías en un 150% y triplicamos nuestra presencia en redes sociales. Lo más importante:
-                            mantenemos un 95% de retención de clientes."</p>
-                        <div class="testimonial-author">
-                            <img src="./img/booth.webp" alt="Cliente">
-                            <div class="author-info">
-                                <h4>Booth Startup</h4>
-                                <span>Startup</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slider-controls">
-                <div class="slider-dots"></div>
-            </div>
-        </div>
-    </section>
- -->
-
-
-
-
-
-    <!--
-
-
-    <div class="nodo-services-cta" style="margin: 25px;">
-        <h3>¿Listo para dar el siguiente paso?</h3>
-        <p>Agenda una consulta gratuita y descubre cómo podemos ayudarte</p>
-        <a href="https://wa.me/+34622494800?text=Quisiera%20una%20consulta%20con%20Nodo" target="_blank"
-            class="nodo-btn-primary" style="margin: 25px;">
-            Consultar
-        </a>
-    </div>
- -->
-
-
-
-    <section class="py-16 md:py-24 bg-gradient-to-b from-white to-indigo-50/60" id="pricing-container">
-        <div class="max-w-4xl mx-auto px-4">
-
-            <!-- Cabecera -->
-            <header class="text-center max-w-xl mx-auto mb-12 md:mb-16">
-                <span class="text-xs font-bold tracking-widest uppercase text-indigo-600">Inversión</span>
-                <h2 class="mt-3 text-3xl md:text-5xl font-extrabold text-gray-900 leading-tight">
-                    Un proyecto.<br>
-                    <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Bien hecho.</span>
-                </h2>
-                <p class="mt-4 text-lg text-gray-500 leading-relaxed">
-                    Una web hecha a mano. Sin plantilla. Para quien valora el resultado, no solo el precio.
-                </p>
-            </header>
-
-            <!-- Oferta principal -->
-            <div class="bg-white rounded-2xl border border-indigo-100 shadow-xl shadow-indigo-100/50 p-6 md:p-10 grid md:grid-cols-[1fr_260px] gap-8 md:gap-10 mb-10">
-                <div>
-                    <p class="text-xs font-bold tracking-widest uppercase text-indigo-600 mb-2">Lo que hacemos</p>
-                    <h3 class="text-2xl font-extrabold text-gray-900 mb-5">Proyecto web completo</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
-                            <span class="text-indigo-500 font-bold mt-0.5 flex-shrink-0">✓</span>
-                            Diseño exclusivo, sin plantillas ni temas comprados
-                        </li>
-                        <li class="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
-                            <span class="text-indigo-500 font-bold mt-0.5 flex-shrink-0">✓</span>
-                            Animaciones, scroll narratives y experiencias 3D
-                        </li>
-                        <li class="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
-                            <span class="text-indigo-500 font-bold mt-0.5 flex-shrink-0">✓</span>
-                            Navegación fluida entre páginas, sin recargas
-                        </li>
-                        <li class="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
-                            <span class="text-indigo-500 font-bold mt-0.5 flex-shrink-0">✓</span>
-                            SEO técnico, rendimiento y responsive en todos los dispositivos
-                        </li>
-                        <li class="flex items-start gap-3 text-sm text-gray-600 leading-relaxed">
-                            <span class="text-indigo-500 font-bold mt-0.5 flex-shrink-0">✓</span>
-                            Entrega por fases con feedback en cada etapa
-                        </li>
-                    </ul>
-                </div>
-                <aside class="bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-xl p-6 text-center text-white flex flex-col justify-center">
-                    <p class="text-3xl font-extrabold leading-none">desde 3.500€</p>
-                    <p class="text-sm text-indigo-200 mt-2 mb-6 leading-relaxed">Referencia para webs de 4 a 6 páginas.<br>En la primera llamada cerramos precio y alcance.</p>
-                    <a href="https://wa.me/+34622494800?text=Hola%20Nodo%2C%20quiero%20hablar%20de%20mi%20proyecto%20web.%20%C2%BFPodemos%20agendar%20una%20llamada%3F"
-                        target="_blank" rel="noopener"
-                        class="block w-full py-3 px-4 bg-white text-indigo-700 font-bold rounded-lg hover:bg-indigo-50 transition text-sm">
-                        Hablar del proyecto
-                    </a>
-                    <a href="#before-after" class="mt-3 text-xs text-indigo-200 hover:text-white transition">Ver proyectos reales →</a>
-                </aside>
-            </div>
-
-            <!-- Pilares -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
-                <div class="bg-white rounded-xl border border-gray-100 p-4 text-center">
-                    <p class="text-sm font-bold text-gray-900 mb-1">Diseño a medida</p>
-                    <p class="text-xs text-gray-400 leading-snug">UI/UX exclusivo para tu marca</p>
-                </div>
-                <div class="bg-white rounded-xl border border-gray-100 p-4 text-center">
-                    <p class="text-sm font-bold text-gray-900 mb-1">Motion & 3D</p>
-                    <p class="text-xs text-gray-400 leading-snug">Animaciones que diferencian</p>
-                </div>
-                <div class="bg-white rounded-xl border border-gray-100 p-4 text-center">
-                    <p class="text-sm font-bold text-gray-900 mb-1">Rendimiento</p>
-                    <p class="text-xs text-gray-400 leading-snug">Rápida, segura, optimizada</p>
-                </div>
-                <div class="bg-white rounded-xl border border-gray-100 p-4 text-center">
-                    <p class="text-sm font-bold text-gray-900 mb-1">Conversión</p>
-                    <p class="text-xs text-gray-400 leading-snug">Cada detalle, con intención</p>
-                </div>
-            </div>
-
-            <!-- Proceso -->
-            <div class="grid md:grid-cols-3 gap-6 mb-10 text-center">
-                <div>
-                    <div class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 text-sm font-extrabold mb-3">1</div>
-                    <p class="text-sm font-bold text-gray-900 mb-1">Videollamada</p>
-                    <p class="text-xs text-gray-400 leading-relaxed">Entendemos tu negocio y definimos alcance</p>
-                </div>
-                <div>
-                    <div class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 text-sm font-extrabold mb-3">2</div>
-                    <p class="text-sm font-bold text-gray-900 mb-1">Propuesta cerrada</p>
-                    <p class="text-xs text-gray-400 leading-relaxed">Precio, plazos y entregas acordados</p>
-                </div>
-                <div>
-                    <div class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 text-sm font-extrabold mb-3">3</div>
-                    <p class="text-sm font-bold text-gray-900 mb-1">Proyecto por fases</p>
-                    <p class="text-xs text-gray-400 leading-relaxed">Avances semanales hasta el lanzamiento</p>
-                </div>
-            </div>
-
-            <!-- Filtro -->
-            <p class="text-center text-sm text-gray-400 italic max-w-lg mx-auto mb-8 leading-relaxed">
-                Esto es una criba, no un catálogo. Si buscas lo más barato, no encajamos. Si quieres un proyecto que impacte de verdad, hablemos.
-            </p>
-
-            <!-- Planes mensuales (secundario) -->
-            <details class="bg-white rounded-xl border border-gray-100 overflow-hidden mb-6 group">
-                <summary class="px-5 py-4 text-sm font-semibold text-gray-600 cursor-pointer list-none flex items-center justify-between gap-4 select-none">
-                    ¿Ya tienes tu web y quieres que sigamos creciendo contigo?
-                    <span class="text-indigo-500 text-xl font-light flex-shrink-0 group-open:rotate-45 transition-transform">+</span>
-                </summary>
-                <div class="px-5 pb-5 border-t border-gray-50">
-                    <p class="text-xs text-gray-400 pt-4 pb-3 leading-relaxed">Planes mensuales opcionales para mantenimiento, SEO y contenido. Solo para clientes Nodo o webs ya lanzadas con nosotros. Mínimo 3 meses.</p>
-                    <div class="divide-y divide-gray-50">
-                        <div class="flex items-center justify-between gap-4 py-3">
-                            <div>
-                                <p class="text-sm font-bold text-gray-900">Nodo Start</p>
-                                <p class="text-xs text-gray-400 mt-0.5">Hosting, mantenimiento y 1 artículo SEO al mes</p>
-                            </div>
-                            <p class="text-sm font-bold text-indigo-600 whitespace-nowrap">349€<span class="font-normal text-gray-400">/mes</span></p>
-                        </div>
-                        <div class="flex items-center justify-between gap-4 py-3">
-                            <div>
-                                <p class="text-sm font-bold text-gray-900">Nodo Run</p>
-                                <p class="text-xs text-gray-400 mt-0.5">Todo lo de Start + informes, 2 artículos SEO y mejoras técnicas</p>
-                            </div>
-                            <p class="text-sm font-bold text-indigo-600 whitespace-nowrap">449€<span class="font-normal text-gray-400">/mes</span></p>
-                        </div>
-                        <div class="flex items-center justify-between gap-4 py-3">
-                            <div>
-                                <p class="text-sm font-bold text-gray-900">Nodo Pro</p>
-                                <p class="text-xs text-gray-400 mt-0.5">Branding, campañas Ads, 3D y soporte prioritario</p>
-                            </div>
-                            <p class="text-sm font-bold text-indigo-600 whitespace-nowrap">desde 649€<span class="font-normal text-gray-400">/mes</span></p>
-                        </div>
-                    </div>
-                </div>
-            </details>
-
-            <p class="text-center text-xs text-gray-400 leading-relaxed">
-                También hacemos branding, escenas 3D, campañas y chatbots como encargos puntuales.
-                <a href="https://wa.me/+34622494800?text=Quiero%20informaci%C3%B3n%20sobre%20servicios%20puntuales%20con%20Nodo"
-                    target="_blank" rel="noopener" class="text-indigo-600 font-semibold hover:underline">Pregúntanos →</a>
-            </p>
-
-        </div>
-    </section>
-
-    <section class="nodo-faq-section" id="nodo-faq-section">
-        <div class="nodo-faq-container">
-            <header class="nodo-faq-header">
-                <h2>Preguntas</h2>
-                <p>Claro y corto. Si falta algo, lo vemos en la llamada.</p>
-            </header>
-
-            <div class="nodo-faq-grid">
-                <div class="nodo-faq-item">
-                    <button class="nodo-faq-question">
-                        <span>¿Cuánto cuesta tener mi negocio en internet?</span>
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <div class="nodo-faq-answer">
-                        <p>Un proyecto de <strong>4–6 páginas</strong> con diseño a medida, animaciones y 3D parte desde <strong>3.500€</strong>. Más páginas, e-commerce o funcionalidades especiales se presupuestan aparte. En la primera llamada cerramos alcance y precio — sin sorpresas.</p>
-                    </div>
-                </div>
-
-                <div class="nodo-faq-item">
-                    <button class="nodo-faq-question">
-                        <span>¿En cuánto tiempo podré ver mi web funcionando?</span>
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <div class="nodo-faq-answer">
-                        <p>Para proyectos web completos, entre 4 y 8 semanas según complejidad. Trabajamos por fases — verás avances desde la primera semana y podrás dar feedback en todo el proceso.</p>
-                    </div>
-                </div>
-
-                <div class="nodo-faq-item">
-                    <button class="nodo-faq-question">
-                        <span>¿Me quedo atado a un contrato largo?</span>
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <div class="nodo-faq-answer">
-                        <p>No. Aunque ofrecemos mejores precios por permanencia, puedes cancelar cuando quieras sin penalizaciones. Queremos que te quedes por los resultados que conseguimos juntos, no por un contrato.</p>
-                    </div>
-                </div>
-
-                <div class="nodo-faq-item">
-                    <button class="nodo-faq-question">
-                        <span>¿Por qué elegirnos frente a hacer la web por mi cuenta?</span>
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <div class="nodo-faq-answer">
-                        <p>Te ahorramos tiempo, dolores de cabeza y dinero a largo plazo. Nos encargamos de todo lo técnico (hosting, mantenimiento, seguridad, SEO) mientras tú te centras en tu negocio. Y lo más importante: construimos algo que realmente atrae clientes, no solo una web bonita.</p>
-                    </div>
-                </div>
-
-                <div class="nodo-faq-item">
-                    <button class="nodo-faq-question">
-                        <span>¿Qué pasa si necesito cambios después del lanzamiento?</span>
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <div class="nodo-faq-answer">
-                        <p>Todos nuestros planes incluyen mantenimiento y actualizaciones mensuales. Si necesitas cambios pequeños, los hacemos sin coste adicional. Para cambios mayores, te damos prioridad y precios especiales por ser cliente.</p>
-                    </div>
-                </div>
-
-                <div class="nodo-faq-item">
-                    <button class="nodo-faq-question">
-                        <span>¿Cómo empiezo? ¿Cuál es el primer paso?</span>
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <div class="nodo-faq-answer">
-                        <p>Escríbenos por WhatsApp o rellena el formulario de contacto. Te respondemos en menos de 24h
-                            para agendar una videollamada gratuita donde revisamos tu proyecto y te damos
-                            recomendaciones concretas, sin compromiso.</p>
-                    </div>
-                </div>
-
-                <div class="nodo-faq-item">
-                    <button class="nodo-faq-question">
-                        <span>¿Mi negocio es demasiado pequeño para Nodo?</span>
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <div class="nodo-faq-answer">
-                        <p>No. Trabajamos con negocios de todos los tamaños, desde autónomos que empiezan hasta empresas establecidas. Nuestros planes son escalables y crecen contigo. Lo importante es que quieras hacer crecer tu negocio online.</p>
-                    </div>
-                </div>
-
-                <div class="nodo-faq-item">
-                    <button class="nodo-faq-question">
-                        <span>¿Y si luego quiero más servicios?</span>
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <div class="nodo-faq-answer">
-                        <p>Puedes subir de plan mensual o añadir servicios cuando lo necesites. Lo habitual: lanzamos el proyecto web y, si encaja, activamos Start, Run o Pro para seguir creciendo.</p>
-                    </div>
-                </div>
-            </div>
-    </section>
-
-
-
-
-
-
-    <section class="nodo-contact-section" id="nodo-contact-section">
-        <div class="nodo-contact-header">
-            <h2>Hablemos</h2>
-            <p>30 minutos. Si encaja, lo hacemos. Si no, lo comprobamos al momento. En <span
-                    style="text-decoration: underline; color: #471fa5; ">Nodo</span> no hay plantilla: la web se hace a mano.</p>
-        </div>
-
-        <div class="nodo-contact-container">
-            <div class="nodo-contact-form">
-                <form id="nodo-contact-form" action="https://formspree.io/f/mkgjngab" method="POST" target="_blank">
-                    <div class="nodo-form-group">
-                        <label for="name">Nombre completo</label>
-                        <input type="text" id="name" name="name" placeholder="¿Cómo te llamas?" required>
-                    </div>
-                    <div class="nodo-form-group">
-                        <label for="email">Correo electrónico</label>
-                        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
-                    </div>
-                    <div class="nodo-form-group">
-                        <label for="phone">Teléfono (opcional)</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Tu número de contacto">
-                    </div>
-                    <div class="nodo-form-group">
-                        <label for="subject">Asunto</label>
-                        <input type="text" id="subject" name="subject" placeholder="¿En qué podemos ayudarte?" required>
-                    </div>
-                    <div class="nodo-form-group">
-                        <label for="message">Mensaje</label>
-                        <textarea id="message" name="message" placeholder="Cuéntanos los detalles de tu proyecto..."
-                            required></textarea>
-                    </div>
-                    <div style="text-align: center;">
-                        <button type="submit" class="nodo-submit-btn">Enviar mensaje</button>
-                    </div>
-                </form>
-            </div>
-
-            <div class="nodo-contact-info">
-                <div class="nodo-info-content-wrapper">
-                    <h3 class="nodo-info-title">Información de contacto</h3>
-
-                    <div class="nodo-info-item">
-                        <div class="nodo-info-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="nodo-info-content">
-                            <h4>Ubicación</h4>
-                            <p>Barcelona, España</p>
-                        </div>
-                    </div>
-
-                    <div class="nodo-info-item">
-                        <div class="nodo-info-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="nodo-info-content">
-                            <h4>Correo electrónico</h4>
-                            <a href="mailto:nodoagenciadigital@hotmail.com">nodoagenciadigital@hotmail.com</a>
-                        </div>
-                    </div>
-
-                    <div class="nodo-info-item">
-
-                        <div class="nodo-info-icon">
-                            <a href="https://wa.me/+34622494800?text=Hola.%20Quiero%20una%20web%20Nodo."
-                                target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-phone-alt"></i>
-                            </a>
-                        </div>
-                        <div class="nodo-info-content">
-                            <h4>Teléfono</h4>
-                            <a href="tel:+34622494800">+34 622 494 800</a>
-                        </div>
-                    </div>
-
-                    <div class="nodo-info-item">
-                        <div class="nodo-info-icon">
-                            <i class="far fa-clock"></i>
-                        </div>
-                        <div class="nodo-info-content">
-                            <h4>Horario de atención</h4>
-                            <p>Lun - Vie: 9:00 - 20:00</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="nodo-social-links" style="align-items: center; margin: 0 auto; gap: 5rem;">
-                    <a href="https://www.instagram.com/nodo3digital/" title="Instagram"><i
-                            class="fab fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/company/105128705/" title="LinkedIn"><i
-                            class="fab fa-linkedin-in"></i></a>
-                    <a href="https://wa.me/+34622494800?text=Hola.%20Quiero%20una%20web%20Nodo."
-                        title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-
-
-
-    <footer class="nodo-footer"
-        style="background: #232347; color: #fff; padding: 40px 0 0 0; font-family: 'Poppins', sans-serif;">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
-            <div style="display: flex; flex-direction: column; align-items: center; gap: 24px;">
-                <!-- Logo y tagline -->
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-                    <a href="https://nodoamd.github.io/" style="display: flex; align-items: center; gap: 10px;">
-                        <img src="./img/nodedos.svg" alt="Nodo"
-                            style="height: 38px; width: 38px;">
-                        <span style="font-size: 1.5rem; font-weight: 700; color: #fff;">Nodo</span>
-                    </a>
-                    <p style="font-size: 1rem; color: #bdbdfc; margin: 0;">Una web que conecta con quien te busca.</p>
-                </div>
-                <!-- Enlaces -->
-                <nav style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; margin: 16px 0;">
-                    <a href="#made-in-nodo"
-                        style="color: #bdbdfc; text-decoration: none; font-weight: 500; transition: color 0.2s;"
-                        onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">Servicios</a>
-                    <a href="#before-after"
-                        style="color: #bdbdfc; text-decoration: none; font-weight: 500; transition: color 0.2s;"
-                        onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">Proyectos</a>
-                    <a href="#pricing-container"
-                        style="color: #bdbdfc; text-decoration: none; font-weight: 500; transition: color 0.2s;"
-                        onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">Precios</a>
-                    <a href="#nodo-faq-section"
-                        style="color: #bdbdfc; text-decoration: none; font-weight: 500; transition: color 0.2s;"
-                        onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">FAQ</a>
-                    <a href="https://wa.me/+34622494800?text=Hola.%20Quiero%20una%20web%20Nodo."
-                        target="_blank"
-                        style="color: #fff; background: #4e53be; border-radius: 20px; padding: 6px 18px; font-weight: 600; text-decoration: none; transition: background 0.2s;"
-                        onmouseover="this.style.background='#6c72e5'"
-                        onmouseout="this.style.background='#4e53be'">Contacto</a>
-                    <a href="./consulta.html"
-                        style="color: #fff; background: #6c72e5; border-radius: 20px; padding: 6px 18px; font-weight: 600; text-decoration: none; transition: background 0.2s;"
-                        onmouseover="this.style.background='#4e53be'"
-                        onmouseout="this.style.background='#6c72e5'">Cotizar
-                        Proyecto</a>
-                </nav>
-                <!-- Logos secundarios -->
-                <div style="display: flex; gap: 18px; align-items: center; margin-bottom: 8px;">
-                    <a href="https://impresionesbarcelona.com/" target="_blank">
-                        <img src="./img/impresiones.png" alt="Logo Impresiones Barcelona"
-                            style="height: 48px; width: auto; filter: brightness(1.5); opacity: 0.8;">
-                    </a>
-                </div>
-                <!-- Social -->
-                <div style="display: flex; gap: 18px; margin-bottom: 12px;">
-                    <a href="https://www.instagram.com/nodo3digital/" target="_blank" title="Instagram"
-                        style="color: #bdbdfc; font-size: 1.3rem; transition: color 0.2s;"
-                        onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'"><i
-                            class="fab fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/company/nodo-3d-agencia-marketing-digital/?viewAsMember=true"
-                        target="_blank" title="LinkedIn"
-                        style="color: #bdbdfc; font-size: 1.3rem; transition: color 0.2s;"
-                        onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'"><i
-                            class="fab fa-linkedin-in"></i></a>
-                </div>
-                <!-- Footer con enlaces legales actualizados -->
-                <footer class="nodo-footer"
-                    style="background: #232347; color: #fff; padding: 40px 0 0 0; font-family: 'Poppins', sans-serif;">
-                    <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
-                        <!-- ... contenido existente del footer ... -->
-
-                        <!-- Añadir nueva sección de enlaces legales -->
-                        <div style="border-top: 1px solid #39396a; margin-top: 24px; padding-top: 24px;">
-                            <nav
-                                style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; margin-bottom: 16px;">
-                                <a href="./legal/aviso-legal.html"
-                                    style="color: #bdbdfc; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;"
-                                    onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">
-                                    Aviso Legal
-                                </a>
-                                <a href="./legal/politica-privacidad.html"
-                                    style="color: #bdbdfc; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;"
-                                    onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">
-                                    Política de Privacidad
-                                </a>
-                                <a href="./legal/politica-cookies.html"
-                                    style="color: #bdbdfc; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;"
-                                    onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">
-                                    Política de Cookies
-                                </a>
-                                <a href="./legal/condiciones-servicio.html"
-                                    style="color: #bdbdfc; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;"
-                                    onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">
-                                    Condiciones del Servicio
-                                </a>
-                                <a href="./legal/rgpd.html"
-                                    style="color: #bdbdfc; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;"
-                                    onmouseover="this.style.color='#6c72e5'" onmouseout="this.style.color='#bdbdfc'">
-                                    RGPD
-                                </a>
-                            </nav>
-                            <p style="text-align: center; color: #bdbdfc; font-size: 0.85rem; margin-bottom: 16px;">
-                                Nodo cumple con el Reglamento General de Protección de Datos (RGPD) y la
-                                LOPD-GDD.
-                            </p>
-                        </div>
-
-                        <div
-                            style="border-top: 1px solid #39396a; margin-top: 32px; padding: 18px 0 8px 0; text-align: center; color: #bdbdfc; font-size: 0.95rem;">
-                            © 2026 Nodo. Todos los derechos reservados.
-                        </div>
-                    </div>
-                </footer>
-            </div>
-            <div
-                style="border-top: 1px solid #39396a; margin-top: 32px; padding: 18px 0 8px 0; text-align: center; color: #bdbdfc; font-size: 0.95rem;">
-
-            </div>
-        </div>
-    </footer>
-
-
-
-
-
-
-
-    <div class="custom-cursor"></div>
-
-    <div class="cta">
-        <a href="https://wa.me/+34622494800?text=Hola.%20Quiero%20una%20web%20Nodo." target="_blank"
-            style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; border-radius: 30px; background: #4e53be; color: #fff; font-weight: 600; font-size: 1rem; box-shadow: 0 2px 8px rgba(78,83,190,0.08); transition: background 0.2s;">
-            <img src="./img/nodedos.svg" alt="Logo Nodo" style="height: 24px; width: 24px; margin-right: 6px;">
-            Contactar
-        </a>
-    </div>
-
-    <script>
-        document.querySelectorAll(".card").forEach(card => {
-            const hoverInfo = card.querySelector(".hover-info");
-
-            card.addEventListener("mousemove", (e) => {
-                const { left, top } = card.getBoundingClientRect();
-                hoverInfo.style.left = `${e.clientX - left}px`;
-                hoverInfo.style.top = `${e.clientY - top}px`;
-                hoverInfo.style.opacity = 1;
-            });
-
-            card.addEventListener("mouseleave", () => {
-                hoverInfo.style.opacity = 0;
-            });
-        });
-
-
-
-
-
-
-
-
-        const cursor = document.querySelector(".custom-cursor");
-        let cursorX = 0, cursorY = 0;
-        let targetX = 0, targetY = 0;
-        const speed = 0.2; // Ajusta la fluidez (0.1 = más lento, 0.3 = más rápido)
-
-        document.addEventListener("mousemove", (e) => {
-            targetX = e.clientX;
-            targetY = e.clientY;
-        });
-
-        function smoothCursor() {
-            cursorX += (targetX - cursorX) * speed;
-            cursorY += (targetY - cursorY) * speed;
-
-            cursor.style.left = `${cursorX}px`;
-            cursor.style.top = `${cursorY}px`;
-
-            requestAnimationFrame(smoothCursor);
-        }
-
-        smoothCursor();
-
-
-
-
-
-
-
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const statsSection = document.querySelector(".stats-section");
-            if (!statsSection) return;
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        statsSection.classList.add("show");
-                        observer.unobserve(statsSection);
-                    }
-                });
-            }, { threshold: 0.3 });
-
-            observer.observe(statsSection);
-        });
-
-        // Controlar animaciones del hero y sincronizarlas con la carga del Spline
-        document.addEventListener('DOMContentLoaded', () => {
-            const beforeAfter = document.querySelector('#before-after');
-            const beforeCard = beforeAfter?.querySelector('.before-card');
-            const afterCard = beforeAfter?.querySelector('.after-card');
-            const progressBars = beforeAfter ? beforeAfter.querySelectorAll('.progress-fill') : [];
-            const beforeBars = beforeAfter ? beforeAfter.querySelectorAll('.progress-fill.before-bar') : [];
-            const afterBars = beforeAfter ? beforeAfter.querySelectorAll('.progress-fill.after-bar') : [];
-            const beforeBadges = beforeAfter ? beforeAfter.querySelectorAll('.before-card svg, .before-card span') : [];
-            const afterBadges = beforeAfter ? beforeAfter.querySelectorAll('.after-card svg, .after-card span') : [];
-
-            const setBarsToTarget = () => {
-                progressBars.forEach(bar => {
-                    bar.style.width = `${bar.dataset.target || 0}%`;
-                });
-            };
-
-            if (beforeCard && afterCard && window.gsap && window.ScrollTrigger && beforeAfter) {
-                progressBars.forEach(bar => {
-                    bar.style.width = '0%';
-                });
-
-                gsap.registerPlugin(ScrollTrigger);
-
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: beforeAfter,
-                        start: 'top 70%',
-                        once: true
-                    }
-                });
-
-                tl.from(beforeCard, { opacity: 0, y: 40, duration: 0.7, ease: 'power2.out' }, 0)
-                    .from(beforeBadges, { opacity: 0, y: 12, stagger: 0.05, duration: 0.35, ease: 'power1.out' }, '-=0.35')
-                    .to(beforeBars, {
-                        width: (i, el) => `${el.dataset.target || 0}%`,
-                        duration: 0.9,
-                        ease: 'power1.out'
-                    }, '-=0.2')
-                    .from(afterCard, { opacity: 0, y: 40, duration: 0.7, ease: 'power2.out' }, 0)
-                    .from(afterBadges, { opacity: 0, y: 12, stagger: 0.06, duration: 0.4, ease: 'power1.out' }, '-=0.65')
-                    .to(afterBars, {
-                        width: (i, el) => `${el.dataset.target || 0}%`,
-                        duration: 1,
-                        ease: 'power1.out'
-                    }, '-=0.2');
-
-                tl.set([beforeCard, afterCard], { opacity: 1, y: 0, pointerEvents: "auto" });
-            }
-        });
-
-        document.addEventListener("DOMContentLoaded", function () {
-            const cards = document.querySelectorAll(".nodo-service-card");
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("visible");
-                    }
-                });
-            }, { threshold: 0.3 });
-
-            cards.forEach(card => observer.observe(card));
-        });
-
-
-
-
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const parallaxContent = document.querySelector('.parallax-content');
-            const parallaxSection = document.querySelector('.parallax-section');
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        parallaxContent.classList.add('parallax-visible');
-                    } else {
-                        parallaxContent.classList.remove('parallax-visible');
-                    }
-                });
-            }, {
-                threshold: 0.5
-            });
-
-            observer.observe(parallaxSection);
-        });
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const faqItems = document.querySelectorAll('.nodo-faq-question');
-
-            faqItems.forEach(item => {
-                item.addEventListener('click', function () {
-                    // Toggle active class on question
-                    this.classList.toggle('active');
-
-                    // Toggle answer visibility
-                    const answer = this.nextElementSibling;
-                    answer.classList.toggle('active');
-
-                    // Close other open answers
-                    faqItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('active');
-                            otherItem.nextElementSibling.classList.remove('active');
-                        }
-                    });
-                });
-            });
-        });
-
-
-        // Agregar después del último script existente
-        document.addEventListener('DOMContentLoaded', function () {
-            const track = document.querySelector('.testimonials-track');
-            const slides = document.querySelectorAll('.testimonial-slide');
-            const dotsContainer = document.querySelector('.slider-dots');
-            const slideWidth = slides[0].offsetWidth;
-            let currentIndex = 0;
-            let autoSlideInterval;
-
-            // Crear dots
-            slides.forEach((_, index) => {
-                const dot = document.createElement('button');
-                dot.classList.add('slider-dot');
-                if (index === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => goToSlide(index));
-                dotsContainer.appendChild(dot);
-            });
-
-            const dots = document.querySelectorAll('.slider-dot');
-
-            function updateDots() {
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentIndex);
-                });
-            }
-
-            function goToSlide(index) {
-                currentIndex = index;
-                track.style.transform = `translateX(-${currentIndex * 100}%)`;
-                updateDots();
-                resetAutoSlide();
-            }
-
-            function nextSlide() {
-                currentIndex = (currentIndex + 1) % slides.length;
-                goToSlide(currentIndex);
-            }
-
-            function resetAutoSlide() {
-                clearInterval(autoSlideInterval);
-                autoSlideInterval = setInterval(nextSlide, 5000); // Cambiar cada 5 segundos
-            }
-
-            // Iniciar el autoplay
-            resetAutoSlide();
-
-            // Detener autoplay cuando el usuario interactúa
-            track.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
-            track.addEventListener('mouseleave', resetAutoSlide);
-        });
-    </script>
-
-    <!-- ==================== GSAP ANIMATIONS ==================== -->
-    <script src="./made-in-nodo.js"></script>
-    <script src="./why-nodo-animations.js"></script>
-    <script src="./portfolio-carousel.js"></script>
-
+  <script src="js/main.js"></script>
 </body>
-
 </html>
