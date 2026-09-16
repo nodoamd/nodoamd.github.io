@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BetterWLPRS — $4.99 One Time Forever. No Subscriptions.</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/logobetterwlprs.png">
+    <link rel="icon" type="image/png" href="img/logobetterwlprs.png">
     <!-- Tipografía -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
@@ -31,14 +31,14 @@
     <!-- NUEVA NAVEGACIÓN -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="nav-brand">
+            <a href="#hero" class="nav-brand">
                 BetterWLPRS
-            </div>
+            </a>
             <!-- banner removed from nav to prevent layout overlap; moved below nav for better layout -->
             <!-- Desktop Menu -->
             <div class="nav-menu" id="navMenu">
-                <a href="#hero" class="nav-item active" data-section="gallery" data-i18n="nav.gallery">Home</a>
-                <a href="#gallery" class="nav-item" data-section="videos" data-i18n="nav.videos">Videos</a>
+                <a href="#hero" class="nav-item active" data-section="hero" data-i18n="nav.gallery">Home</a>
+                <a href="#gallery" class="nav-item" data-section="gallery" data-i18n="nav.videos">Videos</a>
                 <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">How it works</a>
                 <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Benefits</a>
                 <a href="galeria.html" class="nav-item" style="color: var(--accent); font-weight: 600;">
@@ -72,11 +72,12 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-content">
-            <a href="#hero" class="nav-item" data-section="gallery" data-i18n="nav.gallery">Home</a>
-            <a href="#gallery" class="nav-item" data-section="videos" data-i18n="nav.videos">Videos</a>
+            <a href="#hero" class="nav-item" data-section="hero" data-i18n="nav.gallery">Home</a>
+            <a href="#gallery" class="nav-item" data-section="gallery" data-i18n="nav.videos">Videos</a>
             <a href="#how" class="nav-item" data-section="how" data-i18n="nav.how">How it works</a>
             <a href="#benefits" class="nav-item" data-section="benefits" data-i18n="nav.benefits">Benefits</a>
-            <a href="mailto:dfernandezy@hotmail.com?subject=Request%20Starter%20Pack" class="nav-item" data-section="gallery" data-i18n="nav.gallery">🎁 Request Starter Pack</a>
+            <a href="galeria.html" class="nav-item">Gallery</a>
+            <a href="mailto:dfernandezy@hotmail.com?subject=Request%20Starter%20Pack" class="nav-item">🎁 Request Starter Pack</a>
             <div class="mobile-nav-actions">
                 <div class="mobile-toggles">
                     <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme">
@@ -175,7 +176,7 @@
             <div
                 style="margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(167, 135, 255, 0.2); border: 2px solid rgba(167, 135, 255, 0.15);">
                 <video width="100%" height="auto" autoplay muted loop style="display: block; background: #000;">
-                    <source src="img/OptimizedVideoWLPRS/DeathStranding-SamWindy-VideoWLPR-web.mp4" type="video/mp4">
+                    <source src="https://beautiful-cupcake-e687e2.netlify.app/DeathStranding-SamWindy-VideoWLPR-83.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -284,7 +285,7 @@
             <!-- Card 1: VideoWLPRS -->
             <div class="card">
                 <div class="card-image" style="aspect-ratio: 16/9; position: relative;">
-                    <video id="videoWLPRS" src="./img/OptimizedVideoWLPRS/DeathStranding-SamWindy-VideoWLPR-web.mp4"
+                    <video id="videoWLPRS" src="https://beautiful-cupcake-e687e2.netlify.app/DeathStranding-SamWindy-VideoWLPR-83.mp4"
                         autoplay muted loop playsinline
                         style="width:100%;height:100%;aspect-ratio:16/9;display:block;border-radius:20px;object-fit:cover;"></video>
                     <!-- Botón de audio -->
@@ -391,7 +392,7 @@
                     <!-- VideoWLPR - Death Stranding -->
                     <div class="slider-item">
                         <video autoplay muted loop playsinline class="slider-media">
-                            <source src="./img/OptimizedVideoWLPRS/DeathStranding-SamWindy-VideoWLPR-web.mp4"
+                            <source src="https://beautiful-cupcake-e687e2.netlify.app/DeathStranding-SamWindy-VideoWLPR-83.mp4"
                                 type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
@@ -399,21 +400,21 @@
                     <!-- VideoWLPR - Metro Exodus -->
                     <div class="slider-item">
                         <video autoplay muted loop playsinline class="slider-media">
-                            <source src="./img/OptimizedVideoWLPRS/MetroExodus_01-web.mp4" type="video/mp4">
+                            <source src="https://beautiful-cupcake-e687e2.netlify.app/MetroExodus%2003-119.mp4" type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
                     </div>
                     <!-- VideoWLPR - Skyrim -->
                     <div class="slider-item">
                         <video autoplay muted loop playsinline class="slider-media">
-                            <source src="./img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_04-web.mp4" type="video/mp4">
+                            <source src="https://beautiful-cupcake-e687e2.netlify.app/Skyrim%20VideoWLPR%2004-166.mp4" type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
                     </div>
                     <!-- VideoWLPR - The Witcher 3 -->
                     <div class="slider-item">
                         <video autoplay muted loop playsinline class="slider-media">
-                            <source src="./img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.17.38.01-web.mp4"
+                            <source src="https://beautiful-cupcake-e687e2.netlify.app/The%20Witcher%203%202025.10.02%20-%2019.17.38.01-183.mp4"
                                 type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
@@ -421,7 +422,7 @@
                     <!-- VideoWLPR - Batman Arkham -->
                     <div class="slider-item">
                         <video autoplay muted loop playsinline class="slider-media">
-                            <source src="./img/OptimizedVideoWLPRS/BatmanKnight-NightWalker-VideoWLPR-web.mp4"
+                            <source src="https://beautiful-cupcake-e687e2.netlify.app/Batman-ArkhamKnight-VideoWLPR-01-(Cropped)-66.mp4"
                                 type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
@@ -429,14 +430,14 @@
                     <!-- VideoWLPR - Spider-Man 2 -->
                     <div class="slider-item">
                         <video autoplay muted loop playsinline class="slider-media">
-                            <source src="./img/OptimizedVideoWLPRS/SM2-SkyView-VideoWLPR 2-web.mp4" type="video/mp4">
+                            <source src="https://beautiful-cupcake-e687e2.netlify.app/SM2-SkyView-VideoWLPR%202-164.mp4" type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
                     </div>
                     <!-- VideoWLPR - Mad Max -->
                     <div class="slider-item">
                         <video autoplay muted loop playsinline class="slider-media">
-                            <source src="./img/OptimizedVideoWLPRS/Mad-Max-MoonLightHouse-VideoWLPR-web.mp4"
+                            <source src="https://beautiful-cupcake-e687e2.netlify.app/Mad-Max-MoonLightHouse-VideoWLPR-115.mp4"
                                 type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
@@ -444,7 +445,7 @@
                     <!-- VideoWLPR - Prey -->
                     <div class="slider-item">
                         <video autoplay muted loop playsinline class="slider-media">
-                            <source src="./img/OptimizedVideoWLPRS/Prey (2017) 2025.09.08 - 18.00.41.02 - Trm-web.mp4"
+                            <source src="https://beautiful-cupcake-e687e2.netlify.app/Prey%20(2017)%202025.09.08%20-%2018.00.41.02%20-%20Trm-143.mp4"
                                 type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
@@ -452,7 +453,7 @@
                     <!-- VideoWLPR - Spec Ops -->
                     <div class="slider-item">
                         <video autoplay muted loop playsinline class="slider-media">
-                            <source src="./img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_03-web.mp4" type="video/mp4">
+                            <source src="https://beautiful-cupcake-e687e2.netlify.app/SpecOps%20VideoWLPR%2003-174.mp4" type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
                     </div>
@@ -466,7 +467,7 @@
                     <!-- VideoWLPR - Death Stranding -->
                     <div class="slider-item">
                         <video autoplay muted loop playsinline class="slider-media">
-                            <source src="./img/OptimizedVideoWLPRS/DeathStranding-SamWindy-VideoWLPR-web.mp4"
+                            <source src="https://beautiful-cupcake-e687e2.netlify.app/DeathStranding-SamWindy-VideoWLPR-83.mp4"
                                 type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
@@ -474,21 +475,21 @@
                     <!-- VideoWLPR - Metro Exodus -->
                     <div class="slider-item">
                         <video autoplay muted loop playsinline class="slider-media">
-                            <source src="./img/OptimizedVideoWLPRS/MetroExodus_01-web.mp4" type="video/mp4">
+                            <source src="https://beautiful-cupcake-e687e2.netlify.app/MetroExodus%2003-119.mp4" type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
                     </div>
                     <!-- VideoWLPR - Skyrim -->
                     <div class="slider-item">
                         <video autoplay muted loop playsinline class="slider-media">
-                            <source src="./img/OptimizedVideoWLPRS/Skyrim_VideoWLPR_04-web.mp4" type="video/mp4">
+                            <source src="https://beautiful-cupcake-e687e2.netlify.app/Skyrim%20VideoWLPR%2004-166.mp4" type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
                     </div>
                     <!-- VideoWLPR - The Witcher 3 -->
                     <div class="slider-item">
                         <video autoplay muted loop playsinline class="slider-media">
-                            <source src="./img/OptimizedVideoWLPRS/The Witcher 3 2025.10.02 - 19.17.38.01-web.mp4"
+                            <source src="https://beautiful-cupcake-e687e2.netlify.app/The%20Witcher%203%202025.10.02%20-%2019.17.38.01-183.mp4"
                                 type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
@@ -496,7 +497,7 @@
                     <!-- VideoWLPR - Batman Arkham -->
                     <div class="slider-item">
                         <video autoplay muted loop playsinline class="slider-media">
-                            <source src="./img/OptimizedVideoWLPRS/BatmanKnight-NightWalker-VideoWLPR-web.mp4"
+                            <source src="https://beautiful-cupcake-e687e2.netlify.app/Batman-ArkhamKnight-VideoWLPR-01-(Cropped)-66.mp4"
                                 type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
@@ -504,14 +505,14 @@
                     <!-- VideoWLPR - Spider-Man 2 -->
                     <div class="slider-item">
                         <video autoplay muted loop playsinline class="slider-media">
-                            <source src="./img/OptimizedVideoWLPRS/SM2-SkyView-VideoWLPR 2-web.mp4" type="video/mp4">
+                            <source src="https://beautiful-cupcake-e687e2.netlify.app/SM2-SkyView-VideoWLPR%202-164.mp4" type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
                     </div>
                     <!-- VideoWLPR - Mad Max -->
                     <div class="slider-item">
                         <video autoplay muted loop playsinline class="slider-media">
-                            <source src="./img/OptimizedVideoWLPRS/Mad-Max-MoonLightHouse-VideoWLPR-web.mp4"
+                            <source src="https://beautiful-cupcake-e687e2.netlify.app/Mad-Max-MoonLightHouse-VideoWLPR-115.mp4"
                                 type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
@@ -519,7 +520,7 @@
                     <!-- VideoWLPR - Prey -->
                     <div class="slider-item">
                         <video autoplay muted loop playsinline class="slider-media">
-                            <source src="./img/OptimizedVideoWLPRS/Prey (2017) 2025.09.08 - 18.00.41.02 - Trm-web.mp4"
+                            <source src="https://beautiful-cupcake-e687e2.netlify.app/Prey%20(2017)%202025.09.08%20-%2018.00.41.02%20-%20Trm-143.mp4"
                                 type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
@@ -527,7 +528,7 @@
                     <!-- VideoWLPR - Spec Ops -->
                     <div class="slider-item">
                         <video autoplay muted loop playsinline class="slider-media">
-                            <source src="./img/OptimizedVideoWLPRS/SpecOps_VideoWLPR_03-web.mp4" type="video/mp4">
+                            <source src="https://beautiful-cupcake-e687e2.netlify.app/SpecOps%20VideoWLPR%2003-174.mp4" type="video/mp4">
                         </video>
                         <div class="slider-badge">�� VideoWLPR</div>
                     </div>
@@ -1108,9 +1109,9 @@
                 </div>
                 <p style="font-size: 12px; color: var(--muted);">
                     <span>By subscribing you accept the</span>
-                    <a href="#" style="color: var(--accent);">Terms</a>
+                    <a href="terms.html" style="color: var(--accent);">Terms</a>
                     <span>&nbsp;and&nbsp;</span>
-                    <a href="#" style="color: var(--accent);">Privacy Policy</a>
+                    <a href="privacy.html" style="color: var(--accent);">Privacy Policy</a>
                     .
                 </p>
             </div>
@@ -1118,106 +1119,65 @@
     </div>
     <!-- FOOTER -->
     <footer class="footer">
-        <div
-            style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem;">
-            <!-- Logo y descripción -->
+        <div class="footer-grid">
             <div>
-                <div class="nav-brand" style="justify-content: flex-start; margin-bottom: 1rem;">BetterWLPRS</div>
-                <p style="color: var(--text-secondary); font-size: 14px; line-height: 1.6; margin-bottom: 1.5rem;">
-                    Unique wallpapers and premium video wallpapers for all your devices. Professional quality, exclusive
-                    designs.
-                </p>
-                <!-- Redes sociales -->
-                <div style="display: flex; gap: 12px;">
-                    <a href="https://www.tiktok.com/@betterwlprs" target="_blank"
-                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="TikTok"
-                            style="width:22px;height:22px;">
+                <a href="index.html" class="nav-brand">BetterWLPRS</a>
+                <p class="footer-blurb">Unique wallpapers and premium video wallpapers for all your devices. Professional quality, exclusive designs.</p>
+                <div class="footer-social">
+                    <a href="https://www.tiktok.com/@betterwlprs" target="_blank" rel="noopener" aria-label="TikTok">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="">
                     </a>
-                    <a href="https://instagram.com/betterwlprs" target="_blank"
-                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg"
-                            alt="Instagram" style="width:22px;height:22px;">
+                    <a href="https://instagram.com/betterwlprs" target="_blank" rel="noopener" aria-label="Instagram">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="">
                     </a>
-                    <a href="https://twitter.com/betterwlprs" target="_blank"
-                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter"
-                            style="width:22px;height:22px;">
+                    <a href="https://twitter.com/betterwlprs" target="_blank" rel="noopener" aria-label="Twitter">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="">
                     </a>
-                    <a href="https://gumroad.com/betterwlprsx" target="_blank"
-                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad"
-                            style="width:22px;height:22px;">
+                    <a href="https://www.patreon.com/betterwlprs" target="_blank" rel="noopener" aria-label="Patreon">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/patreon.svg" alt="">
                     </a>
-                    <a href="https://ko-fi.com/betterwlprs" target="_blank"
-                        style="width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
-                        <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png"
-                            alt="Ko-fi" style="width:22px;height:22px;">
+                    <a href="https://gumroad.com/betterwlprsx" target="_blank" rel="noopener" aria-label="Gumroad">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="">
+                    </a>
+                    <a href="https://ko-fi.com/betterwlprs" target="_blank" rel="noopener" aria-label="Ko-fi">
+                        <img class="keep-color" src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png" alt="">
                     </a>
                 </div>
             </div>
-            <!-- Enlaces rápidos -->
             <div>
-                <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">
-                    Quick Links
-                </h4>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <a href="#gallery"
-                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Gallery</a>
-                    <a href="#videos"
-                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Videos</a>
-                    <a href="#how"
-                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
-                        How it works
-                    </a>
-                    <a href="#benefits"
-                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">Benefits</a>
+                <h4>Navigate</h4>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="galeria.html">Gallery</a>
+                    <a href="index.html#gallery">Videos</a>
+                    <a href="index.html#how">How it works</a>
+                    <a href="index.html#benefits">Benefits</a>
                 </div>
             </div>
-            <!-- Contacto y soporte -->
             <div>
-                <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">Contacto</h4>
-                <h4 style="color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 1rem;">Contact</h4>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <a href="mailto:dfernandezy@hotmail.com"
-                        style="color: var(--accent); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
-                        📧
-                        dfernandezy@hotmail.com
-                    </a>
-                    <a href="mailto:dfernandezy@hotmail.com"
-                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
-                        🛠️
-                        Technical Support
-                    </a>
-                    <a href="#how"
-                        style="color: var(--text-secondary); font-size: 14px; transition: color 0.3s ease; text-decoration: none;">
-                        📋
-                        FAQ
-                    </a>
+                <h4>Support</h4>
+                <div class="footer-links">
+                    <a href="https://ko-fi.com/betterwlprs" target="_blank" rel="noopener">Ko-fi</a>
+                    <a href="https://www.patreon.com/betterwlprs" target="_blank" rel="noopener">Patreon</a>
+                    <a href="https://gumroad.com/betterwlprsx" target="_blank" rel="noopener">Gumroad</a>
+                    <a href="mailto:dfernandezy@hotmail.com?subject=Request%20access%20to%20BetterWLPRS">Request access</a>
+                    <a href="mailto:dfernandezy@hotmail.com">Technical support</a>
                 </div>
             </div>
         </div>
-        <!-- Copyright y legal -->
-        <div
-            style="border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div class="footer-bottom">
             <div>
-                <p style="color: var(--muted); font-size: 12px; margin: 0 0 8px 0;">
-                    © 2026 BetterWLPRS. All rights reserved.
-                </p>
-                <p style="color: var(--muted); font-size: 11px; margin: 0; max-width: 600px; line-height: 1.5;">
+                <p class="footer-copy">© 2026 BetterWLPRS. All rights reserved.</p>
+                <p class="footer-note">
                     Full library access is private and available upon request. Images are offered for personal use only.
-                    For licensing inquiries or copyright notices, contact: <a href="mailto:dfernandezy@hotmail.com" style="color:var(--accent);text-decoration:underline;">dfernandezy@hotmail.com</a>.
+                    For licensing inquiries or copyright notices, contact:
+                    <a href="mailto:dfernandezy@hotmail.com">dfernandezy@hotmail.com</a>.
                 </p>
             </div>
-            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-                <a href="terms.html"
-                    style="color: var(--muted); font-size: 12px; text-decoration: none; transition: color 0.3s ease;">Terms
-                    of Service</a>
-                <a href="privacy.html"
-                    style="color: var(--muted); font-size: 12px; text-decoration: none; transition: color 0.3s ease;">Privacy
-                    Policy</a>
-                <a href="mailto:dfernandezy@hotmail.com"
-                    style="color: var(--muted); font-size: 12px; text-decoration: none; transition: color 0.3s ease;">Contact</a>
+            <div class="footer-legal">
+                <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="mailto:dfernandezy@hotmail.com">Contact</a>
             </div>
         </div>
     </footer>
@@ -1276,7 +1236,7 @@
 
         // ========== ACTIVE NAVIGATION TRACKING (Desktop y Mobile) ==========
         // Sincroniza el resaltado de la sección activa en ambos menús
-        const sectionIds = ['hero', 'gallery', 'videos', 'how', 'benefits'];
+        const sectionIds = ['hero', 'gallery', 'how', 'benefits', 'pricing'];
         const sectionElements = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
 
         function clearActiveNavs() {
@@ -1367,6 +1327,12 @@
             if (e.target === modal) closeModal();
         });
 
+        const requestAccess = () => {
+            window.location.href = 'mailto:dfernandezy@hotmail.com?subject=Request%20access%20to%20BetterWLPRS';
+        };
+        document.getElementById('yearlyPlan')?.addEventListener('click', requestAccess);
+        document.getElementById('lifetimePlan')?.addEventListener('click', requestAccess);
+
         // Eliminar lógica de Gumroad
 
 
@@ -1394,17 +1360,12 @@
             // Add click handlers for static cards
             addStaticCardHandlers();
 
-            // Wait for content to be rendered, then init animations
             requestAnimationFrame(() => {
-                initAnimations();
-
-                // Si hay un hash en la URL, hacer visible esa sección
+                if (typeof initAnimations === 'function') initAnimations();
                 if (window.location.hash) {
                     const targetSection = document.querySelector(window.location.hash);
-                    if (targetSection) {
-                        setTimeout(() => {
-                            makeVisible(targetSection);
-                        }, 500);
+                    if (targetSection && typeof makeVisible === 'function') {
+                        setTimeout(() => makeVisible(targetSection), 500);
                     }
                 }
             });
@@ -1595,7 +1556,7 @@
         }
 
         // ========== GSAP CARISMA ANIMATIONS ==========
-        gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
         // Animate BETTER --- WLPRS split title
         gsap.timeline({
@@ -1763,24 +1724,16 @@
             });
         });
 
-        // Smooth scroll with easing
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
-                if (href !== '#' && href.length > 1) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        gsap.to(window, {
-                            duration: 1,
-                            scrollTo: {
-                                y: target,
-                                offsetY: 80
-                            },
-                            ease: 'power3.inOut'
-                        });
-                    }
-                }
+                if (!href || href === '#') return;
+                const target = document.querySelector(href);
+                if (!target) return;
+                e.preventDefault();
+                const top = target.getBoundingClientRect().top + window.scrollY - 80;
+                window.scrollTo({ top, behavior: 'smooth' });
+                history.replaceState(null, '', href);
             });
         });
 

@@ -3,1568 +3,52 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="/logobetterwlprs.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BetterWLPRS - Premium 2K Wallpapers</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'primary': '#6366f1',
-                        'primary-dark': '#4f46e5',
-                        'accent': '#a787ff',
-                        'dark': '#0a0a0f',
-                        'dark-light': '#16161f'
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <title>Gallery — BetterWLPRS</title>
+    <meta name="description" content="Browse BetterWLPRS 2K wallpapers by game, movie, photo and video.">
+    <link rel="icon" type="image/png" href="img/logobetterwlprs.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #6366f1;
-            --accent: #a787ff;
-            --dark: #0a0a0f;
-            --dark-light: #16161f;
-            --text: #ffffff;
-            --text-secondary: #a1a1aa;
-            --border: rgba(255, 255, 255, 0.06);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: var(--dark);
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* TYPOGRAPHY - ULTRA BOLD */
-        h1,
-        h2,
-        h3,
-        h4 {
-            font-weight: 900;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 8vw, 6rem);
-            font-weight: 900;
-            background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-title {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 900;
-            margin-bottom: 1rem;
-        }
-
-        /* NAVIGATION - MINIMAL & CLEAN */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 20px 0;
-            transition: all 0.3s ease;
-        }
-
-        .navbar.scrolled {
-            background: rgba(10, 10, 15, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            padding: 12px 0;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-        }
-
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 900;
-            font-size: 22px;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, var(--accent), #c4a5ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-        }
-
-        .nav-brand::before {
-            content: '';
-            position: absolute;
-            left: -8px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
-            height: 24px;
-            background: linear-gradient(135deg, var(--accent), #c4a5ff);
-            border-radius: 2px;
-        }
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 2px;
-            flex: 1;
-            justify-content: center;
-        }
-
-        .nav-item {
-            position: relative;
-            padding: 10px 18px;
-            border-radius: 8px;
-            font-weight: 500;
-            font-size: 15px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            color: var(--text-secondary);
-            text-decoration: none;
-        }
-
-        .nav-item:hover {
-            color: var(--text);
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-1px);
-        }
-
-        .nav-item.active {
-            color: var(--accent);
-            background: rgba(167, 135, 255, 0.1);
-        }
-
-        .nav-item::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%) scaleX(0);
-            width: 20px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent), #c4a5ff);
-            border-radius: 2px;
-            transition: transform 0.3s ease;
-        }
-
-        .nav-item.active::after,
-        .nav-item:hover::after {
-            transform: translateX(-50%) scaleX(1);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .icon-btn {
-            width: 36px;
-            height: 36px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-secondary);
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .icon-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--accent);
-            color: var(--text);
-            transform: translateY(-2px);
-        }
-
-        /* Mobile Menu */
-        .nav-mobile {
-            display: none;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .hamburger {
-            width: 28px;
-            height: 28px;
-            border: none;
-            background: none;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .hamburger span {
-            width: 100%;
-            height: 2px;
-            background: var(--text);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-            transform-origin: center;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translateY(6px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translateY(-6px);
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(10, 10, 15, 0.98);
-            backdrop-filter: blur(20px);
-            z-index: 999;
-            display: none;
-            padding: 80px 24px 24px;
-            overflow-y: auto;
-        }
-
-        .mobile-menu.active {
-            display: block;
-        }
-
-        .mobile-menu-content {
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .mobile-menu .nav-item {
-            width: 100%;
-            text-align: left;
-            padding: 16px 20px;
-            font-size: 18px;
-            border-radius: 12px;
-        }
-
-        .mobile-nav-actions {
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 1px solid var(--border);
-        }
-
-        .mobile-toggles {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .mobile-toggles .icon-btn {
-            flex: 1;
-            height: 48px;
-        }
-
-        .mobile-social {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .mobile-social a {
-            width: 100%;
-            justify-content: center;
-            padding: 12px 20px;
-            height: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.875rem;
-            transition: color 0.2s;
-        }
-
-        .nav-link:hover {
-            color: var(--text);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            color: var(--text);
-            padding: 0.75rem 2rem;
-            border-radius: 100px;
-            font-weight: 800;
-            font-size: 0.875rem;
-            text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(167, 135, 255, 0.3);
-        }
-
-        .btn-primary i {
-            font-size: 1rem;
-        }
-
-        /* HERO SECTION */
-        .hero {
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8rem 2rem 3rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(167, 135, 255, 0.1);
-            border: 1px solid rgba(167, 135, 255, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            font-weight: 700;
-            font-size: 0.75rem;
-            color: var(--accent);
-            margin-bottom: 2rem;
-        }
-
-        .hero-badge i {
-            font-size: 0.875rem;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--text-secondary);
-            margin: 2rem 0;
-            font-weight: 500;
-            line-height: 1.6;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            justify-content: center;
-            margin: 3rem 0;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-            margin-top: 0.5rem;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-cta .btn-primary {
-            flex: 1;
-            min-width: 200px;
-            padding: 1rem 2rem;
-            font-size: 0.9rem;
-            justify-content: center;
-        }
-
-        /* GALLERY CONTROLS (sticky bar) */
-        .gallery-controls {
-            position: sticky;
-            top: 0;
-            z-index: 500;
-            background: rgba(10, 10, 15, 0.96);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            transition: box-shadow 0.3s;
-        }
-
-        .gallery-controls.elevated {
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
-        }
-
-        .controls-top {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 10px 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .cat-tabs {
-            display: flex;
-            gap: 2px;
-            flex-shrink: 0;
-        }
-
-        .cat-tab {
-            background: transparent;
-            border: none;
-            color: rgba(255, 255, 255, 0.4);
-            padding: 0.5rem 1.1rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            font-family: inherit;
-            cursor: pointer;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-
-        .cat-tab:hover {
-            color: rgba(255, 255, 255, 0.85);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .cat-tab.active {
-            color: #ffffff;
-            background: rgba(167, 135, 255, 0.15);
-        }
-
-        .cat-count {
-            font-size: 0.7rem;
-            opacity: 0.5;
-            margin-left: 3px;
-        }
-
-        .controls-right {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-left: auto;
-        }
-
-        .type-toggle {
-            display: flex;
-            gap: 2px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 8px;
-            padding: 3px;
-        }
-
-        .type-btn {
-            background: transparent;
-            border: 1px solid transparent;
-            color: rgba(255, 255, 255, 0.4);
-            padding: 0.3rem 0.75rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            font-family: inherit;
-            cursor: pointer;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-
-        .type-btn:hover {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .type-btn.active {
-            background: rgba(167, 135, 255, 0.18);
-            border-color: rgba(167, 135, 255, 0.25);
-            color: #ffffff;
-        }
-
-        .ctrl-search {
-            position: relative;
-        }
-
-        .ctrl-search input {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 0.45rem 2rem 0.45rem 0.85rem;
-            border-radius: 8px;
-            color: var(--text);
-            font-size: 0.82rem;
-            font-weight: 500;
-            font-family: inherit;
-            width: 200px;
-            transition: border-color 0.2s, width 0.3s;
-        }
-
-        .ctrl-search input:focus {
-            outline: none;
-            border-color: var(--accent);
-            width: 260px;
-        }
-
-        .ctrl-search input::placeholder {
-            color: rgba(255, 255, 255, 0.25);
-        }
-
-        .ctrl-search-icon {
-            position: absolute;
-            right: 0.6rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.3);
-            pointer-events: none;
-        }
-
-        .ctrl-count {
-            font-size: 0.72rem;
-            color: rgba(255, 255, 255, 0.3);
-            font-weight: 600;
-            white-space: nowrap;
-            min-width: 70px;
-            text-align: right;
-        }
-
-        .ctrl-count span {
-            color: var(--accent);
-        }
-
-        .sub-chips-row {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 6px 2rem 8px;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .sub-chips {
-            display: flex;
-            gap: 5px;
-            overflow-x: auto;
-            flex: 1;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .sub-chips::-webkit-scrollbar {
-            display: none;
-        }
-
-        .title-chip {
-            flex-shrink: 0;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: rgba(255, 255, 255, 0.45);
-            padding: 0.25rem 0.85rem;
-            border-radius: 100px;
-            font-size: 0.73rem;
-            font-weight: 500;
-            font-family: inherit;
-            cursor: pointer;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-
-        .title-chip:hover {
-            border-color: rgba(167, 135, 255, 0.4);
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .title-chip.active {
-            background: rgba(167, 135, 255, 0.2);
-            border-color: var(--accent);
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        .sub-clear-btn {
-            flex-shrink: 0;
-            background: transparent;
-            border: 1px solid rgba(255, 90, 90, 0.2);
-            color: rgba(255, 90, 90, 0.6);
-            padding: 0.25rem 0.7rem;
-            border-radius: 100px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            font-family: inherit;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .sub-clear-btn:hover {
-            background: rgba(255, 90, 90, 0.1);
-            color: #ff5a5a;
-            border-color: rgba(255, 90, 90, 0.4);
-        }
-
-        @media (max-width: 768px) {
-            .controls-top {
-                padding: 10px 1rem;
-                flex-wrap: wrap;
-            }
-
-            .sub-chips-row {
-                padding: 6px 1rem 8px;
-            }
-
-            .controls-right {
-                margin-left: 0;
-                width: 100%;
-            }
-
-            .ctrl-search {
-                flex: 1;
-            }
-
-            .ctrl-search input {
-                width: 100%;
-            }
-
-            .ctrl-count {
-                display: none;
-            }
-        }
-
-        /* GALLERY - MASONRY */
-        .gallery {
-            max-width: 1400px;
-            margin: 2.5rem auto;
-            padding: 0 2rem;
-        }
-
-        .gallery-grid {
-            columns: 1;
-            column-gap: 1.5rem;
-        }
-
-        @media (min-width: 640px) {
-            .gallery-grid {
-                columns: 2;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .gallery-grid {
-                columns: 3;
-            }
-        }
-
-        @media (min-width: 1280px) {
-            .gallery-grid {
-                columns: 4;
-            }
-        }
-
-        .gallery-item {
-            break-inside: avoid;
-            margin-bottom: 1.5rem;
-            position: relative;
-            overflow: hidden;
-            border-radius: 16px;
-            background: var(--dark-light);
-            border: 1px solid var(--border);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            aspect-ratio: 16 / 9;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 24px 48px rgba(167, 135, 255, 0.15),
-                0 0 0 1px rgba(167, 135, 255, 0.3);
-            border-color: var(--accent);
-        }
-
-        .gallery-image,
-        .gallery-item video {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .gallery-item:hover .gallery-image,
-        .gallery-item:hover video {
-            transform: scale(1.05);
-        }
-
-        .gallery-info {
-            padding: 1rem;
-            background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 15, 0.95) 100%);
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover .gallery-info {
-            transform: translateY(0);
-        }
-
-        .gallery-title {
-            font-weight: 800;
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .gallery-category {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
-        .gallery-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(10, 10, 15, 0.85);
-            backdrop-filter: blur(20px);
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            font-size: 0.7rem;
-            font-weight: 800;
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: 1px solid rgba(167, 135, 255, 0.2);
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-badge {
-            background: rgba(167, 135, 255, 0.2);
-            border-color: var(--accent);
-            transform: scale(1.05);
-        }
-
-        .gallery-badge i {
-            font-size: 0.875rem;
-        }
-
-        .gallery-tags {
-            position: absolute;
-            bottom: 1rem;
-            left: 1rem;
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .gallery-item:hover .gallery-tags {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .tag {
-            background: rgba(10, 10, 15, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 0.35rem 0.75rem;
-            border-radius: 6px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.8);
-            text-transform: capitalize;
-            letter-spacing: 0.3px;
-        }
-
-        /* LOADING */
-        .loading {
-            text-align: center;
-            padding: 4rem 0;
-        }
-
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid var(--border);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* MODAL */
-        .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(10, 10, 15, 0.97);
-            backdrop-filter: blur(30px);
-            z-index: 2000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            max-width: 1200px;
-            width: 100%;
-            background: var(--dark-light);
-            border-radius: 24px;
-            border: 1px solid rgba(167, 135, 255, 0.2);
-            padding: 2rem;
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
-            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: 900;
-        }
-
-        .modal-close {
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .modal-close:hover {
-            color: var(--text);
-        }
-
-        .modal-image,
-        .modal-video {
-            width: 100%;
-            max-height: 70vh;
-            object-fit: contain;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            background: #000;
-        }
-
-        .modal-video {
-            display: none;
-        }
-
-        .modal-quality-notice {
-            background: linear-gradient(135deg, rgba(167, 135, 255, 0.1), rgba(99, 102, 241, 0.08));
-            border: 1px solid rgba(167, 135, 255, 0.2);
-            border-radius: 12px;
-            padding: 1rem 1.25rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .modal-quality-icon {
-            font-size: 1.5rem;
-            flex-shrink: 0;
-            margin-top: 0.1rem;
-        }
-
-        .modal-quality-content {
-            flex: 1;
-        }
-
-        .modal-quality-title {
-            font-size: 0.875rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.3px;
-        }
-
-        .modal-quality-text {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 0.75rem;
-        }
-
-        .modal-quality-links {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .modal-quality-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.4rem 0.85rem;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            border: 1px solid;
-        }
-
-        .modal-quality-link.free {
-            background: rgba(34, 197, 94, 0.1);
-            border-color: rgba(34, 197, 94, 0.3);
-            color: #22c55e;
-        }
-
-        .modal-quality-link.free:hover {
-            background: rgba(34, 197, 94, 0.2);
-            transform: translateY(-1px);
-        }
-
-        .modal-quality-link.premium {
-            background: rgba(167, 135, 255, 0.1);
-            border-color: rgba(167, 135, 255, 0.3);
-            color: var(--accent);
-        }
-
-        .modal-quality-link.premium:hover {
-            background: rgba(167, 135, 255, 0.2);
-            transform: translateY(-1px);
-        }
-
-        .modal-quality-link.lifetime {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.1));
-            border-color: rgba(255, 215, 0, 0.4);
-            color: #ffd700;
-            font-weight: 700;
-        }
-
-        .modal-quality-link.lifetime:hover {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 165, 0, 0.2));
-            border-color: rgba(255, 215, 0, 0.6);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
-        }
-
-        @media (max-width: 768px) {
-            .modal-content {
-                padding: 1.25rem;
-            }
-
-            .modal-quality-notice {
-                padding: 0.75rem;
-                gap: 0.6rem;
-                margin-bottom: 1rem;
-            }
-
-            .modal-quality-icon {
-                font-size: 1.1rem;
-            }
-
-            .modal-quality-title {
-                font-size: 0.75rem;
-                margin-bottom: 0.3rem;
-            }
-
-            .modal-quality-text {
-                font-size: 0.7rem;
-                line-height: 1.4;
-                margin-bottom: 0.5rem;
-            }
-
-            .modal-quality-links {
-                gap: 0.4rem;
-            }
-
-            .modal-quality-link {
-                padding: 0.5rem 0.75rem;
-                font-size: 0.7rem;
-                justify-content: center;
-            }
-        }
-
-        .modal-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
-        }
-
-        /* COLLECTIONS SECTION */
-        .collections-view {
-            display: none;
-        }
-
-        .collections-view.active {
-            display: block;
-        }
-
-        .collection-card {
-            background: var(--dark-light);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .collection-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 60px rgba(167, 135, 255, 0.2);
-        }
-
-        .collection-preview {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .collection-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .collection-count {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: rgba(10, 10, 15, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            font-weight: 800;
-            font-size: 0.875rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .collection-count i {
-            font-size: 1rem;
-            color: var(--accent);
-        }
-
-        .collection-info {
-            padding: 1.5rem;
-        }
-
-        .collection-title {
-            font-size: 1.25rem;
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-        }
-
-        .collection-description {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .nav-actions {
-                display: none;
-            }
-
-            .nav-mobile {
-                display: flex;
-            }
-
-            .hero-stats {
-                gap: 1.5rem;
-            }
-
-            .stat-number {
-                font-size: 2rem;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-                width: 100%;
-                padding: 0 1rem;
-            }
-
-            .hero-cta .btn-primary {
-                width: 100%;
-                min-width: unset;
-                padding: 1.25rem 2rem;
-                font-size: 1rem;
-            }
-
-            .hero-content {
-                padding: 0 1rem;
-            }
-        }
-
-        /* COLLECTIONS SEARCH */
-        .collections-search {
-            max-width: 400px;
-            margin: 0 auto 2rem;
-            position: relative;
-        }
-
-        .collections-search input {
-            width: 100%;
-            background: var(--dark-light);
-            border: 1px solid var(--border);
-            padding: 0.9rem 3rem 0.9rem 1.25rem;
-            border-radius: 100px;
-            color: var(--text);
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: border-color 0.2s;
-        }
-
-        .collections-search input:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-
-        .collections-search svg {
-            position: absolute;
-            right: 1.25rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-secondary);
-        }
-
-        /* COLLECTIONS GRID - improved */
-        .collections-grid-wrap {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 1.5rem;
-        }
-
-        display: none !important;
-        }
-
-        .grid-cols-2 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .md\\:grid-cols-3 {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .lg\\:grid-cols-4 {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        /* FOOTER */
-        .footer {
-            background: linear-gradient(180deg, var(--dark) 0%, #0d1117 100%);
-            border-top: 1px solid var(--border);
-            margin-top: 6rem;
-        }
-
-        .footer-cta {
-            background: linear-gradient(135deg, #1a2332 0%, #0f1419 100%);
-            padding: 4rem 2rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .footer-cta-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.3);
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            font-weight: 700;
-            font-size: 0.75rem;
-            color: #22c55e;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-cta-title {
-            font-size: clamp(1.75rem, 4vw, 3rem);
-            font-weight: 900;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .footer-cta-title .gradient-text {
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .footer-cta-description {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .footer-cta-stats {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .footer-stat {
-            text-align: center;
-        }
-
-        .footer-stat-number {
-            font-size: 2rem;
-            font-weight: 900;
-            color: var(--text);
-            display: block;
-        }
-
-        .footer-stat-label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-            margin-top: 0.25rem;
-        }
-
-        .footer-cta-features {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
-        .footer-cta-features span {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer-cta-features i {
-            color: #22c55e;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .footer-brand {
-            max-width: 280px;
-        }
-
-        .footer-brand h3 {
-            font-size: 1.5rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .footer-brand p {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .footer-social a {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--dark-light);
-            border: 1px solid var(--border);
-            border-radius: 50%;
-            color: var(--text-secondary);
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-
-        .footer-social a:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: var(--text);
-            transform: translateY(-2px);
-        }
-
-        .footer-column h4 {
-            font-size: 0.875rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1.5rem;
-            color: var(--text);
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: var(--text);
-        }
-
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-
-        .footer-bottom a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-bottom a:hover {
-            color: var(--accent);
-        }
-
-        .footer-love {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer-love .heart {
-            color: #ef4444;
-            animation: heartbeat 1.5s ease-in-out infinite;
-        }
-
-        @keyframes heartbeat {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            25% {
-                transform: scale(1.2);
-            }
-
-            50% {
-                transform: scale(1);
-            }
-        }
-
-        @media (max-width: 1024px) {
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-
-            .footer-cta-stats {
-                gap: 1rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="galeria.css">
 </head>
 
 <body>
-    <!-- NAVIGATION -->
+    <script>
+        (function () {
+            const userTheme = localStorage.getItem('theme');
+            const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', userTheme || systemTheme);
+        })();
+    </script>
+
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="nav-brand">
-                BetterWLPRS
-            </div>
-            <!-- Desktop Menu -->
+            <a href="index.html" class="nav-brand">BetterWLPRS</a>
             <div class="nav-menu" id="navMenu">
                 <a href="index.html" class="nav-item">Home</a>
                 <a href="index.html#gallery" class="nav-item">Videos</a>
                 <a href="index.html#how" class="nav-item">How it works</a>
                 <a href="index.html#benefits" class="nav-item">Benefits</a>
-                <a href="galeria.html" class="nav-item active" style="color: var(--accent); font-weight: 600;">
-                    Gallery
-                </a>
+                <a href="galeria.html" class="nav-item active">Gallery</a>
             </div>
-            <!-- Desktop Actions -->
             <div class="nav-actions">
-                <a class="icon-btn" href="./index-es.html" aria-label="Toggle language">ES</a>
-                <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year" target="_blank" title="Gumroad"
-                    style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
-                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad"
-                        style="width:18px;height:18px;filter:invert(64%) sepia(88%) saturate(1000%) hue-rotate(315deg) brightness(105%) contrast(101%);">
-                    <span style="font-weight:600;color:#ff90b3;font-size:14px;">Gumroad</span>
-                </a>
-                <a href="https://ko-fi.com/betterwlprs" target="_blank" title="Ko-fi"
-                    style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
-                    <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png"
-                        alt="Ko-fi" style="width:18px;height:18px;">
-                    <span style="font-weight:600;color:#29abe0;font-size:14px;">Ko-fi</span>
+                <button class="icon-btn" id="themeToggle" aria-label="Toggle theme"><span>☀️</span></button>
+                <a href="mailto:dfernandezy@hotmail.com?subject=Request%20access%20to%20BetterWLPRS"
+                    style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.06);border:1px solid var(--border);text-decoration:none;">
+                    <i class="fa fa-envelope" style="color:#ff90b3"></i>
+                    <span style="font-weight:600;color:#ff90b3;font-size:14px;">Request access</span>
                 </a>
             </div>
-            <!-- Mobile Actions -->
             <div class="nav-mobile">
-                <button class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <button class="hamburger" id="hamburger" aria-label="Open menu">
+                    <span></span><span></span><span></span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-content">
             <a href="index.html" class="nav-item">Home</a>
@@ -1572,672 +56,193 @@
             <a href="index.html#how" class="nav-item">How it works</a>
             <a href="index.html#benefits" class="nav-item">Benefits</a>
             <a href="galeria.html" class="nav-item active">Gallery</a>
-            <a href="https://drive.google.com/drive/folders/1MuJkt_ZfpcPGAPSR5q5Q6K8aRJLgLdAE?usp=sharing"
-                target="_blank" class="nav-item">
-                Download Starter Pack
-            </a>
+            <a href="mailto:dfernandezy@hotmail.com?subject=Request%20access%20to%20BetterWLPRS" class="nav-item">Request access</a>
             <div class="mobile-nav-actions">
                 <div class="mobile-toggles">
-                    <a class="icon-btn" href="./index-es.html" aria-label="Toggle language">ES</a>
-                </div>
-                <div class="mobile-social">
-                    <a href="https://betterwlprsx.gumroad.com/l/betterwlprs1year" target="_blank"
-                        style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
-                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="Gumroad"
-                            style="width:18px;height:18px;filter:invert(64%) sepia(88%) saturate(1000%) hue-rotate(315deg) brightness(105%) contrast(101%);">
-                        <span style="font-weight:600;color:#ff90b3;font-size:14px;">Gumroad</span>
-                    </a>
-                    <a href="https://ko-fi.com/betterwlprs" target="_blank"
-                        style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid var(--border);transition:all 0.3s ease;text-decoration:none;">
-                        <img src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png"
-                            alt="Ko-fi" style="width:18px;height:18px;">
-                        <span style="font-weight:600;color:#29abe0;font-size:14px;">Ko-fi</span>
-                    </a>
+                    <button class="icon-btn" id="themeToggleMobile" aria-label="Toggle theme"><span>☀️</span></button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-bolt"></i> +50GB PREMIUM WALLPAPERS
+    <main class="gallery-page">
+        <header class="gallery-intro">
+            <h1>The collection</h1>
+            <p>Browse by title first. Open a game or film, then its wallpapers — never 300 of the same world in a row.</p>
+            <p class="gallery-manifesto">Please don't hurry if you don't see your favorite game or series, or only a few of them. I am making more progressively, strictly related to my situation. I am a one-man team!</p>
+            <div class="gallery-intro-stats">
+                <div><strong id="statTotal">—</strong><span>Wallpapers</span></div>
+                <div><strong id="statGames">—</strong><span>Titles</span></div>
+                <div><strong id="statVideos">—</strong><span>Live videos</span></div>
             </div>
+        </header>
 
-            <h1 class="hero-title">
-                Better<br>WallPapers
-            </h1>
-
-            <p class="hero-subtitle">
-                Handcrafted wallpapers from gaming masterpieces, stunning landscapes, and artistic designs.
-                <strong>Ultra HD quality. Instant download.</strong>
-            </p>
-
-            <div class="hero-stats">
-                <div class="stat">
-                    <div class="stat-number">1700+</div>
-                    <div class="stat-label">WALLPAPERS</div>
+        <div class="gallery-controls" id="galleryControls">
+            <div class="controls-top">
+                <div class="cat-tabs" role="tablist">
+                    <button class="cat-tab active" data-media="all" type="button">All <span class="cat-count" id="countAll"></span></button>
+                    <button class="cat-tab" data-media="game" type="button">Games <span class="cat-count" id="countGames"></span></button>
+                    <button class="cat-tab" data-media="movie" type="button">Movies <span class="cat-count" id="countMovies"></span></button>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">2K</div>
-                    <div class="stat-label">QUALITY</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">35+</div>
-                    <div class="stat-label">GAMES</div>
+                <div class="controls-right">
+                    <div class="type-toggle">
+                        <button class="type-btn active" data-type="all" type="button">All</button>
+                        <button class="type-btn" data-type="video" type="button">Video</button>
+                        <button class="type-btn" data-type="static" type="button">Photo</button>
+                    </div>
+                    <div class="ctrl-search">
+                        <input type="search" id="searchInput" placeholder="Search a title" autocomplete="off">
+                        <svg class="ctrl-search-icon" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                    <div class="ctrl-count" id="dockCount"></div>
                 </div>
             </div>
-
-            <div class="hero-cta">
-                <a href="https://drive.google.com/drive/folders/1MuJkt_ZfpcPGAPSR5q5Q6K8aRJLgLdAE?usp=sharing"
-                    target="_blank" class="btn-primary">
-                    DOWNLOAD FREE PACK
-                </a>
-                <a href="https://www.patreon.com/betterwlprs" target="_blank" class="btn-primary">
-                    GET 50GB+ PREMIUM
-                </a>
-            </div>
-
-    </section>
-
-
-    <!-- GALLERY CONTROLS — sticky -->
-    <div class="gallery-controls" id="galleryControls">
-        <div class="controls-top">
-            <!-- Category tabs -->
-            <div class="cat-tabs">
-                <button class="cat-tab active" data-media="all">All <span class="cat-count"
-                        id="countAll"></span></button>
-                <button class="cat-tab" data-media="game">Games <span class="cat-count" id="countGames"></span></button>
-                <button class="cat-tab" data-media="movie">Movies <span class="cat-count"
-                        id="countMovies"></span></button>
-                <button class="cat-tab" data-media="collections">Collections</button>
-            </div>
-            <!-- Right controls -->
-            <div class="controls-right">
-                <div class="type-toggle">
-                    <button class="type-btn active" data-type="all">All</button>
-                    <button class="type-btn" data-type="video">Video</button>
-                    <button class="type-btn" data-type="static">Photo</button>
+            <div class="mood-row" id="moodRow">
+                <div class="mood-chips">
+                    <button class="mood-chip" data-mood="ambience" type="button">Ambience</button>
+                    <button class="mood-chip" data-mood="moody" type="button">Moody</button>
+                    <button class="mood-chip" data-mood="landscape" type="button">Landscape</button>
+                    <button class="mood-chip" data-mood="interiors" type="button">Interiors</button>
+                    <button class="mood-chip" data-mood="rainy" type="button">Rainy</button>
+                    <button class="mood-chip" data-mood="cyberpunk" type="button">Cyberpunk</button>
                 </div>
-                <div class="ctrl-search">
-                    <input type="text" id="searchInput" placeholder="Search title, game...">
-                    <svg class="ctrl-search-icon" width="14" height="14" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                </div>
-                <div class="ctrl-count" id="dockCount"></div>
+            </div>
+            <div class="sub-chips-row hidden" id="subChipsRow">
+                <div class="title-chips" id="subChips"></div>
+                <button class="sub-clear-btn hidden" id="clearGameFilter" type="button">Clear</button>
             </div>
         </div>
-        <!-- Sub-chips: game or movie titles (auto-populated, hidden when "All") -->
-        <div class="sub-chips-row" id="subChipsRow" style="display:none">
-            <div class="sub-chips" id="subChips"></div>
-            <button class="sub-clear-btn" id="clearGameFilter" style="display:none">Clear</button>
-        </div>
-    </div>
 
-    <!-- GALLERY VIEW -->
-    <section class="gallery" id="galleryView">
-        <div id="loadingIndicator" class="loading">
-            <div class="spinner"></div>
-            <p style="color: var(--text-secondary); font-weight: 600;">LOADING WALLPAPERS...</p>
-        </div>
+        <section class="gallery-stage hidden" id="galleryView">
+            <div class="album-bar hidden" id="albumBar">
+                <button class="album-back" id="albumBack" type="button">← Titles</button>
+                <div>
+                    <div class="album-kicker" id="albumKicker">Game</div>
+                    <h2 class="album-title" id="albumTitle"></h2>
+                    <p class="album-note hidden" id="albumNote"></p>
+                </div>
+                <div class="album-meta" id="albumMeta"></div>
+            </div>
+            <div id="galleryGrid" class="gallery-grid hidden"></div>
+            <div id="loadMoreContainer" class="load-more-wrap hidden">
+                <button id="loadMoreBtn" class="btn primary" type="button">Load more</button>
+                <p style="color:var(--text-secondary);margin-top:0.8rem;font-weight:600;font-size:0.85rem;">
+                    <span id="currentCount">0</span> / <span id="totalCount">0</span>
+                </p>
+            </div>
+            <div id="infiniteSentinel" aria-hidden="true"></div>
+        </section>
 
-        <div id="galleryGrid" class="gallery-grid hidden"></div>
+        <section class="gallery-stage collections-view active" id="collectionsView">
+            <div id="loadingIndicator" class="gallery-empty">Loading titles…</div>
+            <div id="collectionsGrid" class="collections-grid"></div>
+        </section>
+    </main>
 
-        <div id="loadMoreContainer" class="hidden" style="text-align: center; margin-top: 3rem;">
-            <button id="loadMoreBtn" class="btn-primary">
-                LOAD MORE
-            </button>
-            <p style="color: var(--text-secondary); margin-top: 1rem; font-weight: 600;">
-                <span id="currentCount">0</span> / <span id="totalCount">0</span> WALLPAPERS
-            </p>
-        </div>
-    </section>
-
-    <!-- COLLECTIONS VIEW -->
-    <section class="gallery collections-view" id="collectionsView">
-        <h2 class="section-title" style="text-align: center; margin-bottom: 1.5rem;">BROWSE COLLECTIONS</h2>
-        <div class="collections-search">
-            <input type="text" id="collectionsSearch" placeholder="Search game...">
-            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-        </div>
-        <div id="collectionsGrid" class="collections-grid-wrap"></div>
-        <div style="text-align: center; margin-top: 3rem;">
-            <button id="backToGallery" class="btn-primary"><i class="fas fa-arrow-left"></i> BACK TO GALLERY</button>
-        </div>
-    </section>
-
-    <!-- MODAL -->
-    <div id="previewModal" class="modal">
-        <div class="modal-content">
+    <div id="previewModal" class="gallery-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-shell">
             <div class="modal-header">
-                <h3 id="modalTitle" class="modal-title">WALLPAPER PREVIEW</h3>
-                <button id="closeModal" class="modal-close">&times;</button>
+                <div>
+                    <div class="modal-kicker" id="modalKicker">Preview</div>
+                    <h3 id="modalTitle" class="modal-title">Wallpaper</h3>
+                </div>
+                <button id="closeModal" class="modal-close" type="button" aria-label="Close">×</button>
             </div>
-            <img id="modalImage" src="" alt="Preview" class="modal-image">
-            <video id="modalVideo" class="modal-video" autoplay loop muted controls>
-                <source src="" type="video/mp4">
-            </video>
-
-            <!-- Quality Notice -->
-            <div class="modal-quality-notice">
+            <div class="modal-stage">
+                <button id="modalPrev" class="modal-nav prev" type="button" aria-label="Previous">‹</button>
+                <img id="modalImage" alt="">
+                <video id="modalVideo" controls loop playsinline></video>
+                <button id="modalNext" class="modal-nav next" type="button" aria-label="Next">›</button>
+            </div>
+            <div class="modal-quality">
                 <div class="modal-quality-icon"><i class="fas fa-gem"></i></div>
-                <div class="modal-quality-content">
-                    <div class="modal-quality-title">This is a low-quality preview</div>
-                    <div class="modal-quality-text">
-                        Get the full collection in maximum 2K quality:
-                    </div>
+                <div>
+                    <div class="modal-quality-title">Preview quality</div>
+                    <div class="modal-quality-text">The full 2K library is available on request.</div>
                     <div class="modal-quality-links">
-                        <a href="https://drive.google.com/drive/folders/1MuJkt_ZfpcPGAPSR5q5Q6K8aRJLgLdAE?usp=sharing"
-                            target="_blank" class="modal-quality-link free">
-                            <i class="fas fa-gift"></i> Free Starter (15GB)
-                        </a>
-                        <a href="https://betterwlprsx.gumroad.com/l/betterwlprs2025" target="_blank"
-                            class="modal-quality-link premium">
-                            <i class="fas fa-gem"></i> 2025 Pack &mdash; $3.99 (50GB)
-                        </a>
-                        <!-- Lifetime option - Coming soon
-                        <a href="https://betterwlprsx.gumroad.com/l/betterwlprs-lifetime" target="_blank"
-                            class="modal-quality-link lifetime">
-                            <span>â™¾ï¸</span> Lifetime &mdash; $9.99
-                        </a>
-                        -->
+                        <a class="modal-quality-link free" target="_blank" rel="noopener"
+                            href="https://drive.google.com/drive/folders/1MuJkt_ZfpcPGAPSR5q5Q6K8aRJLgLdAE?usp=sharing">Free starter</a>
+                        <a class="modal-quality-link premium"
+                            href="mailto:dfernandezy@hotmail.com?subject=Request%20access%20to%20BetterWLPRS">Request access</a>
                     </div>
                 </div>
             </div>
-
             <div class="modal-actions">
-                <button id="downloadModal" class="btn-primary">DOWNLOAD PREVIEW</button>
+                <button id="downloadModal" class="btn primary" type="button">Open file</button>
             </div>
         </div>
     </div>
 
-    <!-- FOOTER -->
     <footer class="footer">
-        <!-- CTA Section -->
-        <div class="footer-cta">
-            <div class="footer-cta-badge">
-                <i class="fas fa-gift"></i> FREE STARTER PACK
-            </div>
-            <h2 class="footer-cta-title">
-                Get 15GBs BetterWLPRS Starter Pack<br>
-                <span class="gradient-text">Absolutely Free</span>
-            </h2>
-            <p class="footer-cta-description">
-                Start your collection with our handpicked selection of premium 2K wallpapers. No signup required,
-                instant download.
-            </p>
-
-            <div class="footer-cta-stats">
-                <div class="footer-stat">
-                    <span class="footer-stat-number">+100</span>
-                    <span class="footer-stat-label">Premium Wallpapers</span>
-                </div>
-                <div class="footer-stat">
-                    <span class="footer-stat-number">2K</span>
-                    <span class="footer-stat-label">Ultra HD Quality</span>
-                </div>
-                <div class="footer-stat">
-                    <span class="footer-stat-number">10</span>
-                    <span class="footer-stat-label">Different Styles</span>
-                </div>
-                <div class="footer-stat">
-                    <span class="footer-stat-number">0&euro;</span>
-                    <span class="footer-stat-label">Completely Free</span>
-                </div>
-            </div>
-
-            <a href="https://drive.google.com/drive/folders/1MuJkt_ZfpcPGAPSR5q5Q6K8aRJLgLdAE?usp=sharing"
-                target="_blank" class="btn-primary" style="margin-top: 1rem;">
-                <i class="fas fa-download"></i> Download Free Pack Now
-            </a>
-
-            <div class="footer-cta-features">
-                <span><i class="fas fa-check-circle"></i> No email required</span>
-                <span><i class="fas fa-check-circle"></i> Instant download</span>
-                <span><i class="fas fa-check-circle"></i> Ready to use</span>
-            </div>
-        </div>
-
-        <!-- Footer Links -->
-        <div class="footer-content">
-            <div class="footer-brand">
-                <h3>BetterWLPRS</h3>
-                <p>Premium wallpapers and exclusive content to elevate your desktop experience. 2K quality and unique
-                    designs.</p>
+        <div class="footer-grid">
+            <div>
+                <a href="index.html" class="nav-brand">BetterWLPRS</a>
+                <p class="footer-blurb">Hand-captured 2K wallpapers from games and film. No watermarks. Full library on request.</p>
                 <div class="footer-social">
-                    <a href="https://www.patreon.com/betterwlprs" target="_blank" title="Patreon">
-                        <i class="fab fa-patreon"></i>
+                    <a href="https://www.tiktok.com/@betterwlprs" target="_blank" rel="noopener" aria-label="TikTok">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" alt="">
                     </a>
-                    <a href="#" target="_blank" title="Twitter">
-                        <i class="fab fa-twitter"></i>
+                    <a href="https://instagram.com/betterwlprs" target="_blank" rel="noopener" aria-label="Instagram">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="">
                     </a>
-                    <a href="#" target="_blank" title="Pinterest">
-                        <i class="fab fa-pinterest"></i>
+                    <a href="https://twitter.com/betterwlprs" target="_blank" rel="noopener" aria-label="Twitter">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="">
                     </a>
-                    <a href="#" target="_blank" title="Instagram">
-                        <i class="fab fa-instagram"></i>
+                    <a href="https://www.patreon.com/betterwlprs" target="_blank" rel="noopener" aria-label="Patreon">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/patreon.svg" alt="">
+                    </a>
+                    <a href="https://gumroad.com/betterwlprsx" target="_blank" rel="noopener" aria-label="Gumroad">
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gumroad.svg" alt="">
+                    </a>
+                    <a href="https://ko-fi.com/betterwlprs" target="_blank" rel="noopener" aria-label="Ko-fi">
+                        <img class="keep-color" src="https://cdn.prod.website-files.com/5c14e387dab576fe667689cf/670f5a01229bf8a18f97a3c1_favion.png" alt="">
                     </a>
                 </div>
             </div>
-
-            <div class="footer-column">
-                <h4>Navigation</h4>
+            <div>
+                <h4>Navigate</h4>
                 <div class="footer-links">
                     <a href="index.html">Home</a>
                     <a href="galeria.html">Gallery</a>
-                    <a href="#categories">Categories</a>
-                    <a href="https://www.patreon.com/betterwlprs" target="_blank">Premium</a>
-                    <a href="#contact">Contact</a>
+                    <a href="index.html#gallery">Videos</a>
+                    <a href="index.html#how">How it works</a>
+                    <a href="index.html#benefits">Benefits</a>
                 </div>
             </div>
-
-            <div class="footer-column">
-                <h4>Categories</h4>
-                <div class="footer-links">
-                    <a href="#gaming">Gaming</a>
-                    <a href="#nature">Nature</a>
-                    <a href="#abstract">Abstract</a>
-                    <a href="#minimalist">Minimalist</a>
-                    <a href="#videos">Videos</a>
-                </div>
-            </div>
-
-            <div class="footer-column">
+            <div>
                 <h4>Support</h4>
                 <div class="footer-links">
-                    <a href="#faq">FAQ</a>
-                    <a href="#terms">Terms of Service</a>
-                    <a href="#privacy">Privacy Policy</a>
-                    <a href="https://www.patreon.com/betterwlprs" target="_blank">Patreon</a>
-                    <a href="#report">Report Issue</a>
+                    <a href="https://ko-fi.com/betterwlprs" target="_blank" rel="noopener">Ko-fi</a>
+                    <a href="https://www.patreon.com/betterwlprs" target="_blank" rel="noopener">Patreon</a>
+                    <a href="https://gumroad.com/betterwlprsx" target="_blank" rel="noopener">Gumroad</a>
+                    <a href="mailto:dfernandezy@hotmail.com?subject=Request%20access%20to%20BetterWLPRS">Request access</a>
+                    <a href="mailto:dfernandezy@hotmail.com">Technical support</a>
                 </div>
             </div>
         </div>
-
-        <!-- Footer Bottom -->
         <div class="footer-bottom">
-            <div>&copy; 2025 BetterWLPRS. All rights reserved.</div>
-            <div class="footer-love">
-                Designed with <i class="fas fa-heart heart"></i> by BetterWLPRS
+            <div>
+                <p class="footer-copy">© 2026 BetterWLPRS. All rights reserved.</p>
+                <p class="footer-note">
+                    Full library access is private and available upon request. Images are offered for personal use only.
+                    For licensing inquiries or copyright notices, contact:
+                    <a href="mailto:dfernandezy@hotmail.com">dfernandezy@hotmail.com</a>.
+                </p>
+            </div>
+            <div class="footer-legal">
+                <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="mailto:dfernandezy@hotmail.com">Contact</a>
             </div>
         </div>
     </footer>
 
+    <script src="gsap/gsap.min.js"></script>
+    <script src="photo-manifest.js"></script>
     <script src="netlify-wallpapers.js"></script>
-    <script>
-        // Fallback: try .png if .jpg 404s (Netlify images can be either format)
-        function netlifyImgFallback(el, pngSrc) {
-            el.onerror = function () { el.parentElement.style.display = 'none'; };
-            el.src = pngSrc;
-        }
-
-        // GALLERY DATA &mdash; loaded async from manifest.json via netlify-wallpapers.js
-        let localImages = [];
-        let collections = [];
-
-        // CONFIG
-        const ITEMS_PER_PAGE = 12;
-        let currentPage = 0;
-        let currentMedia = 'all';       // 'all' | 'game' | 'movie' | 'collection'
-        let currentTypeFilter = 'all';  // 'all' | 'video' | 'static'
-        let currentGame = null;         // selected title chip (game or movie name)
-        let currentSearch = '';
-        let currentCollection = null;
-        let shuffledImages = [];
-
-        // chip data built after load
-        let gameChipData = [];
-        let movieChipData = [];
-
-        // DOM ELEMENTS
-        const galleryGrid = document.getElementById('galleryGrid');
-        const loadingIndicator = document.getElementById('loadingIndicator');
-        const loadMoreContainer = document.getElementById('loadMoreContainer');
-        const loadMoreBtn = document.getElementById('loadMoreBtn');
-        const galleryView = document.getElementById('galleryView');
-        const collectionsView = document.getElementById('collectionsView');
-        const previewModal = document.getElementById('previewModal');
-        const modalImage = document.getElementById('modalImage');
-        const modalTitle = document.getElementById('modalTitle');
-
-        // SHUFFLE
-        function shuffleArray(arr) {
-            const shuffled = [...arr];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-            return shuffled;
-        }
-
-        // CREATE GALLERY ITEM
-        function createGalleryItem(img) {
-            const item = document.createElement('div');
-            item.className = 'gallery-item';
-            const typeLabel = img.type === 'video' ? 'VIDEO' : 'PHOTO';
-            const typeIcon = img.type === 'video' ? 'fa-video' : 'fa-image';
-            let mediaEl = (img.type === 'video' && !img.src.endsWith('.gif'))
-                ? `<video class="gallery-image" autoplay loop muted playsinline><source src="${img.src}" type="video/mp4"></video>`
-                : `<img src="${img.src}" alt="${img.title}" class="gallery-image" loading="lazy">`;
-            item.innerHTML = `
-                ${mediaEl}
-                <div class="gallery-badge"><i class="fas ${typeIcon}"></i> ${typeLabel}</div>
-                <div class="gallery-info">
-                    <div class="gallery-title">${img.title}</div>
-                    <div class="gallery-category">${img.game}</div>
-                </div>`;
-            item.addEventListener('click', () => openModal(img.src, img.title, img.type));
-            return item;
-        }
-
-        // CREATE COLLECTION CARD
-        function createCollectionCard(collection) {
-            const card = document.createElement('div');
-            card.className = 'collection-card';
-            const cover = collection.cover.endsWith('.mp4')
-                ? `<video class="collection-image" autoplay loop muted playsinline><source src="${collection.cover}" type="video/mp4"></video>`
-                : `<img src="${collection.cover}" alt="${collection.name}" class="collection-image" loading="lazy">`;
-            card.innerHTML = `
-                <div class="collection-preview">
-                    ${cover}
-                    <div class="collection-count"><i class="fas fa-layer-group"></i> ${collection.items.length}</div>
-                </div>
-                <div class="collection-info">
-                    <div class="collection-title">${collection.name}</div>
-                    <div class="collection-description">${collection.items.length} wallpapers</div>
-                </div>`;
-            card.addEventListener('click', () => openCollection(collection));
-            return card;
-        }
-
-        // RENDER COLLECTIONS
-        function renderCollections(query) {
-            const grid = document.getElementById('collectionsGrid');
-            grid.innerHTML = '';
-            const q = (query || '').toLowerCase();
-            const filtered = q ? collections.filter(c => c.name.toLowerCase().includes(q)) : collections;
-            if (filtered.length === 0) {
-                grid.innerHTML = '<p style="color:var(--text-secondary);text-align:center;grid-column:1/-1;padding:2rem">No results.</p>';
-                return;
-            }
-            filtered.forEach(col => grid.appendChild(createCollectionCard(col)));
-        }
-
-        // OPEN COLLECTION (from a card click)
-        function openCollection(collection) {
-            currentCollection = collection;
-            shuffledImages = shuffleArray(collection.items);
-            currentMedia = 'collection';
-            currentSearch = '';
-            currentGame = null;
-            collectionsView.classList.remove('active');
-            galleryView.style.display = 'block';
-            document.getElementById('subChipsRow').style.display = 'none';
-            resetGallery();
-        }
-
-        // FILTER IMAGES
-        function getFilteredImages() {
-            let filtered = shuffledImages;
-            if (currentMedia === 'collection' && currentCollection) return filtered;
-            if (currentMedia === 'game') filtered = filtered.filter(img => img.media === 'game');
-            if (currentMedia === 'movie') filtered = filtered.filter(img => img.media === 'movie');
-            if (currentTypeFilter === 'video') filtered = filtered.filter(img => img.type === 'video');
-            if (currentTypeFilter === 'static') filtered = filtered.filter(img => img.type !== 'video');
-            if (currentGame) filtered = filtered.filter(img => img.game === currentGame);
-            if (currentSearch) {
-                const q = currentSearch.toLowerCase();
-                filtered = filtered.filter(img =>
-                    img.title.toLowerCase().includes(q) || img.game.toLowerCase().includes(q)
-                );
-            }
-            return filtered;
-        }
-
-        // LOAD MORE
-        function loadMoreItems() {
-            const filtered = getFilteredImages();
-            const start = currentPage * ITEMS_PER_PAGE;
-            const end = Math.min(start + ITEMS_PER_PAGE, filtered.length);
-            for (let i = start; i < end; i++) galleryGrid.appendChild(createGalleryItem(filtered[i]));
-            currentPage++;
-            const shown = Math.min(currentPage * ITEMS_PER_PAGE, filtered.length);
-            document.getElementById('currentCount').textContent = shown;
-            document.getElementById('totalCount').textContent = filtered.length;
-            const dockCount = document.getElementById('dockCount');
-            if (dockCount) dockCount.innerHTML = `<span>${shown}</span> / ${filtered.length}`;
-            if (currentPage * ITEMS_PER_PAGE >= filtered.length) {
-                loadMoreBtn.textContent = 'ALL LOADED';
-                loadMoreBtn.disabled = true;
-            }
-        }
-
-        // RESET GALLERY
-        function resetGallery() {
-            currentPage = 0;
-            galleryGrid.innerHTML = '';
-            loadMoreBtn.textContent = 'LOAD MORE';
-            loadMoreBtn.disabled = false;
-            loadMoreItems();
-        }
-
-        // MODAL
-        const modalVideo = document.getElementById('modalVideo');
-        function openModal(src, title, type) {
-            modalTitle.textContent = title;
-            if ((type === 'video' && !src.endsWith('.gif')) || src.endsWith('.mp4')) {
-                modalImage.style.display = 'none';
-                modalVideo.style.display = 'block';
-                modalVideo.querySelector('source').src = src;
-                modalVideo.load(); modalVideo.play();
-            } else {
-                modalVideo.style.display = 'none';
-                modalImage.style.display = 'block';
-                modalImage.src = src;
-            }
-            previewModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeModal() {
-            previewModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            if (modalVideo.style.display === 'block') { modalVideo.pause(); modalVideo.currentTime = 0; }
-        }
-
-        // POPULATE SUB-CHIPS (called when switching Games / Movies tab)
-        function populateSubChips(media) {
-            const subChipsEl = document.getElementById('subChips');
-            const subChipsRow = document.getElementById('subChipsRow');
-            subChipsEl.innerHTML = '';
-            const data = media === 'game' ? gameChipData : media === 'movie' ? movieChipData : [];
-            if (data.length === 0) { subChipsRow.style.display = 'none'; return; }
-            subChipsRow.style.display = 'flex';
-            data.forEach(({ name, count }) => {
-                const btn = document.createElement('button');
-                btn.className = 'title-chip';
-                btn.dataset.game = name;
-                btn.textContent = name;
-                btn.title = count + ' wallpapers';
-                btn.addEventListener('click', function () {
-                    currentGame = currentGame === name ? null : name;
-                    updateTitleChipUI();
-                    collectionsView.classList.remove('active');
-                    galleryView.style.display = 'block';
-                    shuffledImages = shuffleArray(localImages);
-                    resetGallery();
-                });
-                subChipsEl.appendChild(btn);
-            });
-            updateTitleChipUI();
-        }
-
-        function updateTitleChipUI() {
-            const clearBtn = document.getElementById('clearGameFilter');
-            if (clearBtn) clearBtn.style.display = currentGame ? 'inline-block' : 'none';
-            document.querySelectorAll('.title-chip').forEach(b =>
-                b.classList.toggle('active', b.dataset.game === currentGame)
-            );
-        }
-
-        // CATEGORY TABS
-        document.querySelectorAll('.cat-tab').forEach(btn => {
-            btn.addEventListener('click', function () {
-                const media = this.dataset.media;
-                document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-
-                if (media === 'collections') {
-                    currentGame = null;
-                    currentMedia = 'collections';
-                    document.getElementById('subChipsRow').style.display = 'none';
-                    galleryView.style.display = 'none';
-                    collectionsView.classList.add('active');
-                    renderCollections();
-                    return;
-                }
-
-                currentMedia = media;
-                currentGame = null;
-                currentCollection = null;
-                collectionsView.classList.remove('active');
-                galleryView.style.display = 'block';
-                populateSubChips(media);
-                shuffledImages = shuffleArray(localImages);
-                resetGallery();
-            });
-        });
-
-        // TYPE TOGGLE (All / Video / Photo)
-        document.querySelectorAll('.type-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                currentTypeFilter = this.dataset.type;
-                resetGallery();
-            });
-        });
-
-        // CLEAR TITLE FILTER
-        document.getElementById('clearGameFilter').addEventListener('click', () => {
-            currentGame = null;
-            updateTitleChipUI();
-            resetGallery();
-        });
-
-        // BACK TO GALLERY (from collections view)
-        document.getElementById('backToGallery').addEventListener('click', () => {
-            currentCollection = null;
-            currentMedia = 'all';
-            currentTypeFilter = 'all';
-            currentGame = null;
-            collectionsView.classList.remove('active');
-            galleryView.style.display = 'block';
-            document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
-            document.querySelector('.cat-tab[data-media="all"]').classList.add('active');
-            document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
-            document.querySelector('.type-btn[data-type="all"]').classList.add('active');
-            document.getElementById('subChipsRow').style.display = 'none';
-            shuffledImages = shuffleArray(localImages);
-            resetGallery();
-        });
-
-        // SEARCH
-        document.getElementById('searchInput').addEventListener('input', function () {
-            currentSearch = this.value;
-            resetGallery();
-        });
-
-        // COLLECTIONS SEARCH
-        document.getElementById('collectionsSearch').addEventListener('input', function () {
-            renderCollections(this.value);
-        });
-
-        loadMoreBtn.addEventListener('click', loadMoreItems);
-        document.getElementById('closeModal').addEventListener('click', closeModal);
-        document.getElementById('downloadModal').addEventListener('click', () => {
-            const link = document.createElement('a');
-            link.href = modalVideo.style.display === 'block'
-                ? modalVideo.querySelector('source').src : modalImage.src;
-            link.download = modalTitle.textContent;
-            link.click();
-        });
-        previewModal.addEventListener('click', e => { if (e.target === previewModal) closeModal(); });
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape' && previewModal.classList.contains('active')) closeModal();
-        });
-
-        // ASYNC INIT — load manifest, build data, render
-        (async () => {
-            localImages = await loadWallpapers();
-
-            // Build title → items map (for collections)
-            const titleMap = {};
-            localImages.forEach(img => {
-                if (!titleMap[img.game]) {
-                    titleMap[img.game] = { name: img.game, media: img.media, items: [], cover: img.src };
-                }
-                titleMap[img.game].items.push(img);
-            });
-            collections = Object.values(titleMap).sort((a, b) => a.name.localeCompare(b.name));
-
-            // Build chip data (sorted by count desc)
-            const gameCount = {};
-            const movieCount = {};
-            localImages.forEach(img => {
-                if (img.media === 'game') gameCount[img.game] = (gameCount[img.game] || 0) + 1;
-                if (img.media === 'movie') movieCount[img.game] = (movieCount[img.game] || 0) + 1;
-            });
-            gameChipData = Object.entries(gameCount).map(([n, c]) => ({ name: n, count: c })).sort((a, b) => b.count - a.count);
-            movieChipData = Object.entries(movieCount).map(([n, c]) => ({ name: n, count: c })).sort((a, b) => b.count - a.count);
-
-            // Update category counts
-            const gCount = localImages.filter(i => i.media === 'game').length;
-            const mCount = localImages.filter(i => i.media === 'movie').length;
-            document.getElementById('countAll').textContent = localImages.length;
-            document.getElementById('countGames').textContent = gCount;
-            document.getElementById('countMovies').textContent = mCount;
-
-            // Kick off gallery
-            shuffledImages = shuffleArray(localImages);
-            loadingIndicator.classList.add('hidden');
-            galleryGrid.classList.remove('hidden');
-            loadMoreContainer.classList.remove('hidden');
-            loadMoreItems();
-        })();
-
-        // NAVBAR + CONTROLS SCROLL ELEVATION
-        const navbar = document.getElementById('navbar');
-        const galleryControls = document.getElementById('galleryControls');
-        window.addEventListener('scroll', () => {
-            const scrolled = window.scrollY > 50;
-            navbar.classList.toggle('scrolled', scrolled);
-            if (galleryControls) galleryControls.classList.toggle('elevated', scrolled);
-        });
-
-        // MOBILE MENU
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobileMenu');
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            document.body.style.overflow = hamburger.classList.contains('active') ? 'hidden' : 'auto';
-        });
-        document.querySelectorAll('.mobile-menu .nav-item').forEach(item => {
-            item.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-        });
-    </script>
+    <script src="galeria.js"></script>
 </body>
 
 </html>
