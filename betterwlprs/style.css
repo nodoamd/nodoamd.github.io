@@ -534,6 +534,43 @@
             box-shadow: 0 12px 40px rgba(167, 135, 255, 0.4);
         }
 
+        .btn-dl-text {
+            display: inline-flex;
+            align-items: baseline;
+            white-space: nowrap;
+        }
+
+        .btn-dl-extra {
+            display: inline-block;
+            max-width: 0;
+            margin-left: 0;
+            opacity: 0;
+            overflow: hidden;
+            transform: translateY(5px);
+            letter-spacing: 0.06em;
+            transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.28s ease,
+                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-dl:hover .btn-dl-extra,
+        .btn-dl:focus-visible .btn-dl-extra {
+            max-width: 5.2em;
+            margin-left: 0.4em;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (hover: none) {
+            .btn-dl-extra {
+                max-width: 5.2em;
+                margin-left: 0.4em;
+                opacity: 1;
+                transform: none;
+            }
+        }
+
 
 
         .btn.secondary:hover {
@@ -685,6 +722,7 @@
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
+            color: #fff;
             backdrop-filter: blur(10px);
         }
 
@@ -1012,7 +1050,118 @@
             box-shadow: 0 12px 40px rgba(167, 135, 255, 0.5);
         }
 
-        /* Footer */
+        /* Page loader */
+        .page-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 4000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            background: var(--bg, #0a0a0f);
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .page-loader.is-done {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .page-loader-mark {
+            font-weight: 900;
+            font-size: 1.4rem;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light, #c4b5fd));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-loader-bar {
+            width: 120px;
+            height: 3px;
+            border-radius: 99px;
+            overflow: hidden;
+            background: var(--border);
+        }
+
+        .page-loader-bar span {
+            display: block;
+            height: 100%;
+            width: 40%;
+            background: var(--accent);
+            animation: loaderSlide 0.9s ease-in-out infinite;
+        }
+
+        @keyframes loaderSlide {
+            0% { transform: translateX(-120%); }
+            100% { transform: translateX(320%); }
+        }
+
+        html.is-leaving body {
+            opacity: 0.35;
+            transition: opacity 0.18s ease;
+        }
+
+        .spline-slot {
+            background: transparent;
+        }
+
+        video.is-pending:not(.is-ready) {
+            opacity: 0;
+        }
+
+        video.is-ready {
+            opacity: 1;
+        }
+
+        .media-shell {
+            position: relative;
+            background:
+                linear-gradient(180deg, color-mix(in srgb, var(--card) 88%, var(--accent)) 0%, var(--card) 100%);
+        }
+
+        .media-shell::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: linear-gradient(
+                110deg,
+                transparent 0%,
+                color-mix(in srgb, var(--accent) 16%, transparent) 46%,
+                transparent 72%
+            );
+            background-size: 220% 100%;
+            animation: mediaShine 1.35s ease-in-out infinite;
+            opacity: 1;
+            transition: opacity 0.45s ease;
+        }
+
+        .media-shell.has-frame::after {
+            opacity: 0;
+            animation: none;
+        }
+
+        @keyframes mediaShine {
+            0% { background-position: 120% 0; }
+            100% { background-position: -40% 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            video.is-pending:not(.is-ready) {
+                opacity: 1;
+            }
+
+            .media-shell::after {
+                animation: none;
+                opacity: 0;
+            }
+        }
         .footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border);
