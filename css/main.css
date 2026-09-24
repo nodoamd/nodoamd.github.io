@@ -1164,10 +1164,10 @@ body.theme-light #nodo-nav .nav-burger span { background: var(--text-primary); }
 }
 
 .marquee-track.is-gsap {
-  animation: none;
+  animation: none !important;
 }
 
-.marquee-track:hover { animation-play-state: paused; }
+.marquee-track.is-gsap:hover { animation-play-state: running; }
 
 .marquee-item {
   font-family: var(--font-display);

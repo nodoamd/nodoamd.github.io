@@ -1481,10 +1481,15 @@ const NcReach = (() => {
 
 function initNodoMarquee(root) {
   const track = root?.querySelector('.marquee-track');
-  if (!track || track.dataset.marqueeInit) return;
+  if (!track) return;
 
-  track.dataset.marqueeInit = '1';
+  // Always re-bind: ScrollFX.kill() destroys the tween but left a flag that
+  // blocked re-init, so the strip froze after Barba / a failed first pass.
+  if (track._marqueeScroll) window.removeEventListener('scroll', track._marqueeScroll);
+  if (track._marqueeSettle) clearTimeout(track._marqueeSettle);
+  gsap.killTweensOf(track);
   track.classList.add('is-gsap');
+  gsap.set(track, { xPercent: 0, force3D: true });
 
   const loop = gsap.to(track, {
     xPercent: -50,
@@ -1494,27 +1499,38 @@ function initNodoMarquee(root) {
   });
 
   let paused = false;
+  let lastY = window.scrollY;
+  let lastT = performance.now();
   const section = track.closest('.marquee-section');
+  const setScale = gsap.quickTo(loop, 'timeScale', { duration: 0.35, ease: 'power2.out' });
 
-  ScrollTrigger.create({
-    start: 0,
-    end: 'max',
-    onUpdate(self) {
-      if (paused) return;
-      const vel = self.getVelocity();
-      if (vel < -30) loop.timeScale(-1);
-      else if (vel > 30) loop.timeScale(1);
-    },
-  });
+  const onScroll = () => {
+    if (paused) return;
+    const now = performance.now();
+    const y = window.scrollY;
+    const dt = Math.max(16, now - lastT);
+    const vel = ((y - lastY) / dt) * 1000;
+    lastY = y;
+    lastT = now;
+
+    clearTimeout(track._marqueeSettle);
+    if (vel < -60) setScale(-1);
+    else if (vel > 60) setScale(1);
+    // On release (no more scroll events), return to the normal forward course.
+    track._marqueeSettle = setTimeout(() => { if (!paused) setScale(1); }, 220);
+  };
+  track._marqueeScroll = onScroll;
+  window.addEventListener('scroll', onScroll, { passive: true });
 
   if (window.matchMedia('(hover: hover)').matches) {
     section?.addEventListener('mouseenter', () => {
       paused = true;
-      gsap.to(loop, { timeScale: 0, duration: 0.35, ease: 'power2.out' });
+      clearTimeout(track._marqueeSettle);
+      setScale(0);
     });
     section?.addEventListener('mouseleave', () => {
       paused = false;
-      gsap.to(loop, { timeScale: 1, duration: 0.45, ease: 'power2.out' });
+      setScale(1);
     });
   }
 }
