@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1080">
+  <title>La Chiquitana — datos</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: #111;
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+    }
+    .card {
+      width: 1080px;
+      height: 1080px;
+      background: #2E5339;
+      color: #FEFCF8;
+      padding: 88px 92px 72px;
+      display: flex;
+      flex-direction: column;
+      font-family: "Avenir Next", "Avenir", "Helvetica Neue", sans-serif;
+    }
+    .brand {
+      font-size: 22px;
+      letter-spacing: 0.42em;
+      font-weight: 600;
+      color: #E8A238;
+      text-align: center;
+    }
+    .claim {
+      margin-top: 28px;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      font-size: 42px;
+      font-weight: 400;
+      font-style: italic;
+      text-align: center;
+      color: #FEFCF8;
+      line-height: 1.15;
+    }
+    .rule {
+      width: 72px;
+      height: 2px;
+      background: #E8A238;
+      margin: 40px auto 0;
+    }
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      padding: 12px 0 8px;
+    }
+    .num {
+      font-weight: 700;
+      font-size: 168px;
+      letter-spacing: -0.04em;
+      line-height: 0.9;
+      color: #E8A238;
+    }
+    .num-label {
+      margin-top: 18px;
+      font-size: 28px;
+      letter-spacing: 0.02em;
+      color: #F4E6D0;
+      font-weight: 500;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid rgba(244, 230, 208, 0.28);
+      padding-top: 36px;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat + .stat {
+      border-left: 1px solid rgba(244, 230, 208, 0.28);
+    }
+    .stat-num {
+      font-weight: 700;
+      font-size: 64px;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: #FEFCF8;
+    }
+    .stat-label {
+      margin-top: 10px;
+      font-size: 20px;
+      color: #F4E6D0;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+    .foot {
+      margin-top: 48px;
+      text-align: center;
+      font-size: 18px;
+      letter-spacing: 0.28em;
+      color: rgba(244, 230, 208, 0.55);
+      font-weight: 500;
+      text-transform: lowercase;
+    }
+  </style>
+</head>
+<body>
+  <article class="card">
+    <p class="brand">LA CHIQUITANA</p>
+    <p class="claim">La web ha funcionado.</p>
+    <div class="rule"></div>
+    <div class="hero">
+      <p class="num">+30.000</p>
+      <p class="num-label">veces que os han encontrado</p>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <p class="stat-num">701</p>
+        <p class="stat-label">entradas a la web</p>
+      </div>
+      <div class="stat">
+        <p class="stat-num">1ª</p>
+        <p class="stat-label">página de Google</p>
+      </div>
+    </div>
+    <p class="foot">nodo</p>
+  </article>
+</body>
+</html>

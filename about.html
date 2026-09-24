@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nodo Studio — estudio de autor en L'Hospitalet de Llobregat. Webs hechas a mano, sin plantillas, para negocios que quieren que les encuentren." />
+  <title>Nosotros — Nodo Studio</title>
+  <link rel="icon" href="img/nodedos.png" type="image/png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css?v=20260924r" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="https://unpkg.com/@barba/core@2.9.7/dist/barba.umd.js"></script>
+</head>
+<body class="theme-light is-loading">
+
+  <div class="nodo-transition is-idle" id="nodo-transition" aria-hidden="true">
+    <div class="nodo-transition-panel"></div>
+  </div>
+
+  <nav id="nodo-nav" aria-label="Navegación principal">
+    <a href="index.html" class="nav-logo" aria-label="Nodo Studio">
+      <img src="img/nodedos.png" alt="" class="brand-mark" width="32" height="32" />
+      <span class="nav-brand-word" id="navBrandWord" aria-live="polite">
+        <span class="morph-wrap morph-wrap--nav" id="navMorph">
+          <span class="morph-track">
+            <span class="morph-item is-active" data-word="Nodo">Nodo</span>
+            <span class="morph-item" data-word="Aumenta">Aumenta</span>
+            <span class="morph-item" data-word="Mejora">Mejora</span>
+            <span class="morph-item" data-word="Conecta">Conecta</span>
+            <span class="morph-item" data-word="Transforma">Transforma</span>
+            <span class="morph-item" data-word="Crece">Crece</span>
+          </span>
+        </span>
+      </span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="work.html">Trabajos</a></li>
+      <li><a href="about.html">Nosotros</a></li>
+      <li><a href="index.html#precios">Precios</a></li>
+      <li><a href="contact.html" class="nav-cta">Hablemos →</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div data-barba="wrapper">
+    <main data-barba="container" data-barba-namespace="about">
+
+      <header class="np-hero np-hero--about container" data-nav-word="Nodo">
+        <p class="np-kicker"><span class="nc-live-dot"></span> Estudio · L'Hospitalet de Llobregat</p>
+        <h1 class="np-title" data-np-title>
+          <span class="np-line"><span>Un estudio pequeño.</span></span>
+          <span class="np-line"><span><em>A propósito.</em></span></span>
+        </h1>
+        <p class="np-lead">Nodo es un estudio de autor. Aquí tu proyecto no pasa de mano en mano: quien te escucha es quien lo diseña y quien escribe cada línea de código.</p>
+      </header>
+
+      <section class="np-strip" data-strip aria-label="Algunas webs hechas en Nodo">
+        <div class="np-strip-row" data-strip-row>
+          <figure><img src="img/reveal/chiquitana.jpg" alt="La Chiquitana" loading="lazy" width="722" height="822" /><figcaption>La Chiquitana</figcaption></figure>
+          <figure><img src="img/work/sakura.jpg" alt="Sakura Candles" loading="lazy" width="1400" height="871" /><figcaption>Sakura Candles</figcaption></figure>
+          <figure><img src="img/reveal/javipato.jpg" alt="Javi Pato Tattoo" loading="lazy" width="722" height="822" /><figcaption>Javi Pato Tattoo</figcaption></figure>
+          <figure><img src="img/reveal/hitachi.webp" alt="Clínica Hitachi" loading="lazy" width="1667" height="982" /><figcaption>Clínica Hitachi</figcaption></figure>
+          <figure><img src="img/work/cfc.jpg" alt="CFC Barcelona" loading="lazy" width="1400" height="871" /><figcaption>CFC Barcelona</figcaption></figure>
+          <figure><img src="img/reveal/betterwlprs.jpg" alt="BetterWLPRS" loading="lazy" width="722" height="822" /><figcaption>BetterWLPRS</figcaption></figure>
+          <figure><img src="img/reveal/aprendalia.jpg" alt="Aprendalia" loading="lazy" width="722" height="822" /><figcaption>Aprendalia</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="np-manifesto container" data-manifesto data-nav-word="Transforma">
+        <p class="np-manifesto-kicker">Manifiesto</p>
+        <p class="np-manifesto-text" data-manifesto-text>No usamos plantillas. No usamos WordPress. No montamos webs en serie. Escuchamos tu negocio, lo entendemos y lo escribimos a mano, línea a línea, hasta que quien te busca te encuentra — <em>y se queda.</em></p>
+      </section>
+
+      <section class="np-process container" data-process data-nav-word="Conecta">
+        <div class="np-process-head">
+          <p class="np-kicker">Cómo trabajamos</p>
+          <h2 class="np-h2">Cuatro pasos. <em>Un solo hilo.</em></h2>
+          <p class="np-lead np-lead--sm">De la primera llamada a tu web publicada, siempre hablas con la misma persona.</p>
+        </div>
+        <div class="np-steps-wrap">
+        <svg class="np-steps-thread" aria-hidden="true"><path class="np-steps-track" /><path class="np-steps-line" /></svg>
+        <ol class="np-steps" role="list">
+          <li class="np-step">
+            <span class="np-step-node" aria-hidden="true"></span>
+            <p class="np-step-when">Día 1 · 30 min</p>
+            <h3>Nos cuentas tu negocio</h3>
+            <p>Una llamada o un café. Qué haces, a quién quieres llegar y qué te frena. Si no encaja, te lo decimos.</p>
+          </li>
+          <li class="np-step">
+            <span class="np-step-node" aria-hidden="true"></span>
+            <p class="np-step-when">En 48h</p>
+            <h3>Propuesta clara</h3>
+            <p>Qué haremos, cuánto cuesta y cuándo estará. Sin letra pequeña. Empezamos con la mitad.</p>
+          </li>
+          <li class="np-step">
+            <span class="np-step-node" aria-hidden="true"></span>
+            <p class="np-step-when">~2 semanas</p>
+            <h3>Diseño y código a mano</h3>
+            <p>Desde cero, pensado para tu cliente. Ves avances reales durante el camino, no promesas.</p>
+          </li>
+          <li class="np-step">
+            <span class="np-step-node" aria-hidden="true"></span>
+            <p class="np-step-when">Lanzamiento</p>
+            <h3>Publicada y conectada</h3>
+            <p>Rápida en móvil, lista para Google y con tu WhatsApp a un toque. Y seguimos a tu lado.</p>
+          </li>
+        </ol>
+        </div>
+      </section>
+
+      <section class="np-numbers container" data-nav-word="Aumenta">
+        <ul class="np-numbers-grid" role="list">
+          <li><strong data-np-count="9">9</strong><span>webs publicadas y funcionando</span></li>
+          <li><strong data-np-count="30000" data-prefix="+" data-sep="1">+30.000</strong><span>veces que Google ha mostrado a La Chiquitana</span></li>
+          <li><strong data-np-count="100" data-suffix="%">100%</strong><span>código escrito a mano</span></li>
+          <li><strong data-np-count="24" data-prefix="&lt;" data-suffix="h">&lt;24h</strong><span>para responderte, siempre</span></li>
+        </ul>
+      </section>
+
+      <section class="np-compare container" data-compare data-nav-word="Mejora">
+        <div class="np-compare-head">
+          <h2 class="np-h2">¿Plantilla o <em>Nodo</em>?</h2>
+          <div class="np-switch" role="group" aria-label="Comparar">
+            <button type="button" class="np-switch-btn" data-side="plantilla" aria-pressed="false">Plantilla</button>
+            <button type="button" class="np-switch-btn is-active" data-side="nodo" aria-pressed="true">Nodo</button>
+            <span class="np-switch-knob" aria-hidden="true"></span>
+          </div>
+        </div>
+        <ul class="np-compare-list" role="list" data-side-current="nodo">
+          <li data-plantilla="Se parece a otras mil webs" data-nodo="Diseñada para tu negocio, y solo para él"><span class="np-compare-ico" aria-hidden="true"></span><span class="np-compare-txt">Diseñada para tu negocio, y solo para él</span></li>
+          <li data-plantilla="Lenta en el móvil, donde está tu cliente" data-nodo="Rápida en móvil: carga antes de que se vayan"><span class="np-compare-ico" aria-hidden="true"></span><span class="np-compare-txt">Rápida en móvil: carga antes de que se vayan</span></li>
+          <li data-plantilla="Google no sabe muy bien de qué va" data-nodo="Preparada para que Google te entienda y te muestre"><span class="np-compare-ico" aria-hidden="true"></span><span class="np-compare-txt">Preparada para que Google te entienda y te muestre</span></li>
+          <li data-plantilla="Te atiende un ticket de soporte" data-nodo="Hablas con quien la ha hecho, por WhatsApp"><span class="np-compare-ico" aria-hidden="true"></span><span class="np-compare-txt">Hablas con quien la ha hecho, por WhatsApp</span></li>
+          <li data-plantilla="Se olvida en cuanto cierras la pestaña" data-nodo="Se recuerda. Y se vuelve."><span class="np-compare-ico" aria-hidden="true"></span><span class="np-compare-txt">Se recuerda. Y se vuelve.</span></li>
+        </ul>
+      </section>
+
+      <footer class="nc-foot" id="contacto-final" data-nav-word="Conecta">
+        <div class="nc-foot-join" aria-label="Nodo Conecta">
+          <div class="nc-foot-join-pin">
+            <p class="nc-foot-join-kicker">Hecho a mano <span>·</span> hilo a hilo</p>
+            <div class="nc-foot-join-row">
+              <span class="nc-foot-word nc-foot-word--a">Nodo<small>tu negocio</small></span>
+              <span class="nc-foot-link" aria-hidden="true"><b class="nc-foot-dot"></b></span>
+              <span class="nc-foot-word nc-foot-word--b">Conecta<small>quien lo busca</small></span>
+            </div>
+            <svg class="nc-foot-thread" aria-hidden="true">
+              <path class="nc-foot-thread-shadow" />
+              <path class="nc-foot-thread-stitch" />
+            </svg>
+            <p class="nc-foot-join-hint" aria-hidden="true"><span class="nc-hint-mouse">Pasa el cursor por el hilo</span><span class="nc-hint-touch">Toca el hilo</span></p>
+          </div>
+        </div>
+
+        <div class="container nc-foot-body">
+          <div class="nc-foot-cta">
+            <p class="nc-foot-status">
+              <span class="nc-live-dot"></span>
+              Disponibles · <span data-clock data-timezone="Europe/Madrid"><span data-clock-time>--:--</span></span> en Barcelona
+            </p>
+            <h2 class="nc-foot-title">¿Te lo contamos en <em>30 minutos</em>?</h2>
+            <div class="nc-foot-actions">
+              <a class="nc-foot-btn nc-foot-btn--wa magnetic" href="https://wa.me/34622494800?text=Hola%20Nodo%2C%20me%20gustar%C3%ADa%20hablar%2030%20minutos%20sobre%20mi%20negocio." target="_blank" rel="noopener">
+                <small>WhatsApp</small>
+                <span>+34 622 494 800</span>
+              </a>
+              <a class="nc-foot-btn magnetic" href="mailto:nodoagenciadigital@hotmail.com">
+                <small>Email</small>
+                <span>nodoagenciadigital@hotmail.com</span>
+              </a>
+            </div>
+            <p class="nc-foot-note">30 min · Sin compromiso · Respondemos en 24h</p>
+          </div>
+
+          <nav class="nc-foot-links" aria-label="Pie de página">
+            <a href="work.html">Trabajos</a>
+            <a href="about.html">Nosotros</a>
+            <a href="index.html#precios">Precios</a>
+            <a href="contact.html">Contacto</a>
+            <a href="https://wa.me/34622494800" target="_blank" rel="noopener">WhatsApp</a>
+          </nav>
+          <p class="nc-foot-where">L'Hospitalet de Llobregat · Barcelona · USA · Lun–Vie 9:00–20:00</p>
+
+          <div class="nc-foot-bottom">
+            <img src="img/nodedos.png" alt="" width="28" height="28" />
+            <p>© 2026 <em>Nodo</em> · Hecho a mano en L'Hospitalet</p>
+            <button type="button" class="nc-top magnetic" aria-label="Volver arriba">
+              <svg viewBox="0 0 44 44" aria-hidden="true"><circle class="nc-top-track" cx="22" cy="22" r="20"/><circle class="nc-top-ring" cx="22" cy="22" r="20" pathLength="1"/></svg>
+              <span>↑</span>
+            </button>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="js/main.js?v=20260924r"></script>
+</body>
+</html>

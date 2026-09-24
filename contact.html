@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contacta con Nodo Studio — cuéntanos tu negocio en tres toques y te respondemos en menos de 24h por WhatsApp." />
+  <title>Contacto — Nodo Studio</title>
+  <link rel="icon" href="img/nodedos.png" type="image/png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css?v=20260924r" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="https://unpkg.com/@barba/core@2.9.7/dist/barba.umd.js"></script>
+</head>
+<body class="theme-light is-loading">
+
+  <div class="nodo-transition is-idle" id="nodo-transition" aria-hidden="true">
+    <div class="nodo-transition-panel"></div>
+  </div>
+
+  <nav id="nodo-nav" aria-label="Navegación principal">
+    <a href="index.html" class="nav-logo" aria-label="Nodo Studio">
+      <img src="img/nodedos.png" alt="" class="brand-mark" width="32" height="32" />
+      <span class="nav-brand-word" id="navBrandWord" aria-live="polite">
+        <span class="morph-wrap morph-wrap--nav" id="navMorph">
+          <span class="morph-track">
+            <span class="morph-item is-active" data-word="Nodo">Nodo</span>
+            <span class="morph-item" data-word="Aumenta">Aumenta</span>
+            <span class="morph-item" data-word="Mejora">Mejora</span>
+            <span class="morph-item" data-word="Conecta">Conecta</span>
+            <span class="morph-item" data-word="Transforma">Transforma</span>
+            <span class="morph-item" data-word="Crece">Crece</span>
+          </span>
+        </span>
+      </span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="work.html">Trabajos</a></li>
+      <li><a href="about.html">Nosotros</a></li>
+      <li><a href="index.html#precios">Precios</a></li>
+      <li><a href="contact.html" class="nav-cta">Hablemos →</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div data-barba="wrapper">
+    <main data-barba="container" data-barba-namespace="contact">
+
+      <header class="np-hero np-hero--contact container" data-nav-word="Conecta">
+        <p class="np-kicker"><span class="nc-live-dot"></span> Disponibles · <span data-clock data-timezone="Europe/Madrid"><span data-clock-time>--:--</span></span> en Barcelona</p>
+        <h1 class="np-title" data-np-title>
+          <span class="np-line"><span>Cuéntanos tu negocio.</span></span>
+          <span class="np-line"><span><em>Nosotros lo conectamos.</em></span></span>
+        </h1>
+        <p class="np-lead">Tres toques y nos llega tu idea por WhatsApp. Te responde una persona — la misma que hará tu web — en menos de 24h.</p>
+      </header>
+
+      <section class="np-brief container" data-brief>
+        <form class="np-brief-form" data-brief-form novalidate>
+          <fieldset class="np-q">
+            <legend><span>01</span> ¿Qué necesitas?</legend>
+            <div class="np-chips">
+              <label class="np-chip"><input type="radio" name="need" value="Quiero una web nueva" checked /><span>Web nueva</span></label>
+              <label class="np-chip"><input type="radio" name="need" value="Quiero renovar mi web" /><span>Renovar mi web</span></label>
+              <label class="np-chip"><input type="radio" name="need" value="Quiero una tienda online" /><span>Tienda online</span></label>
+              <label class="np-chip"><input type="radio" name="need" value="Quiero que me encuentren más, pero aún no sé qué necesito" /><span>Aún no lo sé</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="np-q">
+            <legend><span>02</span> ¿Qué negocio tienes?</legend>
+            <input class="np-input" type="text" name="business" placeholder="Panadería, clínica, estudio de tatuaje…" autocomplete="organization" />
+          </fieldset>
+
+          <fieldset class="np-q">
+            <legend><span>03</span> ¿Para cuándo?</legend>
+            <div class="np-chips">
+              <label class="np-chip"><input type="radio" name="when" value="Me corre prisa." /><span>Cuanto antes</span></label>
+              <label class="np-chip"><input type="radio" name="when" value="Me gustaría tenerlo este mes." checked /><span>Este mes</span></label>
+              <label class="np-chip"><input type="radio" name="when" value="Lo querría en unos meses." /><span>En unos meses</span></label>
+              <label class="np-chip"><input type="radio" name="when" value="No tengo prisa." /><span>Sin prisa</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="np-q np-q--row">
+            <legend><span>04</span> ¿Cómo te llamas?</legend>
+            <input class="np-input" type="text" name="name" placeholder="Tu nombre" autocomplete="given-name" />
+            <textarea class="np-input np-textarea" name="extra" rows="3" placeholder="Algo más que quieras contarnos (opcional)"></textarea>
+          </fieldset>
+
+          <div class="np-brief-actions">
+            <a class="np-send magnetic" href="https://wa.me/34622494800" target="_blank" rel="noopener" data-brief-wa>
+              <span class="np-send-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.2-.7-2.7-1.1-4.4-3.8-4.5-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.4.3.2.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.3.1.8-.1 1.4Z"/></svg>
+              </span>
+              <span>Enviar por WhatsApp</span>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a class="np-link" href="mailto:nodoagenciadigital@hotmail.com" data-brief-mail>Prefiero email ↗</a>
+          </div>
+        </form>
+
+        <aside class="np-brief-preview" aria-live="polite">
+          <div class="np-chat">
+            <div class="np-chat-top">
+              <img src="img/nodedos.png" alt="" width="34" height="34" />
+              <div><strong>Nodo Studio</strong><span><span class="nc-live-dot"></span> en línea · responde en &lt;24h</span></div>
+            </div>
+            <div class="np-chat-body">
+              <p class="np-bubble np-bubble--in">¡Hola! Cuéntanos qué tienes en mente 👋</p>
+              <p class="np-bubble np-bubble--out" data-brief-preview></p>
+              <p class="np-chat-typing" aria-hidden="true"><i></i><i></i><i></i></p>
+            </div>
+          </div>
+          <ul class="np-direct" role="list">
+            <li>
+              <a class="np-direct-btn" href="https://wa.me/34622494800" target="_blank" rel="noopener">
+                <small>WhatsApp</small>
+                <strong>+34 622 494 800</strong>
+                <span>Escribir →</span>
+              </a>
+            </li>
+            <li>
+              <a class="np-direct-btn" href="mailto:nodoagenciadigital@hotmail.com">
+                <small>Email</small>
+                <strong>nodoagenciadigital@hotmail.com</strong>
+                <span>Escribir →</span>
+              </a>
+            </li>
+            <li class="np-direct-note"><small>Estudio</small><span>L'Hospitalet de Llobregat · Lun–Vie 9:00–20:00</span></li>
+          </ul>
+        </aside>
+      </section>
+
+      <footer class="nc-foot nc-foot--compact" id="contacto-final" data-nav-word="Conecta">
+        <div class="nc-foot-join" aria-label="Nodo Conecta">
+          <div class="nc-foot-join-pin">
+            <p class="nc-foot-join-kicker">Hecho a mano <span>·</span> hilo a hilo</p>
+            <div class="nc-foot-join-row">
+              <span class="nc-foot-word nc-foot-word--a">Nodo<small>tu negocio</small></span>
+              <span class="nc-foot-link" aria-hidden="true"><b class="nc-foot-dot"></b></span>
+              <span class="nc-foot-word nc-foot-word--b">Conecta<small>quien lo busca</small></span>
+            </div>
+            <svg class="nc-foot-thread" aria-hidden="true">
+              <path class="nc-foot-thread-shadow" />
+              <path class="nc-foot-thread-stitch" />
+            </svg>
+            <p class="nc-foot-join-hint" aria-hidden="true"><span class="nc-hint-mouse">Pasa el cursor por el hilo</span><span class="nc-hint-touch">Toca el hilo</span></p>
+          </div>
+        </div>
+
+        <div class="container nc-foot-body">
+          <nav class="nc-foot-links" aria-label="Pie de página">
+            <a href="work.html">Trabajos</a>
+            <a href="about.html">Nosotros</a>
+            <a href="index.html#precios">Precios</a>
+            <a href="contact.html">Contacto</a>
+            <a href="https://wa.me/34622494800" target="_blank" rel="noopener">WhatsApp</a>
+          </nav>
+          <p class="nc-foot-where">L'Hospitalet de Llobregat · Barcelona · USA · Lun–Vie 9:00–20:00</p>
+
+          <div class="nc-foot-bottom">
+            <img src="img/nodedos.png" alt="" width="28" height="28" />
+            <p>© 2026 <em>Nodo</em> · Hecho a mano en L'Hospitalet</p>
+            <button type="button" class="nc-top magnetic" aria-label="Volver arriba">
+              <svg viewBox="0 0 44 44" aria-hidden="true"><circle class="nc-top-track" cx="22" cy="22" r="20"/><circle class="nc-top-ring" cx="22" cy="22" r="20" pathLength="1"/></svg>
+              <span>↑</span>
+            </button>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="js/main.js?v=20260924r"></script>
+</body>
+</html>

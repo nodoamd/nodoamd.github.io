@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Trabajos de Nodo — webs hechas a mano en Barcelona para negocios reales: La Chiquitana, Clínica Hitachi, Javi Pato Tattoo y más." />
+  <title>Trabajos — Nodo Studio</title>
+  <link rel="icon" href="img/nodedos.png" type="image/png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css?v=20260924r" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <script src="https://unpkg.com/@barba/core@2.9.7/dist/barba.umd.js"></script>
+</head>
+<body class="theme-light is-loading">
+
+  <div class="nodo-transition is-idle" id="nodo-transition" aria-hidden="true">
+    <div class="nodo-transition-panel"></div>
+  </div>
+
+  <nav id="nodo-nav" aria-label="Navegación principal">
+    <a href="index.html" class="nav-logo" aria-label="Nodo Studio">
+      <img src="img/nodedos.png" alt="" class="brand-mark" width="32" height="32" />
+      <span class="nav-brand-word" id="navBrandWord" aria-live="polite">
+        <span class="morph-wrap morph-wrap--nav" id="navMorph">
+          <span class="morph-track">
+            <span class="morph-item is-active" data-word="Nodo">Nodo</span>
+            <span class="morph-item" data-word="Aumenta">Aumenta</span>
+            <span class="morph-item" data-word="Mejora">Mejora</span>
+            <span class="morph-item" data-word="Conecta">Conecta</span>
+            <span class="morph-item" data-word="Transforma">Transforma</span>
+            <span class="morph-item" data-word="Crece">Crece</span>
+          </span>
+        </span>
+      </span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="work.html">Trabajos</a></li>
+      <li><a href="about.html">Nosotros</a></li>
+      <li><a href="index.html#precios">Precios</a></li>
+      <li><a href="contact.html" class="nav-cta">Hablemos →</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="Menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div data-barba="wrapper">
+    <main data-barba="container" data-barba-namespace="work">
+
+      <header class="np-hero container" data-nav-word="Nodo">
+        <p class="np-kicker"><span class="nc-live-dot"></span> Trabajos · 2024 — 2026</p>
+        <h1 class="np-title" data-np-title>
+          <span class="np-line"><span>Webs que ya</span></span>
+          <span class="np-line"><span><em>trabajan</em> para alguien.</span></span>
+        </h1>
+        <p class="np-lead">Nueve proyectos hechos a mano, línea a línea. Negocios de barrio, marcas y productos propios — todos conectados con quien los busca.</p>
+
+        <div class="np-constellation" data-constellation aria-label="Negocios conectados con Nodo">
+          <svg class="np-constellation-svg" aria-hidden="true"></svg>
+          <div class="np-core" data-core>
+            <img src="img/nodedos.png" alt="" width="34" height="34" />
+            <span>Nodo</span>
+          </div>
+          <a class="np-star" href="#w-chiquitana" style="--x:9%;--y:30%;--mx:12%;--my:12%" data-name="La Chiquitana"><img src="img/clientes/chiquitana.png" alt="La Chiquitana" width="56" height="56" /></a>
+          <a class="np-star" href="#w-hitachi" style="--x:24%;--y:78%;--mx:50%;--my:6%" data-name="Clínica Hitachi"><img src="img/clientes/hitachi.webp" alt="Clínica Hitachi" width="56" height="56" /></a>
+          <a class="np-star" href="#w-javipato" style="--x:33%;--y:14%;--mx:88%;--my:12%" data-name="Javi Pato Tattoo"><img src="img/clientes/javipato.png" alt="Javi Pato Tattoo" width="56" height="56" /></a>
+          <a class="np-star" href="#w-sakura" style="--x:62%;--y:10%;--mx:8%;--my:50%" data-name="Sakura Candles"><img src="img/clientes/sakura.jpg" alt="Sakura Candles" width="56" height="56" /></a>
+          <a class="np-star" href="#w-cfc" style="--x:76%;--y:74%;--mx:92%;--my:50%" data-name="CFC Barcelona"><img src="img/clientes/cfc.jpg" alt="CFC Barcelona" width="56" height="56" /></a>
+          <a class="np-star" href="#w-betterwlprs" style="--x:91%;--y:32%;--mx:12%;--my:88%" data-name="BetterWLPRS"><img src="img/clientes/betterwlprs.png" alt="BetterWLPRS" width="56" height="56" /></a>
+          <a class="np-star np-star--sm" href="#w-aprendalia" style="--x:46%;--y:90%;--mx:50%;--my:94%" data-name="Aprendalia"><img src="img/clientes/aprendalia.png" alt="Aprendalia" width="44" height="44" /></a>
+          <a class="np-star np-star--sm" href="#w-entorno" style="--x:14%;--y:62%;--mx:88%;--my:88%" data-name="Entorno"><img src="img/clientes/entorno.jpg" alt="Entorno" width="44" height="44" /></a>
+          <a class="np-star np-star--sm" href="#w-reader" style="--x:86%;--y:58%;--mx:30%;--my:72%" data-name="Nodo Reader"><img src="img/clientes/reader.png" alt="Nodo Reader" width="44" height="44" /></a>
+        </div>
+
+        <ul class="np-stats" role="list">
+          <li><strong data-np-count="9">9</strong><span>proyectos publicados</span></li>
+          <li><strong data-np-count="30000" data-prefix="+" data-sep="1">+30.000</strong><span>veces encontrada en Google una sola de ellas</span></li>
+          <li><strong data-np-count="0">0</strong><span>plantillas, WordPress o IA</span></li>
+          <li><strong>&lt;24h</strong><span>en responderte</span></li>
+        </ul>
+      </header>
+
+      <section class="np-case container" id="w-chiquitana" data-nav-word="Aumenta">
+        <div class="np-case-media">
+          <figure class="np-browser" data-scrub="30">
+            <div class="np-browser-bar"><i></i><i></i><i></i><span>lachiquitana.com</span></div>
+            <img src="img/reveal/chiquitana.jpg" alt="Web de La Chiquitana, panadería en Pubilla Cases" width="722" height="822" loading="lazy" />
+          </figure>
+          <div class="np-proof-wrap" data-scrub="-60">
+            <figure class="np-proof">
+              <img src="img/chiquitana-datos.png" alt="+30.000 veces encontrada en Google, 701 entradas, primera página" width="512" height="512" loading="lazy" />
+              <figcaption><span class="nc-live-dot"></span> Datos reales · Google Search Console</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="np-case-copy">
+          <p class="np-case-tag">Caso destacado · Panadería · Pubilla Cases</p>
+          <h2 class="np-case-title">La Chiquitana</h2>
+          <p class="np-case-text">Una panadería boliviana de barrio, sin un euro en anuncios. Le hicimos una web a mano que cuenta quiénes son y huele a horno. Hoy sale en la primera página de Google y la han encontrado <strong>más de 30.000 veces</strong>.</p>
+          <ul class="np-case-nums" role="list">
+            <li><strong data-np-count="30000" data-prefix="+" data-sep="1">+30.000</strong><span>veces en Google</span></li>
+            <li><strong data-np-count="701">701</strong><span>visitas a la web</span></li>
+            <li><strong>1ª</strong><span>página, sin ads</span></li>
+          </ul>
+          <div class="np-case-actions">
+            <a href="contact.html" class="btn btn-primary btn-breathe">Quiero esto para mi negocio →</a>
+            <a href="https://lachiquitana.com" target="_blank" rel="noopener" class="np-link">Visitar lachiquitana.com ↗</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="np-work container" data-nav-word="Conecta">
+        <div class="np-work-head">
+          <h2 class="np-h2">Cada web, <em>un negocio distinto.</em></h2>
+          <div class="np-filters" role="tablist" aria-label="Filtrar trabajos">
+            <button type="button" class="np-filter is-active" data-filter="all" role="tab" aria-selected="true">Todos <sup>9</sup></button>
+            <button type="button" class="np-filter" data-filter="negocio" role="tab" aria-selected="false">Negocios <sup>5</sup></button>
+            <button type="button" class="np-filter" data-filter="producto" role="tab" aria-selected="false">Productos Nodo <sup>4</sup></button>
+          </div>
+        </div>
+
+        <div class="np-grid" data-work-grid>
+          <button type="button" class="np-card" data-project="hitachi" data-cat="negocio" id="w-hitachi">
+            <span class="np-card-shot"><img src="img/reveal/hitachi.webp" alt="" loading="lazy" width="1667" height="982" /></span>
+            <span class="np-card-meta"><span class="np-card-n">01</span><span class="np-card-name">Clínica Dental Hitachi</span><span class="np-card-tag">Dental · L'Hospitalet</span><span class="np-card-go" aria-hidden="true">→</span></span>
+          </button>
+          <button type="button" class="np-card" data-project="javipato" data-cat="negocio" id="w-javipato">
+            <span class="np-card-shot"><img src="img/reveal/javipato.jpg" alt="" loading="lazy" width="722" height="822" /></span>
+            <span class="np-card-meta"><span class="np-card-n">02</span><span class="np-card-name">Javi Pato Tattoo</span><span class="np-card-tag">Tatuador · Realismo</span><span class="np-card-go" aria-hidden="true">→</span></span>
+          </button>
+          <button type="button" class="np-card" data-project="sakura" data-cat="negocio" id="w-sakura">
+            <span class="np-card-shot"><img src="img/work/sakura.jpg" alt="" loading="lazy" width="1400" height="871" /></span>
+            <span class="np-card-meta"><span class="np-card-n">03</span><span class="np-card-name">Sakura Candles</span><span class="np-card-tag">Velas artesanales · Eventos</span><span class="np-card-go" aria-hidden="true">→</span></span>
+          </button>
+          <button type="button" class="np-card" data-project="cfc" data-cat="negocio" id="w-cfc">
+            <span class="np-card-shot"><img src="img/work/cfc.jpg" alt="" loading="lazy" width="1400" height="871" /></span>
+            <span class="np-card-meta"><span class="np-card-n">04</span><span class="np-card-name">CFC Barcelona</span><span class="np-card-tag">Academia de fútbol · EE. UU.</span><span class="np-card-go" aria-hidden="true">→</span></span>
+          </button>
+          <button type="button" class="np-card" data-project="chiquitana" data-cat="negocio">
+            <span class="np-card-shot"><img src="img/reveal/chiquitana.jpg" alt="" loading="lazy" width="722" height="822" /></span>
+            <span class="np-card-meta"><span class="np-card-n">05</span><span class="np-card-name">La Chiquitana</span><span class="np-card-tag">Panadería · Pubilla Cases</span><span class="np-card-go" aria-hidden="true">→</span></span>
+          </button>
+          <button type="button" class="np-card" data-project="betterwlprs" data-cat="producto" id="w-betterwlprs">
+            <span class="np-card-shot"><img src="img/reveal/betterwlprs.jpg" alt="" loading="lazy" width="722" height="822" /></span>
+            <span class="np-card-meta"><span class="np-card-n">06</span><span class="np-card-name">BetterWLPRS</span><span class="np-card-tag">Galería · Gaming</span><span class="np-card-go" aria-hidden="true">→</span></span>
+          </button>
+          <button type="button" class="np-card" data-project="aprendalia" data-cat="producto" id="w-aprendalia">
+            <span class="np-card-shot"><img src="img/reveal/aprendalia.jpg" alt="" loading="lazy" width="722" height="822" /></span>
+            <span class="np-card-meta"><span class="np-card-n">07</span><span class="np-card-name">Aprendalia</span><span class="np-card-tag">Educación · Producto Nodo</span><span class="np-card-go" aria-hidden="true">→</span></span>
+          </button>
+          <button type="button" class="np-card" data-project="entorno" data-cat="producto" id="w-entorno">
+            <span class="np-card-shot"><img src="img/reveal/entorno.jpg" alt="" loading="lazy" width="722" height="822" /></span>
+            <span class="np-card-meta"><span class="np-card-n">08</span><span class="np-card-name">Entorno</span><span class="np-card-tag">Naturaleza · L'Hospitalet</span><span class="np-card-go" aria-hidden="true">→</span></span>
+          </button>
+          <button type="button" class="np-card" data-project="reader" data-cat="producto" id="w-reader">
+            <span class="np-card-shot"><img src="img/work/reader.jpg" alt="" loading="lazy" width="1400" height="871" /></span>
+            <span class="np-card-meta"><span class="np-card-n">09</span><span class="np-card-name">Nodo Reader</span><span class="np-card-tag">Lectura · Producto Nodo</span><span class="np-card-go" aria-hidden="true">→</span></span>
+          </button>
+        </div>
+        <span class="np-cursor" aria-hidden="true"><span>Ver caso</span></span>
+      </section>
+
+      <section class="np-next container" data-nav-word="Crece">
+        <p class="np-next-kicker">El siguiente nodo</p>
+        <a href="contact.html" class="np-next-slot magnetic">
+          <span class="np-next-plus" aria-hidden="true">+</span>
+          <span class="np-next-copy">
+            <strong>Tu negocio, aquí.</strong>
+            <span>Cuéntanos qué haces y te decimos cómo lo conectamos.</span>
+          </span>
+          <span class="np-next-go" aria-hidden="true">→</span>
+        </a>
+      </section>
+
+      <footer class="nc-foot" id="contacto-final" data-nav-word="Conecta">
+        <div class="nc-foot-join" aria-label="Nodo Conecta">
+          <div class="nc-foot-join-pin">
+            <p class="nc-foot-join-kicker">Hecho a mano <span>·</span> hilo a hilo</p>
+            <div class="nc-foot-join-row">
+              <span class="nc-foot-word nc-foot-word--a">Nodo<small>tu negocio</small></span>
+              <span class="nc-foot-link" aria-hidden="true"><b class="nc-foot-dot"></b></span>
+              <span class="nc-foot-word nc-foot-word--b">Conecta<small>quien lo busca</small></span>
+            </div>
+            <svg class="nc-foot-thread" aria-hidden="true">
+              <path class="nc-foot-thread-shadow" />
+              <path class="nc-foot-thread-stitch" />
+            </svg>
+            <p class="nc-foot-join-hint" aria-hidden="true"><span class="nc-hint-mouse">Pasa el cursor por el hilo</span><span class="nc-hint-touch">Toca el hilo</span></p>
+          </div>
+        </div>
+
+        <div class="container nc-foot-body">
+          <div class="nc-foot-cta">
+            <p class="nc-foot-status">
+              <span class="nc-live-dot"></span>
+              Disponibles · <span data-clock data-timezone="Europe/Madrid"><span data-clock-time>--:--</span></span> en Barcelona
+            </p>
+            <h2 class="nc-foot-title">¿Conectamos tu negocio con <em>quien lo busca</em>?</h2>
+            <div class="nc-foot-actions">
+              <a class="nc-foot-btn nc-foot-btn--wa magnetic" href="https://wa.me/34622494800?text=Hola%20Nodo%2C%20he%20visto%20vuestros%20trabajos%20y%20quiero%20una%20web%20as%C3%AD%20para%20mi%20negocio." target="_blank" rel="noopener">
+                <small>WhatsApp</small>
+                <span>+34 622 494 800</span>
+              </a>
+              <a class="nc-foot-btn magnetic" href="mailto:nodoagenciadigital@hotmail.com">
+                <small>Email</small>
+                <span>nodoagenciadigital@hotmail.com</span>
+              </a>
+            </div>
+            <p class="nc-foot-note">30 min · Sin compromiso · Respondemos en 24h</p>
+          </div>
+
+          <nav class="nc-foot-links" aria-label="Pie de página">
+            <a href="work.html">Trabajos</a>
+            <a href="about.html">Nosotros</a>
+            <a href="index.html#precios">Precios</a>
+            <a href="contact.html">Contacto</a>
+            <a href="https://wa.me/34622494800" target="_blank" rel="noopener">WhatsApp</a>
+          </nav>
+          <p class="nc-foot-where">L'Hospitalet de Llobregat · Barcelona · USA · Lun–Vie 9:00–20:00</p>
+
+          <div class="nc-foot-bottom">
+            <img src="img/nodedos.png" alt="" width="28" height="28" />
+            <p>© 2026 <em>Nodo</em> · Hecho a mano en L'Hospitalet</p>
+            <button type="button" class="nc-top magnetic" aria-label="Volver arriba">
+              <svg viewBox="0 0 44 44" aria-hidden="true"><circle class="nc-top-track" cx="22" cy="22" r="20"/><circle class="nc-top-ring" cx="22" cy="22" r="20" pathLength="1"/></svg>
+              <span>↑</span>
+            </button>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="js/main.js?v=20260924r"></script>
+</body>
+</html>
