@@ -624,17 +624,38 @@ body.theme-light #nodo-nav .nav-burger span { background: var(--text-primary); }
 .nav-burger {
   display: none;
   flex-direction: column;
+  justify-content: center;
   gap: 5px;
-  padding: 0.5rem;
-  z-index: 1001;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  z-index: 1102;
 }
 
 .nav-burger span {
   display: block;
-  width: 24px;
+  width: 22px;
   height: 1.5px;
+  margin: 0 auto;
   background: var(--text-primary);
-  transition: all 0.3s;
+  transform-origin: center;
+  transition: background 0.3s;
+}
+
+body.nav-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+body.nav-open .nc-reach {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 /* ═══════════════════════════════════════════════════
@@ -4422,21 +4443,73 @@ body.theme-light #nodo-nav.on-dark .nav-burger span { background: #fff; }
   .perf-accordion-trigger { padding: 1rem 1.15rem; }
   .perf-accordion.is-open .perf-accordion-panel { padding: 0 1.15rem 1.15rem; }
 
-  .nav-links {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: var(--bg-base);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2.5rem;
-    z-index: 999;
+  /* Overlay a viewport completo: no puede vivir recortado por el header */
+  #nodo-nav {
+    z-index: 1100;
+    overflow: visible;
+    transform: none !important;
   }
 
-  .nav-links.open { display: flex; }
-  .nav-links a { font-size: 1.5rem; }
+  .nav-links {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    height: 100svh;
+    margin: 0;
+    padding:
+      max(6.5rem, calc(env(safe-area-inset-top, 0px) + 5.5rem))
+      1.75rem
+      max(2rem, calc(env(safe-area-inset-bottom, 0px) + 1.5rem));
+    background: var(--bg-base);
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0.15rem;
+    z-index: 1101;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: none;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+  }
+
+  .nav-links.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .nav-links a {
+    display: block;
+    font-size: clamp(1.85rem, 8vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    text-transform: none;
+    text-align: center;
+    line-height: 1.15;
+    padding: 0.85rem 0.5rem;
+    color: var(--text-primary);
+  }
+
+  .nav-links a::after { display: none; }
+
+  .nav-links .nav-cta {
+    margin: 1.75rem auto 0;
+    width: min(100%, 18rem);
+    padding: 1rem 1.6rem !important;
+    font-size: 1.05rem !important;
+    font-weight: 650 !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+    text-align: center;
+  }
+
   .nav-burger { display: flex; }
+  .nav-logo { position: relative; z-index: 1102; }
 
   .form-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }

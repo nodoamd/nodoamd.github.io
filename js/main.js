@@ -947,29 +947,42 @@ const Nav = (() => {
     });
   }
 
-  function initBurger() {
+  function setMenuOpen(open) {
     if (!burger || !menu) return;
-    burger.addEventListener('click', () => {
-      const open = menu.classList.toggle('open');
-      burger.setAttribute('aria-expanded', open);
-      const spans = burger.querySelectorAll('span');
+    menu.classList.toggle('open', open);
+    document.body.classList.toggle('nav-open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    const spans = burger.querySelectorAll('span');
+    if (spans.length >= 3) {
       gsap.to(spans[0], { rotation: open ? 45 : 0, y: open ? 6.5 : 0, duration: 0.3 });
       gsap.to(spans[1], { opacity: open ? 0 : 1, duration: 0.2 });
       gsap.to(spans[2], { rotation: open ? -45 : 0, y: open ? -6.5 : 0, duration: 0.3 });
+    }
+  }
+
+  function closeMenu() {
+    setMenuOpen(false);
+  }
+
+  function initBurger() {
+    if (!burger || !menu) return;
+    burger.addEventListener('click', () => {
+      setMenuOpen(!menu.classList.contains('open'));
     });
     menu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        menu.classList.remove('open');
-        burger.setAttribute('aria-expanded', 'false');
-      });
+      a.addEventListener('click', closeMenu);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
     });
   }
 
   function animateIn() {
     if (!nav) return;
+    const mobile = window.matchMedia('(max-width: 768px)').matches;
     gsap.fromTo(nav,
-      { yPercent: -100, opacity: 0 },
-      { yPercent: 0, opacity: 1, duration: 0.8, ease: 'expo.out', delay: 0.1 }
+      { yPercent: mobile ? 0 : -100, opacity: 0 },
+      { yPercent: 0, opacity: 1, duration: 0.8, ease: 'expo.out', delay: 0.1, clearProps: 'transform' }
     );
   }
 
@@ -981,7 +994,7 @@ const Nav = (() => {
     initBurger();
   }
 
-  return { init, animateIn, setActive, initMorph, killMorph, updateScroll };
+  return { init, animateIn, setActive, initMorph, killMorph, updateScroll, closeMenu };
 })();
 
 /* ═══════════════════════════════════════════════════
@@ -2415,7 +2428,7 @@ const BARBA_HOOKS = {
       heroMotionCtx = null;
       WorkModal.hide();
       sistemaShowcaseCtx?.revert();
-      document.querySelector('.nav-links')?.classList.remove('open');
+      Nav.closeMenu();
     },
     beforeLeave({ current }) {
       gsap.set(current.container, { pointerEvents: 'none' });
@@ -3143,7 +3156,7 @@ document.addEventListener('click', (e) => {
   if (!samePage(a) || !a.hash) return;
   e.preventDefault();
   e.stopPropagation();
-  document.querySelector('.nav-links')?.classList.remove('open');
+  Nav.closeMenu();
   scrollToHash(a.hash);
 }, true);
 
