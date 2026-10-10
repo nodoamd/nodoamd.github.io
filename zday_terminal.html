@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+<meta charset="UTF-8">
+<title>ZDAY_TERMINAL</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #060a06;
+    --bg-crt: #0a120a;
+    --fg: #35ff6e;
+    --fg-dim: #1c8f42;
+    --fg-bright: #b9ffce;
+    --danger: #ff4444;
+    --amber: #ffb000;
+    --font-display: 'VT323', monospace;
+    --font-body: 'Share Tech Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0; padding:0; height:100%;
+    background:#100c08;
+    font-family:var(--font-body);
+    overflow:hidden;
+  }
+  #screen{
+    position:relative;
+    height:100vh; width:100vw;
+    display:flex; align-items:center; justify-content:center;
+  }
+  #stage{
+    position:relative;
+    width:min(100vw, calc(100vh * 16 / 9));
+    aspect-ratio:16/9;
+    overflow:hidden;
+  }
+  #plate{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:fill;
+    pointer-events:none;
+    user-select:none;
+  }
+  #glass{
+    position:absolute;
+    left:29.3%;
+    top:15.2%;
+    width:42.4%;
+    height:63.8%;
+    overflow:hidden;
+  }
+  #crt{
+    width:100%;
+    height:90%;
+    background:transparent;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    animation: flicker 7s infinite;
+    transform-origin:center;
+  }
+  #crt.powering{
+    animation: powerOn 0.55s cubic-bezier(.2,.8,.2,1) both, flicker 6s infinite 0.55s;
+  }
+  @keyframes powerOn{
+    0%{ transform:scaleY(0.004); filter:brightness(3); }
+    55%{ transform:scaleY(1); filter:brightness(1.4); }
+    100%{ transform:scaleY(1); filter:brightness(1); }
+  }
+  #crt::before{
+    content:"";
+    position:absolute; inset:0;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0px,
+      rgba(0,0,0,0) 2px,
+      rgba(0,0,0,0.18) 3px
+    );
+    pointer-events:none;
+    z-index:8;
+    mix-blend-mode:multiply;
+  }
+  #crt::after{
+    content:"";
+    position:absolute; inset:0;
+    box-shadow: inset 0 0 120px rgba(0,0,0,0.75);
+    pointer-events:none;
+    z-index:9;
+  }
+  #glass::after{
+    content:"";
+    position:absolute; inset:0; z-index:20; pointer-events:none;
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.45);
+  }
+  @keyframes flicker{
+    0%,100%{ filter:brightness(1); }
+    92%{ filter:brightness(1); }
+    93%{ filter:brightness(0.85); }
+    94%{ filter:brightness(1.05); }
+    95%{ filter:brightness(0.95); }
+    96%{ filter:brightness(1); }
+  }
+
+
+  #osbar{
+    flex:0 0 11%;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 3.2% 0 3.6%;
+    color:var(--fg);
+    font-size:clamp(8px, 1.15vw, 13px);
+    letter-spacing:1.4px;
+    z-index:3;
+    text-transform:uppercase;
+    background:rgba(4,16,10,0.82);
+    margin-top: 24px;
+    opacity: 0;
+  }
+  #osbar b{ color:var(--fg-bright); font-weight:normal; }
+  #osbar .run{ color:var(--amber); }
+
+  #mapStage{
+    position:relative;
+    flex:1;
+    overflow:visible;
+    z-index:4;
+    margin-top: -35px;
+  }
+
+  .bulb{
+    position:absolute;
+    width:clamp(10px, 1.15vw, 14px); height:clamp(10px, 1.15vw, 14px);
+    border-radius:50%;
+    padding:0;
+    border:1px solid #0d2a14;
+    background:#050805;
+    cursor:default;
+    transform:translate(-50%,-50%);
+    z-index:4;
+  }
+  .bulb::after{
+    content:"";
+    position:absolute; inset:-10px;
+  }
+  .bulb.live{
+    background:var(--fg);
+    border-color:var(--fg-bright);
+    box-shadow: 0 0 6px var(--fg), 0 0 18px rgba(53,255,110,0.7), 0 0 36px rgba(53,255,110,0.35);
+    animation: bulbPulse 1.5s ease-in-out infinite;
+    cursor:pointer;
+  }
+  .bulb.active{
+    background:var(--fg-bright);
+    animation: bulbPulse 0.45s ease-in-out infinite;
+    box-shadow: 0 0 10px var(--fg-bright), 0 0 28px var(--fg);
+    cursor:default;
+  }
+  .bulb.saved{
+    background:var(--fg-bright);
+    border-color:var(--fg-bright);
+    box-shadow: 0 0 8px var(--fg);
+    animation:none;
+  }
+  .bulb.held{
+    background:var(--amber);
+    border-color:#ffd27a;
+    box-shadow: 0 0 10px var(--amber);
+    animation:none;
+  }
+  .bulb.lost, .bulb.missed{
+    background:#030503;
+    border-color:#1c8f42;
+    box-shadow: inset 0 0 4px #000;
+    animation:none;
+    opacity:0.4;
+  }
+  @keyframes bulbPulse{
+    0%,100%{ box-shadow: 0 0 6px var(--fg), 0 0 16px rgba(53,255,110,0.5); }
+    50%{ box-shadow: 0 0 12px var(--fg-bright), 0 0 28px rgba(53,255,110,0.9); }
+  }
+  .bulb-label{
+    position:absolute;
+    transform:translate(-50%, 8px);
+    font-size:10px;
+    letter-spacing:1px;
+    color:var(--fg);
+    pointer-events:none;
+    white-space:nowrap;
+    text-shadow: 0 0 6px rgba(53,255,110,0.6);
+  }
+  .bulb.lost + .bulb-label,
+  .bulb.missed + .bulb-label{ color:var(--fg-dim); opacity:0.5; }
+
+  #term{
+    flex:0 0 42%;
+    min-height:0;
+    position:relative;
+    padding:8px 3.4% 10px;
+    color:var(--fg);
+    font-size:clamp(10px, 1.05vw, 13px);
+    line-height:1.45;
+    overflow-y:auto;
+    text-shadow: 0 0 4px rgba(53,255,110,0.45);
+    z-index:5;
+    background:rgba(5,18,12,0.92);
+    margin-top: 35px;
+  }
+  #term::-webkit-scrollbar{ width:8px; }
+  #term::-webkit-scrollbar-thumb{ background:var(--fg-dim); border-radius:4px; }
+  #term::-webkit-scrollbar-track{ background:transparent; }
+
+  .line{ margin:0 0 6px 0; white-space:pre-wrap; }
+  .boot{ color:var(--fg-dim); font-size:13px; }
+  .title{
+    font-family:var(--font-display);
+    font-size:28px;
+    color:var(--fg-bright);
+    letter-spacing:3px;
+    margin:2px 0 8px 0;
+    text-shadow: 0 0 10px rgba(185,255,206,0.6);
+  }
+  .story{ color:var(--fg); }
+  .choice{
+    color:var(--fg-bright);
+    margin:2px 0;
+    display:block;
+    width:100%;
+    text-align:left;
+    background:transparent;
+    border:none;
+    font-family:var(--font-body);
+    font-size:inherit;
+    line-height:1.45;
+    padding:2px 0 2px 6px;
+    cursor:pointer;
+    text-shadow: 0 0 4px rgba(53,255,110,0.55);
+  }
+  .choice:hover, .choice:focus-visible{
+    color:#fff;
+    outline:none;
+    background:rgba(53,255,110,0.08);
+  }
+  .choice b{ color:var(--amber); font-weight:normal; }
+  .danger{ color:var(--danger); }
+  .sys{ color:var(--fg-dim); font-style:italic; }
+  .ok{ color:var(--fg-bright); }
+
+  #inputRow{
+    display:flex; align-items:center; margin-top:8px;
+    color:var(--fg-bright);
+  }
+  #inputRow .prompt{ margin-right:8px; flex:0 0 auto; }
+  #cmdWrap{ position:relative; display:inline-flex; align-items:center; min-width:1ch; }
+  #cmdInput{
+    background:transparent; border:none; outline:none;
+    color:var(--fg-bright); font-family:var(--font-body); font-size:14px;
+    width:2ch; caret-color:transparent;
+    text-shadow: 0 0 4px rgba(185,255,206,0.6);
+  }
+  .cursor{
+    display:inline-block; width:8px; height:15px;
+    background:var(--fg-bright); margin-left:1px;
+    animation: blink 1s step-end infinite;
+    vertical-align:middle;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  @media (max-width:700px){
+    .title{ font-size:18px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    #crt{ animation:none; }
+    .bulb.live, .bulb.active{ animation:none; }
+    .cursor{ animation:none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="screen">
+  <div id="stage">
+    <img id="plate" src="img/station.png" alt="">
+    <div id="glass">
+      <div id="crt">
+        <div id="osbar">
+          <span>EQUIPO <b>3-17A</b> · BANDA A</span>
+          <span id="osStatus">DESCONECTADO</span>
+          <span>GUARDIA <b id="watchNum">01</b> · <span class="run" id="slotRead">RANURAS 2</span></span>
+        </div>
+        <div id="mapStage"></div>
+        <div id="term">
+          <div id="log"></div>
+          <div id="inputRow" style="display:none;">
+            <span class="prompt">&gt;</span>
+            <span id="cmdWrap">
+              <input id="cmdInput" type="text" autocomplete="off" spellcheck="false" maxlength="16" />
+            </span>
+            <span class="cursor"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  const SOUNDS = [
+    "un arrastre lento y húmedo",
+    "uñas que rascan como un violín mal dado",
+    "un gemido bajo, sospechosamente cortés, como si fuera a pedirte la clave del wifi",
+    "tres golpes, una pausa, luego seis, como si estuviera poniendo a prueba precisamente tu paciencia",
+    "algo que respira por una boca que ya no tiene del todo",
+    "un ritmo que casi —casi— es la canción que llevas una hora clavada en la cabeza"
+  ];
+
+  const SMELLS = [
+    "gasolina y perras viejas",
+    "podredumbre envuelta en una vela llamada «Confort otoñal»",
+    "pelo chamuscado y lejía de hospital",
+    "perro mojado que ha hurgado en el fiambre",
+    "sudor de miedo y el interior de una bolsa de gimnasio",
+    "algo que, con generosidad, fue comida"
+  ];
+
+  const ITEMS = [
+    "una palanca de ruedas torcida",
+    "un extintor con una cantidad de espuma casi ofensiva",
+    "una pata de silla con evidentes problemas de confianza",
+    "una grapadora, porque eso es, inexplicablemente, lo que ha encontrado tu mano",
+    "un paraguas, inútil sin paliativos, en lo estructural y en lo espiritual",
+    "una fregona: la espada de los humildes"
+  ];
+
+  const LOCATIONS = [
+    { id:"bathroom", barrier:"la puerta",
+      open:"Despiertas en el baño de un desconocido. Huele a {SMELL}, y eso inquieta, porque es exactamente el olor que tenía la muerte en tu accidente de moto: del que no recuerdas nada, salvo despertar en un baño. La historia, resulta, tiene un tipo." },
+    { id:"subway", barrier:"las puertas del vagón",
+      open:"Estás desplomado en un vagón de metro que no se mueve desde hace, según el móvil, cuatro horas. Huele a {SMELL}. Los demás pasajeros tampoco se mueven, cosa que habías atribuido a la educación neoyorquina." },
+    { id:"office", barrier:"el tabique del cubículo",
+      open:"Estás en tu mesa. Bandeja de entrada: 247 sin leer. El edificio huele a {SMELL}. Habías pensado que era Kevin de Contabilidad otra vez, pero el brazo de Kevin está ahora mismo sobre el teclado, sin el resto de Kevin." },
+    { id:"gas_station", barrier:"la puerta del aseo",
+      open:"Estás en el aseo de una gasolinera que cobra un dólar por el código de la puerta, y el timo ahora parece aún más descarado. Huele a {SMELL}, con el fantasma de cien bebidas energéticas por debajo." },
+    { id:"wedding", barrier:"la lona de la carpa",
+      open:"Estás en un banquete de boda, a medio bocado de un pollo que no vas a terminar. Huele a {SMELL} donde antes estaban los centros de flores. El pinchadiscos sigue, técnicamente, con lo de «Come On Eileen»." },
+    { id:"gym", barrier:"la cortina del pabellón",
+      open:"Estás en el pabellón de un colegio, preparado para la «Noche lúdica de padres y profesores», según la pancarta. Huele a {SMELL}. En algún rincón hay un brick de zumo volcado y nadie viene a recogerlo." },
+    { id:"elevator", barrier:"las puertas del ascensor",
+      open:"Estás parado en un ascensor entre el sexto y el séptimo. Huele a {SMELL} por las rejillas. La pantallita sigue leyendo, alegre: «¡Que tenga un buen día!» Categóricamente, no lo está teniendo." },
+    { id:"freezer", barrier:"la trampilla de la cámara",
+      open:"Estás en la cámara frigorífica de un bar que cerró noventa minutos antes de que empezara esto. Huele a {SMELL}, lo cual, en una cámara, impone un respeto sincero." }
+  ];
+
+  const LOC_BY_ID = Object.fromEntries(LOCATIONS.map(l => [l.id, l]));
+
+  const NODE_DEFS = [
+    { id:"downtown", name:"CENTRO", x:"42%", y:"38%", locIds:["office","wedding","elevator"] },
+    { id:"hospital", name:"HOSPITAL", x:"71%", y:"40%", locIds:["bathroom","freezer"] },
+    { id:"harbor",   name:"PUERTO",   x:"48%", y:"82%", locIds:["gas_station","subway","gym"] }
+  ];
+
+  const PAUSE = { ",":90, "—":140, ".":240, "!":240, "?":240, "…":320 };
+  const SLOTS_PER_WATCH = 2;
+
+  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+  function fill(str, ctx){
+    return str
+      .replaceAll("{SMELL}", ctx.smell)
+      .replaceAll("{SOUND}", ctx.sound)
+      .replaceAll("{ITEM}", ctx.item)
+      .replaceAll("{BARRIER}", ctx.barrier);
+  }
+  function loc(id){ return LOC_BY_ID[id]; }
+
+  const SCENES = {
+    threat: (ctx) => ({
+      text: `Hay algo al otro lado de ${ctx.barrier}. Oyes ${ctx.sound}. Te quedan unos noventa segundos antes de que flaquee el plan o la dignidad. ¿Qué haces?`,
+      choices: [
+        { key:"A", label:`Coge ${ctx.item} y prepárate para un contacto de dudoso criterio.`, next:"a1" },
+        { key:"B", label:`Quédate en silencio absoluto y espera que las leyes de la probabilidad te tengan simpatía hoy.`, next:"b1" },
+        { key:"C", label:`Monta un ataque de nervios en voz alta. Con público. Con catarsis.`, next:"ending_cry" }
+      ]
+    }),
+    a1: (ctx) => ({
+      text:`Agarras ${ctx.item}. Los golpes de ensayo sugieren que el curso de defensa personal fue dinero bien empleado, o tirado: aún no se sabe. Avanzas hacia ${ctx.barrier}. Lo que hay detrás no huele a vivo, y eso, extrañamente, te reconforta.`,
+      choices: [
+        { key:"A", label:`Abre de golpe ${ctx.barrier} y lánzate a puño limpio, más el objeto.`, next:"a1a" },
+        { key:"B", label:`Espera en silencio total, sin abrir ${ctx.barrier}, a ver quién cede primero.`, next:"ending_patient_wait" },
+        { key:"C", label:`Embiste ${ctx.barrier} y echa a correr.`, next:"run" }
+      ]
+    }),
+    a1a: (ctx) => ({
+      text:`Le partes el alma a aquella cosa con ${ctx.item} y —esto no te lo avisa nadie— se pone a llorar. Lágrimas de verdad. Te ruega que pares. ¿Y ahora?`,
+      choices:[
+        { key:"A", label:`Acéptalo como es. Propón un restaurante. A ver qué pasa.`, next:"ending_date" },
+        { key:"B", label:`Termina el trabajo.`, next:"ending_brain" },
+        { key:"C", label:`Dile que ya tienes pareja. Déjalo en la amistad, a mitad del apocalipsis.`, next:"ending_friendzone" }
+      ]
+    }),
+    run: (ctx) => ({
+      text:`La adrenalina resulta ser una droga formidable. Embistes ${ctx.barrier} con todo el cuerpo y caen juntos: ${ctx.barrier} y lo que había detrás. Estás en pie, te mueves; necesitas un plan de salida:`,
+      choices:[
+        { key:"A", label:`Hay un vehículo cerca, con las llaves puestas. Cógelo.`, next:"ending_vehicle" },
+        { key:"B", label:`Sigue corriendo y no mires atrás, por principio.`, next:"ending_couch" },
+        { key:"C", label:`Tropiezas con absolutamente nada. Hoy la física tiene opiniones.`, next:"ending_coffee" }
+      ]
+    }),
+    b1: (ctx) => ({
+      text:`Te callas. De verdad. El silencio de quien revisa cada decisión que lo ha traído a esconderse de algo que hace ${ctx.sound} y aún llama a eso sobrevivir. Pasan minutos. Entonces:`,
+      choices:[
+        { key:"A", label:`Se cansa y se va.`, next:"ending_escape_clean" },
+        { key:"B", label:`No se cansa. Espera. Al otro lado de ${ctx.barrier}. Quizá para siempre.`, next:"ending_stalemate" },
+        { key:"C", label:`Te suena el móvil. A todo volumen. El tono, ahora lo ves, fue un error.`, next:"ending_phone" }
+      ]
+    }),
+    ending_cry: () => ({ ending:`La cosa te envuelve en un abrazo tan cálido y sincero como el de tu madre, si tu madre a veces perdiera trozos de sí. Habláis durante horas: de verdad habláis, como no hablas con un vivo desde hace años. Al cabo le entra hambre y te pide, con mucha educación, que lo dejes comerte. Dices que sí. Estabas, al parecer, listo para un compromiso.`, result:"lost" }),
+    ending_patient_wait: (ctx) => ({ ending:`Pasan quince minutos. Deja de insistir en ${ctx.barrier}: no porque se rinda, te das cuenta, sino porque ha entendido que tú tampoco sales. Entra y, extrañamente, solo quiere hablar. Quedáis para comer un día. Los dos sabéis que no vais a cumplir. Está bien. Mientras duró, estuvo bien.`, result:"saved" }),
+    ending_date: () => ({ ending:`La cena va bien, la verdad. Buena conversación, unos ruidos al masticar un tanto peculiares, lo de siempre. Llegados al postre coincidís en que no hay chispa; aun así os dejáis los números, por si surge algo informal. Sin nombre. Muy de este siglo, los dos, teniendo en cuenta que uno está muerto y no del todo.`, result:"saved" }),
+    ending_brain: () => ({ ending:`Te llevas el cerebro de trofeo, que en retrospectiva es un instinto raro y una cosa aún más rara de explicar en el control del aeropuerto. Corres. No miras atrás. Has hecho las paces con no procesar esto nunca del todo.`, result:"saved" }),
+    ending_friendzone: () => ({ ending:`«Tengo pareja», dices, con total convicción. Llora más. Corres, en orden moral, y sin clara idea táctica de por qué no empezaste por ahí.`, result:"saved" }),
+    ending_vehicle: () => ({ ending:`Ahí está: tu salida, llaves en el contacto, como si el apocalipsis tuviera educación. Lo coges, y esto se convierte en una historia que cuentas en las fiestas, si es que las fiestas siguen existiendo. Seguirán. Siempre siguen.`, result:"saved" }),
+    ending_couch: () => ({ ending:`Avanzas unos treinta metros antes de que todos los «mañana empiezo a correr» se te echen encima a la vez, todos en los gemelos, al unísono. A partir de ahí, la pelea no es justa.`, death:true, result:"lost" }),
+    ending_coffee: () => ({ ending:`Tropiezas con nada —un logro, en términos de física— y cuando vuelves en ti te ha preparado un café. Café de verdad, de algún modo. Habláis un rato de la vida. «Las cosas mejoran», te dice, con la seguridad de quien ya no tiene, técnicamente, nada que perder.`, result:"saved" }),
+    ending_escape_clean: () => ({ ending:`Se va. Esperas otros veinte minutos por si acaso, porque claramente no has aprendido nada de ninguna película de miedo, y sales a lo que queda del mundo. Salida limpia. Sin gancho para una segunda parte. Lo das por bueno.`, result:"saved" }),
+    ending_stalemate: (ctx) => ({ ending:`No se va. Tú tampoco. Esto se convierte, en la práctica, en una relación. En algún sitio, un terapeuta que desde luego no os atiende a ninguno de los dos se frotaría las manos.`, result:"held" }),
+    ending_phone: (ctx) => ({ ending:`El móvil suena —a todo volumen, claro, porque jamás en tu vida se te ocurrió mirar eso— y ${ctx.barrier} se abre de golpe medio segundo después. En tu descargo: era un buen tono.`, death:true, result:"lost" })
+  };
+
+  const logEl = document.getElementById("log");
+  const inputRow = document.getElementById("inputRow");
+  const cmdInput = document.getElementById("cmdInput");
+  const termEl = document.getElementById("term");
+  const crtEl = document.getElementById("crt");
+  const mapStage = document.getElementById("mapStage");
+
+  let ctx = null;
+  let currentChoices = [];
+  let typing = false;
+  let skip = false;
+  let mode = "boot"; // boot | desk | call | report
+  let watch = 1;
+  let slotsLeft = SLOTS_PER_WATCH;
+  let nodes = [];
+  let activeNodeId = null;
+
+  function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+  async function wait(ms){
+    const step = 24;
+    let t = 0;
+    while(t < ms){
+      if(skip) return;
+      await sleep(Math.min(step, ms - t));
+      t += step;
+    }
+  }
+
+  function scrollDown(){ termEl.scrollTop = termEl.scrollHeight; }
+
+  function addLineInstant(text, cls){
+    const p = document.createElement("div");
+    p.className = "line " + (cls||"");
+    p.textContent = text;
+    logEl.appendChild(p);
+    scrollDown();
+    return p;
+  }
+
+  async function print(text, cls, speed){
+    skip = false;
+    typing = true;
+    speed = speed || 18;
+    const p = document.createElement("div");
+    p.className = "line " + (cls||"");
+    logEl.appendChild(p);
+    for(let i = 0; i < text.length; i++){
+      if(skip){
+        p.textContent += text.slice(i).replaceAll("|","");
+        break;
+      }
+      const ch = text[i];
+      if(ch === "|"){ await wait(350); continue; }
+      p.textContent += ch;
+      if(i % 4 === 0) scrollDown();
+      const closes = i === text.length - 1 || text[i+1] === " ";
+      await wait(speed * (0.7 + Math.random() * 0.55) + (closes ? (PAUSE[ch]||0) : 0));
+    }
+    scrollDown();
+    typing = false;
+    skip = false;
+  }
+
+  function newContext(location){
+    return {
+      location,
+      barrier: location.barrier,
+      sound: pick(SOUNDS),
+      smell: pick(SMELLS),
+      item: pick(ITEMS)
+    };
+  }
+
+  function liveCount(){ return nodes.filter(n => n.status === "live").length; }
+
+  function paintHud(){
+    document.getElementById("watchNum").textContent = String(watch).padStart(2,"0");
+    document.getElementById("slotRead").textContent = mode === "report" ? "GUARDIA CERRADA" : ("RANURAS " + slotsLeft);
+    document.getElementById("osStatus").textContent =
+      mode === "call" ? "CANAL ABIERTO" : mode === "report" ? "GUARDIA TERMINADA" : "NODOS.SYS";
+  }
+
+  function paintNodes(){
+    nodes.forEach(n => {
+      n.el.className = "bulb " + n.status;
+      n.el.disabled = n.status !== "live" || mode === "call" || mode === "report" || slotsLeft <= 0;
+    });
+    paintHud();
+  }
+
+  function buildMap(){
+    NODE_DEFS.forEach(def => {
+      const btn = document.createElement("button");
+      btn.className = "bulb live";
+      btn.style.left = def.x;
+      btn.style.top = def.y;
+      btn.title = def.name;
+      btn.setAttribute("aria-label", "Abrir nodo " + def.name);
+      mapStage.appendChild(btn);
+      btn.addEventListener("click", () => openChannel(def.id));
+      nodes.push({
+        id: def.id,
+        name: def.name,
+        locIds: def.locIds,
+        status: "live",
+        el: btn
+      });
+    });
+  }
+
+  function resetWatch(){
+    watch += 1;
+    slotsLeft = SLOTS_PER_WATCH;
+    activeNodeId = null;
+    mode = "desk";
+    nodes.forEach(n => { n.status = "live"; });
+    crtEl.classList.remove("in-call");
+    logEl.innerHTML = "";
+    paintNodes();
+  }
+
+  function renderChoices(choices){
+    currentChoices = choices;
+    choices.forEach(c => {
+      const btn = document.createElement("button");
+      btn.className = "line choice";
+      btn.innerHTML = `<b>${c.key}.</b> ${c.label.replace(/</g,"")}`;
+      btn.onclick = () => submitChoice(c.key);
+      logEl.appendChild(btn);
+    });
+    inputRow.style.display = "flex";
+    cmdInput.value = "";
+    cmdInput.focus();
+    scrollDown();
+  }
+
+  async function goToScene(sceneId){
+    inputRow.style.display = "none";
+    currentChoices = [];
+    const scene = SCENES[sceneId](ctx);
+    if(scene.ending){
+      await print(scene.ending, scene.death ? "danger story" : "story", 16);
+      addLineInstant("");
+      await print("— FIN DEL CONTACTO —", "sys", 12);
+      await closeChannel(scene.result || (scene.death ? "lost" : "saved"));
+      return;
+    }
+    const text = fill(scene.text, ctx);
+    await print(text, "story", 16);
+    addLineInstant("");
+    renderChoices(scene.choices);
+  }
+
+  async function submitChoice(raw){
+    if(typing) return;
+    const val = (raw||"").trim().toUpperCase();
+    if(val === "TURNO" || val === "GUARDIA"){
+      if(mode !== "report"){
+        addLineInstant("LA GUARDIA SIGUE ABIERTA.", "sys");
+        cmdInput.value = "";
+        return;
+      }
+      resetWatch();
+      addLineInstant("GUARDIA " + String(watch).padStart(2,"0") + " ABIERTA. TRES NODOS EN VIVO. DOS RANURAS.", "sys");
+      addLineInstant("Objetivo: sacar a la persona. Pulsa una bombilla.", "sys");
+      inputRow.style.display = "flex";
+      cmdInput.value = "";
+      cmdInput.focus();
+      return;
+    }
+    if(val === "AYUDA" || val === "HELP"){
+      addLineInstant("");
+      addLineInstant("A / B / C eligen. ESPACIO salta el texto. Pulsa una bombilla encendida para abrir canal. TURNO sienta otra guardia al cerrar.", "sys");
+      addLineInstant("");
+      cmdInput.value = "";
+      return;
+    }
+    if(mode !== "call"){
+      addLineInstant("NO HAY CANAL ABIERTO. Pulsa una bombilla encendida.", "danger");
+      cmdInput.value = "";
+      return;
+    }
+    const match = currentChoices.find(c => c.key === val);
+    if(!match){
+      addLineInstant("ERROR DE SINTAXIS: usa A, B o C.", "danger");
+      cmdInput.value = "";
+      return;
+    }
+    logEl.querySelectorAll("button.choice").forEach(b => {
+      const d = document.createElement("div");
+      d.className = "line choice";
+      d.textContent = b.textContent;
+      b.replaceWith(d);
+    });
+    addLineInstant("> " + match.key, "sys");
+    addLineInstant("");
+    await goToScene(match.next);
+  }
+
+  async function openChannel(nodeId){
+    if(typing || mode !== "desk") return;
+    const node = nodes.find(n => n.id === nodeId);
+    if(!node || node.status !== "live" || slotsLeft <= 0) return;
+
+    activeNodeId = nodeId;
+    node.status = "active";
+    mode = "call";
+    crtEl.classList.add("in-call");
+    paintNodes();
+
+    const location = loc(pick(node.locIds));
+    ctx = newContext(location);
+
+    logEl.innerHTML = "";
+    addLineInstant("ABRIENDO CANAL · NODO " + node.name + " · " + location.id.toUpperCase(), "sys");
+    await wait(400);
+    addLineInstant("");
+    await print(fill(location.open, ctx), "story", 16);
+    addLineInstant("");
+    await wait(280);
+    await goToScene("threat");
+  }
+
+  async function closeChannel(result){
+    const node = nodes.find(n => n.id === activeNodeId);
+    if(node) node.status = result;
+    slotsLeft = Math.max(0, slotsLeft - 1);
+    activeNodeId = null;
+    mode = "desk";
+    crtEl.classList.remove("in-call");
+    currentChoices = [];
+    ctx = null;
+
+    const tag = result === "saved" ? "PERSONA EXTRAÍDA" : result === "held" ? "CANAL EN SUSPENSO — SIGUE AHÍ" : "SEÑAL PERDIDA";
+    await wait(500);
+    await print(tag, result === "lost" ? "danger" : "ok", 12);
+    addLineInstant("");
+
+    if(slotsLeft <= 0){
+      nodes.forEach(n => { if(n.status === "live") n.status = "missed"; });
+      paintNodes();
+      await endWatch();
+      return;
+    }
+
+    paintNodes();
+    await print("Vuelta a NODOS.SYS. " + slotsLeft + (slotsLeft===1?" ranura restante. ":" ranuras restantes. ") + liveCount() + (liveCount()===1?" bombilla sigue encendida.":" bombillas siguen encendidas."), "sys", 12);
+    inputRow.style.display = "flex";
+    cmdInput.value = "";
+    cmdInput.focus();
+  }
+
+  async function endWatch(){
+    mode = "report";
+    paintNodes();
+    const saved = nodes.filter(n => n.status === "saved").length;
+    const held = nodes.filter(n => n.status === "held").length;
+    const lost = nodes.filter(n => n.status === "lost").length;
+    const missed = nodes.filter(n => n.status === "missed").length;
+    addLineInstant("");
+    await print("— FIN DE GUARDIA —", "sys", 10);
+    addLineInstant("EXTRAÍDOS   " + saved, "ok");
+    addLineInstant("EN SUSPENSO " + held, "sys");
+    addLineInstant("PERDIDOS    " + lost, "danger");
+    addLineInstant("SIN ATENDER " + missed, missed ? "danger" : "sys");
+    addLineInstant("");
+    await print("Los que no cogiste se apagan. Eso es el oficio.", "sys", 14);
+    addLineInstant("Escribe TURNO para sentar otra guardia. No estará mejor.", "sys");
+    inputRow.style.display = "flex";
+    cmdInput.value = "";
+    cmdInput.focus();
+  }
+
+  cmdInput.addEventListener("input", ()=>{
+    cmdInput.style.width = Math.max(2, cmdInput.value.length + 1) + "ch";
+  });
+  cmdInput.addEventListener("keydown", (e)=>{
+    if(e.key === "Enter"){
+      if(typing){ e.preventDefault(); skip = true; return; }
+      submitChoice(cmdInput.value);
+    }
+  });
+
+  document.addEventListener("keydown", (e)=>{
+    if(!typing) return;
+    if(e.key === " " || e.key === "Enter"){
+      e.preventDefault();
+      skip = true;
+    }
+  });
+  document.addEventListener("pointerdown", ()=>{ if(typing) skip = true; });
+
+  const BOOT_LINES = [
+    "INICIANDO SISTEMA...",
+    "CARGANDO BIOS... OK",
+    "COMPROBANDO MEMORIA... 640K DEBERÍAN BASTAR",
+    "MONTANDO UNIDAD C:\\SUPERVIVENCIA... OK",
+    "DETECTANDO SIGNOS DE VIDA... 3 NODOS (INESTABLES)",
+    "CONEXIÓN CON LA REALIDAD... INESTABLE",
+    "CARGANDO NODOS.SYS ..."
+  ];
+
+  async function boot(){
+    mode = "boot";
+    for(const l of BOOT_LINES){
+      addLineInstant(l, "boot");
+      const hang = l.includes("INESTABLE") ? 700 : 70 + Math.random()*90;
+      await sleep(hang);
+    }
+    await sleep(350);
+    logEl.innerHTML = "";
+    const title = document.createElement("div");
+    title.className = "title";
+    title.textContent = "Z D A Y _ T E R M I N A L";
+    logEl.appendChild(title);
+    
+    addLineInstant("");
+    await print("La estación NODO está en línea. La red de Baltimore es un rumor con farolas. Tres bombillas. Dos canales. Salva a la persona.", "sys", 16);
+    addLineInstant("");
+    slotsLeft = SLOTS_PER_WATCH;
+    mode = "desk";
+    paintNodes();
+    addLineInstant("GUARDIA 01 ABIERTA. Pulsa una bombilla encendida.", "ok");
+    inputRow.style.display = "flex";
+    cmdInput.focus();
+  }
+
+  async function start(){
+    buildMap();
+    paintNodes();
+    try { await document.fonts.ready; } catch(e){}
+    await sleep(120);
+    await boot();
+  }
+
+  if(document.readyState === "complete") start();
+  else window.addEventListener("load", start);
+
+})();
+</script>
+</body>
+</html>
