@@ -168,10 +168,10 @@ const mk=(w,h,f)=>{const c=document.createElement('canvas');c.width=w;c.height=h
 const grain=col=>mk(256,256,(x,w,h)=>{x.fillStyle=col;x.fillRect(0,0,w,h);for(let i=0;i<5000;i++){x.fillStyle='rgba('+(Math.random()<.5?'0,0,0':'255,255,255')+','+Math.random()*.08+')';x.fillRect(Math.random()*w,Math.random()*h,2,2)}});
 const edge=mk(128,8,(x,w,h)=>{x.fillStyle='#efe5cf';x.fillRect(0,0,w,h);for(let i=0;i<w;i+=2){x.fillStyle='rgba(120,100,70,.35)';x.fillRect(i,0,1,h)}});
 const edge2=edge.clone();edge2.center.set(.5,.5);edge2.rotation=Math.PI/2;edge2.needsUpdate=true;
-const PW=512,PH=720,sm=(a,b,x)=>{x=Math.min(1,Math.max(0,(x-a)/(b-a)));return x*x*(3-2*x)};
-const cv2=()=>{const c=document.createElement('canvas');c.width=PW;c.height=PH;return c};
+const PW=512,PH=720,TS=1.25,sm=(a,b,x)=>{x=Math.min(1,Math.max(0,(x-a)/(b-a)));return x*x*(3-2*x)};
+const cv2=()=>{const c=document.createElement('canvas');c.width=PW*TS;c.height=PH*TS;return c};
 const cL=cv2(),cR=cv2(),baseL=cv2(),baseR=cv2(),Lwc=cv2(),Lsk=cv2(),Rtx=cv2(),Rex=cv2();
-const xL=cL.getContext('2d'),xR=cR.getContext('2d');
+const xL=cL.getContext('2d'),xR=cR.getContext('2d');[baseL,baseR,Lwc,Lsk,Rtx,Rex].forEach(c=>c.getContext('2d').scale(TS,TS));
 const tL=new THREE.CanvasTexture(cL),tR=new THREE.CanvasTexture(cR);tL.anisotropy=tR.anisotropy=4;
 let seed=7,cur=0;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
 const INK='#2b3a5c',FNT='Caveat,"Segoe Script","Bradley Hand",cursive';
@@ -202,14 +202,14 @@ function drawText(){const x=Rtx.getContext('2d');x.clearRect(0,0,PW,PH);
  const L=[['Dimarts',46],['',0],['· tinta sèpia i pinzells',34],['· una passejada pel barri',34],['· escriure una carta',34],['· aquarel·lar el matí',34],['',0],['',0],['',0],['',0],['Aquesta pàgina és teva.',44]];
  L.forEach((l,i)=>{if(!l[0])return;const y=100+i*40,col=i===10?'#8a5f12':INK;x.save();x.translate(76,y);x.rotate((rnd()-.5)*.012);x.font='500 '+l[1]+'px '+FNT;x.fillStyle=col;x.fillText(l[0],0,0);
   if(i===0||i===10){const w=x.measureText(l[0]).width;x.strokeStyle=col;x.lineWidth=2.2;x.beginPath();x.moveTo(0,10);for(let u=0;u<=w;u+=12)x.lineTo(u,10+Math.sin(u/9)*2.2);x.stroke()}x.restore()})}
-function paint(t){cur=t;
- xL.globalCompositeOperation='source-over';xL.globalAlpha=1;xL.drawImage(baseL,0,0);
- xL.globalCompositeOperation='multiply';xL.globalAlpha=sm(0,.45,t);xL.drawImage(Lwc,0,0);
- xL.globalCompositeOperation='source-over';xL.globalAlpha=sm(.3,.7,t);xL.drawImage(Lsk,0,0);xL.globalAlpha=1;
- xR.drawImage(baseR,0,0);
- const N=11,lh=40,s0=66,k=sm(.12,.85,t)*N,f=Math.floor(k),cut=k>=N?PH:s0+f*lh;
- xR.save();xR.beginPath();xR.rect(0,0,PW,cut);if(k<N)xR.rect(0,cut,PW*(k-f),lh);xR.clip();xR.drawImage(Rtx,0,0);xR.restore();
- xR.globalCompositeOperation='multiply';xR.globalAlpha=sm(.8,1,t);xR.drawImage(Rex,0,0);xR.globalAlpha=1;xR.globalCompositeOperation='source-over';
+function paint(t){cur=t;xL.setTransform(TS,0,0,TS,0,0);xR.setTransform(TS,0,0,TS,0,0);
+ xL.globalCompositeOperation='source-over';xL.globalAlpha=1;xL.drawImage(baseL,0,0,PW,PH);
+ xL.globalCompositeOperation='multiply';xL.globalAlpha=sm(0,.35,t);xL.drawImage(Lwc,0,0,PW,PH);
+ xL.globalCompositeOperation='source-over';xL.globalAlpha=sm(.15,.5,t);xL.drawImage(Lsk,0,0,PW,PH);xL.globalAlpha=1;
+ xR.drawImage(baseR,0,0,PW,PH);
+ const N=11,lh=40,s0=66,k=sm(.45,.92,t)*N,f=Math.floor(k),cut=k>=N?PH:s0+f*lh;
+ xR.save();xR.beginPath();xR.rect(0,0,PW,cut);if(k<N)xR.rect(0,cut,PW*(k-f),lh);xR.clip();xR.drawImage(Rtx,0,0,PW,PH);xR.restore();
+ xR.globalCompositeOperation='multiply';xR.globalAlpha=sm(.85,1,t);xR.drawImage(Rex,0,0,PW,PH);xR.globalAlpha=1;xR.globalCompositeOperation='source-over';
  tL.needsUpdate=tR.needsUpdate=true}
 paper(baseL,false);paper(baseR,true);drawWash();paint(0);
 (document.fonts?document.fonts.load('500 40px Caveat'):Promise.resolve()).catch(()=>{}).then(()=>{drawText();drawSketch();paint(cur)});
@@ -242,10 +242,10 @@ addEventListener('resize',size);size();
  ps=still?p:ps+(p-ps)*.09;
  const open=ss(.22,.52,ps),fill=Math.min(1,Math.max(0,(ps-.5)/.45)),wide=cam.aspect>1;if(Math.abs(fill-lastT)>.003){lastT=fill;paint(fill)}
  hinge.rotation.y=-open*2.85;
- nb.rotation.y=-.55+ss(0,.22,ps)*.3+open*.35;
- nb.rotation.x=.2-open*.17;
- nb.scale.setScalar(wide?1.45+fill*.12:1.05-open*.4);
- nb.position.set((wide?1.05:0)+open*(wide?.75:.5),(wide?0:.45)+(still?0:Math.sin(t/1400)*.03),0);
+ const zf=wide?0:ss(0,.25,fill),pan=ss(.38,.62,fill);nb.rotation.y=(-.55+ss(0,.22,ps)*.3+open*.35)*(1-zf*.9);
+ nb.rotation.x=(.2-open*.17)*(1-zf*.8);
+ const sc=wide?1.45+fill*.12:1.05-open*.4+zf*.55;nb.scale.setScalar(sc);
+ const px=wide?1.05+open*.75:open*.525*sc*(1-zf)+zf*(1.08*sc*(1-pan)-.02*sc*pan);nb.position.set(px,(wide?0:.3)+(still?0:Math.sin(t/1400)*.03),0);
  const i=ps<.22?0:ps<.5?1:2;
  if(i!==ci){ci=i;caps.forEach((c,n)=>c.classList.toggle('on',n===i))}
  R.render(S,cam);
