@@ -257,6 +257,7 @@ addEventListener('resize',size);size();
 const ss=x=>{x=Math.min(1,Math.max(0,x));return x*x*(3-2*x)};
 function t(){const r=b.getBoundingClientRect(),h=innerHeight;f.style.transform='rotateX('+(ss((h*.9-r.top)/(h*.65))*180).toFixed(1)+'deg)'}
 addEventListener('scroll',t,{passive:true});addEventListener('resize',t);t()})();
+
 </script>
 </body>
 </html>
