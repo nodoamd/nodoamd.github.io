@@ -22,7 +22,7 @@ a:focus-visible{outline:2px solid var(--ochre);outline-offset:3px}
 .bar{background:var(--gold);color:#1a1405;text-align:center;font-size:13px;padding:6px 12px}
 .hero{position:relative;isolation:isolate;min-height:calc(100svh - var(--bar,32px));display:grid;grid-template-rows:auto 1fr;color:#f6f1e6;background:#140e0a;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;object-position:64% 42%}
-.hero-shade{position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(14,9,6,.48) 0%,rgba(14,9,6,.22) 22%,rgba(14,9,6,.05) 44%,rgba(14,9,6,0) 60%),linear-gradient(180deg,rgba(8,6,4,.38) 0%,rgba(8,6,4,0) 20%,rgba(8,6,4,0) 72%,rgba(8,6,4,.18) 100%)}
+.hero-shade{position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(14,9,6,.58) 0%,rgba(14,9,6,.32) 26%,rgba(14,9,6,.1) 48%,rgba(14,9,6,0) 68%),linear-gradient(180deg,rgba(8,6,4,.42) 0%,rgba(8,6,4,0) 22%,rgba(8,6,4,0) 70%,rgba(8,6,4,.2) 100%)}
 .hero header,.hgrid{position:relative;z-index:1}
 .hero header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px 32px;padding:28px clamp(22px,5.4vw,76px) 0}
 .logo{display:inline-flex;align-items:center;gap:11px;font-style:italic;font-weight:600;font-size:34px;line-height:1;color:#f7f2e8;letter-spacing:.012em}
@@ -30,14 +30,15 @@ a:focus-visible{outline:2px solid var(--ochre);outline-offset:3px}
 nav{display:flex;flex-wrap:wrap;gap:8px 28px;font-size:15.5px;color:rgba(247,242,232,.94)}
 nav a:hover{color:#e6c56a}
 .hgrid{display:grid;grid-template-columns:max-content 1fr;align-items:center;padding:4vh clamp(22px,5.4vw,76px) clamp(40px,8vh,92px)}
-.txt{max-width:min(680px,48vw)}
+.txt{position:relative;isolation:isolate;max-width:min(680px,52vw);padding:28px 32px 32px 28px}
+.txt::before{content:"";position:absolute;z-index:-1;inset:-6% -10% -8% -12%;border-radius:4px;pointer-events:none;background:radial-gradient(120% 90% at 28% 42%,rgba(12,8,5,.72) 0%,rgba(12,8,5,.5) 42%,rgba(12,8,5,.18) 72%,rgba(12,8,5,0) 100%);box-shadow:0 0 48px 28px rgba(12,8,5,.22)}
 .ornament{display:flex;align-items:center;gap:14px;margin:0 0 20px;color:#e6c56a}
 .ornament .star{width:18px;height:18px;display:block}
 .ornament .rule{display:block;width:72px;height:1px;background:currentColor}
-.hero h1{font-weight:500;font-size:clamp(46px,5.7vw,100px);line-height:.9;margin:0 0 26px;letter-spacing:-.022em;color:#f7f3ea}
-.hero h1 span{display:block;font-style:italic;font-weight:500;color:#e3c278}
-.lede{max-width:42ch;color:rgba(247,242,232,.92);margin:0 0 32px;font-size:16.5px;line-height:1.5}
-.btn{display:inline-flex;align-items:center;gap:22px;border:1px solid rgba(236,220,186,.82);color:#f6f1e6;padding:14px 22px 15px;font-size:15.5px;line-height:1;background:transparent;transition:background .3s,border-color .3s}
+.hero h1{font-weight:500;font-size:clamp(42px,5.7vw,100px);line-height:1.02;margin:0 0 22px;letter-spacing:-.022em;color:#f7f3ea;text-shadow:0 1px 18px rgba(8,5,3,.35)}
+.hero h1 span{display:block;font-style:italic;font-weight:500;color:#ecd28a;text-shadow:0 1px 16px rgba(8,5,3,.45)}
+.lede{max-width:42ch;color:rgba(247,242,232,.94);margin:0 0 28px;font-size:16.5px;line-height:1.55;text-shadow:0 1px 12px rgba(8,5,3,.28)}
+.btn{display:inline-flex;align-items:center;gap:22px;border:1px solid rgba(236,220,186,.82);color:#f6f1e6;padding:14px 22px 15px;font-size:15.5px;line-height:1;background:rgba(12,8,5,.28);transition:background .3s,border-color .3s}
 .btn:hover{background:rgba(246,241,230,.12);color:#f6f1e6;border-color:#f6f1e6}
 .nb{height:520vh;background:var(--deep)}
 .pin{position:sticky;top:0;height:100svh;overflow:hidden;background:radial-gradient(ellipse at 68% 50%,var(--paper) 0%,var(--deep) 78%)}
@@ -83,7 +84,35 @@ footer{background:var(--band);color:#cdbf9f;padding:34px clamp(18px,5vw,64px) 40
 footer .big{font:italic 500 clamp(64px,15vw,220px)/.9 "Cormorant Garamond",Georgia,serif;color:var(--gold);margin:0 0 20px}
 footer .adr{margin:0 0 14px;font-size:16px;color:#e9dcb8}
 footer div{display:flex;flex-wrap:wrap;gap:8px 36px;justify-content:space-between;font-size:15px}
-@media (max-width:820px){.bt,.tl{grid-template-columns:1fr}.tl{border-top:0}.tl>div{padding:0 0 34px 26px;border-left:1px solid var(--line)}.tl>div::before{left:-6px;top:6px}.c{bottom:7%;right:18px}.story{grid-template-columns:1fr}.story a,.story a+a{padding:26px 0;border-right:0;border-bottom:1px solid var(--line)}.story a:last-child{border-bottom:0}}
+@media (max-width:820px){
+.hero-bg{object-position:58% 40%}
+.hero-shade{background:linear-gradient(180deg,rgba(10,7,5,.55) 0%,rgba(10,7,5,.28) 28%,rgba(10,7,5,.42) 62%,rgba(10,7,5,.62) 100%),linear-gradient(90deg,rgba(12,8,5,.5) 0%,rgba(12,8,5,.18) 55%,rgba(12,8,5,0) 100%)}
+.hero header{padding:18px clamp(16px,4.5vw,28px) 0;gap:12px 18px}
+.logo{font-size:28px}
+.logo .star{width:18px;height:18px}
+nav{gap:6px 16px;font-size:14px}
+.hgrid{grid-template-columns:1fr;align-items:end;padding:3.5vh clamp(16px,4.5vw,28px) clamp(28px,6vh,48px)}
+.txt{max-width:none;width:100%;padding:22px 20px 24px}
+.txt::before{inset:-4% -6% -6% -8%;background:radial-gradient(115% 95% at 35% 40%,rgba(10,7,5,.78) 0%,rgba(10,7,5,.58) 48%,rgba(10,7,5,.22) 78%,rgba(10,7,5,0) 100%);box-shadow:0 0 40px 24px rgba(10,7,5,.28)}
+.ornament{margin:0 0 14px;gap:10px}
+.ornament .rule{width:56px}
+.hero h1{font-size:clamp(34px,9.2vw,48px);line-height:1.08;margin:0 0 16px;letter-spacing:-.015em}
+.lede{max-width:36ch;margin:0 0 22px;font-size:15.5px;line-height:1.55}
+.btn{padding:13px 18px 14px;font-size:15px;gap:16px}
+.bt,.tl{grid-template-columns:1fr}
+.tl{border-top:0}
+.tl>div{padding:0 0 34px 26px;border-left:1px solid var(--line)}
+.tl>div::before{left:-6px;top:6px}
+.c{bottom:7%;right:18px}
+.story{grid-template-columns:1fr}
+.story a,.story a+a{padding:26px 0;border-right:0;border-bottom:1px solid var(--line)}
+.story a:last-child{border-bottom:0}
+}
+@media (max-width:420px){
+.hero h1{font-size:clamp(30px,10.4vw,40px);line-height:1.1}
+.lede{font-size:15px;line-height:1.58}
+.txt{padding:18px 16px 20px}
+}
 @media (prefers-reduced-motion:reduce){.c,.bk{transition:none}}
 </style>
 </head>
@@ -100,7 +129,7 @@ footer div{display:flex;flex-wrap:wrap;gap:8px 36px;justify-content:space-betwee
   <div class="hgrid">
     <div class="txt">
       <div class="ornament" aria-hidden="true"><svg class="star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="currentColor"><polygon points="12.00,0.85 13.45,10.30 10.55,10.30"/><polygon points="15.30,6.28 13.76,11.05 11.94,10.00"/><polygon points="21.66,6.42 14.20,12.41 12.75,9.89"/><polygon points="18.60,12.00 13.70,13.05 13.70,10.95"/><polygon points="21.66,17.57 12.75,14.11 14.20,11.59"/><polygon points="15.30,17.72 11.94,14.00 13.76,12.95"/><polygon points="12.00,23.15 10.55,13.70 13.45,13.70"/><polygon points="8.70,17.72 10.24,12.95 12.06,14.00"/><polygon points="2.34,17.58 9.80,11.59 11.25,14.11"/><polygon points="5.40,12.00 10.30,10.95 10.30,13.05"/><polygon points="2.34,6.43 11.25,9.89 9.80,12.41"/><polygon points="8.70,6.28 12.06,10.00 10.24,11.05"/><circle cx="12" cy="12" r="1.7"/></g></svg><span class="rule"></span></div>
-      <h1>El món del<br>paper<span>al cor del Casc<br> <span style="font-weight: 800;">Antic de Barcelona</span></h1>
+      <h1>El món del<br>paper<span>al cor del Casc<br>Antic de Barcelona</span></h1>
       <p class="lede">Papereria de productes únics i artesans. Llibretes fetes a mà darrere d’un aparador de fusta que ja forma part del carrer.</p>
       <a class="btn" href="#botiga">Descobreix la botiga <span aria-hidden="true">→</span></a>
     </div>
