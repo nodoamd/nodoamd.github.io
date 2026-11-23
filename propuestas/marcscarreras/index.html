@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <!-- CAMBIAR: título, descripción y el texto visible de esta página. -->
+  <title>Marcs Carreras — Enmarcación en Sant Gervasi</title>
+  <meta name="description" content="Taller de enmarcación en Sant Gervasi. Molduras de madera y aluminio, láminas a medida y enmarcado sobre tabla." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shop.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@barba/core@2.9.7/dist/barba.umd.js"></script>
+</head>
+<body>
+  <div class="loader" role="status" aria-label="Cargando"><p>Carreras</p></div>
+  <div class="wipe" aria-hidden="true"></div>
+  <p class="ribbon">Propuesta Nodo · todavía no es la web publicada</p>
+
+  <header class="header">
+    <a class="logo" href="index.html"><strong>Carreras</strong><span>Marcs i gravats</span></a>
+    <button class="burger" type="button" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="nav" aria-label="Secciones">
+      <a href="index.html" data-nav="home">Inicio</a>
+      <a href="obra.html" data-nav="obra">Trabajos</a>
+      <a href="visita.html" data-nav="visita" class="go">Visitar el taller</a>
+    </nav>
+  </header>
+
+  <div data-barba="wrapper">
+    <main data-barba="container" data-barba-namespace="home" tabindex="-1">
+      <section class="hero wrap">
+        <div>
+          <p class="eyebrow hero__eyebrow">Taller de enmarcación · Sant Gervasi</p>
+          <h1 class="hero__title">El marco se decide delante de la pieza.</h1>
+          <p class="lede hero__subtitle">Madera, aluminio o tabla sin vidrio. Más de 1.500 molduras y el asesoramiento en el mostrador, en la plaça Joaquim Folguera.</p>
+          <div class="actions hero__actions">
+            <a class="btn" href="obra.html">Ver trabajos</a>
+            <a class="btn ghost" href="visita.html">Horario y cómo llegar</a>
+          </div>
+        </div>
+        <div class="moulder hero__visual" data-moulder>
+          <div class="frame" data-frame="oro">
+            <div class="mat"><div class="art art--oil" role="img" aria-label="Hueco de la obra, con moldura dorada"></div></div>
+          </div>
+          <div class="swatches" role="group" aria-label="Probar moldura">
+            <button type="button" data-mould="oro" aria-pressed="true">Oro viejo</button>
+            <button type="button" data-mould="nogal" aria-pressed="false">Nogal</button>
+            <button type="button" data-mould="negro" aria-pressed="false">Negro</button>
+            <button type="button" data-mould="aluminio" aria-pressed="false">Aluminio</button>
+            <button type="button" data-mould="madera" aria-pressed="false">Sin marco</button>
+          </div>
+          <p class="hint">La misma pieza. Cambia la moldura.</p>
+        </div>
+      </section>
+
+      <section class="facts wrap" data-stagger>
+        <div><strong>1.500+</strong><span>molduras de madera y aluminio</span></div>
+        <div><strong>A medida</strong><span>papel, tela, vinilo o metacrilato</span></div>
+        <div><strong>En el taller</strong><span>se elige el marco con la obra delante</span></div>
+      </section>
+
+      <section class="block">
+        <div class="wrap">
+          <div data-animate>
+            <h2>Tres maneras de enmarcar</h2>
+            <p class="sub">Las tres cosas que se piden en el mostrador, en el orden en que se deciden.</p>
+          </div>
+          <div class="cards" data-stagger>
+            <article class="card">
+              <h3>Moldura</h3>
+              <p>Madera o aluminio, con passepartout y cristal. Más de 1.500 perfiles, del barroco al canto fino.</p>
+            </article>
+            <article class="card">
+              <h3>Lámina</h3>
+              <p>Se imprime la imagen a la medida elegida, sobre papel, tela, vinilo, metacrilato o papel de empapelar.</p>
+            </article>
+            <article class="card">
+              <h3>Sobre tabla</h3>
+              <p>Sin moldura ni vidrio. Diez colores de canto y un film que protege de la luz y se limpia con agua.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" style="padding-top: 0">
+        <div class="wrap">
+          <div data-animate>
+            <h2>Cómo va una pieza</h2>
+            <p class="sub">Traes la obra. Sales con el marco encargado, no con un catálogo para mirar en casa.</p>
+          </div>
+          <div class="steps" data-stagger>
+            <article><span>01</span><h3>La pieza</h3><p>Óleo, lámina, abanico, baldosa, litografía o fotografía. Si ya tienes la medida, mejor.</p></article>
+            <article><span>02</span><h3>La moldura</h3><p>En el taller se compara el perfil, el passepartout y el cristal con la obra, no con una foto pequeña.</p></article>
+            <article><span>03</span><h3>La entrega</h3><p>El marco se hace en el taller. El horario de recogida es el del mostrador, de lunes a viernes.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer wrap">
+        <div><strong>Plaça Joaquim Folguera, 1</strong><br />08022 Barcelona · Sant Gervasi</div>
+        <div>Lunes a viernes 9:30–13:30 y 16:30–20:00<br />Sábados cerrado</div>
+      </footer>
+    </main>
+  </div>
+  <script src="js/shop.js"></script>
+</body>
+</html>

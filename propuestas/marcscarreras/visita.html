@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <!-- CAMBIAR: horario, dirección, teléfonos y data-mail. Nada que no esté publicado. -->
+  <title>Visita el taller — Marcs Carreras</title>
+  <meta name="description" content="Marcs Carreras, plaça Joaquim Folguera 1, Barcelona. Lunes a viernes de 9:30 a 13:30 y de 16:30 a 20:00." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shop.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@barba/core@2.9.7/dist/barba.umd.js"></script>
+</head>
+<body>
+  <div class="loader" role="status" aria-label="Cargando"><p>Carreras</p></div>
+  <div class="wipe" aria-hidden="true"></div>
+  <p class="ribbon">Propuesta Nodo · todavía no es la web publicada</p>
+
+  <header class="header">
+    <a class="logo" href="index.html"><strong>Carreras</strong><span>Marcs i gravats</span></a>
+    <button class="burger" type="button" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="nav" aria-label="Secciones">
+      <a href="index.html" data-nav="home">Inicio</a>
+      <a href="obra.html" data-nav="obra">Trabajos</a>
+      <a href="visita.html" data-nav="visita" class="go">Visitar el taller</a>
+    </nav>
+  </header>
+
+  <div data-barba="wrapper">
+    <main data-barba="container" data-barba-namespace="visita" tabindex="-1">
+      <section class="page-head wrap visit">
+        <div>
+          <p class="eyebrow hero__eyebrow">El taller</p>
+          <h1 class="hero__title">Ven con la pieza.</h1>
+          <p class="lede hero__subtitle">El marco se elige en el mostrador. Si escribes antes, di qué es y la medida aproximada.</p>
+          <table class="hours">
+            <tbody>
+              <tr><th>Lunes a viernes</th><td>9:30–13:30 y 16:30–20:00</td></tr>
+              <tr><th>Sábados</th><td>Cerrado</td></tr>
+              <tr><th>Domingos</th><td>Cerrado</td></tr>
+            </tbody>
+          </table>
+          <p class="addr">
+            Plaça Joaquim Folguera, 1 (Balmes)<br />
+            08022 Barcelona · Sant Gervasi<br />
+            Metro El Putxet · bus 16 y 17<br /><br />
+            <a href="tel:+34934174032">934 174 032</a><br />
+            <a href="tel:+34640501904">640 501 904</a><br />
+            <a href="mailto:carrerasmarcs@gmail.com">carrerasmarcs@gmail.com</a>
+          </p>
+          <p><a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Marcs+Carreras+Pla%C3%A7a+Joaquim+Folguera+1+Barcelona">Abrir en el mapa</a></p>
+        </div>
+        <form data-mail="carrerasmarcs@gmail.com" data-animate>
+          <label>Qué quieres enmarcar
+            <select name="pieza">
+              <option>Óleo o pintura</option>
+              <option>Lámina o grabado</option>
+              <option>Abanico</option>
+              <option>Baldosa u objeto en vitrina</option>
+              <option>Sobre tabla, sin vidrio</option>
+            </select>
+          </label>
+          <label>Medida aproximada
+            <input name="medida" type="text" autocomplete="off" placeholder="por ejemplo 50 × 70 cm" />
+          </label>
+          <label>Nota
+            <textarea name="nota" placeholder="Color, si ya tiene marco, cuándo lo necesitas"></textarea>
+          </label>
+          <button class="btn" type="submit">Escribir al taller</button>
+          <p class="hint">Abre el correo con el mensaje escrito. No se guarda en ningún sitio.</p>
+        </form>
+      </section>
+      <footer class="footer wrap">
+        <div><strong>Plaça Joaquim Folguera, 1</strong><br />08022 Barcelona · Sant Gervasi</div>
+      </footer>
+    </main>
+  </div>
+  <script src="js/shop.js"></script>
+</body>
+</html>

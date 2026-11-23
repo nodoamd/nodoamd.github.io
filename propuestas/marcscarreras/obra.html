@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <!-- CAMBIAR: piezas, filtros y textos. Cada .piece es un trabajo real del comercio. -->
+  <title>Trabajos — Marcs Carreras</title>
+  <meta name="description" content="Enmarcados del taller Carreras: óleos, láminas, abanicos, vitrinas, baldosas y tabla sin marco." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shop.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@barba/core@2.9.7/dist/barba.umd.js"></script>
+</head>
+<body>
+  <div class="loader" role="status" aria-label="Cargando"><p>Carreras</p></div>
+  <div class="wipe" aria-hidden="true"></div>
+  <p class="ribbon">Propuesta Nodo · todavía no es la web publicada</p>
+
+  <header class="header">
+    <a class="logo" href="index.html"><strong>Carreras</strong><span>Marcs i gravats</span></a>
+    <button class="burger" type="button" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="nav" aria-label="Secciones">
+      <a href="index.html" data-nav="home">Inicio</a>
+      <a href="obra.html" data-nav="obra">Trabajos</a>
+      <a href="visita.html" data-nav="visita" class="go">Visitar el taller</a>
+    </nav>
+  </header>
+
+  <div data-barba="wrapper">
+    <main data-barba="container" data-barba-namespace="obra" tabindex="-1">
+      <section class="page-head wrap">
+        <p class="eyebrow hero__eyebrow">Trabajos del taller</p>
+        <h1 class="hero__title">Lo que ya enmarcan, puesto en la pared.</h1>
+        <p class="lede hero__subtitle">Abanicos, vitrinas, litografías, óleos, baldosas y tabla sin vidrio. El color de dentro es el hueco de la obra: la foto real se pone ahí sin cambiar el marco.</p>
+        <div class="filters" role="group" aria-label="Filtrar trabajos">
+          <button type="button" data-filter="todo" aria-pressed="true">Todo</button>
+          <button type="button" data-filter="oleo" aria-pressed="false">Óleo</button>
+          <button type="button" data-filter="lamina" aria-pressed="false">Lámina</button>
+          <button type="button" data-filter="abanico" aria-pressed="false">Abanico</button>
+          <button type="button" data-filter="vitrina" aria-pressed="false">Vitrina</button>
+          <button type="button" data-filter="baldosa" aria-pressed="false">Baldosa</button>
+          <button type="button" data-filter="tabla" aria-pressed="false">Sobre tabla</button>
+        </div>
+        <div class="wall" data-stagger>
+          <figure class="piece" data-kind="abanico">
+            <div class="frame" data-frame="nogal"><div class="mat"><div class="art art--fan"></div></div></div>
+            <figcaption><strong>Abanico</strong><em>Moldura de nogal, abierta para el varillaje</em></figcaption>
+          </figure>
+          <figure class="piece" data-kind="vitrina">
+            <div class="frame" data-frame="oro"><div class="mat"><div class="art art--box"></div></div></div>
+            <figcaption><strong>Vitrina</strong><em>Caja con fondo, para objeto y no solo para papel</em></figcaption>
+          </figure>
+          <figure class="piece" data-kind="lamina">
+            <div class="frame" data-frame="aluminio"><div class="mat"><div class="art art--line"></div></div></div>
+            <figcaption><strong>Litografía</strong><em>Perfil de aluminio y passepartout amplio</em></figcaption>
+          </figure>
+          <figure class="piece" data-kind="oleo">
+            <div class="frame" data-frame="oro"><div class="mat"><div class="art art--oil"></div></div></div>
+            <figcaption><strong>Barroco decapado</strong><em>Madera gastada, para óleo con marco antiguo</em></figcaption>
+          </figure>
+          <figure class="piece" data-kind="oleo">
+            <div class="frame" data-frame="negro"><div class="mat"><div class="art art--oil"></div></div></div>
+            <figcaption><strong>Óleo</strong><em>Barroco negro con filete dorado</em></figcaption>
+          </figure>
+          <figure class="piece" data-kind="baldosa">
+            <div class="frame" data-frame="nogal"><div class="mat"><div class="art art--tile"></div></div></div>
+            <figcaption><strong>Baldosa</strong><em>Marco fondo para una pieza cerámica</em></figcaption>
+          </figure>
+          <figure class="piece" data-kind="tabla">
+            <div class="frame is-raw" data-frame="madera"><div class="mat"><div class="art art--panel"></div></div></div>
+            <figcaption><strong>Sobre tabla</strong><em>Sin vidrio. Diez cantos. Film que no marca huellas</em></figcaption>
+          </figure>
+          <figure class="piece" data-kind="tabla">
+            <div class="frame is-raw" data-frame="madera"><div class="mat"><div class="art art--panel"></div></div></div>
+            <figcaption><strong>Colección Tintín</strong><em>23 portadas, 50 × 70 cm, sobre tabla</em></figcaption>
+          </figure>
+        </div>
+        <p class="note">Los interiores no son obras de clientes. Son el sitio donde irá cada foto cuando el taller las pase.</p>
+      </section>
+      <footer class="footer wrap">
+        <div><strong>Plaça Joaquim Folguera, 1</strong><br />08022 Barcelona · Sant Gervasi</div>
+        <div><a href="visita.html">Encargar un enmarcado</a></div>
+      </footer>
+    </main>
+  </div>
+  <script src="js/shop.js"></script>
+</body>
+</html>
