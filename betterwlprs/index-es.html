@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
+    <script src="boot.js"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta name="description"
@@ -26,6 +27,7 @@
     <script>
     // Aplica el tema guardado o el del sistema al cargar
     (function() {
+        document.documentElement.classList.add('js');
         const userTheme = localStorage.getItem('theme');
         const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
         const theme = userTheme || systemTheme;
@@ -173,8 +175,11 @@
         </div>
         <div class="grid" id="galleryGrid">
             <div class="card">
-                <div class="card-image">
-                    <img src="./img/marcussittedahh.gif" alt="Hora Dorada">
+                <div class="card-image has-poster" style="background-color:#757b7f;background-image:url('img/display/loops/marcussittedahh-poster.webp');background-size:cover;background-position:center;">
+                    <video muted loop playsinline preload="none" poster="img/display/loops/marcussittedahh-poster.webp" data-master="./img/marcussittedahh.gif" width="800" height="450" aria-label="Hora Dorada">
+                        <source src="img/display/loops/marcussittedahh.webm" type="video/webm">
+                        <source src="img/display/loops/marcussittedahh.mp4" type="video/mp4">
+                    </video>
                     <div class="card-badge">GRATIS</div>
 
                 </div>
@@ -190,8 +195,11 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-image">
-                    <img src="./img/arkham.gif" alt="Noches en la ciudad">
+                <div class="card-image has-poster" style="background-color:#364a57;background-image:url('img/display/loops/arkham-poster.webp');background-size:cover;background-position:center;">
+                    <video muted loop playsinline preload="none" poster="img/display/loops/arkham-poster.webp" data-master="./img/arkham.gif" data-focus="left" width="800" height="450" aria-label="Noches en la ciudad">
+                        <source src="img/display/loops/arkham.webm" type="video/webm">
+                        <source src="img/display/loops/arkham.mp4" type="video/mp4">
+                    </video>
                     <div class="card-badge">Arkham Knight</div>
                 </div>
                 <div class="card-content">
@@ -207,8 +215,11 @@
             </div>
 
             <div class="card">
-                <div class="card-image">
-                    <img src="img/samsittedahh.gif" alt="Neón suave">
+                <div class="card-image has-poster" style="background-color:#586161;background-image:url('img/display/loops/samsittedahh-poster.webp');background-size:cover;background-position:center;">
+                    <video muted loop playsinline preload="none" poster="img/display/loops/samsittedahh-poster.webp" data-master="./img/samsittedahh.gif" width="800" height="450" aria-label="Neón suave">
+                        <source src="img/display/loops/samsittedahh.webm" type="video/webm">
+                        <source src="img/display/loops/samsittedahh.mp4" type="video/mp4">
+                    </video>
                     <div class="card-badge">Death Stranding</div>
                 </div>
                 <div class="card-content">
@@ -223,8 +234,11 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-image">
-                    <img src="./img/lessgo.gif" alt="Fondos en vivo de Metro Exodus">
+                <div class="card-image has-poster" style="background-color:#3b373c;background-image:url('img/display/loops/lessgo-poster.webp');background-size:cover;background-position:center;">
+                    <video muted loop playsinline preload="none" poster="img/display/loops/lessgo-poster.webp" data-master="./img/lessgo.gif" width="640" height="360" aria-label="Fondos en vivo de Metro Exodus">
+                        <source src="img/display/loops/lessgo.webm" type="video/webm">
+                        <source src="img/display/loops/lessgo.mp4" type="video/mp4">
+                    </video>
                     <div class="card-badge">Metro Exodus</div>
                 </div>
                 <div class="card-content">
@@ -260,10 +274,12 @@
         <div class="grid" id="videoGrid">
 
             <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/mgsdelta.png" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"
-                        allowfullscreen
-                        style="width:100%;height:100%;aspect-ratio:16/9;display:block;border-radius:20px;"></img>
+                <div class="card-image" style="background-color:#453e31;background-image:url('img/display/stills/mgsdelta-lqip.webp');background-size:cover;background-position:center;aspect-ratio: 16/9;">
+                    <picture>
+                        <source type="image/avif" srcset="img/display/stills/mgsdelta-640.avif 640w, img/display/stills/mgsdelta-960.avif 960w, img/display/stills/mgsdelta-1280.avif 1280w" sizes="(max-width: 700px) 92vw, 420px">
+                        <source type="image/webp" srcset="img/display/stills/mgsdelta-640.webp 640w, img/display/stills/mgsdelta-960.webp 960w, img/display/stills/mgsdelta-1280.webp 1280w" sizes="(max-width: 700px) 92vw, 420px">
+                        <img class="media-fade" src="img/display/stills/mgsdelta-960.webp" alt="Fondos cinematográficos" width="2560" height="1440" decoding="async" loading="lazy" data-master="./img/mgsdelta.png" style="width:100%;height:100%;aspect-ratio:16/9;display:block;border-radius:20px;object-fit:cover;">
+                    </picture>
                 </div>
                 <div class="card-content">
                     <div>
@@ -274,8 +290,12 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/ACOdissey-Vertical-Village-WLPR-08.png" alt="Detrás de la cámara">
+                <div class="card-image" style="background-color:#73737e;background-image:url('img/display/stills/acodissey-vertical-village-wlpr-08-lqip.webp');background-size:cover;background-position:center;aspect-ratio: 16/9;">
+                    <picture>
+                        <source type="image/avif" srcset="img/display/stills/acodissey-vertical-village-wlpr-08-640.avif 640w, img/display/stills/acodissey-vertical-village-wlpr-08-960.avif 960w, img/display/stills/acodissey-vertical-village-wlpr-08-1280.avif 1280w" sizes="(max-width: 700px) 92vw, 420px">
+                        <source type="image/webp" srcset="img/display/stills/acodissey-vertical-village-wlpr-08-640.webp 640w, img/display/stills/acodissey-vertical-village-wlpr-08-960.webp 960w, img/display/stills/acodissey-vertical-village-wlpr-08-1280.webp 1280w" sizes="(max-width: 700px) 92vw, 420px">
+                        <img class="media-fade" src="img/display/stills/acodissey-vertical-village-wlpr-08-960.webp" alt="Detrás de la cámara" width="1440" height="2560" decoding="async" loading="lazy" data-master="./img/ACOdissey-Vertical-Village-WLPR-08.png">
+                    </picture>
                 </div>
                 <div class="card-content">
                     <div>
@@ -287,8 +307,11 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/samsatori.gif" alt="Personaje principal de Death Stranding sentado en una montaña">
+                <div class="card-image has-poster" style="background-color:#626b69;background-image:url('img/display/loops/samsatori-poster.webp');background-size:cover;background-position:center;aspect-ratio: 16/9;">
+                    <video muted loop playsinline preload="none" poster="img/display/loops/samsatori-poster.webp" data-master="./img/samsatori.gif" width="800" height="450" aria-label="Personaje principal de Death Stranding sentado en una montaña">
+                        <source src="img/display/loops/samsatori.webm" type="video/webm">
+                        <source src="img/display/loops/samsatori.mp4" type="video/mp4">
+                    </video>
 
                 </div>
                 <div class="card-content">
@@ -319,8 +342,12 @@
         </div>
         <div class="grid" id="howGrid">
             <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/sanfracampview.jpg" alt="Descarga el paquete de inicio">
+                <div class="card-image" style="background-color:#838b8e;background-image:url('img/display/stills/sanfracampview-lqip.webp');background-size:cover;background-position:center;aspect-ratio: 16/9;">
+                    <picture>
+                        <source type="image/avif" srcset="img/display/stills/sanfracampview-640.avif 640w, img/display/stills/sanfracampview-960.avif 960w, img/display/stills/sanfracampview-1280.avif 1280w" sizes="(max-width: 700px) 92vw, 420px">
+                        <source type="image/webp" srcset="img/display/stills/sanfracampview-640.webp 640w, img/display/stills/sanfracampview-960.webp 960w, img/display/stills/sanfracampview-1280.webp 1280w" sizes="(max-width: 700px) 92vw, 420px">
+                        <img class="media-fade" src="img/display/stills/sanfracampview-960.webp" alt="Descarga el paquete de inicio" width="1920" height="1080" decoding="async" loading="lazy" data-master="./img/sanfracampview.jpg">
+                    </picture>
                 </div>
                 <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
                     <div style="display: flex; align-items: center; gap: 16px;">
@@ -336,8 +363,11 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/spidersky.gif" alt="Fondos ilimitados">
+                <div class="card-image has-poster" style="background-color:#776451;background-image:url('img/display/loops/spidersky-poster.webp');background-size:cover;background-position:center;aspect-ratio: 16/9;">
+                    <video muted loop playsinline preload="none" poster="img/display/loops/spidersky-poster.webp" data-master="./img/spidersky.gif" width="800" height="450" aria-label="Fondos ilimitados">
+                        <source src="img/display/loops/spidersky.webm" type="video/webm">
+                        <source src="img/display/loops/spidersky.mp4" type="video/mp4">
+                    </video>
                 </div>
                 <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
                     <div style="display: flex; align-items: center; gap: 16px;">
@@ -354,8 +384,11 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/arkham.gif" alt="Mejora BetterWLPRS">
+                <div class="card-image has-poster" style="background-color:#364a57;background-image:url('img/display/loops/arkham-poster.webp');background-size:cover;background-position:center;aspect-ratio: 16/9;">
+                    <video muted loop playsinline preload="none" poster="img/display/loops/arkham-poster.webp" data-master="./img/arkham.gif" data-focus="left" width="800" height="450" aria-label="Mejora BetterWLPRS">
+                        <source src="img/display/loops/arkham.webm" type="video/webm">
+                        <source src="img/display/loops/arkham.mp4" type="video/mp4">
+                    </video>
                 </div>
                 <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
                     <div style="display: flex; align-items: center; gap: 16px;">
@@ -1324,13 +1357,19 @@
         if (!currentCard) return;
 
         const img = currentCard.querySelector('img');
-        if (!img) return;
-
+        const video = currentCard.querySelector('video');
         const imageViewer = document.getElementById('imageViewer');
         const viewerImage = document.getElementById('viewerImage');
-
-        viewerImage.src = img.src;
-        viewerImage.alt = img.alt;
+        if (!viewerImage || !imageViewer) return;
+        if (img) {
+            viewerImage.src = img.currentSrc || img.src;
+            viewerImage.alt = img.alt || '';
+        } else if (video) {
+            viewerImage.src = video.getAttribute('poster') || '';
+            viewerImage.alt = video.getAttribute('aria-label') || '';
+        } else {
+            return;
+        }
 
         closeActionModal();
 

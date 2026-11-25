@@ -55,30 +55,20 @@
 
         const fonts = document.fonts ? document.fonts.ready.catch(() => {}) : Promise.resolve();
         const priority = [...document.querySelectorAll('video[data-boot="1"]')];
-        const warm = [...document.querySelectorAll('video[data-boot="warm"]')];
         priority.forEach(warmVideo);
-        // Start carousel buffer in parallel (don't block the curtain on every clip)
-        warm.forEach(warmVideo);
 
         const videosReady = Promise.all(
-            priority.map((video) => whenCanPlay(video, MAX_WAIT - 400))
+            priority.map((video) => whenCanPlay(video, 4000))
         );
 
-        // Prefer at least a couple carousel clips ready if they make it in time
-        const warmReady = Promise.race([
-            Promise.all(warm.slice(0, 3).map((video) => whenCanPlay(video, MAX_WAIT - 400))),
-            new Promise((resolve) => setTimeout(resolve, Math.min(4500, MAX_WAIT))),
-        ]);
-
         await Promise.race([
-            Promise.all([fonts, videosReady, warmReady]),
-            new Promise((resolve) => setTimeout(resolve, MAX_WAIT)),
+            Promise.all([fonts, videosReady]),
+            new Promise((resolve) => setTimeout(resolve, 4500)),
         ]);
 
-        // Start playing priority + warmed clips before the curtain lifts
-        [...priority, ...warm].forEach((video) => {
+        priority.forEach((video) => {
             if (video.dataset.userUnmuted !== '1') video.muted = true;
-            video.play().catch(() => {});
+            if (!reduceMotion) video.play().catch(() => {});
             revealVideo(video);
         });
 
@@ -87,7 +77,8 @@
 
     function fadeIn(el) {
         el.style.transition = 'opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1)';
-        if (reduceMotion) {
+        // A poster is already on screen. Fading from 0 would hide it for a frame.
+        if (reduceMotion || (el.tagName === 'VIDEO' && el.getAttribute('poster'))) {
             el.style.opacity = '1';
             return;
         }
@@ -114,9 +105,36 @@
         fadeIn(video);
     }
 
+    function sameUrl(a, b) {
+        if (!a || !b) return false;
+        try {
+            return new URL(a, location.href).href === new URL(b, location.href).href;
+        } catch (e) {
+            return a === b;
+        }
+    }
+
+    function bindMasterFallback(video) {
+        if (video.dataset.fallbackBound) return;
+        video.dataset.fallbackBound = '1';
+        video.addEventListener('error', () => {
+            const master = video.dataset.master;
+            if (!master || video.dataset.fellback === '1') return;
+            if (video.currentSrc && sameUrl(video.currentSrc, master)) return;
+            video.dataset.fellback = '1';
+            video.querySelectorAll('source').forEach((source) => source.remove());
+            video.src = master;
+            try { video.load(); } catch (e) { /* ignore */ }
+            if (video.dataset.wantPlay === '1' && !reduceMotion) {
+                video.play().catch(() => {});
+            }
+        });
+    }
+
     function bindReveal(video) {
         if (video.dataset.revealBound) return;
         video.dataset.revealBound = '1';
+        bindMasterFallback(video);
         const onFrame = () => revealVideo(video);
         video.addEventListener('loadeddata', onFrame);
         video.addEventListener('playing', onFrame);
@@ -125,6 +143,10 @@
     }
 
     function playVisible(video) {
+        if (reduceMotion) {
+            revealVideo(video);
+            return;
+        }
         warmVideo(video);
         video.dataset.wantPlay = '1';
         // Keep user unmute on the live VideoWLPRS card
@@ -152,8 +174,7 @@
             if (shell && !shell.classList.contains('media-shell')) shell.classList.add('media-shell');
             bindReveal(video);
 
-            // Priority / warmed clips are already loading during the loader
-            if (video.getAttribute('data-boot') === '1' || video.getAttribute('data-boot') === 'warm') {
+            if (video.getAttribute('data-boot') === '1') {
                 playVisible(video);
                 return;
             }
@@ -185,7 +206,7 @@
                     video.pause();
                 }
             });
-        }, { rootMargin: '900px 1000px', threshold: 0.01 });
+        }, { rootMargin: '320px 280px', threshold: 0.01 });
 
         document.querySelectorAll('video').forEach(watch);
         const mo = new MutationObserver((mutations) => {
@@ -244,7 +265,36 @@
         document.head.appendChild(gallery);
     }
 
+    function bindStills() {
+        document.querySelectorAll('img.media-fade').forEach((img) => {
+            const reveal = () => {
+                if (img.naturalWidth) img.classList.add('is-ready');
+            };
+            const fail = () => {
+                const master = img.dataset.master;
+                if (master && img.dataset.fellback !== '1') {
+                    img.dataset.fellback = '1';
+                    const picture = img.closest('picture');
+                    if (picture) picture.querySelectorAll('source').forEach((source) => source.remove());
+                    img.removeAttribute('srcset');
+                    img.removeAttribute('sizes');
+                    img.src = master;
+                    return;
+                }
+                img.classList.add('is-ready');
+            };
+            img.addEventListener('load', reveal);
+            img.addEventListener('error', fail);
+            if (img.complete) {
+                if (img.naturalWidth) reveal();
+                else fail();
+            }
+        });
+    }
+
     function boot() {
+        document.documentElement.classList.add('js');
+        bindStills();
         lazyVideos();
         bindAudioToggle();
         deferSpline();

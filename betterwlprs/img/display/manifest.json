@@ -1,0 +1,454 @@
+{
+  "stills": [
+    {
+      "kind": "still",
+      "master": "img/mgsdelta.png",
+      "masterBytes": 8168454,
+      "width": 2560,
+      "height": 1440,
+      "color": "#453e31",
+      "lqip": "img/display/stills/mgsdelta-lqip.webp",
+      "lqipBytes": 116,
+      "webp": [
+        {
+          "width": 640,
+          "path": "img/display/stills/mgsdelta-640.webp",
+          "bytes": 39156
+        },
+        {
+          "width": 960,
+          "path": "img/display/stills/mgsdelta-960.webp",
+          "bytes": 70848
+        },
+        {
+          "width": 1280,
+          "path": "img/display/stills/mgsdelta-1280.webp",
+          "bytes": 110932
+        }
+      ],
+      "avif": [
+        {
+          "width": 640,
+          "path": "img/display/stills/mgsdelta-640.avif",
+          "bytes": 17526
+        },
+        {
+          "width": 960,
+          "path": "img/display/stills/mgsdelta-960.avif",
+          "bytes": 30903
+        },
+        {
+          "width": 1280,
+          "path": "img/display/stills/mgsdelta-1280.avif",
+          "bytes": 45260
+        }
+      ]
+    },
+    {
+      "kind": "still",
+      "master": "img/ACOdissey-Vertical-Village-WLPR-08.png",
+      "masterBytes": 5420389,
+      "width": 1440,
+      "height": 2560,
+      "color": "#73737e",
+      "lqip": "img/display/stills/acodissey-vertical-village-wlpr-08-lqip.webp",
+      "lqipBytes": 194,
+      "webp": [
+        {
+          "width": 640,
+          "path": "img/display/stills/acodissey-vertical-village-wlpr-08-640.webp",
+          "bytes": 106288
+        },
+        {
+          "width": 960,
+          "path": "img/display/stills/acodissey-vertical-village-wlpr-08-960.webp",
+          "bytes": 212770
+        },
+        {
+          "width": 1280,
+          "path": "img/display/stills/acodissey-vertical-village-wlpr-08-1280.webp",
+          "bytes": 342458
+        }
+      ],
+      "avif": [
+        {
+          "width": 640,
+          "path": "img/display/stills/acodissey-vertical-village-wlpr-08-640.avif",
+          "bytes": 52525
+        },
+        {
+          "width": 960,
+          "path": "img/display/stills/acodissey-vertical-village-wlpr-08-960.avif",
+          "bytes": 102520
+        },
+        {
+          "width": 1280,
+          "path": "img/display/stills/acodissey-vertical-village-wlpr-08-1280.avif",
+          "bytes": 159102
+        }
+      ]
+    },
+    {
+      "kind": "still",
+      "master": "img/sanfracampview.jpg",
+      "masterBytes": 326746,
+      "width": 1920,
+      "height": 1080,
+      "color": "#838b8e",
+      "lqip": "img/display/stills/sanfracampview-lqip.webp",
+      "lqipBytes": 112,
+      "webp": [
+        {
+          "width": 640,
+          "path": "img/display/stills/sanfracampview-640.webp",
+          "bytes": 20714
+        },
+        {
+          "width": 960,
+          "path": "img/display/stills/sanfracampview-960.webp",
+          "bytes": 41648
+        },
+        {
+          "width": 1280,
+          "path": "img/display/stills/sanfracampview-1280.webp",
+          "bytes": 68770
+        }
+      ],
+      "avif": [
+        {
+          "width": 640,
+          "path": "img/display/stills/sanfracampview-640.avif",
+          "bytes": 10449
+        },
+        {
+          "width": 960,
+          "path": "img/display/stills/sanfracampview-960.avif",
+          "bytes": 20623
+        },
+        {
+          "width": 1280,
+          "path": "img/display/stills/sanfracampview-1280.avif",
+          "bytes": 33500
+        }
+      ]
+    }
+  ],
+  "loops": [
+    {
+      "kind": "loop",
+      "master": "img/spidersky.gif",
+      "masterBytes": 9162978,
+      "width": 800,
+      "height": 450,
+      "color": "#776451",
+      "poster": "img/display/loops/spidersky-poster.webp",
+      "posterBytes": 17218,
+      "mp4": "img/display/loops/spidersky.mp4",
+      "mp4Bytes": 463301,
+      "webm": "img/display/loops/spidersky.webm",
+      "webmBytes": 55049
+    },
+    {
+      "kind": "loop",
+      "master": "img/arkham.gif",
+      "masterBytes": 10340690,
+      "width": 800,
+      "height": 450,
+      "color": "#364a57",
+      "poster": "img/display/loops/arkham-poster.webp",
+      "posterBytes": 39606,
+      "mp4": "img/display/loops/arkham.mp4",
+      "mp4Bytes": 1255637,
+      "webm": "img/display/loops/arkham.webm",
+      "webmBytes": 556721
+    },
+    {
+      "kind": "loop",
+      "master": "img/marcussittedahh.gif",
+      "masterBytes": 8174805,
+      "width": 800,
+      "height": 450,
+      "color": "#757b7f",
+      "poster": "img/display/loops/marcussittedahh-poster.webp",
+      "posterBytes": 43504,
+      "mp4": "img/display/loops/marcussittedahh.mp4",
+      "mp4Bytes": 975230,
+      "webm": "img/display/loops/marcussittedahh.webm",
+      "webmBytes": 303629
+    },
+    {
+      "kind": "loop",
+      "master": "img/samsittedahh.gif",
+      "masterBytes": 6460424,
+      "width": 800,
+      "height": 450,
+      "color": "#586161",
+      "poster": "img/display/loops/samsittedahh-poster.webp",
+      "posterBytes": 39668,
+      "mp4": "img/display/loops/samsittedahh.mp4",
+      "mp4Bytes": 742106,
+      "webm": "img/display/loops/samsittedahh.webm",
+      "webmBytes": 268923
+    },
+    {
+      "kind": "loop",
+      "master": "img/lessgo.gif",
+      "masterBytes": 7888951,
+      "width": 640,
+      "height": 360,
+      "color": "#3b373c",
+      "poster": "img/display/loops/lessgo-poster.webp",
+      "posterBytes": 25754,
+      "mp4": "img/display/loops/lessgo.mp4",
+      "mp4Bytes": 444157,
+      "webm": "img/display/loops/lessgo.webm",
+      "webmBytes": 99891
+    },
+    {
+      "kind": "loop",
+      "master": "img/samsatori.gif",
+      "masterBytes": 25906098,
+      "width": 800,
+      "height": 450,
+      "color": "#626b69",
+      "poster": "img/display/loops/samsatori-poster.webp",
+      "posterBytes": 39060,
+      "mp4": "img/display/loops/samsatori.mp4",
+      "mp4Bytes": 2739570,
+      "webm": "img/display/loops/samsatori.webm",
+      "webmBytes": 913909
+    }
+  ],
+  "localVideos": [
+    {
+      "kind": "local-video",
+      "master": "img/setupkindle.mp4",
+      "masterBytes": 638395,
+      "width": 576,
+      "height": 1024,
+      "color": "#736b66",
+      "poster": "img/display/clips/setupkindle-poster.webp",
+      "posterBytes": 36054,
+      "mp4": "img/setupkindle.mp4",
+      "mp4Bytes": 638395,
+      "keptMasterForPlayback": true
+    },
+    {
+      "kind": "local-video",
+      "master": "img/setupmarkus.mp4",
+      "masterBytes": 5327609,
+      "width": 576,
+      "height": 1024,
+      "color": "#222d21",
+      "poster": "img/display/clips/setupmarkus-poster.webp",
+      "posterBytes": 23274,
+      "mp4": "img/setupmarkus.mp4",
+      "mp4Bytes": 5327609,
+      "keptMasterForPlayback": true
+    },
+    {
+      "kind": "local-video",
+      "master": "img/setupmarkus2.mp4",
+      "masterBytes": 1207002,
+      "width": 576,
+      "height": 1024,
+      "color": "#3a3431",
+      "poster": "img/display/clips/setupmarkus2-poster.webp",
+      "posterBytes": 22296,
+      "mp4": "img/setupmarkus2.mp4",
+      "mp4Bytes": 1207002,
+      "keptMasterForPlayback": true
+    }
+  ],
+  "remoteVideos": [
+    {
+      "kind": "remote-video",
+      "id": "arkham-01",
+      "master": "https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Batman-Arkhamknight-Videowlpr-01-%28Cropped%29-66.mp4",
+      "masterBytes": 60280992,
+      "width": 2560,
+      "height": 1440,
+      "fps": 60.0,
+      "duration": 36.08,
+      "color": "#42545d",
+      "poster": "img/display/clips/arkham-01-poster.webp",
+      "posterBytes": 42168,
+      "mp4": "img/display/clips/arkham-01.mp4",
+      "mp4Bytes": 3939840,
+      "profile": {
+        "maxWidth": 960,
+        "maxFps": 30,
+        "crf": 23,
+        "audio": false
+      }
+    },
+    {
+      "kind": "remote-video",
+      "id": "deathstranding-samwindy",
+      "master": "https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Deathstranding-Samwindy-Videowlpr-83.mp4",
+      "masterBytes": 106294986,
+      "width": 2560,
+      "height": 1440,
+      "fps": 60.0,
+      "duration": 77.63,
+      "color": "#596362",
+      "poster": "img/display/clips/deathstranding-samwindy-poster.webp",
+      "posterBytes": 46276,
+      "mp4": "img/display/clips/deathstranding-samwindy.mp4",
+      "mp4Bytes": 25143754,
+      "profile": {
+        "maxWidth": 1600,
+        "maxFps": 60,
+        "crf": 22,
+        "audio": true
+      }
+    },
+    {
+      "kind": "remote-video",
+      "id": "madmax-moon",
+      "master": "https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Mad-Max-Moonlighthouse-Videowlpr-115.mp4",
+      "masterBytes": 44894677,
+      "width": 2560,
+      "height": 1440,
+      "fps": 59.946,
+      "duration": 37.12,
+      "color": "#889b9a",
+      "poster": "img/display/clips/madmax-moon-poster.webp",
+      "posterBytes": 10932,
+      "mp4": "img/display/clips/madmax-moon.mp4",
+      "mp4Bytes": 4618017,
+      "profile": {
+        "maxWidth": 960,
+        "maxFps": 30,
+        "crf": 23,
+        "audio": false
+      }
+    },
+    {
+      "kind": "remote-video",
+      "id": "metroexodus-03",
+      "master": "https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Metroexodus%2003-119.mp4",
+      "masterBytes": 27278374,
+      "width": 2560,
+      "height": 1440,
+      "fps": 59.976,
+      "duration": 38.04,
+      "color": "#464f63",
+      "poster": "img/display/clips/metroexodus-03-poster.webp",
+      "posterBytes": 25076,
+      "mp4": "img/display/clips/metroexodus-03.mp4",
+      "mp4Bytes": 1053662,
+      "profile": {
+        "maxWidth": 960,
+        "maxFps": 30,
+        "crf": 23,
+        "audio": false
+      }
+    },
+    {
+      "kind": "remote-video",
+      "id": "prey-2017",
+      "master": "https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Prey%20%282017%29%202025.09.08%20-%2018.00.41.02%20-%20Trm-143.mp4",
+      "masterBytes": 15359422,
+      "width": 2560,
+      "height": 1410,
+      "fps": 60.0,
+      "duration": 21.07,
+      "color": "#2c3137",
+      "poster": "img/display/clips/prey-2017-poster.webp",
+      "posterBytes": 37300,
+      "mp4": "img/display/clips/prey-2017.mp4",
+      "mp4Bytes": 468744,
+      "profile": {
+        "maxWidth": 960,
+        "maxFps": 30,
+        "crf": 23,
+        "audio": false
+      }
+    },
+    {
+      "kind": "remote-video",
+      "id": "skyrim-04",
+      "master": "https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Skyrim%20Videowlpr%2004-166.mp4",
+      "masterBytes": 21465685,
+      "width": 2560,
+      "height": 1440,
+      "fps": 60.0,
+      "duration": 17.24,
+      "color": "#142323",
+      "poster": "img/display/clips/skyrim-04-poster.webp",
+      "posterBytes": 40674,
+      "mp4": "img/display/clips/skyrim-04.mp4",
+      "mp4Bytes": 673709,
+      "profile": {
+        "maxWidth": 960,
+        "maxFps": 30,
+        "crf": 23,
+        "audio": false
+      }
+    },
+    {
+      "kind": "remote-video",
+      "id": "sm2-skyview",
+      "master": "https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Sm2-Skyview-Videowlpr%202-164.mp4",
+      "masterBytes": 121748475,
+      "width": 2560,
+      "height": 1440,
+      "fps": 60.0,
+      "duration": 48.33,
+      "color": "#776654",
+      "poster": "img/display/clips/sm2-skyview-poster.webp",
+      "posterBytes": 18176,
+      "mp4": "img/display/clips/sm2-skyview.mp4",
+      "mp4Bytes": 1389312,
+      "profile": {
+        "maxWidth": 960,
+        "maxFps": 30,
+        "crf": 23,
+        "audio": false
+      }
+    },
+    {
+      "kind": "remote-video",
+      "id": "specops-03",
+      "master": "https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Specops%20Videowlpr%2003-174.mp4",
+      "masterBytes": 30106429,
+      "width": 2560,
+      "height": 1440,
+      "fps": 60.0,
+      "duration": 31.97,
+      "color": "#caa899",
+      "poster": "img/display/clips/specops-03-poster.webp",
+      "posterBytes": 19288,
+      "mp4": "img/display/clips/specops-03.mp4",
+      "mp4Bytes": 2383455,
+      "profile": {
+        "maxWidth": 960,
+        "maxFps": 30,
+        "crf": 23,
+        "audio": false
+      }
+    },
+    {
+      "kind": "remote-video",
+      "id": "witcher-1917",
+      "master": "https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/The%20Witcher%203%202025.10.02%20-%2019.17.38.01-183.mp4",
+      "masterBytes": 48111686,
+      "width": 2560,
+      "height": 1440,
+      "fps": 60.0,
+      "duration": 25.02,
+      "color": "#788c94",
+      "poster": "img/display/clips/witcher-1917-poster.webp",
+      "posterBytes": 50764,
+      "mp4": "img/display/clips/witcher-1917.mp4",
+      "mp4Bytes": 2635898,
+      "profile": {
+        "maxWidth": 960,
+        "maxFps": 30,
+        "crf": 23,
+        "audio": false
+      }
+    }
+  ]
+}

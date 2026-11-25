@@ -1114,6 +1114,10 @@
             opacity: 0;
         }
 
+        video[poster].is-pending:not(.is-ready) {
+            opacity: 1;
+        }
+
         video.is-ready {
             opacity: 1;
         }
@@ -1160,6 +1164,52 @@
             .media-shell::after {
                 animation: none;
                 opacity: 0;
+            }
+
+            .infinite-slider {
+                animation: none;
+            }
+        }
+
+        html.js img.media-fade:not(.is-ready) {
+            opacity: 0;
+        }
+
+        html.js img.media-fade.is-ready {
+            opacity: 1;
+            transition: opacity 0.45s ease;
+        }
+
+        .card-image picture {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card-image.has-poster,
+        .media-shell.has-poster,
+        .slider-item.has-poster,
+        .setup-card.has-poster {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .media-shell.has-poster::after {
+            opacity: 0;
+            animation: none;
+        }
+
+        .card-image video[data-focus="left"],
+        .card-image img[data-focus="left"] {
+            object-position: 25% center;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html.js img.media-fade:not(.is-ready),
+            html.js img.media-fade.is-ready {
+                opacity: 1;
+                transition: none;
             }
         }
         .footer {

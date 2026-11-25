@@ -17,11 +17,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="prefetch" href="galeria.html">
     <link rel="preconnect" href="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev" crossorigin>
+    <link rel="preload" as="image" href="img/display/clips/deathstranding-samwindy-poster.webp">
 </head>
 
 <body>
     <script>
         (function () {
+            document.documentElement.classList.add('js');
             const userTheme = localStorage.getItem('theme');
             const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', userTheme || systemTheme);
@@ -165,11 +167,10 @@
             </div>
 
             <!-- Video Preview -->
-            <div class="media-shell"
-                style="margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(167, 135, 255, 0.2); border: 2px solid rgba(167, 135, 255, 0.15);">
-                <video data-boot="1" width="100%" height="auto" muted loop preload="auto" playsinline autoplay style="display: block; width:100%;">
-                    <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Deathstranding-Samwindy-Videowlpr-83.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
+            <div class="media-shell has-poster"
+                style="margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(167, 135, 255, 0.2); border: 2px solid rgba(167, 135, 255, 0.15); aspect-ratio: 16/9; background-color: #1c2430; background-image: url('img/display/clips/deathstranding-samwindy-poster.webp');">
+                <video data-boot="1" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Deathstranding-Samwindy-Videowlpr-83.mp4" width="1600" height="900" muted loop preload="metadata" playsinline poster="img/display/clips/deathstranding-samwindy-poster.webp" style="display: block; width:100%; height:100%; object-fit:cover;">
+                    <source src="img/display/clips/deathstranding-samwindy.mp4" type="video/mp4">
                 </video>
             </div>
 
@@ -269,10 +270,13 @@
         <div class="grid" id="videoGrid">
             <!-- Card 1: VideoWLPRS -->
             <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9; position: relative;">
-                    <video id="videoWLPRS" data-boot="1" src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Deathstranding-Samwindy-Videowlpr-83.mp4"
-                        muted loop preload="auto" playsinline
-                        style="width:100%;height:100%;aspect-ratio:16/9;display:block;border-radius:20px;object-fit:cover;"></video>
+                <div class="card-image has-poster" style="aspect-ratio: 16/9; position: relative; background-color: #1c2430; background-image: url('img/display/clips/deathstranding-samwindy-poster.webp');">
+                    <video id="videoWLPRS" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Deathstranding-Samwindy-Videowlpr-83.mp4"
+                        poster="img/display/clips/deathstranding-samwindy-poster.webp"
+                        muted loop preload="metadata" playsinline
+                        style="width:100%;height:100%;aspect-ratio:16/9;display:block;border-radius:20px;object-fit:cover;">
+                        <source src="img/display/clips/deathstranding-samwindy.mp4" type="video/mp4">
+                    </video>
                     <!-- Botón de audio -->
                     <button id="toggleAudioBtn" style="
                                 position: absolute;
@@ -311,9 +315,12 @@
 
             <!-- Card 2: Cinematic WLPRS -->
             <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/mgsdelta.png" alt="Cinematic WLPRS"
-                        style="width:100%;height:100%;aspect-ratio:16/9;display:block;border-radius:20px;object-fit:cover;" />
+                <div class="card-image" style="aspect-ratio: 16/9; background-color: #453e31; background-image: url('img/display/stills/mgsdelta-lqip.webp'); background-size: cover; background-position: center;">
+                    <picture>
+                        <source type="image/avif" srcset="img/display/stills/mgsdelta-640.avif 640w, img/display/stills/mgsdelta-960.avif 960w, img/display/stills/mgsdelta-1280.avif 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 420px">
+                        <source type="image/webp" srcset="img/display/stills/mgsdelta-640.webp 640w, img/display/stills/mgsdelta-960.webp 960w, img/display/stills/mgsdelta-1280.webp 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 420px">
+                        <img class="media-fade" src="img/display/stills/mgsdelta-960.webp" alt="Cinematic WLPRS" width="2560" height="1440" decoding="async" loading="lazy" data-master="./img/mgsdelta.png" style="width:100%;height:100%;aspect-ratio:16/9;display:block;border-radius:20px;object-fit:cover;">
+                    </picture>
                 </div>
                 <div class="card-content">
                     <div>
@@ -327,8 +334,12 @@
 
             <!-- Card 3: Vertical / Landscape WLPRS -->
             <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/ACOdissey-Vertical-Village-WLPR-08.png" alt="Vertical and Landscape WLPRS">
+                <div class="card-image" style="aspect-ratio: 16/9; background-color: #73737e; background-image: url('img/display/stills/acodissey-vertical-village-wlpr-08-lqip.webp'); background-size: cover; background-position: center;">
+                    <picture>
+                        <source type="image/avif" srcset="img/display/stills/acodissey-vertical-village-wlpr-08-640.avif 640w, img/display/stills/acodissey-vertical-village-wlpr-08-960.avif 960w, img/display/stills/acodissey-vertical-village-wlpr-08-1280.avif 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 420px">
+                        <source type="image/webp" srcset="img/display/stills/acodissey-vertical-village-wlpr-08-640.webp 640w, img/display/stills/acodissey-vertical-village-wlpr-08-960.webp 960w, img/display/stills/acodissey-vertical-village-wlpr-08-1280.webp 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 420px">
+                        <img class="media-fade" src="img/display/stills/acodissey-vertical-village-wlpr-08-960.webp" alt="Vertical and Landscape WLPRS" width="1440" height="2560" decoding="async" loading="lazy" data-master="./img/ACOdissey-Vertical-Village-WLPR-08.png">
+                    </picture>
                 </div>
                 <div class="card-content">
                     <div>
@@ -367,122 +378,122 @@
             <div class="infinite-slider" id="infiniteSlider">
                 <!-- Track 1 (original) -->
                 <div class="slider-track" data-slider-track="1">
-                    <div class="slider-item">
-                        <video data-boot="warm" muted loop preload="auto" playsinline class="slider-media">
-                            <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Deathstranding-Samwindy-Videowlpr-83.mp4" type="video/mp4">
+                    <div class="slider-item has-poster" style="background-image:url('img/display/clips/deathstranding-samwindy-poster.webp')">
+                        <video muted loop preload="none" playsinline class="slider-media" poster="img/display/clips/deathstranding-samwindy-poster.webp" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Deathstranding-Samwindy-Videowlpr-83.mp4">
+                            <source src="img/display/clips/deathstranding-samwindy.mp4" type="video/mp4">
+                        </video>
+                        <div class="slider-badge">🎬 Video</div>
+                    </div>
+                    <div class="slider-item has-poster" style="background-image:url('img/display/clips/metroexodus-03-poster.webp')">
+                        <video muted loop preload="none" playsinline class="slider-media" poster="img/display/clips/metroexodus-03-poster.webp" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Metroexodus%2003-119.mp4">
+                            <source src="img/display/clips/metroexodus-03.mp4" type="video/mp4">
+                        </video>
+                        <div class="slider-badge">🎬 Video</div>
+                    </div>
+                    <div class="slider-item has-poster" style="background-image:url('img/display/clips/skyrim-04-poster.webp')">
+                        <video muted loop preload="none" playsinline class="slider-media" poster="img/display/clips/skyrim-04-poster.webp" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Skyrim%20Videowlpr%2004-166.mp4">
+                            <source src="img/display/clips/skyrim-04.mp4" type="video/mp4">
+                        </video>
+                        <div class="slider-badge">🎬 Video</div>
+                    </div>
+                    <div class="slider-item has-poster" style="background-image:url('img/display/clips/witcher-1917-poster.webp')">
+                        <video muted loop preload="none" playsinline class="slider-media" poster="img/display/clips/witcher-1917-poster.webp" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/The%20Witcher%203%202025.10.02%20-%2019.17.38.01-183.mp4">
+                            <source src="img/display/clips/witcher-1917.mp4" type="video/mp4">
+                        </video>
+                        <div class="slider-badge">🎬 Video</div>
+                    </div>
+                    <div class="slider-item has-poster" style="background-image:url('img/display/clips/arkham-01-poster.webp')">
+                        <video muted loop preload="none" playsinline class="slider-media" poster="img/display/clips/arkham-01-poster.webp" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Batman-Arkhamknight-Videowlpr-01-%28Cropped%29-66.mp4">
+                            <source src="img/display/clips/arkham-01.mp4" type="video/mp4">
+                        </video>
+                        <div class="slider-badge">🎬 Video</div>
+                    </div>
+                    <div class="slider-item has-poster" style="background-image:url('img/display/clips/sm2-skyview-poster.webp')">
+                        <video muted loop preload="none" playsinline class="slider-media" poster="img/display/clips/sm2-skyview-poster.webp" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Sm2-Skyview-Videowlpr%202-164.mp4">
+                            <source src="img/display/clips/sm2-skyview.mp4" type="video/mp4">
+                        </video>
+                        <div class="slider-badge">🎬 Video</div>
+                    </div>
+                    <div class="slider-item has-poster" style="background-image:url('img/display/clips/madmax-moon-poster.webp')">
+                        <video muted loop preload="none" playsinline class="slider-media" poster="img/display/clips/madmax-moon-poster.webp" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Mad-Max-Moonlighthouse-Videowlpr-115.mp4">
+                            <source src="img/display/clips/madmax-moon.mp4" type="video/mp4">
+                        </video>
+                        <div class="slider-badge">🎬 Video</div>
+                    </div>
+                    <div class="slider-item has-poster" style="background-image:url('img/display/clips/prey-2017-poster.webp')">
+                        <video muted loop preload="none" playsinline class="slider-media" poster="img/display/clips/prey-2017-poster.webp" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Prey%20%282017%29%202025.09.08%20-%2018.00.41.02%20-%20Trm-143.mp4">
+                            <source src="img/display/clips/prey-2017.mp4" type="video/mp4">
+                        </video>
+                        <div class="slider-badge">🎬 Video</div>
+                    </div>
+                    <div class="slider-item has-poster" style="background-image:url('img/display/clips/specops-03-poster.webp')">
+                        <video muted loop preload="none" playsinline class="slider-media" poster="img/display/clips/specops-03-poster.webp" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Specops%20Videowlpr%2003-174.mp4">
+                            <source src="img/display/clips/specops-03.mp4" type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
                     </div>
                     <div class="slider-item">
-                        <video data-boot="warm" muted loop preload="auto" playsinline class="slider-media">
-                            <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Metroexodus%2003-119.mp4" type="video/mp4">
-                        </video>
-                        <div class="slider-badge">🎬 Video</div>
-                    </div>
-                    <div class="slider-item">
-                        <video data-boot="warm" muted loop preload="auto" playsinline class="slider-media">
-                            <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Skyrim%20Videowlpr%2004-166.mp4" type="video/mp4">
-                        </video>
-                        <div class="slider-badge">🎬 Video</div>
-                    </div>
-                    <div class="slider-item">
-                        <video data-boot="warm" muted loop preload="auto" playsinline class="slider-media">
-                            <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/The%20Witcher%203%202025.10.02%20-%2019.17.38.01-183.mp4" type="video/mp4">
-                        </video>
-                        <div class="slider-badge">🎬 Video</div>
-                    </div>
-                    <div class="slider-item">
-                        <video data-boot="warm" muted loop preload="auto" playsinline class="slider-media">
-                            <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Batman-Arkhamknight-Videowlpr-01-%28Cropped%29-66.mp4" type="video/mp4">
-                        </video>
-                        <div class="slider-badge">🎬 Video</div>
-                    </div>
-                    <div class="slider-item">
-                        <video data-boot="warm" muted loop preload="auto" playsinline class="slider-media">
-                            <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Sm2-Skyview-Videowlpr%202-164.mp4" type="video/mp4">
-                        </video>
-                        <div class="slider-badge">🎬 Video</div>
-                    </div>
-                    <div class="slider-item">
-                        <video data-boot="warm" muted loop preload="auto" playsinline class="slider-media">
-                            <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Mad-Max-Moonlighthouse-Videowlpr-115.mp4" type="video/mp4">
-                        </video>
-                        <div class="slider-badge">🎬 Video</div>
-                    </div>
-                    <div class="slider-item">
-                        <video data-boot="warm" muted loop preload="auto" playsinline class="slider-media">
-                            <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Prey%20%282017%29%202025.09.08%20-%2018.00.41.02%20-%20Trm-143.mp4" type="video/mp4">
-                        </video>
-                        <div class="slider-badge">🎬 Video</div>
-                    </div>
-                    <div class="slider-item">
-                        <video data-boot="warm" muted loop preload="auto" playsinline class="slider-media">
-                            <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Specops%20Videowlpr%2003-174.mp4" type="video/mp4">
-                        </video>
-                        <div class="slider-badge">🎬 Video</div>
-                    </div>
-                    <div class="slider-item">
-                        <img src="./img/wlprs/WD2-Landscape-WLPR-24.webp" alt="Watch Dogs 2" class="slider-media">
+                        <img src="./img/wlprs/WD2-Landscape-WLPR-24.webp" alt="Watch Dogs 2" class="slider-media" width="1920" height="1080" decoding="async" loading="lazy">
                     </div>
                 </div>
                 <!-- Track 2 (clone for infinite effect) -->
                 <div class="slider-track">
-                    <div class="slider-item">
-                        <video muted loop preload="none" playsinline class="slider-media">
-                            <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Deathstranding-Samwindy-Videowlpr-83.mp4" type="video/mp4">
+                    <div class="slider-item has-poster" style="background-image:url('img/display/clips/deathstranding-samwindy-poster.webp')">
+                        <video muted loop preload="none" playsinline class="slider-media" poster="img/display/clips/deathstranding-samwindy-poster.webp" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Deathstranding-Samwindy-Videowlpr-83.mp4">
+                            <source src="img/display/clips/deathstranding-samwindy.mp4" type="video/mp4">
+                        </video>
+                        <div class="slider-badge">🎬 Video</div>
+                    </div>
+                    <div class="slider-item has-poster" style="background-image:url('img/display/clips/metroexodus-03-poster.webp')">
+                        <video muted loop preload="none" playsinline class="slider-media" poster="img/display/clips/metroexodus-03-poster.webp" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Metroexodus%2003-119.mp4">
+                            <source src="img/display/clips/metroexodus-03.mp4" type="video/mp4">
+                        </video>
+                        <div class="slider-badge">🎬 Video</div>
+                    </div>
+                    <div class="slider-item has-poster" style="background-image:url('img/display/clips/skyrim-04-poster.webp')">
+                        <video muted loop preload="none" playsinline class="slider-media" poster="img/display/clips/skyrim-04-poster.webp" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Skyrim%20Videowlpr%2004-166.mp4">
+                            <source src="img/display/clips/skyrim-04.mp4" type="video/mp4">
+                        </video>
+                        <div class="slider-badge">🎬 Video</div>
+                    </div>
+                    <div class="slider-item has-poster" style="background-image:url('img/display/clips/witcher-1917-poster.webp')">
+                        <video muted loop preload="none" playsinline class="slider-media" poster="img/display/clips/witcher-1917-poster.webp" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/The%20Witcher%203%202025.10.02%20-%2019.17.38.01-183.mp4">
+                            <source src="img/display/clips/witcher-1917.mp4" type="video/mp4">
+                        </video>
+                        <div class="slider-badge">🎬 Video</div>
+                    </div>
+                    <div class="slider-item has-poster" style="background-image:url('img/display/clips/arkham-01-poster.webp')">
+                        <video muted loop preload="none" playsinline class="slider-media" poster="img/display/clips/arkham-01-poster.webp" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Batman-Arkhamknight-Videowlpr-01-%28Cropped%29-66.mp4">
+                            <source src="img/display/clips/arkham-01.mp4" type="video/mp4">
+                        </video>
+                        <div class="slider-badge">🎬 Video</div>
+                    </div>
+                    <div class="slider-item has-poster" style="background-image:url('img/display/clips/sm2-skyview-poster.webp')">
+                        <video muted loop preload="none" playsinline class="slider-media" poster="img/display/clips/sm2-skyview-poster.webp" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Sm2-Skyview-Videowlpr%202-164.mp4">
+                            <source src="img/display/clips/sm2-skyview.mp4" type="video/mp4">
+                        </video>
+                        <div class="slider-badge">🎬 Video</div>
+                    </div>
+                    <div class="slider-item has-poster" style="background-image:url('img/display/clips/madmax-moon-poster.webp')">
+                        <video muted loop preload="none" playsinline class="slider-media" poster="img/display/clips/madmax-moon-poster.webp" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Mad-Max-Moonlighthouse-Videowlpr-115.mp4">
+                            <source src="img/display/clips/madmax-moon.mp4" type="video/mp4">
+                        </video>
+                        <div class="slider-badge">🎬 Video</div>
+                    </div>
+                    <div class="slider-item has-poster" style="background-image:url('img/display/clips/prey-2017-poster.webp')">
+                        <video muted loop preload="none" playsinline class="slider-media" poster="img/display/clips/prey-2017-poster.webp" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Prey%20%282017%29%202025.09.08%20-%2018.00.41.02%20-%20Trm-143.mp4">
+                            <source src="img/display/clips/prey-2017.mp4" type="video/mp4">
+                        </video>
+                        <div class="slider-badge">🎬 Video</div>
+                    </div>
+                    <div class="slider-item has-poster" style="background-image:url('img/display/clips/specops-03-poster.webp')">
+                        <video muted loop preload="none" playsinline class="slider-media" poster="img/display/clips/specops-03-poster.webp" data-master="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Specops%20Videowlpr%2003-174.mp4">
+                            <source src="img/display/clips/specops-03.mp4" type="video/mp4">
                         </video>
                         <div class="slider-badge">🎬 Video</div>
                     </div>
                     <div class="slider-item">
-                        <video muted loop preload="none" playsinline class="slider-media">
-                            <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Metroexodus%2003-119.mp4" type="video/mp4">
-                        </video>
-                        <div class="slider-badge">🎬 Video</div>
-                    </div>
-                    <div class="slider-item">
-                        <video muted loop preload="none" playsinline class="slider-media">
-                            <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Skyrim%20Videowlpr%2004-166.mp4" type="video/mp4">
-                        </video>
-                        <div class="slider-badge">🎬 Video</div>
-                    </div>
-                    <div class="slider-item">
-                        <video muted loop preload="none" playsinline class="slider-media">
-                            <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/The%20Witcher%203%202025.10.02%20-%2019.17.38.01-183.mp4" type="video/mp4">
-                        </video>
-                        <div class="slider-badge">🎬 Video</div>
-                    </div>
-                    <div class="slider-item">
-                        <video muted loop preload="none" playsinline class="slider-media">
-                            <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Batman-Arkhamknight-Videowlpr-01-%28Cropped%29-66.mp4" type="video/mp4">
-                        </video>
-                        <div class="slider-badge">🎬 Video</div>
-                    </div>
-                    <div class="slider-item">
-                        <video muted loop preload="none" playsinline class="slider-media">
-                            <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Sm2-Skyview-Videowlpr%202-164.mp4" type="video/mp4">
-                        </video>
-                        <div class="slider-badge">🎬 Video</div>
-                    </div>
-                    <div class="slider-item">
-                        <video muted loop preload="none" playsinline class="slider-media">
-                            <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Mad-Max-Moonlighthouse-Videowlpr-115.mp4" type="video/mp4">
-                        </video>
-                        <div class="slider-badge">🎬 Video</div>
-                    </div>
-                    <div class="slider-item">
-                        <video muted loop preload="none" playsinline class="slider-media">
-                            <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Prey%20%282017%29%202025.09.08%20-%2018.00.41.02%20-%20Trm-143.mp4" type="video/mp4">
-                        </video>
-                        <div class="slider-badge">🎬 Video</div>
-                    </div>
-                    <div class="slider-item">
-                        <video muted loop preload="none" playsinline class="slider-media">
-                            <source src="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev/Specops%20Videowlpr%2003-174.mp4" type="video/mp4">
-                        </video>
-                        <div class="slider-badge">🎬 Video</div>
-                    </div>
-                    <div class="slider-item">
-                        <img src="./img/wlprs/WD2-Landscape-WLPR-24.webp" alt="Watch Dogs 2" class="slider-media">
+                        <img src="./img/wlprs/WD2-Landscape-WLPR-24.webp" alt="Watch Dogs 2" class="slider-media" width="1920" height="1080" decoding="async" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -508,8 +519,12 @@
         </div>
         <div class="grid" id="howGrid">
             <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/sanfracampview.jpg" alt="Download Starter Pack">
+                <div class="card-image" style="aspect-ratio: 16/9; background-color: #838b8e; background-image: url('img/display/stills/sanfracampview-lqip.webp'); background-size: cover; background-position: center;">
+                    <picture>
+                        <source type="image/avif" srcset="img/display/stills/sanfracampview-640.avif 640w, img/display/stills/sanfracampview-960.avif 960w, img/display/stills/sanfracampview-1280.avif 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 420px">
+                        <source type="image/webp" srcset="img/display/stills/sanfracampview-640.webp 640w, img/display/stills/sanfracampview-960.webp 960w, img/display/stills/sanfracampview-1280.webp 1280w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 420px">
+                        <img class="media-fade" src="img/display/stills/sanfracampview-960.webp" alt="Download Starter Pack" width="1920" height="1080" decoding="async" loading="lazy" data-master="./img/sanfracampview.jpg">
+                    </picture>
                 </div>
                 <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
                     <div style="display: flex; align-items: center; gap: 16px;">
@@ -528,8 +543,11 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/spidersky.gif" alt="Unlimited wallpapers">
+                <div class="card-image has-poster" style="aspect-ratio: 16/9; background-color: #776451; background-image: url('img/display/loops/spidersky-poster.webp');">
+                    <video muted loop playsinline preload="none" poster="img/display/loops/spidersky-poster.webp" data-master="./img/spidersky.gif" width="800" height="450" aria-label="Unlimited wallpapers">
+                        <source src="img/display/loops/spidersky.webm" type="video/webm">
+                        <source src="img/display/loops/spidersky.mp4" type="video/mp4">
+                    </video>
                 </div>
                 <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
                     <div style="display: flex; align-items: center; gap: 16px;">
@@ -548,8 +566,11 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-image" style="aspect-ratio: 16/9;">
-                    <img src="./img/arkham.gif" alt="Upgrade BetterWLPRS">
+                <div class="card-image has-poster" style="aspect-ratio: 16/9; background-color: #364a57; background-image: url('img/display/loops/arkham-poster.webp');">
+                    <video muted loop playsinline preload="none" poster="img/display/loops/arkham-poster.webp" data-master="./img/arkham.gif" data-focus="left" width="800" height="450" aria-label="Upgrade BetterWLPRS">
+                        <source src="img/display/loops/arkham.webm" type="video/webm">
+                        <source src="img/display/loops/arkham.mp4" type="video/mp4">
+                    </video>
                 </div>
                 <div class="card-content" style="flex-direction: column; align-items: flex-start; gap: 12px;">
                     <div style="display: flex; align-items: center; gap: 16px;">
@@ -663,10 +684,10 @@
         <div id="videosContainer" style="max-width: 1200px; margin: 0 auto;">
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
                 <!-- Setup 1 -->
-                <div class="setup-card"
-                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                    <video src="./img/setupkindle.mp4" muted loop preload="none" playsinline
-                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"></video>
+                <div class="setup-card has-poster"
+                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease; background-image: url('img/display/clips/setupkindle-poster.webp');">
+                    <video src="./img/setupkindle.mp4" poster="img/display/clips/setupkindle-poster.webp" data-master="./img/setupkindle.mp4" muted loop preload="none" playsinline
+                        style="width: 100%; height: 100%; object-fit: cover;"></video>
                     <div
                         style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
                         <p style="font-size: 0.9rem; font-weight: 600; margin: 0;">Setup Kindle BetterWLPRS</p>
@@ -674,10 +695,10 @@
                     </div>
                 </div>
                 <!-- Setup 2 -->
-                <div class="setup-card"
-                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                    <video src="./img/setupmarkus.mp4" muted loop preload="none" playsinline
-                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"></video>
+                <div class="setup-card has-poster"
+                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease; background-image: url('img/display/clips/setupmarkus-poster.webp');">
+                    <video src="./img/setupmarkus.mp4" poster="img/display/clips/setupmarkus-poster.webp" data-master="./img/setupmarkus.mp4" muted loop preload="none" playsinline
+                        style="width: 100%; height: 100%; object-fit: cover;"></video>
                     <div
                         style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
                         <p style="font-size: 0.9rem; font-weight: 600; margin: 0;">Setup Marcus BetterWLPRS</p>
@@ -685,10 +706,10 @@
                     </div>
                 </div>
                 <!-- Setup 3 -->
-                <div class="setup-card"
-                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
-                    <video src="./img/setupmarkus2.mp4" muted loop preload="none" playsinline
-                        style="width: 100%; height: 100%; object-fit: cover;" loading="lazy"></video>
+                <div class="setup-card has-poster"
+                    style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease; background-image: url('img/display/clips/setupmarkus2-poster.webp');">
+                    <video src="./img/setupmarkus2.mp4" poster="img/display/clips/setupmarkus2-poster.webp" data-master="./img/setupmarkus2.mp4" muted loop preload="none" playsinline
+                        style="width: 100%; height: 100%; object-fit: cover;"></video>
                     <div
                         style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
                         <p style="font-size: 0.9rem; font-weight: 600; margin: 0;">Setup RGB Vibes</p>
@@ -699,6 +720,7 @@
                 <div class="setup-card"
                     style="position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 16/10; background: var(--card); border: 1px solid var(--border); transition: all 0.3s ease;">
                     <img src="./img/setupmarkus.webp" alt="Setup Streamer con BetterWLPRS"
+                        width="1200" height="1727" decoding="async"
                         style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
                     <div
                         style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 1rem; color: white;">
@@ -1276,13 +1298,19 @@
             if (!currentCard) return;
 
             const img = currentCard.querySelector('img');
-            if (!img) return;
-
+            const video = currentCard.querySelector('video');
             const imageViewer = document.getElementById('imageViewer');
             const viewerImage = document.getElementById('viewerImage');
-
-            viewerImage.src = img.src;
-            viewerImage.alt = img.alt;
+            if (!viewerImage || !imageViewer) return;
+            if (img) {
+                viewerImage.src = img.currentSrc || img.src;
+                viewerImage.alt = img.alt || '';
+            } else if (video) {
+                viewerImage.src = video.getAttribute('poster') || '';
+                viewerImage.alt = video.getAttribute('aria-label') || '';
+            } else {
+                return;
+            }
 
             closeActionModal();
 
