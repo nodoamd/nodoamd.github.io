@@ -3,7 +3,8 @@ const RUTA_HISTORIA_ESPANA = {
   id: 'historia-espana',
   title: 'Historia de España',
   flag: '🇪🇸',
-  description: 'Un recorrido completo desde los primeros homínidos en la Península Ibérica hasta la España democrática de hoy.',
+  description: 'Empieza por quien pisó esta tierra y llega hasta la Constitución, sin saltarte los siglos que suelen quedarse fuera. El examen de cada bloque solo se abre cuando ya has leído las lecciones.',
+  catalog: 'Está ordenada como se entiende un país, no como un índice de reyes. Primero la gente y el lugar, luego el poder, y al final lo que todavía te afecta en una noticia o en una plaza. Si te saltas Atapuerca o los visigodos, Granada y la Transición se quedan sin suelo.',
   topics: [
 
     // ─────────────────────────────────────────────
@@ -14,8 +15,8 @@ const RUTA_HISTORIA_ESPANA = {
       num: 1,
       title: 'Primeros habitantes y Prehistoria',
       icon: 'bone',
-      description: 'Desde los primeros homínidos en Atapuerca hasta la Edad del Bronce.',
-      learnIntro: 'Tres lecciones para situarte en el origen de la Península: quién llegó primero, qué dejaron en las cuevas y cómo pasaron de cazar a cultivar.',
+      description: 'Si esto no va primero, parece que el país nace con los romanos. Tres lecciones para saber quién estuvo aquí, qué pintaron en las cuevas y cuándo dejaron de ir de un lado a otro.',
+      learnIntro: 'Atapuerca, las pinturas de Altamira y el paso a la agricultura. Sirve para pisar un dolmen o una cueva y saber qué estabas mirando, no solo la fecha del cartel.',
       image: 'assets/atapuerca.jpg',
       exam: {
         title: 'Examen: Primeros habitantes y Prehistoria',
@@ -81,7 +82,7 @@ const RUTA_HISTORIA_ESPANA = {
             { question: '¿Por qué es importante Atapuerca para la historia de Europa?', options: ['Porque allí nació la escritura europea', 'Porque contiene los restos humanos más antiguos de Europa occidental', 'Porque fue el primer asentamiento agrícola del continente'], correct: 1 }
           ],
           sources: [
-            { title: 'Fundación Atapuerca', url: 'https://www.fundacionatapuerca.es' },
+            { title: 'Fundación Atapuerca', url: 'https://www.atapuerca.org' },
             { title: 'Museo de la Evolución Humana — Burgos', url: 'https://www.museoevolucionhumana.com' }
           ]
         },
@@ -134,7 +135,7 @@ const RUTA_HISTORIA_ESPANA = {
             { question: '¿Por qué tardaron en aceptarse las pinturas de Altamira como auténticas?', options: ['Porque estaban muy deterioradas', 'Porque se creía imposible esa habilidad artística en el Paleolítico', 'Porque no había ningún hueso humano cerca'], correct: 1 }
           ],
           sources: [
-            { title: 'Museo de Altamira — Ministerio de Cultura', url: 'https://museodealtamira.mcu.es' },
+            { title: 'Museo de Altamira — Ministerio de Cultura', url: 'https://www.cultura.gob.es/mnaltamira/home.html' },
             { title: 'UNESCO — Cueva de Altamira', url: 'https://whc.unesco.org/en/list/310' }
           ]
         },
@@ -187,7 +188,7 @@ const RUTA_HISTORIA_ESPANA = {
             { question: '¿Hacia qué fecha aproximada comenzó el Neolítico en la Península Ibérica?', options: ['15000 a.C.', '6000 a.C.', '1000 a.C.'], correct: 1 }
           ],
           sources: [
-            { title: 'Conjunto Arqueológico Dólmenes de Antequera', url: 'https://www.dólmenesdantequera.es' },
+            { title: 'Conjunto Arqueológico Dólmenes de Antequera', url: 'https://turismo.antequera.es/puntos-de-interes/dolmenes/' },
             { title: 'Museo Arqueológico Nacional — Prehistoria', url: 'https://www.man.es' }
           ]
         }
@@ -202,7 +203,8 @@ const RUTA_HISTORIA_ESPANA = {
       num: 2,
       title: 'Pueblos Prerromanos',
       icon: 'shield',
-      description: 'Íberos, celtas, tartessos y los colonizadores mediterráneos antes de Roma.',
+      description: 'Antes de Roma ya había pueblos con nombre, lengua y comercio. Sirve para no llamar español a todo lo anterior, y para reconocer un íbero o un celta cuando veas una pieza.',
+      learnIntro: 'Íberos y celtas, el misterio de Tartessos y los barcos fenicios, griegos y cartagineses. Tres pueblos distintos, para que «prerromano» deje de ser una sola palabra.',
       image: 'https://images.unsplash.com/photo-1564399580075-5dfe19c205f3?q=80&w=1200&auto=format&fit=crop',
       exam: {
         title: 'Examen: Pueblos Prerromanos',
@@ -237,7 +239,7 @@ const RUTA_HISTORIA_ESPANA = {
           ],
           sources: [
             { title: 'Museo Arqueológico Nacional — Íberos', url: 'https://www.man.es' },
-            { title: 'Museo del Castro de Santa Tegra', url: 'https://www.museocastrodesantatecla.com' }
+            { title: 'Museo del Castro de Santa Tegra', url: 'https://museos.xunta.gal/es/museos/museo-arqueologico-santa-trega-masat' }
           ]
         },
         {
@@ -257,7 +259,7 @@ const RUTA_HISTORIA_ESPANA = {
             { question: '¿Qué riqueza principal hizo famosos a los tartessos en el Mediterráneo?', options: ['Especias y seda', 'Metales como plata, cobre y estaño', 'Caballos y trigo'], correct: 1 }
           ],
           sources: [
-            { title: 'Museo Arqueológico de Sevilla — Tesoro del Carambolo', url: 'https://www.museosdeandalucia.es/web/museoarqueologicodesevilla' },
+            { title: 'Museo Arqueológico de Sevilla — Tesoro del Carambolo', url: 'https://es.wikipedia.org/wiki/Museo_Arqueol%C3%B3gico_de_Sevilla' },
             { title: 'Real Academia de la Historia — Tartessos', url: 'https://dbe.rah.es' }
           ]
         },
@@ -278,8 +280,8 @@ const RUTA_HISTORIA_ESPANA = {
             { question: '¿Qué guerra enfrentó a Roma con Cartago por el control de Hispania?', options: ['La Guerra de Yugurta', 'La Segunda Guerra Púnica', 'La Guerra de los Aliados'], correct: 1 }
           ],
           sources: [
-            { title: 'Museo de Historia de Cádiz', url: 'https://www.museosdeandalucia.es/web/museohistoricodecadiz' },
-            { title: 'Museo de Arqueología de Cataluña — Ampurias', url: 'https://www.mac.cat/Seus/Empuries' }
+            { title: 'Museo de Historia de Cádiz', url: 'https://es.wikipedia.org/wiki/Museo_de_C%C3%A1diz' },
+            { title: 'Museo de Arqueología de Cataluña — Ampurias', url: 'https://www.mac.cat/ca/Visita-ns-Portada/Empuries-Portada-Seu' }
           ]
         }
       ]
@@ -293,7 +295,8 @@ const RUTA_HISTORIA_ESPANA = {
       num: 3,
       title: 'Hispania Romana',
       icon: 'columns',
-      description: 'Seis siglos de romanización que cimentaron la lengua, el derecho y la cultura española.',
+      description: 'Seis siglos que dejan el latín, las ciudades y unas leyes que luego se dan por hechas. Mérida, Itálica o el acueducto de Segovia dejan de ser una postal y pasan a ser el plano de lo que vino después.',
+      learnIntro: 'La conquista, la vida en las ciudades romanas y los emperadores y escritores nacidos aquí. El latín de la escuela tiene un suelo.',
       image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1200&auto=format&fit=crop',
       exam: {
         title: 'Examen: Hispania Romana',
@@ -327,8 +330,8 @@ const RUTA_HISTORIA_ESPANA = {
             { question: '¿Qué general romano sometió Numancia en el 133 a.C.?', options: ['Julio César', 'Escipión Emiliano', 'Pompeyo'], correct: 1 }
           ],
           sources: [
-            { title: 'Yacimiento de Numancia — Soria', url: 'https://www.castillayleon.es/turismo/es/monumentos/yacimiento-arqueologico-numancia.html' },
-            { title: 'Museo Arqueológico de Cataluña — Ampurias', url: 'https://www.mac.cat/Seus/Empuries' }
+            { title: 'Yacimiento de Numancia — Soria', url: 'https://www.turismocastillayleon.com/es/patrimonio-cultura/numancia' },
+            { title: 'Museo Arqueológico de Cataluña — Ampurias', url: 'https://www.mac.cat/ca/Visita-ns-Portada/Empuries-Portada-Seu' }
           ]
         },
         {
@@ -369,7 +372,7 @@ const RUTA_HISTORIA_ESPANA = {
             { question: '¿Qué distinción histórica tiene Itálica respecto a las ciudades romanas?', options: ['Fue la capital de Hispania', 'Fue la primera ciudad romana fundada fuera de Italia', 'Fue la última ciudad en rendirse a los visigodos'], correct: 1 }
           ],
           sources: [
-            { title: 'Conjunto Arqueológico de Itálica', url: 'https://www.museosdeandalucia.es/web/conjuntoarqueologicodeitálica' },
+            { title: 'Conjunto Arqueológico de Itálica', url: 'https://es.wikipedia.org/wiki/It%C3%A1lica' },
             { title: 'Real Academia de la Historia — Trajano', url: 'https://dbe.rah.es' }
           ]
         }
@@ -384,7 +387,8 @@ const RUTA_HISTORIA_ESPANA = {
       num: 4,
       title: 'El Reino Visigodo',
       icon: 'castle',
-      description: 'De aliados de Roma a reyes de Hispania: tres siglos de reino germánico cristiano.',
+      description: 'El hueco que casi todo el mundo se salta, entre Roma y Al-Ándalus. Aquí se ve por qué Toledo es capital y por qué el reino cae en Guadalete, para que la Edad Media no empiece de golpe.',
+      learnIntro: 'Cómo llegan, cómo Toledo se vuelve corte y cómo acaba el reino. Sin este bloque, la llegada musulmana parece un rayo.',
       image: 'https://images.unsplash.com/photo-1580137189272-c9379f8864fd?q=80&w=1200&auto=format&fit=crop',
       exam: {
         title: 'Examen: El Reino Visigodo',
@@ -418,7 +422,7 @@ const RUTA_HISTORIA_ESPANA = {
             { question: '¿Con quién se casó Ataúlfo, mostrando la aspiración visigoda de integrarse en Roma?', options: ['Una princesa franca', 'Gala Placidia, hija del emperador Teodosio', 'Una noble hispanorromana de Mérida'], correct: 1 }
           ],
           sources: [
-            { title: 'Museo Visigodo de Toledo', url: 'https://www.toledo.es/servicios-municipales/cultura/museos/' },
+            { title: 'Museo Visigodo de Toledo', url: 'https://cultura.castillalamancha.es/museos/nuestros-museos/museo-de-los-concilios' },
             { title: 'Real Academia de la Historia — Visigodos', url: 'https://dbe.rah.es' }
           ]
         },
@@ -440,7 +444,7 @@ const RUTA_HISTORIA_ESPANA = {
           ],
           sources: [
             { title: 'Concilios de Toledo — Biblioteca Nacional de España', url: 'https://www.bne.es' },
-            { title: 'Museo de los Concilios y la Cultura Visigoda — Toledo', url: 'https://www.toledo.es' }
+            { title: 'Museo de los Concilios y la Cultura Visigoda — Toledo', url: 'https://cultura.castillalamancha.es/museos/nuestros-museos/museo-de-los-concilios' }
           ]
         },
         {
@@ -475,7 +479,8 @@ const RUTA_HISTORIA_ESPANA = {
       num: 5,
       title: 'La Edad Media: Al-Ándalus y Reconquista',
       icon: 'landmark',
-      description: 'Dos caras de la misma moneda: el esplendor islámico y el avance cristiano hacia el sur.',
+      description: 'Al-Ándalus y los reinos cristianos van juntos porque se explican el uno al otro. Una visita a la Alhambra o al Camino deja de ser solo la foto.',
+      learnIntro: 'Córdoba y Granada, el avance cristiano y la convivencia de tres culturas en la misma península. Para mirar un patio nazarí y saber quién lo habitó.',
       image: 'assets/alhambra.jpg',
       exam: {
         title: 'Examen: Al-Ándalus y Reconquista',
@@ -510,7 +515,7 @@ const RUTA_HISTORIA_ESPANA = {
           ],
           sources: [
             { title: 'Patronato de la Alhambra y Generalife', url: 'https://www.alhambra-patronato.es' },
-            { title: 'Mezquita-Catedral de Córdoba', url: 'https://mezquita-catedralcordoba.es' }
+            { title: 'Mezquita-Catedral de Córdoba', url: 'https://www.mezquita-catedraldecordoba.es' }
           ]
         },
         {
@@ -551,7 +556,7 @@ const RUTA_HISTORIA_ESPANA = {
             { question: '¿Qué textos traducía la Escuela de Traductores de Toledo?', options: ['La Biblia al árabe', 'Textos de Aristóteles y otros autores griegos y árabes al latín', 'Las crónicas visigodas al castellano'], correct: 1 }
           ],
           sources: [
-            { title: 'Escuela de Traductores de Toledo — Ayuntamiento', url: 'https://www.toledo.es' },
+            { title: 'Escuela de Traductores de Toledo', url: 'https://es.wikipedia.org/wiki/Escuela_de_Traductores_de_Toledo' },
             { title: 'Biblioteca Nacional — Alfonso X el Sabio', url: 'https://www.bne.es' }
           ]
         }
@@ -566,7 +571,8 @@ const RUTA_HISTORIA_ESPANA = {
       num: 6,
       title: 'Los Reyes Católicos: el nacimiento del Estado',
       icon: 'crown',
-      description: 'Unión dinástica, toma de Granada, expulsión de los judíos y llegada a América.',
+      description: 'No es una lista de bodas y batallas. Es el momento en que una unión de reinos expulsa a judíos y musulmanes y cruza el Atlántico: conviene ver el precio, no solo el mapa que crece.',
+      learnIntro: 'La unión de Castilla y Aragón, el año 1492 con todo lo que cabe en él, y lo que heredan los hijos. El mapa nuevo y a quién dejó fuera.',
       image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1200&auto=format&fit=crop',
       exam: {
         title: 'Examen: Los Reyes Católicos',
@@ -601,7 +607,7 @@ const RUTA_HISTORIA_ESPANA = {
           ],
           sources: [
             { title: 'Real Academia de la Historia — Isabel I', url: 'https://dbe.rah.es' },
-            { title: 'Museo Nacional de Escultura — Valladolid', url: 'https://www.culturaydeporte.gob.es/mnescultura' }
+            { title: 'Museo Nacional de Escultura — Valladolid', url: 'https://www.cultura.gob.es/mnescultura/inicio.html' }
           ]
         },
         {
@@ -621,7 +627,7 @@ const RUTA_HISTORIA_ESPANA = {
             { question: '¿Qué humanista publicó la primera gramática del castellano en 1492?', options: ['Lope de Vega', 'Antonio de Nebrija', 'Juan de Mena'], correct: 1 }
           ],
           sources: [
-            { title: 'Archivo General de Indias — Capitulaciones de Santa Fe', url: 'https://www.culturaydeporte.gob.es/archivos/agindias' },
+            { title: 'Archivo General de Indias — Capitulaciones de Santa Fe', url: 'https://www.cultura.gob.es/cultura/areas/archivos/mc/archivos/agi/portada.html' },
             { title: 'Biblioteca Nacional — Antonio de Nebrija', url: 'https://www.bne.es' }
           ]
         },
@@ -642,7 +648,7 @@ const RUTA_HISTORIA_ESPANA = {
             { question: '¿Por qué no pudo Fernando heredar Castilla tras la muerte de Isabel?', options: ['Porque el Tratado de Tordesillas lo impedía', 'Porque Castilla solo podía ser heredada por una mujer o su marido', 'Porque fue excomulgado por el Papa'], correct: 1 }
           ],
           sources: [
-            { title: 'Archivo General de Indias', url: 'https://www.culturaydeporte.gob.es/archivos/agindias' },
+            { title: 'Archivo General de Indias', url: 'https://www.cultura.gob.es/cultura/areas/archivos/mc/archivos/agi/portada.html' },
             { title: 'Real Academia de la Historia — Fernando el Católico', url: 'https://dbe.rah.es' }
           ]
         }
@@ -657,7 +663,8 @@ const RUTA_HISTORIA_ESPANA = {
       num: 7,
       title: 'El Imperio: Los Austrias y el Siglo de Oro',
       icon: 'globe-2',
-      description: 'De Carlos V a Carlos II: el mayor Imperio del mundo y su florecimiento cultural.',
+      description: 'El imperio más extenso de su tiempo y, a la vez, la quiebra. Cervantes y el Prado están aquí para que el Siglo de Oro no se quede en un nombre de manual.',
+      learnIntro: 'Carlos V, Felipe II y la literatura y la pintura que salen de esa corte. El esplendor y el agotamiento, en el mismo bloque.',
       image: 'https://images.unsplash.com/photo-1583422409516-2895a77efded?q=80&w=1200&auto=format&fit=crop',
       exam: {
         title: 'Examen: Los Austrias y el Siglo de Oro',
@@ -691,7 +698,7 @@ const RUTA_HISTORIA_ESPANA = {
             { question: '¿Qué otros nombre tenía Carlos I de España en el contexto del Imperio?', options: ['Felipe II', 'Carlos V del Sacro Imperio Romano Germánico', 'Maximiliano I'], correct: 1 }
           ],
           sources: [
-            { title: 'Monasterio de Yuste — Patrimonio Nacional', url: 'https://www.patrimonionacional.es/visita/monasterio-de-yuste' },
+            { title: 'Monasterio de Yuste — Patrimonio Nacional', url: 'https://www.patrimonionacional.es/visita/monasterio-de-san-jeronimo-de-yuste' },
             { title: 'Museo del Prado — Carlos V', url: 'https://www.museodelprado.es' }
           ]
         },
@@ -712,7 +719,7 @@ const RUTA_HISTORIA_ESPANA = {
             { question: '¿Por qué fue importante la muerte de Carlos II en 1700?', options: ['Porque fue asesinado en un complot', 'Porque murió sin descendencia dejando el trono en disputa', 'Porque España perdió sus colonias americanas'], correct: 1 }
           ],
           sources: [
-            { title: 'Real Monasterio de El Escorial — Patrimonio Nacional', url: 'https://www.patrimonionacional.es/visita/real-sitio-de-san-lorenzo-de-el-escorial' },
+            { title: 'Real Monasterio de El Escorial — Patrimonio Nacional', url: 'https://www.patrimonionacional.es/visita/real-monasterio-de-san-lorenzo-de-el-escorial' },
             { title: 'Museo Nacional del Prado', url: 'https://www.museodelprado.es' }
           ]
         },
@@ -748,7 +755,8 @@ const RUTA_HISTORIA_ESPANA = {
       num: 8,
       title: 'Los Borbones y la Ilustración',
       icon: 'lamp',
-      description: 'Guerra de Sucesión, reformas ilustradas y la crisis del Antiguo Régimen.',
+      description: 'Una guerra de familia cambia de dinastía y se lleva Gibraltar. Las reformas ilustradas se entienden mejor si ves a quién dejaron fuera.',
+      learnIntro: 'Felipe V y Utrecht, el Madrid de Carlos III y la crisis que Goya ya está pintando. El siglo en el que el antiguo orden deja de convencer.',
       image: 'https://images.unsplash.com/photo-1555993539-1732b0258235?q=80&w=1200&auto=format&fit=crop',
       exam: {
         title: 'Examen: Los Borbones y la Ilustración',
@@ -804,7 +812,7 @@ const RUTA_HISTORIA_ESPANA = {
           ],
           sources: [
             { title: 'Museo Nacional del Prado — Historia del edificio', url: 'https://www.museodelprado.es/el-prado/historia-del-museo' },
-            { title: 'Ayuntamiento de Madrid — Historia', url: 'https://www.madrid.es/portal/site/munimadrid' }
+            { title: 'Historia de Madrid', url: 'https://es.wikipedia.org/wiki/Historia_de_Madrid' }
           ]
         },
         {
@@ -839,7 +847,8 @@ const RUTA_HISTORIA_ESPANA = {
       num: 9,
       title: 'Guerra, Liberalismo y Revolución',
       icon: 'flame',
-      description: 'La invasión napoleónica, las Cortes de Cádiz, Fernando VII e Isabel II.',
+      description: 'De la invasión francesa a la Constitución de Cádiz y a un rey que la deroga. Sirve para entender por qué en España «liberal» no es una etiqueta nueva.',
+      learnIntro: 'La guerra contra Napoleón y la Constitución de 1812, el rey que la anula y el sexenio en que se prueba otra vez la democracia. El vaivén, no una flecha.',
       image: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?q=80&w=1200&auto=format&fit=crop',
       exam: {
         title: 'Examen: Guerra, Liberalismo y Revolución (1808-1874)',
@@ -874,7 +883,7 @@ const RUTA_HISTORIA_ESPANA = {
           ],
           sources: [
             { title: 'Cortes Generales — Constitución de 1812', url: 'https://www.congreso.es' },
-            { title: 'Museo de las Cortes de Cádiz', url: 'https://www.museosdeandalucia.es' }
+            { title: 'Museo de las Cortes de Cádiz', url: 'https://institucional.cadiz.es/area/Museo-de-las-Cortes' }
           ]
         },
         {
@@ -930,7 +939,8 @@ const RUTA_HISTORIA_ESPANA = {
       num: 10,
       title: 'La Restauración y el Desastre del 98',
       icon: 'trending-down',
-      description: 'Caciquismo, pérdida de colonias, Regeneracionismo, crisis de 1917 y Primo de Rivera.',
+      description: 'El turno de partidos, la pérdida de Cuba y Filipinas, y la sensación de que el país no funciona. Es el suelo de la crisis que viene después, no un siglo quieto entre dos guerras.',
+      learnIntro: 'El turno, el 98 y la dictadura de Primo de Rivera. Para llegar a 1931 sabiendo de qué estaban hartos.',
       image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=1200&auto=format&fit=crop',
       exam: {
         title: 'Examen: La Restauración y el Desastre del 98',
@@ -1021,7 +1031,8 @@ const RUTA_HISTORIA_ESPANA = {
       num: 11,
       title: 'Segunda República y Guerra Civil',
       icon: 'siren',
-      description: 'Modernización democrática, polarización y el conflicto fratricida (1931-1939).',
+      description: 'Reformas, miedo y un golpe. Lo contamos con los dos bandos y con lo que le pasó a la gente, para que Guernica no sea solo un cuadro famoso.',
+      learnIntro: 'La República y sus leyes, la ruptura de 1936 y la guerra. Fechas y nombres, y también quién comía y quién huía.',
       image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200&auto=format&fit=crop',
       exam: {
         title: 'Examen: Segunda República y Guerra Civil',
@@ -1076,7 +1087,7 @@ const RUTA_HISTORIA_ESPANA = {
             { question: '¿Qué coalición ganó las elecciones de febrero de 1936?', options: ['La CEDA de la derecha', 'El Frente Popular de izquierdas', 'El Partido Republicano de centro'], correct: 1 }
           ],
           sources: [
-            { title: 'Centro Documental de la Memoria Histórica', url: 'https://www.culturaydeporte.gob.es/archivos/cdmh' },
+            { title: 'Centro Documental de la Memoria Histórica', url: 'https://www.cultura.gob.es/cultura/areas/archivos/mc/archivos/cdmh/portada.html' },
             { title: 'Real Academia de la Historia — Guerra Civil', url: 'https://dbe.rah.es' }
           ]
         },
@@ -1098,7 +1109,7 @@ const RUTA_HISTORIA_ESPANA = {
           ],
           sources: [
             { title: 'Museo Reina Sofía — Guernica de Picasso', url: 'https://www.museoreinasofia.es' },
-            { title: 'Centro Documental de la Memoria Histórica', url: 'https://www.culturaydeporte.gob.es/archivos/cdmh' }
+            { title: 'Centro Documental de la Memoria Histórica', url: 'https://www.cultura.gob.es/cultura/areas/archivos/mc/archivos/cdmh/portada.html' }
           ]
         }
       ]
@@ -1112,7 +1123,8 @@ const RUTA_HISTORIA_ESPANA = {
       num: 12,
       title: 'El Franquismo',
       icon: 'lock',
-      description: 'Dictadura, represión, autarquía, desarrollismo y la lenta apertura (1939-1975).',
+      description: 'Dictadura, hambre y luego el desarrollismo de los sesenta. Hacen falta las dos partes: sin la represión, el Seat 600 parece un anuncio.',
+      learnIntro: 'La posguerra, el desarrollismo y el final del régimen. El coche nuevo no borra los años de silencio.',
       image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?q=80&w=1200&auto=format&fit=crop',
       exam: {
         title: 'Examen: El Franquismo',
@@ -1146,7 +1158,7 @@ const RUTA_HISTORIA_ESPANA = {
             { question: '¿Por qué España fue excluida del Plan Marshall y de organismos internacionales?', options: ['Por su pobreza extrema', 'Por ser una dictadura que había apoyado al Eje durante la WWII', 'Por la deuda de la Guerra Civil'], correct: 1 }
           ],
           sources: [
-            { title: 'Centro Documental de la Memoria Histórica', url: 'https://www.culturaydeporte.gob.es/archivos/cdmh' },
+            { title: 'Centro Documental de la Memoria Histórica', url: 'https://www.cultura.gob.es/cultura/areas/archivos/mc/archivos/cdmh/portada.html' },
             { title: 'Real Academia de la Historia — Franquismo', url: 'https://dbe.rah.es' }
           ]
         },
@@ -1167,7 +1179,7 @@ const RUTA_HISTORIA_ESPANA = {
             { question: '¿Qué nuevos focos de oposición al régimen surgieron en los años 60?', options: ['Solo partidos políticos clandestinos', 'Universitarios, obreros, sacerdotes obreros y movimientos nacionalistas', 'Solo el ejército descontento'], correct: 1 }
           ],
           sources: [
-            { title: 'Museo de Historia de Madrid — Desarrollismo', url: 'https://www.madrid.es/museodehistoria' },
+            { title: 'Museo de Historia de Madrid', url: 'https://es.wikipedia.org/wiki/Museo_de_Historia_de_Madrid' },
             { title: 'Real Academia de la Historia — Desarrollismo', url: 'https://dbe.rah.es' }
           ]
         },
@@ -1188,7 +1200,7 @@ const RUTA_HISTORIA_ESPANA = {
             { question: '¿Cuándo se produjeron los últimos fusilamientos del franquismo?', options: ['El 1 de abril de 1939', 'El 27 de septiembre de 1975', 'El 20 de noviembre de 1975'], correct: 1 }
           ],
           sources: [
-            { title: 'Centro Documental de la Memoria Histórica', url: 'https://www.culturaydeporte.gob.es/archivos/cdmh' },
+            { title: 'Centro Documental de la Memoria Histórica', url: 'https://www.cultura.gob.es/cultura/areas/archivos/mc/archivos/cdmh/portada.html' },
             { title: 'Fundación Francisco Franco', url: 'https://www.fnff.es' }
           ]
         }
@@ -1203,7 +1215,8 @@ const RUTA_HISTORIA_ESPANA = {
       num: 13,
       title: 'La Transición y Democracia Actual',
       icon: 'sunrise',
-      description: 'De la dictadura a la democracia: la Constitución de 1978 y la España de hoy.',
+      description: 'De la muerte de Franco a la Constitución y al intento de golpe del 23-F. Está al final porque solo se entiende si has visto de qué se estaba saliendo.',
+      learnIntro: 'La Transición, la Constitución y el 23-F, y España desde 1982. El presente tiene un pasillo, no aparece de la nada.',
       image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1200&auto=format&fit=crop',
       exam: {
         title: 'Examen: La Transición y Democracia Actual',
@@ -1237,8 +1250,8 @@ const RUTA_HISTORIA_ESPANA = {
             { question: '¿Por qué la legalización del PCE en 1977 fue un momento crítico de la Transición?', options: ['Porque el PCE era el partido más votado', 'Porque generó furia en sectores del ejército y ponía en riesgo un posible golpe', 'Porque estaba prohibido por la Constitución de 1978'], correct: 1 }
           ],
           sources: [
-            { title: 'Congreso de los Diputados — La Transición', url: 'https://www.congreso.es/es/cem/transicion' },
-            { title: 'Fundación Adolfo Suárez', url: 'https://www.fundacion-adolfusuarez.es' }
+            { title: 'Fundación Transición Española — Hitos', url: 'https://transicion.org/que-hacemos/hitos/' },
+            { title: 'Fundación Transición Española — Adolfo Suárez', url: 'https://transicion.org/ESPECIAL_ADOLFO_SUAREZ/index.html' }
           ]
         },
         {

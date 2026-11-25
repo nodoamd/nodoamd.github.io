@@ -60,6 +60,7 @@
       topics: 13,
       level: 'intermedio',
       hero: true,
+      image: 'assets/castillo.webp',
       available: true
     },
     {
@@ -68,6 +69,7 @@
       tags: ['arte', 'cultura'],
       topics: 6,
       level: 'intermedio',
+      image: 'assets/gastronomia-espanola.jpg',
       available: true
     },
     {
@@ -76,7 +78,8 @@
       tags: ['filosofia'],
       topics: 8,
       level: 'avanzado',
-      image: 'https://images.unsplash.com/photo-1577083552431-6e5fd01988a5?q=80&w=500&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=800&auto=format&fit=crop',
+      catalog: 'Pensada para quien ya lee y se lía con los nombres. Cada idea iría atada a la pregunta que la provocó y a qué cambia cuando decides, no a una ficha de autor. Todavía no hay lecciones: el catálogo no abre una ruta vacía.',
       available: false
     },
     {
@@ -85,7 +88,8 @@
       tags: ['arte'],
       topics: 12,
       level: 'intermedio',
-      image: 'https://images.unsplash.com/photo-1555993539-1732b0258235?q=80&w=500&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1555993539-1732b0258235?q=80&w=800&auto=format&fit=crop',
+      catalog: 'El orden previsto no es el del manual, siglo tras siglo. Primero cómo mirar un cuadro o una sala, y después la fecha, para que un museo deje de ser un pasillo de cartelas. Sigue cerrada hasta que esas lecciones estén escritas.',
       available: false,
       locked: true
     },
@@ -95,7 +99,8 @@
       tags: ['historia'],
       topics: 10,
       level: 'inicial',
-      image: 'https://images.unsplash.com/photo-1564399580075-5dfe19c205f3?q=80&w=500&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1564399580075-5dfe19c205f3?q=80&w=800&auto=format&fit=crop',
+      catalog: 'Los mitos se contarían como historias que la gente usaba para hablar del miedo, la familia y el poder, no como una lista de dioses. Sirve para reconocerlos en un cuadro, una palabra o una película. Aún no está abierta.',
       available: false,
       badge: 'Próximamente'
     },
@@ -105,7 +110,8 @@
       tags: ['ciencia'],
       topics: 9,
       level: 'avanzado',
-      image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=500&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop',
+      catalog: 'Iría de una pregunta que ya te has hecho —por qué el cielo es azul, qué hace una vacuna— hacia la idea que la responde, sin soltar nombres de laboratorio como si fueran el premio. Hasta que esté escrita, no finge que ya puedes estudiarla.',
       available: false
     }
   ];
@@ -667,7 +673,8 @@
     const q = normSearch(exploreSearchQuery);
     const items = EXPLORE_ROUTES.filter((r) => {
       if (exploreFilter !== 'all' && !r.tags.includes(exploreFilter)) return false;
-      if (q && !normSearch(r.title).includes(q)) return false;
+      const hay = r.title + ' ' + (r.catalog || '') + ' ' + ((ROUTES[r.id] && ROUTES[r.id].catalog) || '') + ' ' + ((ROUTES[r.id] && ROUTES[r.id].description) || '');
+      if (q && !normSearch(hay).includes(q)) return false;
       return true;
     });
     if (!items.length) {
@@ -679,27 +686,34 @@
       .map((r) => {
         const progress = routeProgress(r.id);
         const pct = progress.pct;
+        const story = (ROUTES[r.id] && ROUTES[r.id].catalog) || r.catalog || '';
+        const storyHtml = story
+          ? `<p class="catalog-story">${escapeHtml(story)}</p>`
+          : '';
         if (r.hero) {
           const badge = progress.done >= progress.total && progress.total ? 'Completada' : progress.done > 0 ? 'En progreso' : 'Disponible';
           return `<button type="button" onclick="openExploreRoute('${r.id}')" class="topic-card tap text-left bg-white rounded-2xl overflow-hidden soft-shadow border border-slate-100 w-full">
             <div class="relative h-32 hero-gradient">
+              ${r.image ? `<img src="${r.image}" alt="" class="absolute inset-0 w-full h-full object-cover">` : ''}
               <span class="absolute top-3 right-3 bg-white/90 text-[var(--brand-700)] text-[10.5px] font-extrabold px-2.5 py-1 rounded-full">${badge}</span>
             </div>
             <div class="p-4">
               <p class="text-[14px] font-bold text-slate-900">${escapeHtml(r.title)}</p>
-              <p class="text-[11.5px] text-slate-400 font-semibold mt-1">${(ROUTES[r.id]?.topics.length || r.topics)} temas · Nivel ${r.level}</p>
+              ${storyHtml}
+              <p class="text-[11.5px] text-slate-400 font-semibold mt-2">${(ROUTES[r.id]?.topics.length || r.topics)} temas · Nivel ${r.level}</p>
               <div class="w-full bg-slate-100 h-1.5 rounded-full mt-3 overflow-hidden">
                 <div class="bg-[var(--brand-700)] h-full rounded-full" style="width:${pct}%"></div>
               </div>
             </div>
           </button>`;
         }
-        const lock = r.locked
+        const lock = !r.available && r.locked
           ? '<span class="absolute inset-0 bg-white/40 flex items-center justify-center"><i data-lucide="lock" class="w-6 h-6 text-slate-600"></i></span>'
           : '';
-        const badge = r.badge
-          ? `<span class="absolute top-3 right-3 bg-white/90 text-slate-600 text-[10.5px] font-extrabold px-2.5 py-1 rounded-full">${escapeHtml(r.badge)}</span>`
-          : '<span class="absolute top-3 right-3 bg-white/90 text-slate-500 text-[10.5px] font-extrabold px-2.5 py-1 rounded-full">Próximamente</span>';
+        const liveBadge = r.available
+          ? (progress.done >= progress.total && progress.total ? 'Completada' : progress.done > 0 ? 'En progreso' : 'Disponible')
+          : (r.badge || 'Próximamente');
+        const badge = `<span class="absolute top-3 right-3 bg-white/90 ${r.available ? 'text-[var(--brand-700)]' : 'text-slate-600'} text-[10.5px] font-extrabold px-2.5 py-1 rounded-full">${escapeHtml(liveBadge)}</span>`;
         return `<button type="button" onclick="openExploreRoute('${r.id}')" class="topic-card tap text-left bg-white rounded-2xl overflow-hidden soft-shadow border border-slate-100 w-full${r.locked ? ' opacity-90' : ''}">
           <div class="relative h-32">
             <img src="${r.image}" class="w-full h-full object-cover" alt="">
@@ -708,7 +722,8 @@
           </div>
           <div class="p-4">
             <p class="text-[14px] font-bold text-slate-900">${escapeHtml(r.title)}</p>
-            <p class="text-[11.5px] text-slate-400 font-semibold mt-1">${(ROUTES[r.id]?.topics.length || r.topics)} temas · Nivel ${r.level}</p>
+            ${storyHtml}
+            <p class="text-[11.5px] text-slate-400 font-semibold mt-2">${(ROUTES[r.id]?.topics.length || r.topics)} temas · Nivel ${r.level}</p>
             <div class="w-full bg-slate-100 h-1.5 rounded-full mt-3 overflow-hidden">
               <div class="bg-slate-300 h-full rounded-full" style="width:0%"></div>
             </div>
@@ -1597,12 +1612,13 @@
         const complete = isTopicFullyComplete(topic.id);
         const examPending = isTopicLessonsComplete(topic.id) && topicHasExam(topic.id) && !isExamPassed(topic.id);
         const status = complete ? ' · Certificado' : examPending ? ' · Examen pendiente' : '';
-        return `<button type="button" onclick="openTopic('${topic.id}')" class="tap w-full bg-white rounded-2xl border border-slate-100 soft-shadow p-4 flex items-center justify-between text-left">
-          <div>
+        return `<button type="button" onclick="openTopic('${topic.id}')" class="tap w-full bg-white rounded-2xl border border-slate-100 soft-shadow p-4 flex items-start justify-between gap-3 text-left">
+          <div class="min-w-0">
             <p class="text-[13.5px] font-bold text-slate-900">${escapeHtml(topic.title)}</p>
-            <p class="text-[11.5px] text-slate-400 font-semibold mt-0.5">${p.done} / ${p.total} lecciones${status}</p>
+            <p class="catalog-story">${escapeHtml(topic.description || '')}</p>
+            <p class="text-[11.5px] text-slate-400 font-semibold mt-1.5">${p.done} / ${p.total} lecciones${status}</p>
           </div>
-          <i data-lucide="${topic.icon}" class="w-5 h-5 text-[var(--brand-700)]"></i>
+          <i data-lucide="${topic.icon}" class="w-5 h-5 text-[var(--brand-700)] shrink-0 mt-0.5"></i>
         </button>`;
       })
       .join('');
@@ -1612,9 +1628,10 @@
         <i data-lucide="arrow-left" class="w-4 h-4"></i> Volver
       </button>
       <div class="hero-gradient rounded-[26px] p-6 mt-4 accent-shadow">
-        <span class="text-[11px] tracking-[0.16em] uppercase font-bold text-violet-200/85">Ruta completa</span>
+        <span class="on-hero-soft text-[11px] tracking-[0.16em] uppercase font-bold">Ruta</span>
         <h1 class="text-[24px] font-extrabold text-white mt-1.5">${escapeHtml(route.title)} ${route.flag}</h1>
-        <p class="text-[13px] text-violet-100/80 font-medium mt-1.5">${done} de ${total} lecciones completadas</p>
+        <p class="on-hero-soft text-[13.5px] font-medium mt-2 leading-relaxed">${escapeHtml(route.catalog || route.description || '')}</p>
+        <p class="on-hero-faint text-[12px] font-semibold mt-3">${done} de ${total} lecciones completadas</p>
       </div>
       <div class="flex flex-col gap-3 mt-6 mb-8">${items}</div>`;
     lucide.createIcons();
@@ -1936,7 +1953,7 @@
       if (!btn.dataset.target) return;
       const isActive = btn.dataset.target === target;
       btn.style.background = isActive ? 'var(--brand-50)' : '';
-      btn.style.color = isActive ? 'var(--brand-500)' : 'var(--text-muted)';
+      btn.style.color = isActive ? 'var(--brand-ink)' : 'var(--text-muted)';
     });
   }
 
@@ -1944,7 +1961,7 @@
     document.querySelectorAll('.drawer-link').forEach((btn) => {
       const isActive = btn.dataset.target === target;
       btn.style.background = isActive ? 'var(--brand-50)' : '';
-      btn.style.color = isActive ? 'var(--brand-500)' : 'var(--text-muted)';
+      btn.style.color = isActive ? 'var(--brand-ink)' : 'var(--text-muted)';
     });
   }
 
@@ -1954,9 +1971,9 @@
       const isActive = btn.dataset.target === navTarget;
       const icon = btn.querySelector('.tab-icon');
       const label = btn.querySelector('.tab-label');
-      icon.style.color = isActive ? 'var(--brand-500)' : 'var(--text-soft)';
-      label.style.color = isActive ? 'var(--brand-500)' : 'var(--text-soft)';
-      icon.style.transform = isActive ? 'translateY(-1px) scale(1.06)' : 'none';
+      icon.style.color = isActive ? 'var(--brand-ink)' : 'var(--text-soft)';
+      label.style.color = isActive ? 'var(--brand-ink)' : 'var(--text-soft)';
+      icon.style.transform = 'none';
     });
   }
 
