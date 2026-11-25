@@ -3,14 +3,16 @@ const RUTA_ESPAÑOLA = {
   id: 'cultura-espanola',
   title: 'Cultura Española',
   flag: '🇪🇸',
-  description: 'Arte, tradiciones, gastronomía, música y costumbres. Para la historia completa, usa la ruta Historia de España.',
+  description: 'Va aparte de la historia: horarios, mesa, fiestas y arte que se ven en la calle. Cada tema es corto para usarlo en una visita o en una conversación, no para aprobar un examen que no tienes.',
+  catalog: 'La separamos de la historia porque quien vive aquí, o acaba de llegar, necesita el día a día: a qué hora se cena, qué lleva una paella de verdad, por qué una procesión no es un desfile. Lees un tema y puedes usarlo esa misma semana.',
   topics: [
     {
       id: 'territorio',
       num: 1,
       title: 'Territorio y lenguas',
       icon: 'map',
-      description: 'Geografía, islas y la riqueza lingüística del país.',
+      description: 'Para situarte antes de hablar de arte o de comida. El mapa, las lenguas y las autonomías, con Ceuta, Melilla y las islas dentro, no en una nota al pie.',
+      learnIntro: 'Primero el mapa y las fronteras, luego las lenguas que oirás en la calle y, al final, cómo se reparte el país en autonomías. Una noticia territorial deja de ser ruido.',
       image: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?q=80&w=1200&auto=format&fit=crop',
       exam: {
         title: 'Examen: Territorio y lenguas',
@@ -51,6 +53,7 @@ const RUTA_ESPAÑOLA = {
       lessons: [
         {
           id: 'territorio-1',
+          learnSummary: 'El mapa real: fronteras, estrecho, islas y las dos ciudades africanas, para no perderte cuando alguien dice España como si fuera un cuadrado.',
           title: 'España en el mapa',
           icon: 'map-pin',
           blocks: [
@@ -87,11 +90,12 @@ const RUTA_ESPAÑOLA = {
           ],
           sources: [
             { title: 'Instituto Geográfico Nacional (IGN)', url: 'https://www.ign.es' },
-            { title: 'Ministerio de Asuntos Exteriores — Ficha país España', url: 'https://www.exteriores.gob.es/es/PoliticaExterior/Paginas/FichaPais.aspx' }
+            { title: 'Ministerio de Asuntos Exteriores — Conoce España', url: 'https://www.exteriores.gob.es/es/ServiciosAlCiudadano/Paginas/Conoce-Espana.aspx' }
           ]
         },
         {
           id: 'territorio-2',
+          learnSummary: 'Castellano, catalán, gallego y euskera: dónde se hablan y por qué no son un adorno del mapa.',
           title: 'Lenguas de España',
           icon: 'languages',
           blocks: [
@@ -133,6 +137,7 @@ const RUTA_ESPAÑOLA = {
         },
         {
           id: 'territorio-3',
+          learnSummary: 'Las 17 autonomías y qué decide cada una, para seguir una noticia sin mezclar ayuntamiento, comunidad y Estado.',
           title: 'Un país de autonomías',
           icon: 'layout-grid',
           blocks: [
@@ -179,11 +184,13 @@ const RUTA_ESPAÑOLA = {
       num: 2,
       title: 'Arte y Arquitectura',
       icon: 'palette',
-      description: 'Un recorrido por el arte y la arquitectura española.',
+      description: 'Tres paradas que se pueden visitar de verdad: la mezcla de culturas, Gaudí en Barcelona y Las Meninas en el Prado. Pensado para llegar al museo sabiendo qué mirar.',
+      learnIntro: 'Una vista de la mezcla romana, islámica y cristiana; después Gaudí, que se entiende paseando; y Velázquez, que se entiende delante del cuadro.',
       image: 'assets/sagrada-familia.jpeg',
       lessons: [
         {
           id: 'arte-1',
+          learnSummary: 'Velázquez, Goya, Picasso y Gaudí en una sola vista, y por qué catedrales y palacios nazaríes comparten calle.',
           title: 'Introducción al arte español',
           icon: 'sparkles',
           blocks: [
@@ -199,6 +206,7 @@ const RUTA_ESPAÑOLA = {
         },
         {
           id: 'arte-2',
+          learnSummary: 'Qué mirar en la Sagrada Familia, el Parque Güell y la Pedrera, y por qué las curvas no son un capricho.',
           title: 'Gaudí y el modernismo',
           icon: 'building-2',
           blocks: [
@@ -214,6 +222,7 @@ const RUTA_ESPAÑOLA = {
         },
         {
           id: 'arte-3',
+          learnSummary: 'Las Meninas y el Prado: cómo entrar a la sala sabiendo qué estás viendo, no solo el nombre del cuadro.',
           title: 'Velázquez y el Prado',
           icon: 'frame',
           blocks: [
@@ -234,11 +243,13 @@ const RUTA_ESPAÑOLA = {
       num: 3,
       title: 'Tradiciones y Fiestas',
       icon: 'party-popper',
-      description: 'Las celebraciones más queridas del país.',
+      description: 'Semana Santa, Sanfermines y la Feria no son el mismo tipo de fiesta. Cada lección dice qué se hace, quién participa y cómo estar sin estorbar.',
+      learnIntro: 'Tres fiestas que desde fuera se confunden. Verás qué se conmemora, qué se hace con el cuerpo y qué se espera de quien mira.',
       image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200&auto=format&fit=crop',
       lessons: [
         {
           id: 'tradiciones-1',
+          learnSummary: 'Qué es un paso, un nazareno y una saeta, para estar en la calle sin tratar la procesión como un desfile.',
           title: 'Semana Santa',
           icon: 'church',
           blocks: [
@@ -254,6 +265,7 @@ const RUTA_ESPAÑOLA = {
         },
         {
           id: 'tradiciones-2',
+          learnSummary: 'El encierro de Pamplona y la hora del tomate en Buñol: dos fiestas, dos reglas, ningún resumen único.',
           title: 'San Fermín y la Tomatina',
           icon: 'zap',
           blocks: [
@@ -269,6 +281,7 @@ const RUTA_ESPAÑOLA = {
         },
         {
           id: 'tradiciones-3',
+          learnSummary: 'Casetas, sevillanas y traje de flamenca: qué es público y qué es de una peña, para no quedarte en la puerta equivocada.',
           title: 'Feria de Abril',
           icon: 'flower-2',
           blocks: [
@@ -289,11 +302,13 @@ const RUTA_ESPAÑOLA = {
       num: 4,
       title: 'Gastronomía',
       icon: 'utensils',
-      description: 'Platos típicos, ingredientes y costumbres.',
+      description: 'Paella, tapas y el aceite, no como postal sino como se discuten en la mesa. Incluye el socarrat, la sobremesa y por qué en León la tapa a veces viene con la bebida.',
+      learnIntro: 'De la paella que no lleva chorizo a la sobremesa y al pan con tomate. Para pedir y compartir sin repetir el tópico.',
       image: 'assets/gastronomia-espanola.jpg',
       lessons: [
         {
           id: 'gastronomia-1',
+          learnSummary: 'Qué lleva la paella valenciana y qué es el socarrat, para no pedir la de los folletos como si fuera la única.',
           title: 'La paella valenciana',
           icon: 'cooking-pot',
           blocks: [
@@ -309,6 +324,7 @@ const RUTA_ESPAÑOLA = {
         },
         {
           id: 'gastronomia-2',
+          learnSummary: 'Cómo se comparte una tapa y qué es quedarse de sobremesa: tiempo de mesa, no una lista de platos.',
           title: 'Tapas y sobremesa',
           icon: 'wine',
           blocks: [
@@ -324,6 +340,7 @@ const RUTA_ESPAÑOLA = {
         },
         {
           id: 'gastronomia-3',
+          learnSummary: 'Aceite, jamón de bellota y pan con tomate. Lo cotidiano, con el nombre de las cosas bien puesto.',
           title: 'Jamón y aceite de oliva',
           icon: 'leaf',
           blocks: [
@@ -344,11 +361,13 @@ const RUTA_ESPAÑOLA = {
       num: 5,
       title: 'Música y Danza',
       icon: 'music',
-      description: 'De lo tradicional a lo contemporáneo.',
+      description: 'Flamenco, zarzuela y lo que suena en una verbena. Para reconocer un palo o una sevillana, no para repetir que alguien declaró algo patrimonio.',
+      learnIntro: 'El flamenco con sus palos, la zarzuela como teatro cantado y las canciones que de verdad suenan en una boda o una verbena.',
       image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1200&auto=format&fit=crop',
       lessons: [
         {
           id: 'musica-1',
+          learnSummary: 'Cante, toque y baile, y que soleá y bulerías no son lo mismo. Para escuchar flamenco sin aplaudir a destiempo.',
           title: 'El flamenco',
           icon: 'flame',
           blocks: [
@@ -364,6 +383,7 @@ const RUTA_ESPAÑOLA = {
         },
         {
           id: 'musica-2',
+          learnSummary: 'La zarzuela como teatro cantado y popular, no como una ópera menor. Para saber qué vas a ver si entras.',
           title: 'La zarzuela',
           icon: 'theater',
           blocks: [
@@ -379,6 +399,7 @@ const RUTA_ESPAÑOLA = {
         },
         {
           id: 'musica-3',
+          learnSummary: 'Lo que de verdad suena en una verbena o una boda, además de los nombres que salen en las listas.',
           title: 'Canciones que nos unen',
           icon: 'mic',
           blocks: [
@@ -399,11 +420,13 @@ const RUTA_ESPAÑOLA = {
       num: 6,
       title: 'Sociedad y Costumbres',
       icon: 'users',
-      description: 'La vida cotidiana y el carácter español.',
+      description: 'Horarios, dos besos y la fiesta del pueblo. Lo que más choca a quien llega, y lo que quien ya vive aquí da por normal sin habérselo explicado.',
+      learnIntro: 'El reloj del día, la distancia al saludar y la fiesta en la que vuelve el pueblo. Costumbres concretas, no un carácter de postal.',
       image: 'https://images.unsplash.com/photo-1555993539-1732b0258235?q=80&w=1200&auto=format&fit=crop',
       lessons: [
         {
           id: 'sociedad-1',
+          learnSummary: 'A qué hora se come y se cena, y qué significa «quedamos a las ocho». El reloj, que es lo primero que descoloca.',
           title: 'El ritmo del día',
           icon: 'clock',
           blocks: [
@@ -419,6 +442,7 @@ const RUTA_ESPAÑOLA = {
         },
         {
           id: 'sociedad-2',
+          learnSummary: 'Dos besos, el tuteo y el domingo en familia. Cercanía que no es falta de respeto.',
           title: 'Familia y cercanía',
           icon: 'heart-handshake',
           blocks: [
@@ -434,6 +458,7 @@ const RUTA_ESPAÑOLA = {
         },
         {
           id: 'sociedad-3',
+          learnSummary: 'La fiesta del pueblo y las peñas: el día en que vuelve quien se fue, y cómo se entra.',
           title: 'Fiestas del pueblo',
           icon: 'tent',
           blocks: [

@@ -1,4 +1,4 @@
-/** Aprendalia — motion con GSAP (Nodo indigo) */
+/** Aprendalia — motion: entrada breve, sin saltos de layout */
 (function (global) {
   const reduced = global.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -9,21 +9,21 @@
   function enterLesson(root) {
     if (!root || reduced || !hasGsap()) return;
     const blocks = root.querySelectorAll('[data-block-animate]');
-    global.gsap.set(blocks, { opacity: 0, y: 18 });
+    global.gsap.set(blocks, { opacity: 0, y: 8 });
     global.gsap.to(blocks, {
       opacity: 1,
       y: 0,
-      duration: 0.55,
-      stagger: 0.08,
+      duration: 0.45,
+      stagger: 0.05,
       ease: 'power2.out',
-      delay: 0.12
+      delay: 0.05
     });
     const card = document.getElementById('lesson-content-card');
     if (card) {
       global.gsap.fromTo(
         card,
-        { opacity: 0, y: 12 },
-        { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }
+        { opacity: 0, y: 8 },
+        { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }
       );
     }
   }
@@ -32,8 +32,8 @@
     if (!el || reduced || !hasGsap()) return;
     global.gsap.fromTo(
       el,
-      { opacity: 0, y: 14 },
-      { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', delay: 0.15 }
+      { opacity: 0, y: 8 },
+      { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', delay: 0.08 }
     );
   }
 
