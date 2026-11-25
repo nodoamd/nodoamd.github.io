@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="galeria.css">
+    <link rel="preconnect" href="https://pub-cde9de8c9c464454b83b3dd0e1793e1b.r2.dev" crossorigin>
+    <link rel="preconnect" href="https://wsrv.nl" crossorigin>
 </head>
 
 <body>
@@ -152,8 +154,8 @@
             </div>
             <div class="modal-stage">
                 <button id="modalPrev" class="modal-nav prev" type="button" aria-label="Previous">‹</button>
-                <img id="modalImage" alt="">
-                <video id="modalVideo" controls loop playsinline></video>
+                <img id="modalImage" alt="" decoding="async">
+                <video id="modalVideo" controls loop playsinline preload="none"></video>
                 <button id="modalNext" class="modal-nav next" type="button" aria-label="Next">›</button>
             </div>
             <div class="modal-quality">
@@ -242,6 +244,7 @@
     <script src="gsap/gsap.min.js"></script>
     <script src="photo-manifest.js"></script>
     <script src="netlify-wallpapers.js"></script>
+    <script src="media.js"></script>
     <script src="galeria.js"></script>
 </body>
 
